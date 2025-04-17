@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Shield, BookOpen, Coins, Share2, Database, Globe } from 'lucide-react';
+import { Shield, BookOpen, Coins, Share2, Database, Globe, Mail } from 'lucide-react';
 
 const features = [
   {
@@ -32,6 +32,11 @@ const features = [
     icon: <Database className="h-6 w-6 text-neura-cyan" />,
     title: "$Neurax Token",
     description: "Utility token for access, seeding incentives, royalties, and marketplace payments."
+  },
+  {
+    icon: <Mail className="h-6 w-6 text-neura-cyan" />,
+    title: "Blockchain Email",
+    description: "Secure, decentralized communication system with end-to-end encryption and token-gated access."
   }
 ];
 
@@ -50,7 +55,7 @@ export const Features = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <div 
               key={index} 
