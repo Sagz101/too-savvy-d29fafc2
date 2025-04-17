@@ -35,7 +35,7 @@ const features = [
   },
   {
     icon: <Mail className="h-6 w-6 text-neura-cyan" />,
-    title: "Blockchain Email",
+    title: "Neurapathy",
     description: "Secure, decentralized communication system with end-to-end encryption and token-gated access."
   },
   {

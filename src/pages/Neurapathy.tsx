@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -11,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
 import { Mail, Send, Inbox, Archive, Star, Trash, UserPlus, Settings } from 'lucide-react';
 
-const BlockchainEmail = () => {
+const Neurapathy = () => {
   const [activeTab, setActiveTab] = useState('inbox');
 
   return (
@@ -25,7 +24,7 @@ const BlockchainEmail = () => {
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 <AnimatedText
-                  text="Blockchain-Based Email"
+                  text="Neurapathy"
                   type="gradient"
                   gradientFrom="from-neura-purple"
                   gradientTo="to-neura-cyan"
@@ -168,4 +167,4 @@ const BlockchainEmail = () => {
   );
 };
 
-export default BlockchainEmail;
+export default Neurapathy;

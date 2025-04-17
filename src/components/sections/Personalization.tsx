@@ -53,7 +53,7 @@ const modules = [
   },
   {
     icon: <Mail className="w-6 h-6 text-neura-cyan" />,
-    name: "Blockchain Email",
+    name: "Neurapathy",
     description: "Secure, encrypted messaging with permanent storage on the blockchain."
   },
   {
