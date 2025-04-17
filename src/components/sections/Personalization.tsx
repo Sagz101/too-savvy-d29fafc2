@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { AnimatedText } from '@/components/ui/animated-text';
 import { ModuleCard } from '@/components/ui/module-card';
 import { Button } from '@/components/ui/button';
-import { Music, Film, BookText, Store, LineChart, Users, ArrowRight, Globe, Image } from 'lucide-react';
+import { Music, Film, BookText, Store, LineChart, Users, ArrowRight, Globe, Image, Share2, Briefcase, Mail } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 
 const modules = [
@@ -33,9 +33,14 @@ const modules = [
     description: "Stake, lend, and earn using assets tied directly to your creative output."
   },
   {
-    icon: <Users className="w-6 h-6 text-neura-cyan" />,
-    name: "Social Networks",
-    description: "Build your network with decentralized social and professional identities."
+    icon: <Share2 className="w-6 h-6 text-neura-cyan" />,
+    name: "Social Media",
+    description: "Connect with fans and build your community through decentralized social networks."
+  },
+  {
+    icon: <Briefcase className="w-6 h-6 text-neura-cyan" />,
+    name: "Professional Profile",
+    description: "Build your professional identity with verified credentials and portfolio showcase."
   },
   {
     icon: <Image className="w-6 h-6 text-neura-cyan" />,
@@ -46,6 +51,11 @@ const modules = [
     icon: <Globe className="w-6 h-6 text-neura-cyan" />,
     name: "Web3 Gateway",
     description: "Connect to other decentralized applications through a unified interface."
+  },
+  {
+    icon: <Mail className="w-6 h-6 text-neura-cyan" />,
+    name: "Blockchain Email",
+    description: "Secure, encrypted messaging with permanent storage on the blockchain."
   }
 ];
 

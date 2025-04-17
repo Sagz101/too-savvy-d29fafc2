@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
-import { Music, Film, BookText, Store, LineChart, Users } from 'lucide-react';
+import { Music, Film, BookText, Store, LineChart, Users, Share2, Briefcase, Mail } from 'lucide-react';
 
 const modules = [
   {
@@ -30,9 +30,19 @@ const modules = [
     description: "Stake, lend, and earn using assets tied directly to your creative output."
   },
   {
-    icon: <Users className="w-10 h-10 text-neura-purple" />,
-    name: "Social & Professional",
-    description: "Build your network with decentralized profiles combining social, creative, and professional identities."
+    icon: <Share2 className="w-10 h-10 text-neura-purple" />,
+    name: "Social Media",
+    description: "Connect with fans, friends and followers through decentralized social profiles and content sharing."
+  },
+  {
+    icon: <Briefcase className="w-10 h-10 text-neura-purple" />,
+    name: "Professional Profile",
+    description: "Build your professional identity with verified credentials, portfolio showcase, and work history."
+  },
+  {
+    icon: <Mail className="w-10 h-10 text-neura-purple" />,
+    name: "Blockchain Email",
+    description: "Secure, encrypted messaging with token-gated access control and permanent data storage."
   }
 ];
 
@@ -53,7 +63,7 @@ export const Modules = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-12">
           {modules.map((module, index) => (
             <div
               key={index}
