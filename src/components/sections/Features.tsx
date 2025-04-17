@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Shield, BookOpen, Coins, Share2, Database, Globe, Mail } from 'lucide-react';
+import { Shield, BookOpen, Coins, Share2, Database, Globe, Mail, Code } from 'lucide-react';
 
 const features = [
   {
@@ -37,6 +37,11 @@ const features = [
     icon: <Mail className="h-6 w-6 text-neura-cyan" />,
     title: "Blockchain Email",
     description: "Secure, decentralized communication system with end-to-end encryption and token-gated access."
+  },
+  {
+    icon: <Code className="h-6 w-6 text-neura-cyan" />,
+    title: "Project Dapps",
+    description: "Build and deploy decentralized applications directly from your personalized portal."
   }
 ];
 

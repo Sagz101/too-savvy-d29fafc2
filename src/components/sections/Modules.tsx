@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
-import { Music, Film, BookText, Store, LineChart, Users, Share2, Briefcase, Mail } from 'lucide-react';
+import { Music, Film, BookText, Store, LineChart, Users, Share2, Briefcase, Mail, Code } from 'lucide-react';
 
 const modules = [
   {
@@ -43,6 +43,11 @@ const modules = [
     icon: <Mail className="w-10 h-10 text-neura-purple" />,
     name: "Blockchain Email",
     description: "Secure, encrypted messaging with token-gated access control and permanent data storage."
+  },
+  {
+    icon: <Code className="w-10 h-10 text-neura-purple" />,
+    name: "Project Dapps",
+    description: "Build, deploy, and manage decentralized applications with integrated development tools."
   }
 ];
 

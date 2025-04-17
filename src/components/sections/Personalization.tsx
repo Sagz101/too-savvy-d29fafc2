@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AnimatedText } from '@/components/ui/animated-text';
 import { ModuleCard } from '@/components/ui/module-card';
 import { Button } from '@/components/ui/button';
-import { Music, Film, BookText, Store, LineChart, Users, ArrowRight, Globe, Image, Share2, Briefcase, Mail } from 'lucide-react';
+import { Music, Film, BookText, Store, LineChart, Users, ArrowRight, Globe, Image, Share2, Briefcase, Mail, Code } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 
 const modules = [
@@ -24,7 +24,7 @@ const modules = [
   {
     icon: <Store className="w-6 h-6 text-neura-cyan" />,
     name: "E-Commerce",
-    description: "Sell digital or physical products with crypto payments and token-based loyalty."
+    description: "Sell digital or physical goods with crypto payments and token-based loyalty."
   },
   {
     icon: <LineChart className="w-6 h-6 text-neura-cyan" />,
@@ -55,6 +55,11 @@ const modules = [
     icon: <Mail className="w-6 h-6 text-neura-cyan" />,
     name: "Blockchain Email",
     description: "Secure, encrypted messaging with permanent storage on the blockchain."
+  },
+  {
+    icon: <Code className="w-6 h-6 text-neura-cyan" />,
+    name: "Project Dapps",
+    description: "Build and deploy decentralized applications with integrated developer tools."
   }
 ];
 
