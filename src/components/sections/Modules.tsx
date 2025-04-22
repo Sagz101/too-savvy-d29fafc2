@@ -1,7 +1,10 @@
 
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
-import { Music, Film, BookText, Store, LineChart, Users, Share2, Briefcase, Mail, Code } from 'lucide-react';
+import { 
+  Music, Film, BookText, Store, LineChart, Users, Share2, 
+  Briefcase, Mail, Code, PaintBrush, Trophy, HeartPulse, Building
+} from 'lucide-react';
 
 const modules = [
   {
@@ -48,6 +51,27 @@ const modules = [
     icon: <Code className="w-10 h-10 text-neura-purple" />,
     name: "Project Dapps",
     description: "Build, deploy, and manage decentralized applications with integrated development tools."
+  },
+  // New personalization enhancers
+  {
+    icon: <PaintBrush className="w-10 h-10 text-neura-purple" />,
+    name: "AI Brand Builder",
+    description: "Create a consistent personal brand with AI-powered design tools and templates."
+  },
+  {
+    icon: <Trophy className="w-10 h-10 text-neura-purple" />,
+    name: "Gamified Engagement",
+    description: "Engage your community with gamified experiences, missions, and reward systems."
+  },
+  {
+    icon: <HeartPulse className="w-10 h-10 text-neura-purple" />,
+    name: "Mood-based Feed",
+    description: "Deliver content based on mood settings to match what your audience is feeling."
+  },
+  {
+    icon: <Building className="w-10 h-10 text-neura-purple" />,
+    name: "NeuraSpaces",
+    description: "Custom virtual spaces for showcasing your work or hosting community events."
   }
 ];
 

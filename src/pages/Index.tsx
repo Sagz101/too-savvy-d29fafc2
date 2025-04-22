@@ -10,6 +10,7 @@ import { TechStack } from '@/components/sections/TechStack';
 import { SecurityFeatures } from '@/components/sections/SecurityFeatures';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
+import { NeuraAcademy } from '@/components/sections/NeuraAcademy';
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
         <Modules />
         <Personalization />
         <SecurityFeatures />
+        <NeuraAcademy />
         <Ecosystem />
         <TechStack />
         <Cta />

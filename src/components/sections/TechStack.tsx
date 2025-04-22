@@ -5,12 +5,12 @@ import { Card } from '@/components/ui/card';
 const technologies = [
   {
     category: "Frontend",
-    items: ["React", "Tailwind CSS", "Web3Modal", "IPFS UIs"],
+    items: ["React", "Tailwind CSS", "Web3Modal", "IPFS UIs", "AI Engines"],
     color: "bg-neura-cyan/20"
   },
   {
     category: "Backend",
-    items: ["IPFS", "WebTorrent", "OrbitDB", "The Graph"],
+    items: ["IPFS", "WebTorrent", "OrbitDB", "The Graph", "ZK Proofs"],
     color: "bg-neura-purple/20"
   },
   {
@@ -22,6 +22,16 @@ const technologies = [
     category: "Security",
     items: ["Zero-Knowledge Access Logs", "Decentralized Identity (DID)", "Multi-Factor Authentication", "Merkle Tree File Fingerprinting"],
     color: "bg-green-400/20"
+  },
+  {
+    category: "AI & Analytics",
+    items: ["Recommendation Engines", "Predictive Analytics", "Natural Language Processing", "Mood Detection"],
+    color: "bg-blue-400/20"
+  },
+  {
+    category: "Interoperability",
+    items: ["Cross-Chain Bridges", "Multi-wallet Support", "Layer 2 Solutions", "Sidechain Integration"],
+    color: "bg-amber-400/20"
   }
 ];
 
@@ -40,7 +50,7 @@ export const TechStack = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {technologies.map((tech, index) => (
             <Card 
               key={index} 

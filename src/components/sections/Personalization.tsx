@@ -1,8 +1,13 @@
+
 import React, { useState } from 'react';
 import { AnimatedText } from '@/components/ui/animated-text';
 import { ModuleCard } from '@/components/ui/module-card';
 import { Button } from '@/components/ui/button';
-import { Music, Film, BookText, Store, LineChart, Users, ArrowRight, Globe, Image, Share2, Briefcase, Mail, Code } from 'lucide-react';
+import { 
+  Music, Film, BookText, Store, LineChart, Users, ArrowRight, Globe, 
+  Image, Share2, Briefcase, Mail, Code, PaintBrush, Trophy, 
+  HeartPulse, Building
+} from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 
 const modules = [
@@ -60,6 +65,27 @@ const modules = [
     icon: <Code className="w-6 h-6 text-neura-cyan" />,
     name: "Project Dapps",
     description: "Build and deploy decentralized applications with integrated developer tools."
+  },
+  // New personalization enhancers
+  {
+    icon: <PaintBrush className="w-6 h-6 text-neura-cyan" />,
+    name: "AI Brand Builder",
+    description: "Tailored branding tools with design templates and tone analysis for creators."
+  },
+  {
+    icon: <Trophy className="w-6 h-6 text-neura-cyan" />,
+    name: "Gamified Engagement",
+    description: "Badges, missions, and loyalty NFTs that reward consumers and contributors."
+  },
+  {
+    icon: <HeartPulse className="w-6 h-6 text-neura-cyan" />,
+    name: "Mood-based Feed",
+    description: "Adaptive content suggestions based on user mood inputs or biometric feedback."
+  },
+  {
+    icon: <Building className="w-6 h-6 text-neura-cyan" />,
+    name: "NeuraSpaces",
+    description: "Virtual spaces owned via NFTs for showcasing content or hosting events."
   }
 ];
 

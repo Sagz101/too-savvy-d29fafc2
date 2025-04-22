@@ -1,6 +1,10 @@
 
 import React from 'react';
-import { Shield, BookOpen, Coins, Share2, Database, Globe, Mail, Code, Lock, Fingerprint, Key, FileDigit } from 'lucide-react';
+import { 
+  Shield, BookOpen, Coins, Share2, Database, Globe, Mail, Code, Lock, 
+  Fingerprint, Key, FileDigit, Search, BarChart, Award, Settings, 
+  Wallet, ArrowUpFromLine, BookText, Leaf
+} from 'lucide-react';
 
 const features = [
   {
@@ -62,6 +66,47 @@ const features = [
     icon: <Key className="h-6 w-6 text-neura-cyan" />,
     title: "Composable NFTs",
     description: "Nest or bundle NFTs (ERC-998) to package multimedia content or derivative works."
+  },
+  // New functional components
+  {
+    icon: <Search className="h-6 w-6 text-neura-cyan" />,
+    title: "AI-Powered Discovery",
+    description: "Personalized content recommendations using on-chain behavior and preferences."
+  },
+  {
+    icon: <BarChart className="h-6 w-6 text-neura-cyan" />,
+    title: "Creator Analytics",
+    description: "Real-time dashboards for tracking earnings, token flow, and audience insights."
+  },
+  {
+    icon: <Award className="h-6 w-6 text-neura-cyan" />,
+    title: "On-chain Reputation",
+    description: "Trust scores and badges based on verified interactions and NFT ownership."
+  },
+  {
+    icon: <Settings className="h-6 w-6 text-neura-cyan" />,
+    title: "DAO Governance",
+    description: "Interfaces for proposal submission, voting, and treasury management."
+  },
+  {
+    icon: <Wallet className="h-6 w-6 text-neura-cyan" />,
+    title: "Cross-Platform Wallets",
+    description: "Support for third-party wallets with seamless onboarding experience."
+  },
+  {
+    icon: <ArrowUpFromLine className="h-6 w-6 text-neura-cyan" />,
+    title: "Asset Bridge",
+    description: "Transfer NFT/media assets across multiple blockchain networks."
+  },
+  {
+    icon: <BookText className="h-6 w-6 text-neura-cyan" />,
+    title: "NeuraAcademy",
+    description: "On-platform learning modules for onboarding, DeFi literacy, and monetization."
+  },
+  {
+    icon: <Leaf className="h-6 w-6 text-neura-cyan" />,
+    title: "Impact Tokens",
+    description: "Contribute to social or ecological goals linked to content engagement."
   }
 ];
 
