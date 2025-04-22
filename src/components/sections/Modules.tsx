@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { 
   Music, Film, BookText, Store, LineChart, Users, Share2, 
-  Briefcase, Mail, Code, PaintBrush, Trophy, HeartPulse, Building
+  Briefcase, Mail, Code, Paintbrush, Trophy, HeartPulse, Building
 } from 'lucide-react';
 
 const modules = [
@@ -52,9 +51,8 @@ const modules = [
     name: "Project Dapps",
     description: "Build, deploy, and manage decentralized applications with integrated development tools."
   },
-  // New personalization enhancers
   {
-    icon: <PaintBrush className="w-10 h-10 text-neura-purple" />,
+    icon: <Paintbrush className="w-10 h-10 text-neura-purple" />,
     name: "AI Brand Builder",
     description: "Create a consistent personal brand with AI-powered design tools and templates."
   },
@@ -111,7 +109,6 @@ export const Modules = () => {
           ))}
         </div>
 
-        {/* Module Details */}
         <Card className="bg-neura-dark/50 backdrop-blur-md border border-neura-purple/30 p-6 md:p-8 rounded-2xl shadow-xl shadow-neura-purple/5">
           <div className="flex flex-col md:flex-row gap-8 items-center">
             <div className="bg-gradient-to-br from-neura-purple/20 to-neura-cyan/20 p-8 rounded-xl border border-neura-purple/30 flex items-center justify-center">

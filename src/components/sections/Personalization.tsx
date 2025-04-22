@@ -5,7 +5,7 @@ import { ModuleCard } from '@/components/ui/module-card';
 import { Button } from '@/components/ui/button';
 import { 
   Music, Film, BookText, Store, LineChart, Users, ArrowRight, Globe, 
-  Image, Share2, Briefcase, Mail, Code, PaintBrush, Trophy, 
+  Image, Share2, Briefcase, Mail, Code, Paintbrush, Trophy, 
   HeartPulse, Building
 } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
