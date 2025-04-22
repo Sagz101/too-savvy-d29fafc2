@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { AnimatedText } from '@/components/ui/animated-text';
 import { ModuleCard } from '@/components/ui/module-card';
@@ -66,9 +65,8 @@ const modules = [
     name: "Project Dapps",
     description: "Build and deploy decentralized applications with integrated developer tools."
   },
-  // New personalization enhancers
   {
-    icon: <PaintBrush className="w-6 h-6 text-neura-cyan" />,
+    icon: <Paintbrush className="w-6 h-6 text-neura-cyan" />,
     name: "AI Brand Builder",
     description: "Tailored branding tools with design templates and tone analysis for creators."
   },
