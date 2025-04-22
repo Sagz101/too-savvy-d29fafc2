@@ -7,6 +7,7 @@ import { Modules } from '@/components/sections/Modules';
 import { Personalization } from '@/components/sections/Personalization';
 import { Ecosystem } from '@/components/sections/Ecosystem';
 import { TechStack } from '@/components/sections/TechStack';
+import { SecurityFeatures } from '@/components/sections/SecurityFeatures';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
 
@@ -19,6 +20,7 @@ const Index = () => {
         <Features />
         <Modules />
         <Personalization />
+        <SecurityFeatures />
         <Ecosystem />
         <TechStack />
         <Cta />

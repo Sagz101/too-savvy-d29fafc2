@@ -15,12 +15,12 @@ const technologies = [
   },
   {
     category: "Smart Contracts",
-    items: ["Ethereum-compatible", "MediaNFTs (ERC-721A)", "Seeding Rewards (ERC-20)", "Access Control"],
+    items: ["Dynamic Licensing (ERC-1155)", "Royalty Enforcement", "Subscription NFTs", "Composable NFTs (ERC-998)"],
     color: "bg-neura-magenta/20"
   },
   {
     category: "Security",
-    items: ["AES encryption", "zk-NFT verification", "Wallet authentication", "End-to-end encryption"],
+    items: ["Zero-Knowledge Access Logs", "Decentralized Identity (DID)", "Multi-Factor Authentication", "Merkle Tree File Fingerprinting"],
     color: "bg-green-400/20"
   }
 ];

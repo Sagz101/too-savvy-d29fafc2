@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Shield, BookOpen, Coins, Share2, Database, Globe, Mail, Code } from 'lucide-react';
+import { Shield, BookOpen, Coins, Share2, Database, Globe, Mail, Code, Lock, Fingerprint, Key, FileDigit } from 'lucide-react';
 
 const features = [
   {
@@ -42,6 +42,26 @@ const features = [
     icon: <Code className="h-6 w-6 text-neura-cyan" />,
     title: "Project Dapps",
     description: "Build and deploy decentralized applications directly from your personalized portal."
+  },
+  {
+    icon: <Lock className="h-6 w-6 text-neura-cyan" />,
+    title: "Dynamic Licensing",
+    description: "NFT owners can define, modify, or lease content rights dynamically via ERC-1155."
+  },
+  {
+    icon: <Coins className="h-6 w-6 text-neura-cyan" />,
+    title: "Royalty Enforcement",
+    description: "On-chain solutions to ensure creator royalties on secondary sales across marketplaces."
+  },
+  {
+    icon: <FileDigit className="h-6 w-6 text-neura-cyan" />,
+    title: "Subscription NFTs",
+    description: "Time-bound access to content or services, ideal for serialized or episodic media."
+  },
+  {
+    icon: <Key className="h-6 w-6 text-neura-cyan" />,
+    title: "Composable NFTs",
+    description: "Nest or bundle NFTs (ERC-998) to package multimedia content or derivative works."
   }
 ];
 
