@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Music, Video, BookText, User, Image, Code, Palette, Globe } from 'lucide-react';
+import { Music, Video, BookText, User, Image, Code, Palette, Globe, ShoppingCart, DollarSign } from 'lucide-react';
 
 const modules = [
   {
@@ -42,6 +42,16 @@ const modules = [
     icon: <Globe className="h-6 w-6 text-neura-cyan" />,
     title: "NeuraSpaces",
     description: "NFT-owned virtual spaces for events/content"
+  },
+  {
+    icon: <ShoppingCart className="h-6 w-6 text-neura-magenta" />,
+    title: "Product & Service Sales",
+    description: "Sell digital/physical goods directly from your portal"
+  },
+  {
+    icon: <DollarSign className="h-6 w-6 text-neura-purple" />,
+    title: "$Neurax Token",
+    description: "Power access, rewards, royalties, payments"
   }
 ];
 

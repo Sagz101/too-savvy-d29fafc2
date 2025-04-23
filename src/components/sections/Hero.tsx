@@ -41,10 +41,7 @@ export const Hero = () => {
             >
               🚀 Launch Your Portal <ArrowRight size={18} className="ml-2" />
             </Button>
-            <WalletButton 
-              className={`transition-all duration-500 ${buttonInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-              style={{ transitionDelay: '1.4s' }}
-            />
+            <WalletButton />
           </div>
           <div className="flex flex-wrap justify-center gap-3 mt-8">
             <Button 
