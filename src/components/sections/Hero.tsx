@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from 'lucide-react';
+import { WalletButton } from "@/components/ui/wallet-button";
+import { ArrowRight, Lock, BookOpen } from 'lucide-react';
 import { AnimatedGradient } from "@/components/ui/animated-gradient";
 import { AnimatedText } from "@/components/ui/animated-text";
 import { useInView } from 'react-intersection-observer';
@@ -19,7 +20,7 @@ export const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
             <AnimatedText 
-              text="Your Personalized Web3.0 Universe"
+              text="Neura 3.0: Your Personalized Web3 Universe"
               type="gradient"
               gradientFrom="from-neura-purple"
               gradientTo="to-neura-cyan"
@@ -38,15 +39,29 @@ export const Hero = () => {
               className={`bg-gradient-to-r from-neura-purple to-neura-cyan hover:opacity-90 text-white px-8 py-6 transition-all duration-500 ${buttonInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
               style={{ transitionDelay: '1.2s' }}
             >
-              Launch Portal <ArrowRight size={18} className="ml-2" />
+              🚀 Launch Your Portal <ArrowRight size={18} className="ml-2" />
+            </Button>
+            <WalletButton 
+              className={`transition-all duration-500 ${buttonInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+              style={{ transitionDelay: '1.4s' }}
+            />
+          </div>
+          <div className="flex flex-wrap justify-center gap-3 mt-8">
+            <Button 
+              variant="ghost"
+              size="sm"
+              className={`text-white/70 hover:text-white hover:bg-neura-purple/10 transition-all duration-500 ${buttonInView ? 'opacity-100' : 'opacity-0'}`}
+              style={{ transitionDelay: '1.6s' }}
+            >
+              <BookOpen size={16} className="mr-2" /> Create Your Personal Portal
             </Button>
             <Button 
-              variant="outline" 
-              size="lg" 
-              className={`border-neura-purple/50 text-white hover:bg-neura-purple/10 px-8 py-6 transition-all duration-500 ${buttonInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-              style={{ transitionDelay: '1.4s' }}
+              variant="ghost"
+              size="sm"
+              className={`text-white/70 hover:text-white hover:bg-neura-purple/10 transition-all duration-500 ${buttonInView ? 'opacity-100' : 'opacity-0'}`}
+              style={{ transitionDelay: '1.8s' }}
             >
-              Learn More
+              <Lock size={16} className="mr-2" /> Learn About Web3 Security
             </Button>
           </div>
         </div>

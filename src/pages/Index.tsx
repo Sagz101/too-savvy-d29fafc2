@@ -2,16 +2,13 @@
 import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Hero } from '@/components/sections/Hero';
-import { Features } from '@/components/sections/Features';
-import { Modules } from '@/components/sections/Modules';
-import { Personalization } from '@/components/sections/Personalization';
-import { Ecosystem } from '@/components/sections/Ecosystem';
-import { TechStack } from '@/components/sections/TechStack';
-import { SecurityFeatures } from '@/components/sections/SecurityFeatures';
+import { CoreFeatures } from '@/components/sections/CoreFeatures';
+import { SecurityIdentity } from '@/components/sections/SecurityIdentity';
+import { AnalyticsDiscovery } from '@/components/sections/AnalyticsDiscovery';
+import { CreatorTools } from '@/components/sections/CreatorTools';
+import { EcosystemInterop } from '@/components/sections/EcosystemInterop';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
-import { NeuraAcademy } from '@/components/sections/NeuraAcademy';
-import { CreatorAnalytics } from '@/components/sections/CreatorAnalytics';
 
 const Index = () => {
   return (
@@ -19,14 +16,11 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <Features />
-        <Modules />
-        <Personalization />
-        <SecurityFeatures />
-        <Ecosystem />
-        <NeuraAcademy />
-        <CreatorAnalytics />
-        <TechStack />
+        <CoreFeatures />
+        <SecurityIdentity />
+        <AnalyticsDiscovery />
+        <CreatorTools />
+        <EcosystemInterop />
         <Cta />
       </main>
       <Footer />

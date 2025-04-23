@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { WalletButton } from '@/components/ui/wallet-button';
-import { ArrowRight, Lock } from 'lucide-react';
+import { ArrowRight, Lock, Wallet } from 'lucide-react';
 
 export const Cta = () => {
   return (
