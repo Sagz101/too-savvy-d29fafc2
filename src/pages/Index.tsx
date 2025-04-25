@@ -7,6 +7,7 @@ import { SecurityIdentity } from '@/components/sections/SecurityIdentity';
 import { AnalyticsDiscovery } from '@/components/sections/AnalyticsDiscovery';
 import { CreatorTools } from '@/components/sections/CreatorTools';
 import { EcosystemInterop } from '@/components/sections/EcosystemInterop';
+import { ModuleGrid } from '@/components/sections/ModuleGrid';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
 
@@ -17,6 +18,7 @@ const Index = () => {
       <main>
         <Hero />
         <CoreFeatures />
+        <ModuleGrid />
         <SecurityIdentity />
         <AnalyticsDiscovery />
         <CreatorTools />
