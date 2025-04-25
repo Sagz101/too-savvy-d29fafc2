@@ -3,11 +3,9 @@ import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Hero } from '@/components/sections/Hero';
 import { CoreFeatures } from '@/components/sections/CoreFeatures';
-import { SecurityIdentity } from '@/components/sections/SecurityIdentity';
-import { AnalyticsDiscovery } from '@/components/sections/AnalyticsDiscovery';
-import { CreatorTools } from '@/components/sections/CreatorTools';
-import { EcosystemInterop } from '@/components/sections/EcosystemInterop';
-import { ModuleGrid } from '@/components/sections/ModuleGrid';
+import { CreatorDashboard } from '@/components/sections/CreatorDashboard';
+import { OnboardingFlow } from '@/components/sections/OnboardingFlow';
+import { AICopilot } from '@/components/sections/AICopilot';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
 
@@ -18,11 +16,9 @@ const Index = () => {
       <main>
         <Hero />
         <CoreFeatures />
-        <ModuleGrid />
-        <SecurityIdentity />
-        <AnalyticsDiscovery />
-        <CreatorTools />
-        <EcosystemInterop />
+        <CreatorDashboard />
+        <OnboardingFlow />
+        <AICopilot />
         <Cta />
       </main>
       <Footer />

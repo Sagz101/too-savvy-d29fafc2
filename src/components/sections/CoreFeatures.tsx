@@ -1,10 +1,9 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { 
   BookOpen, FileDigit, Key, Code, Coins, Globe, 
-  Share2, Mail, Settings, Award, Heart
+  Share2, Mail, Settings, Award, Heart, Shield, Lock
 } from 'lucide-react';
 
 export const CoreFeatures = () => {
@@ -19,19 +18,19 @@ export const CoreFeatures = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent">
-              🔑 Core Features
+              Core Features
             </span>
           </h2>
           <p className="text-white/70 md:text-lg max-w-2xl mx-auto">
-            Everything you need to create, monetize, and grow in the decentralized web
+            Built for creators who want ownership, monetization, and community engagement
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {/* Content Ownership & Monetization */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {/* Ownership */}
           <div>
             <h3 className="text-xl md:text-2xl font-bold mb-6 border-l-4 border-neura-purple pl-4">
-              <span className="text-white">Content Ownership & Monetization</span>
+              <span className="text-white">Ownership</span>
             </h3>
             <div className="space-y-5">
               <FeatureCard 
@@ -47,51 +46,51 @@ export const CoreFeatures = () => {
               />
               
               <FeatureCard 
-                icon={<Code className="w-5 h-5 text-neura-cyan" />}
-                title="Composable NFTs (ERC-998)"
-                description="Bundle multimedia or derivative works"
+                icon={<Shield className="w-5 h-5 text-neura-cyan" />}
+                title="Decentralized Identity"
+                description="Own your digital presence across platforms"
               />
               
               <FeatureCard 
                 icon={<Key className="w-5 h-5 text-neura-cyan" />}
-                title="Dynamic Licensing (ERC-1155)"
-                description="Modify or lease content rights"
+                title="Dynamic Licensing"
+                description="Modify or lease content rights with smart contracts"
               />
             </div>
           </div>
 
-          {/* Commerce & Market Tools */}
+          {/* Monetization */}
           <div>
             <h3 className="text-xl md:text-2xl font-bold mb-6 border-l-4 border-neura-cyan pl-4">
-              <span className="text-white">Commerce & Market Tools</span>
+              <span className="text-white">Monetization</span>
             </h3>
             <div className="space-y-5">
-              <FeatureCard 
-                icon={<Globe className="w-5 h-5 text-neura-cyan" />}
-                title="Product & Service Sales"
-                description="Sell digital/physical goods directly from your portal"
-              />
-              
               <FeatureCard 
                 icon={<Coins className="w-5 h-5 text-neura-cyan" />}
                 title="$Neurax Token"
                 description="Power access, rewards, royalties, payments"
               />
+              
+              <FeatureCard 
+                icon={<Globe className="w-5 h-5 text-neura-cyan" />}
+                title="Product & Service Sales"
+                description="Sell digital/physical goods from your portal"
+              />
+              
+              <FeatureCard 
+                icon={<Code className="w-5 h-5 text-neura-cyan" />}
+                title="Composable NFTs"
+                description="Bundle multimedia or derivative works"
+              />
             </div>
           </div>
 
-          {/* Community & Communication */}
+          {/* Community */}
           <div>
             <h3 className="text-xl md:text-2xl font-bold mb-6 border-l-4 border-neura-magenta pl-4">
-              <span className="text-white">Community & Communication</span>
+              <span className="text-white">Community</span>
             </h3>
             <div className="space-y-5">
-              <FeatureCard 
-                icon={<Share2 className="w-5 h-5 text-neura-cyan" />}
-                title="Token-Incentivized Seeding"
-                description="Rewards for maintaining content availability"
-              />
-              
               <FeatureCard 
                 icon={<Mail className="w-5 h-5 text-neura-cyan" />}
                 title="Neurapathy"
@@ -101,7 +100,7 @@ export const CoreFeatures = () => {
               <FeatureCard 
                 icon={<Settings className="w-5 h-5 text-neura-cyan" />}
                 title="DAO Governance"
-                description="Propose, vote, and manage treasury with $Neurax"
+                description="Propose, vote, and manage with $Neurax"
               />
               
               <FeatureCard 
@@ -111,9 +110,9 @@ export const CoreFeatures = () => {
               />
               
               <FeatureCard 
-                icon={<Heart className="w-5 h-5 text-neura-cyan" />}
-                title="Mood-based Feed"
-                description="Content tailored to emotional state"
+                icon={<Lock className="w-5 h-5 text-neura-cyan" />}
+                title="Privacy & Security"
+                description="ZK-based access, MFA, and fingerprinting"
               />
             </div>
           </div>
