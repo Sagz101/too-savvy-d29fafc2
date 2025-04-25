@@ -1,11 +1,9 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-// Define the module type
 type ModuleFeature = {
   title: string;
   description: string;
@@ -22,7 +20,6 @@ type ModuleCategory = {
   }[];
 };
 
-// Module data structure
 const moduleCategories: ModuleCategory[] = [
   {
     icon: "🎨",
@@ -165,7 +162,7 @@ const moduleCategories: ModuleCategory[] = [
         features: [
           {
             title: "Privacy-Preserving Activity",
-            description: "Access history shown as an anonymized "proof tree" with dates and zk-proofs.",
+            description: "Access history shown as an anonymized \"proof tree\" with dates and zk-proofs.",
             uxFeature: "Toggle between human-readable summaries and cryptographic detail."
           }
         ]
@@ -429,7 +426,6 @@ export const ModuleGrid: React.FC = () => {
               <div 
                 className={`bg-neura-dark/60 backdrop-blur-md border border-neura-purple/30 rounded-xl overflow-hidden transition-all duration-300 ${expandedCategories[category.title] ? 'ring-2 ring-offset-0 ring-neura-cyan/50' : 'hover:border-neura-purple/50'}`}
               >
-                {/* Category Header */}
                 <div 
                   className={`p-5 cursor-pointer bg-gradient-to-r ${category.color} bg-opacity-10`}
                   onClick={() => toggleCategory(category.title)}
@@ -445,7 +441,6 @@ export const ModuleGrid: React.FC = () => {
                   </div>
                 </div>
                 
-                {/* Modules */}
                 <div className={`transition-all duration-300 overflow-hidden ${expandedCategories[category.title] ? 'max-h-[2000px]' : 'max-h-0'}`}>
                   <div className="p-4 space-y-4">
                     {category.modules.map((module, moduleIdx) => {
