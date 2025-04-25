@@ -64,7 +64,7 @@ export const CreatorTools = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent">
-              🛠 Creator Tools & Modules
+              🛠️ Creator Studio
             </span>
           </h2>
           <p className="text-white/70 md:text-lg max-w-2xl mx-auto">

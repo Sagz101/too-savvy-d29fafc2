@@ -18,9 +18,9 @@ export const Hero = () => {
       {/* Content */}
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
             <AnimatedText 
-              text="Neura 3.0: Your Personalized Web3 Universe"
+              text="Own Everything You Create"
               type="gradient"
               gradientFrom="from-neura-purple"
               gradientTo="to-neura-cyan"
@@ -31,7 +31,7 @@ export const Hero = () => {
             />
           </h1>
           <p className="text-xl md:text-2xl text-white/70 mb-8 max-w-2xl mx-auto opacity-0 animate-fadeIn" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
-            A decentralized platform where your content, commerce, community, and crypto intersect in one sovereign, encrypted, and tokenized space.
+            Monetize content. Connect with community. Control your data.
           </p>
           <div ref={buttonRef} className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button 
@@ -50,15 +50,7 @@ export const Hero = () => {
               className={`text-white/70 hover:text-white hover:bg-neura-purple/10 transition-all duration-500 ${buttonInView ? 'opacity-100' : 'opacity-0'}`}
               style={{ transitionDelay: '1.6s' }}
             >
-              <BookOpen size={16} className="mr-2" /> Create Your Personal Portal
-            </Button>
-            <Button 
-              variant="ghost"
-              size="sm"
-              className={`text-white/70 hover:text-white hover:bg-neura-purple/10 transition-all duration-500 ${buttonInView ? 'opacity-100' : 'opacity-0'}`}
-              style={{ transitionDelay: '1.8s' }}
-            >
-              <Lock size={16} className="mr-2" /> Learn About Web3 Security
+              <BookOpen size={16} className="mr-2" /> Learn About Web3 Security
             </Button>
           </div>
         </div>
