@@ -4,8 +4,11 @@ import { Header } from '@/components/layout/Header';
 import { Hero } from '@/components/sections/Hero';
 import { CoreFeatures } from '@/components/sections/CoreFeatures';
 import { CreatorDashboard } from '@/components/sections/CreatorDashboard';
+import { VideoShowcase } from '@/components/sections/VideoShowcase';
 import { OnboardingFlow } from '@/components/sections/OnboardingFlow';
 import { AICopilot } from '@/components/sections/AICopilot';
+import { SocialHub } from '@/components/sections/SocialHub';
+import { EcommerceStore } from '@/components/sections/EcommerceStore';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
 
@@ -16,7 +19,10 @@ const Index = () => {
       <main>
         <Hero />
         <CoreFeatures />
+        <VideoShowcase />
         <CreatorDashboard />
+        <EcommerceStore />
+        <SocialHub />
         <OnboardingFlow />
         <AICopilot />
         <Cta />
