@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { DollarSign, BarChart3, Clock, TrendingUp, TrendingDown } from 'lucide-react';
+import { DollarSign, BarChart3, Clock, TrendingUp, TrendingDown, Award } from 'lucide-react';
 import { calculateDynamicPrice, DynamicPriceModel, subscribeToProductPricing } from '@/services/dynamic-pricing';
 import { useWallet } from '@/services/wallet';
 
@@ -26,16 +26,16 @@ export const DynamicPricing: React.FC = () => {
       (newPrice) => {
         setPriceData(newPrice);
         setPriceHistory(prev => {
-          const newHistory = [...prev, newPrice.finalPrice];
-          if (newHistory.length > 10) {
-            return newHistory.slice(newHistory.length - 10);
+          const updatedHistory = [...prev, newPrice.finalPrice];
+          if (updatedHistory.length > 10) {
+            return updatedHistory.slice(updatedHistory.length - 10);
           }
-          return newHistory;
+          return updatedHistory;
         });
         
         // Determine if current price is lower than average
-        if (newHistory.length >= 3) {
-          const average = newHistory.reduce((a, b) => a + b, 0) / newHistory.length;
+        if (priceHistory.length >= 3) {
+          const average = priceHistory.reduce((a, b) => a + b, 0) / priceHistory.length;
           setIsLowPrice(newPrice.finalPrice < average);
         }
       },

@@ -66,7 +66,7 @@ const MOCK_PROPOSALS: ProposalData[] = [
 // Get user's voting power
 export const getUserVotingPower = async (
   userAddress: string,
-  provider: ethers.BrowserProvider
+  provider: any // Changed from ethers.BrowserProvider to any to fix typing issue
 ): Promise<number> => {
   try {
     if (!userAddress) return 0;
