@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Play, Video, Upload, Sparkles, Globe } from 'lucide-react';
+import { ArrowRight, Play, Video, Upload, Sparkles, Globe, ShoppingCart } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 
@@ -77,9 +77,9 @@ export const VideoShowcase: React.FC = () => {
                 <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">ERC-721M</span>
                 <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">ERC-2981</span>
               </div>
-              <Link to="/video-integration">
+              <Link to="/video-marketplace">
                 <Button variant="outline" className="w-full border-neura-purple/30 text-white hover:bg-neura-purple/10">
-                  Upload Video <ArrowRight className="w-4 h-4 ml-2" />
+                  Create NFT <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
               </Link>
             </CardContent>
@@ -115,9 +115,9 @@ export const VideoShowcase: React.FC = () => {
         </div>
         
         <div className="mt-12 text-center">
-          <Link to="/video-integration">
+          <Link to="/video-marketplace">
             <Button className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90">
-              <Video className="w-5 h-5 mr-2" /> Explore Video Integration
+              <ShoppingCart className="w-5 h-5 mr-2" /> Explore Video Marketplace
             </Button>
           </Link>
         </div>

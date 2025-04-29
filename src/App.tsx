@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import Neurapathy from "./pages/Neurapathy";
 import VideoStudio from "./pages/VideoStudio";
 import VideoIntegration from "./pages/VideoIntegration";
+import VideoMarketplace from "./pages/VideoMarketplace";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/neurapathy" element={<Neurapathy />} />
           <Route path="/video-studio" element={<VideoStudio />} />
           <Route path="/video-integration" element={<VideoIntegration />} />
+          <Route path="/video-marketplace" element={<VideoMarketplace />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
