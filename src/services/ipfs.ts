@@ -8,18 +8,21 @@ const projectId = "YOUR_INFURA_PROJECT_ID"; // Replace with actual project ID in
 const projectSecret = "YOUR_INFURA_PROJECT_SECRET"; // Replace with actual secret in production
 
 // Create IPFS client with error handling
-let ipfs: any;
+let ipfs: any = null;
 
 try {
+  // For browser environments that don't have Buffer
+  const auth = projectId && projectSecret 
+    ? 'Basic ' + btoa(`${projectId}:${projectSecret}`)
+    : undefined;
+    
   // For demo purposes, we'll use the public IPFS gateway
   ipfs = create({
     host: 'ipfs.infura.io',
     port: 5001,
     protocol: 'https',
     headers: {
-      authorization: projectId && projectSecret 
-        ? 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64')
-        : undefined
+      authorization: auth
     }
   });
 } catch (error) {
