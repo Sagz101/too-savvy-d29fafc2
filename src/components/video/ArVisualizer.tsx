@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
-import { Upload, RotateCw, Smartphone, Cube, Tag } from 'lucide-react';
+import { Upload, RotateCw, Smartphone, Box3D, Tag } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -52,7 +51,7 @@ export const ArVisualizer: React.FC = () => {
                     onChange={handleFileSelect}
                   />
                   <label htmlFor="modelFile" className="cursor-pointer">
-                    <Cube className="w-12 h-12 text-neura-purple/50 mx-auto mb-4" />
+                    <Box3D className="w-12 h-12 text-neura-purple/50 mx-auto mb-4" />
                     <p className="text-white font-medium mb-1">
                       {selectedFile ? selectedFile.name : 'Drop your 3D model here or click to browse'}
                     </p>
@@ -176,7 +175,7 @@ export const ArVisualizer: React.FC = () => {
             <div className="md:col-span-2">
               <div className="bg-neura-dark/50 border border-neura-purple/30 rounded-lg h-80 flex items-center justify-center">
                 <div className="text-center">
-                  <Cube className="w-16 h-16 text-neura-purple/50 mx-auto mb-4" />
+                  <Box3D className="w-16 h-16 text-neura-purple/50 mx-auto mb-4" />
                   <p className="text-white/70">3D model preview would appear here</p>
                 </div>
               </div>
