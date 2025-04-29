@@ -49,9 +49,11 @@ export const VideoShowcase: React.FC = () => {
                 <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">WebRTC</span>
                 <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">ERC-1155</span>
               </div>
-              <Button variant="outline" className="w-full border-neura-purple/30 text-white hover:bg-neura-purple/10">
-                Schedule Stream <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+              <Link to="/video-integration">
+                <Button variant="outline" className="w-full border-neura-purple/30 text-white hover:bg-neura-purple/10">
+                  Schedule Stream <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
             </CardContent>
           </Card>
           
@@ -75,9 +77,11 @@ export const VideoShowcase: React.FC = () => {
                 <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">ERC-721M</span>
                 <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">ERC-2981</span>
               </div>
-              <Button variant="outline" className="w-full border-neura-purple/30 text-white hover:bg-neura-purple/10">
-                Upload Video <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+              <Link to="/video-integration">
+                <Button variant="outline" className="w-full border-neura-purple/30 text-white hover:bg-neura-purple/10">
+                  Upload Video <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
             </CardContent>
           </Card>
           
@@ -101,17 +105,19 @@ export const VideoShowcase: React.FC = () => {
                 <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">ARCore</span>
                 <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">3D Models</span>
               </div>
-              <Button variant="outline" className="w-full border-neura-purple/30 text-white hover:bg-neura-purple/10">
-                Create AR <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+              <Link to="/video-integration">
+                <Button variant="outline" className="w-full border-neura-purple/30 text-white hover:bg-neura-purple/10">
+                  Create AR <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
         
         <div className="mt-12 text-center">
-          <Link to="/video-studio">
+          <Link to="/video-integration">
             <Button className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90">
-              <Video className="w-5 h-5 mr-2" /> Explore Video Studio
+              <Video className="w-5 h-5 mr-2" /> Explore Video Integration
             </Button>
           </Link>
         </div>
