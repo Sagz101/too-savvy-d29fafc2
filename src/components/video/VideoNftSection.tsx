@@ -67,7 +67,7 @@ export const VideoNftSection: React.FC = () => {
                     <p className="text-white/50 text-sm">
                       {selectedFile 
                         ? `${(selectedFile.size / 1024 / 1024).toFixed(2)} MB` 
-                        : 'MP4, MOV or WebM formats'
+                        : 'MP4, MOV or WebM formats'}
                     </p>
                   </label>
                 </div>
