@@ -7,37 +7,20 @@ import { toast } from "sonner";
 const projectId = "YOUR_INFURA_PROJECT_ID"; // Replace with actual project ID in production
 const projectSecret = "YOUR_INFURA_PROJECT_SECRET"; // Replace with actual secret in production
 
-// Create IPFS client with error handling
-let ipfs: any = null;
-
-try {
-  // For browser environments that don't have Buffer
-  const auth = projectId && projectSecret 
-    ? 'Basic ' + btoa(`${projectId}:${projectSecret}`)
-    : undefined;
-    
-  // For demo purposes, we'll use the public IPFS gateway
-  ipfs = create({
-    host: 'ipfs.infura.io',
-    port: 5001,
-    protocol: 'https',
-    headers: {
-      authorization: auth
-    }
-  });
-} catch (error) {
-  console.error("Error initializing IPFS client:", error);
-}
+// For demo purposes, we'll use the public IPFS gateway
+const ipfs = create({
+  host: 'ipfs.infura.io',
+  port: 5001,
+  protocol: 'https',
+  headers: {
+    authorization: projectId && projectSecret 
+      ? 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64')
+      : undefined
+  }
+});
 
 export const uploadToIPFS = async (file: File): Promise<string | null> => {
   try {
-    if (!ipfs) {
-      toast.error("IPFS client not initialized", {
-        description: "Could not connect to IPFS service. Please try again later."
-      });
-      return null;
-    }
-    
     // Show loading toast
     toast.loading("Uploading to IPFS...");
     
@@ -45,7 +28,7 @@ export const uploadToIPFS = async (file: File): Promise<string | null> => {
     const fileAdded = await ipfs.add(
       file,
       {
-        progress: (prog: number) => console.log(`Upload progress: ${prog}`)
+        progress: (prog) => console.log(`Upload progress: ${prog}`)
       }
     );
     
