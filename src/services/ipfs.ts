@@ -1,6 +1,7 @@
 
 import { create } from 'ipfs-http-client';
 import { toast } from "sonner";
+import { Buffer } from 'buffer';
 
 // Configure the IPFS client
 // Note: For production, you'd want to use a dedicated IPFS node or service like Infura
