@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Wallet, X, Menu, ShoppingCart } from "lucide-react";
+import { Wallet, X, Menu, ShoppingCart, MessageSquare } from "lucide-react";
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
 import { Link } from 'react-router-dom';
 
@@ -30,6 +30,13 @@ export const Header = () => {
           </Link>
           <Link to="/video-marketplace" className="text-sm text-white/80 hover:text-white transition-colors">
             <ShoppingCart size={16} className="inline mr-1" /> Marketplace
+          </Link>
+          <Link 
+            to="/neurapathy" 
+            className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white text-sm px-4 py-2 rounded hover:opacity-90 transition-colors flex items-center"
+          >
+            <MessageSquare size={16} className="mr-2" />
+            Neurapathy
           </Link>
           <WalletConnectButton />
         </nav>
@@ -74,6 +81,14 @@ export const Header = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               <ShoppingCart size={16} className="inline mr-1" /> Marketplace
+            </Link>
+            <Link 
+              to="/neurapathy" 
+              className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white text-sm px-4 py-2 rounded hover:opacity-90 transition-colors flex items-center my-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <MessageSquare size={16} className="mr-2" />
+              Neurapathy
             </Link>
             <div className="pt-2">
               <WalletConnectButton />
