@@ -9,6 +9,7 @@ import { OnboardingFlow } from '@/components/sections/OnboardingFlow';
 import { AICopilot } from '@/components/sections/AICopilot';
 import { SocialHub } from '@/components/sections/SocialHub';
 import { EcommerceStore } from '@/components/sections/EcommerceStore';
+import { Threaditor } from '@/components/sections/Threaditor';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
 
@@ -23,6 +24,7 @@ const Index = () => {
         <CreatorDashboard />
         <EcommerceStore />
         <SocialHub />
+        <Threaditor />
         <OnboardingFlow />
         <AICopilot />
         <Cta />
