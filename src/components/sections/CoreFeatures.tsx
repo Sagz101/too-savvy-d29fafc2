@@ -2,11 +2,93 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { 
-  BookOpen, FileDigit, Key, Code, Coins, Globe, 
-  Share2, Mail, Settings, Award, Heart, Shield, Lock
+  Wallet, FileText, Key, Code, BadgeCheck, Globe, 
+  MessageSquare, ShieldCheck, Settings, Award, Users, Lock
 } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
 
 export const CoreFeatures = () => {
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  const featureCategories = [
+    {
+      title: "Ownership",
+      borderColor: "border-neura-purple",
+      features: [
+        {
+          icon: <FileText className="w-5 h-5 text-neura-cyan" />,
+          title: "MediaNFTs",
+          description: "Tokenized, tradable content with gated access"
+        },
+        {
+          icon: <BadgeCheck className="w-5 h-5 text-neura-cyan" />,
+          title: "Subscription NFTs",
+          description: "Time-based access for episodic or premium content"
+        },
+        {
+          icon: <Users className="w-5 h-5 text-neura-cyan" />,
+          title: "Decentralized Identity",
+          description: "Own your digital presence across platforms"
+        },
+        {
+          icon: <Key className="w-5 h-5 text-neura-cyan" />,
+          title: "Dynamic Licensing",
+          description: "Modify or lease content rights with smart contracts"
+        }
+      ]
+    },
+    {
+      title: "Monetization",
+      borderColor: "border-neura-cyan",
+      features: [
+        {
+          icon: <Wallet className="w-5 h-5 text-neura-cyan" />,
+          title: "$Neurax Token",
+          description: "Power access, rewards, royalties, payments"
+        },
+        {
+          icon: <Globe className="w-5 h-5 text-neura-cyan" />,
+          title: "Product & Service Sales",
+          description: "Sell digital/physical goods from your portal"
+        },
+        {
+          icon: <Code className="w-5 h-5 text-neura-cyan" />,
+          title: "Composable NFTs",
+          description: "Bundle multimedia or derivative works"
+        }
+      ]
+    },
+    {
+      title: "Community",
+      borderColor: "border-neura-magenta",
+      features: [
+        {
+          icon: <MessageSquare className="w-5 h-5 text-neura-cyan" />,
+          title: "Neurapathy",
+          description: "End-to-end encrypted messaging with token gating"
+        },
+        {
+          icon: <Settings className="w-5 h-5 text-neura-cyan" />,
+          title: "DAO Governance",
+          description: "Propose, vote, and manage with $Neurax"
+        },
+        {
+          icon: <Award className="w-5 h-5 text-neura-cyan" />,
+          title: "Gamified Engagement",
+          description: "Badges, loyalty NFTs, missions"
+        },
+        {
+          icon: <Lock className="w-5 h-5 text-neura-cyan" />,
+          title: "Privacy & Security",
+          description: "ZK-based access, MFA, and fingerprinting"
+        }
+      ]
+    }
+  ];
+
   return (
     <section id="core-features" className="py-20 relative">
       <div className="absolute inset-0 -z-10">
@@ -26,105 +108,53 @@ export const CoreFeatures = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {/* Ownership */}
-          <div>
-            <h3 className="text-xl md:text-2xl font-bold mb-6 border-l-4 border-neura-purple pl-4">
-              <span className="text-white">Ownership</span>
-            </h3>
-            <div className="space-y-5">
-              <FeatureCard 
-                icon={<BookOpen className="w-5 h-5 text-neura-cyan" />}
-                title="MediaNFTs"
-                description="Tokenized, tradable content with gated access"
-              />
-              
-              <FeatureCard 
-                icon={<FileDigit className="w-5 h-5 text-neura-cyan" />}
-                title="Subscription NFTs"
-                description="Time-based access for episodic or premium content"
-              />
-              
-              <FeatureCard 
-                icon={<Shield className="w-5 h-5 text-neura-cyan" />}
-                title="Decentralized Identity"
-                description="Own your digital presence across platforms"
-              />
-              
-              <FeatureCard 
-                icon={<Key className="w-5 h-5 text-neura-cyan" />}
-                title="Dynamic Licensing"
-                description="Modify or lease content rights with smart contracts"
-              />
+        <div 
+          ref={ref} 
+          className="grid grid-cols-1 md:grid-cols-3 gap-10"
+        >
+          {featureCategories.map((category, categoryIndex) => (
+            <div 
+              key={categoryIndex}
+              className={`transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              style={{ transitionDelay: `${categoryIndex * 150}ms` }}
+            >
+              <h3 className={`text-xl md:text-2xl font-bold mb-6 border-l-4 ${category.borderColor} pl-4`}>
+                <span className="text-white">{category.title}</span>
+              </h3>
+              <div className="space-y-5">
+                {category.features.map((feature, featureIndex) => (
+                  <FeatureCard 
+                    key={featureIndex}
+                    icon={feature.icon}
+                    title={feature.title}
+                    description={feature.description}
+                    delay={(categoryIndex * 150) + (featureIndex * 75)}
+                    inView={inView}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-
-          {/* Monetization */}
-          <div>
-            <h3 className="text-xl md:text-2xl font-bold mb-6 border-l-4 border-neura-cyan pl-4">
-              <span className="text-white">Monetization</span>
-            </h3>
-            <div className="space-y-5">
-              <FeatureCard 
-                icon={<Coins className="w-5 h-5 text-neura-cyan" />}
-                title="$Neurax Token"
-                description="Power access, rewards, royalties, payments"
-              />
-              
-              <FeatureCard 
-                icon={<Globe className="w-5 h-5 text-neura-cyan" />}
-                title="Product & Service Sales"
-                description="Sell digital/physical goods from your portal"
-              />
-              
-              <FeatureCard 
-                icon={<Code className="w-5 h-5 text-neura-cyan" />}
-                title="Composable NFTs"
-                description="Bundle multimedia or derivative works"
-              />
-            </div>
-          </div>
-
-          {/* Community */}
-          <div>
-            <h3 className="text-xl md:text-2xl font-bold mb-6 border-l-4 border-neura-magenta pl-4">
-              <span className="text-white">Community</span>
-            </h3>
-            <div className="space-y-5">
-              <FeatureCard 
-                icon={<Mail className="w-5 h-5 text-neura-cyan" />}
-                title="Neurapathy"
-                description="End-to-end encrypted messaging with token gating"
-              />
-              
-              <FeatureCard 
-                icon={<Settings className="w-5 h-5 text-neura-cyan" />}
-                title="DAO Governance"
-                description="Propose, vote, and manage with $Neurax"
-              />
-              
-              <FeatureCard 
-                icon={<Award className="w-5 h-5 text-neura-cyan" />}
-                title="Gamified Engagement"
-                description="Badges, loyalty NFTs, missions"
-              />
-              
-              <FeatureCard 
-                icon={<Lock className="w-5 h-5 text-neura-cyan" />}
-                title="Privacy & Security"
-                description="ZK-based access, MFA, and fingerprinting"
-              />
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-const FeatureCard = ({ icon, title, description }) => {
+interface FeatureCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  delay: number;
+  inView: boolean;
+}
+
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, delay, inView }) => {
   return (
-    <Card className="bg-neura-dark/50 backdrop-blur-sm border border-neura-purple/20 hover:border-neura-purple/40 transition-all duration-300">
+    <Card 
+      className={`bg-neura-dark/50 backdrop-blur-sm border border-neura-purple/20 hover:border-neura-purple/40 transition-all duration-300 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
       <CardContent className="p-5">
         <div className="flex items-start gap-4">
           <div className="mt-1 bg-neura-purple/10 p-2 rounded-lg">
