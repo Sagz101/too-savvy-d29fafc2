@@ -14,8 +14,20 @@ export const Hero = () => {
   
   return (
     <section className="relative min-h-screen pt-24 pb-16 flex items-center">
+      {/* Background Image */}
+      <div className="absolute inset-0 -z-10">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80"
+          style={{ 
+            backgroundImage: `url('/lovable-uploads/d9dfd054-6da9-4dd1-8c30-08d17a2d3038.png')`
+          }}
+        >
+          <div className="absolute inset-0 bg-neura-dark/70 backdrop-blur-sm"></div>
+        </div>
+      </div>
+      
       {/* Background Elements */}
-      <AnimatedGradient className="opacity-80" />
+      <AnimatedGradient className="opacity-50" />
       
       {/* Particle Effect */}
       <div className="absolute inset-0 -z-5 overflow-hidden">
