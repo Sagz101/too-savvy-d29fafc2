@@ -17,33 +17,51 @@ export const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 -z-10">
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-90"
           style={{ 
-            backgroundImage: `url('/lovable-uploads/d9dfd054-6da9-4dd1-8c30-08d17a2d3038.png')`
+            backgroundImage: `url('/lovable-uploads/f6869e67-ae11-47fb-8123-287524ed6e8d.png')`
           }}
         >
-          <div className="absolute inset-0 bg-neura-dark/70 backdrop-blur-sm"></div>
+          <div className="absolute inset-0 bg-neura-dark/80 backdrop-blur-sm"></div>
         </div>
       </div>
       
       {/* Background Elements */}
-      <AnimatedGradient className="opacity-50" />
+      <AnimatedGradient className="opacity-40" />
       
-      {/* Particle Effect */}
+      {/* Hexagon Overlay - to complement the honeycomb in the image */}
+      <div className="absolute inset-0 -z-5 overflow-hidden">
+        <div className="hexagon-pattern">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-40 h-40 border border-neura-cyan/10 rotate-45 transform -translate-x-1/2 -translate-y-1/2"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                opacity: Math.random() * 0.15,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Digital particle effect to complement the circuitry theme */}
       <div className="absolute inset-0 -z-5 overflow-hidden">
         <div className="particles-container">
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
-              className="absolute rounded-full bg-neura-purple/30 animate-float"
+              className="absolute rounded-full bg-neura-cyan/40 animate-float"
               style={{
-                width: `${Math.random() * 10 + 5}px`,
-                height: `${Math.random() * 10 + 5}px`,
+                width: `${Math.random() * 6 + 2}px`,
+                height: `${Math.random() * 6 + 2}px`,
                 top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
-                opacity: Math.random() * 0.5 + 0.2,
+                opacity: Math.random() * 0.4 + 0.1,
                 animationDuration: `${Math.random() * 15 + 10}s`,
                 animationDelay: `${Math.random() * 5}s`,
+                boxShadow: '0 0 8px rgb(51, 195, 240)',
               }}
             />
           ))}
@@ -62,9 +80,9 @@ export const Hero = () => {
               <AnimatedText 
                 text="Create. Own. Thrive."
                 type="gradient"
-                gradientFrom="from-neura-purple"
-                gradientTo="to-neura-cyan"
-                className="via-neura-light-purple"
+                gradientFrom="from-neura-cyan"
+                gradientTo="to-yellow-400"
+                className="via-neura-purple"
                 delay={0.3}
                 staggerDelay={0.05}
                 tag="span"
@@ -76,24 +94,24 @@ export const Hero = () => {
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-neura-dark/50 backdrop-blur-md border border-neura-purple/30 rounded-xl p-6 transform transition-all duration-300 hover:translate-y-[-5px] hover:border-neura-purple/60">
-                <div className="bg-gradient-to-br from-neura-purple/20 to-neura-cyan/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
+              <div className="bg-neura-dark/60 backdrop-blur-md border border-yellow-500/20 rounded-xl p-6 transform transition-all duration-300 hover:translate-y-[-5px] hover:border-yellow-400/40">
+                <div className="bg-gradient-to-br from-neura-cyan/20 to-yellow-400/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
                   <Key className="w-6 h-6 text-neura-cyan" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2 text-white">Ownership</h3>
                 <p className="text-white/70 text-sm">You control your content, data, and digital identity—forever.</p>
               </div>
               
-              <div className="bg-neura-dark/50 backdrop-blur-md border border-neura-purple/30 rounded-xl p-6 transform transition-all duration-300 hover:translate-y-[-5px] hover:border-neura-purple/60">
-                <div className="bg-gradient-to-br from-neura-purple/20 to-neura-cyan/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
-                  <DollarSign className="w-6 h-6 text-neura-cyan" />
+              <div className="bg-neura-dark/60 backdrop-blur-md border border-yellow-500/20 rounded-xl p-6 transform transition-all duration-300 hover:translate-y-[-5px] hover:border-yellow-400/40">
+                <div className="bg-gradient-to-br from-neura-cyan/20 to-yellow-400/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
+                  <DollarSign className="w-6 h-6 text-yellow-400" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2 text-white">Monetization</h3>
                 <p className="text-white/70 text-sm">Flexible, token-native tools to turn creativity into income.</p>
               </div>
               
-              <div className="bg-neura-dark/50 backdrop-blur-md border border-neura-purple/30 rounded-xl p-6 transform transition-all duration-300 hover:translate-y-[-5px] hover:border-neura-purple/60">
-                <div className="bg-gradient-to-br from-neura-purple/20 to-neura-cyan/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
+              <div className="bg-neura-dark/60 backdrop-blur-md border border-yellow-500/20 rounded-xl p-6 transform transition-all duration-300 hover:translate-y-[-5px] hover:border-yellow-400/40">
+                <div className="bg-gradient-to-br from-neura-cyan/20 to-yellow-400/10 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-4 mx-auto">
                   <Users className="w-6 h-6 text-neura-cyan" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2 text-white">Community</h3>
@@ -107,13 +125,13 @@ export const Hero = () => {
             >
               <Button 
                 size="lg" 
-                className={`bg-gradient-to-r from-neura-purple to-neura-cyan hover:opacity-90 text-white px-8 py-6 transition-all duration-500 transform ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                className={`bg-gradient-to-r from-neura-cyan to-yellow-400 hover:opacity-90 text-black font-semibold px-8 py-6 transition-all duration-500 transform ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
                 style={{ transitionDelay: '0.6s' }}
                 asChild
               >
                 <Link to="/video-studio">
                   <span className="flex items-center">
-                    <span className="mr-2">🟢</span>
+                    <span className="mr-2">🐝</span>
                     Start Creating <ArrowRight size={18} className="ml-2" />
                   </span>
                 </Link>
@@ -130,11 +148,11 @@ export const Hero = () => {
           
           {/* Right Column: Interactive Dashboard Preview */}
           <div 
-            className={`relative bg-neura-dark/40 backdrop-blur-xl border border-neura-purple/20 rounded-xl overflow-hidden shadow-2xl transition-all duration-1000 ${contentInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
+            className={`relative bg-neura-dark/40 backdrop-blur-xl border border-yellow-400/20 rounded-xl overflow-hidden shadow-2xl transition-all duration-1000 ${contentInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
             style={{ minHeight: '450px' }}
           >
             {/* Dashboard UI Mockup */}
-            <div className="absolute top-0 left-0 right-0 bg-neura-dark/60 backdrop-blur-sm border-b border-neura-purple/20 p-3 flex items-center justify-between">
+            <div className="absolute top-0 left-0 right-0 bg-neura-dark/60 backdrop-blur-sm border-b border-yellow-500/20 p-3 flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500/70"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500/70"></div>
@@ -147,21 +165,21 @@ export const Hero = () => {
             <div className="p-6 pt-16">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-medium text-white">Creator Dashboard</h3>
-                <div className="bg-neura-purple/30 px-3 py-1 rounded-md text-xs text-white/90">Connected</div>
+                <div className="bg-neura-cyan/30 px-3 py-1 rounded-md text-xs text-white/90">Connected</div>
               </div>
               
               <div className="grid grid-cols-2 gap-3 mb-6">
-                <div className="bg-neura-dark/50 border border-neura-purple/20 p-4 rounded-lg">
+                <div className="bg-neura-dark/50 border border-yellow-500/20 p-4 rounded-lg">
                   <div className="text-xs text-white/50 mb-1">Content NFTs</div>
                   <div className="text-2xl font-bold text-white">12</div>
                 </div>
-                <div className="bg-neura-dark/50 border border-neura-purple/20 p-4 rounded-lg">
+                <div className="bg-neura-dark/50 border border-yellow-500/20 p-4 rounded-lg">
                   <div className="text-xs text-white/50 mb-1">Subscribers</div>
                   <div className="text-2xl font-bold text-white">248</div>
                 </div>
               </div>
               
-              <div className="bg-neura-dark/50 border border-neura-purple/20 p-4 rounded-lg mb-6">
+              <div className="bg-neura-dark/50 border border-yellow-500/20 p-4 rounded-lg mb-6">
                 <div className="flex items-center justify-between mb-2">
                   <div className="text-sm text-white/80">Revenue (30d)</div>
                   <div className="text-xs text-green-400">+24%</div>
@@ -173,7 +191,7 @@ export const Hero = () => {
                       {[40, 25, 35, 30, 45, 38, 50, 55, 45, 60, 58, 65].map((height, i) => (
                         <div 
                           key={i} 
-                          className="bg-gradient-to-t from-neura-purple/80 to-neura-cyan/70 rounded-sm"
+                          className="bg-gradient-to-t from-neura-cyan/80 to-yellow-400/70 rounded-sm"
                           style={{ 
                             height: `${height}%`, 
                             width: '100%',
@@ -187,13 +205,13 @@ export const Hero = () => {
                 </div>
               </div>
               
-              <div className="bg-neura-dark/50 border border-neura-purple/20 rounded-lg">
-                <div className="text-sm text-white/80 p-3 border-b border-neura-purple/20">Recent Activity</div>
+              <div className="bg-neura-dark/50 border border-yellow-500/20 rounded-lg">
+                <div className="text-sm text-white/80 p-3 border-b border-yellow-500/20">Recent Activity</div>
                 <div className="p-1">
                   {["New subscriber joined", "Content NFT sold for $ETH 0.15", "Community message"].map((item, i) => (
                     <div 
                       key={i} 
-                      className="flex items-center justify-between p-2 text-sm border-b last:border-0 border-neura-purple/10"
+                      className="flex items-center justify-between p-2 text-sm border-b last:border-0 border-yellow-500/10"
                       style={{ 
                         opacity: contentInView ? 1 : 0,
                         transform: contentInView ? 'translateY(0)' : 'translateY(10px)',
