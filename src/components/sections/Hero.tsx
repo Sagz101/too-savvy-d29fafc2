@@ -107,10 +107,12 @@ export const Hero = () => {
                 </Link>
               </Button>
               
-              <WalletButton 
-                className={`border-neura-purple/50 hover:border-neura-purple/90 hover:bg-neura-purple/10 transition-all duration-300 transform ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+              <div 
+                className={`transition-all duration-300 transform ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
                 style={{ transitionDelay: '0.8s' }}
-              />
+              >
+                <WalletButton />
+              </div>
             </div>
           </div>
           
