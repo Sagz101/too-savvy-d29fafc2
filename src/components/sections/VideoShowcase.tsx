@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Play, Video, Upload, Sparkles, Globe, ShoppingCart } from 'lucide-react';
+import { ArrowRight, Play, Video, Upload, Sparkles, Globe, ShoppingCart, Music, Podcast } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 
@@ -20,11 +20,11 @@ export const VideoShowcase: React.FC = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent">
-              Video Creation Studio
+              Creator Studio
             </span>
           </h2>
           <p className="text-white/70 md:text-lg max-w-2xl mx-auto">
-            Create, stream, and monetize video content with decentralized tools
+            Create, stream, and monetize content with decentralized tools
           </p>
         </div>
         
@@ -112,12 +112,68 @@ export const VideoShowcase: React.FC = () => {
               </Link>
             </CardContent>
           </Card>
+          
+          {/* Podcast Card */}
+          <Card className={`bg-neura-dark/50 border border-neura-purple/30 overflow-hidden transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} 
+                style={{ transitionDelay: '400ms' }}>
+            <div className="h-48 bg-gradient-to-br from-neura-purple/20 to-neura-cyan/10 relative">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-neura-purple/30 flex items-center justify-center backdrop-blur-sm">
+                  <Podcast className="w-8 h-8 text-white" />
+                </div>
+              </div>
+            </div>
+            <CardContent className="p-6">
+              <h3 className="text-xl font-semibold mb-3 text-white">Podcast Studio</h3>
+              <p className="text-white/70 mb-4">
+                Create, distribute and monetize podcasts with token-gated bonus content for supporters
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">RSS</span>
+                <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">Subscription</span>
+                <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">Analytics</span>
+              </div>
+              <Link to="/video-marketplace">
+                <Button variant="outline" className="w-full border-neura-purple/30 text-white hover:bg-neura-purple/10">
+                  Create Podcast <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+          
+          {/* Music Creation Card */}
+          <Card className={`bg-neura-dark/50 border border-neura-purple/30 overflow-hidden transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} 
+                style={{ transitionDelay: '500ms' }}>
+            <div className="h-48 bg-gradient-to-br from-neura-purple/20 to-neura-cyan/10 relative">
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-neura-purple/30 flex items-center justify-center backdrop-blur-sm">
+                  <Music className="w-8 h-8 text-white" />
+                </div>
+              </div>
+            </div>
+            <CardContent className="p-6">
+              <h3 className="text-xl font-semibold mb-3 text-white">Music Creation</h3>
+              <p className="text-white/70 mb-4">
+                Compose, mint and sell music as NFTs with built-in royalties and collaboration tools
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">Stems</span>
+                <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">Royalties</span>
+                <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">Split Rights</span>
+              </div>
+              <Link to="/video-marketplace">
+                <Button variant="outline" className="w-full border-neura-purple/30 text-white hover:bg-neura-purple/10">
+                  Create Music <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
         </div>
         
         <div className="mt-12 text-center">
           <Link to="/video-marketplace">
             <Button className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90">
-              <ShoppingCart className="w-5 h-5 mr-2" /> Explore Video Marketplace
+              <ShoppingCart className="w-5 h-5 mr-2" /> Explore Creator Marketplace
             </Button>
           </Link>
         </div>
