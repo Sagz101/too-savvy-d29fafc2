@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -528,7 +527,7 @@ export const DecentralizedFinanceHub: React.FC = () => {
                               <div className="text-xl font-bold">{vault.balance} {token?.symbol}</div>
                               {vault.autoDeposit && (
                                 <div className="text-xs text-neura-cyan mt-1 flex items-center">
-                                  <Refresh className="w-3 h-3 mr-1" /> Auto-deposit enabled
+                                  <RefreshCw className="w-3 h-3 mr-1" /> Auto-deposit enabled
                                 </div>
                               )}
                             </CardContent>
