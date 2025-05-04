@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
 import { toast } from "sonner";
-import { DollarSign, BadgeDollarSign, Award, TrendingUp, Key, ArrowRight } from "lucide-react";
+import { DollarSign, BadgeDollarSign, Award, TrendingUp, Key, ArrowRight, Calendar } from "lucide-react";
 
 interface FundingMechanismProps {
   projectId: string;
@@ -370,7 +370,10 @@ export const FundingMechanism: React.FC<FundingMechanismProps> = ({ projectId })
                   <span className="text-sm text-white/70">Progress</span>
                   <span className="text-sm font-medium">4.5 ETH / 10 ETH</span>
                 </div>
-                <Progress value={45} className="h-2 bg-neura-dark/50" indicatorClassName="bg-gradient-to-r from-neura-cyan to-yellow-400" />
+                <Progress 
+                  value={45} 
+                  className="h-2 bg-neura-dark/50" 
+                />
               </div>
               
               <div className="grid grid-cols-2 gap-4 text-center">
