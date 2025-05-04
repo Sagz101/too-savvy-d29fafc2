@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -372,7 +371,8 @@ export const FundingMechanism: React.FC<FundingMechanismProps> = ({ projectId })
                 </div>
                 <Progress 
                   value={45} 
-                  className="h-2 bg-neura-dark/50" 
+                  className="h-2 bg-neura-dark/50"
+                  indicatorClassName="bg-gradient-to-r from-neura-cyan to-yellow-400" 
                 />
               </div>
               
