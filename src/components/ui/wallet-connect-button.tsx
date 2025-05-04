@@ -118,14 +118,36 @@ export const WalletConnectButton = () => {
               <ChevronDown size={14} className="ml-2" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-neura-dark border-neura-purple/30 text-white">
-            <DropdownMenuLabel>Wallet</DropdownMenuLabel>
+          <DropdownMenuContent className="bg-neura-dark border-neura-purple/30 text-white w-56">
+            <DropdownMenuLabel>Financial Services</DropdownMenuLabel>
             <DropdownMenuSeparator className="bg-neura-purple/20" />
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-neura-purple/10"
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
               onClick={handleOpenFinanceHub}
             >
+              <Wallet className="w-4 h-4 mr-2" />
               Finance Hub
+            </DropdownMenuItem>
+            <DropdownMenuItem 
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
+              onClick={handleOpenFinanceHub}
+            >
+              <ChevronDown className="w-4 h-4 mr-2" />
+              Credit Score
+            </DropdownMenuItem>
+            <DropdownMenuItem 
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
+              onClick={handleOpenFinanceHub}
+            >
+              <ChevronDown className="w-4 h-4 mr-2" />
+              Service Marketplace
+            </DropdownMenuItem>
+            <DropdownMenuItem 
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
+              onClick={handleOpenFinanceHub}
+            >
+              <ChevronDown className="w-4 h-4 mr-2" />
+              Impact Finance
             </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-neura-purple/20" />
             <DropdownMenuItem 

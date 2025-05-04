@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { BrowserProvider, JsonRpcSigner, Contract, parseUnits, formatUnits } from 'ethers';
 import { toast } from "sonner";
@@ -66,6 +65,98 @@ export type BarterListing = {
   created: Date;
 };
 
+export type CreditScore = {
+  score: number;
+  repaymentHistory: number;
+  communityTrust: number;
+  walletActivity: number;
+  maxCredit: number;
+  approvedProtocols: string[];
+};
+
+export type ServiceItem = {
+  id: string;
+  title: string;
+  creator: string;
+  creatorAddress: string;
+  category: string;
+  price: string;
+  currency: string;
+  deadline: string;
+  completions: number;
+  rating: number;
+  image?: string;
+};
+
+export type ReputationStats = {
+  reputation: number;
+  completionRate: number;
+  qualityScore: number;
+  responsiveness: number;
+  endorsements: {
+    user: string;
+    relationship: string;
+    avatar?: string;
+  }[];
+  collaborations: {
+    project: string;
+    date: string;
+    collaborators: number;
+    status: 'completed' | 'ongoing' | 'upcoming';
+  }[];
+};
+
+export type ImpactProject = {
+  id: string;
+  title: string;
+  description: string;
+  sdgGoals: string[];
+  fundingTarget: number;
+  fundingRaised: number;
+  currency: string;
+  image?: string;
+  creator: string;
+  escVerified: boolean;
+  deadline: string;
+};
+
+export type ImpactBond = {
+  id: string;
+  title: string;
+  impact: string;
+  returnRate: number;
+  termMonths: number;
+  minInvestment: number;
+  currency: string;
+  totalRaised: number;
+  target: number;
+  verified: boolean;
+};
+
+export type RoyaltyStream = {
+  id: string;
+  title: string;
+  platform: string;
+  totalEarned: number;
+  currency: string;
+  royaltyRate: number;
+  dynamicInfo?: string;
+  lastPayout: string;
+  nextEstimate: number;
+};
+
+export type License = {
+  id: string;
+  title: string;
+  licensee: string;
+  startDate: string;
+  endDate: string;
+  fee: number;
+  currency: string;
+  usage: string;
+  type: 'exclusive' | 'non-exclusive';
+};
+
 export type WalletState = {
   address: string | null;
   chainId: number | null;
@@ -75,6 +166,13 @@ export type WalletState = {
   tokens: Token[];
   nativeBalance: string;
   vaults: VaultInfo[];
+  creditScore: CreditScore | null;
+  serviceItems: ServiceItem[];
+  reputationStats: ReputationStats | null;
+  impactProjects: ImpactProject[];
+  impactBonds: ImpactBond[];
+  royaltyStreams: RoyaltyStream[];
+  licenses: License[];
 }
 
 // Sample tokens - in a real app, these would come from a token list or API
@@ -111,7 +209,14 @@ export const useWallet = () => {
     signer: null,
     tokens: DEFAULT_TOKENS,
     nativeBalance: '0',
-    vaults: []
+    vaults: [],
+    creditScore: null,
+    serviceItems: [],
+    reputationStats: null,
+    impactProjects: [],
+    impactBonds: [],
+    royaltyStreams: [],
+    licenses: []
   });
   
   const [isConnecting, setIsConnecting] = useState(false);
@@ -165,6 +270,13 @@ export const useWallet = () => {
       
       // Fetch mock barter listings
       fetchMockBarterListings();
+      
+      // Fetch the new advanced finance features
+      fetchMockCreditScore();
+      fetchMockServiceItems();
+      fetchMockReputationStats();
+      fetchMockImpactFinance();
+      fetchMockRoyaltyAndLicensing();
       
     } catch (err) {
       console.error("Failed to connect wallet:", err);
@@ -308,6 +420,242 @@ export const useWallet = () => {
     ];
     
     setBarterListings(mockListings);
+  };
+  
+  const fetchMockCreditScore = () => {
+    // Mock credit score data for demo purposes
+    const mockCreditScore: CreditScore = {
+      score: 720,
+      repaymentHistory: 95,
+      communityTrust: 87,
+      walletActivity: 78,
+      maxCredit: 5000,
+      approvedProtocols: ["Aave", "Goldfinch", "Maple Finance"]
+    };
+    
+    setWallet(prev => ({ ...prev, creditScore: mockCreditScore }));
+  };
+  
+  const fetchMockServiceItems = () => {
+    // Mock service items for the marketplace
+    const mockServices: ServiceItem[] = [
+      {
+        id: "service-1",
+        title: "Professional Video Editing",
+        creator: "CreativeVision",
+        creatorAddress: "0x123...",
+        category: "Video",
+        price: "250",
+        currency: "USDC",
+        deadline: "3 days",
+        completions: 47,
+        rating: 4,
+        image: "https://via.placeholder.com/150"
+      },
+      {
+        id: "service-2",
+        title: "Voice-Over for Your Content",
+        creator: "AudioPro",
+        creatorAddress: "0x456...",
+        category: "Audio",
+        price: "100",
+        currency: "NEURA",
+        deadline: "1 day",
+        completions: 124,
+        rating: 5,
+        image: "https://via.placeholder.com/150"
+      },
+      {
+        id: "service-3",
+        title: "Graphic Design & Artwork",
+        creator: "DesignMaster",
+        creatorAddress: "0x789...",
+        category: "Design",
+        price: "300",
+        currency: "USDC",
+        deadline: "5 days",
+        completions: 85,
+        rating: 4,
+        image: "https://via.placeholder.com/150"
+      }
+    ];
+    
+    setWallet(prev => ({ ...prev, serviceItems: mockServices }));
+  };
+  
+  const fetchMockReputationStats = () => {
+    // Mock reputation statistics
+    const mockStats: ReputationStats = {
+      reputation: 92,
+      completionRate: 98,
+      qualityScore: 93,
+      responsiveness: 86,
+      endorsements: [
+        {
+          user: "CreativePro",
+          relationship: "Collaborator",
+          avatar: "https://via.placeholder.com/50"
+        },
+        {
+          user: "DesignStudio",
+          relationship: "Client",
+          avatar: "https://via.placeholder.com/50"
+        },
+        {
+          user: "TechInnovator",
+          relationship: "Mentor",
+          avatar: "https://via.placeholder.com/50"
+        }
+      ],
+      collaborations: [
+        {
+          project: "NFT Collection Launch",
+          date: "2025-04-01",
+          collaborators: 3,
+          status: 'completed'
+        },
+        {
+          project: "Interactive Media Installation",
+          date: "2025-05-15",
+          collaborators: 5,
+          status: 'ongoing'
+        },
+        {
+          project: "Community Education Series",
+          date: "2025-06-10",
+          collaborators: 2,
+          status: 'upcoming'
+        }
+      ]
+    };
+    
+    setWallet(prev => ({ ...prev, reputationStats: mockStats }));
+  };
+  
+  const fetchMockImpactFinance = () => {
+    // Mock impact projects
+    const mockProjects: ImpactProject[] = [
+      {
+        id: "impact-1",
+        title: "Community Digital Literacy",
+        description: "Providing technology access and education to underserved communities through creator workshops and equipment donations.",
+        sdgGoals: ["Quality Education", "Reduced Inequalities"],
+        fundingTarget: 10000,
+        fundingRaised: 6500,
+        currency: "USDC",
+        image: "https://via.placeholder.com/150",
+        creator: "Digital Inclusion DAO",
+        escVerified: true,
+        deadline: "2025-07-30"
+      },
+      {
+        id: "impact-2",
+        title: "Sustainable Content Creation",
+        description: "Building solar-powered recording studios in developing regions to enable local creators while minimizing environmental impact.",
+        sdgGoals: ["Affordable Clean Energy", "Climate Action"],
+        fundingTarget: 25000,
+        fundingRaised: 12000,
+        currency: "USDC",
+        image: "https://via.placeholder.com/150",
+        creator: "EcoCreators Collective",
+        escVerified: true,
+        deadline: "2025-08-15"
+      }
+    ];
+    
+    // Mock impact bonds
+    const mockBonds: ImpactBond[] = [
+      {
+        id: "bond-1",
+        title: "Creative Education Bond",
+        impact: "Funding creative education in 10 underserved schools",
+        returnRate: 3.5,
+        termMonths: 24,
+        minInvestment: 100,
+        currency: "USDC",
+        totalRaised: 50000,
+        target: 100000,
+        verified: true
+      },
+      {
+        id: "bond-2",
+        title: "Green Media Infrastructure",
+        impact: "Building sustainable creative studios with 80% lower emissions",
+        returnRate: 4.2,
+        termMonths: 36,
+        minInvestment: 500,
+        currency: "NEURA",
+        totalRaised: 75000,
+        target: 150000,
+        verified: true
+      }
+    ];
+    
+    setWallet(prev => ({ 
+      ...prev, 
+      impactProjects: mockProjects,
+      impactBonds: mockBonds
+    }));
+  };
+  
+  const fetchMockRoyaltyAndLicensing = () => {
+    // Mock royalty streams
+    const mockRoyalties: RoyaltyStream[] = [
+      {
+        id: "royalty-1",
+        title: "Artwork Collection",
+        platform: "NFT Marketplace",
+        totalEarned: 3250,
+        currency: "USDC",
+        royaltyRate: 10,
+        dynamicInfo: "Scales to 15% after 100 sales",
+        lastPayout: "2025-04-01",
+        nextEstimate: 450
+      },
+      {
+        id: "royalty-2",
+        title: "Video Series",
+        platform: "Content Platform",
+        totalEarned: 2800,
+        currency: "NEURA",
+        royaltyRate: 8,
+        dynamicInfo: "Based on engagement metrics",
+        lastPayout: "2025-04-15",
+        nextEstimate: 320
+      }
+    ];
+    
+    // Mock licenses
+    const mockLicenses: License[] = [
+      {
+        id: "license-1",
+        title: "Motion Graphics Pack",
+        licensee: "Media Studio Inc",
+        startDate: "2025-01-01",
+        endDate: "2025-12-31",
+        fee: 1200,
+        currency: "USDC",
+        usage: "Commercial Productions",
+        type: 'non-exclusive'
+      },
+      {
+        id: "license-2",
+        title: "Audio Collection",
+        licensee: "Streaming Platform",
+        startDate: "2025-03-01",
+        endDate: "2026-02-28",
+        fee: 3500,
+        currency: "USDC",
+        usage: "Platform Integration",
+        type: 'exclusive'
+      }
+    ];
+    
+    setWallet(prev => ({ 
+      ...prev, 
+      royaltyStreams: mockRoyalties,
+      licenses: mockLicenses
+    }));
   };
   
   // Send tokens to another address
@@ -549,7 +897,59 @@ export const useWallet = () => {
       throw error;
     }
   };
-
+  
+  // Purchase a service from the marketplace
+  const purchaseService = async (serviceId: string) => {
+    if (!wallet.isConnected) {
+      throw new Error("Wallet not connected");
+    }
+    
+    try {
+      toast.loading("Processing service purchase...");
+      
+      // Simulate blockchain interaction
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      toast.success("Service Purchased!", {
+        description: "Your service NFT has been added to your collection"
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error purchasing service:", error);
+      toast.error("Purchase Failed", {
+        description: "An error occurred. Please try again."
+      });
+      throw error;
+    }
+  };
+  
+  // Function to invest in an impact project
+  const investInImpactProject = async (projectId: string, amount: string) => {
+    if (!wallet.isConnected) {
+      throw new Error("Wallet not connected");
+    }
+    
+    try {
+      toast.loading("Processing investment...");
+      
+      // Simulate blockchain interaction
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      toast.success("Investment Successful!", {
+        description: "Thank you for supporting impact-driven projects"
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error investing in project:", error);
+      toast.error("Investment Failed", {
+        description: "An error occurred. Please try again."
+      });
+      throw error;
+    }
+  };
+  
   // Listen for account changes
   useEffect(() => {
     if (!window.ethereum) return;
@@ -594,6 +994,8 @@ export const useWallet = () => {
     createGroupWallet,
     createSavingsCircle,
     barterListings,
-    createBarterListing
+    createBarterListing,
+    purchaseService,
+    investInImpactProject
   };
 };

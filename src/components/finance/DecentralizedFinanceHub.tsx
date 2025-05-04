@@ -22,10 +22,22 @@ import {
   PiggyBank,
   ShoppingCart,
   ArrowRight,
-  Plus
+  Plus,
+  ShieldCheck,
+  LinkIcon,
+  WalletCards,
+  UsersRound,
+  CircleCheck
 } from "lucide-react";
 import { useWallet, Token } from "@/services/wallet";
 import { Progress } from "@/components/ui/progress";
+
+// Import the new components
+import { CreditScoring } from './CreditScoring';
+import { ServiceMarketplace } from './ServiceMarketplace';
+import { ReputationGraph } from './ReputationGraph';
+import { ImpactFinance } from './ImpactFinance';
+import { DynamicRoyalties } from './DynamicRoyalties';
 
 export const DecentralizedFinanceHub: React.FC = () => {
   const { 
@@ -37,12 +49,15 @@ export const DecentralizedFinanceHub: React.FC = () => {
     createGroupWallet,
     createSavingsCircle,
     barterListings,
-    createBarterListing
+    createBarterListing,
+    purchaseService,
+    investInImpactProject
   } = useWallet();
   
   const { toast } = useToast();
   
   const [selectedTab, setSelectedTab] = useState("individual");
+  const [selectedAdvancedTab, setSelectedAdvancedTab] = useState("credit");
   
   const [selectedToken, setSelectedToken] = useState<Token | null>(null);
   const [recipient, setRecipient] = useState("");
@@ -216,7 +231,7 @@ export const DecentralizedFinanceHub: React.FC = () => {
             </span>
           </h1>
           <p className="text-white/70">
-            Manage your finances, create shared wallets, and trade with your community
+            Manage your finances, create shared wallets, trade with your community, and build your reputation
           </p>
         </div>
         
@@ -402,7 +417,7 @@ export const DecentralizedFinanceHub: React.FC = () => {
           onValueChange={setSelectedTab}
           className="w-full"
         >
-          <TabsList className="grid grid-cols-3 gap-2 bg-neura-dark/50 border border-neura-purple/30 p-1 rounded-lg">
+          <TabsList className="grid grid-cols-5 gap-2 bg-neura-dark/50 border border-neura-purple/30 p-1 rounded-lg">
             <TabsTrigger 
               value="individual" 
               className="data-[state=active]:bg-neura-purple/20 data-[state=active]:text-white"
@@ -420,6 +435,18 @@ export const DecentralizedFinanceHub: React.FC = () => {
               className="data-[state=active]:bg-neura-purple/20 data-[state=active]:text-white"
             >
               <HandCoins className="w-4 h-4 mr-2" /> Barter
+            </TabsTrigger>
+            <TabsTrigger 
+              value="marketplace" 
+              className="data-[state=active]:bg-neura-purple/20 data-[state=active]:text-white"
+            >
+              <ShoppingCart className="w-4 h-4 mr-2" /> Services
+            </TabsTrigger>
+            <TabsTrigger 
+              value="advanced" 
+              className="data-[state=active]:bg-neura-purple/20 data-[state=active]:text-white"
+            >
+              <ShieldCheck className="w-4 h-4 mr-2" /> Advanced
             </TabsTrigger>
           </TabsList>
           
@@ -1129,6 +1156,120 @@ export const DecentralizedFinanceHub: React.FC = () => {
                     </div>
                   </div>
                 </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          {/* New Services Marketplace Tab */}
+          <TabsContent value="marketplace" className="mt-6">
+            <Card className="bg-neura-dark/50 border-neura-purple/30">
+              <CardHeader>
+                <CardTitle>Tokenized Service Marketplace</CardTitle>
+                <CardDescription className="text-white/70">
+                  Purchase and sell creative services as NFTs with smart contract protection
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {wallet.serviceItems && wallet.serviceItems.length > 0 ? (
+                  <ServiceMarketplace 
+                    services={wallet.serviceItems} 
+                    onPurchase={purchaseService}
+                  />
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="text-white/70">Loading marketplace services...</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          {/* Advanced Finance Features Tab */}
+          <TabsContent value="advanced" className="mt-6">
+            <Card className="bg-neura-dark/50 border-neura-purple/30">
+              <CardHeader>
+                <CardTitle>Advanced Finance Features</CardTitle>
+                <CardDescription className="text-white/70">
+                  Credit scoring, reputation management, impact finance, and royalties
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                {/* Nested tabs for advanced features */}
+                <Tabs
+                  value={selectedAdvancedTab}
+                  onValueChange={setSelectedAdvancedTab}
+                  className="w-full"
+                >
+                  <TabsList className="w-full grid grid-cols-4 bg-neura-dark/50 border border-neura-purple/30 p-1 rounded-lg">
+                    <TabsTrigger
+                      value="credit"
+                      className="data-[state=active]:bg-neura-purple/20 data-[state=active]:text-white"
+                    >
+                      <ShieldCheck className="w-4 h-4 mr-2" /> Credit Score
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="reputation"
+                      className="data-[state=active]:bg-neura-purple/20 data-[state=active]:text-white"
+                    >
+                      <UsersRound className="w-4 h-4 mr-2" /> Reputation
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="impact"
+                      className="data-[state=active]:bg-neura-purple/20 data-[state=active]:text-white"
+                    >
+                      <Globe className="w-4 h-4 mr-2" /> Impact Finance
+                    </TabsTrigger>
+                    <TabsTrigger
+                      value="royalties"
+                      className="data-[state=active]:bg-neura-purple/20 data-[state=active]:text-white"
+                    >
+                      <WalletCards className="w-4 h-4 mr-2" /> Royalties
+                    </TabsTrigger>
+                  </TabsList>
+                  
+                  <div className="mt-6">
+                    <TabsContent value="credit">
+                      {wallet.creditScore ? (
+                        <CreditScoring 
+                          score={wallet.creditScore.score}
+                          repaymentHistory={wallet.creditScore.repaymentHistory}
+                          communityTrust={wallet.creditScore.communityTrust}
+                          walletActivity={wallet.creditScore.walletActivity}
+                          maxCredit={wallet.creditScore.maxCredit}
+                          approvedProtocols={wallet.creditScore.approvedProtocols}
+                        />
+                      ) : (
+                        <div className="text-center py-8">
+                          <p className="text-white/70">Loading credit score data...</p>
+                        </div>
+                      )}
+                    </TabsContent>
+                    
+                    <TabsContent value="reputation">
+                      {wallet.reputationStats ? (
+                        <ReputationGraph stats={wallet.reputationStats} />
+                      ) : (
+                        <div className="text-center py-8">
+                          <p className="text-white/70">Loading reputation data...</p>
+                        </div>
+                      )}
+                    </TabsContent>
+                    
+                    <TabsContent value="impact">
+                      <ImpactFinance
+                        impactProjects={wallet.impactProjects}
+                        impactBonds={wallet.impactBonds}
+                      />
+                    </TabsContent>
+                    
+                    <TabsContent value="royalties">
+                      <DynamicRoyalties
+                        royalties={wallet.royaltyStreams}
+                        licenses={wallet.licenses}
+                      />
+                    </TabsContent>
+                  </div>
+                </Tabs>
               </CardContent>
             </Card>
           </TabsContent>
