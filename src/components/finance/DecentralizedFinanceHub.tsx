@@ -17,7 +17,7 @@ import {
   Clock, 
   Users, 
   UserPlus, 
-  Refresh, 
+  RefreshCw, 
   Globe,
   HandCoins,
   PiggyBank,
