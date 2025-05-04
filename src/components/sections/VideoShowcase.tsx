@@ -2,7 +2,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, Play, Video, Upload, Sparkles, Globe, ShoppingCart, Music, Podcast, Users, GitMerge, DollarSign, Link, IdCard } from 'lucide-react';
+import { ArrowRight, Play, Video, Upload, Sparkles, Globe, ShoppingCart, Music, Podcast, Users, GitMerge, DollarSign, IdCard, Link as LinkIcon } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 
@@ -349,7 +349,7 @@ export const VideoShowcase: React.FC = () => {
             <Card className={`bg-neura-dark/50 border border-yellow-500/30 p-4 transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} 
                   style={{ transitionDelay: '550ms' }}>
               <div className="flex items-center gap-2 mb-2">
-                <Link className="h-4 w-4 text-neura-cyan" />
+                <LinkIcon className="h-4 w-4 text-neura-cyan" />
                 <h4 className="font-medium">Multi-Chain Support</h4>
               </div>
               <p className="text-xs text-white/70">Deploy on Ethereum, Polygon, Optimism, or other EVM chains</p>
