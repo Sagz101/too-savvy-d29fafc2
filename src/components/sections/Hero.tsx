@@ -137,6 +137,21 @@ export const Hero = () => {
                 </Link>
               </Button>
               
+              <Button 
+                size="lg" 
+                variant="outline"
+                className={`border-yellow-400/30 text-white hover:bg-neura-dark/40 transition-all duration-500 transform ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                style={{ transitionDelay: '0.7s' }}
+                asChild
+              >
+                <Link to="/projects-creator">
+                  <span className="flex items-center">
+                    <Users size={18} className="mr-2" />
+                    Launch Projects
+                  </span>
+                </Link>
+              </Button>
+              
               <div 
                 className={`transition-all duration-300 transform ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
                 style={{ transitionDelay: '0.8s' }}
