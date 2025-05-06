@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Wallet, ChevronDown } from "lucide-react";
+import { Wallet, ChevronDown, CreditCard, ShoppingCart, Users, Link2, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useWallet } from "@/services/wallet";
 import { 
@@ -20,7 +20,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Card } from "@/components/ui/card";
 import { toast } from "sonner";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export const WalletConnectButton = () => {
@@ -47,8 +46,14 @@ export const WalletConnectButton = () => {
     return `${address.substring(0, 4)}...${address.substring(address.length - 4)}`;
   };
   
-  const handleOpenFinanceHub = () => {
+  const navigateToFinanceHub = (tab: string = "finance-hub") => {
     navigate("/finance-hub");
+    // Add tab to URL - in a real app, we would support this in the routing
+    window.history.pushState({}, "", `/finance-hub?tab=${tab}`);
+    
+    // Simulate tab selection through a custom event
+    const tabChangeEvent = new CustomEvent('neura-tab-change', { detail: { tabId: tab } });
+    window.dispatchEvent(tabChangeEvent);
   };
 
   return (
@@ -123,31 +128,53 @@ export const WalletConnectButton = () => {
             <DropdownMenuSeparator className="bg-neura-purple/20" />
             <DropdownMenuItem 
               className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
-              onClick={handleOpenFinanceHub}
+              onClick={() => navigateToFinanceHub("finance-hub")}
             >
               <Wallet className="w-4 h-4 mr-2" />
               Finance Hub
             </DropdownMenuItem>
             <DropdownMenuItem 
               className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
-              onClick={handleOpenFinanceHub}
+              onClick={() => navigateToFinanceHub("credit-scoring")}
             >
-              <ChevronDown className="w-4 h-4 mr-2" />
+              <CreditCard className="w-4 h-4 mr-2" />
               Credit Score
             </DropdownMenuItem>
             <DropdownMenuItem 
               className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
-              onClick={handleOpenFinanceHub}
+              onClick={() => navigateToFinanceHub("service-marketplace")}
             >
-              <ChevronDown className="w-4 h-4 mr-2" />
+              <ShoppingCart className="w-4 h-4 mr-2" />
               Service Marketplace
             </DropdownMenuItem>
             <DropdownMenuItem 
               className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
-              onClick={handleOpenFinanceHub}
+              onClick={() => navigateToFinanceHub("reputation-graph")}
             >
-              <ChevronDown className="w-4 h-4 mr-2" />
-              Impact Finance
+              <Users className="w-4 h-4 mr-2" />
+              Reputation Graph
+            </DropdownMenuItem>
+            <DropdownMenuSeparator className="bg-neura-purple/20" />
+            <DropdownMenuItem 
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
+              onClick={() => navigateToFinanceHub("ownership")}
+            >
+              <Link2 className="w-4 h-4 mr-2" />
+              Ownership Features
+            </DropdownMenuItem>
+            <DropdownMenuItem 
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
+              onClick={() => navigateToFinanceHub("monetization")}
+            >
+              <CreditCard className="w-4 h-4 mr-2" />
+              Monetization Tools
+            </DropdownMenuItem>
+            <DropdownMenuItem 
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
+              onClick={() => navigateToFinanceHub("ai-collaboration")}
+            >
+              <Zap className="w-4 h-4 mr-2" />
+              AI Collaboration
             </DropdownMenuItem>
             <DropdownMenuSeparator className="bg-neura-purple/20" />
             <DropdownMenuItem 

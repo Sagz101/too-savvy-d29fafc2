@@ -104,6 +104,13 @@ export type ReputationStats = {
     collaborators: number;
     status: 'completed' | 'ongoing' | 'upcoming';
   }[];
+  didIdentifier?: string;
+  chainActivity?: {
+    network: string;
+    score: number;
+    transactions: number;
+  }[];
+  participationScore?: number;
 };
 
 export type ImpactProject = {
@@ -143,6 +150,13 @@ export type RoyaltyStream = {
   dynamicInfo?: string;
   lastPayout: string;
   nextEstimate: number;
+  collaborators?: {
+    address: string;
+    share: number;
+    name?: string;
+  }[];
+  streamingEnabled?: boolean;
+  autoAdjust?: boolean;
 };
 
 export type License = {
@@ -155,6 +169,60 @@ export type License = {
   currency: string;
   usage: string;
   type: 'exclusive' | 'non-exclusive';
+};
+
+export type ProvenanceNode = {
+  id: string;
+  title: string;
+  creator: string;
+  creationDate: string;
+  derivedFrom?: string;
+  descendants: number;
+  verified: boolean;
+  transactionHash?: string;
+};
+
+export type CrossPlatformIdentity = {
+  provider: string;
+  verified: boolean;
+  displayName?: string;
+  iconUrl?: string;
+  lastVerified?: string;
+};
+
+export type FanParticipationToken = {
+  id: string;
+  name: string;
+  symbol: string;
+  totalSupply: number;
+  price: number;
+  currency: string;
+  holders: number;
+  activePolls: number;
+};
+
+export type CreatorFanBond = {
+  id: string;
+  name: string;
+  initialValue: number;
+  currentValue: number;
+  currency: string;
+  issuedDate: string;
+  maturityDate?: string;
+  supporter: string;
+};
+
+export type AICollaboration = {
+  id: string;
+  title: string;
+  type: 'music' | 'visual' | 'text' | 'code';
+  aiProvider: string;
+  created: string;
+  status: 'draft' | 'published' | 'minted';
+  ownership: {
+    human: number;
+    ai: number;
+  };
 };
 
 export type WalletState = {
@@ -173,7 +241,14 @@ export type WalletState = {
   impactBonds: ImpactBond[];
   royaltyStreams: RoyaltyStream[];
   licenses: License[];
-}
+  provenanceGraph: ProvenanceNode[];
+  crossPlatformIdentities: CrossPlatformIdentity[];
+  fanParticipationTokens: FanParticipationToken[];
+  creatorFanBonds: CreatorFanBond[];
+  aiCollaborations: AICollaboration[];
+  walletSovereigntyLevel: 'custodial' | 'social' | 'smart-contract' | 'mpc' | 'full';
+  gaslessTransactionsEnabled: boolean;
+};
 
 // Sample tokens - in a real app, these would come from a token list or API
 const DEFAULT_TOKENS: Token[] = [
@@ -216,7 +291,14 @@ export const useWallet = () => {
     impactProjects: [],
     impactBonds: [],
     royaltyStreams: [],
-    licenses: []
+    licenses: [],
+    provenanceGraph: [],
+    crossPlatformIdentities: [],
+    fanParticipationTokens: [],
+    creatorFanBonds: [],
+    aiCollaborations: [],
+    walletSovereigntyLevel: 'custodial',
+    gaslessTransactionsEnabled: false
   });
   
   const [isConnecting, setIsConnecting] = useState(false);
@@ -277,6 +359,13 @@ export const useWallet = () => {
       fetchMockReputationStats();
       fetchMockImpactFinance();
       fetchMockRoyaltyAndLicensing();
+      
+      // New mock data functions for the requested features
+      fetchMockProvenanceGraph();
+      fetchMockCrossPlatformIdentities();
+      fetchMockFanParticipationTokens();
+      fetchMockCreatorFanBonds();
+      fetchMockAICollaborations();
       
     } catch (err) {
       console.error("Failed to connect wallet:", err);
@@ -658,6 +747,168 @@ export const useWallet = () => {
     }));
   };
   
+  const fetchMockProvenanceGraph = () => {
+    // Mock provenance graph data
+    const mockProvenanceGraph: ProvenanceNode[] = [
+      {
+        id: "prov-1",
+        title: "Original Artwork",
+        creator: "0x123...",
+        creationDate: "2025-01-15",
+        descendants: 3,
+        verified: true,
+        transactionHash: "0xabc..."
+      },
+      {
+        id: "prov-2",
+        title: "Derivative Work",
+        creator: "0x456...",
+        creationDate: "2025-02-20",
+        derivedFrom: "prov-1",
+        descendants: 1,
+        verified: true
+      },
+      {
+        id: "prov-3",
+        title: "Enhanced Remix",
+        creator: "0x789...",
+        creationDate: "2025-03-05",
+        derivedFrom: "prov-2",
+        descendants: 0,
+        verified: false
+      }
+    ];
+    
+    setWallet(prev => ({ ...prev, provenanceGraph: mockProvenanceGraph }));
+  };
+  
+  const fetchMockCrossPlatformIdentities = () => {
+    // Mock cross-platform identities
+    const mockIdentities: CrossPlatformIdentity[] = [
+      {
+        provider: "W3C DID",
+        verified: true,
+        displayName: "did:neura:123456789",
+        lastVerified: "2025-04-01"
+      },
+      {
+        provider: "Ethereum Name Service",
+        verified: true,
+        displayName: "creator.eth",
+        iconUrl: "https://via.placeholder.com/30",
+        lastVerified: "2025-03-15"
+      },
+      {
+        provider: "Lens Protocol",
+        verified: true,
+        displayName: "@creator.lens",
+        iconUrl: "https://via.placeholder.com/30",
+        lastVerified: "2025-04-10"
+      }
+    ];
+    
+    setWallet(prev => ({ ...prev, crossPlatformIdentities: mockIdentities }));
+  };
+  
+  const fetchMockFanParticipationTokens = () => {
+    // Mock fan participation tokens
+    const mockTokens: FanParticipationToken[] = [
+      {
+        id: "fpt-1",
+        name: "Creator Community Token",
+        symbol: "CCT",
+        totalSupply: 10000,
+        price: 0.5,
+        currency: "USDC",
+        holders: 250,
+        activePolls: 2
+      },
+      {
+        id: "fpt-2",
+        name: "Music Project Token",
+        symbol: "MPT",
+        totalSupply: 5000,
+        price: 1.2,
+        currency: "NEURA",
+        holders: 75,
+        activePolls: 1
+      }
+    ];
+    
+    setWallet(prev => ({ ...prev, fanParticipationTokens: mockTokens }));
+  };
+  
+  const fetchMockCreatorFanBonds = () => {
+    // Mock creator-fan bonds
+    const mockBonds: CreatorFanBond[] = [
+      {
+        id: "bond-1",
+        name: "Early Supporter Bond",
+        initialValue: 100,
+        currentValue: 150,
+        currency: "USDC",
+        issuedDate: "2025-01-10",
+        maturityDate: "2026-01-10",
+        supporter: "0xdef..."
+      },
+      {
+        id: "bond-2",
+        name: "Community Champion Bond",
+        initialValue: 250,
+        currentValue: 325,
+        currency: "NEURA",
+        issuedDate: "2025-02-05",
+        supporter: "0xghi..."
+      }
+    ];
+    
+    setWallet(prev => ({ ...prev, creatorFanBonds: mockBonds }));
+  };
+  
+  const fetchMockAICollaborations = () => {
+    // Mock AI collaborations
+    const mockCollaborations: AICollaboration[] = [
+      {
+        id: "ai-collab-1",
+        title: "Neural Music Composition",
+        type: 'music',
+        aiProvider: "Bittensor Network",
+        created: "2025-04-05",
+        status: 'published',
+        ownership: {
+          human: 70,
+          ai: 30
+        }
+      },
+      {
+        id: "ai-collab-2",
+        title: "Generative Visual Art",
+        type: 'visual',
+        aiProvider: "Giza Protocol",
+        created: "2025-03-20",
+        status: 'minted',
+        ownership: {
+          human: 60,
+          ai: 40
+        }
+      },
+      {
+        id: "ai-collab-3",
+        title: "Smart Contract Generator",
+        type: 'code',
+        aiProvider: "Decentralized AI Network",
+        created: "2025-04-15",
+        status: 'draft',
+        ownership: {
+          human: 50,
+          ai: 50
+        }
+      }
+    ];
+    
+    setWallet(prev => ({ ...prev, aiCollaborations: mockCollaborations }));
+  };
+  
   // Send tokens to another address
   const sendTokens = async (tokenAddress: string, recipient: string, amount: string) => {
     if (!wallet.signer || !wallet.address) {
@@ -950,6 +1201,163 @@ export const useWallet = () => {
     }
   };
   
+  // Function to upgrade wallet sovereignty level
+  const upgradeWalletSovereignty = async (level: 'custodial' | 'social' | 'smart-contract' | 'mpc' | 'full') => {
+    if (!wallet.isConnected) {
+      throw new Error("Wallet not connected");
+    }
+    
+    try {
+      toast.loading(`Upgrading wallet to ${level} sovereignty...`);
+      
+      // Simulate blockchain interaction
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      setWallet(prev => ({ ...prev, walletSovereigntyLevel: level }));
+      
+      toast.success("Wallet Upgraded!", {
+        description: `Your wallet now has ${level} level sovereignty`
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error upgrading wallet:", error);
+      toast.error("Upgrade Failed", {
+        description: "An error occurred. Please try again."
+      });
+      throw error;
+    }
+  };
+  
+  // Function to toggle gasless transactions
+  const toggleGaslessTransactions = async (enabled: boolean) => {
+    if (!wallet.isConnected) {
+      throw new Error("Wallet not connected");
+    }
+    
+    try {
+      toast.loading(enabled ? "Enabling gasless transactions..." : "Disabling gasless transactions...");
+      
+      // Simulate blockchain interaction
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      setWallet(prev => ({ ...prev, gaslessTransactionsEnabled: enabled }));
+      
+      toast.success(enabled ? "Gasless Transactions Enabled!" : "Gasless Transactions Disabled", {
+        description: enabled ? "You can now transact without paying gas fees" : "Standard gas fees will now apply"
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error toggling gasless transactions:", error);
+      toast.error("Operation Failed", {
+        description: "An error occurred. Please try again."
+      });
+      throw error;
+    }
+  };
+  
+  // Function to create a fan participation token
+  const createFanParticipationToken = async (
+    name: string,
+    symbol: string,
+    totalSupply: number,
+    price: number,
+    currency: string
+  ) => {
+    if (!wallet.isConnected) {
+      throw new Error("Wallet not connected");
+    }
+    
+    try {
+      toast.loading("Creating fan participation token...");
+      
+      // Simulate blockchain interaction
+      await new Promise(resolve => setTimeout(resolve, 2500));
+      
+      const newToken: FanParticipationToken = {
+        id: `fpt-${Date.now()}`,
+        name,
+        symbol,
+        totalSupply,
+        price,
+        currency,
+        holders: 1,
+        activePolls: 0
+      };
+      
+      setWallet(prev => ({
+        ...prev,
+        fanParticipationTokens: [...prev.fanParticipationTokens, newToken]
+      }));
+      
+      toast.success("Token Created!", {
+        description: `Your fan participation token ${symbol} has been created`
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error creating fan token:", error);
+      toast.error("Creation Failed", {
+        description: "An error occurred. Please try again."
+      });
+      throw error;
+    }
+  };
+  
+  // Function to create an AI collaboration
+  const createAICollaboration = async (
+    title: string,
+    type: 'music' | 'visual' | 'text' | 'code',
+    aiProvider: string,
+    humanOwnershipPercent: number
+  ) => {
+    if (!wallet.isConnected) {
+      throw new Error("Wallet not connected");
+    }
+    
+    if (humanOwnershipPercent < 0 || humanOwnershipPercent > 100) {
+      throw new Error("Human ownership must be between 0 and 100 percent");
+    }
+    
+    try {
+      toast.loading("Creating AI collaboration...");
+      
+      // Simulate blockchain interaction
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      const newCollaboration: AICollaboration = {
+        id: `ai-collab-${Date.now()}`,
+        title,
+        type,
+        aiProvider,
+        created: new Date().toISOString().split('T')[0],
+        status: 'draft',
+        ownership: {
+          human: humanOwnershipPercent,
+          ai: 100 - humanOwnershipPercent
+        }
+      };
+      
+      setWallet(prev => ({
+        ...prev,
+        aiCollaborations: [...prev.aiCollaborations, newCollaboration]
+      }));
+      
+      toast.success("AI Collaboration Created!", {
+        description: `Your ${type} project with ${aiProvider} has started`
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error creating AI collaboration:", error);
+      toast.error("Creation Failed", {
+        description: "An error occurred. Please try again."
+      });
+      throw error;
+    }
+  };
+  
   // Listen for account changes
   useEffect(() => {
     if (!window.ethereum) return;
@@ -996,6 +1404,10 @@ export const useWallet = () => {
     barterListings,
     createBarterListing,
     purchaseService,
-    investInImpactProject
+    investInImpactProject,
+    upgradeWalletSovereignty,
+    toggleGaslessTransactions,
+    createFanParticipationToken,
+    createAICollaboration
   };
 };
