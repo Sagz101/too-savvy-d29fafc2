@@ -1066,7 +1066,7 @@ export const useWallet = () => {
   };
   
   // Create a savings circle
-  const createSavingsCircle = async (name: string, members: string[], contributionAmount: string, tokenAddress: string, schedule: { address: string, date: string }[]) => {
+  const createSavingsCircle = async (name: string, members: string[], contributionAmount: string, tokenAddress: string, schedule?: { address: string, date: string }[]) => {
     if (!wallet.isConnected) {
       throw new Error("Wallet not connected");
     }
@@ -1080,14 +1080,24 @@ export const useWallet = () => {
       const token = wallet.tokens.find(t => t.address === tokenAddress);
       if (!token) throw new Error("Token not found");
       
+      // Generate default schedule if not provided
+      const defaultSchedule = schedule || members.map((address, index) => {
+        const date = new Date();
+        date.setMonth(date.getMonth() + index + 1);
+        return {
+          address,
+          date: date.toISOString().split('T')[0]
+        };
+      });
+      
       const newSavingsCircle: SavingsCircle = {
         id: `circle-${Date.now()}`,
         name,
         members,
         contributionAmount,
         tokenAddress,
-        nextWithdrawal: schedule[0].address,
-        schedule,
+        nextWithdrawal: members[0],
+        schedule: defaultSchedule,
         isActive: true
       };
       
@@ -1176,30 +1186,101 @@ export const useWallet = () => {
     }
   };
   
-  // Toggle gasless transactions
-  const toggleGaslessTransactions = () => {
-    setWallet(prev => ({
-      ...prev,
-      gaslessTransactionsEnabled: !prev.gaslessTransactionsEnabled
-    }));
+  // Add the missing investInImpactProject function
+  const investInImpactProject = async (projectId: string, amount: string, currency: string) => {
+    if (!wallet.isConnected) {
+      throw new Error("Wallet not connected");
+    }
     
-    toast.success(
-      wallet.gaslessTransactionsEnabled 
-        ? "Gasless Transactions Disabled" 
-        : "Gasless Transactions Enabled"
-    );
+    try {
+      toast.loading("Processing investment...");
+      
+      const project = wallet.impactProjects.find(p => p.id === projectId);
+      if (!project) throw new Error("Project not found");
+      
+      // Simulate investment process
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Update the project's funding raised amount
+      const updatedProjects = wallet.impactProjects.map(p => {
+        if (p.id === projectId) {
+          return {
+            ...p,
+            fundingRaised: p.fundingRaised + parseFloat(amount)
+          };
+        }
+        return p;
+      });
+      
+      setWallet(prev => ({
+        ...prev,
+        impactProjects: updatedProjects
+      }));
+      
+      toast.success("Investment Successful!", {
+        description: `You've invested ${amount} ${currency} in "${project.title}"`
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error investing in project:", error);
+      toast.error("Investment Failed", {
+        description: "Failed to process investment. Please try again."
+      });
+      throw error;
+    }
   };
   
-  // Upgrade wallet sovereignty level
-  const upgradeWalletSovereignty = (level: 'custodial' | 'social' | 'smart-contract' | 'mpc' | 'full') => {
-    setWallet(prev => ({
-      ...prev,
-      walletSovereigntyLevel: level
-    }));
-    
-    toast.success(`Wallet Sovereignty Level Upgraded`, {
-      description: `Your wallet now has ${level} sovereignty`
-    });
+  // Toggle gasless transactions - updating to return Promise<boolean>
+  const toggleGaslessTransactions = async (enabled: boolean): Promise<boolean> => {
+    try {
+      // Simulate backend call to enable/disable gasless transactions
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      setWallet(prev => ({
+        ...prev,
+        gaslessTransactionsEnabled: enabled
+      }));
+      
+      toast.success(
+        enabled 
+          ? "Gasless Transactions Enabled" 
+          : "Gasless Transactions Disabled"
+      );
+      
+      return true;
+    } catch (error) {
+      console.error("Error toggling gasless transactions:", error);
+      toast.error("Failed to update settings", {
+        description: "An error occurred. Please try again."
+      });
+      return false;
+    }
+  };
+  
+  // Upgrade wallet sovereignty level - updating to return Promise<boolean>
+  const upgradeWalletSovereignty = async (level: 'custodial' | 'social' | 'smart-contract' | 'mpc' | 'full'): Promise<boolean> => {
+    try {
+      // Simulate backend call to upgrade sovereignty
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      setWallet(prev => ({
+        ...prev,
+        walletSovereigntyLevel: level
+      }));
+      
+      toast.success(`Wallet Sovereignty Level Upgraded`, {
+        description: `Your wallet now has ${level} sovereignty`
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error upgrading wallet sovereignty:", error);
+      toast.error("Failed to upgrade wallet", {
+        description: "An error occurred. Please try again."
+      });
+      return false;
+    }
   };
   
   // Create AI collaboration
@@ -1261,6 +1342,7 @@ export const useWallet = () => {
     createSavingsCircle,
     createBarterListing,
     purchaseService,
+    investInImpactProject, // Added the missing function to the returned object
     toggleGaslessTransactions,
     upgradeWalletSovereignty,
     createAICollaboration

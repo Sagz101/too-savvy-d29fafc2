@@ -182,7 +182,17 @@ export const DecentralizedFinanceHub: React.FC = () => {
       // Split the members string into an array of addresses
       const members = circleMembers.split(',').map(m => m.trim());
       
-      await createSavingsCircle(circleTitle, members, circleAmount, circleToken);
+      // Create a default schedule based on member count (one month apart)
+      const schedule = members.map((address, index) => {
+        const date = new Date();
+        date.setMonth(date.getMonth() + index + 1);
+        return {
+          address,
+          date: date.toISOString().split('T')[0]
+        };
+      });
+      
+      await createSavingsCircle(circleTitle, members, circleAmount, circleToken, schedule);
       setIsSavingsCircleDialogOpen(false);
       setCircleTitle("");
       setCircleMembers("");

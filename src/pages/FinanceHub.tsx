@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -123,8 +122,8 @@ const FinanceHub = () => {
               <UXAdoptionFeatures
                 gaslessTransactionsEnabled={wallet.gaslessTransactionsEnabled}
                 sovereigntyLevel={wallet.walletSovereigntyLevel}
-                onToggleGasless={toggleGaslessTransactions}
-                onUpgradeSovereignty={upgradeWalletSovereignty}
+                onToggleGasless={(enabled) => toggleGaslessTransactions(enabled)}
+                onUpgradeSovereignty={(level) => upgradeWalletSovereignty(level)}
               />
             </TabsContent>
           </Tabs>
