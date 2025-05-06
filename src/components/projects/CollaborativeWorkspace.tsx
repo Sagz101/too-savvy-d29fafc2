@@ -8,8 +8,9 @@ import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { toast } from "sonner";
-import { FileText, MessageSquare, Calendar, Clock, Check, Key } from "lucide-react";
+import { FileText, MessageSquare, Calendar, Clock, Check, Key, Users, Gauge, GitBranch, FileCode } from "lucide-react";
 import { BlockchainEmailPreview } from "@/components/ui/blockchain-email-preview";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface CollaborativeWorkspaceProps {
   projectId: string;
@@ -35,10 +36,31 @@ const MOCK_MESSAGES = [
   { id: 3, sender: "0x9C...5D", content: "Let's discuss the token economics in our next meeting.", timestamp: "2025-05-02 09:15" },
 ];
 
+const MOCK_TEAM = [
+  { id: 1, address: "0x7A...3F", role: "Project Lead", joinedOn: "2025-05-01", reputation: 95 },
+  { id: 2, address: "0x8B...2E", role: "Technical Architect", joinedOn: "2025-05-01", reputation: 88 },
+  { id: 3, address: "0x9C...5D", role: "Community Manager", joinedOn: "2025-05-02", reputation: 92 },
+];
+
+const MOCK_METRICS = [
+  { name: "Task Completion Rate", value: "85%", change: "+5%", trend: "up" },
+  { name: "Document Updates", value: "24", change: "+3", trend: "up" },
+  { name: "Contributor Activity", value: "Daily", change: "Stable", trend: "neutral" },
+  { name: "Milestone Progress", value: "60%", change: "+12%", trend: "up" },
+];
+
+const MOCK_CODE_REPOS = [
+  { id: 1, name: "project-core", lastCommit: "2025-05-05", branches: 3, contributors: 2 },
+  { id: 2, name: "smart-contracts", lastCommit: "2025-05-04", branches: 2, contributors: 1 },
+  { id: 3, name: "frontend-dapp", lastCommit: "2025-05-03", branches: 4, contributors: 3 },
+];
+
 export const CollaborativeWorkspace: React.FC<CollaborativeWorkspaceProps> = ({ projectId }) => {
   const [newTask, setNewTask] = useState("");
   const [newDocument, setNewDocument] = useState<File | null>(null);
   const [newMessage, setNewMessage] = useState("");
+  const [newMemberAddress, setNewMemberAddress] = useState("");
+  const [newMemberRole, setNewMemberRole] = useState("Contributor");
 
   const handleAddTask = () => {
     if (!newTask.trim()) return;
@@ -82,13 +104,30 @@ export const CollaborativeWorkspace: React.FC<CollaborativeWorkspaceProps> = ({ 
     }, 1000);
   };
 
+  const handleAddMember = () => {
+    if (!newMemberAddress.trim()) return;
+    
+    toast.loading("Adding member to DAO...");
+    
+    // Simulate blockchain delay
+    setTimeout(() => {
+      toast.success("Team member added!", {
+        description: "New contributor added to the project DAO."
+      });
+      setNewMemberAddress("");
+      setNewMemberRole("Contributor");
+    }, 1500);
+  };
+
   return (
     <div className="space-y-6">
       <Tabs defaultValue="tasks" className="w-full">
-        <TabsList className="grid grid-cols-3 mb-6">
+        <TabsList className="grid grid-cols-5 mb-6">
           <TabsTrigger value="tasks">Tasks</TabsTrigger>
           <TabsTrigger value="documents">Documents</TabsTrigger>
           <TabsTrigger value="messages">Messages</TabsTrigger>
+          <TabsTrigger value="team">Team</TabsTrigger>
+          <TabsTrigger value="metrics">Metrics</TabsTrigger>
         </TabsList>
         
         <TabsContent value="tasks" className="space-y-4">
@@ -264,6 +303,156 @@ export const CollaborativeWorkspace: React.FC<CollaborativeWorkspaceProps> = ({ 
             <div>
               <BlockchainEmailPreview />
             </div>
+          </div>
+        </TabsContent>
+        
+        <TabsContent value="team" className="space-y-4">
+          <Card className="bg-neura-dark/50 border-yellow-500/20">
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Users className="mr-2 h-5 w-5 text-neura-cyan" />
+                Project DAO Members
+              </CardTitle>
+              <CardDescription>
+                Decentralized team management with on-chain governance
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <Input 
+                  placeholder="Wallet address or ENS" 
+                  value={newMemberAddress}
+                  onChange={(e) => setNewMemberAddress(e.target.value)}
+                  className="bg-neura-dark/40 border-yellow-500/20"
+                />
+                <Select value={newMemberRole} onValueChange={setNewMemberRole}>
+                  <SelectTrigger className="bg-neura-dark/40 border-yellow-500/20">
+                    <SelectValue placeholder="Select role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Contributor">Contributor</SelectItem>
+                    <SelectItem value="Developer">Developer</SelectItem>
+                    <SelectItem value="Designer">Designer</SelectItem>
+                    <SelectItem value="Reviewer">Reviewer</SelectItem>
+                  </SelectContent>
+                </Select>
+                <Button 
+                  onClick={handleAddMember}
+                  className="bg-gradient-to-r from-neura-cyan to-yellow-400 text-black font-medium"
+                >
+                  Add to DAO
+                </Button>
+              </div>
+              
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Member</TableHead>
+                    <TableHead>Role</TableHead>
+                    <TableHead>Joined</TableHead>
+                    <TableHead>Reputation</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {MOCK_TEAM.map((member) => (
+                    <TableRow key={member.id} className="hover:bg-neura-purple/10">
+                      <TableCell className="font-mono">{member.address}</TableCell>
+                      <TableCell>
+                        <Badge className="bg-neura-purple/30 text-neura-cyan hover:bg-neura-purple/40">
+                          {member.role}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>{member.joinedOn}</TableCell>
+                      <TableCell>
+                        <div className="flex items-center">
+                          <span className={
+                            member.reputation > 90 
+                              ? "text-green-400" 
+                              : member.reputation > 80 
+                                ? "text-yellow-400"
+                                : "text-red-400"
+                          }>
+                            {member.reputation}/100
+                          </span>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        
+        <TabsContent value="metrics" className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="bg-neura-dark/50 border-yellow-500/20">
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <Gauge className="mr-2 h-5 w-5 text-neura-cyan" />
+                  Project Performance
+                </CardTitle>
+                <CardDescription>
+                  Real-time metrics from on-chain activity
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 gap-4">
+                  {MOCK_METRICS.map((metric, i) => (
+                    <div key={i} className="bg-neura-dark/30 rounded-lg p-4 border border-yellow-500/10">
+                      <div className="text-sm text-white/70">{metric.name}</div>
+                      <div className="text-xl font-semibold mt-1">{metric.value}</div>
+                      <div className={`text-xs mt-1 flex items-center ${
+                        metric.trend === 'up' 
+                          ? 'text-green-400' 
+                          : metric.trend === 'down' 
+                            ? 'text-red-400' 
+                            : 'text-yellow-400'
+                      }`}>
+                        {metric.change}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-neura-dark/50 border-yellow-500/20">
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <FileCode className="mr-2 h-5 w-5 text-neura-cyan" />
+                  Decentralized Repositories
+                </CardTitle>
+                <CardDescription>
+                  Code repositories stored on decentralized storage
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Repository</TableHead>
+                      <TableHead>Last Activity</TableHead>
+                      <TableHead>Branches</TableHead>
+                      <TableHead>Contributors</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {MOCK_CODE_REPOS.map((repo) => (
+                      <TableRow key={repo.id} className="hover:bg-neura-purple/10">
+                        <TableCell className="flex items-center">
+                          <GitBranch className="h-4 w-4 mr-2 text-neura-cyan" />
+                          {repo.name}
+                        </TableCell>
+                        <TableCell>{repo.lastCommit}</TableCell>
+                        <TableCell>{repo.branches}</TableCell>
+                        <TableCell>{repo.contributors}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
           </div>
         </TabsContent>
       </Tabs>

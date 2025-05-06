@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -12,8 +13,12 @@ import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Progress } from "@/components/ui/progress";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { DollarSign, BadgeDollarSign, Award, TrendingUp, Key, ArrowRight, Calendar } from "lucide-react";
+import { 
+  DollarSign, BadgeDollarSign, Award, TrendingUp, Key, ArrowRight, 
+  Calendar, Coins, FileText, Users, Handshake, HandHeart
+} from "lucide-react";
 
 interface FundingMechanismProps {
   projectId: string;
@@ -43,8 +48,38 @@ const MOCK_CONTRIBUTORS = [
   { id: 3, address: "0x7D...C4", amount: "0.8 ETH", timestamp: "2025-05-03 11:14" },
 ];
 
+// Mock token data
+const MOCK_TOKEN_DATA = {
+  name: "Project Token",
+  ticker: "PRJT",
+  supply: "1,000,000",
+  holders: 12,
+  price: "0.015 ETH",
+  marketCap: "15,000 ETH",
+};
+
+// Mock royalty streams
+const MOCK_ROYALTY_STREAMS = [
+  { id: 1, recipient: "0x8B...2E", percentage: "40%", streamRate: "0.01 ETH/day", status: "Active" },
+  { id: 2, recipient: "0x3F...9A", percentage: "35%", streamRate: "0.0087 ETH/day", status: "Active" },
+  { id: 3, recipient: "0x7D...C4", percentage: "25%", streamRate: "0.0062 ETH/day", status: "Active" },
+];
+
+// Mock impact data
+const MOCK_IMPACT_DATA = {
+  focus: "Education Technology",
+  sdgAlignment: ["Quality Education", "Reduced Inequalities"],
+  impactMetrics: [
+    { metric: "Students Reached", value: "2,450", growth: "+15%" },
+    { metric: "Learning Hours", value: "12,300", growth: "+23%" },
+    { metric: "Community Engagement", value: "High", growth: "Stable" },
+  ],
+  verification: "Pending Certification"
+};
+
 export const FundingMechanism: React.FC<FundingMechanismProps> = ({ projectId }) => {
   const [activeTab, setActiveTab] = useState<"setup" | "dashboard">("setup");
+  const [activeDashboardTab, setActiveDashboardTab] = useState<"overview" | "tokenomics" | "royalties" | "impact">("overview");
   const [fundingDistribution, setFundingDistribution] = useState<number[]>([33, 33, 34]);
   
   const form = useForm<FundingFormValues>({
@@ -349,119 +384,429 @@ export const FundingMechanism: React.FC<FundingMechanismProps> = ({ projectId })
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Card className="bg-neura-dark/50 border-yellow-500/20">
-            <CardHeader>
-              <CardTitle className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <BadgeDollarSign className="mr-2 h-5 w-5 text-neura-cyan" />
-                  Funding Status
-                </div>
-                <Badge className="bg-yellow-600/50 text-yellow-200">Active</Badge>
-              </CardTitle>
-              <CardDescription>
-                Project is currently accepting contributions
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-sm text-white/70">Progress</span>
-                  <span className="text-sm font-medium">4.5 ETH / 10 ETH</span>
-                </div>
-                <Progress 
-                  value={45} 
-                  className="h-2 bg-neura-dark/50"
-                  indicatorClassName="bg-gradient-to-r from-neura-cyan to-yellow-400" 
-                />
+        <div className="space-y-6">
+          <Tabs 
+            defaultValue="overview" 
+            value={activeDashboardTab}
+            onValueChange={(value) => setActiveDashboardTab(value as any)}
+            className="w-full"
+          >
+            <TabsList className="grid grid-cols-4 mb-6">
+              <TabsTrigger value="overview" className="flex items-center gap-2">
+                <BadgeDollarSign className="h-4 w-4" />
+                <span>Overview</span>
+              </TabsTrigger>
+              <TabsTrigger value="tokenomics" className="flex items-center gap-2">
+                <Coins className="h-4 w-4" />
+                <span>Tokenomics</span>
+              </TabsTrigger>
+              <TabsTrigger value="royalties" className="flex items-center gap-2">
+                <Handshake className="h-4 w-4" />
+                <span>Royalties</span>
+              </TabsTrigger>
+              <TabsTrigger value="impact" className="flex items-center gap-2">
+                <HandHeart className="h-4 w-4" />
+                <span>Impact</span>
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="overview" className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <Card className="bg-neura-dark/50 border-yellow-500/20">
+                  <CardHeader>
+                    <CardTitle className="flex items-center justify-between">
+                      <div className="flex items-center">
+                        <BadgeDollarSign className="mr-2 h-5 w-5 text-neura-cyan" />
+                        Funding Status
+                      </div>
+                      <Badge className="bg-yellow-600/50 text-yellow-200">Active</Badge>
+                    </CardTitle>
+                    <CardDescription>
+                      Project is currently accepting contributions
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div>
+                      <div className="flex justify-between mb-2">
+                        <span className="text-sm text-white/70">Progress</span>
+                        <span className="text-sm font-medium">4.5 ETH / 10 ETH</span>
+                      </div>
+                      <Progress 
+                        value={45} 
+                        className="h-2 bg-neura-dark/50"
+                        indicatorClassName="bg-gradient-to-r from-neura-cyan to-yellow-400" 
+                      />
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4 text-center">
+                      <div className="bg-neura-dark/40 rounded-lg p-4 border border-yellow-500/10">
+                        <div className="text-sm text-white/70">Contributors</div>
+                        <div className="text-2xl font-semibold mt-1">12</div>
+                      </div>
+                      <div className="bg-neura-dark/40 rounded-lg p-4 border border-yellow-500/10">
+                        <div className="text-sm text-white/70">Days Remaining</div>
+                        <div className="text-2xl font-semibold mt-1">28</div>
+                      </div>
+                    </div>
+                    
+                    {watchUseMilestones && (
+                      <div className="space-y-3">
+                        <h3 className="font-medium mb-2">Milestones</h3>
+                        {MOCK_MILESTONES.map((milestone) => (
+                          <div key={milestone.id} className="flex items-center justify-between p-3 bg-neura-dark/30 rounded-lg border border-yellow-500/10">
+                            <div>
+                              <div className="flex items-center">
+                                <span className="font-medium">{milestone.title}</span>
+                                <Badge 
+                                  className={milestone.status === "Released" 
+                                    ? "ml-2 bg-green-700/30 text-green-300 text-xs" 
+                                    : "ml-2 bg-yellow-700/30 text-yellow-300 text-xs"
+                                  }
+                                >
+                                  {milestone.status}
+                                </Badge>
+                              </div>
+                              <div className="text-xs text-white/60 mt-1 flex items-center">
+                                <Calendar className="h-3 w-3 mr-1" />
+                                {milestone.date}
+                              </div>
+                            </div>
+                            <div className="text-right">
+                              <div className="font-medium text-neura-cyan">{milestone.fundingPercentage}%</div>
+                              <div className="text-xs text-white/60">{(milestone.fundingPercentage * 10 / 100).toFixed(2)} ETH</div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    
+                    <div className="flex justify-end space-x-3">
+                      <Button 
+                        className="bg-gradient-to-r from-neura-cyan to-yellow-400 text-black font-medium"
+                        onClick={() => setActiveTab("setup")}
+                      >
+                        Modify Settings
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        className="border-yellow-500/20 hover:bg-neura-purple/10"
+                      >
+                        View Contract
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+                
+                <Card className="bg-neura-dark/50 border-yellow-500/20">
+                  <CardHeader>
+                    <CardTitle className="flex items-center">
+                      <DollarSign className="mr-2 h-5 w-5 text-neura-cyan" />
+                      Recent Contributions
+                    </CardTitle>
+                    <CardDescription>
+                      On-chain record of all project funding
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {MOCK_CONTRIBUTORS.map((contributor) => (
+                        <div
+                          key={contributor.id}
+                          className="flex justify-between items-center p-3 bg-neura-dark/30 rounded-lg border border-yellow-500/10"
+                        >
+                          <div>
+                            <div className="font-mono text-sm">{contributor.address}</div>
+                            <div className="text-xs text-white/60 mt-1">{contributor.timestamp}</div>
+                          </div>
+                          <div className="text-lg font-medium text-neura-cyan">{contributor.amount}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
-              
-              <div className="grid grid-cols-2 gap-4 text-center">
-                <div className="bg-neura-dark/40 rounded-lg p-4 border border-yellow-500/10">
-                  <div className="text-sm text-white/70">Contributors</div>
-                  <div className="text-2xl font-semibold mt-1">12</div>
-                </div>
-                <div className="bg-neura-dark/40 rounded-lg p-4 border border-yellow-500/10">
-                  <div className="text-sm text-white/70">Days Remaining</div>
-                  <div className="text-2xl font-semibold mt-1">28</div>
-                </div>
-              </div>
-              
-              {watchUseMilestones && (
-                <div className="space-y-3">
-                  <h3 className="font-medium mb-2">Milestones</h3>
-                  {MOCK_MILESTONES.map((milestone) => (
-                    <div key={milestone.id} className="flex items-center justify-between p-3 bg-neura-dark/30 rounded-lg border border-yellow-500/10">
-                      <div>
-                        <div className="flex items-center">
-                          <span className="font-medium">{milestone.title}</span>
-                          <Badge 
-                            className={milestone.status === "Released" 
-                              ? "ml-2 bg-green-700/30 text-green-300 text-xs" 
-                              : "ml-2 bg-yellow-700/30 text-yellow-300 text-xs"
-                            }
-                          >
-                            {milestone.status}
+            </TabsContent>
+            
+            <TabsContent value="tokenomics" className="space-y-6">
+              <Card className="bg-neura-dark/50 border-yellow-500/20">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <Coins className="mr-2 h-5 w-5 text-neura-cyan" />
+                    Token Economics
+                  </CardTitle>
+                  <CardDescription>
+                    Token distribution and utility overview
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div className="bg-neura-dark/30 rounded-lg p-4 border border-yellow-500/10">
+                      <div className="text-xs text-white/70">Token Name</div>
+                      <div className="text-lg font-medium mt-1">{MOCK_TOKEN_DATA.name}</div>
+                    </div>
+                    
+                    <div className="bg-neura-dark/30 rounded-lg p-4 border border-yellow-500/10">
+                      <div className="text-xs text-white/70">Ticker</div>
+                      <div className="text-lg font-medium mt-1">{MOCK_TOKEN_DATA.ticker}</div>
+                    </div>
+                    
+                    <div className="bg-neura-dark/30 rounded-lg p-4 border border-yellow-500/10">
+                      <div className="text-xs text-white/70">Total Supply</div>
+                      <div className="text-lg font-medium mt-1">{MOCK_TOKEN_DATA.supply}</div>
+                    </div>
+                    
+                    <div className="bg-neura-dark/30 rounded-lg p-4 border border-yellow-500/10">
+                      <div className="text-xs text-white/70">Token Holders</div>
+                      <div className="text-lg font-medium mt-1">{MOCK_TOKEN_DATA.holders}</div>
+                    </div>
+                    
+                    <div className="bg-neura-dark/30 rounded-lg p-4 border border-yellow-500/10">
+                      <div className="text-xs text-white/70">Current Price</div>
+                      <div className="text-lg font-medium mt-1">{MOCK_TOKEN_DATA.price}</div>
+                    </div>
+                    
+                    <div className="bg-neura-dark/30 rounded-lg p-4 border border-yellow-500/10">
+                      <div className="text-xs text-white/70">Market Cap</div>
+                      <div className="text-lg font-medium mt-1">{MOCK_TOKEN_DATA.marketCap}</div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h3 className="font-medium">Token Distribution</h3>
+                    
+                    <div className="space-y-3">
+                      <div className="flex justify-between text-sm">
+                        <span>Team & Advisors</span>
+                        <span>20%</span>
+                      </div>
+                      <Progress 
+                        value={20} 
+                        className="h-2 bg-neura-dark/50"
+                        indicatorClassName="bg-neura-cyan" 
+                      />
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <div className="flex justify-between text-sm">
+                        <span>Investors</span>
+                        <span>35%</span>
+                      </div>
+                      <Progress 
+                        value={35} 
+                        className="h-2 bg-neura-dark/50"
+                        indicatorClassName="bg-yellow-400" 
+                      />
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <div className="flex justify-between text-sm">
+                        <span>Community & Ecosystem</span>
+                        <span>45%</span>
+                      </div>
+                      <Progress 
+                        value={45} 
+                        className="h-2 bg-neura-dark/50"
+                        indicatorClassName="bg-green-400" 
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h3 className="font-medium">Token Utility</h3>
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3">
+                        <div className="bg-gradient-to-br from-neura-cyan/20 to-yellow-400/10 p-2 rounded-full">
+                          <FileText className="h-4 w-4 text-neura-cyan" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-medium">Governance</h4>
+                          <p className="text-xs text-white/60">Vote on project decisions and proposals</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center space-x-3">
+                        <div className="bg-gradient-to-br from-neura-cyan/20 to-yellow-400/10 p-2 rounded-full">
+                          <Users className="h-4 w-4 text-neura-cyan" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-medium">Access Control</h4>
+                          <p className="text-xs text-white/60">Access premium features and services</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center space-x-3">
+                        <div className="bg-gradient-to-br from-neura-cyan/20 to-yellow-400/10 p-2 rounded-full">
+                          <Handshake className="h-4 w-4 text-neura-cyan" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-medium">Rewards</h4>
+                          <p className="text-xs text-white/60">Earn rewards for contribution and participation</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            
+            <TabsContent value="royalties" className="space-y-6">
+              <Card className="bg-neura-dark/50 border-yellow-500/20">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <Handshake className="mr-2 h-5 w-5 text-neura-cyan" />
+                    Royalty Streaming
+                  </CardTitle>
+                  <CardDescription>
+                    Real-time revenue sharing using programmable money
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="space-y-4">
+                    <h3 className="font-medium">Active Revenue Streams</h3>
+                    {MOCK_ROYALTY_STREAMS.map((stream) => (
+                      <div key={stream.id} className="flex items-center justify-between p-3 bg-neura-dark/30 rounded-lg border border-yellow-500/10">
+                        <div>
+                          <div className="flex items-center">
+                            <span className="font-mono">{stream.recipient}</span>
+                            <Badge className="ml-2 bg-green-700/30 text-green-300 text-xs">
+                              {stream.status}
+                            </Badge>
+                          </div>
+                          <div className="text-xs text-white/60 mt-1">
+                            Share: {stream.percentage}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className="font-medium text-neura-cyan">{stream.streamRate}</div>
+                          <div className="text-xs text-white/60">Streaming rate</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="pt-2 space-y-4">
+                    <h3 className="font-medium">Add Royalty Stream</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <Input 
+                        placeholder="Wallet address or ENS" 
+                        className="bg-neura-dark/40 border-yellow-500/20"
+                      />
+                      <div className="flex space-x-2">
+                        <Input 
+                          placeholder="Share %" 
+                          className="bg-neura-dark/40 border-yellow-500/20"
+                          type="number"
+                          min="1"
+                          max="100"
+                        />
+                        <Select>
+                          <SelectTrigger className="bg-neura-dark/40 border-yellow-500/20">
+                            <SelectValue placeholder="Type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="fixed">Fixed %</SelectItem>
+                            <SelectItem value="dynamic">Dynamic</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <Button 
+                        className="bg-gradient-to-r from-neura-cyan to-yellow-400 text-black font-medium"
+                      >
+                        Add Stream
+                      </Button>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-2">
+                    <div className="p-4 bg-neura-dark/40 border border-yellow-500/20 rounded-lg">
+                      <h4 className="text-sm font-medium flex items-center">
+                        <TrendingUp className="h-4 w-4 mr-2 text-neura-cyan" />
+                        Dynamic Royalties
+                      </h4>
+                      <p className="text-xs text-white/70 mt-1">
+                        Enable royalty rates that automatically adjust based on project performance metrics, 
+                        including engagement, revenue targets, or community growth milestones.
+                      </p>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="mt-3 border-yellow-500/20 hover:bg-neura-purple/10 text-xs"
+                      >
+                        Configure Dynamic Rules
+                      </Button>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+            
+            <TabsContent value="impact" className="space-y-6">
+              <Card className="bg-neura-dark/50 border-yellow-500/20">
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <HandHeart className="mr-2 h-5 w-5 text-neura-cyan" />
+                    Impact Metrics
+                  </CardTitle>
+                  <CardDescription>
+                    Measure and verify the social impact of your project
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="font-medium mb-3">Project Impact Focus</h3>
+                      <div className="p-4 bg-neura-dark/30 rounded-lg border border-yellow-500/10">
+                        <div className="text-lg font-medium text-neura-cyan mb-2">{MOCK_IMPACT_DATA.focus}</div>
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          {MOCK_IMPACT_DATA.sdgAlignment.map((sdg, index) => (
+                            <Badge key={index} className="bg-green-700/30 text-green-300">
+                              SDG: {sdg}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div className="mt-6">
+                        <h3 className="font-medium mb-3">Verification Status</h3>
+                        <div className="p-4 bg-neura-dark/30 rounded-lg border border-yellow-500/10 flex justify-between items-center">
+                          <div>
+                            <div className="text-sm text-white/70">Certification</div>
+                            <div className="text-lg font-medium mt-1">{MOCK_IMPACT_DATA.verification}</div>
+                          </div>
+                          <Badge className="bg-yellow-700/30 text-yellow-300">
+                            In Progress
                           </Badge>
                         </div>
-                        <div className="text-xs text-white/60 mt-1 flex items-center">
-                          <Calendar className="h-3 w-3 mr-1" />
-                          {milestone.date}
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="font-medium text-neura-cyan">{milestone.fundingPercentage}%</div>
-                        <div className="text-xs text-white/60">{(milestone.fundingPercentage * 10 / 100).toFixed(2)} ETH</div>
                       </div>
                     </div>
-                  ))}
-                </div>
-              )}
-              
-              <div className="flex justify-end space-x-3">
-                <Button 
-                  className="bg-gradient-to-r from-neura-cyan to-yellow-400 text-black font-medium"
-                  onClick={() => setActiveTab("setup")}
-                >
-                  Modify Settings
-                </Button>
-                <Button 
-                  variant="outline" 
-                  className="border-yellow-500/20 hover:bg-neura-purple/10"
-                >
-                  View Contract
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-neura-dark/50 border-yellow-500/20">
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <DollarSign className="mr-2 h-5 w-5 text-neura-cyan" />
-                Recent Contributions
-              </CardTitle>
-              <CardDescription>
-                On-chain record of all project funding
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {MOCK_CONTRIBUTORS.map((contributor) => (
-                  <div
-                    key={contributor.id}
-                    className="flex justify-between items-center p-3 bg-neura-dark/30 rounded-lg border border-yellow-500/10"
-                  >
+                    
                     <div>
-                      <div className="font-mono text-sm">{contributor.address}</div>
-                      <div className="text-xs text-white/60 mt-1">{contributor.timestamp}</div>
+                      <h3 className="font-medium mb-3">Key Impact Metrics</h3>
+                      <div className="space-y-4">
+                        {MOCK_IMPACT_DATA.impactMetrics.map((metric, index) => (
+                          <div key={index} className="p-4 bg-neura-dark/30 rounded-lg border border-yellow-500/10">
+                            <div className="flex justify-between">
+                              <div className="text-sm text-white/70">{metric.metric}</div>
+                              <div className="text-green-400 text-sm">{metric.growth}</div>
+                            </div>
+                            <div className="text-xl font-medium mt-1">{metric.value}</div>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      <div className="mt-4">
+                        <Button 
+                          className="w-full bg-gradient-to-r from-neura-cyan to-yellow-400 text-black font-medium"
+                        >
+                          Generate Impact Report
+                        </Button>
+                      </div>
                     </div>
-                    <div className="text-lg font-medium text-neura-cyan">{contributor.amount}</div>
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
         </div>
       )}
     </div>
