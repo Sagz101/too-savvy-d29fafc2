@@ -1030,3 +1030,239 @@ export const useWallet = () => {
     if (!wallet.isConnected) {
       throw new Error("Wallet not connected");
     }
+    
+    try {
+      toast.loading("Creating group wallet...");
+      
+      // For demo purposes, simulate wallet creation
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      const token = wallet.tokens.find(t => t.address === tokenAddress);
+      if (!token) throw new Error("Token not found");
+      
+      const newGroupWallet: GroupWallet = {
+        id: `group-${Date.now()}`,
+        name,
+        members,
+        balance: "0.00",
+        tokenAddress,
+        isAdmin: true // User is admin by default when creating
+      };
+      
+      setGroupWallets(prev => [...prev, newGroupWallet]);
+      
+      toast.success("Group Wallet Created!", {
+        description: `Created ${name} group wallet for ${token.symbol}`
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error creating group wallet:", error);
+      toast.error("Failed to Create Group Wallet", {
+        description: "An error occurred. Please try again."
+      });
+      throw error;
+    }
+  };
+  
+  // Create a savings circle
+  const createSavingsCircle = async (name: string, members: string[], contributionAmount: string, tokenAddress: string, schedule: { address: string, date: string }[]) => {
+    if (!wallet.isConnected) {
+      throw new Error("Wallet not connected");
+    }
+    
+    try {
+      toast.loading("Creating savings circle...");
+      
+      // For demo purposes, simulate circle creation
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      const token = wallet.tokens.find(t => t.address === tokenAddress);
+      if (!token) throw new Error("Token not found");
+      
+      const newSavingsCircle: SavingsCircle = {
+        id: `circle-${Date.now()}`,
+        name,
+        members,
+        contributionAmount,
+        tokenAddress,
+        nextWithdrawal: schedule[0].address,
+        schedule,
+        isActive: true
+      };
+      
+      setSavingsCircles(prev => [...prev, newSavingsCircle]);
+      
+      toast.success("Savings Circle Created!", {
+        description: `Created ${name} savings circle for ${members.length} members`
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error creating savings circle:", error);
+      toast.error("Failed to Create Savings Circle", {
+        description: "An error occurred. Please try again."
+      });
+      throw error;
+    }
+  };
+  
+  // Create a barter listing
+  const createBarterListing = async (title: string, description: string, images: string[], location: string, lookingFor: string[]) => {
+    if (!wallet.isConnected) {
+      throw new Error("Wallet not connected");
+    }
+    
+    try {
+      toast.loading("Creating barter listing...");
+      
+      // For demo purposes, simulate listing creation
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      const newListing: BarterListing = {
+        id: `barter-${Date.now()}`,
+        title,
+        description,
+        images,
+        owner: wallet.address || "unknown",
+        location,
+        lookingFor,
+        verificationLevel: 1, // Start at level 1
+        created: new Date()
+      };
+      
+      setBarterListings(prev => [...prev, newListing]);
+      
+      toast.success("Barter Listing Created!", {
+        description: `Created listing: ${title}`
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error creating barter listing:", error);
+      toast.error("Failed to Create Listing", {
+        description: "An error occurred. Please try again."
+      });
+      throw error;
+    }
+  };
+  
+  // Purchase a service item
+  const purchaseService = async (serviceId: string) => {
+    if (!wallet.isConnected) {
+      throw new Error("Wallet not connected");
+    }
+    
+    try {
+      toast.loading("Processing service purchase...");
+      
+      const service = wallet.serviceItems.find(s => s.id === serviceId);
+      if (!service) throw new Error("Service not found");
+      
+      // Simulate purchase process
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      toast.success("Service Purchased!", {
+        description: `You've purchased "${service.title}" from ${service.creator}`
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error purchasing service:", error);
+      toast.error("Purchase Failed", {
+        description: "Failed to purchase service. Please try again."
+      });
+      throw error;
+    }
+  };
+  
+  // Toggle gasless transactions
+  const toggleGaslessTransactions = () => {
+    setWallet(prev => ({
+      ...prev,
+      gaslessTransactionsEnabled: !prev.gaslessTransactionsEnabled
+    }));
+    
+    toast.success(
+      wallet.gaslessTransactionsEnabled 
+        ? "Gasless Transactions Disabled" 
+        : "Gasless Transactions Enabled"
+    );
+  };
+  
+  // Upgrade wallet sovereignty level
+  const upgradeWalletSovereignty = (level: 'custodial' | 'social' | 'smart-contract' | 'mpc' | 'full') => {
+    setWallet(prev => ({
+      ...prev,
+      walletSovereigntyLevel: level
+    }));
+    
+    toast.success(`Wallet Sovereignty Level Upgraded`, {
+      description: `Your wallet now has ${level} sovereignty`
+    });
+  };
+  
+  // Create AI collaboration
+  const createAICollaboration = async (title: string, type: 'music' | 'visual' | 'text' | 'code', aiProvider: string, humanOwnership: number) => {
+    if (!wallet.isConnected) {
+      throw new Error("Wallet not connected");
+    }
+    
+    try {
+      toast.loading("Setting up AI collaboration...");
+      
+      // Simulate setup process
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      const newCollaboration: AICollaboration = {
+        id: `ai-collab-${Date.now()}`,
+        title,
+        type,
+        aiProvider,
+        created: new Date().toISOString().split('T')[0],
+        status: 'draft',
+        ownership: {
+          human: humanOwnership,
+          ai: 100 - humanOwnership
+        }
+      };
+      
+      setWallet(prev => ({
+        ...prev,
+        aiCollaborations: [...prev.aiCollaborations, newCollaboration]
+      }));
+      
+      toast.success("AI Collaboration Created!", {
+        description: `Created "${title}" with ${humanOwnership}% human ownership`
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error creating AI collaboration:", error);
+      toast.error("Failed to Create Collaboration", {
+        description: "An error occurred. Please try again."
+      });
+      throw error;
+    }
+  };
+  
+  return {
+    wallet,
+    isConnecting,
+    error,
+    connectWallet,
+    disconnectWallet,
+    sendTokens,
+    createVault,
+    groupWallets,
+    savingsCircles,
+    barterListings,
+    createGroupWallet,
+    createSavingsCircle,
+    createBarterListing,
+    purchaseService,
+    toggleGaslessTransactions,
+    upgradeWalletSovereignty,
+    createAICollaboration
+  };
+};
