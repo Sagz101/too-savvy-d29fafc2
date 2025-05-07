@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserProvider, JsonRpcSigner, Contract, parseUnits, formatUnits } from 'ethers';
 import { toast } from "sonner";
+import { WalletState, Token, VaultInfo, GroupWallet, SavingsCircle, BarterListing, Notification, Transaction, ChainConfig } from './wallet/types';
 
 // Basic ERC20 ABI for token interactions
 const ERC20_ABI = [
@@ -248,6 +249,11 @@ export type WalletState = {
   aiCollaborations: AICollaboration[];
   walletSovereigntyLevel: 'custodial' | 'social' | 'smart-contract' | 'mpc' | 'full';
   gaslessTransactionsEnabled: boolean;
+  theme: 'dark' | 'light';
+  notifications: Notification[];
+  transactionHistory: Transaction[];
+  supportedChains: ChainConfig[];
+  selectedChain: ChainConfig;
 };
 
 // Sample tokens - in a real app, these would come from a token list or API
@@ -275,6 +281,31 @@ const DEFAULT_TOKENS: Token[] = [
   }
 ];
 
+// Sample supported chains for network selector
+const SUPPORTED_CHAINS: ChainConfig[] = [
+  {
+    id: 1,
+    name: 'Ethereum Mainnet',
+    symbol: 'ETH',
+    rpcUrl: 'https://mainnet.infura.io/v3/your-api-key',
+    explorerUrl: 'https://etherscan.io'
+  },
+  {
+    id: 137,
+    name: 'Polygon',
+    symbol: 'MATIC',
+    rpcUrl: 'https://polygon-rpc.com',
+    explorerUrl: 'https://polygonscan.com'
+  },
+  {
+    id: 42161,
+    name: 'Arbitrum',
+    symbol: 'ARB',
+    rpcUrl: 'https://arb1.arbitrum.io/rpc',
+    explorerUrl: 'https://arbiscan.io'
+  }
+];
+
 export const useWallet = () => {
   const [wallet, setWallet] = useState<WalletState>({
     address: null,
@@ -298,7 +329,12 @@ export const useWallet = () => {
     creatorFanBonds: [],
     aiCollaborations: [],
     walletSovereigntyLevel: 'custodial',
-    gaslessTransactionsEnabled: false
+    gaslessTransactionsEnabled: false,
+    theme: 'dark',
+    notifications: [],
+    transactionHistory: [],
+    supportedChains: SUPPORTED_CHAINS,
+    selectedChain: SUPPORTED_CHAINS[0]
   });
   
   const [isConnecting, setIsConnecting] = useState(false);
@@ -1327,6 +1363,166 @@ export const useWallet = () => {
     }
   };
   
+  // Theme toggling functionality
+  const toggleTheme = () => {
+    const newTheme = wallet.theme === 'dark' ? 'light' : 'dark';
+    setWallet(prev => ({ ...prev, theme: newTheme }));
+    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    return newTheme;
+  };
+
+  // Add a new notification
+  const addNotification = (notification: Omit<Notification, 'id' | 'timestamp' | 'read'>) => {
+    const newNotification: Notification = {
+      ...notification,
+      id: `notif-${Date.now()}`,
+      timestamp: new Date(),
+      read: false
+    };
+    
+    setWallet(prev => ({
+      ...prev,
+      notifications: [newNotification, ...prev.notifications].slice(0, 50) // Keep last 50 notifications
+    }));
+    
+    return newNotification;
+  };
+
+  // Mark notification as read
+  const markNotificationRead = (id: string) => {
+    setWallet(prev => ({
+      ...prev,
+      notifications: prev.notifications.map(notif => 
+        notif.id === id ? { ...notif, read: true } : notif
+      )
+    }));
+  };
+
+  // Switch blockchain network
+  const switchNetwork = async (chainId: number) => {
+    try {
+      const chain = SUPPORTED_CHAINS.find(c => c.id === chainId);
+      if (!chain) throw new Error("Unsupported chain");
+      
+      if (wallet.provider) {
+        // In a real implementation, we'd use wallet.provider.send("wallet_switchEthereumChain", ...)
+        // For demo purposes, we'll just update the state
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate delay
+        
+        setWallet(prev => ({
+          ...prev,
+          chainId: chainId,
+          selectedChain: chain
+        }));
+        
+        addNotification({
+          title: "Network Changed",
+          message: `Connected to ${chain.name}`,
+          type: "info"
+        });
+        
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error("Failed to switch network:", error);
+      return false;
+    }
+  };
+  
+  // Generate mock transaction history
+  const generateMockTransactionHistory = (address: string): Transaction[] => {
+    const transactions: Transaction[] = [];
+    const now = new Date();
+    
+    // Generate 20 random transactions for demo
+    for (let i = 0; i < 20; i++) {
+      const isOutgoing = Math.random() > 0.5;
+      const randomDate = new Date(now.getTime() - Math.random() * 30 * 24 * 60 * 60 * 1000); // Random date in last 30 days
+      
+      transactions.push({
+        id: `tx-${i}`,
+        type: isOutgoing ? 'send' : 'receive',
+        amount: (Math.random() * 100).toFixed(2),
+        currency: Math.random() > 0.5 ? 'USDC' : 'NEURA',
+        timestamp: randomDate,
+        status: Math.random() > 0.1 ? 'confirmed' : 'pending',
+        from: isOutgoing ? address : `0x${Math.random().toString(16).substring(2,42)}`,
+        to: isOutgoing ? `0x${Math.random().toString(16).substring(2,42)}` : address,
+        hash: `0x${Math.random().toString(16).substring(2,66)}`,
+        fee: (Math.random() * 0.01).toFixed(4)
+      });
+    }
+    
+    // Sort by timestamp, newest first
+    return transactions.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
+  };
+  
+  // Export transaction data
+  const exportTransactionData = async (format: 'csv' | 'json' | 'pdf') => {
+    try {
+      toast.loading(`Preparing ${format.toUpperCase()} export...`);
+      
+      // Simulate export process
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      let exportData;
+      let filename;
+      let mimeType;
+      
+      if (format === 'csv') {
+        // Create CSV content
+        const headers = "Date,Type,Amount,Currency,From,To,Status\n";
+        const rows = wallet.transactionHistory.map(tx => 
+          `${tx.timestamp.toISOString()},${tx.type},${tx.amount},${tx.currency},${tx.from},${tx.to},${tx.status}`
+        ).join('\n');
+        exportData = headers + rows;
+        filename = `neura-transactions-${new Date().toISOString().split('T')[0]}.csv`;
+        mimeType = 'text/csv';
+      } else if (format === 'json') {
+        // Create JSON content
+        exportData = JSON.stringify(wallet.transactionHistory, null, 2);
+        filename = `neura-transactions-${new Date().toISOString().split('T')[0]}.json`;
+        mimeType = 'application/json';
+      } else {
+        // For demo, we'll just use JSON for PDF too
+        exportData = JSON.stringify(wallet.transactionHistory, null, 2);
+        filename = `neura-transactions-${new Date().toISOString().split('T')[0]}.txt`;
+        mimeType = 'text/plain';
+      }
+      
+      // Create download link
+      const blob = new Blob([exportData], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      toast.success("Export Successful", {
+        description: `Your transactions have been exported as ${format.toUpperCase()}`
+      });
+      
+      // Add notification
+      addNotification({
+        title: "Transactions Exported",
+        message: `Your transaction data has been exported as ${format.toUpperCase()}`,
+        type: "success"
+      });
+      
+      return true;
+    } catch (error) {
+      console.error("Error exporting transactions:", error);
+      toast.error("Export Failed", {
+        description: "Failed to export transaction data. Please try again."
+      });
+      return false;
+    }
+  };
+  
   return {
     wallet,
     isConnecting,
@@ -1342,9 +1538,14 @@ export const useWallet = () => {
     createSavingsCircle,
     createBarterListing,
     purchaseService,
-    investInImpactProject, // Added the missing function to the returned object
+    investInImpactProject,
     toggleGaslessTransactions,
     upgradeWalletSovereignty,
-    createAICollaboration
+    createAICollaboration,
+    toggleTheme,
+    addNotification,
+    markNotificationRead,
+    switchNetwork,
+    exportTransactionData
   };
 };
