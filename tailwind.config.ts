@@ -27,6 +27,17 @@ export default {
 					cyan: '#33C3F0',
 					magenta: '#D946EF',
 				},
+				// New sun-inspired color palette
+				solar: {
+					'core': '#FFE135',        // Bright yellow core
+					'radiative': '#FF8C00',   // Deep orange
+					'convection': '#FF4500',  // Red-orange
+					'photosphere': '#FFA500', // Orange
+					'chromosphere': '#DC143C', // Crimson red
+					'corona': '#FF6B35',      // Coral orange
+					'subsurface': '#00CED1',  // Dark turquoise (from the blue flows)
+					'plasma': '#FF1493',      // Deep pink (plasma energy)
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -104,6 +115,15 @@ export default {
                 slideRight: {
                     '0%': { transform: 'translateX(-20px)', opacity: '0' },
                     '100%': { transform: 'translateX(0)', opacity: '1' }
+                },
+                'solar-pulse': {
+                    '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+                    '50%': { opacity: '0.8', transform: 'scale(1.05)' }
+                },
+                'solar-flare': {
+                    '0%': { background: 'linear-gradient(45deg, #FFE135, #FF8C00)' },
+                    '50%': { background: 'linear-gradient(45deg, #FF4500, #DC143C)' },
+                    '100%': { background: 'linear-gradient(45deg, #FFE135, #FF8C00)' }
                 }
 			},
 			animation: {
@@ -112,6 +132,8 @@ export default {
                 'fadeIn': 'fadeIn 1s ease-in forwards',
                 'slideUp': 'slideUp 0.5s ease-out forwards',
                 'slideRight': 'slideRight 0.5s ease-out forwards',
+                'solar-pulse': 'solar-pulse 3s ease-in-out infinite',
+                'solar-flare': 'solar-flare 4s ease-in-out infinite',
 			}
 		}
 	},
