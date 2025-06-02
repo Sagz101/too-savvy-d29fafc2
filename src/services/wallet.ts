@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserProvider, Contract, parseUnits, formatUnits } from 'ethers';
 import { toast } from "sonner";
-import { DEFAULT_TOKENS, ERC20_ABI, SUPPORTED_CHAINS } from './mockData';
+import { DEFAULT_TOKENS, ERC20_ABI, SUPPORTED_CHAINS } from './wallet/mockData';
 
 // Import types from the types file
 import type { 
@@ -25,7 +25,31 @@ import type {
   FanParticipationToken,
   CreatorFanBond,
   AICollaboration
-} from './types';
+} from './wallet/types';
+
+// Export types for other components to use
+export type {
+  Token,
+  VaultInfo,
+  GroupWallet,
+  SavingsCircle,
+  BarterListing,
+  ServiceItem,
+  Notification,
+  Transaction,
+  ChainConfig,
+  CreditScore,
+  ReputationStats,
+  ImpactProject,
+  ImpactBond,
+  RoyaltyStream,
+  License,
+  ProvenanceNode,
+  CrossPlatformIdentity,
+  FanParticipationToken,
+  CreatorFanBond,
+  AICollaboration
+};
 
 // Local WalletState interface to avoid import conflicts
 interface WalletState {
@@ -74,7 +98,7 @@ import {
   fetchMockFanParticipationTokens,
   fetchMockCreatorFanBonds,
   fetchMockAICollaborations
-} from './mockDataFetchers';
+} from './wallet/mockDataFetchers';
 
 export const useWallet = () => {
   const [wallet, setWallet] = useState<WalletState>({
@@ -1241,7 +1265,7 @@ export const useWallet = () => {
   };
   
   // Export transaction data
-  const exportTransactionData = async (format: 'csv' | 'json' | 'pdf') => {
+  const exportTransactionData = async (format: 'csv' | 'json' | 'pdf' | 'txt') => {
     try {
       toast.loading(`Preparing ${format.toUpperCase()} export...`);
       
@@ -1266,8 +1290,13 @@ export const useWallet = () => {
         exportData = JSON.stringify(wallet.transactionHistory, null, 2);
         filename = `neura-transactions-${new Date().toISOString().split('T')[0]}.json`;
         mimeType = 'application/json';
-      } else {
+      } else if (format === 'pdf') {
         // For demo, we'll just use JSON for PDF too
+        exportData = JSON.stringify(wallet.transactionHistory, null, 2);
+        filename = `neura-transactions-${new Date().toISOString().split('T')[0]}.txt`;
+        mimeType = 'text/plain';
+      } else {
+        // For demo, we'll just use JSON for TXT too
         exportData = JSON.stringify(wallet.transactionHistory, null, 2);
         filename = `neura-transactions-${new Date().toISOString().split('T')[0]}.txt`;
         mimeType = 'text/plain';
