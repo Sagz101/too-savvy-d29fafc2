@@ -1,237 +1,39 @@
-import { useState, useEffect } from 'react';
-import { BrowserProvider, JsonRpcSigner, Contract, parseUnits, formatUnits } from 'ethers';
+import { useState } from 'react';
+import { BrowserProvider, Contract, parseUnits, formatUnits } from 'ethers';
 import { toast } from "sonner";
-import { WalletState, Token, VaultInfo, GroupWallet, SavingsCircle, BarterListing, Notification, Transaction, ChainConfig } from './wallet/types';
+import { DEFAULT_TOKENS, ERC20_ABI, SUPPORTED_CHAINS } from './mockData';
 
-// Basic ERC20 ABI for token interactions
-const ERC20_ABI = [
-  "function balanceOf(address owner) view returns (uint256)",
-  "function transfer(address to, uint256 amount) returns (bool)",
-  "function approve(address spender, uint256 amount) returns (bool)",
-  "function allowance(address owner, address spender) view returns (uint256)",
-  "function transferFrom(address from, address to, uint256 amount) returns (bool)",
-  "function symbol() view returns (string)",
-  "function decimals() view returns (uint8)",
-  "function name() view returns (string)"
-];
+// Import types from the types file
+import type { 
+  Token, 
+  VaultInfo, 
+  GroupWallet, 
+  SavingsCircle, 
+  BarterListing, 
+  ServiceItem, 
+  Notification, 
+  Transaction,
+  ChainConfig,
+  CreditScore,
+  ReputationStats,
+  ImpactProject,
+  ImpactBond,
+  RoyaltyStream,
+  License,
+  ProvenanceNode,
+  CrossPlatformIdentity,
+  FanParticipationToken,
+  CreatorFanBond,
+  AICollaboration
+} from './types';
 
-export type Token = {
-  name: string;
-  symbol: string;
-  address: string;
-  logo?: string;
-  balance?: string;
-  decimals: number;
-};
-
-export type VaultInfo = {
-  id: string;
-  name: string;
-  tokenAddress: string;
-  balance: string;
-  apy: number; 
-  lockPeriod?: number; // in days, if applicable
-  autoDeposit?: boolean;
-};
-
-export type GroupWallet = {
-  id: string;
-  name: string;
-  members: string[];
-  balance: string;
-  tokenAddress: string;
-  isAdmin: boolean;
-};
-
-export type SavingsCircle = {
-  id: string;
-  name: string;
-  members: string[];
-  contributionAmount: string;
-  tokenAddress: string;
-  nextWithdrawal: string; // Address of next person to withdraw
-  schedule: { address: string, date: string }[];
-  isActive: boolean;
-};
-
-export type BarterListing = {
-  id: string;
-  title: string;
-  description: string;
-  images: string[];
-  owner: string;
-  location: string;
-  lookingFor: string[];
-  verificationLevel: number;
-  created: Date;
-};
-
-export type CreditScore = {
-  score: number;
-  repaymentHistory: number;
-  communityTrust: number;
-  walletActivity: number;
-  maxCredit: number;
-  approvedProtocols: string[];
-};
-
-export type ServiceItem = {
-  id: string;
-  title: string;
-  creator: string;
-  creatorAddress: string;
-  category: string;
-  price: string;
-  currency: string;
-  deadline: string;
-  completions: number;
-  rating: number;
-  image?: string;
-};
-
-export type ReputationStats = {
-  reputation: number;
-  completionRate: number;
-  qualityScore: number;
-  responsiveness: number;
-  endorsements: {
-    user: string;
-    relationship: string;
-    avatar?: string;
-  }[];
-  collaborations: {
-    project: string;
-    date: string;
-    collaborators: number;
-    status: 'completed' | 'ongoing' | 'upcoming';
-  }[];
-  didIdentifier?: string;
-  chainActivity?: {
-    network: string;
-    score: number;
-    transactions: number;
-  }[];
-  participationScore?: number;
-};
-
-export type ImpactProject = {
-  id: string;
-  title: string;
-  description: string;
-  sdgGoals: string[];
-  fundingTarget: number;
-  fundingRaised: number;
-  currency: string;
-  image?: string;
-  creator: string;
-  escVerified: boolean;
-  deadline: string;
-};
-
-export type ImpactBond = {
-  id: string;
-  title: string;
-  impact: string;
-  returnRate: number;
-  termMonths: number;
-  minInvestment: number;
-  currency: string;
-  totalRaised: number;
-  target: number;
-  verified: boolean;
-};
-
-export type RoyaltyStream = {
-  id: string;
-  title: string;
-  platform: string;
-  totalEarned: number;
-  currency: string;
-  royaltyRate: number;
-  dynamicInfo?: string;
-  lastPayout: string;
-  nextEstimate: number;
-  collaborators?: {
-    address: string;
-    share: number;
-    name?: string;
-  }[];
-  streamingEnabled?: boolean;
-  autoAdjust?: boolean;
-};
-
-export type License = {
-  id: string;
-  title: string;
-  licensee: string;
-  startDate: string;
-  endDate: string;
-  fee: number;
-  currency: string;
-  usage: string;
-  type: 'exclusive' | 'non-exclusive';
-};
-
-export type ProvenanceNode = {
-  id: string;
-  title: string;
-  creator: string;
-  creationDate: string;
-  derivedFrom?: string;
-  descendants: number;
-  verified: boolean;
-  transactionHash?: string;
-};
-
-export type CrossPlatformIdentity = {
-  provider: string;
-  verified: boolean;
-  displayName?: string;
-  iconUrl?: string;
-  lastVerified?: string;
-};
-
-export type FanParticipationToken = {
-  id: string;
-  name: string;
-  symbol: string;
-  totalSupply: number;
-  price: number;
-  currency: string;
-  holders: number;
-  activePolls: number;
-};
-
-export type CreatorFanBond = {
-  id: string;
-  name: string;
-  initialValue: number;
-  currentValue: number;
-  currency: string;
-  issuedDate: string;
-  maturityDate?: string;
-  supporter: string;
-};
-
-export type AICollaboration = {
-  id: string;
-  title: string;
-  type: 'music' | 'visual' | 'text' | 'code';
-  aiProvider: string;
-  created: string;
-  status: 'draft' | 'published' | 'minted';
-  ownership: {
-    human: number;
-    ai: number;
-  };
-};
-
-export type WalletState = {
+// Local WalletState interface to avoid import conflicts
+interface WalletState {
   address: string | null;
   chainId: number | null;
   isConnected: boolean;
   provider: BrowserProvider | null;
-  signer: JsonRpcSigner | null;
+  signer: any | null;
   tokens: Token[];
   nativeBalance: string;
   vaults: VaultInfo[];
@@ -249,62 +51,30 @@ export type WalletState = {
   aiCollaborations: AICollaboration[];
   walletSovereigntyLevel: 'custodial' | 'social' | 'smart-contract' | 'mpc' | 'full';
   gaslessTransactionsEnabled: boolean;
-  theme: 'dark' | 'light';
+  theme: 'light' | 'dark';
   notifications: Notification[];
   transactionHistory: Transaction[];
   supportedChains: ChainConfig[];
-  selectedChain: ChainConfig;
-};
+  selectedChain: ChainConfig | null;
+}
 
-// Sample tokens - in a real app, these would come from a token list or API
-const DEFAULT_TOKENS: Token[] = [
-  {
-    name: 'USD Coin',
-    symbol: 'USDC',
-    address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', // Ethereum Mainnet
-    logo: 'https://cryptologos.cc/logos/usd-coin-usdc-logo.png',
-    decimals: 6
-  },
-  {
-    name: 'Euro Coin',
-    symbol: 'EUROC',
-    address: '0x1aBaEA1f7C830bD89Acc67eC4af516284b1bC33c', // Ethereum Mainnet
-    logo: 'https://cryptologos.cc/logos/euro-coin-euroc-logo.png',
-    decimals: 6
-  },
-  {
-    name: 'Neura Token',
-    symbol: 'NEURA',
-    address: '0xNeuraTokenAddress', // Placeholder
-    logo: '/neura-token-logo.png',
-    decimals: 18
-  }
-];
-
-// Sample supported chains for network selector
-const SUPPORTED_CHAINS: ChainConfig[] = [
-  {
-    id: 1,
-    name: 'Ethereum Mainnet',
-    symbol: 'ETH',
-    rpcUrl: 'https://mainnet.infura.io/v3/your-api-key',
-    explorerUrl: 'https://etherscan.io'
-  },
-  {
-    id: 137,
-    name: 'Polygon',
-    symbol: 'MATIC',
-    rpcUrl: 'https://polygon-rpc.com',
-    explorerUrl: 'https://polygonscan.com'
-  },
-  {
-    id: 42161,
-    name: 'Arbitrum',
-    symbol: 'ARB',
-    rpcUrl: 'https://arb1.arbitrum.io/rpc',
-    explorerUrl: 'https://arbiscan.io'
-  }
-];
+// Mock data fetching functions
+import { 
+  fetchMockVaults,
+  fetchMockGroupWallets,
+  fetchMockSavingsCircles,
+  fetchMockBarterListings,
+  fetchMockCreditScore,
+  fetchMockServiceItems,
+  fetchMockReputationStats,
+  fetchMockImpactFinance,
+  fetchMockRoyaltyAndLicensing,
+  fetchMockProvenanceGraph,
+  fetchMockCrossPlatformIdentities,
+  fetchMockFanParticipationTokens,
+  fetchMockCreatorFanBonds,
+  fetchMockAICollaborations
+} from './mockDataFetchers';
 
 export const useWallet = () => {
   const [wallet, setWallet] = useState<WalletState>({
@@ -346,6 +116,73 @@ export const useWallet = () => {
   
   // Barter trade state
   const [barterListings, setBarterListings] = useState<BarterListing[]>([]);
+
+  // Theme toggling functionality
+  const toggleTheme = () => {
+    const newTheme = wallet.theme === 'dark' ? 'light' : 'dark';
+    setWallet(prev => ({ ...prev, theme: newTheme }));
+    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    return newTheme;
+  };
+
+  // Add a new notification
+  const addNotification = (notification: Omit<Notification, 'id' | 'timestamp' | 'read'>) => {
+    const newNotification: Notification = {
+      ...notification,
+      id: `notif-${Date.now()}`,
+      timestamp: new Date(),
+      read: false
+    };
+    
+    setWallet(prev => ({
+      ...prev,
+      notifications: [newNotification, ...prev.notifications].slice(0, 50) // Keep last 50 notifications
+    }));
+    
+    return newNotification;
+  };
+
+  // Mark notification as read
+  const markNotificationRead = (id: string) => {
+    setWallet(prev => ({
+      ...prev,
+      notifications: prev.notifications.map(notif => 
+        notif.id === id ? { ...notif, read: true } : notif
+      )
+    }));
+  };
+
+  // Switch blockchain network
+  const switchNetwork = async (chainId: number) => {
+    try {
+      const chain = SUPPORTED_CHAINS.find(c => c.id === chainId);
+      if (!chain) throw new Error("Unsupported chain");
+      
+      if (wallet.provider) {
+        // In a real implementation, we'd use wallet.provider.send("wallet_switchEthereumChain", ...)
+        // For demo purposes, we'll just update the state
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate delay
+        
+        setWallet(prev => ({
+          ...prev,
+          chainId: chainId,
+          selectedChain: chain
+        }));
+        
+        addNotification({
+          title: "Network Changed",
+          message: `Connected to ${chain.name}`,
+          type: "info"
+        });
+        
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error("Failed to switch network:", error);
+      return false;
+    }
+  };
 
   const connectWallet = async () => {
     if (!window.ethereum) {
@@ -434,11 +271,23 @@ export const useWallet = () => {
       creatorFanBonds: [],
       aiCollaborations: [],
       walletSovereigntyLevel: 'custodial',
-      gaslessTransactionsEnabled: false
+      gaslessTransactionsEnabled: false,
+      theme: wallet.theme, // Preserve theme setting
+      notifications: wallet.notifications, // Preserve notifications
+      transactionHistory: [],
+      supportedChains: SUPPORTED_CHAINS,
+      selectedChain: SUPPORTED_CHAINS[0]
     });
     setGroupWallets([]);
     setSavingsCircles([]);
     setBarterListings([]);
+    
+    // Add notification for disconnect
+    addNotification({
+      title: "Wallet Disconnected",
+      message: "Your wallet has been disconnected.",
+      type: "info"
+    });
   };
   
   // Function to fetch token balances for connected wallet
@@ -1360,73 +1209,6 @@ export const useWallet = () => {
         description: "An error occurred. Please try again."
       });
       throw error;
-    }
-  };
-  
-  // Theme toggling functionality
-  const toggleTheme = () => {
-    const newTheme = wallet.theme === 'dark' ? 'light' : 'dark';
-    setWallet(prev => ({ ...prev, theme: newTheme }));
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-    return newTheme;
-  };
-
-  // Add a new notification
-  const addNotification = (notification: Omit<Notification, 'id' | 'timestamp' | 'read'>) => {
-    const newNotification: Notification = {
-      ...notification,
-      id: `notif-${Date.now()}`,
-      timestamp: new Date(),
-      read: false
-    };
-    
-    setWallet(prev => ({
-      ...prev,
-      notifications: [newNotification, ...prev.notifications].slice(0, 50) // Keep last 50 notifications
-    }));
-    
-    return newNotification;
-  };
-
-  // Mark notification as read
-  const markNotificationRead = (id: string) => {
-    setWallet(prev => ({
-      ...prev,
-      notifications: prev.notifications.map(notif => 
-        notif.id === id ? { ...notif, read: true } : notif
-      )
-    }));
-  };
-
-  // Switch blockchain network
-  const switchNetwork = async (chainId: number) => {
-    try {
-      const chain = SUPPORTED_CHAINS.find(c => c.id === chainId);
-      if (!chain) throw new Error("Unsupported chain");
-      
-      if (wallet.provider) {
-        // In a real implementation, we'd use wallet.provider.send("wallet_switchEthereumChain", ...)
-        // For demo purposes, we'll just update the state
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate delay
-        
-        setWallet(prev => ({
-          ...prev,
-          chainId: chainId,
-          selectedChain: chain
-        }));
-        
-        addNotification({
-          title: "Network Changed",
-          message: `Connected to ${chain.name}`,
-          type: "info"
-        });
-        
-        return true;
-      }
-      return false;
-    } catch (error) {
-      console.error("Failed to switch network:", error);
-      return false;
     }
   };
   
