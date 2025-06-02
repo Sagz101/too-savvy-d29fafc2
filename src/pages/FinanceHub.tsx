@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -39,7 +38,7 @@ const FinanceHub = () => {
           <div className="text-center mb-6">
             <h1 className="text-4xl font-bold mb-2">
               <span className="bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent">
-                Neura Financial Ecosystem
+                Dzuwa Sphere Financial Ecosystem
               </span>
             </h1>
             <p className="text-lg text-white/70 max-w-3xl mx-auto">

@@ -9,7 +9,7 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="mb-6 md:mb-0">
             <div className="text-2xl font-bold bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent mb-2">
-              Neura 3.0
+              Dzuwa Sphere
             </div>
             <p className="text-white/60 max-w-xs">
               Your sovereign portal to Web3—where your content, commerce, community, and crypto intersect.
@@ -38,7 +38,7 @@ export const Footer = () => {
         
         <div className="border-t border-neura-purple/20 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-white/60 text-sm mb-4 md:mb-0">
-            © 2025 Neura 3.0. All rights reserved.
+            © 2025 Dzuwa Sphere. All rights reserved.
           </div>
           <div className="flex space-x-4">
             <a href="#" className="text-white/60 hover:text-neura-cyan transition-colors">

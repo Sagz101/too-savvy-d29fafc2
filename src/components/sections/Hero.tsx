@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { WalletButton } from "@/components/ui/wallet-button";
@@ -90,7 +89,7 @@ export const Hero = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-white/80 mb-8 max-w-xl leading-relaxed">
-              Claim your voice, your value, your digital future. Neura empowers you to create without compromise, own your work on-chain, and thrive with your community—no gatekeepers, no middlemen.
+              Claim your voice, your value, your digital future. Dzuwa Sphere empowers you to create without compromise, own your work on-chain, and thrive with your community—no gatekeepers, no middlemen.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -173,7 +172,7 @@ export const Hero = () => {
                 <div className="w-3 h-3 rounded-full bg-yellow-500/70"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500/70"></div>
               </div>
-              <div className="text-xs text-white/60">Neura Creator Dashboard</div>
+              <div className="text-xs text-white/60">Dzuwa Sphere Creator Dashboard</div>
               <div className="w-5"></div>
             </div>
             
