@@ -21,7 +21,7 @@ export const Cta = () => {
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
               <span className="bg-gradient-to-r from-solar-core via-solar-radiative to-solar-corona bg-clip-text text-transparent">
-                Enter The Solar-Verse
+                Enter The Dzuwa-Verse
               </span>
             </h2>
             <p className="text-gray-700 text-xl max-w-2xl mx-auto mb-8 font-medium leading-relaxed">
