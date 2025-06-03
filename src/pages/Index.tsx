@@ -15,7 +15,7 @@ import { Footer } from '@/components/layout/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-neura-dark text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       <Header />
       <main>
         <Hero />

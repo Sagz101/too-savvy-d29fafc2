@@ -17,7 +17,7 @@ const VideoIntegration = () => {
   const [activeTab, setActiveTab] = useState('livepeer');
 
   return (
-    <div className="min-h-screen bg-neura-dark text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       <Header />
       <main>
         <section className="py-16 relative">
@@ -25,22 +25,22 @@ const VideoIntegration = () => {
           
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              <h1 className="text-5xl font-bold mb-4">
                 <AnimatedText
                   text="Video Integration"
                   type="gradient"
-                  gradientFrom="from-neura-purple"
-                  gradientTo="to-neura-cyan"
+                  gradientFrom="from-solar-core"
+                  gradientTo="to-solar-radiative"
                   tag="span"
                 />
               </h1>
-              <p className="text-white/70 text-lg max-w-2xl mx-auto">
+              <p className="text-gray-700 text-lg max-w-2xl mx-auto">
                 Leverage decentralized video technologies for streaming, NFT minting, AR visualization, and community engagement
               </p>
               
               <div className="mt-8 flex justify-center gap-4">
                 <Link to="/video-studio">
-                  <Button variant="outline" className="border-neura-purple/30 text-white hover:bg-neura-purple/10">
+                  <Button variant="outline" className="border-2 border-solar-core/30 text-gray-900 hover:bg-solar-core/10">
                     <Film className="w-4 h-4 mr-2" /> Video Studio
                   </Button>
                 </Link>
