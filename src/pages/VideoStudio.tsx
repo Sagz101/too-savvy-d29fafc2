@@ -16,7 +16,9 @@ import {
   PlaySquare, 
   Sparkles, 
   Settings,
-  BookOpen
+  BookOpen,
+  Music,
+  Podcast
 } from 'lucide-react';
 
 const VideoStudio = () => {
@@ -74,11 +76,39 @@ const VideoStudio = () => {
                 <CardContent className="p-0">
                   <div className="p-6">
                     {activeTab === 'upload' && (
-                      <VideoUploader />
+                      <div className="space-y-6">
+                        <VideoUploader />
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                          <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3 px-6 shadow-lg shadow-green-600/25">
+                            <Upload className="w-4 h-4 mr-2" />
+                            Create NFT
+                          </Button>
+                          <Button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold py-3 px-6 shadow-lg shadow-blue-600/25">
+                            <Sparkles className="w-4 h-4 mr-2" />
+                            Create AR
+                          </Button>
+                          <Button className="bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-700 hover:to-rose-700 text-white font-semibold py-3 px-6 shadow-lg shadow-pink-600/25">
+                            <Podcast className="w-4 h-4 mr-2" />
+                            Create Podcast
+                          </Button>
+                          <Button className="bg-gradient-to-r from-orange-600 to-yellow-600 hover:from-orange-700 hover:to-yellow-700 text-white font-semibold py-3 px-6 shadow-lg shadow-orange-600/25">
+                            <Music className="w-4 h-4 mr-2" />
+                            Create Music
+                          </Button>
+                        </div>
+                      </div>
                     )}
                     
                     {activeTab === 'stream' && (
-                      <LiveStreamSetup />
+                      <div className="space-y-6">
+                        <LiveStreamSetup />
+                        <div className="flex justify-center">
+                          <Button className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold py-3 px-8 shadow-lg shadow-red-600/25">
+                            <PlaySquare className="w-4 h-4 mr-2" />
+                            Schedule Stream
+                          </Button>
+                        </div>
+                      </div>
                     )}
                     
                     {activeTab === 'ar' && (

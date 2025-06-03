@@ -130,8 +130,7 @@ export const Hero = () => {
               
               <Button 
                 size="lg" 
-                variant="outline"
-                className={`border-solar-corona/40 text-white hover:bg-solar-chromosphere/20 hover:border-solar-corona/60 transition-all duration-500 transform ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                className={`bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold px-8 py-6 transition-all duration-500 transform shadow-lg shadow-purple-600/25 ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
                 style={{ transitionDelay: '0.7s' }}
                 asChild
               >
@@ -158,7 +157,7 @@ export const Hero = () => {
             style={{ minHeight: '450px' }}
           >
             {/* Dashboard UI Mockup */}
-            <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-gray-100/90 to-solar-core/15 backdrop-blur-sm border-b-3 border-solar-photosphere/50 p-3 flex items-center justify-between">
+            <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-gray-100/90 to-solar-core/15 backdrop-blur-sm border-b-2 border-solar-photosphere/50 p-3 flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <div className="w-3 h-3 rounded-full bg-solar-chromosphere/80 border border-solar-chromosphere"></div>
                 <div className="w-3 h-3 rounded-full bg-solar-core/80 border border-solar-core"></div>
