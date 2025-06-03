@@ -78,7 +78,7 @@ export const Hero = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-xl leading-relaxed font-medium">
-              Claim your voice, your value, your digital future. Dzuwa Verse empowers you to create without compromise, own your work on-chain, and thrive with your community—no gatekeepers, no middlemen.
+              Claim your voice, your value, your digital future. DzuwaVerse empowers you to create without compromise, own your work on-chain, and thrive with your community—no gatekeepers, no middlemen.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -161,7 +161,7 @@ export const Hero = () => {
                 <div className="w-3 h-3 rounded-full bg-solar-core/80"></div>
                 <div className="w-3 h-3 rounded-full bg-solar-subsurface/80"></div>
               </div>
-              <div className="text-xs text-gray-800 font-medium">Dzuwa Verse Creator Dashboard</div>
+              <div className="text-sm text-gray-800 font-medium">DzuwaVerse Creator Dashboard</div>
               <div className="w-5"></div>
             </div>
             

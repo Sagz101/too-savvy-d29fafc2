@@ -12,8 +12,8 @@ export const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-neura-dark/80 backdrop-blur-md border-b border-neura-purple/20">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center">
-          <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent">
-            Dzuwa Verse
+          <Link to="/" className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent">
+            DzuwaVerse
           </Link>
         </div>
         
