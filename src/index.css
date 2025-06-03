@@ -180,11 +180,11 @@
 
 /* Enhanced card and box styling */
 .enhanced-card {
-  @apply bg-white/95 backdrop-blur-sm border-3 border-gray-300/80 rounded-xl shadow-lg;
+  @apply bg-white/95 backdrop-blur-sm border-2 border-gray-300/80 rounded-xl shadow-lg;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.8);
 }
 
 .enhanced-border {
-  @apply border-3 border-gray-400/70;
+  @apply border-2 border-gray-400/70;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
