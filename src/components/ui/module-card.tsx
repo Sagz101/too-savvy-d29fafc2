@@ -22,10 +22,10 @@ export const ModuleCard: React.FC<ModuleCardProps> = ({
   return (
     <Card 
       className={cn(
-        "cursor-pointer transition-all duration-300 overflow-hidden border",
+        "cursor-pointer transition-all duration-300 overflow-hidden border-2",
         selected 
           ? "bg-neura-purple/20 border-neura-purple shadow-lg shadow-neura-purple/20" 
-          : "bg-neura-dark/50 border-neura-purple/20 hover:bg-neura-purple/10"
+          : "bg-white/95 border-gray-300/70 hover:bg-neura-purple/10 hover:border-neura-purple/50"
       )}
       onClick={onClick}
     >
@@ -37,16 +37,16 @@ export const ModuleCard: React.FC<ModuleCardProps> = ({
         )}
         
         <div className={cn(
-          "w-14 h-14 rounded-lg flex items-center justify-center mb-4 transition-all",
+          "w-14 h-14 rounded-lg flex items-center justify-center mb-4 transition-all border-2",
           selected 
-            ? "bg-gradient-to-br from-neura-purple/30 to-neura-cyan/30 border border-neura-purple/40" 
-            : "bg-neura-dark/80 border border-neura-purple/30"
+            ? "bg-gradient-to-br from-neura-purple/30 to-neura-cyan/30 border-neura-purple/60" 
+            : "bg-white/90 border-gray-300/60"
         )}>
           {icon}
         </div>
         
-        <h3 className="font-semibold text-lg text-white mb-2">{title}</h3>
-        <p className="text-white/70 text-sm">{description}</p>
+        <h3 className="font-semibold text-lg text-gray-900 mb-2">{title}</h3>
+        <p className="text-gray-700 text-sm">{description}</p>
       </CardContent>
     </Card>
   );
