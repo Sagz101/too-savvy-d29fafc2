@@ -27,16 +27,24 @@ export default {
 					cyan: '#33C3F0',
 					magenta: '#D946EF',
 				},
-				// New sun-inspired color palette
+				// Enhanced color palette with new scheme
 				solar: {
-					'core': '#FFE135',        // Bright yellow core
-					'radiative': '#FF8C00',   // Deep orange
-					'convection': '#FF4500',  // Red-orange
-					'photosphere': '#FFA500', // Orange
-					'chromosphere': '#DC143C', // Crimson red
-					'corona': '#FF6B35',      // Coral orange
-					'subsurface': '#00CED1',  // Dark turquoise (from the blue flows)
-					'plasma': '#FF1493',      // Deep pink (plasma energy)
+					'core': '#FFE135',        // Bright yellow core (kept)
+					'radiative': '#FF8C00',   // Deep orange (kept)
+					'convection': '#FF4500',  // Red-orange (kept)
+					'photosphere': '#FFA500', // Orange (kept)
+					'chromosphere': '#DC143C', // Crimson red (kept)
+					'corona': '#FF6B35',      // Coral orange (kept)
+					'subsurface': '#00ABE4',  // Bright blue (updated)
+					'plasma': '#FF1493',      // Deep pink (kept)
+				},
+				// New primary color scheme
+				dzuwa: {
+					'light-blue': '#E9F1FA',  // Light blue background
+					'bright-blue': '#00ABE4', // Bright blue accents
+					'white': '#FFFFFF',       // Pure white
+					'gold': '#FFE135',        // Gold sun color
+					'gold-warm': '#FF8C00',   // Warm gold
 				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
