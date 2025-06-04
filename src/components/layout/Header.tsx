@@ -13,7 +13,7 @@ export const Header = () => {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/" className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent">
-            DzuwaVerse
+            DzuwaSpace 3.0
           </Link>
         </div>
         

@@ -21,7 +21,7 @@ export const Cta = () => {
           <div className="text-center mb-10">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-dzuwa-gold via-dzuwa-gold-warm to-dzuwa-bright-blue bg-clip-text text-transparent">
-                Enter The DzuwaVerse
+                Enter DzuwaSpace 3.0
               </span>
             </h2>
             <p className="text-gray-700 text-xl max-w-2xl mx-auto mb-8 font-medium leading-relaxed">
