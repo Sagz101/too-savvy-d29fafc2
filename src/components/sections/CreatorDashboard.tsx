@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from "@/components/ui/button";
-import { BarChart3, Layers, Globe, PieChart, TrendingUp, Activity, Plus, BookOpen, File, Wallet, MessageSquare } from 'lucide-react';
+import { CreatorDiscoveryFeed } from '@/components/discovery/CreatorDiscoveryFeed';
+import { BarChart3, Layers, Globe, PieChart, TrendingUp, Activity, Plus, BookOpen, File, Wallet, MessageSquare, Compass } from 'lucide-react';
 
 export const CreatorDashboard = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -43,6 +43,10 @@ export const CreatorDashboard = () => {
                   <TabsTrigger value="analytics" className="data-[state=active]:bg-neura-purple/20">
                     <PieChart className="w-4 h-4 mr-2" />
                     Analytics
+                  </TabsTrigger>
+                  <TabsTrigger value="discover" className="data-[state=active]:bg-neura-purple/20">
+                    <Compass className="w-4 h-4 mr-2" />
+                    Discover
                   </TabsTrigger>
                   <TabsTrigger value="ecosystem" className="data-[state=active]:bg-neura-purple/20">
                     <Globe className="w-4 h-4 mr-2" />
@@ -128,6 +132,10 @@ export const CreatorDashboard = () => {
                 <div className="text-center py-8">
                   <p className="text-white/60">Analytics content will appear here</p>
                 </div>
+              </TabsContent>
+              
+              <TabsContent value="discover" className="p-6 mt-0">
+                <CreatorDiscoveryFeed />
               </TabsContent>
               
               <TabsContent value="ecosystem" className="p-6 mt-0">
