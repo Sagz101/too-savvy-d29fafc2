@@ -33,7 +33,7 @@ export const Cta = () => {
               <WalletButton />
               <Button 
                 variant="outline"
-                className="enhanced-border text-gray-700 hover:bg-solar-photosphere/10 hover:border-solar-radiative/40 transition-all duration-300 soft-glow"
+                className="border-2 border-solar-photosphere text-solar-core hover:bg-solar-photosphere/20 hover:border-solar-radiative transition-all duration-300 soft-glow shadow-lg"
               >
                 <Shield size={16} className="mr-2" /> Learn About Web3 Security
               </Button>

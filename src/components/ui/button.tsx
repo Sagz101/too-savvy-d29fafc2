@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
@@ -9,15 +10,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-gradient-to-r from-solar-core to-solar-radiative text-white hover:from-solar-radiative hover:to-solar-convection shadow-lg",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border-2 border-solar-photosphere bg-gradient-to-r from-solar-photosphere/10 to-solar-corona/10 text-solar-core hover:bg-gradient-to-r hover:from-solar-photosphere/20 hover:to-solar-corona/20 hover:border-solar-radiative",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-gradient-to-r from-solar-chromosphere to-solar-photosphere text-white hover:from-solar-photosphere hover:to-solar-corona shadow-md",
+        ghost: "text-solar-core hover:bg-solar-photosphere/20 hover:text-solar-radiative",
+        link: "text-solar-core underline-offset-4 hover:underline hover:text-solar-radiative",
       },
       size: {
         default: "h-10 px-4 py-2",

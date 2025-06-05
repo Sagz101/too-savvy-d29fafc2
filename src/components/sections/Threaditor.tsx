@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@/components/ui/card';
@@ -139,7 +138,7 @@ export const Threaditor: React.FC = () => {
                     <Badge className="bg-neura-purple/20 text-white">Thought Leaders</Badge>
                   </div>
                   
-                  <Button className="bg-gradient-to-r from-neura-purple to-neura-cyan hover:opacity-90 text-white">
+                  <Button className="bg-gradient-to-r from-solar-core to-solar-radiative text-white hover:from-solar-radiative hover:to-solar-convection shadow-xl cosmic-glow">
                     Join Threaditor Beta
                   </Button>
                 </div>
@@ -150,7 +149,7 @@ export const Threaditor: React.FC = () => {
         
         <div className={`text-center transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
              style={{ transitionDelay: '500ms' }}>
-          <Button variant="outline" className="border-neura-purple/30 text-white hover:bg-neura-purple/10">
+          <Button variant="outline" className="border-2 border-solar-photosphere text-solar-core hover:bg-solar-photosphere/20 hover:border-solar-radiative shadow-lg">
             Learn More About Threaditor
           </Button>
         </div>

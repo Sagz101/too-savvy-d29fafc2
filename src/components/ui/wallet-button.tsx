@@ -26,49 +26,49 @@ export const WalletButton = () => {
       <DialogTrigger asChild>
         <Button 
           variant={connected ? "outline" : "default"}
-          size="sm" 
+          size="lg" 
           className={connected 
-            ? "border-neura-purple/50 text-white hover:bg-neura-purple/10" 
-            : "bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90"}
+            ? "border-solar-radiative text-solar-core hover:bg-solar-photosphere/20 shadow-lg cosmic-glow" 
+            : "bg-gradient-to-r from-solar-core to-solar-radiative text-white hover:from-solar-radiative hover:to-solar-convection shadow-xl cosmic-glow"}
         >
-          <Wallet size={16} className="mr-2" /> 
+          <Wallet size={20} className="mr-3" /> 
           {connected ? "0x7A...F3" : "Connect Wallet"}
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-neura-dark border-neura-purple/30 text-white max-w-md">
+      <DialogContent className="bg-gradient-to-br from-dzuwa-warm-white to-dzuwa-gentle-blue border-solar-photosphere/40 text-gray-800 max-w-md shadow-2xl">
         <DialogHeader>
-          <DialogTitle className="text-center text-xl text-white">Connect Wallet</DialogTitle>
+          <DialogTitle className="text-center text-xl text-solar-core font-bold">Connect Wallet</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
-          <p className="text-white/70 text-center mb-4">
-            Connect your wallet to access your personalized Neura portal.
+          <p className="text-gray-600 text-center mb-4 font-medium">
+            Connect your wallet to access your personalized DzuwaSpace portal.
           </p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {["MetaMask", "WalletConnect", "Coinbase", "Rainbow"].map((wallet) => (
               <Card 
                 key={wallet}
-                className="bg-neura-dark/80 border border-neura-purple/20 hover:border-neura-purple/50 transition-all cursor-pointer"
+                className="bg-gradient-to-br from-solar-photosphere/10 to-solar-corona/10 border-2 border-solar-photosphere/30 hover:border-solar-radiative/60 transition-all cursor-pointer hover:shadow-lg"
                 onClick={() => handleConnect(wallet)}
               >
                 <div className="p-4 flex flex-col items-center justify-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-neura-purple/20 to-neura-cyan/20 rounded-full flex items-center justify-center mb-3 border border-neura-purple/30">
-                    <Wallet size={24} className="text-neura-cyan" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-solar-radiative/20 to-solar-photosphere/30 rounded-full flex items-center justify-center mb-3 border-2 border-solar-corona/40">
+                    <Wallet size={24} className="text-solar-core" />
                   </div>
-                  <span className="text-white font-medium">{wallet}</span>
+                  <span className="text-solar-core font-semibold">{wallet}</span>
                 </div>
               </Card>
             ))}
           </div>
           
           {connecting && (
-            <div className="text-center text-white/70 mt-2 flex items-center justify-center">
-              <div className="w-5 h-5 border-2 border-neura-cyan border-t-transparent rounded-full animate-spin mr-2"></div>
+            <div className="text-center text-solar-radiative font-medium mt-2 flex items-center justify-center">
+              <div className="w-5 h-5 border-2 border-solar-core border-t-transparent rounded-full animate-spin mr-2"></div>
               Connecting...
             </div>
           )}
           
-          <p className="text-white/50 text-xs text-center mt-4">
+          <p className="text-gray-500 text-xs text-center mt-4">
             By connecting your wallet, you agree to our Terms of Service and Privacy Policy.
           </p>
         </div>
