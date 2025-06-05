@@ -28,18 +28,20 @@ export default {
 					magenta: '#F472B6',     // Softer magenta
 					teal: '#5EEAD4',        // Softer teal color
 				},
-				// Enhanced softer color palette
+				// Enhanced solar color palette inspired by the reference image
 				solar: {
-					'core': '#FEF3C7',        // Soft yellow
-					'radiative': '#FED7AA',   // Soft orange
-					'convection': '#FECACA',  // Soft red-orange
-					'photosphere': '#FDE68A', // Soft amber
-					'chromosphere': '#F9A8D4', // Soft pink
-					'corona': '#FDBA74',      // Soft coral
-					'subsurface': '#BAE6FD',  // Soft blue
-					'plasma': '#F3E8FF',      // Soft lavender
+					'core': '#FF4500',        // Deep orange-red core
+					'radiative': '#FF6B35',   // Bright orange
+					'convection': '#FF8C42',  // Orange-amber
+					'photosphere': '#FFB347', // Golden orange
+					'chromosphere': '#FF7F50', // Coral orange
+					'corona': '#FFA500',      // Pure orange
+					'subsurface': '#FF2D00',  // Intense red-orange
+					'plasma': '#FF1C00',      // Deep red
+					'flare': '#FFFF00',       // Bright yellow
+					'prominence': '#FF0000',  // Pure red
 				},
-				// Enhanced softer primary color scheme
+				// Enhanced softer primary color scheme with solar integration
 				dzuwa: {
 					'light-blue': '#F0F9FF',  // Even lighter blue background
 					'bright-blue': '#38BDF8', // Softer bright blue
@@ -47,14 +49,17 @@ export default {
 					'teal': '#5EEAD4',        // Soft teal accent
 					'cyan': '#67E8F9',        // Soft cyan accent
 					'white': '#FFFFFF',       // Pure white
-					'gold': '#FEF3C7',        // Soft gold
-					'gold-warm': '#FDE68A',   // Warm soft gold
+					'gold': '#FFD700',        // Solar gold
+					'gold-warm': '#FFA500',   // Warm solar gold
 					'purple': '#A78BFA',      // Soft purple accent
 					'magenta': '#F472B6',     // Soft magenta accent
 					'soft-gray': '#F8FAFC',   // Very soft gray
 					'gentle-blue': '#E0F2FE', // Gentle blue
 					'pastel-cyan': '#CFFAFE', // Pastel cyan
 					'warm-white': '#FEFEFE',  // Warm white
+					'solar-orange': '#FF6B35', // Solar orange
+					'solar-red': '#FF2D00',   // Solar red
+					'solar-yellow': '#FFFF00', // Solar yellow
 				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -139,9 +144,31 @@ export default {
                     '50%': { opacity: '0.9', transform: 'scale(1.02)' }
                 },
                 'soft-glow': {
-                    '0%': { boxShadow: '0 0 5px rgba(103, 232, 249, 0.3)' },
-                    '50%': { boxShadow: '0 0 20px rgba(103, 232, 249, 0.5)' },
-                    '100%': { boxShadow: '0 0 5px rgba(103, 232, 249, 0.3)' }
+                    '0%': { boxShadow: '0 0 5px rgba(255, 107, 53, 0.3)' },
+                    '50%': { boxShadow: '0 0 20px rgba(255, 107, 53, 0.5)' },
+                    '100%': { boxShadow: '0 0 5px rgba(255, 107, 53, 0.3)' }
+                },
+                'solar-pulse': {
+                    '0%, 100%': { 
+                        opacity: '0.8', 
+                        transform: 'scale(1)',
+                        boxShadow: '0 0 20px rgba(255, 107, 53, 0.4)'
+                    },
+                    '50%': { 
+                        opacity: '1', 
+                        transform: 'scale(1.05)',
+                        boxShadow: '0 0 40px rgba(255, 107, 53, 0.6)'
+                    }
+                },
+                'cosmic-pulse': {
+                    '0%, 100%': { 
+                        opacity: '0.6', 
+                        transform: 'scale(1) rotate(0deg)',
+                    },
+                    '50%': { 
+                        opacity: '0.9', 
+                        transform: 'scale(1.1) rotate(180deg)',
+                    }
                 },
                 'progress-fill': {
                     '0%': { width: '0%' },
@@ -156,6 +183,8 @@ export default {
                 'slideRight': 'slideRight 0.5s ease-out forwards',
                 'gentle-pulse': 'gentle-pulse 4s ease-in-out infinite',
                 'soft-glow': 'soft-glow 3s ease-in-out infinite',
+                'solar-pulse': 'solar-pulse 6s ease-in-out infinite',
+                'cosmic-pulse': 'cosmic-pulse 8s ease-in-out infinite',
                 'progress-fill': 'progress-fill 2s ease-out forwards',
 			}
 		}

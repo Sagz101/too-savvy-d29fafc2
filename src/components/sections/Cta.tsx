@@ -7,21 +7,21 @@ import { EnhancedIcon } from '@/components/ui/enhanced-icon';
 
 export const Cta = () => {
   return (
-    <section className="py-24 relative overflow-hidden bg-gradient-to-br from-dzuwa-light-blue via-dzuwa-warm-white to-dzuwa-pastel-cyan">
+    <section className="py-24 relative overflow-hidden bg-gradient-to-br from-dzuwa-light-blue via-dzuwa-warm-white to-solar-photosphere/30">
       <div className="absolute inset-0 -z-10">
-        {/* Enhanced cosmic gradient circles with softer colors */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-gradient-to-br from-dzuwa-cyan/10 via-dzuwa-purple/8 to-dzuwa-teal/6 animate-gentle-pulse soft-glow" style={{ animationDuration: '15s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-dzuwa-gold/8 via-dzuwa-magenta/6 to-transparent animate-gentle-pulse" style={{ animationDuration: '10s', animationDelay: '1s' }}></div>
+        {/* Enhanced solar gradient circles */}
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full bg-gradient-to-br from-solar-radiative/15 via-solar-photosphere/12 to-solar-corona/8 animate-solar-pulse cosmic-glow" style={{ animationDuration: '15s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-dzuwa-solar-orange/12 via-solar-chromosphere/8 to-transparent animate-solar-pulse" style={{ animationDuration: '10s', animationDelay: '1s' }}></div>
         
-        {/* Enhanced background grid with softer cosmic colors */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgxMDMsIDIzMiwgMjQ5LCAwLjA4KSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiIC8+PC9zdmc+')] opacity-40"></div>
+        {/* Enhanced background grid with solar colors */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsIDEwNywgNTMsIDAuMDgpIiBzdHJva2Utd2lkdGg9IjEuNSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIgLz48L3N2Zz4=')] opacity-40"></div>
       </div>
       
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto enhanced-card p-8 md:p-12 shadow-2xl shadow-dzuwa-cyan/15 soft-glow">
+        <div className="max-w-4xl mx-auto enhanced-card p-8 md:p-12 shadow-2xl cosmic-glow">
           <div className="text-center mb-10">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-dzuwa-gold via-dzuwa-cyan to-dzuwa-purple bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-solar-core via-solar-radiative to-solar-photosphere bg-clip-text text-transparent">
                 Enter DzuwaSpace 3.0
               </span>
             </h2>
@@ -33,7 +33,7 @@ export const Cta = () => {
               <WalletButton />
               <Button 
                 variant="outline"
-                className="enhanced-border text-gray-700 hover:bg-dzuwa-cyan/10 hover:border-dzuwa-purple/40 transition-all duration-300 soft-glow border-dzuwa-cyan/30"
+                className="enhanced-border text-gray-700 hover:bg-solar-photosphere/10 hover:border-solar-radiative/40 transition-all duration-300 soft-glow"
               >
                 <Shield size={16} className="mr-2" /> Learn About Web3 Security
               </Button>
@@ -41,25 +41,25 @@ export const Cta = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            <div className="enhanced-card p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 soft-glow">
+            <div className="enhanced-card p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 cosmic-glow">
               <div className="flex justify-center mb-4">
                 <EnhancedIcon icon={Zap} variant="warning" size="sm" />
               </div>
-              <p className="text-gray-700 font-bold text-lg bg-gradient-to-r from-dzuwa-cyan to-dzuwa-purple bg-clip-text text-transparent">Zero Platform Fees</p>
+              <p className="text-gray-700 font-bold text-lg bg-gradient-to-r from-solar-radiative to-solar-photosphere bg-clip-text text-transparent">Zero Platform Fees</p>
               <p className="text-gray-600 text-base font-medium mt-2">Direct creator-to-audience economy</p>
             </div>
-            <div className="enhanced-card p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 soft-glow">
+            <div className="enhanced-card p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 cosmic-glow">
               <div className="flex justify-center mb-4">
                 <EnhancedIcon icon={Shield} variant="primary" size="sm" />
               </div>
-              <p className="text-gray-700 font-bold text-lg bg-gradient-to-r from-dzuwa-purple to-dzuwa-magenta bg-clip-text text-transparent">Self-Sovereign Identity</p>
+              <p className="text-gray-700 font-bold text-lg bg-gradient-to-r from-solar-core to-solar-chromosphere bg-clip-text text-transparent">Self-Sovereign Identity</p>
               <p className="text-gray-600 text-base font-medium mt-2">You own your data and content</p>
             </div>
-            <div className="enhanced-card p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 soft-glow">
+            <div className="enhanced-card p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 cosmic-glow">
               <div className="flex justify-center mb-4">
                 <EnhancedIcon icon={Globe} variant="secondary" size="sm" />
               </div>
-              <p className="text-gray-700 font-bold text-lg bg-gradient-to-r from-dzuwa-teal to-dzuwa-cyan bg-clip-text text-transparent">Transparent Economics</p>
+              <p className="text-gray-700 font-bold text-lg bg-gradient-to-r from-solar-corona to-solar-flare bg-clip-text text-transparent">Transparent Economics</p>
               <p className="text-gray-600 text-base font-medium mt-2">All transactions on-chain</p>
             </div>
           </div>

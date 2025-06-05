@@ -15,7 +15,7 @@ import { Footer } from '@/components/layout/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-dzuwa-light-blue via-dzuwa-warm-white to-dzuwa-gentle-blue text-gray-800">
+    <div className="min-h-screen bg-gradient-to-br from-dzuwa-light-blue via-dzuwa-warm-white to-solar-photosphere/20 text-gray-800">
       <Header />
       <main>
         <Hero />

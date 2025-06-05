@@ -26,10 +26,10 @@ export const EnhancedIcon: React.FC<EnhancedIconProps> = ({
   };
 
   const variantClasses = {
-    primary: 'bg-gradient-to-br from-dzuwa-cyan/20 to-dzuwa-purple/20 text-dzuwa-cyan border-dzuwa-cyan/30',
+    primary: 'bg-gradient-to-br from-solar-radiative/20 to-solar-photosphere/30 text-solar-core border-solar-radiative/40',
     secondary: 'bg-gradient-to-br from-dzuwa-gentle-blue/30 to-dzuwa-pastel-cyan/20 text-dzuwa-bright-blue border-dzuwa-bright-blue/30',
     success: 'bg-gradient-to-br from-green-100 to-emerald-100 text-green-600 border-green-300',
-    warning: 'bg-gradient-to-br from-dzuwa-gold/20 to-solar-photosphere/20 text-amber-600 border-amber-300',
+    warning: 'bg-gradient-to-br from-solar-corona/30 to-solar-flare/20 text-solar-core border-solar-radiative/40',
     info: 'bg-gradient-to-br from-blue-100 to-sky-100 text-blue-600 border-blue-300'
   };
 
@@ -42,10 +42,10 @@ export const EnhancedIcon: React.FC<EnhancedIconProps> = ({
 
   return (
     <div className={cn(
-      'icon-container border rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105',
+      'icon-container border rounded-full flex items-center justify-center transition-all duration-300 hover:scale-105 cosmic-glow',
       sizeClasses[size],
       variantClasses[variant],
-      animated && 'animate-gentle-pulse',
+      animated && 'animate-solar-pulse',
       className
     )}>
       <Icon size={iconSize[size]} />
