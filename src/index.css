@@ -129,27 +129,6 @@
     @apply text-lg text-gray-600;
     line-height: 1.7;
   }
-
-  /* Enhanced border styles with softer colors */
-  .border {
-    @apply border border-dzuwa-cyan/20;
-  }
-
-  .border-t {
-    @apply border-t border-dzuwa-cyan/20;
-  }
-
-  .border-b {
-    @apply border-b border-dzuwa-cyan/20;
-  }
-
-  .border-l {
-    @apply border-l border-dzuwa-cyan/20;
-  }
-
-  .border-r {
-    @apply border-r border-dzuwa-cyan/20;
-  }
 }
 
 /* Enhanced floating particles animation */
