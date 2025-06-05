@@ -22,35 +22,39 @@ export default {
 			colors: {
 				neura: {
 					dark: '#0F1629',        // Deeper dark blue
-					purple: '#8B5CF6',      // Enhanced purple
-					'light-purple': '#A78BFA',
-					cyan: '#06B6D4',        // Enhanced cyan
-					magenta: '#EC4899',     // Enhanced magenta
-					teal: '#0D9488',        // New teal color
+					purple: '#A78BFA',      // Softer purple
+					'light-purple': '#C4B5FD',
+					cyan: '#67E8F9',        // Softer cyan
+					magenta: '#F472B6',     // Softer magenta
+					teal: '#5EEAD4',        // Softer teal color
 				},
-				// Enhanced color palette with inspired scheme
+				// Enhanced softer color palette
 				solar: {
-					'core': '#FFE135',        // Bright yellow core
-					'radiative': '#FF8C00',   // Deep orange
-					'convection': '#FF4500',  // Red-orange
-					'photosphere': '#FFA500', // Orange
-					'chromosphere': '#DC143C', // Crimson red
-					'corona': '#FF6B35',      // Coral orange
-					'subsurface': '#06B6D4',  // Enhanced cyan blue
-					'plasma': '#EC4899',      // Enhanced pink
+					'core': '#FEF3C7',        // Soft yellow
+					'radiative': '#FED7AA',   // Soft orange
+					'convection': '#FECACA',  // Soft red-orange
+					'photosphere': '#FDE68A', // Soft amber
+					'chromosphere': '#F9A8D4', // Soft pink
+					'corona': '#FDBA74',      // Soft coral
+					'subsurface': '#BAE6FD',  // Soft blue
+					'plasma': '#F3E8FF',      // Soft lavender
 				},
-				// Enhanced primary color scheme
+				// Enhanced softer primary color scheme
 				dzuwa: {
-					'light-blue': '#E0F2FE',  // Lighter blue background
-					'bright-blue': '#0EA5E9', // Enhanced bright blue
-					'dark-blue': '#0F172A',   // Deep dark blue
-					'teal': '#0D9488',        // Teal accent
-					'cyan': '#06B6D4',        // Cyan accent
+					'light-blue': '#F0F9FF',  // Even lighter blue background
+					'bright-blue': '#38BDF8', // Softer bright blue
+					'dark-blue': '#1E293B',   // Slightly lighter dark blue
+					'teal': '#5EEAD4',        // Soft teal accent
+					'cyan': '#67E8F9',        // Soft cyan accent
 					'white': '#FFFFFF',       // Pure white
-					'gold': '#FFE135',        // Gold sun color
-					'gold-warm': '#FF8C00',   // Warm gold
-					'purple': '#8B5CF6',      // Purple accent
-					'magenta': '#EC4899',     // Magenta accent
+					'gold': '#FEF3C7',        // Soft gold
+					'gold-warm': '#FDE68A',   // Warm soft gold
+					'purple': '#A78BFA',      // Soft purple accent
+					'magenta': '#F472B6',     // Soft magenta accent
+					'soft-gray': '#F8FAFC',   // Very soft gray
+					'gentle-blue': '#E0F2FE', // Gentle blue
+					'pastel-cyan': '#CFFAFE', // Pastel cyan
+					'warm-white': '#FEFEFE',  // Warm white
 				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -130,18 +134,18 @@ export default {
                     '0%': { transform: 'translateX(-20px)', opacity: '0' },
                     '100%': { transform: 'translateX(0)', opacity: '1' }
                 },
-                'solar-pulse': {
+                'gentle-pulse': {
                     '0%, 100%': { opacity: '1', transform: 'scale(1)' },
-                    '50%': { opacity: '0.8', transform: 'scale(1.05)' }
+                    '50%': { opacity: '0.9', transform: 'scale(1.02)' }
                 },
-                'solar-flare': {
-                    '0%': { background: 'linear-gradient(45deg, #FFE135, #FF8C00)' },
-                    '50%': { background: 'linear-gradient(45deg, #FF4500, #DC143C)' },
-                    '100%': { background: 'linear-gradient(45deg, #FFE135, #FF8C00)' }
+                'soft-glow': {
+                    '0%': { boxShadow: '0 0 5px rgba(103, 232, 249, 0.3)' },
+                    '50%': { boxShadow: '0 0 20px rgba(103, 232, 249, 0.5)' },
+                    '100%': { boxShadow: '0 0 5px rgba(103, 232, 249, 0.3)' }
                 },
-                'cosmic-pulse': {
-                    '0%, 100%': { opacity: '0.6', transform: 'scale(1) rotate(0deg)' },
-                    '50%': { opacity: '0.9', transform: 'scale(1.1) rotate(180deg)' }
+                'progress-fill': {
+                    '0%': { width: '0%' },
+                    '100%': { width: '100%' }
                 }
 			},
 			animation: {
@@ -150,9 +154,9 @@ export default {
                 'fadeIn': 'fadeIn 1s ease-in forwards',
                 'slideUp': 'slideUp 0.5s ease-out forwards',
                 'slideRight': 'slideRight 0.5s ease-out forwards',
-                'solar-pulse': 'solar-pulse 3s ease-in-out infinite',
-                'solar-flare': 'solar-flare 4s ease-in-out infinite',
-                'cosmic-pulse': 'cosmic-pulse 6s ease-in-out infinite',
+                'gentle-pulse': 'gentle-pulse 4s ease-in-out infinite',
+                'soft-glow': 'soft-glow 3s ease-in-out infinite',
+                'progress-fill': 'progress-fill 2s ease-out forwards',
 			}
 		}
 	},
