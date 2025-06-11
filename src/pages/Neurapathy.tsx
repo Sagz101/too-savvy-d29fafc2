@@ -138,7 +138,7 @@ const Neurapathy = () => {
                             <span className="font-medium text-white">0x1A2b...F8c9</span>
                             <span className="text-sm text-white/50">Yesterday</span>
                           </div>
-                          <p className="text-white/70 truncate">Invitation to join DeFi governance forum - holders of $NEURAX tokens get special voting rights...</p>
+                          <p className="text-white/70 truncate">Invitation to join DeFi governance forum - holders of $ETH tokens get special voting rights...</p>
                         </div>
                         
                         <div className="p-4 border border-neura-purple/20 rounded-lg hover:bg-neura-purple/10 transition-colors cursor-pointer">

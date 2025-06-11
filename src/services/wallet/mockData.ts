@@ -18,10 +18,10 @@ export const DEFAULT_TOKENS: Token[] = [
     decimals: 6
   },
   {
-    name: 'Neura Token',
-    symbol: 'NEURA',
-    address: '0xNeuraTokenAddress', // Placeholder
-    logo: '/neura-token-logo.png',
+    name: 'Ethereum',
+    symbol: 'ETH',
+    address: '0x0000000000000000000000000000000000000000', // Native ETH
+    logo: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
     decimals: 18
   }
 ];
