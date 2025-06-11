@@ -8,9 +8,17 @@ export interface User {
   isWeb3Native: boolean;
   hasLinkedWallet: boolean;
   authMethod: 'email' | 'google' | 'yahoo' | 'wallet';
+  userType: 'Web2_User' | 'Hybrid_User' | 'Web3_User';
   profile: {
     name?: string;
     avatar?: string;
+  };
+  capabilities: {
+    canMintNFTs: boolean;
+    canParticipateDAO: boolean;
+    canAccessTokenGating: boolean;
+    canUseSmartLicensing: boolean;
+    canAccessWeb3Storefront: boolean;
   };
 }
 
@@ -42,6 +50,46 @@ export const useAuth = () => {
   return context;
 };
 
+const determineUserType = (user: User): 'Web2_User' | 'Hybrid_User' | 'Web3_User' => {
+  if (user.isWeb3Native && user.walletAddress) {
+    return 'Web3_User';
+  }
+  if (user.hasLinkedWallet && user.walletAddress) {
+    return 'Hybrid_User';
+  }
+  return 'Web2_User';
+};
+
+const getUserCapabilities = (userType: 'Web2_User' | 'Hybrid_User' | 'Web3_User') => {
+  switch (userType) {
+    case 'Web3_User':
+      return {
+        canMintNFTs: true,
+        canParticipateDAO: true,
+        canAccessTokenGating: true,
+        canUseSmartLicensing: true,
+        canAccessWeb3Storefront: true,
+      };
+    case 'Hybrid_User':
+      return {
+        canMintNFTs: true,
+        canParticipateDAO: true,
+        canAccessTokenGating: true,
+        canUseSmartLicensing: true,
+        canAccessWeb3Storefront: true,
+      };
+    case 'Web2_User':
+    default:
+      return {
+        canMintNFTs: false,
+        canParticipateDAO: false,
+        canAccessTokenGating: false,
+        canUseSmartLicensing: false,
+        canAccessWeb3Storefront: false,
+      };
+  }
+};
+
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [authState, setAuthState] = useState<AuthState>({
     user: null,
@@ -51,7 +99,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   });
 
   useEffect(() => {
-    // Check for existing session
     checkExistingSession();
   }, []);
 
@@ -60,11 +107,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const savedUser = localStorage.getItem('perpetuax_user');
       if (savedUser) {
         const user = JSON.parse(savedUser);
+        const userType = determineUserType(user);
+        const capabilities = getUserCapabilities(userType);
+        
+        const updatedUser = {
+          ...user,
+          userType,
+          capabilities,
+        };
+
         setAuthState({
-          user,
+          user: updatedUser,
           isLoading: false,
           isAuthenticated: true,
-          canUpgradeToWeb3: !user.isWeb3Native && !user.hasLinkedWallet,
+          canUpgradeToWeb3: userType === 'Web2_User',
         });
       } else {
         setAuthState(prev => ({ ...prev, isLoading: false }));
@@ -79,8 +135,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setAuthState(prev => ({ ...prev, isLoading: true }));
     
     try {
-      // Simulate API call - replace with actual authentication
       await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const userType: 'Web2_User' = 'Web2_User';
+      const capabilities = getUserCapabilities(userType);
       
       const user: User = {
         id: `email_${Date.now()}`,
@@ -88,6 +146,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         authMethod: 'email',
         isWeb3Native: false,
         hasLinkedWallet: false,
+        userType,
+        capabilities,
         profile: { name: email.split('@')[0] },
       };
 
@@ -109,8 +169,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setAuthState(prev => ({ ...prev, isLoading: true }));
     
     try {
-      // Simulate API call - replace with actual registration
       await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const userType: 'Web2_User' = 'Web2_User';
+      const capabilities = getUserCapabilities(userType);
       
       const user: User = {
         id: `email_${Date.now()}`,
@@ -118,6 +180,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         authMethod: 'email',
         isWeb3Native: false,
         hasLinkedWallet: false,
+        userType,
+        capabilities,
         profile: { name },
       };
 
@@ -139,8 +203,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setAuthState(prev => ({ ...prev, isLoading: true }));
     
     try {
-      // Simulate OAuth flow - replace with actual Google OAuth
       await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      const userType: 'Web2_User' = 'Web2_User';
+      const capabilities = getUserCapabilities(userType);
       
       const user: User = {
         id: `google_${Date.now()}`,
@@ -148,6 +214,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         authMethod: 'google',
         isWeb3Native: false,
         hasLinkedWallet: false,
+        userType,
+        capabilities,
         profile: { 
           name: 'Google User',
           avatar: 'https://via.placeholder.com/40'
@@ -172,8 +240,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setAuthState(prev => ({ ...prev, isLoading: true }));
     
     try {
-      // Simulate OAuth flow - replace with actual Yahoo OAuth
       await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      const userType: 'Web2_User' = 'Web2_User';
+      const capabilities = getUserCapabilities(userType);
       
       const user: User = {
         id: `yahoo_${Date.now()}`,
@@ -181,6 +251,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         authMethod: 'yahoo',
         isWeb3Native: false,
         hasLinkedWallet: false,
+        userType,
+        capabilities,
         profile: { 
           name: 'Yahoo User',
           avatar: 'https://via.placeholder.com/40'
@@ -205,10 +277,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setAuthState(prev => ({ ...prev, isLoading: true }));
     
     try {
-      // Simulate wallet connection - replace with actual wallet integration
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       const mockAddress = '0x742d35Cc643C0532925a3b8F1d8c4d9f8b8B3666';
+      const userType: 'Web3_User' = 'Web3_User';
+      const capabilities = getUserCapabilities(userType);
       
       const user: User = {
         id: `wallet_${Date.now()}`,
@@ -216,6 +289,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         authMethod: 'wallet',
         isWeb3Native: true,
         hasLinkedWallet: true,
+        userType,
+        capabilities,
         profile: { 
           name: `${walletType} User`,
           avatar: 'https://via.placeholder.com/40'
@@ -242,15 +317,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setAuthState(prev => ({ ...prev, isLoading: true }));
     
     try {
-      // Simulate wallet linking
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       const mockAddress = '0x742d35Cc643C0532925a3b8F1d8c4d9f8b8B3666';
+      const userType: 'Hybrid_User' = 'Hybrid_User';
+      const capabilities = getUserCapabilities(userType);
       
       const updatedUser: User = {
         ...authState.user,
         walletAddress: mockAddress,
         hasLinkedWallet: true,
+        userType,
+        capabilities,
       };
 
       localStorage.setItem('perpetuax_user', JSON.stringify(updatedUser));
@@ -293,5 +371,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     signOut,
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
