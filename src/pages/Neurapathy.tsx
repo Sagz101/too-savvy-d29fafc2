@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -24,7 +25,7 @@ const Neurapathy = () => {
             <div className="text-center mb-12">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 <AnimatedText
-                  text="Neurapathy"
+                  text="Messaging"
                   type="gradient"
                   gradientFrom="from-neura-purple"
                   gradientTo="to-neura-cyan"

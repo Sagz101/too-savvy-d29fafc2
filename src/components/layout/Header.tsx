@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Wallet, X, Menu, ShoppingCart, MessageSquare } from "lucide-react";
@@ -37,7 +36,7 @@ export const Header = () => {
             className="bg-gradient-to-r from-dzuwa-purple to-dzuwa-cyan text-white text-sm px-4 py-2 rounded hover:opacity-90 transition-colors flex items-center cosmic-glow"
           >
             <MessageSquare size={16} className="mr-2" />
-            Neurapathy
+            Messaging
           </Link>
           <WalletConnectButton />
         </nav>
@@ -89,7 +88,7 @@ export const Header = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               <MessageSquare size={16} className="mr-2" />
-              Neurapathy
+              Messaging
             </Link>
             <div className="pt-2">
               <WalletConnectButton />
