@@ -12,9 +12,8 @@ export const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-dzuwa-dark-blue/90 via-dzuwa-dark-blue/95 to-neura-dark/90 backdrop-blur-md border-b border-dzuwa-cyan/20">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center">
-          <Link to="/" className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-dzuwa-cyan via-dzuwa-purple to-dzuwa-magenta bg-clip-text text-transparent flex items-baseline">
+          <Link to="/" className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-dzuwa-cyan via-dzuwa-purple to-dzuwa-magenta bg-clip-text text-transparent">
             <span className="font-lotus">Too Savvy</span>
-            <span className="text-5xl md:text-6xl font-black bg-gradient-to-r from-solar-core via-solar-radiative to-solar-photosphere bg-clip-text text-transparent ml-1 font-orbitron" style={{ textShadow: '0 0 20px rgba(255, 107, 53, 0.5)' }}>X</span>
           </Link>
         </div>
         

@@ -24,7 +24,6 @@ export const Cta = () => {
               <span className="bg-gradient-to-r from-solar-core via-solar-radiative to-solar-photosphere bg-clip-text text-transparent font-lotus">
                 Enter Too Savvy
               </span>
-              <span className="text-6xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-solar-core via-solar-radiative to-solar-photosphere bg-clip-text text-transparent ml-2 font-orbitron" style={{ textShadow: '0 0 20px rgba(255, 107, 53, 0.5)' }}>X</span>
             </h2>
             <p className="text-gray-600 text-xl max-w-2xl mx-auto mb-8 font-medium leading-relaxed">
               Your sovereign portal to Web3 awaits. Connect your wallet to join the next generation of the internet where you own your digital identity, content, and financial future.
