@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -103,9 +102,8 @@ export const DualOnboarding: React.FC<DualOnboardingProps> = ({ onComplete }) =>
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-4">
           <span className="bg-gradient-to-r from-solar-core via-solar-radiative to-solar-photosphere bg-clip-text text-transparent">
-            Welcome to Perpetua
+            Welcome to Too Savvy
           </span>
-          <span className="text-4xl font-black bg-gradient-to-r from-solar-core via-solar-radiative to-solar-photosphere bg-clip-text text-transparent ml-1" style={{ fontFamily: 'Orbitron, monospace, sans-serif' }}>X</span>
         </h2>
         <p className="text-gray-600 text-lg max-w-2xl mx-auto">
           Choose your journey: Start simple with traditional login or dive into Web3 with crypto wallets
@@ -315,7 +313,7 @@ export const DualOnboarding: React.FC<DualOnboardingProps> = ({ onComplete }) =>
       </Tabs>
 
       <div className="text-center mt-6 text-xs text-gray-500">
-        By continuing, you agree to PerpetuaX's Terms of Service and Privacy Policy
+        By continuing, you agree to Too Savvy's Terms of Service and Privacy Policy
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { DualOnboarding } from '@/components/auth/DualOnboarding';
 import { Web3UpgradePrompt } from '@/components/auth/Web3UpgradePrompt';
@@ -50,7 +49,7 @@ export const OnboardingFlow = () => {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               <span className="bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent">
-                Welcome to PerpetuaX, {auth.user?.profile?.name || 'Creator'}!
+                Welcome to Too Savvy, {auth.user?.profile?.name || 'Creator'}!
               </span>
             </h2>
             <p className="text-white/70 md:text-lg max-w-2xl mx-auto">
