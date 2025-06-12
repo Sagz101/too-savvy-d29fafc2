@@ -104,7 +104,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const checkExistingSession = async () => {
     try {
-      const savedUser = localStorage.getItem('perpetuax_user');
+      const savedUser = localStorage.getItem('toosavvy_user');
       if (savedUser) {
         const user = JSON.parse(savedUser);
         const userType = determineUserType(user);
@@ -151,7 +151,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         profile: { name: email.split('@')[0] },
       };
 
-      localStorage.setItem('perpetuax_user', JSON.stringify(user));
+      localStorage.setItem('toosavvy_user', JSON.stringify(user));
       
       setAuthState({
         user,
@@ -185,7 +185,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         profile: { name },
       };
 
-      localStorage.setItem('perpetuax_user', JSON.stringify(user));
+      localStorage.setItem('toosavvy_user', JSON.stringify(user));
       
       setAuthState({
         user,
@@ -222,7 +222,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         },
       };
 
-      localStorage.setItem('perpetuax_user', JSON.stringify(user));
+      localStorage.setItem('toosavvy_user', JSON.stringify(user));
       
       setAuthState({
         user,
@@ -259,7 +259,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         },
       };
 
-      localStorage.setItem('perpetuax_user', JSON.stringify(user));
+      localStorage.setItem('toosavvy_user', JSON.stringify(user));
       
       setAuthState({
         user,
@@ -297,7 +297,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         },
       };
 
-      localStorage.setItem('perpetuax_user', JSON.stringify(user));
+      localStorage.setItem('toosavvy_user', JSON.stringify(user));
       
       setAuthState({
         user,
@@ -331,7 +331,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         capabilities,
       };
 
-      localStorage.setItem('perpetuax_user', JSON.stringify(updatedUser));
+      localStorage.setItem('toosavvy_user', JSON.stringify(updatedUser));
       
       setAuthState({
         user: updatedUser,
@@ -350,7 +350,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signOut = async () => {
-    localStorage.removeItem('perpetuax_user');
+    localStorage.removeItem('toosavvy_user');
     setAuthState({
       user: null,
       isLoading: false,

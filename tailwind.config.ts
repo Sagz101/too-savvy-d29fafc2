@@ -19,6 +19,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'lotus': ['Lotus Flower', 'cursive'],
+				'orbitron': ['Orbitron', 'monospace', 'sans-serif'],
+			},
 			colors: {
 				neura: {
 					dark: '#0F1629',        // Deeper dark blue
