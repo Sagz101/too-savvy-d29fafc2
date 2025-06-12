@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { WalletButton } from "@/components/ui/wallet-button";
@@ -93,7 +94,7 @@ export const Hero = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-xl leading-relaxed font-medium">
-              Claim your voice, your value, your digital future. PerpetuaX empowers you to create without compromise, own your work on-chain, and thrive with your community—no gatekeepers, no middlemen.
+              Claim your voice, your value, your digital future. Too Savvy empowers you to create without compromise, own your work on-chain, and thrive with your community—no gatekeepers, no middlemen.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -175,7 +176,7 @@ export const Hero = () => {
                 <div className="w-3 h-3 rounded-full bg-dzuwa-gold/70 border border-dzuwa-gold"></div>
                 <div className="w-3 h-3 rounded-full bg-dzuwa-bright-blue/70 border border-dzuwa-bright-blue"></div>
               </div>
-              <div className="text-sm text-gray-700 font-medium">PerpetuaX Creator Dashboard</div>
+              <div className="text-sm text-gray-700 font-medium">Too Savvy Creator Dashboard</div>
               <div className="w-5"></div>
             </div>
             
