@@ -18,9 +18,11 @@ export const Header = () => {
               alt="T00 Savvy Logo" 
               className="h-10 w-auto"
             />
-            <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-dzuwa-cyan via-dzuwa-purple to-dzuwa-magenta bg-clip-text text-transparent font-lotus">
-              T00 Savvy
-            </span>
+            <img 
+              src="/lovable-uploads/7ac7f3fc-82bf-4080-8568-3607ab1d56bc.png" 
+              alt="T00 Savvy" 
+              className="h-12 w-auto"
+            />
           </Link>
         </div>
         

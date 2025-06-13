@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { WalletButton } from "@/components/ui/wallet-button";
@@ -79,9 +78,11 @@ export const Hero = () => {
                   alt="T00 Savvy Logo" 
                   className="h-16 w-auto"
                 />
-                <div className="text-4xl font-bold bg-gradient-to-r from-dzuwa-gold via-dzuwa-gold-warm to-dzuwa-bright-blue bg-clip-text text-transparent font-lotus">
-                  T00 Savvy
-                </div>
+                <img 
+                  src="/lovable-uploads/7ac7f3fc-82bf-4080-8568-3607ab1d56bc.png" 
+                  alt="T00 Savvy" 
+                  className="h-20 w-auto"
+                />
               </div>
             </div>
 
