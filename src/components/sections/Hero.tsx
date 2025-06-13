@@ -76,11 +76,11 @@ export const Hero = () => {
               <div className="flex items-center space-x-4 p-6 enhanced-card soft-glow">
                 <img 
                   src="/lovable-uploads/634f305e-cf77-4d27-98b3-a69661d66e96.png" 
-                  alt="Too Savvy Logo" 
+                  alt="T00 Savvy Logo" 
                   className="h-16 w-auto"
                 />
                 <div className="text-4xl font-bold bg-gradient-to-r from-dzuwa-gold via-dzuwa-gold-warm to-dzuwa-bright-blue bg-clip-text text-transparent font-lotus">
-                  Too Savvy
+                  T00 Savvy
                 </div>
               </div>
             </div>
@@ -190,7 +190,7 @@ export const Hero = () => {
                 <div className="w-3 h-3 rounded-full bg-dzuwa-gold/70 border border-dzuwa-gold"></div>
                 <div className="w-3 h-3 rounded-full bg-dzuwa-bright-blue/70 border border-dzuwa-bright-blue"></div>
               </div>
-              <div className="text-sm text-gray-700 font-medium">Too Savvy Creator Dashboard</div>
+              <div className="text-sm text-gray-700 font-medium">T00 Savvy Creator Dashboard</div>
               <div className="w-5"></div>
             </div>
             

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Twitter, MessageCircle, Github } from 'lucide-react';
 
@@ -9,7 +8,7 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-8">
           <div className="mb-6 md:mb-0">
             <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-dzuwa-cyan via-dzuwa-purple to-dzuwa-magenta bg-clip-text text-transparent mb-2">
-              <span className="font-lotus">Too Savvy</span>
+              <span className="font-lotus">T00 Savvy</span>
             </div>
             <p className="text-white/60 max-w-xs">
               Your sovereign portal to Web3—where your content, commerce, community, and crypto intersect.
@@ -38,7 +37,7 @@ export const Footer = () => {
         
         <div className="border-t border-dzuwa-cyan/20 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-white/60 text-sm mb-4 md:mb-0">
-            © 2025 Too Savvy. All rights reserved.
+            © 2025 T00 Savvy. All rights reserved.
           </div>
           <div className="flex space-x-4">
             <a href="#" className="text-white/60 hover:text-dzuwa-cyan transition-colors">

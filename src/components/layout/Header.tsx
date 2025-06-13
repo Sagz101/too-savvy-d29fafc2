@@ -15,11 +15,11 @@ export const Header = () => {
           <Link to="/" className="flex items-center space-x-3">
             <img 
               src="/lovable-uploads/634f305e-cf77-4d27-98b3-a69661d66e96.png" 
-              alt="Too Savvy Logo" 
+              alt="T00 Savvy Logo" 
               className="h-10 w-auto"
             />
             <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-dzuwa-cyan via-dzuwa-purple to-dzuwa-magenta bg-clip-text text-transparent font-lotus">
-              Too Savvy
+              T00 Savvy
             </span>
           </Link>
         </div>
