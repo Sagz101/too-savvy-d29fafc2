@@ -3,6 +3,7 @@ import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Hero } from '@/components/sections/Hero';
 import { CoreFeatures } from '@/components/sections/CoreFeatures';
+import { ModularStats } from '@/components/sections/ModularStats';
 import { CreatorDashboard } from '@/components/sections/CreatorDashboard';
 import { VideoShowcase } from '@/components/sections/VideoShowcase';
 import { OnboardingFlow } from '@/components/sections/OnboardingFlow';
@@ -19,6 +20,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <ModularStats />
         <CoreFeatures />
         <VideoShowcase />
         <CreatorDashboard />
