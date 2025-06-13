@@ -71,6 +71,20 @@ export const Hero = () => {
             ref={contentRef}
             className={`transition-all duration-1000 ${contentInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
           >
+            {/* Logo Section */}
+            <div className="mb-8 flex justify-center lg:justify-start">
+              <div className="flex items-center space-x-4 p-6 enhanced-card soft-glow">
+                <img 
+                  src="/lovable-uploads/634f305e-cf77-4d27-98b3-a69661d66e96.png" 
+                  alt="Too Savvy Logo" 
+                  className="h-16 w-auto"
+                />
+                <div className="text-4xl font-bold bg-gradient-to-r from-dzuwa-gold via-dzuwa-gold-warm to-dzuwa-bright-blue bg-clip-text text-transparent font-lotus">
+                  Too Savvy
+                </div>
+              </div>
+            </div>
+
             <div className="mb-6">
               <ProgressIndicator 
                 steps={journeySteps} 

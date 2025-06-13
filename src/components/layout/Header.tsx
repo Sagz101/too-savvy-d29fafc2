@@ -12,8 +12,15 @@ export const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-dzuwa-dark-blue/90 via-dzuwa-dark-blue/95 to-neura-dark/90 backdrop-blur-md border-b border-dzuwa-cyan/20">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center">
-          <Link to="/" className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-dzuwa-cyan via-dzuwa-purple to-dzuwa-magenta bg-clip-text text-transparent">
-            <span className="font-lotus">Too Savvy</span>
+          <Link to="/" className="flex items-center space-x-3">
+            <img 
+              src="/lovable-uploads/634f305e-cf77-4d27-98b3-a69661d66e96.png" 
+              alt="Too Savvy Logo" 
+              className="h-10 w-auto"
+            />
+            <span className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-dzuwa-cyan via-dzuwa-purple to-dzuwa-magenta bg-clip-text text-transparent font-lotus">
+              Too Savvy
+            </span>
           </Link>
         </div>
         
