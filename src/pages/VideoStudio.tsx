@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -10,6 +11,7 @@ import { VideoUploader } from '@/components/video/VideoUploader';
 import { LiveStreamSetup } from '@/components/video/LiveStreamSetup';
 import { ArVisualizer } from '@/components/video/ArVisualizer';
 import { EnhancedVideoUploader } from '@/components/video/EnhancedVideoUploader';
+import { ArCreator } from '@/components/video/ArCreator';
 import { 
   Video, 
   Upload, 
@@ -18,7 +20,8 @@ import {
   Settings,
   BookOpen,
   Music,
-  Podcast
+  Podcast,
+  Box
 } from 'lucide-react';
 
 const VideoStudio = () => {
