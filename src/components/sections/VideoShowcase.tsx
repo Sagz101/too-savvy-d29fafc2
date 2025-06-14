@@ -30,11 +30,11 @@ export const VideoShowcase: React.FC = () => {
 
         {/* Creator Studio Hero Image */}
         <div className="mb-16 flex justify-center">
-          <div className="relative max-w-4xl w-full">
+          <div className="relative">
             <img 
               src="/lovable-uploads/36d1ce5e-1c97-4998-a43c-f882204dd9bf.png"
               alt="Creator Studio Platform Overview"
-              className="w-full h-auto rounded-2xl shadow-2xl border border-neura-purple/20"
+              className="w-[250px] h-[150px] object-cover rounded-2xl shadow-2xl border border-neura-purple/20"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
           </div>
