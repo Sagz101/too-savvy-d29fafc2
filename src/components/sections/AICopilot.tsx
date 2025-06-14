@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -6,9 +5,15 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Bot, Send, Mic, ArrowRight, Sparkles, Wallet, Image, Users, HelpCircle } from 'lucide-react';
 
+interface Message {
+  role: string;
+  content: string;
+  hasAction?: boolean;
+}
+
 export const AICopilot = () => {
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<Message[]>([
     { 
       role: 'system', 
       content: 'Hi! I\'m Too AI Savvy. Your personal assistant for navigating Web3 and creating on Too Savvy. How can I help you today?' 
