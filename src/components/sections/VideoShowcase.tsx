@@ -27,6 +27,18 @@ export const VideoShowcase: React.FC = () => {
             Create, stream, and monetize content with decentralized tools
           </p>
         </div>
+
+        {/* Creator Studio Hero Image */}
+        <div className="mb-16 flex justify-center">
+          <div className="relative max-w-4xl w-full">
+            <img 
+              src="/lovable-uploads/36d1ce5e-1c97-4998-a43c-f882204dd9bf.png"
+              alt="Creator Studio Platform Overview"
+              className="w-full h-auto rounded-2xl shadow-2xl border border-neura-purple/20"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+          </div>
+        </div>
         
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Global Innovators Card */}
