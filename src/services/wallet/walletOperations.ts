@@ -1,179 +1,30 @@
-import { useState } from 'react';
+
 import { BrowserProvider, Contract, parseUnits, formatUnits } from 'ethers';
 import { toast } from "sonner";
-import { DEFAULT_TOKENS, ERC20_ABI, SUPPORTED_CHAINS } from './wallet/mockData';
-
-// Import types from the types file
+import { ERC20_ABI, SUPPORTED_CHAINS } from './mockData';
 import type { 
-  Token, 
   VaultInfo, 
   GroupWallet, 
   SavingsCircle, 
   BarterListing, 
-  ServiceItem, 
-  Notification, 
-  Transaction,
-  ChainConfig,
-  CreditScore,
-  ReputationStats,
-  ImpactProject,
-  ImpactBond,
-  RoyaltyStream,
-  License,
-  ProvenanceNode,
-  CrossPlatformIdentity,
-  FanParticipationToken,
-  CreatorFanBond,
-  AICollaboration
-} from './wallet/types';
+  AICollaboration,
+  Transaction
+} from './types';
 
-// Export types for other components to use
-export type {
-  Token,
-  VaultInfo,
-  GroupWallet,
-  SavingsCircle,
-  BarterListing,
-  ServiceItem,
-  Notification,
-  Transaction,
-  ChainConfig,
-  CreditScore,
-  ReputationStats,
-  ImpactProject,
-  ImpactBond,
-  RoyaltyStream,
-  License,
-  ProvenanceNode,
-  CrossPlatformIdentity,
-  FanParticipationToken,
-  CreatorFanBond,
-  AICollaboration
-};
-
-// Local WalletState interface to avoid import conflicts
-interface WalletState {
-  address: string | null;
-  chainId: number | null;
-  isConnected: boolean;
-  provider: BrowserProvider | null;
-  signer: any | null;
-  tokens: Token[];
-  nativeBalance: string;
-  vaults: VaultInfo[];
-  creditScore: CreditScore | null;
-  serviceItems: ServiceItem[];
-  reputationStats: ReputationStats | null;
-  impactProjects: ImpactProject[];
-  impactBonds: ImpactBond[];
-  royaltyStreams: RoyaltyStream[];
-  licenses: License[];
-  provenanceGraph: ProvenanceNode[];
-  crossPlatformIdentities: CrossPlatformIdentity[];
-  fanParticipationTokens: FanParticipationToken[];
-  creatorFanBonds: CreatorFanBond[];
-  aiCollaborations: AICollaboration[];
-  walletSovereigntyLevel: 'custodial' | 'social' | 'smart-contract' | 'mpc' | 'full';
-  gaslessTransactionsEnabled: boolean;
-  theme: 'light' | 'dark';
-  notifications: Notification[];
-  transactionHistory: Transaction[];
-  supportedChains: ChainConfig[];
-  selectedChain: ChainConfig | null;
-}
-
-// Mock data fetching functions
-import { 
-  fetchMockVaults,
-  fetchMockGroupWallets,
-  fetchMockSavingsCircles,
-  fetchMockBarterListings,
-  fetchMockCreditScore,
-  fetchMockServiceItems,
-  fetchMockReputationStats,
-  fetchMockImpactFinance,
-  fetchMockRoyaltyAndLicensing,
-  fetchMockProvenanceGraph,
-  fetchMockCrossPlatformIdentities,
-  fetchMockFanParticipationTokens,
-  fetchMockCreatorFanBonds,
-  fetchMockAICollaborations
-} from './wallet/mockDataFetchers';
-
-export const useWallet = () => {
-  const [wallet, setWallet] = useState<WalletState>({
-    address: null,
-    chainId: null,
-    isConnected: false,
-    provider: null,
-    signer: null,
-    tokens: DEFAULT_TOKENS,
-    nativeBalance: '0',
-    vaults: [],
-    creditScore: null,
-    serviceItems: [],
-    reputationStats: null,
-    impactProjects: [],
-    impactBonds: [],
-    royaltyStreams: [],
-    licenses: [],
-    provenanceGraph: [],
-    crossPlatformIdentities: [],
-    fanParticipationTokens: [],
-    creatorFanBonds: [],
-    aiCollaborations: [],
-    walletSovereigntyLevel: 'custodial',
-    gaslessTransactionsEnabled: false,
-    theme: 'dark',
-    notifications: [],
-    transactionHistory: [],
-    supportedChains: SUPPORTED_CHAINS,
-    selectedChain: SUPPORTED_CHAINS[0]
-  });
-  
-  const [isConnecting, setIsConnecting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  
-  // Group banking state
-  const [groupWallets, setGroupWallets] = useState<GroupWallet[]>([]);
-  const [savingsCircles, setSavingsCircles] = useState<SavingsCircle[]>([]);
-  
-  // Barter trade state
-  const [barterListings, setBarterListings] = useState<BarterListing[]>([]);
-
+export const createWalletOperations = (
+  wallet: any,
+  setWallet: React.Dispatch<React.SetStateAction<any>>,
+  setGroupWallets: React.Dispatch<React.SetStateAction<any>>,
+  setSavingsCircles: React.Dispatch<React.SetStateAction<any>>,
+  setBarterListings: React.Dispatch<React.SetStateAction<any>>,
+  addNotification: (notification: any) => void
+) => {
   // Theme toggling functionality
   const toggleTheme = () => {
     const newTheme = wallet.theme === 'dark' ? 'light' : 'dark';
-    setWallet(prev => ({ ...prev, theme: newTheme }));
+    setWallet((prev: any) => ({ ...prev, theme: newTheme }));
     document.documentElement.classList.toggle('dark', newTheme === 'dark');
     return newTheme;
-  };
-
-  // Add a new notification
-  const addNotification = (notification: Omit<Notification, 'id' | 'timestamp' | 'read'>) => {
-    const newNotification: Notification = {
-      ...notification,
-      id: `notif-${Date.now()}`,
-      timestamp: new Date(),
-      read: false
-    };
-    
-    setWallet(prev => ({
-      ...prev,
-      notifications: [newNotification, ...prev.notifications].slice(0, 50) // Keep last 50 notifications
-    }));
-    
-    return newNotification;
-  };
-
-  // Mark notification as read
-  const markNotificationRead = (id: string) => {
-    setWallet(prev => ({
-      ...prev,
-      notifications: prev.notifications.map(notif => 
-        notif.id === id ? { ...notif, read: true } : notif
-      )
-    }));
   };
 
   // Switch blockchain network
@@ -183,11 +34,9 @@ export const useWallet = () => {
       if (!chain) throw new Error("Unsupported chain");
       
       if (wallet.provider) {
-        // In a real implementation, we'd use wallet.provider.send("wallet_switchEthereumChain", ...)
-        // For demo purposes, we'll just update the state
-        await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
         
-        setWallet(prev => ({
+        setWallet((prev: any) => ({
           ...prev,
           chainId: chainId,
           selectedChain: chain
@@ -208,211 +57,6 @@ export const useWallet = () => {
     }
   };
 
-  const connectWallet = async () => {
-    if (!window.ethereum) {
-      setError("No Ethereum wallet found. Please install MetaMask or another compatible wallet.");
-      return;
-    }
-    
-    setIsConnecting(true);
-    setError(null);
-    
-    try {
-      const provider = new BrowserProvider(window.ethereum);
-      const accounts = await provider.send("eth_requestAccounts", []);
-      const signer = await provider.getSigner();
-      const network = await provider.getNetwork();
-      
-      // Get native balance
-      const balance = await provider.getBalance(accounts[0]);
-      const nativeBalance = formatUnits(balance, 18);
-      
-      setWallet(prev => ({
-        ...prev,
-        address: accounts[0],
-        chainId: Number(network.chainId),
-        isConnected: true,
-        provider,
-        signer,
-        nativeBalance,
-        transactionHistory: generateMockTransactionHistory(accounts[0])
-      }));
-      
-      // Once connected, fetch token balances
-      fetchTokenBalances(provider, accounts[0]);
-      
-      // And mock vaults for demo purposes
-      fetchMockVaultsData();
-      
-      // Fetch mock group wallets and savings circles
-      fetchMockGroupWalletsData();
-      fetchMockSavingsCirclesData();
-      
-      // Fetch mock barter listings
-      fetchMockBarterListingsData();
-      
-      // Fetch the new advanced finance features
-      fetchMockCreditScoreData();
-      fetchMockServiceItemsData();
-      fetchMockReputationStatsData();
-      fetchMockImpactFinanceData();
-      fetchMockRoyaltyAndLicensingData();
-      
-      // New mock data functions for the requested features
-      fetchMockProvenanceGraphData();
-      fetchMockCrossPlatformIdentitiesData();
-      fetchMockFanParticipationTokensData();
-      fetchMockCreatorFanBondsData();
-      fetchMockAICollaborationsData();
-      
-    } catch (err) {
-      console.error("Failed to connect wallet:", err);
-      setError("Failed to connect wallet. Please try again.");
-    } finally {
-      setIsConnecting(false);
-    }
-  };
-
-  const disconnectWallet = () => {
-    setWallet({
-      address: null,
-      chainId: null,
-      isConnected: false,
-      provider: null,
-      signer: null,
-      tokens: DEFAULT_TOKENS,
-      nativeBalance: '0',
-      vaults: [],
-      creditScore: null,
-      serviceItems: [],
-      reputationStats: null,
-      impactProjects: [],
-      impactBonds: [],
-      royaltyStreams: [],
-      licenses: [],
-      provenanceGraph: [],
-      crossPlatformIdentities: [],
-      fanParticipationTokens: [],
-      creatorFanBonds: [],
-      aiCollaborations: [],
-      walletSovereigntyLevel: 'custodial',
-      gaslessTransactionsEnabled: false,
-      theme: wallet.theme, // Preserve theme setting
-      notifications: wallet.notifications, // Preserve notifications
-      transactionHistory: [],
-      supportedChains: SUPPORTED_CHAINS,
-      selectedChain: SUPPORTED_CHAINS[0]
-    });
-    setGroupWallets([]);
-    setSavingsCircles([]);
-    setBarterListings([]);
-    
-    // Add notification for disconnect
-    addNotification({
-      title: "Wallet Disconnected",
-      message: "Your wallet has been disconnected.",
-      type: "info"
-    });
-  };
-  
-  // Function to fetch token balances for connected wallet
-  const fetchTokenBalances = async (provider: BrowserProvider, address: string) => {
-    try {
-      const updatedTokens = await Promise.all(
-        wallet.tokens.map(async (token) => {
-          // For demo purposes, generate random balances
-          // In a real app, we would query the actual token contract
-          const randomBalance = Math.random() * 1000;
-          const formattedBalance = randomBalance.toFixed(2);
-          
-          return { ...token, balance: formattedBalance };
-        })
-      );
-      
-      setWallet(prev => ({ ...prev, tokens: updatedTokens }));
-    } catch (error) {
-      console.error("Error fetching token balances:", error);
-    }
-  };
-  
-  const fetchMockVaultsData = () => {
-    const mockVaults = fetchMockVaults();
-    setWallet(prev => ({ ...prev, vaults: mockVaults }));
-  };
-  
-  const fetchMockGroupWalletsData = () => {
-    const mockGroupWallets = fetchMockGroupWallets();
-    setGroupWallets(mockGroupWallets);
-  };
-  
-  const fetchMockSavingsCirclesData = () => {
-    const mockSavingsCircles = fetchMockSavingsCircles();
-    setSavingsCircles(mockSavingsCircles);
-  };
-  
-  const fetchMockBarterListingsData = () => {
-    const mockListings = fetchMockBarterListings();
-    setBarterListings(mockListings);
-  };
-  
-  const fetchMockCreditScoreData = () => {
-    const mockCreditScore = fetchMockCreditScore();
-    setWallet(prev => ({ ...prev, creditScore: mockCreditScore }));
-  };
-  
-  const fetchMockServiceItemsData = () => {
-    const mockServices = fetchMockServiceItems();
-    setWallet(prev => ({ ...prev, serviceItems: mockServices }));
-  };
-  
-  const fetchMockReputationStatsData = () => {
-    const mockStats = fetchMockReputationStats();
-    setWallet(prev => ({ ...prev, reputationStats: mockStats }));
-  };
-  
-  const fetchMockImpactFinanceData = () => {
-    const { impactProjects, impactBonds } = fetchMockImpactFinance();
-    setWallet(prev => ({ 
-      ...prev, 
-      impactProjects,
-      impactBonds
-    }));
-  };
-  
-  const fetchMockRoyaltyAndLicensingData = () => {
-    const { royaltyStreams, licenses } = fetchMockRoyaltyAndLicensing();
-    setWallet(prev => ({ 
-      ...prev, 
-      royaltyStreams,
-      licenses
-    }));
-  };
-  
-  const fetchMockProvenanceGraphData = async () => {
-    const mockProvenanceGraph = await fetchMockProvenanceGraph();
-    setWallet(prev => ({ ...prev, provenanceGraph: mockProvenanceGraph }));
-  };
-  
-  const fetchMockCrossPlatformIdentitiesData = async () => {
-    const mockIdentities = await fetchMockCrossPlatformIdentities();
-    setWallet(prev => ({ ...prev, crossPlatformIdentities: mockIdentities }));
-  };
-  
-  const fetchMockFanParticipationTokensData = () => {
-    const mockTokens = fetchMockFanParticipationTokens();
-    setWallet(prev => ({ ...prev, fanParticipationTokens: mockTokens }));
-  };
-  
-  const fetchMockCreatorFanBondsData = () => {
-    const mockBonds = fetchMockCreatorFanBonds();
-    setWallet(prev => ({ ...prev, creatorFanBonds: mockBonds }));
-  };
-  
-  const fetchMockAICollaborationsData = async () => {
-    const mockCollaborations = await fetchMockAICollaborations();
-    setWallet(prev => ({ ...prev, aiCollaborations: mockCollaborations }));
-  };
-  
   // Send tokens to another address
   const sendTokens = async (tokenAddress: string, recipient: string, amount: string) => {
     if (!wallet.signer || !wallet.address) {
@@ -422,7 +66,7 @@ export const useWallet = () => {
     try {
       toast.loading("Preparing transaction...");
       
-      const token = wallet.tokens.find(t => t.address === tokenAddress);
+      const token = wallet.tokens.find((t: any) => t.address === tokenAddress);
       if (!token) throw new Error("Token not found");
       
       const tokenContract = new Contract(tokenAddress, ERC20_ABI, wallet.signer);
@@ -431,21 +75,14 @@ export const useWallet = () => {
       
       toast.loading("Sending tokens...");
       
-      // For demo purposes, we'll simulate a transaction
-      // In a real app, we would call the token contract's transfer method
-      // const tx = await tokenContract.transfer(recipient, parsedAmount);
-      // await tx.wait();
-      
-      // Simulate blockchain confirmation time
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Update balances after transfer
-      const selectedToken = wallet.tokens.find(t => t.address === tokenAddress);
+      const selectedToken = wallet.tokens.find((t: any) => t.address === tokenAddress);
       if (selectedToken && selectedToken.balance) {
         const currentBalance = parseFloat(selectedToken.balance);
         const sentAmount = parseFloat(amount);
         
-        const updatedTokens = wallet.tokens.map(t => {
+        const updatedTokens = wallet.tokens.map((t: any) => {
           if (t.address === tokenAddress) {
             return {
               ...t,
@@ -455,7 +92,7 @@ export const useWallet = () => {
           return t;
         });
         
-        setWallet(prev => ({ ...prev, tokens: updatedTokens }));
+        setWallet((prev: any) => ({ ...prev, tokens: updatedTokens }));
       }
       
       toast.success("Tokens Sent Successfully!", {
@@ -481,10 +118,9 @@ export const useWallet = () => {
     try {
       toast.loading("Creating savings vault...");
       
-      // For demo purposes, simulate vault creation
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      const token = wallet.tokens.find(t => t.address === tokenAddress);
+      const token = wallet.tokens.find((t: any) => t.address === tokenAddress);
       if (!token) throw new Error("Token not found");
       
       const newVault: VaultInfo = {
@@ -496,7 +132,7 @@ export const useWallet = () => {
         autoDeposit
       };
       
-      setWallet(prev => ({
+      setWallet((prev: any) => ({
         ...prev,
         vaults: [...prev.vaults, newVault]
       }));
@@ -524,10 +160,9 @@ export const useWallet = () => {
     try {
       toast.loading("Creating group wallet...");
       
-      // For demo purposes, simulate wallet creation
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      const token = wallet.tokens.find(t => t.address === tokenAddress);
+      const token = wallet.tokens.find((t: any) => t.address === tokenAddress);
       if (!token) throw new Error("Token not found");
       
       const newGroupWallet: GroupWallet = {
@@ -536,10 +171,10 @@ export const useWallet = () => {
         members,
         balance: "0.00",
         tokenAddress,
-        isAdmin: true // User is admin by default when creating
+        isAdmin: true
       };
       
-      setGroupWallets(prev => [...prev, newGroupWallet]);
+      setGroupWallets((prev: any) => [...prev, newGroupWallet]);
       
       toast.success("Group Wallet Created!", {
         description: `Created ${name} group wallet for ${token.symbol}`
@@ -564,13 +199,11 @@ export const useWallet = () => {
     try {
       toast.loading("Creating savings circle...");
       
-      // For demo purposes, simulate circle creation
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      const token = wallet.tokens.find(t => t.address === tokenAddress);
+      const token = wallet.tokens.find((t: any) => t.address === tokenAddress);
       if (!token) throw new Error("Token not found");
       
-      // Generate default schedule if not provided
       const defaultSchedule = schedule || members.map((address, index) => {
         const date = new Date();
         date.setMonth(date.getMonth() + index + 1);
@@ -591,7 +224,7 @@ export const useWallet = () => {
         isActive: true
       };
       
-      setSavingsCircles(prev => [...prev, newSavingsCircle]);
+      setSavingsCircles((prev: any) => [...prev, newSavingsCircle]);
       
       toast.success("Savings Circle Created!", {
         description: `Created ${name} savings circle for ${members.length} members`
@@ -616,7 +249,6 @@ export const useWallet = () => {
     try {
       toast.loading("Creating barter listing...");
       
-      // For demo purposes, simulate listing creation
       await new Promise(resolve => setTimeout(resolve, 1500));
       
       const newListing: BarterListing = {
@@ -627,11 +259,11 @@ export const useWallet = () => {
         owner: wallet.address || "unknown",
         location,
         lookingFor,
-        verificationLevel: 1, // Start at level 1
+        verificationLevel: 1,
         created: new Date()
       };
       
-      setBarterListings(prev => [...prev, newListing]);
+      setBarterListings((prev: any) => [...prev, newListing]);
       
       toast.success("Barter Listing Created!", {
         description: `Created listing: ${title}`
@@ -656,10 +288,9 @@ export const useWallet = () => {
     try {
       toast.loading("Processing service purchase...");
       
-      const service = wallet.serviceItems.find(s => s.id === serviceId);
+      const service = wallet.serviceItems.find((s: any) => s.id === serviceId);
       if (!service) throw new Error("Service not found");
       
-      // Simulate purchase process
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       toast.success("Service Purchased!", {
@@ -676,7 +307,7 @@ export const useWallet = () => {
     }
   };
   
-  // Add the missing investInImpactProject function
+  // Invest in impact project
   const investInImpactProject = async (projectId: string, amount: string, currency: string) => {
     if (!wallet.isConnected) {
       throw new Error("Wallet not connected");
@@ -685,14 +316,12 @@ export const useWallet = () => {
     try {
       toast.loading("Processing investment...");
       
-      const project = wallet.impactProjects.find(p => p.id === projectId);
+      const project = wallet.impactProjects.find((p: any) => p.id === projectId);
       if (!project) throw new Error("Project not found");
       
-      // Simulate investment process
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Update the project's funding raised amount
-      const updatedProjects = wallet.impactProjects.map(p => {
+      const updatedProjects = wallet.impactProjects.map((p: any) => {
         if (p.id === projectId) {
           return {
             ...p,
@@ -702,7 +331,7 @@ export const useWallet = () => {
         return p;
       });
       
-      setWallet(prev => ({
+      setWallet((prev: any) => ({
         ...prev,
         impactProjects: updatedProjects
       }));
@@ -721,13 +350,12 @@ export const useWallet = () => {
     }
   };
   
-  // Toggle gasless transactions - updating to return Promise<boolean>
+  // Toggle gasless transactions
   const toggleGaslessTransactions = async (enabled: boolean): Promise<boolean> => {
     try {
-      // Simulate backend call to enable/disable gasless transactions
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      setWallet(prev => ({
+      setWallet((prev: any) => ({
         ...prev,
         gaslessTransactionsEnabled: enabled
       }));
@@ -748,13 +376,12 @@ export const useWallet = () => {
     }
   };
   
-  // Upgrade wallet sovereignty level - updating to return Promise<boolean>
+  // Upgrade wallet sovereignty level
   const upgradeWalletSovereignty = async (level: 'custodial' | 'social' | 'smart-contract' | 'mpc' | 'full'): Promise<boolean> => {
     try {
-      // Simulate backend call to upgrade sovereignty
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      setWallet(prev => ({
+      setWallet((prev: any) => ({
         ...prev,
         walletSovereigntyLevel: level
       }));
@@ -782,7 +409,6 @@ export const useWallet = () => {
     try {
       toast.loading("Setting up AI collaboration...");
       
-      // Simulate setup process
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       const newCollaboration: AICollaboration = {
@@ -798,7 +424,7 @@ export const useWallet = () => {
         }
       };
       
-      setWallet(prev => ({
+      setWallet((prev: any) => ({
         ...prev,
         aiCollaborations: [...prev.aiCollaborations, newCollaboration]
       }));
@@ -816,16 +442,15 @@ export const useWallet = () => {
       throw error;
     }
   };
-  
+
   // Generate mock transaction history
   const generateMockTransactionHistory = (address: string): Transaction[] => {
     const transactions: Transaction[] = [];
     const now = new Date();
     
-    // Generate 20 random transactions for demo
     for (let i = 0; i < 20; i++) {
       const isOutgoing = Math.random() > 0.5;
-      const randomDate = new Date(now.getTime() - Math.random() * 30 * 24 * 60 * 60 * 1000); // Random date in last 30 days
+      const randomDate = new Date(now.getTime() - Math.random() * 30 * 24 * 60 * 60 * 1000);
       
       transactions.push({
         id: `tx-${i}`,
@@ -841,7 +466,6 @@ export const useWallet = () => {
       });
     }
     
-    // Sort by timestamp, newest first
     return transactions.sort((a, b) => b.timestamp.getTime() - a.timestamp.getTime());
   };
   
@@ -850,7 +474,6 @@ export const useWallet = () => {
     try {
       toast.loading(`Preparing ${format.toUpperCase()} export...`);
       
-      // Simulate export process
       await new Promise(resolve => setTimeout(resolve, 1500));
       
       let exportData;
@@ -858,32 +481,27 @@ export const useWallet = () => {
       let mimeType;
       
       if (format === 'csv') {
-        // Create CSV content
         const headers = "Date,Type,Amount,Currency,From,To,Status\n";
-        const rows = wallet.transactionHistory.map(tx => 
+        const rows = wallet.transactionHistory.map((tx: any) => 
           `${tx.timestamp.toISOString()},${tx.type},${tx.amount},${tx.currency},${tx.from},${tx.to},${tx.status}`
         ).join('\n');
         exportData = headers + rows;
         filename = `neura-transactions-${new Date().toISOString().split('T')[0]}.csv`;
         mimeType = 'text/csv';
       } else if (format === 'json') {
-        // Create JSON content
         exportData = JSON.stringify(wallet.transactionHistory, null, 2);
         filename = `neura-transactions-${new Date().toISOString().split('T')[0]}.json`;
         mimeType = 'application/json';
       } else if (format === 'pdf') {
-        // For demo, we'll just use JSON for PDF too
         exportData = JSON.stringify(wallet.transactionHistory, null, 2);
         filename = `neura-transactions-${new Date().toISOString().split('T')[0]}.txt`;
         mimeType = 'text/plain';
       } else {
-        // For demo, we'll just use JSON for TXT too
         exportData = JSON.stringify(wallet.transactionHistory, null, 2);
         filename = `neura-transactions-${new Date().toISOString().split('T')[0]}.txt`;
         mimeType = 'text/plain';
       }
       
-      // Create download link
       const blob = new Blob([exportData], { type: mimeType });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -898,7 +516,6 @@ export const useWallet = () => {
         description: `Your transactions have been exported as ${format.toUpperCase()}`
       });
       
-      // Add notification
       addNotification({
         title: "Transactions Exported",
         message: `Your transaction data has been exported as ${format.toUpperCase()}`,
@@ -914,18 +531,12 @@ export const useWallet = () => {
       return false;
     }
   };
-  
+
   return {
-    wallet,
-    isConnecting,
-    error,
-    connectWallet,
-    disconnectWallet,
+    toggleTheme,
+    switchNetwork,
     sendTokens,
     createVault,
-    groupWallets,
-    savingsCircles,
-    barterListings,
     createGroupWallet,
     createSavingsCircle,
     createBarterListing,
@@ -934,10 +545,7 @@ export const useWallet = () => {
     toggleGaslessTransactions,
     upgradeWalletSovereignty,
     createAICollaboration,
-    toggleTheme,
-    addNotification,
-    markNotificationRead,
-    switchNetwork,
+    generateMockTransactionHistory,
     exportTransactionData
   };
 };
