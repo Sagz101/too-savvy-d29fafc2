@@ -28,16 +28,28 @@ export const Header = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link 
+            to="/" 
+            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-purple/20 to-neura-cyan/20 border border-neura-purple/30 text-white hover:from-neura-purple/30 hover:to-neura-cyan/30 hover:border-neura-cyan/50 transition-all duration-300 shadow-lg hover:shadow-neura-purple/20"
+          >
             Home
           </Link>
-          <Link to="/video-studio" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link 
+            to="/video-studio" 
+            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-cyan/20 to-neura-purple/20 border border-neura-cyan/30 text-white hover:from-neura-cyan/30 hover:to-neura-purple/30 hover:border-neura-purple/50 transition-all duration-300 shadow-lg hover:shadow-neura-cyan/20"
+          >
             Studio
           </Link>
-          <Link to="/video-integration" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link 
+            to="/video-integration" 
+            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-magenta/20 to-neura-teal/20 border border-neura-magenta/30 text-white hover:from-neura-magenta/30 hover:to-neura-teal/30 hover:border-neura-teal/50 transition-all duration-300 shadow-lg hover:shadow-neura-magenta/20"
+          >
             Integration
           </Link>
-          <Link to="/video-marketplace" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link 
+            to="/video-marketplace" 
+            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-teal/20 to-neura-purple/20 border border-neura-teal/30 text-white hover:from-neura-teal/30 hover:to-neura-purple/30 hover:border-neura-purple/50 transition-all duration-300 shadow-lg hover:shadow-neura-teal/20 flex items-center"
+          >
             <ShoppingCart size={16} className="inline mr-1" /> Marketplace
           </Link>
           <Link 
@@ -65,28 +77,28 @@ export const Header = () => {
           <div className="container mx-auto px-4 flex flex-col space-y-4">
             <Link 
               to="/" 
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-purple/20 to-neura-cyan/20 border border-neura-purple/30 text-white hover:from-neura-purple/30 hover:to-neura-cyan/30 hover:border-neura-cyan/50 transition-all duration-300 shadow-lg hover:shadow-neura-purple/20"
               onClick={() => setIsMenuOpen(false)}
             >
               Home
             </Link>
             <Link 
               to="/video-studio" 
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-cyan/20 to-neura-purple/20 border border-neura-cyan/30 text-white hover:from-neura-cyan/30 hover:to-neura-purple/30 hover:border-neura-purple/50 transition-all duration-300 shadow-lg hover:shadow-neura-cyan/20"
               onClick={() => setIsMenuOpen(false)}
             >
               Studio
             </Link>
             <Link 
               to="/video-integration" 
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-magenta/20 to-neura-teal/20 border border-neura-magenta/30 text-white hover:from-neura-magenta/30 hover:to-neura-teal/30 hover:border-neura-teal/50 transition-all duration-300 shadow-lg hover:shadow-neura-magenta/20"
               onClick={() => setIsMenuOpen(false)}
             >
               Integration
             </Link>
             <Link 
               to="/video-marketplace" 
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
+              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-teal/20 to-neura-purple/20 border border-neura-teal/30 text-white hover:from-neura-teal/30 hover:to-neura-purple/30 hover:border-neura-purple/50 transition-all duration-300 shadow-lg hover:shadow-neura-teal/20 flex items-center"
               onClick={() => setIsMenuOpen(false)}
             >
               <ShoppingCart size={16} className="inline mr-1" /> Marketplace
