@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Wallet, X, Menu, ShoppingCart, MessageSquare } from "lucide-react";
@@ -34,11 +33,6 @@ export const Header = () => {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center mr-8">
           <Link to="/" className="flex items-center space-x-3">
-            <img 
-              src="/lovable-uploads/634f305e-cf77-4d27-98b3-a69661d66e96.png" 
-              alt="T00 Savvy Logo" 
-              className="h-10 w-auto"
-            />
             <img 
               src="/lovable-uploads/7ac7f3fc-82bf-4080-8568-3607ab1d56bc.png" 
               alt="T00 Savvy" 
