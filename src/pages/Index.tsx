@@ -11,6 +11,7 @@ import { AICopilot } from '@/components/sections/AICopilot';
 import { SocialHub } from '@/components/sections/SocialHub';
 import { EcommerceStore } from '@/components/sections/EcommerceStore';
 import { Threaditor } from '@/components/sections/Threaditor';
+import { PlatformOverview } from '@/components/sections/PlatformOverview';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
 
@@ -29,6 +30,7 @@ const Index = () => {
         <Threaditor />
         <OnboardingFlow />
         <AICopilot />
+        <PlatformOverview />
         <Cta />
       </main>
       <Footer />
