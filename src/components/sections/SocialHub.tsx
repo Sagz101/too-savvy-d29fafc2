@@ -1,23 +1,22 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@/components/ui/card';
-import { Share2, Link, TrendingUp, Users, Webhook, Award, LinkIcon } from 'lucide-react';
+import { Share2, Link, TrendingUp, Users, Webhook, Award, LinkIcon, ArrowRight } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { Badge } from "@/components/ui/badge";
 import { SocialShare } from "@/components/ui/social-share";
 
-export const SocialHub: React.FC = () => {
+export const SocialHub = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
-    <section className="py-20 relative overflow-hidden" id="social">
+    <section className="py-20 bg-black/90">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/3 right-1/4 w-72 h-72 bg-neura-purple/5 rounded-full filter blur-3xl"></div>
         <div className="absolute bottom-1/3 left-1/4 w-72 h-72 bg-neura-cyan/5 rounded-full filter blur-3xl"></div>
       </div>
       
-      <div className="container mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             <span className="bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent">
@@ -30,7 +29,7 @@ export const SocialHub: React.FC = () => {
           </p>
         </div>
         
-        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {/* Cross-Platform Distribution */}
           <Card className={`bg-neura-dark/50 border border-neura-purple/30 overflow-hidden transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} 
                 style={{ transitionDelay: '100ms' }}>
@@ -168,6 +167,17 @@ export const SocialHub: React.FC = () => {
               </div>
             </CardContent>
           </Card>
+        </div>
+        
+        <div className="text-center">
+          <Button 
+            size="lg" 
+            className="grok-button-primary"
+            onClick={() => window.location.href = '/neura-social'}
+          >
+            Launch NeuraSocial Hub
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </div>
     </section>

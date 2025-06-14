@@ -17,6 +17,7 @@ import FinanceHub from "./pages/FinanceHub";
 import StreamingDashboard from "./pages/StreamingDashboard";
 import GlobalInnovators from "./pages/GlobalInnovators";
 import CommerceStudio from "./pages/CommerceStudio";
+import NeuraSocial from "./pages/NeuraSocial";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/streaming-dashboard" element={<StreamingDashboard />} />
             <Route path="/global-innovators" element={<GlobalInnovators />} />
             <Route path="/commerce-studio" element={<CommerceStudio />} />
+            <Route path="/neura-social" element={<NeuraSocial />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
