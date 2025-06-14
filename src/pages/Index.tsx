@@ -12,6 +12,7 @@ import { SocialHub } from '@/components/sections/SocialHub';
 import { EcommerceStore } from '@/components/sections/EcommerceStore';
 import { Threaditor } from '@/components/sections/Threaditor';
 import { PlatformOverview } from '@/components/sections/PlatformOverview';
+import { UserTypes } from '@/components/sections/UserTypes';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
 
@@ -21,6 +22,7 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <UserTypes />
         <ModularStats />
         <CoreFeatures />
         <VideoShowcase />
