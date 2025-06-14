@@ -229,7 +229,7 @@ export const PlatformOverview = () => {
             </Card>
 
             {/* Whitepaper */}
-            <Card className="bg-neura-dark/50 border-neura-purple/30 backdrop-blur-md">
+            <Card id="whitepaper-section" className="bg-neura-dark/50 border-neura-purple/30 backdrop-blur-md">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-neura-purple/20 flex items-center justify-center">

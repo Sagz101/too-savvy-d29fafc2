@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Wallet, X, Menu, ShoppingCart, MessageSquare } from "lucide-react";
@@ -7,6 +6,13 @@ import { Link } from 'react-router-dom';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const scrollToWhitepaper = () => {
+    const whitepaperElement = document.getElementById('whitepaper-section');
+    if (whitepaperElement) {
+      whitepaperElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50">
@@ -52,6 +58,12 @@ export const Header = () => {
           >
             <ShoppingCart size={16} className="inline mr-1" /> Marketplace
           </Link>
+          <button 
+            onClick={scrollToWhitepaper}
+            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-purple/20 to-neura-magenta/20 border border-neura-purple/30 text-white hover:from-neura-purple/30 hover:to-neura-magenta/30 hover:border-neura-magenta/50 transition-all duration-300 shadow-lg hover:shadow-neura-purple/20"
+          >
+            Whitepaper
+          </button>
           <Link 
             to="/neurapathy" 
             className="grok-button-secondary px-4 py-2 text-sm flex items-center"
@@ -103,6 +115,15 @@ export const Header = () => {
             >
               <ShoppingCart size={16} className="inline mr-1" /> Marketplace
             </Link>
+            <button 
+              onClick={() => {
+                scrollToWhitepaper();
+                setIsMenuOpen(false);
+              }}
+              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-purple/20 to-neura-magenta/20 border border-neura-purple/30 text-white hover:from-neura-purple/30 hover:to-neura-magenta/30 hover:border-neura-magenta/50 transition-all duration-300 shadow-lg hover:shadow-neura-purple/20 text-left"
+            >
+              Whitepaper
+            </button>
             <Link 
               to="/neurapathy" 
               className="grok-button-secondary px-4 py-2 text-sm flex items-center my-2"
