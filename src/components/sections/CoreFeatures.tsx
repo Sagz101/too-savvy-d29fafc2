@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { 
@@ -46,7 +45,7 @@ export const CoreFeatures = () => {
       features: [
         {
           icon: <Wallet className="w-5 h-5 text-neura-cyan" />,
-          title: "$Neurax Token",
+          title: "Ethereum",
           description: "Power access, rewards, royalties, payments"
         },
         {
@@ -67,13 +66,13 @@ export const CoreFeatures = () => {
       features: [
         {
           icon: <MessageSquare className="w-5 h-5 text-neura-cyan" />,
-          title: "Neurapathy",
+          title: "Messaging",
           description: "End-to-end encrypted messaging with token gating"
         },
         {
           icon: <Settings className="w-5 h-5 text-neura-cyan" />,
           title: "DAO Governance",
-          description: "Propose, vote, and manage with $Neurax"
+          description: "Propose, vote, and manage with Ethereum"
         },
         {
           icon: <Award className="w-5 h-5 text-neura-cyan" />,
