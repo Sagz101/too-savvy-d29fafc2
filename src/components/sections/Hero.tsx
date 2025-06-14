@@ -63,7 +63,7 @@ export const Hero = () => {
             {/* Logo Section - Replaced with Text */}
             <div className="mb-12 flex justify-center lg:justify-start">
               <div className="p-8 grok-card grok-soft-glow">
-                <h2 className="text-4xl font-bold font-source-sans text-foreground">
+                <h2 className="text-5xl font-bold font-source-sans text-foreground tracking-tight">
                   Too Savvy
                 </h2>
               </div>
