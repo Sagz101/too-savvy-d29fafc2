@@ -1,7 +1,16 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Porscha';
+  src: url('/fonts/911porscha.woff2') format('woff2'),
+       url('/fonts/911porscha.woff') format('woff'),
+       url('/fonts/911porscha.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 @layer base {
   :root {
