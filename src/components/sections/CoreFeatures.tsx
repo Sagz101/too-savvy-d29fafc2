@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { 
@@ -5,6 +6,7 @@ import {
   MessageSquare, ShieldCheck, Settings, Award, Users, Lock
 } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
+import { Link } from 'react-router-dom';
 
 export const CoreFeatures = () => {
   const { ref, inView } = useInView({
@@ -20,22 +22,26 @@ export const CoreFeatures = () => {
         {
           icon: <FileText className="w-5 h-5 text-neura-cyan" />,
           title: "MediaNFTs",
-          description: "Tokenized, tradable content with gated access"
+          description: "Tokenized, tradable content with gated access",
+          link: "/video-studio"
         },
         {
           icon: <BadgeCheck className="w-5 h-5 text-neura-cyan" />,
           title: "Subscription NFTs",
-          description: "Time-based access for episodic or premium content"
+          description: "Time-based access for episodic or premium content",
+          link: "/streaming-dashboard"
         },
         {
           icon: <Users className="w-5 h-5 text-neura-cyan" />,
           title: "Decentralized Identity",
-          description: "Own your digital presence across platforms"
+          description: "Own your digital presence across platforms",
+          link: "/finance-hub"
         },
         {
           icon: <Key className="w-5 h-5 text-neura-cyan" />,
           title: "Dynamic Licensing",
-          description: "Modify or lease content rights with smart contracts"
+          description: "Modify or lease content rights with smart contracts",
+          link: "/video-marketplace"
         }
       ]
     },
@@ -46,17 +52,20 @@ export const CoreFeatures = () => {
         {
           icon: <Wallet className="w-5 h-5 text-neura-cyan" />,
           title: "Ethereum",
-          description: "Power access, rewards, royalties, payments"
+          description: "Power access, rewards, royalties, payments",
+          link: "/finance-hub"
         },
         {
           icon: <Globe className="w-5 h-5 text-neura-cyan" />,
           title: "Product & Service Sales",
-          description: "Sell digital/physical goods from your portal"
+          description: "Sell digital/physical goods from your portal",
+          link: "/#ecommerce-store"
         },
         {
           icon: <Code className="w-5 h-5 text-neura-cyan" />,
           title: "Composable NFTs",
-          description: "Bundle multimedia or derivative works"
+          description: "Bundle multimedia or derivative works",
+          link: "/video-integration"
         }
       ]
     },
@@ -67,26 +76,41 @@ export const CoreFeatures = () => {
         {
           icon: <MessageSquare className="w-5 h-5 text-neura-cyan" />,
           title: "Messaging",
-          description: "End-to-end encrypted messaging with token gating"
+          description: "End-to-end encrypted messaging with token gating",
+          link: "/messaging"
         },
         {
           icon: <Settings className="w-5 h-5 text-neura-cyan" />,
           title: "DAO Governance",
-          description: "Propose, vote, and manage with Ethereum"
+          description: "Propose, vote, and manage with Ethereum",
+          link: "/global-innovators"
         },
         {
           icon: <Award className="w-5 h-5 text-neura-cyan" />,
           title: "Gamified Engagement",
-          description: "Badges, loyalty NFTs, missions"
+          description: "Badges, loyalty NFTs, missions",
+          link: "/#social-hub"
         },
         {
           icon: <Lock className="w-5 h-5 text-neura-cyan" />,
           title: "Privacy & Security",
-          description: "ZK-based access, MFA, and fingerprinting"
+          description: "ZK-based access, MFA, and fingerprinting",
+          link: "/finance-hub"
         }
       ]
     }
   ];
+
+  const handleFeatureClick = (link: string) => {
+    if (link.startsWith('#')) {
+      // Handle anchor links for same-page navigation
+      const element = document.querySelector(link);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    // For regular links, React Router will handle navigation
+  };
 
   return (
     <section id="core-features" className="py-20 relative">
@@ -127,8 +151,10 @@ export const CoreFeatures = () => {
                     icon={feature.icon}
                     title={feature.title}
                     description={feature.description}
+                    link={feature.link}
                     delay={(categoryIndex * 150) + (featureIndex * 75)}
                     inView={inView}
+                    onClick={handleFeatureClick}
                   />
                 ))}
               </div>
@@ -144,14 +170,24 @@ interface FeatureCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
+  link: string;
   delay: number;
   inView: boolean;
+  onClick: (link: string) => void;
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, delay, inView }) => {
-  return (
+const FeatureCard: React.FC<FeatureCardProps> = ({ 
+  icon, 
+  title, 
+  description, 
+  link, 
+  delay, 
+  inView, 
+  onClick 
+}) => {
+  const cardContent = (
     <Card 
-      className={`bg-neura-dark/50 backdrop-blur-sm border border-neura-purple/20 hover:border-neura-purple/40 transition-all duration-300 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      className={`bg-neura-dark/50 backdrop-blur-sm border border-neura-purple/20 hover:border-neura-purple/40 transition-all duration-300 transform cursor-pointer hover:scale-105 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       <CardContent className="p-5">
@@ -166,5 +202,20 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description, del
         </div>
       </CardContent>
     </Card>
+  );
+
+  // Handle anchor links vs regular navigation
+  if (link.startsWith('#')) {
+    return (
+      <div onClick={() => onClick(link)}>
+        {cardContent}
+      </div>
+    );
+  }
+
+  return (
+    <Link to={link} className="block">
+      {cardContent}
+    </Link>
   );
 };
