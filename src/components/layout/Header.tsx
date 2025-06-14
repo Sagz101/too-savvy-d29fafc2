@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Wallet, X, Menu, ShoppingCart, MessageSquare } from "lucide-react";
@@ -11,6 +12,13 @@ export const Header = () => {
     const whitepaperElement = document.getElementById('whitepaper-section');
     if (whitepaperElement) {
       whitepaperElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToDocumentation = () => {
+    const documentationElement = document.getElementById('documentation-section');
+    if (documentationElement) {
+      documentationElement.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -58,6 +66,12 @@ export const Header = () => {
           >
             <ShoppingCart size={16} className="inline mr-1" /> Marketplace
           </Link>
+          <button 
+            onClick={scrollToDocumentation}
+            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-teal/20 to-neura-cyan/20 border border-neura-teal/30 text-white hover:from-neura-teal/30 hover:to-neura-cyan/30 hover:border-neura-cyan/50 transition-all duration-300 shadow-lg hover:shadow-neura-teal/20"
+          >
+            Documentation
+          </button>
           <button 
             onClick={scrollToWhitepaper}
             className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-purple/20 to-neura-magenta/20 border border-neura-purple/30 text-white hover:from-neura-purple/30 hover:to-neura-magenta/30 hover:border-neura-magenta/50 transition-all duration-300 shadow-lg hover:shadow-neura-purple/20"
@@ -115,6 +129,15 @@ export const Header = () => {
             >
               <ShoppingCart size={16} className="inline mr-1" /> Marketplace
             </Link>
+            <button 
+              onClick={() => {
+                scrollToDocumentation();
+                setIsMenuOpen(false);
+              }}
+              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-teal/20 to-neura-cyan/20 border border-neura-teal/30 text-white hover:from-neura-teal/30 hover:to-neura-cyan/30 hover:border-neura-cyan/50 transition-all duration-300 shadow-lg hover:shadow-neura-teal/20 text-left"
+            >
+              Documentation
+            </button>
             <button 
               onClick={() => {
                 scrollToWhitepaper();

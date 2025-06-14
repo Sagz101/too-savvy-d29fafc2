@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -202,7 +201,7 @@ export const PlatformOverview = () => {
           {/* Documentation and Whitepaper */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Documentation */}
-            <Card className="bg-neura-dark/50 border-neura-purple/30 backdrop-blur-md">
+            <Card id="documentation-section" className="bg-neura-dark/50 border-neura-purple/30 backdrop-blur-md">
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-neura-purple/20 flex items-center justify-center">
