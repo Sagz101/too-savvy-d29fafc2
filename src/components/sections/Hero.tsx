@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { WalletButton } from "@/components/ui/wallet-button";
@@ -65,7 +63,7 @@ export const Hero = () => {
             <div className="mb-12 flex justify-center lg:justify-start">
               <div className="p-8">
                 <h2 className="text-5xl font-bold font-michroma text-foreground tracking-tight">
-                  Too Savvy
+                  T00 Savvy
                 </h2>
               </div>
             </div>
@@ -93,7 +91,7 @@ export const Hero = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl leading-relaxed">
-              Claim your voice, your value, your digital future. Too Savvy empowers you to create without compromise, own your work on-chain, and thrive with your community—no gatekeepers, no middlemen.
+              Claim your voice, your value, your digital future. T00 Savvy empowers you to create without compromise, own your work on-chain, and thrive with your community—no gatekeepers, no middlemen.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
@@ -261,4 +259,3 @@ export const Hero = () => {
     </section>
   );
 };
-
