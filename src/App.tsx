@@ -16,6 +16,7 @@ import ProjectsCreator from "./pages/ProjectsCreator";
 import FinanceHub from "./pages/FinanceHub";
 import StreamingDashboard from "./pages/StreamingDashboard";
 import GlobalInnovators from "./pages/GlobalInnovators";
+import CommerceStudio from "./pages/CommerceStudio";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/finance-hub" element={<FinanceHub />} />
             <Route path="/streaming-dashboard" element={<StreamingDashboard />} />
             <Route path="/global-innovators" element={<GlobalInnovators />} />
+            <Route path="/commerce-studio" element={<CommerceStudio />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@/components/ui/card';
 import { ShoppingCart, Tags, Truck, Shield, Sparkles, TrendingUp } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
+import { Link } from 'react-router-dom';
 
 export const EcommerceStore: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -70,8 +70,10 @@ export const EcommerceStore: React.FC = () => {
                   <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">ShipBob API</span>
                 </div>
                 
-                <Button className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90">
-                  Launch Your Store <ShoppingCart className="w-4 h-4 ml-2" />
+                <Button className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90" asChild>
+                  <Link to="/commerce-studio">
+                    Launch Your Store <ShoppingCart className="w-4 h-4 ml-2" />
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
