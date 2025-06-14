@@ -32,7 +32,7 @@ export const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center">
+        <div className="flex items-center mr-8">
           <Link to="/" className="flex items-center space-x-3">
             <img 
               src="/lovable-uploads/634f305e-cf77-4d27-98b3-a69661d66e96.png" 
