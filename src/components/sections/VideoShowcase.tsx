@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@/components/ui/card';
@@ -32,9 +33,8 @@ export const VideoShowcase: React.FC = () => {
               <img 
                 src="/lovable-uploads/f3257ce7-ca51-4fb3-a2ac-1fb54f1bda62.png"
                 alt="Creator Studio Platform Overview"
-                className="w-[250px] h-[150px] object-cover rounded-2xl shadow-2xl border border-neura-purple/20"
+                className="w-[250px] h-[150px] object-cover rounded-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
             </div>
           </div>
         </div>
