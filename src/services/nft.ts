@@ -14,6 +14,7 @@ export interface NFTMetadata {
   name: string;
   description: string;
   image: string;
+  animation_url?: string;
   attributes?: Array<{ trait_type: string; value: string }>;
 }
 
