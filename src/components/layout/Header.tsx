@@ -33,11 +33,9 @@ export const Header = () => {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center mr-8">
           <Link to="/" className="flex items-center space-x-3">
-            <img 
-              src="/lovable-uploads/7ac7f3fc-82bf-4080-8568-3607ab1d56bc.png" 
-              alt="T00 Savvy" 
-              className="h-12 w-auto"
-            />
+            <span className="text-xl font-bold bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent">
+              Too Savvy
+            </span>
           </Link>
         </div>
         
