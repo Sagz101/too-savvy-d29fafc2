@@ -162,13 +162,27 @@ export const Hero = () => {
             </div>
           </div>
           
-          {/* Right Column: Interactive Dashboard Preview */}
+          {/* Right Column: Interactive Dashboard Preview with Background Image */}
           <div 
             className={`relative grok-card grok-soft-glow overflow-hidden transition-all duration-1000 ${contentInView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}
             style={{ minHeight: '500px' }}
           >
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 opacity-20"
+              style={{
+                backgroundImage: `url('/lovable-uploads/7166ee6a-d5f6-4336-a75b-ebb062fdec25.png')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                width: '100%',
+                height: '100%',
+                aspectRatio: '16/9'
+              }}
+            />
+            
             {/* Dashboard UI Mockup */}
-            <div className="absolute top-0 left-0 right-0 bg-card/80 backdrop-blur-sm border-b border-border/50 p-4 flex items-center justify-between">
+            <div className="absolute top-0 left-0 right-0 bg-card/80 backdrop-blur-sm border-b border-border/50 p-4 flex items-center justify-between z-10">
               <div className="flex items-center space-x-3">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -178,24 +192,24 @@ export const Hero = () => {
               <div className="w-5"></div>
             </div>
             
-            <div className="p-8 pt-20">
+            <div className="relative z-10 p-8 pt-20">
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-xl font-semibold">Creator Dashboard</h3>
                 <div className="bg-green-500/20 text-green-400 px-4 py-2 rounded-xl text-sm border border-green-500/20">Connected</div>
               </div>
               
               <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="grok-card p-6">
+                <div className="grok-card p-6 bg-card/80 backdrop-blur-sm">
                   <div className="text-sm text-muted-foreground mb-2">Content NFTs</div>
                   <div className="text-3xl font-bold">12</div>
                 </div>
-                <div className="grok-card p-6">
+                <div className="grok-card p-6 bg-card/80 backdrop-blur-sm">
                   <div className="text-sm text-muted-foreground mb-2">Subscribers</div>
                   <div className="text-3xl font-bold">248</div>
                 </div>
               </div>
               
-              <div className="grok-card p-6 mb-8">
+              <div className="grok-card p-6 mb-8 bg-card/80 backdrop-blur-sm">
                 <div className="flex items-center justify-between mb-4">
                   <div className="text-base font-medium">Revenue (30d)</div>
                   <div className="text-sm text-green-400 font-semibold">+24%</div>
@@ -220,7 +234,7 @@ export const Hero = () => {
                 </div>
               </div>
               
-              <div className="grok-card">
+              <div className="grok-card bg-card/80 backdrop-blur-sm">
                 <div className="text-base font-medium p-4 border-b border-border/50">Recent Activity</div>
                 <div className="p-2">
                   {["New subscriber joined", "Content NFT sold for $ETH 0.15", "Community message"].map((item, i) => (
