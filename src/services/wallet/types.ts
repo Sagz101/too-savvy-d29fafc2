@@ -6,6 +6,7 @@ export type Token = {
   symbol: string;
   address: string;
   logo?: string;
+  logoUrl?: string;
   balance?: string;
   decimals: number;
 };
@@ -268,8 +269,14 @@ export type Transaction = {
 export type ChainConfig = {
   id: number;
   name: string;
-  symbol: string;
+  symbol?: string;
+  nativeCurrency?: {
+    name: string;
+    symbol: string;
+    decimals: number;
+  };
   rpcUrl: string;
-  explorerUrl: string;
+  explorerUrl?: string;
+  blockExplorer?: string;
   logoUrl?: string;
 };

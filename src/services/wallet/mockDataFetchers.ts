@@ -1,3 +1,4 @@
+import { DEFAULT_TOKENS } from './mockData';
 import { VaultInfo, GroupWallet, SavingsCircle, BarterListing, CreditScore, ServiceItem, ReputationStats, ImpactProject, ImpactBond, RoyaltyStream, License, ProvenanceNode, CrossPlatformIdentity, FanParticipationToken, CreatorFanBond, AICollaboration, Token } from './types';
 
 export const fetchMockVaults = () => {
