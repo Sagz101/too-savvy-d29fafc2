@@ -22,6 +22,13 @@ export const Header = () => {
     }
   };
 
+  const scrollToModules = () => {
+    const modulesElement = document.getElementById('modules-section');
+    if (modulesElement) {
+      modulesElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -66,6 +73,12 @@ export const Header = () => {
           >
             <ShoppingCart size={16} className="inline mr-1" /> Marketplace
           </Link>
+          <button 
+            onClick={scrollToModules}
+            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-cyan/20 to-neura-magenta/20 border border-neura-cyan/30 text-white hover:from-neura-cyan/30 hover:to-neura-magenta/30 hover:border-neura-magenta/50 transition-all duration-300 shadow-lg hover:shadow-neura-cyan/20"
+          >
+            Modules
+          </button>
           <button 
             onClick={scrollToDocumentation}
             className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-teal/20 to-neura-cyan/20 border border-neura-teal/30 text-white hover:from-neura-teal/30 hover:to-neura-cyan/30 hover:border-neura-cyan/50 transition-all duration-300 shadow-lg hover:shadow-neura-teal/20"
@@ -129,6 +142,15 @@ export const Header = () => {
             >
               <ShoppingCart size={16} className="inline mr-1" /> Marketplace
             </Link>
+            <button 
+              onClick={() => {
+                scrollToModules();
+                setIsMenuOpen(false);
+              }}
+              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-cyan/20 to-neura-magenta/20 border border-neura-cyan/30 text-white hover:from-neura-cyan/30 hover:to-neura-magenta/30 hover:border-neura-magenta/50 transition-all duration-300 shadow-lg hover:shadow-neura-cyan/20 text-left"
+            >
+              Modules
+            </button>
             <button 
               onClick={() => {
                 scrollToDocumentation();

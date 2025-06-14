@@ -115,7 +115,7 @@ export const PlatformOverview = () => {
 
         <div className="space-y-16">
           {/* Modules Section */}
-          <div>
+          <div id="modules-section">
             <div className="flex items-center gap-3 mb-8">
               <div className="w-10 h-10 rounded-full bg-neura-purple/20 flex items-center justify-center">
                 <Layers className="w-5 h-5 text-neura-cyan" />
