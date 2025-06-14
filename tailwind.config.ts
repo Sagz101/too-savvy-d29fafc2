@@ -22,6 +22,7 @@ export default {
 				'lotus': ['Lotus Flower', 'cursive'],
 				'orbitron': ['Orbitron', 'monospace', 'sans-serif'],
 				'source-sans': ['Source Sans Pro', 'sans-serif'],
+				'michroma': ['Michroma', 'sans-serif'],
 			},
 			colors: {
 				neura: {
