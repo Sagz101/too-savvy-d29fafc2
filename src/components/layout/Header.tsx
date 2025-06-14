@@ -37,7 +37,7 @@ export const Header = () => {
             <img 
               src="/lovable-uploads/2ada3081-67d2-46bc-a1fc-a893f923f679.png" 
               alt="Too Savvy Logo" 
-              className="h-10 w-auto"
+              className="w-[400px] h-[100px] object-contain"
             />
           </Link>
         </div>
