@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -42,9 +41,24 @@ const VideoStudio = () => {
                   tag="span"
                 />
               </h1>
-              <p className="text-white/70 text-lg max-w-2xl mx-auto">
+              <p className="text-white/70 text-lg max-w-2xl mx-auto mb-8">
                 Create, stream, and visualize interactive video content with decentralized tools and Web3 monetization
               </p>
+              
+              {/* Quick Access Buttons */}
+              <div className="flex justify-center gap-4 mb-8">
+                <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3 px-6 shadow-lg shadow-green-600/25">
+                  <Upload className="w-4 h-4 mr-2" />
+                  Upload Video
+                </Button>
+                <Button 
+                  onClick={() => window.open('/streaming-dashboard', '_blank')}
+                  className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-semibold py-3 px-6 shadow-lg shadow-red-600/25"
+                >
+                  <PlaySquare className="w-4 h-4 mr-2" />
+                  Token-Gated Streaming
+                </Button>
+              </div>
             </div>
             
             <div className="max-w-5xl mx-auto">
