@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -22,6 +21,7 @@ export default {
 			fontFamily: {
 				'lotus': ['Lotus Flower', 'cursive'],
 				'orbitron': ['Orbitron', 'monospace', 'sans-serif'],
+				'source-sans': ['Source Sans Pro', 'sans-serif'],
 			},
 			colors: {
 				neura: {
