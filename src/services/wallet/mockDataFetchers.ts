@@ -1,21 +1,20 @@
-
 import { VaultInfo, GroupWallet, SavingsCircle, BarterListing, CreditScore, ServiceItem, ReputationStats, ImpactProject, ImpactBond, RoyaltyStream, License, ProvenanceNode, CrossPlatformIdentity, FanParticipationToken, CreatorFanBond, AICollaboration, Token } from './types';
 
-export const fetchMockVaults = async (tokens: Token[]): Promise<VaultInfo[]> => {
+export const fetchMockVaults = () => {
   // Mock vaults for demo purposes
   const mockVaults: VaultInfo[] = [
     {
       id: "vault-1",
-      name: "Neura Savings",
-      tokenAddress: tokens[2].address, // NEURA token
-      balance: "250.00",
+      name: "ETH Savings",
+      tokenAddress: DEFAULT_TOKENS[2].address, // ETH token
+      balance: "2.5",
       apy: 4.5,
       autoDeposit: true
     },
     {
       id: "vault-2",
       name: "Stablecoin Vault",
-      tokenAddress: tokens[0].address, // USDC
+      tokenAddress: DEFAULT_TOKENS[0].address, // USDC
       balance: "500.00",
       apy: 2.8,
       lockPeriod: 30
@@ -25,7 +24,7 @@ export const fetchMockVaults = async (tokens: Token[]): Promise<VaultInfo[]> => 
   return mockVaults;
 };
 
-export const fetchMockGroupWallets = async (tokens: Token[]): Promise<GroupWallet[]> => {
+export const fetchMockGroupWallets = () => {
   // Mock group wallets for demo
   const mockGroupWallets: GroupWallet[] = [
     {
@@ -33,15 +32,15 @@ export const fetchMockGroupWallets = async (tokens: Token[]): Promise<GroupWalle
       name: "Creator Collective",
       members: ["0x123...", "0x456...", "0x789..."],
       balance: "1250.00",
-      tokenAddress: tokens[0].address, // USDC
+      tokenAddress: DEFAULT_TOKENS[0].address, // USDC
       isAdmin: true
     },
     {
       id: "group-2",
       name: "Project Fund",
       members: ["0x123...", "0xabc...", "0xdef..."],
-      balance: "750.00",
-      tokenAddress: tokens[2].address, // NEURA
+      balance: "3.75",
+      tokenAddress: DEFAULT_TOKENS[2].address, // ETH
       isAdmin: false
     }
   ];
@@ -49,7 +48,7 @@ export const fetchMockGroupWallets = async (tokens: Token[]): Promise<GroupWalle
   return mockGroupWallets;
 };
 
-export const fetchMockSavingsCircles = async (tokens: Token[]): Promise<SavingsCircle[]> => {
+export const fetchMockSavingsCircles = () => {
   // Mock savings circles for demo
   const mockSavingsCircles: SavingsCircle[] = [
     {
@@ -57,7 +56,7 @@ export const fetchMockSavingsCircles = async (tokens: Token[]): Promise<SavingsC
       name: "Creator Circle",
       members: ["0x123...", "0x456...", "0x789..."],
       contributionAmount: "100.00",
-      tokenAddress: tokens[0].address, // USDC
+      tokenAddress: DEFAULT_TOKENS[0].address, // USDC
       nextWithdrawal: "0x456...",
       schedule: [
         { address: "0x123...", date: "2025-06-01" },
@@ -71,7 +70,7 @@ export const fetchMockSavingsCircles = async (tokens: Token[]): Promise<SavingsC
   return mockSavingsCircles;
 };
 
-export const fetchMockBarterListings = async (): Promise<BarterListing[]> => {
+export const fetchMockBarterListings = () => {
   // Mock barter listings for demo
   const mockListings: BarterListing[] = [
     {
@@ -101,7 +100,7 @@ export const fetchMockBarterListings = async (): Promise<BarterListing[]> => {
   return mockListings;
 };
 
-export const fetchMockCreditScore = async (): Promise<CreditScore> => {
+export const fetchMockCreditScore = (): CreditScore => {
   // Mock credit score data for demo purposes
   const mockCreditScore: CreditScore = {
     score: 720,
@@ -109,13 +108,13 @@ export const fetchMockCreditScore = async (): Promise<CreditScore> => {
     communityTrust: 87,
     walletActivity: 78,
     maxCredit: 5000,
-    approvedProtocols: ["Aave", "Goldfinch", "Maple Finance"]
+    approvedProtocols: ["Aave", "Compound", "Maple Finance"]
   };
   
   return mockCreditScore;
 };
 
-export const fetchMockServiceItems = async (): Promise<ServiceItem[]> => {
+export const fetchMockServiceItems = (): ServiceItem[] => {
   // Mock service items for the marketplace
   const mockServices: ServiceItem[] = [
     {
@@ -137,8 +136,8 @@ export const fetchMockServiceItems = async (): Promise<ServiceItem[]> => {
       creator: "AudioPro",
       creatorAddress: "0x456...",
       category: "Audio",
-      price: "100",
-      currency: "NEURA",
+      price: "0.1",
+      currency: "ETH",
       deadline: "1 day",
       completions: 124,
       rating: 5,
@@ -162,7 +161,7 @@ export const fetchMockServiceItems = async (): Promise<ServiceItem[]> => {
   return mockServices;
 };
 
-export const fetchMockReputationStats = async (): Promise<ReputationStats> => {
+export const fetchMockReputationStats = (): ReputationStats => {
   // Mock reputation statistics
   const mockStats: ReputationStats = {
     reputation: 92,
@@ -211,7 +210,7 @@ export const fetchMockReputationStats = async (): Promise<ReputationStats> => {
   return mockStats;
 };
 
-export const fetchMockImpactFinance = async () => {
+export const fetchMockImpactFinance = (): { impactProjects: ImpactProject[], impactBonds: ImpactBond[] } => {
   // Mock impact projects
   const mockProjects: ImpactProject[] = [
     {
@@ -262,18 +261,18 @@ export const fetchMockImpactFinance = async () => {
       impact: "Building sustainable creative studios with 80% lower emissions",
       returnRate: 4.2,
       termMonths: 36,
-      minInvestment: 500,
-      currency: "NEURA",
+      minInvestment: 0.5,
+      currency: "ETH",
       totalRaised: 75000,
       target: 150000,
       verified: true
     }
   ];
   
-  return { mockProjects, mockBonds };
+  return { impactProjects: mockProjects, impactBonds: mockBonds };
 };
 
-export const fetchMockRoyaltyAndLicensing = async () => {
+export const fetchMockRoyaltyAndLicensing = (): { royaltyStreams: RoyaltyStream[], licenses: License[] } => {
   // Mock royalty streams
   const mockRoyalties: RoyaltyStream[] = [
     {
@@ -291,12 +290,12 @@ export const fetchMockRoyaltyAndLicensing = async () => {
       id: "royalty-2",
       title: "Video Series",
       platform: "Content Platform",
-      totalEarned: 2800,
-      currency: "NEURA",
+      totalEarned: 2.8,
+      currency: "ETH",
       royaltyRate: 8,
       dynamicInfo: "Based on engagement metrics",
       lastPayout: "2025-04-15",
-      nextEstimate: 320
+      nextEstimate: 0.32
     }
   ];
   
@@ -319,14 +318,14 @@ export const fetchMockRoyaltyAndLicensing = async () => {
       licensee: "Streaming Platform",
       startDate: "2025-03-01",
       endDate: "2026-02-28",
-      fee: 3500,
-      currency: "USDC",
+      fee: 3.5,
+      currency: "ETH",
       usage: "Platform Integration",
       type: 'exclusive'
     }
   ];
   
-  return { mockRoyalties, mockLicenses };
+  return { royaltyStreams: mockRoyalties, licenses: mockLicenses };
 };
 
 export const fetchMockProvenanceGraph = async (): Promise<ProvenanceNode[]> => {
@@ -392,7 +391,7 @@ export const fetchMockCrossPlatformIdentities = async (): Promise<CrossPlatformI
   return mockIdentities;
 };
 
-export const fetchMockFanParticipationTokens = async (): Promise<FanParticipationToken[]> => {
+export const fetchMockFanParticipationTokens = (): FanParticipationToken[] => {
   // Mock fan participation tokens
   const mockTokens: FanParticipationToken[] = [
     {
@@ -410,8 +409,8 @@ export const fetchMockFanParticipationTokens = async (): Promise<FanParticipatio
       name: "Music Project Token",
       symbol: "MPT",
       totalSupply: 5000,
-      price: 1.2,
-      currency: "NEURA",
+      price: 0.012,
+      currency: "ETH",
       holders: 75,
       activePolls: 1
     }
@@ -420,7 +419,7 @@ export const fetchMockFanParticipationTokens = async (): Promise<FanParticipatio
   return mockTokens;
 };
 
-export const fetchMockCreatorFanBonds = async (): Promise<CreatorFanBond[]> => {
+export const fetchMockCreatorFanBonds = (): CreatorFanBond[] => {
   // Mock creator-fan bonds
   const mockBonds: CreatorFanBond[] = [
     {
@@ -436,9 +435,9 @@ export const fetchMockCreatorFanBonds = async (): Promise<CreatorFanBond[]> => {
     {
       id: "bond-2",
       name: "Community Champion Bond",
-      initialValue: 250,
-      currentValue: 325,
-      currency: "NEURA",
+      initialValue: 0.25,
+      currentValue: 0.325,
+      currency: "ETH",
       issuedDate: "2025-02-05",
       supporter: "0xghi..."
     }

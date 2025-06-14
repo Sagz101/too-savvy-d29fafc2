@@ -1,63 +1,125 @@
 
-import { Token, VaultInfo, GroupWallet, SavingsCircle, BarterListing, CreditScore, ServiceItem, ReputationStats, ImpactProject, ImpactBond, RoyaltyStream, License, ProvenanceNode, CrossPlatformIdentity, FanParticipationToken, CreatorFanBond, AICollaboration, ChainConfig } from './types';
+import type { Token, ChainConfig } from './types';
 
-// Sample tokens - in a real app, these would come from a token list or API
-export const DEFAULT_TOKENS: Token[] = [
-  {
-    name: 'USD Coin',
-    symbol: 'USDC',
-    address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', // Ethereum Mainnet
-    logo: 'https://cryptologos.cc/logos/usd-coin-usdc-logo.png',
-    decimals: 6
-  },
-  {
-    name: 'Euro Coin',
-    symbol: 'EUROC',
-    address: '0x1aBaEA1f7C830bD89Acc67eC4af516284b1bC33c', // Ethereum Mainnet
-    logo: 'https://cryptologos.cc/logos/euro-coin-euroc-logo.png',
-    decimals: 6
-  },
-  {
-    name: 'Ethereum',
-    symbol: 'ETH',
-    address: '0x0000000000000000000000000000000000000000', // Native ETH
-    logo: 'https://cryptologos.cc/logos/ethereum-eth-logo.png',
-    decimals: 18
-  }
-];
-
-export const SUPPORTED_CHAINS: ChainConfig[] = [
-  {
-    id: 1,
-    name: 'Ethereum Mainnet',
-    symbol: 'ETH',
-    rpcUrl: 'https://mainnet.infura.io/v3/your-api-key',
-    explorerUrl: 'https://etherscan.io'
-  },
-  {
-    id: 137,
-    name: 'Polygon',
-    symbol: 'MATIC',
-    rpcUrl: 'https://polygon-rpc.com',
-    explorerUrl: 'https://polygonscan.com'
-  },
-  {
-    id: 42161,
-    name: 'Arbitrum',
-    symbol: 'ARB',
-    rpcUrl: 'https://arb1.arbitrum.io/rpc',
-    explorerUrl: 'https://arbiscan.io'
-  }
-];
-
-// Basic ERC20 ABI for token interactions
+// Mock ERC20 ABI for demo purposes
 export const ERC20_ABI = [
   "function balanceOf(address owner) view returns (uint256)",
   "function transfer(address to, uint256 amount) returns (bool)",
   "function approve(address spender, uint256 amount) returns (bool)",
   "function allowance(address owner, address spender) view returns (uint256)",
-  "function transferFrom(address from, address to, uint256 amount) returns (bool)",
+  "function name() view returns (string)",
   "function symbol() view returns (string)",
-  "function decimals() view returns (uint8)",
-  "function name() view returns (string)"
+  "function decimals() view returns (uint8)"
+];
+
+// Default tokens available in the wallet
+export const DEFAULT_TOKENS: Token[] = [
+  {
+    symbol: "USDC",
+    name: "USD Coin",
+    address: "0xA0b86a33E6D1E1E1E1E1E1E1E1E1E1E1E1E1E1E1",
+    decimals: 6,
+    balance: "0",
+    logoUrl: "https://cryptologos.cc/logos/usd-coin-usdc-logo.png"
+  },
+  {
+    symbol: "USDT",
+    name: "Tether USD",
+    address: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    decimals: 6,
+    balance: "0",
+    logoUrl: "https://cryptologos.cc/logos/tether-usdt-logo.png"
+  },
+  {
+    symbol: "ETH",
+    name: "Ethereum",
+    address: "0x0000000000000000000000000000000000000000", // Native ETH
+    decimals: 18,
+    balance: "0",
+    logoUrl: "https://cryptologos.cc/logos/ethereum-eth-logo.png"
+  },
+  {
+    symbol: "WETH",
+    name: "Wrapped Ethereum",
+    address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    decimals: 18,
+    balance: "0",
+    logoUrl: "https://cryptologos.cc/logos/ethereum-eth-logo.png"
+  }
+];
+
+// Supported blockchain networks
+export const SUPPORTED_CHAINS: ChainConfig[] = [
+  {
+    id: 1,
+    name: "Ethereum Mainnet",
+    nativeCurrency: {
+      name: "Ethereum",
+      symbol: "ETH",
+      decimals: 18
+    },
+    rpcUrl: "https://mainnet.infura.io/v3/your-project-id",
+    blockExplorer: "https://etherscan.io",
+    logoUrl: "https://cryptologos.cc/logos/ethereum-eth-logo.png"
+  },
+  {
+    id: 137,
+    name: "Polygon",
+    nativeCurrency: {
+      name: "MATIC",
+      symbol: "MATIC",
+      decimals: 18
+    },
+    rpcUrl: "https://polygon-rpc.com",
+    blockExplorer: "https://polygonscan.com",
+    logoUrl: "https://cryptologos.cc/logos/polygon-matic-logo.png"
+  },
+  {
+    id: 56,
+    name: "BNB Smart Chain",
+    nativeCurrency: {
+      name: "BNB",
+      symbol: "BNB",
+      decimals: 18
+    },
+    rpcUrl: "https://bsc-dataseed.binance.org",
+    blockExplorer: "https://bscscan.com",
+    logoUrl: "https://cryptologos.cc/logos/bnb-bnb-logo.png"
+  },
+  {
+    id: 43114,
+    name: "Avalanche",
+    nativeCurrency: {
+      name: "AVAX",
+      symbol: "AVAX",
+      decimals: 18
+    },
+    rpcUrl: "https://api.avax.network/ext/bc/C/rpc",
+    blockExplorer: "https://snowtrace.io",
+    logoUrl: "https://cryptologos.cc/logos/avalanche-avax-logo.png"
+  },
+  {
+    id: 42161,
+    name: "Arbitrum One",
+    nativeCurrency: {
+      name: "Ethereum",
+      symbol: "ETH",
+      decimals: 18
+    },
+    rpcUrl: "https://arb1.arbitrum.io/rpc",
+    blockExplorer: "https://arbiscan.io",
+    logoUrl: "https://cryptologos.cc/logos/arbitrum-arb-logo.png"
+  },
+  {
+    id: 10,
+    name: "Optimism",
+    nativeCurrency: {
+      name: "Ethereum",
+      symbol: "ETH",
+      decimals: 18
+    },
+    rpcUrl: "https://mainnet.optimism.io",
+    blockExplorer: "https://optimistic.etherscan.io",
+    logoUrl: "https://cryptologos.cc/logos/optimism-ethereum-op-logo.png"
+  }
 ];
