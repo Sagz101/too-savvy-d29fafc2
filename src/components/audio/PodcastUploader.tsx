@@ -4,18 +4,36 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
-import { Upload, Mic, Clock, DollarSign, Globe, Tag } from 'lucide-react';
+import { Upload, Mic, Clock, DollarSign, Globe, Tag, ArrowLeft } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { PodcastStudio } from '../podcast/PodcastStudio';
 
 export const PodcastUploader: React.FC = () => {
+  const [showStudio, setShowStudio] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<number | null>(null);
   const [podcastTitle, setPodcastTitle] = useState('');
   const [podcastDescription, setPodcastDescription] = useState('');
   const [royaltyPercentage, setRoyaltyPercentage] = useState([10]);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [podcastCategory, setPodcastCategory] = useState('');
+
+  if (showStudio) {
+    return (
+      <div>
+        <Button 
+          variant="outline" 
+          onClick={() => setShowStudio(false)}
+          className="mb-4"
+        >
+          <ArrowLeft size={16} className="mr-2" />
+          Back to Simple Upload
+        </Button>
+        <PodcastStudio />
+      </div>
+    );
+  }
   
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -46,13 +64,21 @@ export const PodcastUploader: React.FC = () => {
   
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-white mb-6">Upload Podcast NFT</h2>
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold text-white mb-6">Upload Podcast NFT</h2>
+        <Button 
+          onClick={() => setShowStudio(true)}
+          className="bg-gradient-to-r from-primary to-primary/70 text-white"
+        >
+          Open Full Studio
+        </Button>
+      </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <div className="mb-6">
             <Label htmlFor="audioFile" className="mb-2 block">Select Audio File</Label>
-            <div className="border-2 border-dashed border-neura-purple/30 rounded-lg p-8 text-center hover:border-neura-purple/50 transition-colors cursor-pointer">
+            <div className="border-2 border-dashed border-primary/30 rounded-lg p-8 text-center hover:border-primary/50 transition-colors cursor-pointer grok-card">
               <input
                 type="file"
                 id="audioFile"
@@ -61,7 +87,7 @@ export const PodcastUploader: React.FC = () => {
                 onChange={handleFileSelect}
               />
               <label htmlFor="audioFile" className="cursor-pointer">
-                <Mic className="w-12 h-12 text-neura-purple/50 mx-auto mb-4" />
+                <Mic className="w-12 h-12 text-primary/50 mx-auto mb-4" />
                 <p className="text-white font-medium mb-1">
                   {selectedFile ? selectedFile.name : 'Drop your audio file here or click to browse'}
                 </p>
@@ -82,7 +108,7 @@ export const PodcastUploader: React.FC = () => {
                 placeholder="Enter podcast title" 
                 value={podcastTitle}
                 onChange={(e) => setPodcastTitle(e.target.value)}
-                className="bg-neura-dark/50 border-neura-purple/30 text-white"
+                className="grok-input"
               />
             </div>
             
@@ -93,17 +119,17 @@ export const PodcastUploader: React.FC = () => {
                 placeholder="Describe your podcast episode..." 
                 value={podcastDescription}
                 onChange={(e) => setPodcastDescription(e.target.value)}
-                className="bg-neura-dark/50 border-neura-purple/30 text-white min-h-[100px]"
+                className="grok-input min-h-[100px]"
               />
             </div>
             
             <div>
               <Label htmlFor="category" className="mb-2 block">Category</Label>
               <Select value={podcastCategory} onValueChange={setPodcastCategory}>
-                <SelectTrigger className="bg-neura-dark/50 border-neura-purple/30 text-white">
+                <SelectTrigger className="grok-input">
                   <SelectValue placeholder="Select a category" />
                 </SelectTrigger>
-                <SelectContent className="bg-neura-dark border-neura-purple/30 text-white">
+                <SelectContent className="bg-card border-border/50 text-white">
                   {podcastCategories.map((category) => (
                     <SelectItem key={category} value={category}>
                       {category}
@@ -137,10 +163,10 @@ export const PodcastUploader: React.FC = () => {
             </div>
             
             <div className="grid grid-cols-2 gap-4">
-              <Card className="bg-neura-dark/50 border-neura-purple/20">
+              <Card className="grok-card">
                 <CardContent className="p-4">
                   <div className="flex items-start gap-2">
-                    <Tag className="w-5 h-5 text-neura-cyan shrink-0" />
+                    <Tag className="w-5 h-5 text-primary shrink-0" />
                     <div>
                       <h4 className="font-medium text-sm text-white">Episode Tagging</h4>
                       <p className="text-xs text-white/60 mt-1">
@@ -151,10 +177,10 @@ export const PodcastUploader: React.FC = () => {
                 </CardContent>
               </Card>
               
-              <Card className="bg-neura-dark/50 border-neura-purple/20">
+              <Card className="grok-card">
                 <CardContent className="p-4">
                   <div className="flex items-start gap-2">
-                    <DollarSign className="w-5 h-5 text-neura-cyan shrink-0" />
+                    <DollarSign className="w-5 h-5 text-primary shrink-0" />
                     <div>
                       <h4 className="font-medium text-sm text-white">Subscription Model</h4>
                       <p className="text-xs text-white/60 mt-1">
@@ -165,10 +191,10 @@ export const PodcastUploader: React.FC = () => {
                 </CardContent>
               </Card>
               
-              <Card className="bg-neura-dark/50 border-neura-purple/20">
+              <Card className="grok-card">
                 <CardContent className="p-4">
                   <div className="flex items-start gap-2">
-                    <Globe className="w-5 h-5 text-neura-cyan shrink-0" />
+                    <Globe className="w-5 h-5 text-primary shrink-0" />
                     <div>
                       <h4 className="font-medium text-sm text-white">RSS Distribution</h4>
                       <p className="text-xs text-white/60 mt-1">
@@ -179,10 +205,10 @@ export const PodcastUploader: React.FC = () => {
                 </CardContent>
               </Card>
               
-              <Card className="bg-neura-dark/50 border-neura-purple/20">
+              <Card className="grok-card">
                 <CardContent className="p-4">
                   <div className="flex items-start gap-2">
-                    <Clock className="w-5 h-5 text-neura-cyan shrink-0" />
+                    <Clock className="w-5 h-5 text-primary shrink-0" />
                     <div>
                       <h4 className="font-medium text-sm text-white">Timed Segments</h4>
                       <p className="text-xs text-white/60 mt-1">
@@ -198,11 +224,11 @@ export const PodcastUploader: React.FC = () => {
               <div className="mt-4">
                 <div className="flex justify-between text-sm mb-1">
                   <span className="text-white/70">Upload Progress</span>
-                  <span className="text-neura-cyan">{uploadProgress}%</span>
+                  <span className="text-primary">{uploadProgress}%</span>
                 </div>
-                <div className="h-2 bg-neura-dark/50 rounded-full overflow-hidden">
+                <div className="h-2 bg-card/50 rounded-full overflow-hidden">
                   <div 
-                    className="h-full bg-gradient-to-r from-neura-purple to-neura-cyan transition-all duration-300" 
+                    className="h-full bg-gradient-to-r from-primary to-primary/70 transition-all duration-300" 
                     style={{width: `${uploadProgress}%`}}
                   ></div>
                 </div>
@@ -216,11 +242,11 @@ export const PodcastUploader: React.FC = () => {
       </div>
       
       <div className="flex justify-end gap-4 mt-6">
-        <Button variant="outline" className="border-neura-purple/30 text-white hover:bg-neura-purple/10">
+        <Button variant="outline" className="grok-button-secondary">
           Save Draft
         </Button>
         <Button
-          className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90"
+          className="grok-button-primary"
           onClick={handleUpload}
           disabled={!selectedFile || uploadProgress !== null}
         >
