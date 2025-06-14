@@ -14,6 +14,8 @@ import VideoIntegration from "./pages/VideoIntegration";
 import VideoMarketplace from "./pages/VideoMarketplace";
 import ProjectsCreator from "./pages/ProjectsCreator";
 import FinanceHub from "./pages/FinanceHub";
+import StreamingDashboard from "./pages/StreamingDashboard";
+import GlobalInnovators from "./pages/GlobalInnovators";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +34,8 @@ const App = () => (
             <Route path="/video-marketplace" element={<VideoMarketplace />} />
             <Route path="/projects-creator" element={<ProjectsCreator />} />
             <Route path="/finance-hub" element={<FinanceHub />} />
+            <Route path="/streaming-dashboard" element={<StreamingDashboard />} />
+            <Route path="/global-innovators" element={<GlobalInnovators />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
