@@ -234,7 +234,8 @@ export const useWallet = () => {
         isConnected: true,
         provider,
         signer,
-        nativeBalance
+        nativeBalance,
+        transactionHistory: generateMockTransactionHistory(accounts[0])
       }));
       
       // Once connected, fetch token balances
