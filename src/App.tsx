@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/services/auth";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import Neurapathy from "./pages/Neurapathy";
+import Messaging from "./pages/Neurapathy";
 import VideoStudio from "./pages/VideoStudio";
 import VideoIntegration from "./pages/VideoIntegration";
 import VideoMarketplace from "./pages/VideoMarketplace";
@@ -28,7 +28,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/neurapathy" element={<Neurapathy />} />
+            <Route path="/messaging" element={<Messaging />} />
             <Route path="/video-studio" element={<VideoStudio />} />
             <Route path="/video-integration" element={<VideoIntegration />} />
             <Route path="/video-marketplace" element={<VideoMarketplace />} />

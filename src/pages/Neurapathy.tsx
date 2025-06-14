@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -11,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
 import { Mail, Send, Inbox, Archive, Star, Trash, UserPlus, Settings } from 'lucide-react';
 
-const Neurapathy = () => {
+const Messaging = () => {
   const [activeTab, setActiveTab] = useState('inbox');
 
   return (
@@ -33,8 +32,7 @@ const Neurapathy = () => {
                 />
               </h1>
               <p className="text-white/70 text-lg max-w-2xl mx-auto">
-                Secure, encrypted, and decentralized communication platform built on blockchain technology.
-                Take control of your digital correspondence with permanent storage and token-gated access.
+                End-to-end encrypted messaging with token gating. Secure, decentralized communication built on blockchain technology with permanent storage and exclusive access control.
               </p>
             </div>
             
@@ -168,4 +166,4 @@ const Neurapathy = () => {
   );
 };
 
-export default Neurapathy;
+export default Messaging;
