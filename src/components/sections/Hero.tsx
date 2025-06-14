@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { WalletButton } from "@/components/ui/wallet-button";
@@ -62,7 +63,7 @@ export const Hero = () => {
           >
             {/* Logo Section - Replaced with Text */}
             <div className="mb-12 flex justify-center lg:justify-start">
-              <div className="p-8 grok-card grok-soft-glow">
+              <div className="p-8">
                 <h2 className="text-5xl font-bold font-source-sans text-foreground tracking-tight">
                   Too Savvy
                 </h2>
@@ -260,3 +261,4 @@ export const Hero = () => {
     </section>
   );
 };
+
