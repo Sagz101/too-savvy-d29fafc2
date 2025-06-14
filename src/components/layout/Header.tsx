@@ -35,7 +35,7 @@ export const Header = () => {
         <div className="flex items-center mr-8">
           <Link to="/" className="flex items-center space-x-3">
             <img 
-              src="/lovable-uploads/2ada3081-67d2-46bc-a1fc-a893f923f679.png" 
+              src="/lovable-uploads/2e6dc416-59b6-4048-a87d-858554756c11.png" 
               alt="Too Savvy Logo" 
               className="w-[400px] h-[100px] object-contain"
             />
