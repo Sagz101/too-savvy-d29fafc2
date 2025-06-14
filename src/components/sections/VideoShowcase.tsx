@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@/components/ui/card';
@@ -23,20 +22,20 @@ export const VideoShowcase: React.FC = () => {
               Creator Studio
             </span>
           </h2>
-          <p className="text-white/70 md:text-lg max-w-2xl mx-auto">
+          <p className="text-white/70 md:text-lg max-w-2xl mx-auto mb-8">
             Create, stream, and monetize content with decentralized tools
           </p>
-        </div>
 
-        {/* Creator Studio Hero Image */}
-        <div className="mb-16 flex justify-center">
-          <div className="relative">
-            <img 
-              src="/lovable-uploads/36d1ce5e-1c97-4998-a43c-f882204dd9bf.png"
-              alt="Creator Studio Platform Overview"
-              className="w-[250px] h-[150px] object-cover rounded-2xl shadow-2xl border border-neura-purple/20"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+          {/* Creator Studio Hero Image */}
+          <div className="flex justify-center">
+            <div className="relative">
+              <img 
+                src="/lovable-uploads/f3257ce7-ca51-4fb3-a2ac-1fb54f1bda62.png"
+                alt="Creator Studio Platform Overview"
+                className="w-[250px] h-[150px] object-cover rounded-2xl shadow-2xl border border-neura-purple/20"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+            </div>
           </div>
         </div>
         
