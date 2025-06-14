@@ -9,6 +9,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { VideoUploader } from '@/components/video/VideoUploader';
 import { LiveStreamSetup } from '@/components/video/LiveStreamSetup';
 import { ArVisualizer } from '@/components/video/ArVisualizer';
+import { EnhancedVideoUploader } from '@/components/video/EnhancedVideoUploader';
 import { 
   Video, 
   Upload, 
@@ -91,7 +92,7 @@ const VideoStudio = () => {
                   <div className="p-6">
                     {activeTab === 'upload' && (
                       <div className="space-y-6">
-                        <VideoUploader />
+                        <EnhancedVideoUploader />
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                           <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3 px-6 shadow-lg shadow-green-600/25">
                             <Upload className="w-4 h-4 mr-2" />

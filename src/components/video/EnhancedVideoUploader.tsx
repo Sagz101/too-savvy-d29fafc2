@@ -3,327 +3,489 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent } from '@/components/ui/card';
-import { Upload, File, Clock, DollarSign, Globe } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
-import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
-import { SocialShare } from '@/components/ui/social-share';
-import { useWallet } from '@/services/wallet';
-import { uploadToIPFS, getIPFSUrl } from '@/services/ipfs';
-import { mintNFT } from '@/services/nft';
 import { toast } from "sonner";
+import { Upload, Film, Shield, DollarSign, Globe, FileImage, Zap } from 'lucide-react';
+import { uploadToIPFS, getIPFSUrl } from '@/services/ipfs';
+import { mintNFT, NFTMetadata } from '@/services/nft';
+import { useWallet } from '@/services/wallet';
+
+interface VideoAttribute {
+  trait_type: string;
+  value: string;
+}
 
 export const EnhancedVideoUploader: React.FC = () => {
   const [uploadProgress, setUploadProgress] = useState<number | null>(null);
+  const [videoFile, setVideoFile] = useState<File | null>(null);
+  const [thumbnailFile, setThumbnailFile] = useState<File | null>(null);
   const [videoTitle, setVideoTitle] = useState('');
   const [videoDescription, setVideoDescription] = useState('');
   const [royaltyPercentage, setRoyaltyPercentage] = useState([10]);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [ipfsCid, setIpfsCid] = useState<string | null>(null);
-  const [nftMinted, setNftMinted] = useState(false);
+  const [attributes, setAttributes] = useState<VideoAttribute[]>([
+    { trait_type: 'Category', value: '' },
+    { trait_type: 'Duration', value: '' },
+    { trait_type: 'Quality', value: '4K' }
+  ]);
+  const [isUploading, setIsUploading] = useState(false);
+  const [videoCID, setVideoCID] = useState<string | null>(null);
+  const [thumbnailCID, setThumbnailCID] = useState<string | null>(null);
+  const [metadataCID, setMetadataCID] = useState<string | null>(null);
+  
   const { wallet } = useWallet();
   
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleVideoSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setSelectedFile(e.target.files[0]);
-      setIpfsCid(null);
-      setNftMinted(false);
+      const file = e.target.files[0];
+      setVideoFile(file);
+      
+      // Auto-populate duration if possible
+      const video = document.createElement('video');
+      video.preload = 'metadata';
+      video.onloadedmetadata = () => {
+        const duration = Math.round(video.duration);
+        const minutes = Math.floor(duration / 60);
+        const seconds = duration % 60;
+        updateAttribute('Duration', `${minutes}:${seconds.toString().padStart(2, '0')}`);
+      };
+      video.src = URL.createObjectURL(file);
     }
   };
   
-  const handleUploadToIPFS = async () => {
-    if (!selectedFile) {
-      toast.error("No file selected", { description: "Please select a video file first" });
-      return;
+  const handleThumbnailSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setThumbnailFile(e.target.files[0]);
     }
-
-    // Simulate initial upload progress
+  };
+  
+  const updateAttribute = (trait_type: string, value: string) => {
+    setAttributes(prev => 
+      prev.map(attr => 
+        attr.trait_type === trait_type ? { ...attr, value } : attr
+      )
+    );
+  };
+  
+  const addAttribute = () => {
+    setAttributes(prev => [...prev, { trait_type: '', value: '' }]);
+  };
+  
+  const removeAttribute = (index: number) => {
+    setAttributes(prev => prev.filter((_, i) => i !== index));
+  };
+  
+  const uploadToIPFSWithProgress = async (file: File): Promise<string | null> => {
     setUploadProgress(0);
-    const interval = setInterval(() => {
+    
+    // Simulate upload progress
+    const progressInterval = setInterval(() => {
       setUploadProgress(prev => {
         if (prev === null) return 0;
-        if (prev >= 40) {
-          clearInterval(interval);
-          return 40; // Stop at 40% for IPFS upload
+        if (prev >= 90) {
+          clearInterval(progressInterval);
+          return 90;
         }
-        return prev + 5;
+        return prev + 10;
       });
-    }, 300);
+    }, 500);
     
     try {
-      const cid = await uploadToIPFS(selectedFile);
-      if (cid) {
-        setIpfsCid(cid);
-        
-        // Continue progress after IPFS upload
-        setUploadProgress(50);
-        setTimeout(() => {
-          setUploadProgress(100);
-        }, 1000);
-      } else {
-        setUploadProgress(null);
-      }
+      const cid = await uploadToIPFS(file);
+      setUploadProgress(100);
+      return cid;
     } catch (error) {
-      console.error("Error uploading to IPFS:", error);
+      clearInterval(progressInterval);
       setUploadProgress(null);
-    } finally {
-      clearInterval(interval);
+      throw error;
     }
   };
   
-  const handleMintNFT = async () => {
-    if (!wallet.isConnected) {
-      toast.error("Wallet not connected", { description: "Please connect your wallet to mint an NFT" });
+  const handleUploadAndMint = async () => {
+    if (!videoFile || !thumbnailFile || !wallet.isConnected) {
+      toast.error("Please select video and thumbnail files and connect your wallet");
       return;
     }
     
-    if (!ipfsCid) {
-      toast.error("No content uploaded", { description: "Please upload your video to IPFS first" });
+    if (!videoTitle.trim() || !videoDescription.trim()) {
+      toast.error("Please fill in title and description");
       return;
     }
+    
+    setIsUploading(true);
     
     try {
-      const metadata = {
-        name: videoTitle || "Untitled Video",
-        description: videoDescription || "No description provided",
-        image: getIPFSUrl(ipfsCid),
-        attributes: [
-          { trait_type: "Content Type", value: "Video" },
-          { trait_type: "Royalty", value: `${royaltyPercentage[0]}%` }
-        ]
+      toast.loading("Uploading video to IPFS...");
+      const videoCID = await uploadToIPFSWithProgress(videoFile);
+      if (!videoCID) throw new Error("Video upload failed");
+      setVideoCID(videoCID);
+      
+      toast.loading("Uploading thumbnail to IPFS...");
+      const thumbnailCID = await uploadToIPFS(thumbnailFile);
+      if (!thumbnailCID) throw new Error("Thumbnail upload failed");
+      setThumbnailCID(thumbnailCID);
+      
+      // Create NFT metadata
+      const metadata: NFTMetadata = {
+        name: videoTitle,
+        description: videoDescription,
+        image: getIPFSUrl(thumbnailCID),
+        animation_url: getIPFSUrl(videoCID),
+        attributes: attributes.filter(attr => attr.trait_type && attr.value).concat([
+          { trait_type: 'Type', value: 'Video NFT' },
+          { trait_type: 'Creator', value: wallet.address || 'Unknown' },
+          { trait_type: 'Royalty', value: `${royaltyPercentage[0]}%` },
+          { trait_type: 'File Size', value: `${(videoFile.size / 1024 / 1024).toFixed(2)} MB` }
+        ])
       };
       
-      // Mock contract address
+      toast.loading("Uploading metadata to IPFS...");
+      const metadataBlob = new Blob([JSON.stringify(metadata, null, 2)], { type: 'application/json' });
+      const metadataFile = new File([metadataBlob], 'metadata.json', { type: 'application/json' });
+      const metadataCID = await uploadToIPFS(metadataFile);
+      if (!metadataCID) throw new Error("Metadata upload failed");
+      setMetadataCID(metadataCID);
+      
+      toast.success("Files uploaded to IPFS successfully!");
+      toast.loading("Minting NFT...");
+      
+      // Mock contract address - in production, this would be your deployed contract
       const contractAddress = "0x1234567890123456789012345678901234567890";
       
+      // Mint the NFT (this is a mock implementation)
       const txHash = await mintNFT(wallet.signer, contractAddress, metadata);
+      
       if (txHash) {
-        setNftMinted(true);
+        toast.success("Video NFT created successfully!", {
+          description: `Your video NFT has been minted with ${royaltyPercentage[0]}% royalties`
+        });
+        
+        // Reset form
+        setVideoFile(null);
+        setThumbnailFile(null);
+        setVideoTitle('');
+        setVideoDescription('');
+        setAttributes([
+          { trait_type: 'Category', value: '' },
+          { trait_type: 'Duration', value: '' },
+          { trait_type: 'Quality', value: '4K' }
+        ]);
       }
+      
     } catch (error) {
-      console.error("Error minting NFT:", error);
+      console.error("Error in upload process:", error);
+      toast.error("Failed to create Video NFT", {
+        description: "Please try again"
+      });
+    } finally {
+      setIsUploading(false);
+      setUploadProgress(null);
     }
   };
   
-  const shareUrl = ipfsCid 
-    ? `https://neura.app/video/${ipfsCid}` 
-    : window.location.href;
-    
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-white">Upload Video NFT</h2>
-        <WalletConnectButton />
+      <div className="flex items-center justify-between">
+        <h2 className="text-2xl font-bold text-white">Create Video NFT</h2>
+        <Badge variant="outline" className="border-neura-cyan text-neura-cyan">
+          ERC-721 + ERC-2981 Royalties
+        </Badge>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <div className="mb-6">
-            <Label htmlFor="videoFile" className="mb-2 block">Select Video File</Label>
-            <div className="border-2 border-dashed border-neura-purple/30 rounded-lg p-8 text-center hover:border-neura-purple/50 transition-colors cursor-pointer">
-              <input
-                type="file"
-                id="videoFile"
-                className="hidden"
-                accept="video/*"
-                onChange={handleFileSelect}
-              />
-              <label htmlFor="videoFile" className="cursor-pointer">
-                <Upload className="w-12 h-12 text-neura-purple/50 mx-auto mb-4" />
-                <p className="text-white font-medium mb-1">
-                  {selectedFile ? selectedFile.name : 'Drop your video here or click to browse'}
-                </p>
-                <p className="text-white/50 text-sm">
-                  {selectedFile 
-                    ? `${(selectedFile.size / 1024 / 1024).toFixed(2)} MB` 
-                    : 'MP4, MOV or WebM, max 2GB'}
-                </p>
-              </label>
-            </div>
-          </div>
-          
-          <div className="space-y-4">
-            <div>
-              <Label htmlFor="title" className="mb-2 block">Title</Label>
-              <Input 
-                id="title" 
-                placeholder="Enter video title" 
-                value={videoTitle}
-                onChange={(e) => setVideoTitle(e.target.value)}
-                className="bg-neura-dark/50 border-neura-purple/30 text-white"
-              />
-            </div>
-            
-            <div>
-              <Label htmlFor="description" className="mb-2 block">Description</Label>
-              <Textarea 
-                id="description" 
-                placeholder="Describe your video..." 
-                value={videoDescription}
-                onChange={(e) => setVideoDescription(e.target.value)}
-                className="bg-neura-dark/50 border-neura-purple/30 text-white min-h-[100px]"
-              />
-            </div>
-          </div>
-        </div>
+      <Tabs defaultValue="upload" className="w-full">
+        <TabsList className="grid w-full grid-cols-3 bg-neura-dark/50">
+          <TabsTrigger value="upload">Upload Files</TabsTrigger>
+          <TabsTrigger value="metadata">Metadata</TabsTrigger>
+          <TabsTrigger value="settings">NFT Settings</TabsTrigger>
+        </TabsList>
         
-        <div>
-          <h3 className="font-semibold text-lg mb-4 text-white">NFT Settings</h3>
+        <TabsContent value="upload" className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Video Upload */}
+            <Card className="bg-neura-dark/50 border-neura-purple/30">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Film className="w-5 h-5 text-neura-cyan" />
+                  Video File
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="border-2 border-dashed border-neura-purple/30 rounded-lg p-6 text-center hover:border-neura-purple/50 transition-colors cursor-pointer">
+                  <input
+                    type="file"
+                    id="videoFile"
+                    className="hidden"
+                    accept="video/*"
+                    onChange={handleVideoSelect}
+                  />
+                  <label htmlFor="videoFile" className="cursor-pointer">
+                    <Upload className="w-8 h-8 text-neura-purple/50 mx-auto mb-2" />
+                    <p className="text-white font-medium mb-1">
+                      {videoFile ? videoFile.name : 'Upload Video'}
+                    </p>
+                    <p className="text-white/50 text-sm">
+                      {videoFile 
+                        ? `${(videoFile.size / 1024 / 1024).toFixed(2)} MB` 
+                        : 'MP4, MOV, WebM (max 500MB)'}
+                    </p>
+                  </label>
+                </div>
+              </CardContent>
+            </Card>
+            
+            {/* Thumbnail Upload */}
+            <Card className="bg-neura-dark/50 border-neura-purple/30">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <FileImage className="w-5 h-5 text-neura-cyan" />
+                  Thumbnail
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="border-2 border-dashed border-neura-purple/30 rounded-lg p-6 text-center hover:border-neura-purple/50 transition-colors cursor-pointer">
+                  <input
+                    type="file"
+                    id="thumbnailFile"
+                    className="hidden"
+                    accept="image/*"
+                    onChange={handleThumbnailSelect}
+                  />
+                  <label htmlFor="thumbnailFile" className="cursor-pointer">
+                    <FileImage className="w-8 h-8 text-neura-purple/50 mx-auto mb-2" />
+                    <p className="text-white font-medium mb-1">
+                      {thumbnailFile ? thumbnailFile.name : 'Upload Thumbnail'}
+                    </p>
+                    <p className="text-white/50 text-sm">
+                      {thumbnailFile 
+                        ? `${(thumbnailFile.size / 1024 / 1024).toFixed(2)} MB` 
+                        : 'PNG, JPG, GIF (max 10MB)'}
+                    </p>
+                  </label>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
           
-          <div className="space-y-6">
-            <div>
-              <div className="flex justify-between mb-2">
-                <Label>Royalty Percentage</Label>
-                <span className="text-white font-medium">{royaltyPercentage[0]}%</span>
-              </div>
-              <Slider
-                value={royaltyPercentage}
-                onValueChange={setRoyaltyPercentage}
-                max={30}
-                step={1}
-                className="my-6"
-              />
-              <p className="text-xs text-white/60">
-                You'll receive this percentage of the sale price each time your NFT is resold on compatible marketplaces
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <Card className="bg-neura-dark/50 border-neura-purple/20">
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-2">
-                    <Clock className="w-5 h-5 text-neura-cyan shrink-0" />
-                    <div>
-                      <h4 className="font-medium text-sm text-white">Time-Locked Access</h4>
-                      <p className="text-xs text-white/60 mt-1">
-                        Set scheduled release for your content
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-neura-dark/50 border-neura-purple/20">
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-2">
-                    <DollarSign className="w-5 h-5 text-neura-cyan shrink-0" />
-                    <div>
-                      <h4 className="font-medium text-sm text-white">Dynamic Pricing</h4>
-                      <p className="text-xs text-white/60 mt-1">
-                        Adjust price based on demand
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-neura-dark/50 border-neura-purple/20">
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-2">
-                    <Globe className="w-5 h-5 text-neura-cyan shrink-0" />
-                    <div>
-                      <h4 className="font-medium text-sm text-white">Cross-Platform</h4>
-                      <p className="text-xs text-white/60 mt-1">
-                        Share across social networks
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-neura-dark/50 border-neura-purple/20">
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-2">
-                    <File className="w-5 h-5 text-neura-cyan shrink-0" />
-                    <div>
-                      <h4 className="font-medium text-sm text-white">Token Metadata</h4>
-                      <p className="text-xs text-white/60 mt-1">
-                        Add custom properties
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-            
-            {uploadProgress !== null && (
-              <div className="mt-4">
-                <div className="flex justify-between text-sm mb-1">
+          {uploadProgress !== null && (
+            <Card className="bg-neura-dark/50 border-neura-purple/30">
+              <CardContent className="p-4">
+                <div className="flex justify-between text-sm mb-2">
                   <span className="text-white/70">Upload Progress</span>
                   <span className="text-neura-cyan">{uploadProgress}%</span>
                 </div>
-                <div className="h-2 bg-neura-dark/50 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-neura-purple to-neura-cyan transition-all duration-300" 
-                    style={{width: `${uploadProgress}%`}}
-                  ></div>
-                </div>
-                {uploadProgress === 100 && !nftMinted && (
-                  <p className="text-emerald-400 text-sm mt-2">Upload complete! Ready to mint NFT.</p>
+                <Progress value={uploadProgress} className="h-2" />
+                {uploadProgress === 100 && (
+                  <p className="text-emerald-400 text-sm mt-2">Files uploaded to IPFS successfully!</p>
                 )}
-                {nftMinted && (
-                  <p className="text-emerald-400 text-sm mt-2">NFT minted successfully!</p>
-                )}
-              </div>
-            )}
-            
-            {ipfsCid && (
-              <div className="mt-4 p-4 bg-neura-dark/50 border border-neura-purple/30 rounded-lg">
-                <h4 className="font-medium text-white mb-2">Content on IPFS</h4>
-                <p className="text-sm text-neura-cyan break-all mb-2">{ipfsCid}</p>
-                <a 
-                  href={getIPFSUrl(ipfsCid)} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-xs text-white/60 hover:text-white underline"
-                >
-                  View on IPFS Gateway
-                </a>
-              </div>
-            )}
-            
-            {ipfsCid && (
-              <div className="mt-4">
-                <SocialShare
-                  url={shareUrl}
-                  title={videoTitle || "Check out my video on Neura"}
-                  text={videoDescription || "I just uploaded a new video to Neura. Check it out!"}
+              </CardContent>
+            </Card>
+          )}
+        </TabsContent>
+        
+        <TabsContent value="metadata" className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="title">Title *</Label>
+                <Input 
+                  id="title" 
+                  placeholder="Enter video title" 
+                  value={videoTitle}
+                  onChange={(e) => setVideoTitle(e.target.value)}
+                  className="bg-neura-dark/50 border-neura-purple/30 text-white"
                 />
               </div>
-            )}
+              
+              <div>
+                <Label htmlFor="description">Description *</Label>
+                <Textarea 
+                  id="description" 
+                  placeholder="Describe your video..." 
+                  value={videoDescription}
+                  onChange={(e) => setVideoDescription(e.target.value)}
+                  className="bg-neura-dark/50 border-neura-purple/30 text-white min-h-[100px]"
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <Label>Attributes</Label>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={addAttribute}
+                  className="border-neura-purple/30 text-white hover:bg-neura-purple/10"
+                >
+                  Add Attribute
+                </Button>
+              </div>
+              
+              <div className="space-y-3 max-h-64 overflow-y-auto">
+                {attributes.map((attr, index) => (
+                  <div key={index} className="flex gap-2">
+                    <Input
+                      placeholder="Trait type"
+                      value={attr.trait_type}
+                      onChange={(e) => {
+                        const newAttrs = [...attributes];
+                        newAttrs[index].trait_type = e.target.value;
+                        setAttributes(newAttrs);
+                      }}
+                      className="bg-neura-dark/50 border-neura-purple/30 text-white"
+                    />
+                    <Input
+                      placeholder="Value"
+                      value={attr.value}
+                      onChange={(e) => {
+                        const newAttrs = [...attributes];
+                        newAttrs[index].value = e.target.value;
+                        setAttributes(newAttrs);
+                      }}
+                      className="bg-neura-dark/50 border-neura-purple/30 text-white"
+                    />
+                    {index >= 3 && (
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        onClick={() => removeAttribute(index)}
+                        className="border-red-500/30 text-red-400 hover:bg-red-500/10"
+                      >
+                        ×
+                      </Button>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </TabsContent>
+        
+        <TabsContent value="settings" className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="bg-neura-dark/50 border-neura-purple/30">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <DollarSign className="w-5 h-5 text-neura-cyan" />
+                  Royalty Settings
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <div className="flex justify-between mb-2">
+                    <Label>Royalty Percentage</Label>
+                    <span className="text-white font-medium">{royaltyPercentage[0]}%</span>
+                  </div>
+                  <Slider
+                    value={royaltyPercentage}
+                    onValueChange={setRoyaltyPercentage}
+                    max={30}
+                    step={0.5}
+                    className="my-4"
+                  />
+                  <p className="text-xs text-white/60">
+                    Earn {royaltyPercentage[0]}% from every secondary sale on compatible marketplaces
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+            
+            <Card className="bg-neura-dark/50 border-neura-purple/30">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Shield className="w-5 h-5 text-neura-cyan" />
+                  Smart Contract Features
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex items-center justify-between p-3 bg-neura-dark/40 rounded-lg">
+                  <span className="text-sm font-medium">ERC-721 Standard</span>
+                  <Badge variant="outline" className="border-green-500 text-green-400">
+                    ✓ Enabled
+                  </Badge>
+                </div>
+                
+                <div className="flex items-center justify-between p-3 bg-neura-dark/40 rounded-lg">
+                  <span className="text-sm font-medium">ERC-2981 Royalties</span>
+                  <Badge variant="outline" className="border-green-500 text-green-400">
+                    ✓ Enabled
+                  </Badge>
+                </div>
+                
+                <div className="flex items-center justify-between p-3 bg-neura-dark/40 rounded-lg">
+                  <span className="text-sm font-medium">IPFS Storage</span>
+                  <Badge variant="outline" className="border-green-500 text-green-400">
+                    ✓ Decentralized
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+          
+          <Card className="bg-gradient-to-r from-neura-purple/10 to-neura-cyan/10 border-neura-cyan/30">
+            <CardContent className="p-6">
+              <div className="flex items-start gap-4">
+                <div className="p-3 bg-neura-cyan/20 rounded-full">
+                  <Globe className="w-6 h-6 text-neura-cyan" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-white mb-2">IPFS Storage Summary</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div>
+                      <p className="text-white/60">Video CID:</p>
+                      <p className="text-white font-mono text-xs">
+                        {videoCID ? `${videoCID.slice(0, 12)}...` : 'Not uploaded'}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-white/60">Thumbnail CID:</p>
+                      <p className="text-white font-mono text-xs">
+                        {thumbnailCID ? `${thumbnailCID.slice(0, 12)}...` : 'Not uploaded'}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-white/60">Metadata CID:</p>
+                      <p className="text-white font-mono text-xs">
+                        {metadataCID ? `${metadataCID.slice(0, 12)}...` : 'Not uploaded'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
       
-      <div className="flex justify-end gap-4 mt-6">
-        <Button variant="outline" className="border-neura-purple/30 text-white hover:bg-neura-purple/10">
+      <div className="flex justify-end gap-4">
+        <Button 
+          variant="outline" 
+          className="border-neura-purple/30 text-white hover:bg-neura-purple/10"
+          disabled={isUploading}
+        >
           Save Draft
         </Button>
-        
-        {!ipfsCid ? (
-          <Button
-            className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90"
-            onClick={handleUploadToIPFS}
-            disabled={!selectedFile || uploadProgress !== null}
-          >
-            {uploadProgress !== null ? 'Uploading...' : 'Upload to IPFS'}
-          </Button>
-        ) : !nftMinted ? (
-          <Button
-            className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90"
-            onClick={handleMintNFT}
-            disabled={!wallet.isConnected}
-          >
-            Mint as NFT
-          </Button>
-        ) : (
-          <Button
-            className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90"
-          >
-            View in Gallery
-          </Button>
-        )}
+        <Button
+          className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90"
+          onClick={handleUploadAndMint}
+          disabled={!videoFile || !thumbnailFile || !wallet.isConnected || isUploading}
+        >
+          {isUploading ? (
+            <>
+              <Zap className="w-4 h-4 mr-2 animate-spin" />
+              Creating NFT...
+            </>
+          ) : (
+            <>
+              <Shield className="w-4 h-4 mr-2" />
+              Create Video NFT
+            </>
+          )}
+        </Button>
       </div>
     </div>
   );
