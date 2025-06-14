@@ -23,6 +23,7 @@ export default {
 				'orbitron': ['Orbitron', 'monospace', 'sans-serif'],
 				'source-sans': ['Source Sans Pro', 'sans-serif'],
 				'michroma': ['Michroma', 'sans-serif'],
+				'porscha': ['Saira Stencil One', 'sans-serif'],
 			},
 			colors: {
 				neura: {
