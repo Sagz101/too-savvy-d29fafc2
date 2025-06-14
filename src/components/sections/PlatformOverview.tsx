@@ -258,7 +258,7 @@ export const PlatformOverview = () => {
               <h3 className="text-2xl font-bold text-white">Token</h3>
             </div>
             <p className="text-white/70 mb-8 max-w-4xl">
-              $Neurax is the native utility and governance token of the Too Savvy network. It powers access, rewards, DAO proposals, and creator incentives.
+              Ethereum is the native utility and governance token of the Too Savvy network. It powers access, rewards, DAO proposals, and creator incentives.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               {tokenUtilities.map((utility, index) => (
