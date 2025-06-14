@@ -149,6 +149,13 @@ export const Threaditor: React.FC = () => {
         
         <div className={`text-center transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
              style={{ transitionDelay: '500ms' }}>
+          <Button 
+            variant="outline" 
+            className="border-2 border-solar-photosphere text-solar-core hover:bg-solar-photosphere/20 hover:border-solar-radiative shadow-lg mr-4"
+            onClick={() => window.location.href = '/threaditor'}
+          >
+            Launch Threaditor
+          </Button>
           <Button variant="outline" className="border-2 border-solar-photosphere text-solar-core hover:bg-solar-photosphere/20 hover:border-solar-radiative shadow-lg">
             Learn More About Threaditor
           </Button>

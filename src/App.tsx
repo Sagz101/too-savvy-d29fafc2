@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -18,6 +17,7 @@ import StreamingDashboard from "./pages/StreamingDashboard";
 import GlobalInnovators from "./pages/GlobalInnovators";
 import CommerceStudio from "./pages/CommerceStudio";
 import NeuraSocial from "./pages/NeuraSocial";
+import Threaditor from "./pages/Threaditor";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +40,7 @@ const App = () => (
             <Route path="/global-innovators" element={<GlobalInnovators />} />
             <Route path="/commerce-studio" element={<CommerceStudio />} />
             <Route path="/neura-social" element={<NeuraSocial />} />
+            <Route path="/threaditor" element={<Threaditor />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
