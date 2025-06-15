@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Wallet, X, Menu, ShoppingCart, MessageSquare } from "lucide-react";
@@ -48,6 +49,12 @@ export const Header = () => {
             className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-purple/20 to-neura-cyan/20 border border-neura-purple/30 text-white hover:from-neura-purple/30 hover:to-neura-cyan/30 hover:border-neura-cyan/50 transition-all duration-300 shadow-lg hover:shadow-neura-purple/20"
           >
             Home
+          </Link>
+          <Link 
+            to="/global-innovators"
+            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-yellow-400/30 to-pink-500/30 border border-yellow-400/30 text-white hover:from-yellow-400/50 hover:to-pink-400/40 hover:border-pink-400/50 transition-all duration-300 shadow-lg hover:shadow-yellow-400/20"
+          >
+            Global Innovators
           </Link>
           <Link 
             to="/video-studio" 
@@ -101,6 +108,13 @@ export const Header = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Home
+            </Link>
+            <Link 
+              to="/global-innovators"
+              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-yellow-400/30 to-pink-500/30 border border-yellow-400/30 text-white hover:from-yellow-400/50 hover:to-pink-400/40 hover:border-pink-400/50 transition-all duration-300 shadow-lg hover:shadow-yellow-400/20"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Global Innovators
             </Link>
             <Link 
               to="/video-studio" 
