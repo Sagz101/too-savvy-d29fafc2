@@ -18,6 +18,12 @@ import GlobalInnovators from "./pages/GlobalInnovators";
 import CommerceStudio from "./pages/CommerceStudio";
 import NeuraSocial from "./pages/NeuraSocial";
 import Threaditor from "./pages/Threaditor";
+import CreatorStudio from "./pages/CreatorStudio";
+import LiveStreaming from "./pages/LiveStreaming";
+import VideoNFTs from "./pages/VideoNFTs";
+import ARVisualization from "./pages/ARVisualization";
+import PodcastStudio from "./pages/PodcastStudio";
+import MusicCreation from "./pages/MusicCreation";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +47,12 @@ const App = () => (
             <Route path="/commerce-studio" element={<CommerceStudio />} />
             <Route path="/neura-social" element={<NeuraSocial />} />
             <Route path="/threaditor" element={<Threaditor />} />
+            <Route path="/creator-studio" element={<CreatorStudio />} />
+            <Route path="/live-streaming" element={<LiveStreaming />} />
+            <Route path="/video-nfts" element={<VideoNFTs />} />
+            <Route path="/ar-visualization" element={<ARVisualization />} />
+            <Route path="/podcast-studio" element={<PodcastStudio />} />
+            <Route path="/music-creation" element={<MusicCreation />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
