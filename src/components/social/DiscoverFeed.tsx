@@ -1,18 +1,13 @@
-
 import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Video,
+import { Store, Link2, Lock, Star, Zap, StarOff, UsersRound, BarChart3, Video,
   Podcast,
-  Store,
   BookOpen,
-  User,
-  Link2,
-  ShoppingCart,
-  Lock,
-} from "lucide-react";
+  ShoppingCart, } from "lucide-react";
+import { Tooltip } from "@/components/ui/tooltip";
+import { useToast } from "@/hooks/use-toast";
 
 // Mock data simulating cross-component visibility
 const mockContent = [
@@ -103,11 +98,34 @@ const filters = [
 
 export function DiscoverFeed() {
   const [selected, setSelected] = useState("all");
+  const { toast } = useToast();
 
   const filteredContent =
     selected === "all"
       ? mockContent
       : mockContent.filter((item) => item.type === selected);
+
+  // Action Handlers (stubs)
+  const onBoost = (title: string) =>
+    toast({
+      title: "Boost Content (Coming Soon)",
+      description: `You will be able to boost "${title}" by staking $Neurax.`,
+    });
+  const onBuyUnlock = (item: any) =>
+    toast({
+      title: item.gated ? "Unlock Content (Soon)" : "Buy Content (Soon)",
+      description: `Access for ${item.price} or with tokens/NFTs coming soon!`,
+    });
+  const onEngage = (title: string) =>
+    toast({
+      title: "Earn by Engaging (Soon)",
+      description: `Like, share, repost "${title}" to earn $Neurax rewards.`,
+    });
+  const onViewAnalytics = (title: string) =>
+    toast({
+      title: "Coming Soon",
+      description: `Analytics dashboard for "${title}" will be available soon!`,
+    });
 
   return (
     <section className="py-4">
@@ -139,7 +157,7 @@ export function DiscoverFeed() {
               </div>
               <div className="text-sm text-muted-foreground">{item.snippet}</div>
               <div className="flex items-center gap-2">
-                <User className="w-4 h-4 text-neura-cyan/80" />
+                <UsersRound className="w-4 h-4 text-neura-cyan/80" />
                 <span className="text-xs text-white">{item.creatorName}</span>
                 <span className="text-xs text-muted-foreground">
                   ({item.creator.slice(0, 7)}... · Rep: {item.reputation})
@@ -183,6 +201,48 @@ export function DiscoverFeed() {
                     +{item.engagement.reposts} Reposts
                   </span>
                 </span>
+              </div>
+              <div className="grid grid-cols-2 gap-3 mt-2 md:grid-cols-4">
+                {/* Boost Content */}
+                <Tooltip content="Boost your content's visibility by staking $Neurax!" side="top">
+                  <Button
+                    onClick={() => onBoost(item.title)}
+                    className="bg-[#FF5733] hover:bg-[#FF8954] text-white font-bold w-full"
+                    size="sm"
+                  >
+                    <Zap className="w-4 h-4" /> Boost
+                  </Button>
+                </Tooltip>
+                {/* Buy/Unlock */}
+                <Tooltip content={item.gated ? "Unlock token-gated content" : "Buy this content"} side="top">
+                  <Button
+                    onClick={() => onBuyUnlock(item)}
+                    className="bg-[#2FA36B] hover:bg-[#30d281] text-white font-bold w-full"
+                    size="sm"
+                  >
+                    <Lock className="w-4 h-4" /> {item.gated ? "Unlock" : "Buy"}
+                  </Button>
+                </Tooltip>
+                {/* Engage & Earn */}
+                <Tooltip content="Interact, repost, or engage to earn $Neurax rewards!" side="top">
+                  <Button
+                    onClick={() => onEngage(item.title)}
+                    className="bg-[#F8CC00] hover:bg-[#FFE066] text-black font-bold w-full"
+                    size="sm"
+                  >
+                    <Star className="w-4 h-4" /> Engage &amp; Earn
+                  </Button>
+                </Tooltip>
+                {/* View Analytics */}
+                <Tooltip content="View smart link & engagement analytics" side="top">
+                  <Button
+                    onClick={() => onViewAnalytics(item.title)}
+                    className="bg-[#0086EF] hover:bg-[#00B2FF] text-white font-bold w-full"
+                    size="sm"
+                  >
+                    <BarChart3 className="w-4 h-4" /> Analytics
+                  </Button>
+                </Tooltip>
               </div>
               <Button
                 className="grok-button-primary mt-3 flex-grow"

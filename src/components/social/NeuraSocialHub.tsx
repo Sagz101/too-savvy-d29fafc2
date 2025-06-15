@@ -3,17 +3,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
-  Twitter, Facebook, Linkedin
-} from 'lucide-react';
-import {
-  Share2,
-  Link2,
-  Coins,
-  Webhook,
-  BarChart3,
-  Wallet,
-  Settings,
-  Store
+  Twitter, Facebook, Linkedin,
+  Share2, Link2, Coins, Webhook, BarChart3, Wallet, Settings, Store, UsersRound, Star, Zap
 } from 'lucide-react';
 import { PostDashboard } from './PostDashboard';
 import { SmartLinkMonitor } from './SmartLinkMonitor';
@@ -21,19 +12,86 @@ import { RewardsWallet } from './RewardsWallet';
 import { CustomChannels } from './CustomChannels';
 import { CrossPlatformDistribution } from './CrossPlatformDistribution';
 import { DiscoverFeed } from "./DiscoverFeed";
+import { useToast } from "@/hooks/use-toast";
 
 export const NeuraSocialHub: React.FC = () => {
   const [activeTab, setActiveTab] = useState('compose');
+  const { toast } = useToast();
 
-  // Example share action (placeholder)
-  // In a real app, these would trigger share dialogs or links
+  // Placeholder share action
   const handleShare = (platform: string) => {
-    alert(`Share to ${platform} coming soon!`);
+    toast({
+      title: "Coming Soon!",
+      description: `Share to ${platform} will be supported soon.`,
+    });
   };
 
+  // New: Handle top-level actions
+  const handleDiscover = () => {
+    setActiveTab('discover');
+    toast({ title: "Discover Content", description: "Explore trending and new creator content!" });
+  };
+
+  const handleShareNeuraSocial = () => {
+    toast({
+      title: "Share to NeuraSocial coming soon",
+      description: "You'll soon be able to share content directly from anywhere into NeuraSocial and your Web2 feeds.",
+    });
+  };
+
+  const handleJoinCommunity = () => {
+    window.open("https://discord.gg/t00savvy", "_blank");
+    toast({
+      title: "Join Our DAO Community",
+      description: "Opened T00 Savvy DAO community Discord in a new tab.",
+    });
+  };
+
+  // For responsive bottom bar on mobile
+  // (optional sticky nav for key actions; omitted for brevity unless requested)
+
   return (
-    <div className="min-h-screen bg-background p-6">
+    <div className="min-h-screen bg-background p-6 relative">
       <div className="max-w-7xl mx-auto">
+
+        {/* Top action bar: Discover, Share to NeuraSocial */}
+        <div className="flex flex-col sm:flex-row items-center gap-2 mb-6 justify-between">
+          <div className="flex gap-2 flex-wrap">
+            <Button
+              variant="outline"
+              className="border-[#00C4B4] text-[#00C4B4] font-bold hover:bg-[#00C4B4]/10"
+              size="sm"
+              onClick={handleDiscover}
+            >
+              <Store className="w-4 h-4 mr-1" /> Discover Content
+            </Button>
+            <Button
+              variant="outline"
+              className="border-[#8F10EB] text-[#8F10EB] font-bold hover:bg-[#8F10EB]/10"
+              size="sm"
+              onClick={handleShareNeuraSocial}
+            >
+              <Share2 className="w-4 h-4 mr-1" /> Share to NeuraSocial
+            </Button>
+            <Button
+              variant="outline"
+              className="border-[#FF5733] text-[#FF5733] font-bold hover:bg-[#FF5733]/10"
+              size="sm"
+              onClick={() => setActiveTab('channels')}
+            >
+              <Webhook className="w-4 h-4 mr-1" /> Custom Channels
+            </Button>
+          </div>
+          <Button
+            variant="secondary"
+            size="sm"
+            className="bg-gradient-to-r from-neura-cyan to-green-600 text-white font-bold shadow-lg"
+            onClick={handleJoinCommunity}
+          >
+            <UsersRound className="w-4 h-4 mr-1" /> Join Community
+          </Button>
+        </div>
+
         {/* Hero Section */}
         <section className="mb-8 px-4 py-8 rounded-3xl bg-gradient-to-br from-neura-cyan/20 via-background to-card/60 border border-neura-cyan/40 shadow-2xl">
           <div className="flex flex-col md:flex-row gap-6 md:gap-12 items-center md:items-start">
@@ -226,6 +284,17 @@ export const NeuraSocialHub: React.FC = () => {
             </Card>
           </TabsContent>
         </Tabs>
+
+        {/* Footer join button for mobile (optional, remove if not needed) */}
+        <div className="sm:hidden fixed bottom-4 left-0 right-0 px-4 flex justify-center z-40 pointer-events-none">
+          <Button
+            className="pointer-events-auto w-full bg-gradient-to-r from-neura-cyan to-green-700 font-bold"
+            size="lg"
+            onClick={handleJoinCommunity}
+          >
+            <UsersRound className="w-4 h-4 mr-2" /> Join Community
+          </Button>
+        </div>
       </div>
     </div>
   );
