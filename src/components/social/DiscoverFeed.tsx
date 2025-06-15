@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Store, Link2, Lock, Star, Zap, StarOff, UsersRound, BarChart3, Video,
+import {
+  Store, Link2, Lock, Star, Zap, StarOff, UsersRound, BarChart3, Video,
   Podcast,
   BookOpen,
-  ShoppingCart, } from "lucide-react";
-import { Tooltip } from "@/components/ui/tooltip";
+  ShoppingCart,
+} from "lucide-react";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent
+} from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
 
 // Mock data simulating cross-component visibility
@@ -204,44 +210,64 @@ export function DiscoverFeed() {
               </div>
               <div className="grid grid-cols-2 gap-3 mt-2 md:grid-cols-4">
                 {/* Boost Content */}
-                <Tooltip content="Boost your content's visibility by staking $Neurax!" side="top">
-                  <Button
-                    onClick={() => onBoost(item.title)}
-                    className="bg-[#FF5733] hover:bg-[#FF8954] text-white font-bold w-full"
-                    size="sm"
-                  >
-                    <Zap className="w-4 h-4" /> Boost
-                  </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={() => onBoost(item.title)}
+                      className="bg-[#FF5733] hover:bg-[#FF8954] text-white font-bold w-full"
+                      size="sm"
+                    >
+                      <Zap className="w-4 h-4" /> Boost
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">
+                    Boost your content's visibility by staking $Neurax!
+                  </TooltipContent>
                 </Tooltip>
                 {/* Buy/Unlock */}
-                <Tooltip content={item.gated ? "Unlock token-gated content" : "Buy this content"} side="top">
-                  <Button
-                    onClick={() => onBuyUnlock(item)}
-                    className="bg-[#2FA36B] hover:bg-[#30d281] text-white font-bold w-full"
-                    size="sm"
-                  >
-                    <Lock className="w-4 h-4" /> {item.gated ? "Unlock" : "Buy"}
-                  </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={() => onBuyUnlock(item)}
+                      className="bg-[#2FA36B] hover:bg-[#30d281] text-white font-bold w-full"
+                      size="sm"
+                    >
+                      <Lock className="w-4 h-4" /> {item.gated ? "Unlock" : "Buy"}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">
+                    {item.gated ? "Unlock token-gated content" : "Buy this content"}
+                  </TooltipContent>
                 </Tooltip>
                 {/* Engage & Earn */}
-                <Tooltip content="Interact, repost, or engage to earn $Neurax rewards!" side="top">
-                  <Button
-                    onClick={() => onEngage(item.title)}
-                    className="bg-[#F8CC00] hover:bg-[#FFE066] text-black font-bold w-full"
-                    size="sm"
-                  >
-                    <Star className="w-4 h-4" /> Engage &amp; Earn
-                  </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={() => onEngage(item.title)}
+                      className="bg-[#F8CC00] hover:bg-[#FFE066] text-black font-bold w-full"
+                      size="sm"
+                    >
+                      <Star className="w-4 h-4" /> Engage &amp; Earn
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">
+                    Interact, repost, or engage to earn $Neurax rewards!
+                  </TooltipContent>
                 </Tooltip>
                 {/* View Analytics */}
-                <Tooltip content="View smart link & engagement analytics" side="top">
-                  <Button
-                    onClick={() => onViewAnalytics(item.title)}
-                    className="bg-[#0086EF] hover:bg-[#00B2FF] text-white font-bold w-full"
-                    size="sm"
-                  >
-                    <BarChart3 className="w-4 h-4" /> Analytics
-                  </Button>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      onClick={() => onViewAnalytics(item.title)}
+                      className="bg-[#0086EF] hover:bg-[#00B2FF] text-white font-bold w-full"
+                      size="sm"
+                    >
+                      <BarChart3 className="w-4 h-4" /> Analytics
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent side="top">
+                    View smart link & engagement analytics
+                  </TooltipContent>
                 </Tooltip>
               </div>
               <Button
