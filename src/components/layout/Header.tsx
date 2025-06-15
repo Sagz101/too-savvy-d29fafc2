@@ -87,6 +87,12 @@ export const Header = () => {
             <MessageSquare size={16} className="mr-2" />
             Messaging
           </Link>
+          <Link
+            to="/neura-social"
+            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-pink-400/30 to-blue-400/30 border border-pink-400/20 text-white hover:from-pink-400/50 hover:to-blue-400/40 hover:border-blue-400/40 transition-all duration-300 shadow-lg hover:shadow-blue-400/20"
+          >
+            NeuraSocial
+          </Link>
           <WalletConnectButton />
         </nav>
         {/* Mobile Menu Button */}
@@ -151,6 +157,13 @@ export const Header = () => {
             >
               <MessageSquare size={16} className="mr-2" />
               Messaging
+            </Link>
+            <Link
+              to="/neura-social"
+              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-pink-400/30 to-blue-400/30 border border-pink-400/20 text-white hover:from-pink-400/50 hover:to-blue-400/40 hover:border-blue-400/40 transition-all duration-300 shadow-lg hover:shadow-blue-400/20"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              NeuraSocial
             </Link>
             <div className="pt-2">
               <WalletConnectButton />
