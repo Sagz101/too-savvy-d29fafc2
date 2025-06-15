@@ -3,7 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
-  Twitter, Facebook, Linkedin, Telegram, Whatsapp
+  Twitter, Facebook, Linkedin
 } from 'lucide-react';
 import {
   Share2,
@@ -129,14 +129,6 @@ export const NeuraSocialHub: React.FC = () => {
                 <Button variant="outline" className="border-blue-400 text-blue-200 hover:bg-blue-800" size="sm" onClick={() => handleShare('LinkedIn')}>
                   <Linkedin className="w-5 h-5" />
                   LinkedIn
-                </Button>
-                <Button variant="outline" className="border-teal-500 text-teal-300 hover:bg-teal-900" size="sm" onClick={() => handleShare('Telegram')}>
-                  <Telegram className="w-5 h-5" />
-                  Telegram
-                </Button>
-                <Button variant="outline" className="border-green-500 text-green-300 hover:bg-green-900" size="sm" onClick={() => handleShare('WhatsApp')}>
-                  <Whatsapp className="w-5 h-5" />
-                  WhatsApp
                 </Button>
               </div>
               <span className="flex-1"></span>
