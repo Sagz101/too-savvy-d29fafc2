@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { DualOnboarding } from '@/components/auth/DualOnboarding';
 import { Web3UpgradePrompt } from '@/components/auth/Web3UpgradePrompt';
@@ -19,6 +18,7 @@ import {
   Code,
   BarChart2,
 } from 'lucide-react';
+import { CreatorStudioInterests } from "./CreatorStudioInterests";
 
 const onboardingRoles = [
   {
@@ -49,13 +49,28 @@ const onboardingSteps = [
 ];
 
 export const OnboardingFlow = () => {
+  // Add interest selection as step 0
+  const [studioInterest, setStudioInterest] = useState<string | null>(null);
   const [role, setRole] = useState<null | string>(null);
+  // Replace old step logic: step 0 → Studio Interest, step 1 → Role, etc.
   const [step, setStep] = useState(0);
   const [showUpgradePrompt, setShowUpgradePrompt] = useState(false);
   const auth = useAuth();
 
-  // Step 0: Role selection
+  // Step 0: User selects a Creator Studio interest (first-time users)
   if (step === 0) {
+    return (
+      <CreatorStudioInterests
+        onContinue={(interest) => {
+          setStudioInterest(interest);
+          setStep(1);
+        }}
+      />
+    );
+  }
+
+  // Step 1: Role selection
+  if (step === 1) {
     return (
       <section className="py-20 min-h-[75vh] flex items-center">
         <div className="container mx-auto px-4 max-w-3xl">
@@ -68,7 +83,7 @@ export const OnboardingFlow = () => {
             <p className="text-muted-foreground md:text-lg max-w-2xl mx-auto">
               Get started in seconds. Choose your journey to personalize your onboarding.
             </p>
-            <ProgressBar step={1} total={onboardingSteps.length} />
+            <ProgressBar step={2} total={onboardingSteps.length + 1} />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
             {onboardingRoles.map((r) => (
@@ -76,7 +91,7 @@ export const OnboardingFlow = () => {
                 key={r.key}
                 onClick={() => {
                   setRole(r.key);
-                  setTimeout(() => setStep(1), 200);
+                  setTimeout(() => setStep(2), 200);
                 }}
                 className={`group border-2 rounded-xl px-6 py-8 bg-card/70 shadow-xl hover:shadow-2xl text-center transition-all duration-150 outline-none focus-visible:ring-2 ${role === r.key ? 'border-solar-core ring-2 ring-solar-core' : 'border-card/0 hover:border-solar-core/60'}`}
               >
@@ -92,7 +107,7 @@ export const OnboardingFlow = () => {
             <Button
               size="lg"
               className="bg-solar-core hover:bg-solar-photosphere/80 text-white rounded-xl px-10 disabled:opacity-60"
-              onClick={() => setStep(1)}
+              onClick={() => setStep(2)}
               disabled={!role}
             >
               Start Onboarding <ArrowRight size={18} className="ml-2" />
@@ -103,8 +118,8 @@ export const OnboardingFlow = () => {
     );
   }
 
-  // Step 1: Account creation/login (Dual onboarding)
-  if (step === 1) {
+  // Step 2: Account creation/login (Dual onboarding)
+  if (step === 2) {
     return (
       <section className="py-20 min-h-[70vh] flex items-center">
         <div className="container mx-auto px-4 max-w-2xl">
@@ -117,17 +132,17 @@ export const OnboardingFlow = () => {
             <p className="text-muted-foreground md:text-lg max-w-xl mx-auto">
               {personalizedStepSubtext(role)}
             </p>
-            <ProgressBar step={2} total={onboardingSteps.length} />
+            <ProgressBar step={3} total={onboardingSteps.length + 1} />
           </div>
           {/* Dual onboarding, show onComplete prop to advance step */}
-          <DualOnboarding onComplete={() => setStep(2)} />
+          <DualOnboarding onComplete={() => setStep(3)} />
         </div>
       </section>
     );
   }
 
-  // Step 2: Explore/first actions
-  if (step === 2 && auth.isAuthenticated) {
+  // Step 3: Explore/first actions
+  if (step === 3 && auth.isAuthenticated) {
     return (
       <section className="py-20 min-h-[70vh] flex items-center">
         <div className="container mx-auto px-4 max-w-2xl">
@@ -138,14 +153,14 @@ export const OnboardingFlow = () => {
             <p className="text-muted-foreground md:text-lg max-w-xl mx-auto">
               {afterAuthSubtitle(role)}
             </p>
-            <ProgressBar step={3} total={onboardingSteps.length} />
+            <ProgressBar step={4} total={onboardingSteps.length + 1} />
           </div>
           <RoleQuickActions role={role} />
           <div className="text-center mt-8">
             <Button
               size="lg"
               className="bg-solar-core text-white rounded-xl px-10"
-              onClick={() => setStep(3)}
+              onClick={() => setStep(4)}
             >
               Continue <ArrowRight size={18} className="ml-2" />
             </Button>
@@ -155,8 +170,8 @@ export const OnboardingFlow = () => {
     );
   }
 
-  // Step 3: Final screen with next steps, community/mentor CTAs, and feedback prompt
-  if (step === 3) {
+  // Step 4: Final screen with next steps, community/mentor CTAs, and feedback prompt
+  if (step === 4) {
     return (
       <section className="py-20 min-h-[70vh] flex items-center">
         <div className="container mx-auto px-4 max-w-2xl">
@@ -164,10 +179,15 @@ export const OnboardingFlow = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-solar-core to-solar-photosphere bg-clip-text text-transparent">
               🎉 You're in! Explore T00 Savvy
             </h2>
-            <ProgressBar step={4} total={onboardingSteps.length} />
+            <ProgressBar step={5} total={onboardingSteps.length + 1} />
             <p className="mt-2 text-muted-foreground max-w-xl mx-auto">
               Connect with the community and unlock your Web3 journey—mentors, DAOs, and rewards await!
             </p>
+            {studioInterest && (
+              <div className="mt-4 font-semibold text-solar-core">
+                Your Interest: <span className="capitalize">{studioInterest.replace(/[-_]/g, " ")}</span>
+              </div>
+            )}
           </div>
           <div className="flex flex-col items-center gap-4 mb-8">
             <a
@@ -188,16 +208,19 @@ export const OnboardingFlow = () => {
             </a>
           </div>
           <FeedbackPrompt />
+          <div className="mt-8 text-xs text-muted-foreground text-center">
+            You can update or expand your Creator Studio interests anytime in your profile.
+          </div>
         </div>
       </section>
     );
   }
 
-  // Fallback - if not authenticated on step 2, show login
+  // Fallback - if not authenticated on step 3, show login
   return (
     <section className="py-24 min-h-[50vh] flex items-center">
       <div className="container mx-auto px-4">
-        <DualOnboarding onComplete={() => setStep(2)} />
+        <DualOnboarding onComplete={() => setStep(3)} />
       </div>
     </section>
   );
@@ -355,4 +378,3 @@ function FeedbackPrompt() {
     </form>
   );
 }
-
