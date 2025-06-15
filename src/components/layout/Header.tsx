@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Wallet, X, Menu, ShoppingCart, MessageSquare } from "lucide-react";
@@ -74,24 +73,6 @@ export const Header = () => {
           >
             <ShoppingCart size={16} className="inline mr-1" /> Marketplace
           </Link>
-          <button 
-            onClick={scrollToModules}
-            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-cyan/20 to-neura-magenta/20 border border-neura-cyan/30 text-white hover:from-neura-cyan/30 hover:to-neura-magenta/30 hover:border-neura-magenta/50 transition-all duration-300 shadow-lg hover:shadow-neura-cyan/20"
-          >
-            Modules
-          </button>
-          <button 
-            onClick={scrollToDocumentation}
-            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-teal/20 to-neura-cyan/20 border border-neura-teal/30 text-white hover:from-neura-teal/30 hover:to-neura-cyan/30 hover:border-neura-cyan/50 transition-all duration-300 shadow-lg hover:shadow-neura-teal/20"
-          >
-            Documentation
-          </button>
-          <button 
-            onClick={scrollToWhitepaper}
-            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-purple/20 to-neura-magenta/20 border border-neura-purple/30 text-white hover:from-neura-purple/30 hover:to-neura-magenta/30 hover:border-neura-magenta/50 transition-all duration-300 shadow-lg hover:shadow-neura-purple/20"
-          >
-            Whitepaper
-          </button>
           <Link 
             to="/neurapathy" 
             className="grok-button-secondary px-4 py-2 text-sm flex items-center"
@@ -149,33 +130,6 @@ export const Header = () => {
             >
               <ShoppingCart size={16} className="inline mr-1" /> Marketplace
             </Link>
-            <button 
-              onClick={() => {
-                scrollToModules();
-                setIsMenuOpen(false);
-              }}
-              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-cyan/20 to-neura-magenta/20 border border-neura-cyan/30 text-white hover:from-neura-cyan/30 hover:to-neura-magenta/30 hover:border-neura-magenta/50 transition-all duration-300 shadow-lg hover:shadow-neura-cyan/20 text-left"
-            >
-              Modules
-            </button>
-            <button 
-              onClick={() => {
-                scrollToDocumentation();
-                setIsMenuOpen(false);
-              }}
-              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-teal/20 to-neura-cyan/20 border border-neura-teal/30 text-white hover:from-neura-teal/30 hover:to-neura-cyan/30 hover:border-neura-cyan/50 transition-all duration-300 shadow-lg hover:shadow-neura-teal/20 text-left"
-            >
-              Documentation
-            </button>
-            <button 
-              onClick={() => {
-                scrollToWhitepaper();
-                setIsMenuOpen(false);
-              }}
-              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-purple/20 to-neura-magenta/20 border border-neura-purple/30 text-white hover:from-neura-purple/30 hover:to-neura-magenta/30 hover:border-neura-magenta/50 transition-all duration-300 shadow-lg hover:shadow-neura-purple/20 text-left"
-            >
-              Whitepaper
-            </button>
             <Link 
               to="/neurapathy" 
               className="grok-button-secondary px-4 py-2 text-sm flex items-center my-2"
