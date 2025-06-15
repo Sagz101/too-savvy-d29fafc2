@@ -54,6 +54,11 @@ const navItems = [
     icon: Music,
     to: "/music-creation",
   },
+  {
+    name: "E-Commerce",
+    icon: Store,
+    to: "/commerce-studio",
+  },
 ];
 
 export function AppSidebar() {

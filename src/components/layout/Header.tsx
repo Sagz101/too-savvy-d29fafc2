@@ -57,6 +57,12 @@ export const Header = () => {
             Studio
           </Link>
           <Link 
+            to="/commerce-studio" 
+            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-green-400/30 to-blue-400/30 border border-green-400/30 text-white hover:from-green-400/50 hover:to-blue-400/40 hover:border-blue-400/50 transition-all duration-300 shadow-lg hover:shadow-green-400/20"
+          >
+            E-Commerce
+          </Link>
+          <Link 
             to="/video-integration" 
             className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-magenta/20 to-neura-teal/20 border border-neura-magenta/30 text-white hover:from-neura-magenta/30 hover:to-neura-teal/30 hover:border-neura-teal/50 transition-all duration-300 shadow-lg hover:shadow-neura-magenta/20"
           >
@@ -95,7 +101,6 @@ export const Header = () => {
           </Link>
           <WalletConnectButton />
         </nav>
-
         {/* Mobile Menu Button */}
         <button 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -122,6 +127,13 @@ export const Header = () => {
               onClick={() => setIsMenuOpen(false)}
             >
               Studio
+            </Link>
+            <Link 
+              to="/commerce-studio" 
+              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-green-400/30 to-blue-400/30 border border-green-400/30 text-white hover:from-green-400/50 hover:to-blue-400/40 hover:border-blue-400/50 transition-all duration-300 shadow-lg hover:shadow-green-400/20"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              E-Commerce
             </Link>
             <Link 
               to="/video-integration" 
