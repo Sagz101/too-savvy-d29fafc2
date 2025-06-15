@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,13 +8,15 @@ import {
   Webhook, 
   BarChart3,
   Wallet,
-  Settings
+  Settings,
+  Store
 } from 'lucide-react';
 import { PostDashboard } from './PostDashboard';
 import { SmartLinkMonitor } from './SmartLinkMonitor';
 import { RewardsWallet } from './RewardsWallet';
 import { CustomChannels } from './CustomChannels';
 import { CrossPlatformDistribution } from './CrossPlatformDistribution';
+import { DiscoverFeed } from "./DiscoverFeed";
 
 export const NeuraSocialHub: React.FC = () => {
   const [activeTab, setActiveTab] = useState('compose');
@@ -31,7 +32,7 @@ export const NeuraSocialHub: React.FC = () => {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-6">
+          <TabsList className="grid w-full grid-cols-7">
             <TabsTrigger value="compose" className="flex items-center gap-2">
               <Share2 className="w-4 h-4" />
               Compose
@@ -51,6 +52,10 @@ export const NeuraSocialHub: React.FC = () => {
             <TabsTrigger value="distribution" className="flex items-center gap-2">
               <BarChart3 className="w-4 h-4" />
               Distribution
+            </TabsTrigger>
+            <TabsTrigger value="discover" className="flex items-center gap-2">
+              <Store className="w-4 h-4" />
+              Discover
             </TabsTrigger>
             <TabsTrigger value="analytics" className="flex items-center gap-2">
               <Settings className="w-4 h-4" />
@@ -76,6 +81,10 @@ export const NeuraSocialHub: React.FC = () => {
 
           <TabsContent value="distribution">
             <CrossPlatformDistribution />
+          </TabsContent>
+
+          <TabsContent value="discover">
+            <DiscoverFeed />
           </TabsContent>
 
           <TabsContent value="analytics">
