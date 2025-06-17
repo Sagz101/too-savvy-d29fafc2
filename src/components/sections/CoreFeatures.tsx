@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
+import { Web3Tooltip } from '@/components/ui/web3-tooltip';
 
 export const CoreFeatures = () => {
   const { ref, inView } = useInView({
@@ -23,25 +24,29 @@ export const CoreFeatures = () => {
           icon: <FileText className="w-5 h-5 text-neura-cyan" />,
           title: "MediaNFTs",
           description: "Tokenized, tradable content with gated access",
-          link: "/video-studio"
+          link: "/video-studio",
+          tooltip: "Non-Fungible Tokens that represent unique digital content you truly own"
         },
         {
           icon: <BadgeCheck className="w-5 h-5 text-neura-cyan" />,
-          title: "Subscription NFTs",
+          title: "Subscription NFTs", 
           description: "Time-based access for episodic or premium content",
-          link: "/streaming-dashboard"
+          link: "/streaming-dashboard",
+          tooltip: "NFTs that grant access to exclusive content for a specific time period"
         },
         {
           icon: <Users className="w-5 h-5 text-neura-cyan" />,
           title: "Decentralized Identity",
           description: "Own your digital presence across platforms",
-          link: "/finance-hub"
+          link: "/finance-hub",
+          tooltip: "Your identity is controlled by you, not by any single platform or company"
         },
         {
           icon: <Key className="w-5 h-5 text-neura-cyan" />,
           title: "Dynamic Licensing",
           description: "Modify or lease content rights with smart contracts",
-          link: "/video-marketplace"
+          link: "/video-marketplace",
+          tooltip: "Automated contracts that execute licensing terms without intermediaries"
         }
       ]
     },
@@ -51,21 +56,24 @@ export const CoreFeatures = () => {
       features: [
         {
           icon: <Wallet className="w-5 h-5 text-neura-cyan" />,
-          title: "Ethereum",
+          title: "Ethereum Payments",
           description: "Power access, rewards, royalties, payments",
-          link: "/finance-hub"
+          link: "/finance-hub",
+          tooltip: "Cryptocurrency payments on the Ethereum blockchain for global, instant transactions"
         },
         {
           icon: <Globe className="w-5 h-5 text-neura-cyan" />,
           title: "Product & Service Sales",
           description: "Sell digital/physical goods from your portal",
-          link: "/#ecommerce-store"
+          link: "/#ecommerce-store",
+          tooltip: "Integrated e-commerce with crypto and traditional payment options"
         },
         {
           icon: <Code className="w-5 h-5 text-neura-cyan" />,
           title: "Composable NFTs",
           description: "Bundle multimedia or derivative works",
-          link: "/video-integration"
+          link: "/video-integration",
+          tooltip: "NFTs that can be combined or modified to create new unique digital assets"
         }
       ]
     },
@@ -75,27 +83,31 @@ export const CoreFeatures = () => {
       features: [
         {
           icon: <MessageSquare className="w-5 h-5 text-neura-cyan" />,
-          title: "Messaging",
-          description: "End-to-end encrypted messaging with token gating",
-          link: "/messaging"
+          title: "Token-Gated Messaging",
+          description: "End-to-end encrypted messaging with exclusive access",
+          link: "/messaging",
+          tooltip: "Only holders of specific tokens can access certain chat rooms or content"
         },
         {
           icon: <Settings className="w-5 h-5 text-neura-cyan" />,
           title: "DAO Governance",
-          description: "Propose, vote, and manage with Ethereum",
-          link: "/global-innovators"
+          description: "Propose, vote, and manage with community tokens",
+          link: "/global-innovators",
+          tooltip: "Decentralized Autonomous Organization - community-driven decision making"
         },
         {
           icon: <Award className="w-5 h-5 text-neura-cyan" />,
           title: "Gamified Engagement",
           description: "Badges, loyalty NFTs, missions",
-          link: "/#social-hub"
+          link: "/#social-hub",
+          tooltip: "Earn rewards and recognition through platform engagement and achievements"
         },
         {
           icon: <Lock className="w-5 h-5 text-neura-cyan" />,
           title: "Privacy & Security",
-          description: "ZK-based access, MFA, and fingerprinting",
-          link: "/finance-hub"
+          description: "Zero-knowledge proofs, MFA, and fingerprinting",
+          link: "/finance-hub",
+          tooltip: "Advanced cryptographic techniques that verify information without revealing it"
         }
       ]
     }
@@ -152,6 +164,7 @@ export const CoreFeatures = () => {
                     title={feature.title}
                     description={feature.description}
                     link={feature.link}
+                    tooltip={feature.tooltip}
                     delay={(categoryIndex * 150) + (featureIndex * 75)}
                     inView={inView}
                     onClick={handleFeatureClick}
@@ -171,6 +184,7 @@ interface FeatureCardProps {
   title: string;
   description: string;
   link: string;
+  tooltip: string;
   delay: number;
   inView: boolean;
   onClick: (link: string) => void;
@@ -181,6 +195,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
   title, 
   description, 
   link, 
+  tooltip,
   delay, 
   inView, 
   onClick 
@@ -196,7 +211,9 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
             {icon}
           </div>
           <div>
-            <h4 className="font-semibold text-white mb-1">{title}</h4>
+            <h4 className="font-semibold text-white mb-1">
+              <Web3Tooltip term={title} definition={tooltip} />
+            </h4>
             <p className="text-white/70 text-sm">{description}</p>
           </div>
         </div>

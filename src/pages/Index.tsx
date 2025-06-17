@@ -7,12 +7,14 @@ import { ModularStats } from '@/components/sections/ModularStats';
 import { CreatorDashboard } from '@/components/sections/CreatorDashboard';
 import { VideoShowcase } from '@/components/sections/VideoShowcase';
 import { OnboardingFlow } from '@/components/sections/OnboardingFlow';
+import { OnboardingGuide } from '@/components/sections/OnboardingGuide';
 import { AICopilot } from '@/components/sections/AICopilot';
 import { SocialHub } from '@/components/sections/SocialHub';
 import { EcommerceStore } from '@/components/sections/EcommerceStore';
 import { Threaditor } from '@/components/sections/Threaditor';
 import { PlatformOverview } from '@/components/sections/PlatformOverview';
 import { UserTypes } from '@/components/sections/UserTypes';
+import { TrustSignals } from '@/components/sections/TrustSignals';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
 
@@ -23,6 +25,7 @@ const Index = () => {
       <main>
         <Hero />
         <UserTypes />
+        <OnboardingGuide />
         <ModularStats />
         <CoreFeatures />
         <VideoShowcase />
@@ -32,6 +35,7 @@ const Index = () => {
         <Threaditor />
         <OnboardingFlow />
         <AICopilot />
+        <TrustSignals />
         <PlatformOverview />
         <Cta />
       </main>
