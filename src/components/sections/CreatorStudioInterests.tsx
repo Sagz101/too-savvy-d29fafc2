@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Video, Podcast, Store, Music2, Code2 } from "lucide-react";
+import { Video, Podcast, Store, Music2, Code2, ShoppingBag, FileText, Users } from "lucide-react";
 
 const studioComponents = [
   {
@@ -34,6 +34,24 @@ const studioComponents = [
     icon: <Code2 className="w-7 h-7 text-blue-400" />,
     label: "Dev Sandbox",
     description: "APIs, SDKs, integrations for builders.",
+  },
+  {
+    key: "e-commerce-store",
+    icon: <ShoppingBag className="w-7 h-7 text-emerald-400" />,
+    label: "E-Commerce Store",
+    description: "Advanced commerce solutions with Web3 payments.",
+  },
+  {
+    key: "threaditor",
+    icon: <FileText className="w-7 h-7 text-purple-400" />,
+    label: "Threaditor",
+    description: "Create and monetize long-form content threads.",
+  },
+  {
+    key: "neura-social",
+    icon: <Users className="w-7 h-7 text-pink-400" />,
+    label: "NeuraSocial",
+    description: "Social networking with decentralized features.",
   }
 ];
 
@@ -46,7 +64,7 @@ export function CreatorStudioInterests({ onContinue }: CreatorStudioInterestsPro
 
   return (
     <section className="py-16 min-h-[70vh] flex items-center">
-      <div className="container mx-auto px-4 max-w-2xl">
+      <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-2">
             <span className="bg-gradient-to-r from-solar-core to-solar-photosphere bg-clip-text text-transparent">
@@ -57,7 +75,7 @@ export function CreatorStudioInterests({ onContinue }: CreatorStudioInterestsPro
             Select one component you'd like to start with. You can always add or change your interests as a returning user.
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {studioComponents.map(comp => (
             <button
               key={comp.key}
