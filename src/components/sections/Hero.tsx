@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { WalletButton } from "@/components/ui/wallet-button";
@@ -29,7 +30,7 @@ export const Hero = () => {
       {/* Background Elements */}
       <AnimatedGradient className="opacity-10" />
       
-      {/* Refined particle effect */}
+      {/* Enhanced particle effect */}
       <div className="absolute inset-0 -z-5 overflow-hidden">
         <div className="particles-container">
           {[...Array(12)].map((_, i) => (
@@ -78,21 +79,22 @@ export const Hero = () => {
               />
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 tracking-tight">
-              <AnimatedText 
-                text="Create. Own. Thrive."
-                type="gradient"
-                gradientFrom="from-foreground"
-                gradientTo="to-muted-foreground"
-                className="via-foreground/80"
-                delay={0.3}
-                staggerDelay={0.05}
-                tag="span"
-              />
+            {/* Enhanced Hero Tagline with Orbitron font and glow effect */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-orbitron leading-tight mb-8 tracking-wider uppercase">
+              <span 
+                className="bg-gradient-to-r from-white via-cyan-300 to-purple-400 bg-clip-text text-transparent animate-hero-glow"
+                style={{ 
+                  textShadow: '0 0 20px rgba(0, 209, 255, 0.5)',
+                  animationDelay: '0.3s'
+                }}
+              >
+                Build. Own. Prosper.
+              </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-2xl leading-relaxed">
-              Claim your voice, your value, your digital future. T00 Savvy empowers you to create without compromise, own your work on-chain, and thrive with your community—no gatekeepers, no middlemen.
+            {/* Enhanced Subtext with Inter font */}
+            <p className="text-xl md:text-2xl font-inter text-muted-foreground mb-12 max-w-2xl leading-relaxed font-medium">
+              Shape your digital future with T00 Savvy. Create freely, own your work on the blockchain, and grow your community—without barriers.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
@@ -100,48 +102,53 @@ export const Hero = () => {
                 <div className="flex justify-center mb-6">
                   <EnhancedIcon icon={Key} variant="primary" size="md" animated />
                 </div>
-                <h3 className="font-semibold text-xl mb-3 text-center">Ownership</h3>
-                <p className="text-muted-foreground text-center leading-relaxed">You control your content, data, and digital identity—forever.</p>
+                <h3 className="font-semibold text-xl mb-3 text-center font-inter">Ownership</h3>
+                <p className="text-muted-foreground text-center leading-relaxed font-inter">You control your content, data, and digital identity—forever.</p>
               </div>
               
               <div className="grok-card grok-card-hover p-8">
                 <div className="flex justify-center mb-6">
                   <EnhancedIcon icon={DollarSign} variant="warning" size="md" animated />
                 </div>
-                <h3 className="font-semibold text-xl mb-3 text-center">Monetization</h3>
-                <p className="text-muted-foreground text-center leading-relaxed">Flexible, token-native tools to turn creativity into income.</p>
+                <h3 className="font-semibold text-xl mb-3 text-center font-inter">Monetization</h3>
+                <p className="text-muted-foreground text-center leading-relaxed font-inter">Flexible, token-native tools to turn creativity into income.</p>
               </div>
               
               <div className="grok-card grok-card-hover p-8">
                 <div className="flex justify-center mb-6">
                   <EnhancedIcon icon={Users} variant="secondary" size="md" animated />
                 </div>
-                <h3 className="font-semibold text-xl mb-3 text-center">Community</h3>
-                <p className="text-muted-foreground text-center leading-relaxed">Build loyal, token-powered audiences who grow with you.</p>
+                <h3 className="font-semibold text-xl mb-3 text-center font-inter">Community</h3>
+                <p className="text-muted-foreground text-center leading-relaxed font-inter">Build loyal, token-powered audiences who grow with you.</p>
               </div>
             </div>
             
+            {/* Enhanced CTA Section */}
             <div 
               ref={ctaRef} 
               className="flex flex-col sm:flex-row items-center gap-6"
             >
               <Button 
                 size="lg" 
-                className={`grok-button-primary text-lg px-10 py-4 grok-glow transition-all duration-500 transform ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-                style={{ transitionDelay: '0.6s' }}
+                className={`hero-cta-primary text-lg px-10 py-4 font-inter font-semibold transition-all duration-500 transform ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                style={{ 
+                  transitionDelay: '0.6s',
+                  background: 'linear-gradient(90deg, #00D1FF, #7B00FF)',
+                  boxShadow: '0 4px 15px rgba(0, 209, 255, 0.3)'
+                }}
                 asChild
               >
                 <Link to="/video-studio">
                   <span className="flex items-center">
                     <Sparkles size={20} className="mr-3" />
-                    Start Creating <ArrowRight size={20} className="ml-3" />
+                    Start Building Now <ArrowRight size={20} className="ml-3" />
                   </span>
                 </Link>
               </Button>
               
               <Button 
                 size="lg" 
-                className={`grok-button-secondary text-lg px-10 py-4 transition-all duration-500 transform ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                className={`grok-button-secondary text-lg px-10 py-4 font-inter font-semibold transition-all duration-500 transform ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
                 style={{ transitionDelay: '0.7s' }}
                 asChild
               >
@@ -188,31 +195,31 @@ export const Hero = () => {
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-sm text-foreground font-medium">T00 Savvy Creator Dashboard</div>
+              <div className="text-sm text-foreground font-medium font-inter">T00 Savvy Creator Dashboard</div>
               <div className="w-5"></div>
             </div>
             
             <div className="relative z-10 p-8 pt-20">
               <div className="flex items-center justify-between mb-8">
-                <h3 className="text-xl font-semibold">Creator Dashboard</h3>
-                <div className="bg-green-500/20 text-green-400 px-4 py-2 rounded-xl text-sm border border-green-500/20">Connected</div>
+                <h3 className="text-xl font-semibold font-inter">Creator Dashboard</h3>
+                <div className="bg-green-500/20 text-green-400 px-4 py-2 rounded-xl text-sm border border-green-500/20 font-inter">Connected</div>
               </div>
               
               <div className="grid grid-cols-2 gap-4 mb-8">
                 <div className="grok-card p-6 bg-card/80 backdrop-blur-sm">
-                  <div className="text-sm text-muted-foreground mb-2">Content NFTs</div>
-                  <div className="text-3xl font-bold">12</div>
+                  <div className="text-sm text-muted-foreground mb-2 font-inter">Content NFTs</div>
+                  <div className="text-3xl font-bold font-orbitron">12</div>
                 </div>
                 <div className="grok-card p-6 bg-card/80 backdrop-blur-sm">
-                  <div className="text-sm text-muted-foreground mb-2">Subscribers</div>
-                  <div className="text-3xl font-bold">248</div>
+                  <div className="text-sm text-muted-foreground mb-2 font-inter">Subscribers</div>
+                  <div className="text-3xl font-bold font-orbitron">248</div>
                 </div>
               </div>
               
               <div className="grok-card p-6 mb-8 bg-card/80 backdrop-blur-sm">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="text-base font-medium">Revenue (30d)</div>
-                  <div className="text-sm text-green-400 font-semibold">+24%</div>
+                  <div className="text-base font-medium font-inter">Revenue (30d)</div>
+                  <div className="text-sm text-green-400 font-semibold font-inter">+24%</div>
                 </div>
                 <div className="h-20 w-full relative">
                   <div className="absolute bottom-0 left-0 right-0">
@@ -235,7 +242,7 @@ export const Hero = () => {
               </div>
               
               <div className="grok-card bg-card/80 backdrop-blur-sm">
-                <div className="text-base font-medium p-4 border-b border-border/50">Recent Activity</div>
+                <div className="text-base font-medium p-4 border-b border-border/50 font-inter">Recent Activity</div>
                 <div className="p-2">
                   {["New subscriber joined", "Content NFT sold for $ETH 0.15", "Community message"].map((item, i) => (
                     <div 
@@ -247,8 +254,8 @@ export const Hero = () => {
                         transition: `all 0.5s ease ${0.6 + (i * 0.1)}s`
                       }}
                     >
-                      <div className="text-foreground">{item}</div>
-                      <div className="text-muted-foreground text-xs">Just now</div>
+                      <div className="text-foreground font-inter">{item}</div>
+                      <div className="text-muted-foreground text-xs font-inter">Just now</div>
                     </div>
                   ))}
                 </div>

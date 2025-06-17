@@ -21,6 +21,7 @@ export default {
 			fontFamily: {
 				'lotus': ['Lotus Flower', 'cursive'],
 				'orbitron': ['Orbitron', 'monospace', 'sans-serif'],
+				'inter': ['Inter', 'sans-serif'],
 				'source-sans': ['Source Sans Pro', 'sans-serif'],
 				'michroma': ['Michroma', 'sans-serif'],
 				'porscha': ['Porscha', 'sans-serif'],
@@ -179,6 +180,18 @@ export default {
                 'progress-fill': {
                     '0%': { width: '0%' },
                     '100%': { width: '100%' }
+                },
+                'hero-glow': {
+                    '0%, 100%': { 
+                        textShadow: '0 0 10px rgba(0, 209, 255, 0.5)' 
+                    },
+                    '50%': { 
+                        textShadow: '0 0 20px rgba(0, 209, 255, 0.8), 0 0 30px rgba(123, 0, 255, 0.5)' 
+                    }
+                },
+                'typewriter': {
+                    'from': { width: '0' },
+                    'to': { width: '100%' }
                 }
 			},
 			animation: {
@@ -192,6 +205,8 @@ export default {
                 'solar-pulse': 'solar-pulse 6s ease-in-out infinite',
                 'cosmic-pulse': 'cosmic-pulse 8s ease-in-out infinite',
                 'progress-fill': 'progress-fill 2s ease-out forwards',
+                'hero-glow': 'hero-glow 3s ease-in-out infinite',
+                'typewriter': 'typewriter 2s steps(20) forwards'
 			}
 		}
 	},
