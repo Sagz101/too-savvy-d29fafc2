@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import { Wallet, X, Menu, ShoppingCart, MessageSquare } from "lucide-react";
+import { Wallet, X, Menu, ShoppingCart, MessageSquare, Home, Users, Video, Code, Store, Shield, Share2 } from "lucide-react";
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
 import { Link } from 'react-router-dom';
 
@@ -43,58 +43,68 @@ export const Header = () => {
         </div>
         
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-6">
           <Link 
             to="/" 
-            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-purple/20 to-neura-cyan/20 border border-neura-purple/30 text-white hover:from-neura-purple/30 hover:to-neura-cyan/30 hover:border-neura-cyan/50 transition-all duration-300 shadow-lg hover:shadow-neura-purple/20"
+            className="web3-nav-button web3-nav-dashboard flex items-center gap-2"
           >
-            Home
+            <Home size={16} />
+            Dashboard
           </Link>
           <Link 
             to="/global-innovators"
-            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-yellow-400/30 to-pink-500/30 border border-yellow-400/30 text-white hover:from-yellow-400/50 hover:to-pink-400/40 hover:border-pink-400/50 transition-all duration-300 shadow-lg hover:shadow-yellow-400/20"
+            className="web3-nav-button web3-nav-create flex items-center gap-2"
           >
-            Global Innovators
+            <Users size={16} />
+            Collaborate
           </Link>
           <Link 
             to="/video-studio" 
-            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-cyan/20 to-neura-purple/20 border border-neura-cyan/30 text-white hover:from-neura-cyan/30 hover:to-neura-purple/30 hover:border-neura-purple/50 transition-all duration-300 shadow-lg hover:shadow-neura-cyan/20"
+            className="web3-nav-button web3-nav-create flex items-center gap-2"
           >
-            Studio
+            <Video size={16} />
+            Creator Studio
           </Link>
           <Link 
             to="/commerce-studio" 
-            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-green-400/30 to-blue-400/30 border border-green-400/30 text-white hover:from-green-400/50 hover:to-blue-400/40 hover:border-blue-400/50 transition-all duration-300 shadow-lg hover:shadow-green-400/20"
+            className="web3-nav-button web3-nav-create flex items-center gap-2"
           >
-            E-Commerce
+            <Store size={16} />
+            Web3 Store
           </Link>
           <Link 
             to="/video-integration" 
-            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-magenta/20 to-neura-teal/20 border border-neura-magenta/30 text-white hover:from-neura-magenta/30 hover:to-neura-teal/30 hover:border-neura-teal/50 transition-all duration-300 shadow-lg hover:shadow-neura-magenta/20"
+            className="web3-nav-button web3-nav-dev flex items-center gap-2"
           >
-            Integration
+            <Code size={16} />
+            Developer Hub
           </Link>
           <Link 
             to="/video-marketplace" 
-            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-teal/20 to-neura-purple/20 border border-neura-teal/30 text-white hover:from-neura-teal/30 hover:to-neura-purple/30 hover:border-neura-purple/50 transition-all duration-300 shadow-lg hover:shadow-neura-teal/20 flex items-center"
+            className="web3-nav-button web3-nav-community flex items-center gap-2"
           >
-            <ShoppingCart size={16} className="inline mr-1" /> Marketplace
+            <ShoppingCart size={16} />
+            Creator Market
           </Link>
           <Link 
             to="/neurapathy" 
-            className="grok-button-secondary px-4 py-2 text-sm flex items-center"
+            className="web3-nav-button web3-nav-community flex items-center gap-2"
           >
-            <MessageSquare size={16} className="mr-2" />
-            Messaging
+            <Shield size={16} />
+            Secure Chat
           </Link>
           <Link
             to="/neura-social"
-            className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-pink-400/30 to-blue-400/30 border border-pink-400/20 text-white hover:from-pink-400/50 hover:to-blue-400/40 hover:border-blue-400/40 transition-all duration-300 shadow-lg hover:shadow-blue-400/20"
+            className="web3-nav-button web3-nav-community flex items-center gap-2"
           >
-            NeuraSocial
+            <Share2 size={16} />
+            Social Hub
           </Link>
-          <WalletConnectButton />
+          <div className="web3-wallet-container">
+            <WalletConnectButton />
+          </div>
         </nav>
+        
         {/* Mobile Menu Button */}
         <button 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -110,62 +120,69 @@ export const Header = () => {
           <div className="container mx-auto px-4 flex flex-col space-y-4">
             <Link 
               to="/" 
-              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-purple/20 to-neura-cyan/20 border border-neura-purple/30 text-white hover:from-neura-purple/30 hover:to-neura-cyan/30 hover:border-neura-cyan/50 transition-all duration-300 shadow-lg hover:shadow-neura-purple/20"
+              className="web3-nav-button web3-nav-dashboard flex items-center gap-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              Home
+              <Home size={16} />
+              Dashboard
             </Link>
             <Link 
               to="/global-innovators"
-              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-yellow-400/30 to-pink-500/30 border border-yellow-400/30 text-white hover:from-yellow-400/50 hover:to-pink-400/40 hover:border-pink-400/50 transition-all duration-300 shadow-lg hover:shadow-yellow-400/20"
+              className="web3-nav-button web3-nav-create flex items-center gap-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              Global Innovators
+              <Users size={16} />
+              Collaborate
             </Link>
             <Link 
               to="/video-studio" 
-              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-cyan/20 to-neura-purple/20 border border-neura-cyan/30 text-white hover:from-neura-cyan/30 hover:to-neura-purple/30 hover:border-neura-purple/50 transition-all duration-300 shadow-lg hover:shadow-neura-cyan/20"
+              className="web3-nav-button web3-nav-create flex items-center gap-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              Studio
+              <Video size={16} />
+              Creator Studio
             </Link>
             <Link 
               to="/commerce-studio" 
-              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-green-400/30 to-blue-400/30 border border-green-400/30 text-white hover:from-green-400/50 hover:to-blue-400/40 hover:border-blue-400/50 transition-all duration-300 shadow-lg hover:shadow-green-400/20"
+              className="web3-nav-button web3-nav-create flex items-center gap-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              E-Commerce
+              <Store size={16} />
+              Web3 Store
             </Link>
             <Link 
               to="/video-integration" 
-              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-magenta/20 to-neura-teal/20 border border-neura-magenta/30 text-white hover:from-neura-magenta/30 hover:to-neura-teal/30 hover:border-neura-teal/50 transition-all duration-300 shadow-lg hover:shadow-neura-magenta/20"
+              className="web3-nav-button web3-nav-dev flex items-center gap-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              Integration
+              <Code size={16} />
+              Developer Hub
             </Link>
             <Link 
               to="/video-marketplace" 
-              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-neura-teal/20 to-neura-purple/20 border border-neura-teal/30 text-white hover:from-neura-teal/30 hover:to-neura-purple/30 hover:border-neura-purple/50 transition-all duration-300 shadow-lg hover:shadow-neura-teal/20 flex items-center"
+              className="web3-nav-button web3-nav-community flex items-center gap-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              <ShoppingCart size={16} className="inline mr-1" /> Marketplace
+              <ShoppingCart size={16} />
+              Creator Market
             </Link>
             <Link 
               to="/neurapathy" 
-              className="grok-button-secondary px-4 py-2 text-sm flex items-center my-2"
+              className="web3-nav-button web3-nav-community flex items-center gap-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              <MessageSquare size={16} className="mr-2" />
-              Messaging
+              <Shield size={16} />
+              Secure Chat
             </Link>
             <Link
               to="/neura-social"
-              className="text-sm font-medium px-3 py-2 rounded-lg bg-gradient-to-r from-pink-400/30 to-blue-400/30 border border-pink-400/20 text-white hover:from-pink-400/50 hover:to-blue-400/40 hover:border-blue-400/40 transition-all duration-300 shadow-lg hover:shadow-blue-400/20"
+              className="web3-nav-button web3-nav-community flex items-center gap-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              NeuraSocial
+              <Share2 size={16} />
+              Social Hub
             </Link>
-            <div className="pt-2">
+            <div className="pt-2 web3-wallet-container">
               <WalletConnectButton />
             </div>
           </div>

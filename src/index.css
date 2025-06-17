@@ -200,3 +200,144 @@
     0 4px 20px hsl(var(--background))/50,
     0 0 40px hsl(var(--border))/20;
 }
+
+/* Enhanced Web3 Navigation Styling */
+.web3-nav-button {
+  @apply text-sm font-semibold px-4 py-3 rounded-xl transition-all duration-300 relative;
+  @apply border-2 border-transparent backdrop-blur-sm;
+  @apply transform hover:scale-105 active:scale-95;
+  background: linear-gradient(135deg, hsl(var(--card))/0.4, hsl(var(--card))/0.2);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Dashboard/Home - Neutral prominence */
+.web3-nav-dashboard {
+  @apply text-white bg-gradient-to-r from-slate-800/60 to-slate-700/60;
+  @apply border-white/20 hover:border-white/40;
+  @apply hover:shadow-lg hover:shadow-white/10;
+}
+
+/* Creative actions - Neon cyan theme */
+.web3-nav-create {
+  @apply text-cyan-300 bg-gradient-to-r from-cyan-900/30 to-cyan-800/20;
+  @apply border-cyan-400/30 hover:border-cyan-300/60;
+  @apply hover:shadow-lg hover:shadow-cyan-400/20;
+  @apply hover:text-cyan-200;
+}
+
+.web3-nav-create:hover {
+  background: linear-gradient(135deg, #00D1FF20, #7B00FF15);
+  box-shadow: 0 0 15px rgba(0, 209, 255, 0.3);
+}
+
+/* Developer focused - Electric purple theme */
+.web3-nav-dev {
+  @apply text-purple-300 bg-gradient-to-r from-purple-900/30 to-purple-800/20;
+  @apply border-purple-400/30 hover:border-purple-300/60;
+  @apply hover:shadow-lg hover:shadow-purple-400/20;
+  @apply hover:text-purple-200;
+}
+
+.web3-nav-dev:hover {
+  background: linear-gradient(135deg, #7B00FF20, #9D00FF15);
+  box-shadow: 0 0 15px rgba(123, 0, 255, 0.3);
+}
+
+/* Community features - Neon green theme */
+.web3-nav-community {
+  @apply text-emerald-300 bg-gradient-to-r from-emerald-900/30 to-emerald-800/20;
+  @apply border-emerald-400/30 hover:border-emerald-300/60;
+  @apply hover:shadow-lg hover:shadow-emerald-400/20;
+  @apply hover:text-emerald-200;
+}
+
+.web3-nav-community:hover {
+  background: linear-gradient(135deg, #00FF9920, #00D1FF15);
+  box-shadow: 0 0 15px rgba(0, 255, 153, 0.3);
+}
+
+/* Enhanced wallet button container */
+.web3-wallet-container {
+  @apply relative;
+}
+
+.web3-wallet-container button {
+  @apply bg-gradient-to-r from-cyan-500 to-purple-600;
+  @apply text-white font-semibold px-6 py-3 rounded-xl;
+  @apply border-2 border-transparent hover:border-white/20;
+  @apply transform hover:scale-105 transition-all duration-300;
+  @apply shadow-lg hover:shadow-xl;
+  background: linear-gradient(90deg, #00D1FF, #7B00FF);
+  box-shadow: 0 4px 15px rgba(0, 209, 255, 0.2);
+}
+
+.web3-wallet-container button:hover {
+  box-shadow: 0 0 20px rgba(0, 209, 255, 0.4), 0 0 40px rgba(123, 0, 255, 0.2);
+  animation: web3-pulse 2s ease-in-out infinite;
+}
+
+/* Web3 pulse animation for CTA elements */
+@keyframes web3-pulse {
+  0% {
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.4), 0 0 40px rgba(123, 0, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(0, 209, 255, 0.6), 0 0 50px rgba(123, 0, 255, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.4), 0 0 40px rgba(123, 0, 255, 0.2);
+  }
+}
+
+/* Accessibility enhancements */
+.web3-nav-button:focus {
+  @apply outline-none ring-2 ring-white/50 ring-offset-2 ring-offset-background;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .web3-nav-button {
+    @apply w-full justify-start text-left;
+  }
+  
+  .web3-wallet-container button {
+    @apply w-full;
+  }
+}
+
+/* Loading state for wallet connection */
+.web3-wallet-loading {
+  @apply relative overflow-hidden;
+}
+
+.web3-wallet-loading::after {
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+  content: '';
+  animation: web3-shimmer 1.5s infinite;
+}
+
+@keyframes web3-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Enhanced button hierarchy */
+.web3-nav-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.web3-nav-button::before {
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent;
+  content: '';
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.web3-nav-button:hover::before {
+  transform: translateX(100%);
+}
