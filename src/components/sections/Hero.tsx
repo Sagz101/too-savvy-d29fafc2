@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { WalletButton } from "@/components/ui/wallet-button";
@@ -59,7 +60,7 @@ export const Hero = () => {
             ref={contentRef}
             className={`transition-all duration-1000 ${contentInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
           >
-            {/* Logo Section - Updated with new font */}
+            {/* Logo Section - Updated to use Porscha font */}
             <div className="mb-12 flex justify-center lg:justify-start">
               <div className="p-8">
                 <h2 className="text-5xl font-bold font-porscha text-foreground tracking-tight uppercase">
