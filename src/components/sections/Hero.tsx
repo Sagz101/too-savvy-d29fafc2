@@ -1,6 +1,5 @@
 
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { WalletButton } from "@/components/ui/wallet-button";
 import { ArrowRight, Key, DollarSign, Users, Sparkles, Shield, Globe } from 'lucide-react';
@@ -15,10 +14,17 @@ export const Hero = () => {
   const { ref: contentRef, inView: contentInView } = useInView({ threshold: 0.1, triggerOnce: true });
   const { ref: ctaRef, inView: ctaInView } = useInView({ threshold: 0.1, triggerOnce: true });
   
+  const [animationStarted, setAnimationStarted] = useState(false);
   const journeySteps = ["Connect", "Create", "Monetize", "Thrive"];
   
+  useEffect(() => {
+    if (contentInView && !animationStarted) {
+      setAnimationStarted(true);
+    }
+  }, [contentInView, animationStarted]);
+  
   return (
-    <section className="relative min-h-screen pt-24 pb-16 flex items-center" style={{ background: 'hsl(var(--background))' }}>
+    <section className="relative min-h-screen pt-24 pb-16 flex items-center hero-section" style={{ background: 'hsl(var(--background))' }}>
       {/* Enhanced Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-card/20"></div>
@@ -30,23 +36,38 @@ export const Hero = () => {
       {/* Background Elements */}
       <AnimatedGradient className="opacity-10" />
       
-      {/* Enhanced particle effect */}
+      {/* Enhanced particle effect with Web3 styling */}
       <div className="absolute inset-0 -z-5 overflow-hidden">
         <div className="particles-container">
-          {[...Array(12)].map((_, i) => (
+          {[...Array(25)].map((_, i) => (
             <div
               key={i}
-              className="absolute rounded-full animate-float"
+              className={`absolute rounded-full animate-float web3-particle ${animationStarted ? 'animate-web3-float' : ''}`}
               style={{
-                background: `linear-gradient(45deg, hsl(var(--primary))/0.3, hsl(var(--primary))/0.1)`,
-                width: `${Math.random() * 4 + 2}px`,
-                height: `${Math.random() * 4 + 2}px`,
+                background: `linear-gradient(45deg, hsl(var(--primary))/0.4, rgba(0, 209, 255, 0.3))`,
+                width: `${Math.random() * 6 + 3}px`,
+                height: `${Math.random() * 6 + 3}px`,
                 top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
-                opacity: Math.random() * 0.4 + 0.1,
-                animationDuration: `${Math.random() * 25 + 20}s`,
-                animationDelay: `${Math.random() * 5}s`,
-                boxShadow: `0 0 10px hsl(var(--primary))/0.3`,
+                opacity: Math.random() * 0.6 + 0.2,
+                animationDuration: `${Math.random() * 30 + 25}s`,
+                animationDelay: `${Math.random() * 8}s`,
+                boxShadow: `0 0 15px rgba(0, 209, 255, 0.4)`,
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Blockchain nodes effect */}
+        <div className="blockchain-nodes">
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={i}
+              className={`absolute blockchain-node ${animationStarted ? 'animate-node-pulse' : ''}`}
+              style={{
+                top: `${20 + (i * 10)}%`,
+                left: `${10 + (i * 12)}%`,
+                animationDelay: `${i * 0.5}s`,
               }}
             />
           ))}
@@ -61,10 +82,10 @@ export const Hero = () => {
             ref={contentRef}
             className={`transition-all duration-1000 ${contentInView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}
           >
-            {/* Logo Section - Updated to use Porscha font */}
+            {/* Logo Section */}
             <div className="mb-12 flex justify-center lg:justify-start">
               <div className="p-8">
-                <h2 className="text-5xl font-bold font-porscha text-foreground tracking-tight uppercase">
+                <h2 className={`text-5xl font-bold font-porscha text-foreground tracking-tight uppercase ${animationStarted ? 'animate-logo-glow' : ''}`}>
                   T00 SAVVY
                 </h2>
               </div>
@@ -79,26 +100,26 @@ export const Hero = () => {
               />
             </div>
 
-            {/* Enhanced Hero Tagline with Orbitron font and glow effect */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-orbitron leading-tight mb-8 tracking-wider uppercase">
-              <span 
-                className="bg-gradient-to-r from-white via-cyan-300 to-purple-400 bg-clip-text text-transparent animate-hero-glow"
-                style={{ 
-                  textShadow: '0 0 20px rgba(0, 209, 255, 0.5)',
-                  animationDelay: '0.3s'
-                }}
-              >
-                Build. Own. Prosper.
+            {/* Enhanced Hero Tagline with animated typewriter effect */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-orbitron leading-tight mb-8 tracking-wider uppercase hero-tagline">
+              <span className={`typewriter-word ${animationStarted ? 'animate-type-1' : ''}`}>
+                Build.
+              </span>
+              <span className={`typewriter-word ${animationStarted ? 'animate-type-2' : ''}`}>
+                Own.
+              </span>
+              <span className={`typewriter-word ${animationStarted ? 'animate-type-3' : ''}`}>
+                Prosper.
               </span>
             </h1>
             
-            {/* Enhanced Subtext with Inter font */}
-            <p className="text-xl md:text-2xl font-inter text-muted-foreground mb-12 max-w-2xl leading-relaxed font-medium">
+            {/* Enhanced Subtext with fade-in animation */}
+            <p className={`text-xl md:text-2xl font-inter text-muted-foreground mb-12 max-w-2xl leading-relaxed font-medium hero-subtext ${animationStarted ? 'animate-subtext-slide' : ''}`}>
               Shape your digital future with T00 Savvy. Create freely, own your work on the blockchain, and grow your community—without barriers.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-              <div className="grok-card grok-card-hover p-8">
+              <div className="grok-card grok-card-hover p-8 feature-card">
                 <div className="flex justify-center mb-6">
                   <EnhancedIcon icon={Key} variant="primary" size="md" animated />
                 </div>
@@ -106,7 +127,7 @@ export const Hero = () => {
                 <p className="text-muted-foreground text-center leading-relaxed font-inter">You control your content, data, and digital identity—forever.</p>
               </div>
               
-              <div className="grok-card grok-card-hover p-8">
+              <div className="grok-card grok-card-hover p-8 feature-card">
                 <div className="flex justify-center mb-6">
                   <EnhancedIcon icon={DollarSign} variant="warning" size="md" animated />
                 </div>
@@ -114,7 +135,7 @@ export const Hero = () => {
                 <p className="text-muted-foreground text-center leading-relaxed font-inter">Flexible, token-native tools to turn creativity into income.</p>
               </div>
               
-              <div className="grok-card grok-card-hover p-8">
+              <div className="grok-card grok-card-hover p-8 feature-card">
                 <div className="flex justify-center mb-6">
                   <EnhancedIcon icon={Users} variant="secondary" size="md" animated />
                 </div>
@@ -123,14 +144,14 @@ export const Hero = () => {
               </div>
             </div>
             
-            {/* Enhanced CTA Section */}
+            {/* Enhanced CTA Section with pulse animation */}
             <div 
               ref={ctaRef} 
               className="flex flex-col sm:flex-row items-center gap-6"
             >
               <Button 
                 size="lg" 
-                className={`hero-cta-primary text-lg px-10 py-4 font-inter font-semibold transition-all duration-500 transform ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+                className={`hero-cta-primary text-lg px-10 py-4 font-inter font-semibold transition-all duration-500 transform ${ctaInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} ${animationStarted ? 'animate-cta-pulse' : ''}`}
                 style={{ 
                   transitionDelay: '0.6s',
                   background: 'linear-gradient(90deg, #00D1FF, #7B00FF)',

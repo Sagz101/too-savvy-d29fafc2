@@ -178,10 +178,225 @@
 .hero-cta-primary:hover {
   box-shadow: 0 0 20px rgba(0, 209, 255, 0.4), 0 0 40px rgba(123, 0, 255, 0.2);
   animation: web3-pulse 2s ease-in-out infinite;
+  background: linear-gradient(90deg, #7B00FF, #00D1FF);
 }
 
 .hero-cta-primary:focus {
   @apply outline-none ring-2 ring-cyan-400 ring-offset-2 ring-offset-background;
+}
+
+/* Hero Section Enhanced Animations */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Logo Animation */
+@keyframes logo-glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(0, 209, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(0, 209, 255, 0.6), 0 0 30px rgba(123, 0, 255, 0.3);
+  }
+}
+
+.animate-logo-glow {
+  animation: logo-glow 3s ease-in-out infinite;
+}
+
+/* Typewriter Animation for Tagline */
+.hero-tagline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .hero-tagline {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+}
+
+.typewriter-word {
+  opacity: 0;
+  transform: translateY(20px);
+  background: linear-gradient(90deg, #FFFFFF, #00D1FF, #7B00FF);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+}
+
+@keyframes typewriter-glow {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    text-shadow: none;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 10px rgba(0, 209, 255, 0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 20px rgba(0, 209, 255, 0.8), 0 0 30px rgba(123, 0, 255, 0.5);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(0, 209, 255, 0.5);
+    background-position: 0% 50%;
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(0, 209, 255, 0.8), 0 0 30px rgba(123, 0, 255, 0.5);
+    background-position: 100% 50%;
+  }
+}
+
+.animate-type-1 {
+  animation: typewriter-glow 0.8s forwards, glow-pulse 3s infinite 1s;
+  animation-delay: 0.5s;
+}
+
+.animate-type-2 {
+  animation: typewriter-glow 0.8s forwards, glow-pulse 3s infinite 1.3s;
+  animation-delay: 1.2s;
+}
+
+.animate-type-3 {
+  animation: typewriter-glow 0.8s forwards, glow-pulse 3s infinite 1.6s;
+  animation-delay: 1.9s;
+}
+
+/* Subtext Animation */
+.hero-subtext {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+@keyframes subtext-slide {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-subtext-slide {
+  animation: subtext-slide 1s ease-out forwards;
+  animation-delay: 2.8s;
+}
+
+/* CTA Button Pulse Animation */
+@keyframes cta-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(0, 209, 255, 0.3);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 6px 20px rgba(0, 209, 255, 0.5);
+  }
+}
+
+.animate-cta-pulse {
+  animation: cta-pulse 2s ease-in-out infinite;
+  animation-delay: 3.5s;
+}
+
+/* Enhanced Particle Effects */
+.web3-particle {
+  border-radius: 50%;
+  filter: blur(0.5px);
+}
+
+@keyframes web3-float {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translateY(-20px) translateX(15px) rotate(90deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-10px) rotate(180deg);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(15px) translateX(-15px) rotate(270deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0) translateX(0) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+.animate-web3-float {
+  animation: web3-float 30s ease-in-out infinite;
+}
+
+/* Blockchain Nodes Animation */
+.blockchain-node {
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(0, 209, 255, 0.8), rgba(123, 0, 255, 0.3));
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 209, 255, 0.5);
+}
+
+@keyframes node-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+    box-shadow: 0 0 10px rgba(0, 209, 255, 0.5);
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.8), 0 0 30px rgba(123, 0, 255, 0.4);
+  }
+}
+
+.animate-node-pulse {
+  animation: node-pulse 2s ease-in-out infinite;
+}
+
+/* Feature Cards Animation */
+.feature-card {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.feature-card:nth-child(1) {
+  animation-delay: 3.2s;
+}
+
+.feature-card:nth-child(2) {
+  animation-delay: 3.5s;
+}
+
+.feature-card:nth-child(3) {
+  animation-delay: 3.8s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Floating particles animation */
@@ -205,6 +420,25 @@
 
 .animate-float {
   animation: float 25s ease-in-out infinite;
+}
+
+/* Accessibility: Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .hero-tagline .typewriter-word,
+  .hero-subtext,
+  .hero-cta-primary,
+  .web3-particle,
+  .blockchain-node,
+  .feature-card {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  .animate-logo-glow {
+    animation: none !important;
+    text-shadow: 0 0 10px rgba(0, 209, 255, 0.3) !important;
+  }
 }
 
 /* Glow effects */
