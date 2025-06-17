@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
   Twitter, Facebook, Linkedin,
-  Share2, Link2, Coins, Webhook, BarChart3, Wallet, Settings, Store, UsersRound, Star, Zap
+  Share2, Link2, Coins, Webhook, BarChart3, Wallet, Settings, Store, UsersRound, Star, Zap, MessageSquare, Shield
 } from 'lucide-react';
 import { PostDashboard } from './PostDashboard';
 import { SmartLinkMonitor } from './SmartLinkMonitor';
@@ -12,6 +12,8 @@ import { RewardsWallet } from './RewardsWallet';
 import { CustomChannels } from './CustomChannels';
 import { CrossPlatformDistribution } from './CrossPlatformDistribution';
 import { DiscoverFeed } from "./DiscoverFeed";
+import { SecureMessaging } from '../messaging/SecureMessaging';
+import { CrossPlatformShare } from '../messaging/CrossPlatformShare';
 import { useToast } from "@/hooks/use-toast";
 
 export const NeuraSocialHub: React.FC = () => {
@@ -19,7 +21,7 @@ export const NeuraSocialHub: React.FC = () => {
   const { toast } = useToast();
 
   // Placeholder share action
-  const handleShare = (platform: string) => {
+  const handleShare = async (platform: string) => {
     toast({
       title: "Coming Soon!",
       description: `Share to ${platform} will be supported soon.`,
@@ -54,7 +56,7 @@ export const NeuraSocialHub: React.FC = () => {
     <div className="min-h-screen bg-background p-6 relative">
       <div className="max-w-7xl mx-auto">
 
-        {/* Top action bar: Discover, Share to NeuraSocial */}
+        {/* Top action bar */}
         <div className="flex flex-col sm:flex-row items-center gap-2 mb-6 justify-between">
           <div className="flex gap-2 flex-wrap">
             <Button
@@ -80,6 +82,14 @@ export const NeuraSocialHub: React.FC = () => {
               onClick={() => setActiveTab('channels')}
             >
               <Webhook className="w-4 h-4 mr-1" /> Custom Channels
+            </Button>
+            <Button
+              variant="outline"
+              className="border-[#00FF99] text-[#00FF99] font-bold hover:bg-[#00FF99]/10"
+              size="sm"
+              onClick={() => setActiveTab('messaging')}
+            >
+              <Shield className="w-4 h-4 mr-1" /> Secure Chat
             </Button>
           </div>
           <Button
@@ -169,6 +179,17 @@ export const NeuraSocialHub: React.FC = () => {
                   </span>
                 </CardContent>
               </Card>
+              {/* Secure Messaging */}
+              <Card className="bg-black/70 border-green-400/40">
+                <CardContent className="pt-4 pb-3 px-4 flex flex-col gap-1">
+                  <span className="flex items-center gap-2 font-semibold text-green-400 text-lg">
+                    <Shield className="w-5 h-5" /> Secure Messaging
+                  </span>
+                  <span className="text-xs mt-1">
+                    End-to-end encrypted Web3 communication
+                  </span>
+                </CardContent>
+              </Card>
             </div>
           </div>
           {/* Share On Section */}
@@ -212,11 +233,14 @@ export const NeuraSocialHub: React.FC = () => {
             <div className="flex flex-col items-center min-w-[120px]">
               <Store className="w-6 h-6 text-purple-400" /><span className="text-xs mt-2">Custom Channels</span>
             </div>
+            <div className="flex flex-col items-center min-w-[120px]">
+              <Shield className="w-6 h-6 text-green-400" /><span className="text-xs mt-2">Secure Chat</span>
+            </div>
           </div>
         </section>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-7">
+          <TabsList className="grid w-full grid-cols-8">
             <TabsTrigger value="compose" className="flex items-center gap-2">
               <Share2 className="w-4 h-4" />
               Compose
@@ -236,6 +260,10 @@ export const NeuraSocialHub: React.FC = () => {
             <TabsTrigger value="distribution" className="flex items-center gap-2">
               <BarChart3 className="w-4 h-4" />
               Distribution
+            </TabsTrigger>
+            <TabsTrigger value="messaging" className="flex items-center gap-2">
+              <MessageSquare className="w-4 h-4" />
+              Messaging
             </TabsTrigger>
             <TabsTrigger value="discover" className="flex items-center gap-2">
               <Store className="w-4 h-4" />
@@ -267,6 +295,23 @@ export const NeuraSocialHub: React.FC = () => {
             <CrossPlatformDistribution />
           </TabsContent>
 
+          <TabsContent value="messaging">
+            <Tabs defaultValue="secure-chat" className="space-y-4">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="secure-chat">Secure Chat</TabsTrigger>
+                <TabsTrigger value="cross-platform">Cross-Platform Share</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="secure-chat">
+                <SecureMessaging />
+              </TabsContent>
+              
+              <TabsContent value="cross-platform">
+                <CrossPlatformShare />
+              </TabsContent>
+            </Tabs>
+          </TabsContent>
+
           <TabsContent value="discover">
             <DiscoverFeed />
           </TabsContent>
@@ -285,7 +330,7 @@ export const NeuraSocialHub: React.FC = () => {
           </TabsContent>
         </Tabs>
 
-        {/* Footer join button for mobile (optional, remove if not needed) */}
+        {/* Footer join button for mobile */}
         <div className="sm:hidden fixed bottom-4 left-0 right-0 px-4 flex justify-center z-40 pointer-events-none">
           <Button
             className="pointer-events-auto w-full bg-gradient-to-r from-neura-cyan to-green-700 font-bold"
