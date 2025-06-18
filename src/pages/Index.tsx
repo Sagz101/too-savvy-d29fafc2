@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { ImprovedModernHeader } from '@/components/layout/ImprovedModernHeader';
-import { CosmosInspiredHero } from '@/components/ui/cosmos-inspired-hero';
+import { StreamlinedHeader } from '@/components/ui/streamlined-header';
+import { EnhancedHeroSection } from '@/components/ui/enhanced-hero-section';
 import { ConsolidatedDeveloperResources } from '@/components/ui/consolidated-developer-resources';
 import { ConsolidatedStats } from '@/components/ui/consolidated-stats';
 import { CommunityGovernance } from '@/components/ui/community-governance';
@@ -22,13 +22,20 @@ import { Footer } from '@/components/layout/Footer';
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <ImprovedModernHeader />
+      <StreamlinedHeader />
       <main>
-        <CosmosInspiredHero />
+        {/* Enhanced Hero with xAI Design Principles */}
+        <EnhancedHeroSection />
+        
+        {/* Clear Information Hierarchy */}
         <ConsolidatedDeveloperResources />
         <UserTypes />
         <OnboardingGuide />
+        
+        {/* Interactive Stats with Performance Focus */}
         <ConsolidatedStats />
+        
+        {/* Core Features with Visual Hierarchy */}
         <CoreFeatures />
         <VideoShowcase />
         <CreatorDashboard />
@@ -36,9 +43,13 @@ const Index = () => {
         <SocialHub />
         <Threaditor />
         <AICopilot />
+        
+        {/* Trust and Transparency Elements */}
         <TrustedByCreators />
         <CommunityGovernance />
         <PlatformOverview />
+        
+        {/* Clear Call to Action */}
         <Cta />
       </main>
       <Footer />
