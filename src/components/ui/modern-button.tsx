@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 
@@ -8,6 +9,7 @@ interface ModernButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement
   size?: 'sm' | 'md' | 'lg' | 'xl';
   loading?: boolean;
   children: React.ReactNode;
+  asChild?: boolean;
 }
 
 export const ModernButton: React.FC<ModernButtonProps> = ({
@@ -17,6 +19,7 @@ export const ModernButton: React.FC<ModernButtonProps> = ({
   children,
   className,
   disabled,
+  asChild = false,
   ...props
 }) => {
   const baseClasses = "inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
@@ -36,8 +39,10 @@ export const ModernButton: React.FC<ModernButtonProps> = ({
     xl: "px-8 py-4 text-lg h-14"
   };
 
+  const Comp = asChild ? Slot : "button";
+
   return (
-    <button
+    <Comp
       className={cn(
         baseClasses,
         variantClasses[variant],
@@ -49,6 +54,6 @@ export const ModernButton: React.FC<ModernButtonProps> = ({
     >
       {loading && <Loader2 className="w-4 h-4 animate-spin" />}
       {children}
-    </button>
+    </Comp>
   );
 };

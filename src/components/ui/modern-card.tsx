@@ -2,7 +2,7 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-interface ModernCardProps {
+interface ModernCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
   variant?: 'default' | 'elevated' | 'outlined' | 'filled';
@@ -16,6 +16,7 @@ export const ModernCard: React.FC<ModernCardProps> = ({
   variant = 'default',
   size = 'md',
   interactive = false,
+  ...props
 }) => {
   const baseClasses = "rounded-2xl transition-all duration-300";
   
@@ -47,6 +48,7 @@ export const ModernCard: React.FC<ModernCardProps> = ({
       )}
       role={interactive ? "button" : undefined}
       tabIndex={interactive ? 0 : undefined}
+      {...props}
     >
       {children}
     </div>
