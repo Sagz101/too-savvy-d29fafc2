@@ -1,82 +1,88 @@
 
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lotus+Flower&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&family=Source+Sans+Pro:wght@300;400;600;700;900&family=Michroma:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Cosmos Network inspired dark theme */
-    --background: 240 10% 3.9%;
+    /* Cosmos Network inspired dark theme - Enhanced */
+    --background: 220 13% 6%; /* Deep cosmic black */
     --foreground: 0 0% 98%;
-    --card: 240 6% 8%;
+    --card: 220 13% 9%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 6% 8%;
+    --popover: 220 13% 9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 195 100% 50%; /* Cosmos cyan */
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
+    --primary: 194 100% 50%; /* Cosmos cyan */
+    --primary-foreground: 220 13% 6%;
+    --secondary: 220 8% 12%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
+    --muted: 220 8% 12%;
+    --muted-foreground: 220 5% 65%;
+    --accent: 220 8% 12%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 195 100% 50%;
-    --chart-1: 195 100% 50%;
+    --border: 220 8% 15%;
+    --input: 220 8% 12%;
+    --ring: 194 100% 50%;
+    --chart-1: 194 100% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
     --radius: 0.5rem;
-    --sidebar-background: 240 6% 8%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 195 100% 50%;
-    --sidebar-primary-foreground: 240 5.9% 10%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 195 100% 50%;
+    --sidebar-background: 220 13% 9%;
+    --sidebar-foreground: 220 4% 96%;
+    --sidebar-primary: 194 100% 50%;
+    --sidebar-primary-foreground: 220 13% 6%;
+    --sidebar-accent: 220 8% 12%;
+    --sidebar-accent-foreground: 220 4% 96%;
+    --sidebar-border: 220 8% 15%;
+    --sidebar-ring: 194 100% 50%;
+    
+    /* Custom Cosmos Network colors */
+    --cosmos-dark: 220 13% 6%;
+    --cosmos-darker: 220 15% 4%;
+    --cosmos-gray: 220 8% 15%;
+    --cosmos-cyan: 194 100% 50%;
+    --cosmos-border: 220 8% 15%;
   }
 
   .dark {
-    /* Enhanced dark theme matching Cosmos Network */
-    --background: 240 10% 3.9%;
+    /* Enhanced dark theme matching Cosmos Network exactly */
+    --background: 220 13% 6%;
     --foreground: 0 0% 98%;
-    --card: 240 6% 8%;
+    --card: 220 13% 9%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 6% 8%;
+    --popover: 220 13% 9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 195 100% 50%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
+    --primary: 194 100% 50%;
+    --primary-foreground: 220 13% 6%;
+    --secondary: 220 8% 12%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
+    --muted: 220 8% 12%;
+    --muted-foreground: 220 5% 65%;
+    --accent: 220 8% 12%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 195 100% 50%;
-    --chart-1: 195 100% 50%;
+    --border: 220 8% 15%;
+    --input: 220 8% 12%;
+    --ring: 194 100% 50%;
+    --chart-1: 194 100% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --sidebar-background: 240 6% 8%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 195 100% 50%;
-    --sidebar-primary-foreground: 240 5.9% 10%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 195 100% 50%;
+    --sidebar-background: 220 13% 9%;
+    --sidebar-foreground: 220 4% 96%;
+    --sidebar-primary: 194 100% 50%;
+    --sidebar-primary-foreground: 220 13% 6%;
+    --sidebar-accent: 220 8% 12%;
+    --sidebar-accent-foreground: 220 4% 96%;
+    --sidebar-border: 220 8% 15%;
+    --sidebar-ring: 194 100% 50%;
   }
 }
 
@@ -84,84 +90,171 @@
   * {
     @apply border-border;
   }
+  
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, hsl(240, 10%, 3.9%) 0%, hsl(240, 8%, 6%) 100%);
+    font-family: 'Inter', 'Open Sans', sans-serif;
+    background: linear-gradient(135deg, hsl(var(--cosmos-darker)) 0%, hsl(var(--cosmos-dark)) 100%);
     min-height: 100vh;
   }
   
-  /* Smooth scrolling fallback for browsers that support it */
+  /* Smooth scrolling with CSS-only fallback */
   html {
     scroll-behavior: smooth;
   }
+  
+  /* CSS-only fallback for active navigation states */
+  :target {
+    scroll-margin-top: 80px;
+  }
 }
 
-/* Custom scrollbar styles - Cosmos inspired */
+@layer utilities {
+  /* Custom Cosmos Network color utilities */
+  .bg-cosmos-dark {
+    background-color: hsl(var(--cosmos-dark));
+  }
+  
+  .bg-cosmos-darker {
+    background-color: hsl(var(--cosmos-darker));
+  }
+  
+  .text-cosmos-cyan {
+    color: hsl(var(--cosmos-cyan));
+  }
+  
+  .border-cosmos-border {
+    border-color: hsl(var(--cosmos-border));
+  }
+  
+  .ring-cosmos-cyan {
+    --tw-ring-color: hsl(var(--cosmos-cyan));
+  }
+  
+  .ring-offset-cosmos-dark {
+    --tw-ring-offset-color: hsl(var(--cosmos-dark));
+  }
+}
+
+/* Enhanced scrollbar styles - Cosmos inspired */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--background));
+  background: hsl(var(--cosmos-dark));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary) / 0.3);
+  background: hsl(var(--cosmos-cyan) / 0.3);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--primary) / 0.5);
+  background: hsl(var(--cosmos-cyan) / 0.5);
 }
 
-/* Ensure sections have proper spacing from fixed navigation */
+/* Ensure sections have proper spacing from fixed navigation - Updated to 80px */
 section {
-  scroll-margin-top: 70px;
+  scroll-margin-top: 80px;
+  padding-top: 80px;
 }
 
-/* Focus styles for better accessibility - Cosmos cyan */
+/* Enhanced focus styles for accessibility - Cosmos cyan */
 button:focus-visible,
-a:focus-visible {
-  outline: 2px solid hsl(var(--primary));
+a:focus-visible,
+.brand:focus-visible {
+  outline: 2px solid hsl(var(--cosmos-cyan));
   outline-offset: 2px;
+}
+
+/* CSS-only fallback for navigation active states */
+nav a[href="#create"]:target,
+nav a[href="#own"]:target,
+nav a[href="#thrive"]:target,
+nav a[href="#get-started"]:target,
+nav a[href="#developer-resources"]:target,
+nav a[href="#dashboard"]:target {
+  color: white !important;
+  font-weight: 600 !important;
+  position: relative;
+}
+
+nav a[href="#create"]:target::after,
+nav a[href="#own"]:target::after,
+nav a[href="#thrive"]:target::after,
+nav a[href="#get-started"]:target::after,
+nav a[href="#developer-resources"]:target::after,
+nav a[href="#dashboard"]:target::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: white;
+  border-radius: 9999px;
 }
 
 /* Enhanced gradient backgrounds for sections */
 .section-gradient {
-  background: linear-gradient(135deg, hsl(240, 6%, 8%) 0%, hsl(240, 8%, 12%) 100%);
+  background: linear-gradient(135deg, hsl(var(--cosmos-dark)) 0%, hsl(var(--card)) 100%);
 }
 
 /* Cosmos-inspired glow effects */
 .cosmos-glow {
-  box-shadow: 0 0 20px hsl(var(--primary) / 0.1);
+  box-shadow: 0 0 20px hsl(var(--cosmos-cyan) / 0.1);
 }
 
 .cosmos-border {
-  border: 1px solid hsl(var(--primary) / 0.2);
+  border: 1px solid hsl(var(--cosmos-border));
 }
 
 /* Enhanced card styles */
 .cosmos-card {
-  background: linear-gradient(135deg, hsl(240, 6%, 8%) 0%, hsl(240, 8%, 12%) 100%);
+  background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--cosmos-dark)) 100%);
   border: 1px solid hsl(var(--border));
-  box-shadow: 0 4px 6px -1px hsl(240, 10%, 3.9% / 0.1), 0 2px 4px -1px hsl(240, 10%, 3.9% / 0.06);
+  box-shadow: 0 4px 6px -1px hsl(var(--cosmos-dark) / 0.1), 0 2px 4px -1px hsl(var(--cosmos-dark) / 0.06);
 }
 
-/* Navigation enhancements */
-nav {
+/* Navigation enhancements - Cosmos Network inspired */
+header {
   backdrop-filter: blur(20px);
-  background: hsl(240, 10%, 3.9% / 0.9);
-  border-bottom: 1px solid hsl(var(--border));
+  background: hsl(var(--cosmos-dark) / 0.95);
+  border-bottom: 1px solid hsl(var(--cosmos-border));
+  box-shadow: 0 1px 3px 0 hsl(var(--cosmos-dark) / 0.1), 0 1px 2px 0 hsl(var(--cosmos-dark) / 0.06);
 }
 
 /* Button hover effects matching Cosmos */
 .btn-cosmos {
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%);
+  background: linear-gradient(135deg, hsl(var(--cosmos-cyan)) 0%, hsl(var(--cosmos-cyan) / 0.8) 100%);
   transition: all 0.3s ease;
 }
 
 .btn-cosmos:hover {
   transform: translateY(-1px);
-  box-shadow: 0 10px 25px hsl(var(--primary) / 0.2);
+  box-shadow: 0 10px 25px hsl(var(--cosmos-cyan) / 0.2);
+}
+
+/* Mobile menu enhancements */
+@media (max-width: 767px) {
+  .hamburger {
+    display: block;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .nav-links.active {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Performance optimizations */
+.transition-smooth {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
 }

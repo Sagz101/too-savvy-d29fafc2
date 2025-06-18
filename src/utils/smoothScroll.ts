@@ -1,5 +1,5 @@
 
-export const smoothScrollToSection = (sectionId: string, offset: number = 70) => {
+export const smoothScrollToSection = (sectionId: string, offset: number = 80) => {
   const element = document.getElementById(sectionId);
   if (element) {
     const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
@@ -18,7 +18,7 @@ export const smoothScrollToSection = (sectionId: string, offset: number = 70) =>
   }
 };
 
-export const getCurrentActiveSection = (sectionIds: string[], offset: number = 100): string | null => {
+export const getCurrentActiveSection = (sectionIds: string[], offset: number = 120): string | null => {
   let currentSection = null;
   let closestDistance = Infinity;
   
@@ -28,7 +28,7 @@ export const getCurrentActiveSection = (sectionIds: string[], offset: number = 1
       const rect = element.getBoundingClientRect();
       const distance = Math.abs(rect.top - offset);
       
-      // Consider a section active if it's near the top of the viewport
+      // Consider a section active if it's near the top of the viewport (accounting for 80px header)
       if (rect.top <= offset && rect.bottom >= offset) {
         if (distance < closestDistance) {
           closestDistance = distance;
@@ -46,5 +46,21 @@ export const handleKeyboardNavigation = (event: KeyboardEvent, callback: () => v
   if (event.key === 'Enter' || event.key === ' ') {
     event.preventDefault();
     callback();
+  }
+};
+
+// Analytics integration helper for Web3 and traditional analytics
+export const initializeAnalytics = () => {
+  // Prepare for Web3 analytics integration
+  if (typeof window !== 'undefined') {
+    // Custom event listener for navigation tracking
+    window.addEventListener('navClick', (event: CustomEvent) => {
+      console.log('Navigation analytics event:', event.detail);
+      
+      // Here you can integrate with:
+      // - Chainlink oracles for on-chain analytics
+      // - IPFS for decentralized data storage
+      // - Traditional analytics services
+    });
   }
 };
