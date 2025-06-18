@@ -136,6 +136,42 @@
   }
 }
 
+/* Enhanced Hero Animations */
+@keyframes hero-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes subtext-slide {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-entrance {
+  animation: hero-entrance 0.8s ease-out forwards;
+}
+
+.animate-subtext-slide {
+  animation: subtext-slide 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+  opacity: 0;
+}
+
 /* Enhanced scrollbar styles - Cosmos inspired */
 ::-webkit-scrollbar {
   width: 8px;
@@ -157,7 +193,6 @@
 /* Ensure sections have proper spacing from fixed navigation - Updated to 80px */
 section {
   scroll-margin-top: 80px;
-  padding-top: 80px;
 }
 
 /* Enhanced focus styles for accessibility - Cosmos cyan */
@@ -257,4 +292,20 @@ header {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
+}
+
+/* Hero Section Specific Styles */
+.hero-title {
+  background: linear-gradient(135deg, #ffffff 0%, hsl(var(--cosmos-cyan)) 50%, #ffffff 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease-in-out infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
