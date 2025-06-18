@@ -27,7 +27,7 @@ export const SimplifiedHero: React.FC = () => {
     >
       {/* Background Image */}
       <div 
-        className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat opacity-40"
+        className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-70"
         style={{
           backgroundImage: `url('/lovable-uploads/8d44053c-6868-4746-9c11-b3fc7aa79589.png')`
         }}
@@ -35,10 +35,10 @@ export const SimplifiedHero: React.FC = () => {
       />
       
       {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-cosmos-darker/80 via-cosmos-dark/70 to-background/80" aria-hidden="true" />
+      <div className="absolute inset-0 -z-5 bg-gradient-to-b from-cosmos-darker/60 via-cosmos-dark/50 to-background/70" aria-hidden="true" />
 
       {/* Subtle Background Effects */}
-      <div className="absolute inset-0 -z-10" aria-hidden="true">
+      <div className="absolute inset-0 -z-1" aria-hidden="true">
         {/* Particle effect */}
         <div className="absolute inset-0">
           {[...Array(15)].map((_, i) => (
