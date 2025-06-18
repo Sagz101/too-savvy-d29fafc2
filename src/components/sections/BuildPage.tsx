@@ -95,7 +95,7 @@ export const BuildPage: React.FC = () => {
                   {index < quickStartSteps.length - 1 && (
                     <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-[#00FFCC] to-[#FF00FF] transform -translate-y-1/2 z-10"></div>
                   )}
-                </ModCard>
+                </ModernCard>
               ))}
             </div>
           </div>
