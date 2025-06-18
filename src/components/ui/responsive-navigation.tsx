@@ -27,7 +27,7 @@ export const ResponsiveNavigation: React.FC = () => {
   };
 
   return (
-    <React.Fragment>
+    <>
       {/* Desktop Navigation */}
       <nav className="hidden lg:block fixed top-20 left-0 right-0 z-40 bg-[#0F0F1A]/95 backdrop-blur-xl border-b border-[#00FFCC]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -82,7 +82,10 @@ export const ResponsiveNavigation: React.FC = () => {
             {/* Current Page Indicator */}
             <div className="flex items-center gap-2">
               {navigationItems.find(item => isActivePath(item.path))?.icon && (
-                <navigationItems.find(item => isActivePath(item.path))!.icon size={20} className="text-[#00FFCC]" />
+                React.createElement(navigationItems.find(item => isActivePath(item.path))!.icon, {
+                  size: 20,
+                  className: "text-[#00FFCC]"
+                })
               )}
               <span className="text-white font-medium">
                 {navigationItems.find(item => isActivePath(item.path))?.label || 'Home'}
@@ -148,6 +151,6 @@ export const ResponsiveNavigation: React.FC = () => {
 
       {/* Spacer for fixed navigation */}
       <div className="h-16 lg:h-32"></div>
-    </React.Fragment>
+    </>
   );
 };
