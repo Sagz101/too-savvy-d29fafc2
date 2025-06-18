@@ -78,7 +78,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #0F0F1A 0%, #1A1A2E 100%)' }}>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       <ImprovedModernHeader />
       <StickyNavigation currentPage={currentPage} />
       
