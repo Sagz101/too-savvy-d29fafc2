@@ -34,25 +34,27 @@ export const ResponsiveNavigation: React.FC = () => {
           <div className="flex items-center justify-between h-16">
             {/* Main Navigation */}
             <div className="flex items-center space-x-1">
-              {navigationItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`group relative flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-300 text-sm font-medium ${
-                    isActivePath(item.path)
-                      ? 'bg-gradient-to-r from-[#00FFCC]/20 to-[#FF00FF]/20 text-[#00FFCC] border border-[#00FFCC]/30'
-                      : 'text-white/70 hover:text-[#00FFCC] hover:bg-[#00FFCC]/10'
-                  }`}
-                >
-                  <item.icon size={16} />
-                  <span>{item.label}</span>
-                  
-                  {/* Tooltip */}
-                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-2 bg-[#1A1A2E] border border-[#00FFCC]/30 rounded-lg text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50">
-                    {item.description}
-                  </div>
-                </Link>
-              ))}
+              {navigationItems.map((item) => {
+                const activeClasses = isActivePath(item.path)
+                  ? 'bg-gradient-to-r from-[#00FFCC]/20 to-[#FF00FF]/20 text-[#00FFCC] border border-[#00FFCC]/30'
+                  : 'text-white/70 hover:text-[#00FFCC] hover:bg-[#00FFCC]/10';
+                
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`group relative flex items-center gap-2 px-4 py-2 rounded-xl transition-all duration-300 text-sm font-medium ${activeClasses}`}
+                  >
+                    <item.icon size={16} />
+                    <span>{item.label}</span>
+                    
+                    {/* Tooltip */}
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-2 bg-[#1A1A2E] border border-[#00FFCC]/30 rounded-lg text-xs text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50">
+                      {item.description}
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Search and Wallet */}
@@ -114,24 +116,26 @@ export const ResponsiveNavigation: React.FC = () => {
               </div>
 
               {/* Navigation Items */}
-              {navigationItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-base font-medium min-h-[48px] ${
-                    isActivePath(item.path)
-                      ? 'bg-gradient-to-r from-[#00FFCC]/20 to-[#FF00FF]/20 text-[#00FFCC] border border-[#00FFCC]/30'
-                      : 'text-white/70 hover:text-[#00FFCC] hover:bg-[#00FFCC]/10'
-                  }`}
-                >
-                  <item.icon size={20} />
-                  <div>
-                    <div>{item.label}</div>
-                    <div className="text-xs text-white/50">{item.description}</div>
-                  </div>
-                </Link>
-              ))}
+              {navigationItems.map((item) => {
+                const activeClasses = isActivePath(item.path)
+                  ? 'bg-gradient-to-r from-[#00FFCC]/20 to-[#FF00FF]/20 text-[#00FFCC] border border-[#00FFCC]/30'
+                  : 'text-white/70 hover:text-[#00FFCC] hover:bg-[#00FFCC]/10';
+                
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-base font-medium min-h-[48px] ${activeClasses}`}
+                  >
+                    <item.icon size={20} />
+                    <div>
+                      <div>{item.label}</div>
+                      <div className="text-xs text-white/50">{item.description}</div>
+                    </div>
+                  </Link>
+                );
+              })}
 
               {/* Wallet Connect */}
               <div className="pt-4 border-t border-[#00FFCC]/20">
