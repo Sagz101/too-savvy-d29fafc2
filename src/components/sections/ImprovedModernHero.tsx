@@ -49,7 +49,7 @@ export const ImprovedModernHero: React.FC = () => {
       desc: "Your content, data, and identity—secured on blockchain forever with smart contract audits.", 
       highlight: "🔐 You Own It",
       color: "primary",
-      security: "audited"
+      security: "audited" as const
     },
     { 
       icon: Zap, 
@@ -57,7 +57,7 @@ export const ImprovedModernHero: React.FC = () => {
       desc: "Multi-chain compatibility with Layer 2 solutions for optimal gas fees and speed.", 
       highlight: "⚡ Multi-Chain",
       color: "warning",
-      security: "verified"
+      security: "verified" as const
     },
     { 
       icon: Users, 
@@ -65,7 +65,7 @@ export const ImprovedModernHero: React.FC = () => {
       desc: "Community-driven decisions through DAO voting and token-based governance.", 
       highlight: "🌐 Community-Owned",
       color: "secondary",
-      security: "community"
+      security: "community" as const
     }
   ];
 
