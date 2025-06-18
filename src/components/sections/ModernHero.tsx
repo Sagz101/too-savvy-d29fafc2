@@ -25,42 +25,45 @@ export const ModernHero: React.FC = () => {
       ref={heroRef}
       className="relative min-h-screen pt-24 pb-16 flex items-center overflow-hidden"
       style={{ background: 'hsl(var(--background))' }}
+      aria-label="T00 Savvy Platform Introduction"
     >
-      {/* Modern Background with Subtle Patterns */}
-      <div className="absolute inset-0 -z-10">
+      {/* Enhanced Background with improved accessibility */}
+      <div className="absolute inset-0 -z-10" aria-hidden="true">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-card/10"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iaHNsKHZhcigtLWJvcmRlcikpIiBzdHJva2Utd2lkdGg9IjAuNSIgb3BhY2l0eT0iMC4xIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIiAvPjwvc3ZnPg==')] opacity-30"></div>
       </div>
 
       <ModernContainer size="xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Content Column */}
+          {/* Content Column - Improved structure and hierarchy */}
           <div className={`space-y-8 transition-all duration-1000 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-            {/* Brand Logo */}
-            <div className="flex justify-center lg:justify-start">
+            {/* Brand Logo with better semantic structure */}
+            <header className="flex justify-center lg:justify-start">
               <div className="p-6">
                 <ModernHeading 
                   level={2} 
                   className={`text-4xl lg:text-5xl font-porscha text-foreground tracking-tight uppercase ${animationStarted ? 'animate-logo-glow' : ''}`}
+                  as="h1"
                 >
                   T00 SAVVY
                 </ModernHeading>
               </div>
-            </div>
+            </header>
 
-            {/* Main Tagline with Enhanced Typography */}
+            {/* Main Value Proposition with improved hierarchy */}
             <div className="space-y-6">
               <ModernHeading 
                 level={1}
-                className={`text-5xl md:text-6xl lg:text-7xl font-orbitron font-black leading-tight tracking-wider uppercase hero-tagline ${animationStarted ? 'animate-hero-entrance' : ''}`}
+                className={`text-4xl md:text-5xl lg:text-6xl font-orbitron font-black leading-tight tracking-wider uppercase hero-tagline ${animationStarted ? 'animate-hero-entrance' : ''}`}
+                as="h2"
               >
-                <span className={`typewriter-word ${animationStarted ? 'animate-type-1' : ''}`}>
+                <span className={`typewriter-word block sm:inline ${animationStarted ? 'animate-type-1' : ''}`}>
                   Build.
                 </span>
-                <span className={`typewriter-word ${animationStarted ? 'animate-type-2' : ''}`}>
+                <span className={`typewriter-word block sm:inline ${animationStarted ? 'animate-type-2' : ''}`}>
                   Own.
                 </span>
-                <span className={`typewriter-word ${animationStarted ? 'animate-type-3' : ''}`}>
+                <span className={`typewriter-word block sm:inline ${animationStarted ? 'animate-type-3' : ''}`}>
                   Prosper.
                 </span>
               </ModernHeading>
@@ -74,20 +77,23 @@ export const ModernHero: React.FC = () => {
               </ModernText>
             </div>
 
-            {/* Value Proposition Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Value Proposition Cards with improved accessibility */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4" role="list" aria-label="Platform benefits">
               {[
-                { icon: Sparkles, title: "Ownership", desc: "You control your content, data, and digital identity—forever.", delay: "3.2s" },
-                { icon: Globe, title: "Monetization", desc: "Flexible, token-native tools to turn creativity into income.", delay: "3.5s" },
-                { icon: ArrowRight, title: "Community", desc: "Build loyal, token-powered audiences who grow with you.", delay: "3.8s" }
+                { icon: Sparkles, title: "True Ownership", desc: "You control your content, data, and digital identity—forever.", delay: "3.2s" },
+                { icon: Globe, title: "Smart Monetization", desc: "Flexible, token-native tools to turn creativity into income.", delay: "3.5s" },
+                { icon: ArrowRight, title: "Vibrant Community", desc: "Build loyal, token-powered audiences who grow with you.", delay: "3.8s" }
               ].map((item, index) => (
                 <ModernCard 
                   key={index}
                   variant="elevated"
                   size="sm"
                   interactive
-                  className={`feature-card text-center transition-all duration-700`}
+                  className="feature-card text-center transition-all duration-700"
                   style={{ animationDelay: item.delay }}
+                  role="listitem"
+                  tabIndex={0}
+                  aria-label={`${item.title}: ${item.desc}`}
                 >
                   <div className="flex justify-center mb-3">
                     <EnhancedIcon 
@@ -95,6 +101,7 @@ export const ModernHero: React.FC = () => {
                       variant={index === 0 ? "primary" : index === 1 ? "warning" : "secondary"} 
                       size="md" 
                       animated 
+                      aria-hidden="true"
                     />
                   </div>
                   <ModernHeading level={6} className="mb-2 font-inter">
@@ -107,82 +114,92 @@ export const ModernHero: React.FC = () => {
               ))}
             </div>
 
-            {/* Modern CTA Section */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
+            {/* Enhanced CTA Section with better UX flow */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 pt-4" role="group" aria-label="Get started actions">
               <ModernButton
                 variant="primary"
                 size="lg"
                 className={`shadow-xl ${animationStarted ? 'animate-cta-pulse' : ''}`}
                 asChild
               >
-                <Link to="/video-studio">
-                  <Sparkles size={20} />
+                <Link to="/video-studio" aria-describedby="primary-cta-description">
+                  <Sparkles size={20} aria-hidden="true" />
                   Start Building Now
-                  <ArrowRight size={20} />
+                  <ArrowRight size={20} aria-hidden="true" />
                 </Link>
               </ModernButton>
+              
+              <span id="primary-cta-description" className="sr-only">
+                Navigate to the video studio to start creating content
+              </span>
               
               <ModernButton
                 variant="outline"
                 size="lg"
                 asChild
               >
-                <Link to="/projects-creator">
-                  <Globe size={20} />
+                <Link to="/projects-creator" aria-describedby="secondary-cta-description">
+                  <Globe size={20} aria-hidden="true" />
                   Launch Projects
                 </Link>
               </ModernButton>
+              
+              <span id="secondary-cta-description" className="sr-only">
+                Go to the project creator to launch new initiatives
+              </span>
               
               <WalletButton />
             </div>
           </div>
 
-          {/* Dashboard Preview Column */}
+          {/* Dashboard Preview with improved structure */}
           <div className={`relative transition-all duration-1000 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
             <ModernCard 
               variant="elevated"
               size="lg"
               className="relative overflow-hidden min-h-[500px] bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl"
+              role="img"
+              aria-label="T00 Savvy Creator Dashboard Preview"
             >
-              {/* Dashboard Header */}
-              <div className="absolute top-0 left-0 right-0 bg-card/90 backdrop-blur-sm border-b border-border/30 p-4 flex items-center justify-between z-10">
-                <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-400"></div>
+              {/* Dashboard Header with better semantic structure */}
+              <header className="absolute top-0 left-0 right-0 bg-card/90 backdrop-blur-sm border-b border-border/30 p-4 flex items-center justify-between z-10">
+                <div className="flex items-center space-x-3" aria-label="Window controls">
+                  <div className="w-3 h-3 rounded-full bg-red-400" aria-hidden="true"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-400" aria-hidden="true"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-400" aria-hidden="true"></div>
                 </div>
                 <ModernText variant="caption" className="font-medium font-inter">
                   T00 Savvy Creator Dashboard
                 </ModernText>
-                <div className="w-5"></div>
-              </div>
+                <div className="w-5" aria-hidden="true"></div>
+              </header>
 
-              {/* Dashboard Content */}
+              {/* Dashboard Content with improved data presentation */}
               <div className="relative z-10 p-6 pt-20">
                 <div className="flex items-center justify-between mb-6">
                   <ModernHeading level={5} className="font-inter">Creator Dashboard</ModernHeading>
-                  <div className="bg-green-500/20 text-green-400 px-3 py-1 rounded-lg text-sm border border-green-500/20">
-                    Connected
+                  <div className="bg-green-500/20 text-green-400 px-3 py-1 rounded-lg text-sm border border-green-500/20 font-medium">
+                    <span aria-hidden="true">●</span> Connected
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-2 gap-4 mb-6" role="group" aria-label="Creator statistics">
                   <ModernCard variant="filled" size="sm">
                     <ModernText variant="caption" muted className="mb-1">Content NFTs</ModernText>
-                    <ModernHeading level={3} className="font-orbitron">12</ModernHeading>
+                    <ModernHeading level={3} className="font-orbitron" aria-label="12 Content NFTs">12</ModernHeading>
                   </ModernCard>
                   <ModernCard variant="filled" size="sm">
                     <ModernText variant="caption" muted className="mb-1">Subscribers</ModernText>
-                    <ModernHeading level={3} className="font-orbitron">248</ModernHeading>
+                    <ModernHeading level={3} className="font-orbitron" aria-label="248 Subscribers">248</ModernHeading>
                   </ModernCard>
                 </div>
 
                 <ModernCard variant="filled" size="sm" className="mb-6">
                   <div className="flex items-center justify-between mb-3">
                     <ModernText variant="body" className="font-medium">Revenue (30d)</ModernText>
-                    <ModernText variant="caption" className="text-green-400 font-semibold">+24%</ModernText>
+                    <ModernText variant="caption" className="text-green-400 font-semibold" aria-label="24% increase">+24%</ModernText>
                   </div>
-                  <div className="h-16 w-full relative">
+                  <div className="h-16 w-full relative" role="img" aria-label="Revenue chart showing upward trend">
                     <div className="absolute bottom-0 left-0 right-0">
                       <div className="flex items-end h-12 space-x-1">
                         {[40, 25, 35, 30, 45, 38, 50, 55, 45, 60, 58, 65].map((height, i) => (
@@ -194,6 +211,7 @@ export const ModernHero: React.FC = () => {
                               opacity: inView ? 1 : 0,
                               transition: `opacity 0.5s ease ${0.3 + (i * 0.05)}s`
                             }}
+                            aria-hidden="true"
                           />
                         ))}
                       </div>
@@ -205,7 +223,7 @@ export const ModernHero: React.FC = () => {
                   <ModernText variant="body" className="font-medium p-3 border-b border-border/30">
                     Recent Activity
                   </ModernText>
-                  <div className="p-2">
+                  <div className="p-2" role="list" aria-label="Recent activity feed">
                     {["New subscriber joined", "Content NFT sold for $ETH 0.15", "Community message"].map((item, i) => (
                       <div 
                         key={i} 
@@ -215,9 +233,12 @@ export const ModernHero: React.FC = () => {
                           transform: inView ? 'translateY(0)' : 'translateY(10px)',
                           transition: `all 0.5s ease ${0.6 + (i * 0.1)}s`
                         }}
+                        role="listitem"
                       >
                         <ModernText variant="caption">{item}</ModernText>
-                        <ModernText variant="small" muted>Just now</ModernText>
+                        <ModernText variant="small" muted>
+                          <time dateTime="2024-01-01T00:00:00Z">Just now</time>
+                        </ModernText>
                       </div>
                     ))}
                   </div>
