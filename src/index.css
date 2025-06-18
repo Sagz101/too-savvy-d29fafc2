@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -556,5 +555,153 @@
   .safe-area-inset {
     padding-left: max(1rem, env(safe-area-inset-left));
     padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Enhanced Cosmos-inspired animations */
+@keyframes cosmic-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(123, 0, 255, 0.6), 0 0 60px rgba(0, 209, 255, 0.3);
+  }
+}
+
+@keyframes node-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.cosmic-glow {
+  animation: cosmic-glow 3s ease-in-out infinite;
+}
+
+.node-pulse {
+  animation: node-pulse 2s ease-in-out infinite;
+}
+
+.gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Cosmos-inspired button effects */
+.cosmos-button {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, #00D1FF, #7B00FF);
+  background-size: 200% 200%;
+  transition: all 0.3s ease;
+}
+
+.cosmos-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cosmos-button:hover::before {
+  left: 100%;
+}
+
+.cosmos-button:hover {
+  background-position: 100% 100%;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 209, 255, 0.4);
+}
+
+/* Enhanced card hover effects inspired by Cosmos */
+.cosmos-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cosmos-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 209, 255, 0.3);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 0 20px rgba(0, 209, 255, 0.2);
+}
+
+/* Network visualization styles */
+.network-node {
+  position: relative;
+  display: inline-block;
+}
+
+.network-node::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0;
+  animation: node-ripple 2s infinite;
+}
+
+@keyframes node-ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+/* Improved mobile responsiveness for Cosmos-inspired design */
+@media (max-width: 768px) {
+  .cosmos-card {
+    transform: none;
+  }
+  
+  .cosmos-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .cosmos-button:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Enhanced accessibility for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-glow,
+  .node-pulse,
+  .gradient-shift,
+  .network-node::after {
+    animation: none !important;
+  }
+  
+  .cosmos-card:hover,
+  .cosmos-button:hover {
+    transform: none !important;
   }
 }

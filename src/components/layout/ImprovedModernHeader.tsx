@@ -1,21 +1,15 @@
 
 import React, { useState } from 'react';
-import { Menu, Home, Users, Video, Code, Store } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ModernButton } from '@/components/ui/modern-button';
 import { ModernContainer } from '@/components/ui/modern-container';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
+import { StreamlinedNavigation } from '@/components/ui/streamlined-navigation';
 import { MobileMenu } from './MobileMenu';
 
 export const ImprovedModernHeader: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const primaryNavItems = [
-    { to: "/", icon: Home, label: "Dashboard" },
-    { to: "/global-innovators", icon: Users, label: "Collaborate" },
-    { to: "/video-studio", icon: Video, label: "Create" },
-    { to: "/commerce-studio", icon: Store, label: "Commerce" },
-  ];
 
   return (
     <>
@@ -31,23 +25,8 @@ export const ImprovedModernHeader: React.FC = () => {
               />
             </Link>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-2 flex-1 justify-center">
-              {primaryNavItems.map((item) => (
-                <ModernButton
-                  key={item.to}
-                  variant="ghost"
-                  size="sm"
-                  asChild
-                  className="touch-target"
-                >
-                  <Link to={item.to} className="flex items-center gap-2">
-                    <item.icon size={16} />
-                    {item.label}
-                  </Link>
-                </ModernButton>
-              ))}
-            </nav>
+            {/* Streamlined Desktop Navigation */}
+            <StreamlinedNavigation />
 
             {/* Right Side Actions */}
             <div className="flex items-center gap-3">

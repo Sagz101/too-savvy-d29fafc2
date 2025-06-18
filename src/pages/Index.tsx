@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { ImprovedModernHeader } from '@/components/layout/ImprovedModernHeader';
-import { ImprovedModernHero } from '@/components/sections/ImprovedModernHero';
+import { CosmosInspiredHero } from '@/components/ui/cosmos-inspired-hero';
+import { DeveloperFocusedCTA } from '@/components/ui/developer-focused-cta';
 import { CoreFeatures } from '@/components/sections/CoreFeatures';
 import { ModularStats } from '@/components/sections/ModularStats';
 import { CreatorDashboard } from '@/components/sections/CreatorDashboard';
@@ -22,7 +24,8 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <ImprovedModernHeader />
       <main>
-        <ImprovedModernHero />
+        <CosmosInspiredHero />
+        <DeveloperFocusedCTA />
         <UserTypes />
         <OnboardingGuide />
         <ModularStats />
