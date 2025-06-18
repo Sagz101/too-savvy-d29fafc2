@@ -25,32 +25,74 @@ const Index = () => {
       <StreamlinedHeader />
       <main>
         {/* Enhanced Hero with xAI Design Principles */}
-        <EnhancedHeroSection />
+        <section id="hero">
+          <EnhancedHeroSection />
+        </section>
         
         {/* Clear Information Hierarchy */}
-        <ConsolidatedDeveloperResources />
-        <UserTypes />
-        <OnboardingGuide />
+        <section id="developer-resources">
+          <ConsolidatedDeveloperResources />
+        </section>
+        
+        <section id="user-types">
+          <UserTypes />
+        </section>
+        
+        <section id="get-started">
+          <OnboardingGuide />
+        </section>
         
         {/* Interactive Stats with Performance Focus */}
-        <ConsolidatedStats />
+        <section id="stats">
+          <ConsolidatedStats />
+        </section>
         
         {/* Core Features with Visual Hierarchy */}
-        <CoreFeatures />
-        <VideoShowcase />
-        <CreatorDashboard />
-        <EcommerceStore />
-        <SocialHub />
-        <Threaditor />
-        <AICopilot />
+        <section id="features">
+          <CoreFeatures />
+        </section>
+        
+        <section id="video-showcase">
+          <VideoShowcase />
+        </section>
+        
+        <section id="creator-dashboard">
+          <CreatorDashboard />
+        </section>
+        
+        <section id="commerce-studio">
+          <EcommerceStore />
+        </section>
+        
+        <section id="social-hub">
+          <SocialHub />
+        </section>
+        
+        <section id="threaditor">
+          <Threaditor />
+        </section>
+        
+        <section id="ai-copilot">
+          <AICopilot />
+        </section>
         
         {/* Trust and Transparency Elements */}
-        <TrustedByCreators />
-        <CommunityGovernance />
-        <PlatformOverview />
+        <section id="trusted-creators">
+          <TrustedByCreators />
+        </section>
+        
+        <section id="governance">
+          <CommunityGovernance />
+        </section>
+        
+        <section id="platform-overview">
+          <PlatformOverview />
+        </section>
         
         {/* Clear Call to Action */}
-        <Cta />
+        <section id="cta">
+          <Cta />
+        </section>
       </main>
       <Footer />
     </div>
