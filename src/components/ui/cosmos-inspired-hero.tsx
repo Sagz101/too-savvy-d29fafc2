@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Sparkles, Globe, Shield, Users, Zap, Code, Book, Gamepad2 } from 'lucide-react';
+import { ArrowRight, Sparkles, Globe, Shield, Users, Code, Book, Gamepad2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ModernButton } from '@/components/ui/modern-button';
 import { ModernCard } from '@/components/ui/modern-card';
@@ -110,7 +110,7 @@ export const CosmosInspiredHero: React.FC = () => {
       </div>
 
       <ModernContainer size="xl">
-        {/* Trust Signals */}
+        {/* Consolidated Trust Signals */}
         <div className="mb-8 flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xs">
           <SecurityIndicator status="audited" />
           <InteroperabilityBadges />
@@ -153,7 +153,7 @@ export const CosmosInspiredHero: React.FC = () => {
               </ModernText>
             </header>
 
-            {/* CTA Buttons - Cosmos Style */}
+            {/* Streamlined CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-4 pt-6">
               <ModernButton
                 variant="primary"
@@ -193,7 +193,7 @@ export const CosmosInspiredHero: React.FC = () => {
               </ModernButton>
             </div>
 
-            {/* Wallet Connect */}
+            {/* Single Wallet Connect */}
             <div className="pt-4">
               <WalletConnectButton />
             </div>
@@ -235,7 +235,7 @@ export const CosmosInspiredHero: React.FC = () => {
                       </div>
                     </div>
                     <div className="flex items-center text-xs text-primary group-hover:text-primary/80 transition-colors">
-                      <span>Explore</span>
+                      <span>Discover</span>
                       <ArrowRight size={12} className="ml-1" />
                     </div>
                   </Link>
@@ -243,12 +243,12 @@ export const CosmosInspiredHero: React.FC = () => {
               ))}
             </div>
 
-            {/* Multi-Chain Visual */}
+            {/* Consolidated Multi-Chain Visual */}
             <div className="mt-8 p-6 bg-card/30 rounded-2xl border border-border/50">
               <div className="text-center mb-4">
                 <ModernText variant="caption" className="font-medium flex items-center justify-center gap-2">
                   <Globe size={16} className="text-primary" />
-                  Multi-Chain Ready
+                  Multi-Chain Support
                 </ModernText>
               </div>
               <div className="flex items-center justify-center gap-4">
@@ -267,7 +267,7 @@ export const CosmosInspiredHero: React.FC = () => {
                 ))}
               </div>
               <ModernText variant="small" muted className="text-center mt-3 text-xs">
-                Seamless cross-chain deployment and asset management
+                Ready • Compatibility • EVM Integration
               </ModernText>
             </div>
           </div>
