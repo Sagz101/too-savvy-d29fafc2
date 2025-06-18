@@ -1,5 +1,5 @@
-
 import React from 'react';
+import { CosmosInspiredNavigation } from '@/components/ui/cosmos-inspired-navigation';
 import { StreamlinedHeader } from '@/components/ui/streamlined-header';
 import { EnhancedHeroSection } from '@/components/ui/enhanced-hero-section';
 import { ConsolidatedDeveloperResources } from '@/components/ui/consolidated-developer-resources';
@@ -22,75 +22,75 @@ import { Footer } from '@/components/layout/Footer';
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <StreamlinedHeader />
-      <main>
+      <CosmosInspiredNavigation />
+      <main className="pt-16">
         {/* Enhanced Hero with xAI Design Principles */}
-        <section id="hero">
+        <section id="hero" className="pt-16">
           <EnhancedHeroSection />
         </section>
         
         {/* Clear Information Hierarchy */}
-        <section id="developer-resources">
+        <section id="developer-resources" className="pt-16">
           <ConsolidatedDeveloperResources />
         </section>
         
-        <section id="user-types">
+        <section id="user-types" className="pt-16">
           <UserTypes />
         </section>
         
-        <section id="get-started">
+        <section id="get-started" className="pt-16">
           <OnboardingGuide />
         </section>
         
         {/* Interactive Stats with Performance Focus */}
-        <section id="stats">
+        <section id="stats" className="pt-16">
           <ConsolidatedStats />
         </section>
         
         {/* Core Features with Visual Hierarchy */}
-        <section id="features">
+        <section id="features" className="pt-16">
           <CoreFeatures />
         </section>
         
-        <section id="video-showcase">
+        <section id="video-showcase" className="pt-16">
           <VideoShowcase />
         </section>
         
-        <section id="creator-dashboard">
+        <section id="creator-dashboard" className="pt-16">
           <CreatorDashboard />
         </section>
         
-        <section id="commerce-studio">
+        <section id="commerce-studio" className="pt-16">
           <EcommerceStore />
         </section>
         
-        <section id="social-hub">
+        <section id="social-hub" className="pt-16">
           <SocialHub />
         </section>
         
-        <section id="threaditor">
+        <section id="threaditor" className="pt-16">
           <Threaditor />
         </section>
         
-        <section id="ai-copilot">
+        <section id="ai-copilot" className="pt-16">
           <AICopilot />
         </section>
         
         {/* Trust and Transparency Elements */}
-        <section id="trusted-creators">
+        <section id="trusted-creators" className="pt-16">
           <TrustedByCreators />
         </section>
         
-        <section id="governance">
+        <section id="governance" className="pt-16">
           <CommunityGovernance />
         </section>
         
-        <section id="platform-overview">
+        <section id="platform-overview" className="pt-16">
           <PlatformOverview />
         </section>
         
         {/* Clear Call to Action */}
-        <section id="cta">
+        <section id="cta" className="pt-16">
           <Cta />
         </section>
       </main>
