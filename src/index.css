@@ -58,6 +58,9 @@
     --duration-normal: 300ms;
     --duration-slow: 500ms;
     --timing-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Mobile-first touch targets */
+    --touch-target: 44px;
   }
 
   .dark {
@@ -96,17 +99,27 @@
     @apply border-border;
   }
 
-  /* Enhanced base typography with better readability */
+  /* Enhanced base typography with better mobile readability */
   body {
     @apply text-foreground font-normal antialiased;
     background: hsl(var(--background));
-    font-size: 16px;
+    font-size: clamp(14px, 2.5vw, 16px);
     line-height: 1.6;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Mobile-first touch targets */
+  .touch-target {
+    min-height: var(--touch-target);
+    min-width: var(--touch-target);
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Improved focus indicators for better accessibility */
@@ -123,7 +136,7 @@
     @apply z-50 font-medium;
   }
 
-  /* Modern typography scale with better hierarchy */
+  /* Modern typography scale with better mobile hierarchy */
   h1, h2, h3, h4, h5, h6 {
     @apply font-semibold text-foreground;
     line-height: 1.2;
@@ -133,36 +146,37 @@
   }
 
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
+    font-size: clamp(2rem, 6vw, 4rem);
     font-weight: 800;
     line-height: 1.1;
   }
 
   h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl;
+    font-size: clamp(1.75rem, 5vw, 3rem);
     font-weight: 700;
   }
 
   h3 {
-    @apply text-2xl md:text-3xl;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
     font-weight: 600;
   }
 
   h4 {
-    @apply text-xl md:text-2xl;
+    font-size: clamp(1.25rem, 3vw, 1.875rem);
   }
 
   h5 {
-    @apply text-lg md:text-xl;
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
   }
 
   h6 {
-    @apply text-base md:text-lg;
+    font-size: clamp(1rem, 2vw, 1.25rem);
   }
 
   p {
     @apply text-muted-foreground leading-relaxed;
     margin-bottom: var(--space-md);
+    font-size: clamp(0.875rem, 2vw, 1rem);
   }
 
   /* Enhanced button and interactive element styling */
@@ -177,7 +191,7 @@
   }
 }
 
-/* Enhanced card styling with better shadows and spacing */
+/* Enhanced card styling with better mobile shadows and spacing */
 .grok-card {
   @apply bg-card/60 backdrop-blur-sm rounded-2xl border border-border/50 shadow-lg;
   background: linear-gradient(135deg, hsl(var(--card))/0.8, hsl(var(--card))/0.4);
@@ -185,14 +199,22 @@
 }
 
 .grok-card-hover {
-  @apply hover:bg-card/80 hover:border-border/70 hover:shadow-xl hover:scale-[1.02];
+  @apply hover:bg-card/80 hover:border-border/70 hover:shadow-xl;
   transform-origin: center;
+}
+
+/* Mobile-optimized hover effects */
+@media (hover: hover) and (pointer: fine) {
+  .grok-card-hover:hover {
+    transform: scale(1.02);
+  }
 }
 
 .grok-input {
   @apply bg-card/50 border border-border/50 rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground backdrop-blur-sm;
   background: linear-gradient(135deg, hsl(var(--card))/0.6, hsl(var(--card))/0.3);
   transition: all var(--duration-normal) var(--timing-ease);
+  min-height: var(--touch-target);
 }
 
 .grok-input:focus {
@@ -204,30 +226,43 @@
   @apply bg-primary text-primary-foreground rounded-xl px-6 py-3 font-medium shadow-lg;
   transition: all var(--duration-normal) var(--timing-ease);
   background: linear-gradient(90deg, #00D1FF, #7B00FF);
+  min-height: var(--touch-target);
 }
 
 .grok-button-primary:hover {
-  @apply scale-105;
   background: linear-gradient(90deg, #7B00FF, #00D1FF);
   box-shadow: 0 0 20px rgba(0, 209, 255, 0.4);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .grok-button-primary:hover {
+    transform: scale(1.05);
+  }
 }
 
 .grok-button-secondary {
   @apply bg-card/60 text-foreground border border-border/50 rounded-xl px-6 py-3 font-medium backdrop-blur-sm;
   transition: all var(--duration-normal) var(--timing-ease);
+  min-height: var(--touch-target);
 }
 
 .grok-button-secondary:hover {
-  @apply bg-card/80 border-border/70 scale-105;
+  @apply bg-card/80 border-border/70;
 }
 
-/* Enhanced Hero Section Animations */
+@media (hover: hover) and (pointer: fine) {
+  .grok-button-secondary:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Enhanced Hero Section Animations with mobile optimization */
 .hero-section {
   position: relative;
   overflow: hidden;
 }
 
-/* Logo Animation with improved timing */
+/* Logo Animation with improved mobile performance */
 @keyframes logo-glow {
   0%, 100% {
     text-shadow: 0 0 10px rgba(0, 209, 255, 0.3);
@@ -241,15 +276,15 @@
   animation: logo-glow 3s ease-in-out infinite;
 }
 
-/* Enhanced typewriter animation with better performance */
+/* Mobile-optimized typewriter animation */
 .hero-tagline {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem;
+  gap: clamp(0.25rem, 2vw, 0.5rem);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .hero-tagline {
     flex-direction: column;
     align-items: center;
@@ -309,7 +344,7 @@
   animation-delay: 1.9s;
 }
 
-/* Enhanced subtext animation */
+/* Enhanced subtext animation with mobile optimization */
 .hero-subtext {
   opacity: 0;
   transform: translateY(30px);
@@ -332,7 +367,7 @@
   animation-delay: 2.8s;
 }
 
-/* Enhanced CTA button animation */
+/* Enhanced CTA button animation with mobile consideration */
 @keyframes cta-pulse {
   0%, 100% {
     transform: scale(1);
@@ -366,7 +401,7 @@
   will-change: opacity, transform;
 }
 
-/* Feature cards with improved staggered animation */
+/* Feature cards with improved mobile staggered animation */
 .feature-card {
   animation: fadeInUp 0.8s var(--timing-ease) forwards;
   opacity: 0;
@@ -393,7 +428,7 @@
   }
 }
 
-/* Enhanced accessibility support */
+/* Enhanced accessibility support with mobile considerations */
 @media (prefers-reduced-motion: reduce) {
   .hero-tagline .typewriter-word,
   .hero-subtext,
@@ -414,7 +449,7 @@
   }
 }
 
-/* Enhanced contrast for better readability */
+/* Enhanced contrast for better mobile readability */
 @media (prefers-contrast: high) {
   :root {
     --foreground: 210 100% 100%;
@@ -423,10 +458,10 @@
   }
 }
 
-/* Modern scrollbar styling */
+/* Mobile-optimized scrollbar styling */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -435,7 +470,7 @@
 
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--border));
-  border-radius: 4px;
+  border-radius: 3px;
   transition: background var(--duration-normal);
 }
 
@@ -449,60 +484,58 @@
   color: hsl(var(--primary-foreground));
 }
 
-/* Better print styles */
-@media print {
-  * {
-    background: transparent !important;
-    color: black !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  .hero-tagline {
+    font-size: clamp(1.5rem, 8vw, 2.5rem) !important;
   }
   
-  a, a:visited {
-    text-decoration: underline;
+  .hero-subtext {
+    font-size: clamp(0.875rem, 3vw, 1rem) !important;
   }
   
-  .no-print {
-    display: none !important;
+  .touch-target {
+    min-height: 48px;
+    min-width: 48px;
+  }
+  
+  /* Ensure proper spacing on small screens */
+  .space-y-mobile > * + * {
+    margin-top: clamp(1rem, 4vw, 1.5rem);
   }
 }
 
-/* Enhanced spacing utilities */
-.space-y-modern > * + * {
-  margin-top: clamp(var(--space-md), 2.5vw, var(--space-xl));
+/* Web3-specific UI enhancements */
+.web3-glow {
+  box-shadow: 0 0 20px rgba(0, 209, 255, 0.3);
 }
 
-.space-x-modern > * + * {
-  margin-left: clamp(var(--space-md), 2.5vw, var(--space-xl));
+.blockchain-pulse {
+  animation: blockchain-pulse 2s ease-in-out infinite;
 }
 
-/* Modern glassmorphism effects */
+@keyframes blockchain-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+/* Modern glassmorphism effects optimized for mobile */
 .glass-effect {
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .glass-effect-dark {
   background: rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* Enhanced responsive design */
-@media (max-width: 768px) {
-  .hero-tagline {
-    font-size: 2rem !important;
-  }
-  
-  .hero-subtext {
-    font-size: 1rem !important;
-  }
-  
-  .hero-cta-primary {
-    font-size: 1rem !important;
-    padding: 0.75rem 1.5rem !important;
-  }
 }
 
 /* Container queries for modern responsive design */
@@ -515,5 +548,13 @@
 @container (min-width: 768px) {
   .container-md\:text-lg {
     font-size: 1.125rem;
+  }
+}
+
+/* Safe area adjustments for mobile devices */
+@supports (padding: max(0px)) {
+  .safe-area-inset {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
   }
 }

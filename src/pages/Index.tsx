@@ -1,6 +1,6 @@
 import React from 'react';
-import { ModernHeader } from '@/components/layout/ModernHeader';
-import { ModernHero } from '@/components/sections/ModernHero';
+import { ImprovedModernHeader } from '@/components/layout/ImprovedModernHeader';
+import { ImprovedModernHero } from '@/components/sections/ImprovedModernHero';
 import { CoreFeatures } from '@/components/sections/CoreFeatures';
 import { ModularStats } from '@/components/sections/ModularStats';
 import { CreatorDashboard } from '@/components/sections/CreatorDashboard';
@@ -20,9 +20,9 @@ import { Footer } from '@/components/layout/Footer';
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <ModernHeader />
+      <ImprovedModernHeader />
       <main>
-        <ModernHero />
+        <ImprovedModernHero />
         <UserTypes />
         <OnboardingGuide />
         <ModularStats />
