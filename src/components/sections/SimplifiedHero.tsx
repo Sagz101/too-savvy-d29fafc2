@@ -22,23 +22,26 @@ export const SimplifiedHero: React.FC = () => {
   return (
     <section 
       ref={heroRef}
-      className="relative min-h-screen pt-32 pb-16 flex items-center justify-center overflow-hidden bg-gradient-to-b from-cosmos-darker via-cosmos-dark to-background"
+      className="hero relative min-h-screen pt-32 pb-16 flex items-center justify-center overflow-hidden"
+      style={{
+        backgroundImage: `url('/lovable-uploads/3f0974d3-47df-4618-ab1a-75c7edc562f9.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
       aria-label="T00 Savvy - Web3 Creator Platform"
     >
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-70"
-        style={{
-          backgroundImage: `url('/lovable-uploads/8d44053c-6868-4746-9c11-b3fc7aa79589.png')`
-        }}
-        aria-hidden="true"
-      />
-      
       {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 -z-5 bg-gradient-to-b from-cosmos-darker/60 via-cosmos-dark/50 to-background/70" aria-hidden="true" />
+      <div 
+        className="absolute inset-0 z-1"
+        style={{
+          background: 'rgba(0, 0, 0, 0.6)'
+        }}
+        aria-hidden="true" 
+      />
 
       {/* Subtle Background Effects */}
-      <div className="absolute inset-0 -z-1" aria-hidden="true">
+      <div className="absolute inset-0 z-2" aria-hidden="true">
         {/* Particle effect */}
         <div className="absolute inset-0">
           {[...Array(15)].map((_, i) => (
