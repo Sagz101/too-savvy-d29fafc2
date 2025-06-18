@@ -104,7 +104,7 @@
     background: hsl(var(--background));
     font-size: clamp(14px, 2.5vw, 16px);
     line-height: 1.6;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -255,43 +255,10 @@
   }
 }
 
-/* Enhanced Hero Section Animations with optimized fonts */
+/* Enhanced Hero Section Animations with mobile optimization */
 .hero-section {
   position: relative;
   overflow: hidden;
-}
-
-/* Hero Tagline with Orbitron font */
-.hero-tagline {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  color: #FFFFFF;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-shadow: 0 0 10px rgba(0, 209, 255, 0.5);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(0.25rem, 2vw, 0.5rem);
-}
-
-/* Hero Subtext with Inter font */
-.hero-subtext {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  color: #E0E0E0;
-  letter-spacing: 0.02em;
-  opacity: 0;
-  transform: translateY(30px);
-  will-change: opacity, transform;
-}
-
-@media (max-width: 640px) {
-  .hero-tagline {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.25rem;
-  }
 }
 
 /* Logo Animation with improved mobile performance */
@@ -306,6 +273,22 @@
 
 .animate-logo-glow {
   animation: logo-glow 3s ease-in-out infinite;
+}
+
+/* Mobile-optimized typewriter animation */
+.hero-tagline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.25rem, 2vw, 0.5rem);
+}
+
+@media (max-width: 640px) {
+  .hero-tagline {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
 }
 
 .typewriter-word {
@@ -360,6 +343,13 @@
   animation-delay: 1.9s;
 }
 
+/* Enhanced subtext animation with mobile optimization */
+.hero-subtext {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: opacity, transform;
+}
+
 @keyframes subtext-slide {
   from {
     opacity: 0;
@@ -376,28 +366,7 @@
   animation-delay: 2.8s;
 }
 
-/* Enhanced CTA button animation with new styling */
-.hero-cta-primary {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  background: linear-gradient(90deg, #00D1FF, #7B00FF);
-  color: #FFFFFF;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.hero-cta-primary:hover {
-  box-shadow: 0 0 20px rgba(0, 209, 255, 0.7);
-  transform: scale(1.05);
-}
-
-.hero-cta-primary:focus {
-  outline: 2px solid #00D1FF;
-  outline-offset: 2px;
-}
-
+/* Enhanced CTA button animation with mobile consideration */
 @keyframes cta-pulse {
   0%, 100% {
     transform: scale(1);
@@ -412,6 +381,23 @@
 .animate-cta-pulse {
   animation: cta-pulse 2s ease-in-out infinite;
   animation-delay: 3.5s;
+}
+
+/* Enhanced hero entrance animation */
+@keyframes animate-hero-entrance {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-hero-entrance {
+  animation: animate-hero-entrance 1s var(--timing-ease) forwards;
+  will-change: opacity, transform;
 }
 
 /* Feature cards with improved mobile staggered animation */

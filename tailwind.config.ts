@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -193,16 +192,6 @@ export default {
                 'typewriter': {
                     'from': { width: '0' },
                     'to': { width: '100%' }
-                },
-                'fadeInUp': {
-                    '0%': { 
-                        opacity: '0',
-                        transform: 'translateY(30px)'
-                    },
-                    '100%': { 
-                        opacity: '1',
-                        transform: 'translateY(0)'
-                    }
                 }
 			},
 			animation: {
@@ -217,8 +206,7 @@ export default {
                 'cosmic-pulse': 'cosmic-pulse 8s ease-in-out infinite',
                 'progress-fill': 'progress-fill 2s ease-out forwards',
                 'hero-glow': 'hero-glow 3s ease-in-out infinite',
-                'typewriter': 'typewriter 2s steps(20) forwards',
-                'fadeInUp': 'fadeInUp 0.8s ease-out forwards'
+                'typewriter': 'typewriter 2s steps(20) forwards'
 			}
 		}
 	},

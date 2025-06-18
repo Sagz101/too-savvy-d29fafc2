@@ -1,33 +1,46 @@
 
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import { ModernHeader } from '@/components/layout/ModernHeader';
-import { ResponsiveNavigation } from '@/components/ui/responsive-navigation';
-import { HomePage } from '@/components/sections/HomePage';
-import { CreatePage } from '@/components/sections/CreatePage';
-import { BuildPage } from '@/components/sections/BuildPage';
-import { GovernPage } from '@/components/sections/GovernPage';
-import { LearnPage } from '@/components/sections/LearnPage';
-import { EcosystemPage } from '@/components/sections/EcosystemPage';
+import { ImprovedModernHeader } from '@/components/layout/ImprovedModernHeader';
+import { CosmosInspiredHero } from '@/components/ui/cosmos-inspired-hero';
+import { ConsolidatedDeveloperResources } from '@/components/ui/consolidated-developer-resources';
+import { ConsolidatedStats } from '@/components/ui/consolidated-stats';
+import { CommunityGovernance } from '@/components/ui/community-governance';
+import { TrustedByCreators } from '@/components/ui/trusted-by-creators';
+import { CoreFeatures } from '@/components/sections/CoreFeatures';
+import { CreatorDashboard } from '@/components/sections/CreatorDashboard';
+import { VideoShowcase } from '@/components/sections/VideoShowcase';
+import { OnboardingGuide } from '@/components/sections/OnboardingGuide';
+import { AICopilot } from '@/components/sections/AICopilot';
+import { SocialHub } from '@/components/sections/SocialHub';
+import { EcommerceStore } from '@/components/sections/EcommerceStore';
+import { Threaditor } from '@/components/sections/Threaditor';
+import { PlatformOverview } from '@/components/sections/PlatformOverview';
+import { UserTypes } from '@/components/sections/UserTypes';
+import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0F0F1A] via-[#1A1A2E] to-[#0F0F1A]">
-      <ModernHeader />
-      <ResponsiveNavigation />
-      
-      <main className="relative">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/create" element={<CreatePage />} />
-          <Route path="/build" element={<BuildPage />} />
-          <Route path="/govern" element={<GovernPage />} />
-          <Route path="/learn" element={<LearnPage />} />
-          <Route path="/ecosystem" element={<EcosystemPage />} />
-        </Routes>
+    <div className="min-h-screen bg-background text-foreground">
+      <ImprovedModernHeader />
+      <main>
+        <CosmosInspiredHero />
+        <ConsolidatedDeveloperResources />
+        <UserTypes />
+        <OnboardingGuide />
+        <ConsolidatedStats />
+        <CoreFeatures />
+        <VideoShowcase />
+        <CreatorDashboard />
+        <EcommerceStore />
+        <SocialHub />
+        <Threaditor />
+        <AICopilot />
+        <TrustedByCreators />
+        <CommunityGovernance />
+        <PlatformOverview />
+        <Cta />
       </main>
-      
       <Footer />
     </div>
   );

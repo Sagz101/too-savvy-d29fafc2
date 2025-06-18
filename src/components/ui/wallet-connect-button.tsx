@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Wallet, ChevronDown, CreditCard, ShoppingCart, Users, Link2, Zap, LogOut } from "lucide-react";
+import { Wallet, ChevronDown, CreditCard, ShoppingCart, Users, Link2, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useWallet } from "@/services/wallet";
 import { 
@@ -41,23 +41,19 @@ export const WalletConnectButton = () => {
     }
   };
 
+  // Format the address to display only first and last few characters
   const formatAddress = (address: string) => {
     return `${address.substring(0, 4)}...${address.substring(address.length - 4)}`;
   };
   
   const navigateToFinanceHub = (tab: string = "finance-hub") => {
     navigate("/finance-hub");
+    // Add tab to URL - in a real app, we would support this in the routing
     window.history.pushState({}, "", `/finance-hub?tab=${tab}`);
     
+    // Simulate tab selection through a custom event
     const tabChangeEvent = new CustomEvent('neura-tab-change', { detail: { tabId: tab } });
     window.dispatchEvent(tabChangeEvent);
-  };
-
-  const handleDisconnect = () => {
-    disconnectWallet();
-    toast.success("Wallet disconnected", {
-      description: "You have been successfully logged out"
-    });
   };
 
   return (
@@ -68,33 +64,32 @@ export const WalletConnectButton = () => {
             <Button 
               variant="default"
               size="sm" 
-              className="bg-gradient-to-r from-[#00FFCC] to-[#FF00FF] hover:from-[#00FFCC]/80 hover:to-[#FF00FF]/80 text-white font-medium border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 min-h-[48px] px-6"
+              className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90"
             >
-              <Wallet size={18} className="mr-2" /> 
-              Connect Wallet
+              <Wallet size={16} className="mr-2" /> Connect Wallet
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-[#0F0F1A] border border-[#00FFCC]/30 text-white max-w-md backdrop-blur-xl">
+          <DialogContent className="bg-neura-dark border-neura-purple/30 text-white max-w-md">
             <DialogHeader>
-              <DialogTitle className="text-center text-xl text-white mb-4">Connect Your Wallet</DialogTitle>
+              <DialogTitle className="text-center text-xl text-white">Connect Wallet</DialogTitle>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <p className="text-white/70 text-center mb-4">
-                Connect your wallet to access your personalized Web3 creator portal.
+                Connect your wallet to access your personalized Neura portal.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {["MetaMask", "WalletConnect", "Coinbase", "Rainbow"].map((walletName) => (
+                {["MetaMask", "WalletConnect", "Coinbase", "Rainbow"].map((wallet) => (
                   <Card 
-                    key={walletName}
-                    className="bg-[#1A1A2E]/60 border border-[#00FFCC]/20 hover:border-[#00FFCC]/50 transition-all cursor-pointer group hover:scale-105 duration-200"
-                    onClick={() => handleConnect(walletName)}
+                    key={wallet}
+                    className="bg-neura-dark/80 border border-neura-purple/20 hover:border-neura-purple/50 transition-all cursor-pointer"
+                    onClick={() => handleConnect(wallet)}
                   >
-                    <div className="p-4 flex flex-col items-center justify-center min-h-[120px]">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[#00FFCC]/20 to-[#FF00FF]/20 rounded-full flex items-center justify-center mb-3 border border-[#00FFCC]/30 group-hover:scale-110 transition-transform">
-                        <Wallet size={24} className="text-[#00FFCC]" />
+                    <div className="p-4 flex flex-col items-center justify-center">
+                      <div className="w-12 h-12 bg-gradient-to-br from-neura-purple/20 to-neura-cyan/20 rounded-full flex items-center justify-center mb-3 border border-neura-purple/30">
+                        <Wallet size={24} className="text-neura-cyan" />
                       </div>
-                      <span className="text-white font-medium text-sm">{walletName}</span>
+                      <span className="text-white font-medium">{wallet}</span>
                     </div>
                   </Card>
                 ))}
@@ -102,7 +97,7 @@ export const WalletConnectButton = () => {
               
               {isConnecting && (
                 <div className="text-center text-white/70 mt-2 flex items-center justify-center">
-                  <div className="w-5 h-5 border-2 border-[#00FFCC] border-t-transparent rounded-full animate-spin mr-2"></div>
+                  <div className="w-5 h-5 border-2 border-neura-cyan border-t-transparent rounded-full animate-spin mr-2"></div>
                   Connecting...
                 </div>
               )}
@@ -121,82 +116,71 @@ export const WalletConnectButton = () => {
             <Button 
               variant="outline"
               size="sm" 
-              className="border-[#00FFCC]/50 text-white hover:bg-[#00FFCC]/10 hover:border-[#00FFCC] flex items-center bg-[#1A1A2E]/60 backdrop-blur-sm min-h-[48px] px-4"
+              className="border-neura-purple/50 text-white hover:bg-neura-purple/10 flex items-center"
             >
-              <div className="w-2 h-2 bg-[#00FFCC] rounded-full mr-2 animate-pulse"></div>
+              <Wallet size={16} className="mr-2" /> 
               {formatAddress(wallet.address!)}
               <ChevronDown size={14} className="ml-2" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-[#0F0F1A] border border-[#00FFCC]/30 text-white w-56 backdrop-blur-xl">
-            <DropdownMenuLabel className="text-[#00FFCC]">Financial Services</DropdownMenuLabel>
-            <DropdownMenuSeparator className="bg-[#00FFCC]/20" />
-            
+          <DropdownMenuContent className="bg-neura-dark border-neura-purple/30 text-white w-56">
+            <DropdownMenuLabel>Financial Services</DropdownMenuLabel>
+            <DropdownMenuSeparator className="bg-neura-purple/20" />
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-[#00FFCC]/10 flex items-center focus:bg-[#00FFCC]/10 focus:text-white"
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("finance-hub")}
             >
               <Wallet className="w-4 h-4 mr-2" />
               Finance Hub
             </DropdownMenuItem>
-            
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-[#00FFCC]/10 flex items-center focus:bg-[#00FFCC]/10 focus:text-white"
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("credit-scoring")}
             >
               <CreditCard className="w-4 h-4 mr-2" />
               Credit Score
             </DropdownMenuItem>
-            
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-[#00FFCC]/10 flex items-center focus:bg-[#00FFCC]/10 focus:text-white"
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("service-marketplace")}
             >
               <ShoppingCart className="w-4 h-4 mr-2" />
               Service Marketplace
             </DropdownMenuItem>
-            
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-[#00FFCC]/10 flex items-center focus:bg-[#00FFCC]/10 focus:text-white"
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("reputation-graph")}
             >
               <Users className="w-4 h-4 mr-2" />
               Reputation Graph
             </DropdownMenuItem>
-            
-            <DropdownMenuSeparator className="bg-[#00FFCC]/20" />
-            
+            <DropdownMenuSeparator className="bg-neura-purple/20" />
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-[#00FFCC]/10 flex items-center focus:bg-[#00FFCC]/10 focus:text-white"
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("ownership")}
             >
               <Link2 className="w-4 h-4 mr-2" />
               Ownership Features
             </DropdownMenuItem>
-            
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-[#00FFCC]/10 flex items-center focus:bg-[#00FFCC]/10 focus:text-white"
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("monetization")}
             >
               <CreditCard className="w-4 h-4 mr-2" />
               Monetization Tools
             </DropdownMenuItem>
-            
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-[#00FFCC]/10 flex items-center focus:bg-[#00FFCC]/10 focus:text-white"
+              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("ai-collaboration")}
             >
               <Zap className="w-4 h-4 mr-2" />
               AI Collaboration
             </DropdownMenuItem>
-            
-            <DropdownMenuSeparator className="bg-[#00FFCC]/20" />
-            
+            <DropdownMenuSeparator className="bg-neura-purple/20" />
             <DropdownMenuItem 
-              className="text-red-400 cursor-pointer hover:bg-red-500/10 focus:bg-red-500/10 focus:text-red-400"
-              onClick={handleDisconnect}
+              className="text-red-400 cursor-pointer hover:bg-neura-purple/10"
+              onClick={disconnectWallet}
             >
-              <LogOut className="w-4 h-4 mr-2" />
               Disconnect
             </DropdownMenuItem>
           </DropdownMenuContent>

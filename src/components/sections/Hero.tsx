@@ -24,7 +24,7 @@ export const Hero = () => {
   }, [contentInView, animationStarted]);
   
   return (
-    <section className="relative min-h-screen pt-24 pb-16 flex items-center hero-section" style={{ background: 'linear-gradient(180deg, #1A1A2E, #000000)' }}>
+    <section className="relative min-h-screen pt-24 pb-16 flex items-center hero-section" style={{ background: 'hsl(var(--background))' }}>
       {/* Enhanced Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-card/20"></div>
@@ -100,8 +100,8 @@ export const Hero = () => {
               />
             </div>
 
-            {/* Enhanced Hero Tagline with optimized wording and Orbitron font */}
-            <h1 className="hero-tagline text-5xl md:text-6xl lg:text-7xl font-black font-orbitron leading-tight mb-8 tracking-wider uppercase">
+            {/* Enhanced Hero Tagline with animated typewriter effect */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-orbitron leading-tight mb-8 tracking-wider uppercase hero-tagline">
               <span className={`typewriter-word ${animationStarted ? 'animate-type-1' : ''}`}>
                 Build.
               </span>
@@ -113,8 +113,8 @@ export const Hero = () => {
               </span>
             </h1>
             
-            {/* Enhanced Subtext with improved wording and Inter font */}
-            <p className={`hero-subtext text-xl md:text-2xl font-inter text-muted-foreground mb-12 max-w-2xl leading-relaxed font-medium ${animationStarted ? 'animate-subtext-slide' : ''}`}>
+            {/* Enhanced Subtext with fade-in animation */}
+            <p className={`text-xl md:text-2xl font-inter text-muted-foreground mb-12 max-w-2xl leading-relaxed font-medium hero-subtext ${animationStarted ? 'animate-subtext-slide' : ''}`}>
               Shape your digital future with T00 Savvy. Create freely, own your work on the blockchain, and grow your community—without barriers.
             </p>
             
@@ -144,7 +144,7 @@ export const Hero = () => {
               </div>
             </div>
             
-            {/* Enhanced CTA Section with new primary CTA wording */}
+            {/* Enhanced CTA Section with pulse animation */}
             <div 
               ref={ctaRef} 
               className="flex flex-col sm:flex-row items-center gap-6"
