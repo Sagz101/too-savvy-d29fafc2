@@ -68,11 +68,11 @@ export const StreamlinedHeader: React.FC = () => {
             {navigationItems.map((item) => (
               <div key={item.label} className="relative group">
                 <button
-                  className="flex items-center gap-1 px-4 py-2 rounded-xl text-sm font-medium text-foreground hover:text-primary hover:bg-card/40 transition-all duration-200"
+                  className="flex items-center gap-1 px-4 py-2 rounded-xl text-sm font-medium text-foreground hover:text-primary hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-purple-600/10 hover:border-primary/20 hover:shadow-lg hover:scale-105 transition-all duration-300 ease-out border border-transparent"
                   onClick={() => handleDropdownToggle(item.label)}
                 >
                   {item.label}
-                  <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />
+                  <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
                 </button>
 
                 {/* Dropdown Menu */}
@@ -82,10 +82,10 @@ export const StreamlinedHeader: React.FC = () => {
                       <Link
                         key={subItem.to}
                         to={subItem.to}
-                        className="block px-3 py-3 rounded-lg hover:bg-card/60 transition-colors"
+                        className="block px-3 py-3 rounded-lg hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-purple-600/10 hover:border-primary/20 hover:shadow-md hover:scale-102 transition-all duration-200 border border-transparent"
                         onClick={() => setActiveDropdown(null)}
                       >
-                        <div className="font-medium text-foreground text-sm">{subItem.label}</div>
+                        <div className="font-medium text-foreground text-sm hover:text-primary transition-colors">{subItem.label}</div>
                         <div className="text-xs text-muted-foreground">{subItem.description}</div>
                       </Link>
                     ))}
@@ -134,16 +134,16 @@ export const StreamlinedHeader: React.FC = () => {
               {/* Mobile Navigation Items */}
               {navigationItems.map((item) => (
                 <div key={item.label} className="space-y-2">
-                  <div className="font-medium text-primary text-sm uppercase tracking-wide">{item.label}</div>
+                  <div className="font-medium text-primary text-sm uppercase tracking-wide hover:text-cyan-400 transition-colors cursor-pointer">{item.label}</div>
                   <div className="space-y-1 pl-4">
                     {item.items.map((subItem) => (
                       <Link
                         key={subItem.to}
                         to={subItem.to}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className="block px-3 py-2 rounded-lg hover:bg-card/60 transition-colors"
+                        className="block px-3 py-2 rounded-lg hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-purple-600/10 hover:border-primary/20 hover:shadow-md transition-all duration-200 border border-transparent"
                       >
-                        <div className="font-medium text-foreground">{subItem.label}</div>
+                        <div className="font-medium text-foreground hover:text-primary transition-colors">{subItem.label}</div>
                         <div className="text-sm text-muted-foreground">{subItem.description}</div>
                       </Link>
                     ))}
