@@ -50,7 +50,7 @@ export const DeveloperFocusedCTA: React.FC = () => {
           </ModernText>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {developerTools.map((tool, index) => (
             <ModernCard
               key={index}
@@ -83,30 +83,6 @@ export const DeveloperFocusedCTA: React.FC = () => {
             </ModernCard>
           ))}
         </div>
-
-        {/* Code Example */}
-        <ModernCard variant="filled" size="md" className="bg-gray-900 text-green-400 font-mono">
-          <ModernText variant="caption" className="text-gray-400 mb-3">
-            // Quick integration example
-          </ModernText>
-          <pre className="text-sm overflow-x-auto">
-{`import { T00SavvySDK } from '@t00savvy/sdk';
-
-const sdk = new T00SavvySDK({
-  apiKey: 'your-api-key',
-  network: 'polygon'
-});
-
-// Mint an NFT
-const nft = await sdk.nft.mint({
-  to: userAddress,
-  metadata: {
-    name: 'My First NFT',
-    description: 'Created with T00 Savvy'
-  }
-});`}
-          </pre>
-        </ModernCard>
       </div>
     </section>
   );
