@@ -116,10 +116,22 @@ export const EnhancedHeroSection: React.FC = () => {
             
             {/* Clear Value Proposition */}
             <header className="text-center lg:text-left">
+              {/* Main Title */}
               <ModernHeading 
                 level={1}
-                className={`text-5xl sm:text-6xl lg:text-7xl font-black tracking-wider uppercase mb-6 ${animationStarted ? 'animate-hero-entrance' : ''}`}
+                className={`text-6xl sm:text-7xl lg:text-8xl font-black tracking-wider uppercase mb-4 ${animationStarted ? 'animate-hero-entrance' : ''}`}
                 as="h1"
+              >
+                <span className="bg-gradient-to-r from-solar-orange via-solar-yellow to-solar-core bg-clip-text text-transparent animate-pulse">
+                  Too Savvy
+                </span>
+              </ModernHeading>
+              
+              {/* Tagline */}
+              <ModernHeading 
+                level={2}
+                className={`text-4xl sm:text-5xl lg:text-6xl font-black tracking-wider uppercase mb-6 ${animationStarted ? 'animate-hero-entrance' : ''}`}
+                as="h2"
               >
                 <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-pulse">
                   Create. Own. Thrive.
