@@ -13,6 +13,7 @@ import { Footer } from '@/components/layout/Footer';
 
 const Index = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const totalPages = 6;
 
   // Handle URL parameters for direct page access
@@ -24,20 +25,26 @@ const Index = () => {
     }
   }, []);
 
-  // Update URL when page changes
+  // Enhanced page change with smooth transitions
   const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
+    if (page >= 1 && page <= totalPages && page !== currentPage) {
+      setIsTransitioning(true);
+      
+      // Update URL
       const newUrl = new URL(window.location.href);
       newUrl.searchParams.set('page', page.toString());
       window.history.pushState(null, '', newUrl);
       
-      // Smooth scroll to top
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Simulate AJAX loading with smooth transition
+      setTimeout(() => {
+        setCurrentPage(page);
+        setIsTransitioning(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 200);
     }
   };
 
-  // Keyboard navigation
+  // Keyboard navigation with accessibility
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft' && currentPage > 1) {
@@ -71,14 +78,19 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen" style={{ background: 'linear-gradient(135deg, #0F0F1A 0%, #1A1A2E 100%)' }}>
       <ImprovedModernHeader />
       <StickyNavigation currentPage={currentPage} />
       
       <main className="relative">
         <div 
-          className="transition-all duration-500 ease-in-out"
+          className={`transition-all duration-300 ease-in-out ${
+            isTransitioning ? 'opacity-50 scale-95' : 'opacity-100 scale-100'
+          }`}
           style={{ minHeight: 'calc(100vh - 140px)' }}
+          role="main"
+          aria-live="polite"
+          aria-label={`Page ${currentPage} of ${totalPages}`}
         >
           {renderCurrentPage()}
         </div>
