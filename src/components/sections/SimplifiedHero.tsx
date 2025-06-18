@@ -25,6 +25,18 @@ export const SimplifiedHero: React.FC = () => {
       className="relative min-h-screen pt-32 pb-16 flex items-center justify-center overflow-hidden bg-gradient-to-b from-cosmos-darker via-cosmos-dark to-background"
       aria-label="T00 Savvy - Web3 Creator Platform"
     >
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat opacity-40"
+        style={{
+          backgroundImage: `url('/lovable-uploads/8d44053c-6868-4746-9c11-b3fc7aa79589.png')`
+        }}
+        aria-hidden="true"
+      />
+      
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-cosmos-darker/80 via-cosmos-dark/70 to-background/80" aria-hidden="true" />
+
       {/* Subtle Background Effects */}
       <div className="absolute inset-0 -z-10" aria-hidden="true">
         {/* Particle effect */}
@@ -49,7 +61,7 @@ export const SimplifiedHero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cosmos-cyan/5 to-transparent"></div>
       </div>
 
-      <ModernContainer size="lg" className="text-center">
+      <ModernContainer size="lg" className="text-center relative z-10">
         {/* Main Content - Centralized */}
         <div className={`space-y-12 max-w-5xl mx-auto transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           
@@ -107,7 +119,7 @@ export const SimplifiedHero: React.FC = () => {
             {/* Steps Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
               {/* Step 1 */}
-              <div className="bg-card/20 border border-cosmos-border rounded-xl p-6 text-center hover:bg-card/30 transition-all duration-300">
+              <div className="bg-card/20 border border-cosmos-border rounded-xl p-6 text-center hover:bg-card/30 transition-all duration-300 backdrop-blur-sm">
                 <div className="w-12 h-12 bg-cosmos-cyan/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Wallet className="w-6 h-6 text-cosmos-cyan" />
                 </div>
@@ -116,7 +128,7 @@ export const SimplifiedHero: React.FC = () => {
               </div>
 
               {/* Step 2 */}
-              <div className="bg-card/20 border border-cosmos-border rounded-xl p-6 text-center hover:bg-card/30 transition-all duration-300">
+              <div className="bg-card/20 border border-cosmos-border rounded-xl p-6 text-center hover:bg-card/30 transition-all duration-300 backdrop-blur-sm">
                 <div className="w-12 h-12 bg-cosmos-cyan/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Video className="w-6 h-6 text-cosmos-cyan" />
                 </div>
@@ -125,7 +137,7 @@ export const SimplifiedHero: React.FC = () => {
               </div>
 
               {/* Step 3 */}
-              <div className="bg-card/20 border border-cosmos-border rounded-xl p-6 text-center hover:bg-card/30 transition-all duration-300">
+              <div className="bg-card/20 border border-cosmos-border rounded-xl p-6 text-center hover:bg-card/30 transition-all duration-300 backdrop-blur-sm">
                 <div className="w-12 h-12 bg-cosmos-cyan/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Sparkles className="w-6 h-6 text-cosmos-cyan" />
                 </div>
@@ -134,7 +146,7 @@ export const SimplifiedHero: React.FC = () => {
               </div>
 
               {/* Step 4 */}
-              <div className="bg-card/20 border border-cosmos-border rounded-xl p-6 text-center hover:bg-card/30 transition-all duration-300">
+              <div className="bg-card/20 border border-cosmos-border rounded-xl p-6 text-center hover:bg-card/30 transition-all duration-300 backdrop-blur-sm">
                 <div className="w-12 h-12 bg-cosmos-cyan/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="w-6 h-6 text-cosmos-cyan" />
                 </div>
@@ -144,7 +156,7 @@ export const SimplifiedHero: React.FC = () => {
             </div>
 
             {/* Pro Tip */}
-            <div className="bg-cosmos-cyan/10 border border-cosmos-cyan/30 rounded-xl p-4 max-w-2xl mx-auto">
+            <div className="bg-cosmos-cyan/10 border border-cosmos-cyan/30 rounded-xl p-4 max-w-2xl mx-auto backdrop-blur-sm">
               <p className="text-cosmos-cyan text-sm flex items-start gap-2">
                 <span className="text-lg">💡</span>
                 <span><strong>Pro Tip:</strong> Your wallet is like your digital identity - it keeps your content and earnings secure.</span>
