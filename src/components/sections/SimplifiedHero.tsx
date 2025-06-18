@@ -22,7 +22,7 @@ export const SimplifiedHero: React.FC = () => {
   return (
     <section 
       ref={heroRef}
-      className="hero relative min-h-screen pt-32 pb-16 flex items-center justify-center overflow-hidden"
+      className="hero relative min-h-screen pt-24 pb-8 flex items-center justify-center overflow-hidden"
       style={{
         backgroundImage: `url('/lovable-uploads/3f0974d3-47df-4618-ab1a-75c7edc562f9.png')`,
         backgroundSize: 'cover',
@@ -65,14 +65,14 @@ export const SimplifiedHero: React.FC = () => {
       </div>
 
       <ModernContainer size="lg" className="text-center relative z-10">
-        {/* Main Content - Centralized */}
-        <div className={`space-y-12 max-w-5xl mx-auto transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        {/* Main Content - Centralized and Compact */}
+        <div className={`space-y-8 max-w-5xl mx-auto transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           
           {/* Title - Large and Prominent with Colorful Gradient */}
-          <header className="space-y-6">
+          <header className="space-y-4">
             <ModernHeading 
               level={1}
-              className={`text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-wider uppercase leading-tight ${animationStarted ? 'animate-hero-entrance' : ''}`}
+              className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-wider uppercase leading-tight ${animationStarted ? 'animate-hero-entrance' : ''}`}
               as="h1"
             >
               <span className="bg-gradient-to-r from-purple-400 via-cosmos-cyan via-pink-400 to-yellow-400 bg-clip-text text-transparent animate-hero-glow">
@@ -83,7 +83,7 @@ export const SimplifiedHero: React.FC = () => {
             {/* Tagline */}
             <ModernHeading 
               level={2}
-              className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-white/90 ${animationStarted ? 'animate-subtext-slide' : ''}`}
+              className={`text-xl sm:text-2xl lg:text-3xl font-bold text-white/90 ${animationStarted ? 'animate-subtext-slide' : ''}`}
               as="h2"
             >
               Create. Own. Thrive.
@@ -93,17 +93,17 @@ export const SimplifiedHero: React.FC = () => {
           {/* Description - Clear and Readable */}
           <ModernText 
             variant="lead"
-            className={`text-lg sm:text-xl lg:text-2xl text-white/80 max-w-3xl mx-auto leading-relaxed font-medium animate-fade-in-delayed-1`}
+            className={`text-base sm:text-lg lg:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed font-medium animate-fade-in-delayed-1`}
           >
             Shape your digital future with T00 Savvy. Create freely, own your work on the blockchain, 
             and grow your community—without barriers.
           </ModernText>
 
-          {/* Get Started Section */}
-          <div className={`space-y-8 animate-fade-in-delayed-2`}>
+          {/* Get Started Section - More Compact */}
+          <div className={`space-y-6 animate-fade-in-delayed-2`}>
             <ModernHeading 
               level={3}
-              className="text-2xl sm:text-3xl font-bold text-cosmos-cyan mb-6"
+              className="text-xl sm:text-2xl font-bold text-cosmos-cyan mb-4"
               as="h3"
             >
               Get Started in 4 Simple Steps
@@ -111,69 +111,69 @@ export const SimplifiedHero: React.FC = () => {
             
             <ModernText 
               variant="body"
-              className="text-white/70 max-w-2xl mx-auto mb-8"
+              className="text-white/70 max-w-2xl mx-auto mb-4 text-sm"
             >
               New to Web3? No problem. We'll guide you through everything step by step.
             </ModernText>
 
-            {/* Onboarding Stepper */}
-            <OnboardingStepper currentStep={1} className="mb-8" />
+            {/* Onboarding Stepper - Compact */}
+            <OnboardingStepper currentStep={1} className="mb-6" />
 
-            {/* Steps Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            {/* Steps Grid - More Compact */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
               {/* Step 1 */}
-              <div className="bg-card/20 border border-cosmos-border rounded-xl p-6 text-center hover:bg-card/30 transition-all duration-300 backdrop-blur-sm">
-                <div className="w-12 h-12 bg-cosmos-cyan/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Wallet className="w-6 h-6 text-cosmos-cyan" />
+              <div className="bg-card/20 border border-cosmos-border rounded-lg p-4 text-center hover:bg-card/30 transition-all duration-300 backdrop-blur-sm">
+                <div className="w-10 h-10 bg-cosmos-cyan/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Wallet className="w-5 h-5 text-cosmos-cyan" />
                 </div>
-                <h4 className="text-white font-semibold mb-2">Connect Your Wallet</h4>
-                <p className="text-white/60 text-sm">Link your Web3 wallet (like MetaMask) to get started.</p>
+                <h4 className="text-white font-semibold mb-2 text-sm">Connect Your Wallet</h4>
+                <p className="text-white/60 text-xs">Link your Web3 wallet (like MetaMask) to get started.</p>
               </div>
 
               {/* Step 2 */}
-              <div className="bg-card/20 border border-cosmos-border rounded-xl p-6 text-center hover:bg-card/30 transition-all duration-300 backdrop-blur-sm">
-                <div className="w-12 h-12 bg-cosmos-cyan/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Video className="w-6 h-6 text-cosmos-cyan" />
+              <div className="bg-card/20 border border-cosmos-border rounded-lg p-4 text-center hover:bg-card/30 transition-all duration-300 backdrop-blur-sm">
+                <div className="w-10 h-10 bg-cosmos-cyan/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Video className="w-5 h-5 text-cosmos-cyan" />
                 </div>
-                <h4 className="text-white font-semibold mb-2">Choose Your Path</h4>
-                <p className="text-white/60 text-sm">Video, Podcasting, E-commerce, or Social Content.</p>
+                <h4 className="text-white font-semibold mb-2 text-sm">Choose Your Path</h4>
+                <p className="text-white/60 text-xs">Video, Podcasting, E-commerce, or Social Content.</p>
               </div>
 
               {/* Step 3 */}
-              <div className="bg-card/20 border border-cosmos-border rounded-xl p-6 text-center hover:bg-card/30 transition-all duration-300 backdrop-blur-sm">
-                <div className="w-12 h-12 bg-cosmos-cyan/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Sparkles className="w-6 h-6 text-cosmos-cyan" />
+              <div className="bg-card/20 border border-cosmos-border rounded-lg p-4 text-center hover:bg-card/30 transition-all duration-300 backdrop-blur-sm">
+                <div className="w-10 h-10 bg-cosmos-cyan/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Sparkles className="w-5 h-5 text-cosmos-cyan" />
                 </div>
-                <h4 className="text-white font-semibold mb-2">Create Your First NFT</h4>
-                <p className="text-white/60 text-sm">Turn your content into NFTs with your own prices and royalties.</p>
+                <h4 className="text-white font-semibold mb-2 text-sm">Create Your First NFT</h4>
+                <p className="text-white/60 text-xs">Turn your content into NFTs with your own prices and royalties.</p>
               </div>
 
               {/* Step 4 */}
-              <div className="bg-card/20 border border-cosmos-border rounded-xl p-6 text-center hover:bg-card/30 transition-all duration-300 backdrop-blur-sm">
-                <div className="w-12 h-12 bg-cosmos-cyan/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-6 h-6 text-cosmos-cyan" />
+              <div className="bg-card/20 border border-cosmos-border rounded-lg p-4 text-center hover:bg-card/30 transition-all duration-300 backdrop-blur-sm">
+                <div className="w-10 h-10 bg-cosmos-cyan/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Users className="w-5 h-5 text-cosmos-cyan" />
                 </div>
-                <h4 className="text-white font-semibold mb-2">Build Your Community</h4>
-                <p className="text-white/60 text-sm">Use token-gating for exclusive supporter experiences.</p>
+                <h4 className="text-white font-semibold mb-2 text-sm">Build Your Community</h4>
+                <p className="text-white/60 text-xs">Use token-gating for exclusive supporter experiences.</p>
               </div>
             </div>
 
-            {/* Pro Tip */}
-            <div className="bg-cosmos-cyan/10 border border-cosmos-cyan/30 rounded-xl p-4 max-w-2xl mx-auto backdrop-blur-sm">
-              <p className="text-cosmos-cyan text-sm flex items-start gap-2">
-                <span className="text-lg">💡</span>
+            {/* Pro Tip - More Compact */}
+            <div className="bg-cosmos-cyan/10 border border-cosmos-cyan/30 rounded-lg p-3 max-w-2xl mx-auto backdrop-blur-sm">
+              <p className="text-cosmos-cyan text-xs flex items-start gap-2">
+                <span className="text-sm">💡</span>
                 <span><strong>Pro Tip:</strong> Your wallet is like your digital identity - it keeps your content and earnings secure.</span>
               </p>
             </div>
           </div>
 
-          {/* CTAs - Prominent and Well-Spaced */}
+          {/* CTAs - Compact and Well-Spaced */}
           <div 
-            className={`flex flex-col sm:flex-row items-center justify-center gap-6 pt-8 animate-fade-in-delayed-3`}
+            className={`flex flex-col sm:flex-row items-center justify-center gap-4 pt-6 animate-fade-in-delayed-3`}
             role="group" 
             aria-label="Get started actions"
           >
-            {/* Primary CTA - Connect Wallet (Most Important) */}
+            {/* Primary CTA - Connect Wallet */}
             <div className="order-1 sm:order-1">
               <WalletConnectButton />
             </div>
@@ -181,26 +181,26 @@ export const SimplifiedHero: React.FC = () => {
             {/* Secondary CTA - Start Creating */}
             <ModernButton
               variant="primary"
-              size="lg"
-              className="order-2 sm:order-2 bg-cosmos-cyan hover:bg-cosmos-cyan/80 border-2 border-cosmos-cyan hover:border-white/50 shadow-2xl hover:shadow-cosmos-cyan/25 transition-all duration-300 hover:scale-105 min-h-[44px]"
+              size="md"
+              className="order-2 sm:order-2 bg-cosmos-cyan hover:bg-cosmos-cyan/80 border-2 border-cosmos-cyan hover:border-white/50 shadow-2xl hover:shadow-cosmos-cyan/25 transition-all duration-300 hover:scale-105"
               asChild
             >
               <Link to="/video-studio">
-                <Sparkles size={20} aria-hidden="true" />
+                <Sparkles size={16} aria-hidden="true" />
                 <span>Start Creating</span>
-                <ArrowRight size={20} aria-hidden="true" />
+                <ArrowRight size={16} aria-hidden="true" />
               </Link>
             </ModernButton>
 
             {/* Tutorial Video Button */}
             <ModernButton
               variant="outline"
-              size="lg"
-              className="order-3 sm:order-3 border-2 border-cosmos-cyan/50 text-cosmos-cyan hover:bg-cosmos-cyan/10 hover:border-cosmos-cyan transition-all duration-300 min-h-[44px]"
+              size="md"
+              className="order-3 sm:order-3 border-2 border-cosmos-cyan/50 text-cosmos-cyan hover:bg-cosmos-cyan/10 hover:border-cosmos-cyan transition-all duration-300"
               asChild
             >
               <Link to="/onboarding">
-                <Play size={20} aria-hidden="true" />
+                <Play size={16} aria-hidden="true" />
                 <span>Watch Tutorial</span>
               </Link>
             </ModernButton>
@@ -208,8 +208,8 @@ export const SimplifiedHero: React.FC = () => {
             {/* Tertiary CTA - Explore */}
             <ModernButton
               variant="outline"
-              size="lg"
-              className="order-4 sm:order-4 border-2 border-white/30 text-white hover:bg-white/10 hover:border-cosmos-cyan transition-all duration-300 min-h-[44px]"
+              size="md"
+              className="order-4 sm:order-4 border-2 border-white/30 text-white hover:bg-white/10 hover:border-cosmos-cyan transition-all duration-300"
               asChild
             >
               <Link to="/projects-creator">
@@ -218,11 +218,11 @@ export const SimplifiedHero: React.FC = () => {
             </ModernButton>
           </div>
 
-          {/* Subtle Trust Indicator */}
+          {/* Subtle Trust Indicator - Compact */}
           <div 
-            className={`pt-12 animate-fade-in-delayed-4`}
+            className={`pt-6 animate-fade-in-delayed-4`}
           >
-            <ModernText variant="caption" className="text-white/60 text-sm flex items-center justify-center gap-2">
+            <ModernText variant="caption" className="text-white/60 text-xs flex items-center justify-center gap-2">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
               <span>Trusted by 10,000+ Web3 creators</span>
             </ModernText>
