@@ -122,7 +122,7 @@ export const ModernHero: React.FC = () => {
                 className={`shadow-xl ${animationStarted ? 'animate-cta-pulse' : ''}`}
                 asChild
               >
-                <Link to="/video-studio" aria-describedby="primary-cta-description">
+                <Link to="/video-studio" aria-describedby="primary-cta-description" className="flex items-center gap-2">
                   <Sparkles size={20} aria-hidden="true" />
                   Start Building Now
                   <ArrowRight size={20} aria-hidden="true" />
@@ -138,7 +138,7 @@ export const ModernHero: React.FC = () => {
                 size="lg"
                 asChild
               >
-                <Link to="/projects-creator" aria-describedby="secondary-cta-description">
+                <Link to="/projects-creator" aria-describedby="secondary-cta-description" className="flex items-center gap-2">
                   <Globe size={20} aria-hidden="true" />
                   Launch Projects
                 </Link>

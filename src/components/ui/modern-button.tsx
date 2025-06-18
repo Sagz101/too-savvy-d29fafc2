@@ -39,21 +39,29 @@ export const ModernButton: React.FC<ModernButtonProps> = ({
     xl: "px-8 py-4 text-lg h-14"
   };
 
-  const Comp = asChild ? Slot : "button";
+  const buttonClasses = cn(
+    baseClasses,
+    variantClasses[variant],
+    sizeClasses[size],
+    className
+  );
+
+  if (asChild) {
+    return (
+      <Slot className={buttonClasses} {...props}>
+        {children}
+      </Slot>
+    );
+  }
 
   return (
-    <Comp
-      className={cn(
-        baseClasses,
-        variantClasses[variant],
-        sizeClasses[size],
-        className
-      )}
+    <button
+      className={buttonClasses}
       disabled={disabled || loading}
       {...props}
     >
       {loading && <Loader2 className="w-4 h-4 animate-spin" />}
       {children}
-    </Comp>
+    </button>
   );
 };
