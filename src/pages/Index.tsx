@@ -1,7 +1,6 @@
-
 import React from 'react';
-import { Header } from '@/components/layout/Header';
-import { Hero } from '@/components/sections/Hero';
+import { ModernHeader } from '@/components/layout/ModernHeader';
+import { ModernHero } from '@/components/sections/ModernHero';
 import { CoreFeatures } from '@/components/sections/CoreFeatures';
 import { ModularStats } from '@/components/sections/ModularStats';
 import { CreatorDashboard } from '@/components/sections/CreatorDashboard';
@@ -20,10 +19,10 @@ import { Footer } from '@/components/layout/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-black text-white">
-      <Header />
+    <div className="min-h-screen bg-background text-foreground">
+      <ModernHeader />
       <main>
-        <Hero />
+        <ModernHero />
         <UserTypes />
         <OnboardingGuide />
         <ModularStats />
