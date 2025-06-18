@@ -27,7 +27,7 @@ export const ResponsiveNavigation: React.FC = () => {
   };
 
   return (
-    <>
+    <React.Fragment>
       {/* Desktop Navigation */}
       <nav className="hidden lg:block fixed top-20 left-0 right-0 z-40 bg-[#0F0F1A]/95 backdrop-blur-xl border-b border-[#00FFCC]/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -144,6 +144,6 @@ export const ResponsiveNavigation: React.FC = () => {
 
       {/* Spacer for fixed navigation */}
       <div className="h-16 lg:h-32"></div>
-    </>
+    </React.Fragment>
   );
 };
