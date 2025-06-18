@@ -53,14 +53,14 @@ export const SimplifiedHero: React.FC = () => {
         {/* Main Content - Centralized */}
         <div className={`space-y-12 max-w-5xl mx-auto transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           
-          {/* Title - Large and Prominent */}
+          {/* Title - Large and Prominent with Colorful Gradient */}
           <header className="space-y-6">
             <ModernHeading 
               level={1}
               className={`text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-wider uppercase leading-tight ${animationStarted ? 'animate-hero-entrance' : ''}`}
               as="h1"
             >
-              <span className="bg-gradient-to-r from-white via-cosmos-cyan to-white bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-purple-400 via-cosmos-cyan via-pink-400 to-yellow-400 bg-clip-text text-transparent animate-hero-glow">
                 T00 SAVVY
               </span>
             </ModernHeading>
