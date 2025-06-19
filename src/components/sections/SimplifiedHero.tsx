@@ -65,35 +65,42 @@ export const SimplifiedHero: React.FC = () => {
       </div>
 
       <ModernContainer size="lg" className="text-center relative z-10">
-        {/* Main Content - Centralized and Compact */}
-        <div className={`space-y-3 max-w-4xl mx-auto transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        {/* Main Content - Direct integration without constraining containers */}
+        <div className={`space-y-3 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           
-          {/* Title - Large and Prominent with Colorful Gradient */}
-          <header className="space-y-1">
-            <ModernHeading 
-              level={1}
-              className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-wider uppercase leading-tight ${animationStarted ? 'animate-hero-entrance' : ''}`}
-              as="h1"
-            >
-              <span className="bg-gradient-to-r from-purple-400 via-cosmos-cyan via-pink-400 to-yellow-400 bg-clip-text text-transparent">
-                T00 SAVVY
-              </span>
-            </ModernHeading>
-            
-            {/* Tagline */}
-            <ModernHeading 
-              level={2}
-              className={`text-lg sm:text-xl lg:text-2xl font-bold text-white/90 ${animationStarted ? 'animate-subtext-slide' : ''}`}
-              as="h2"
-            >
-              Create. Own. Thrive.
-            </ModernHeading>
-          </header>
+          {/* Title - Directly integrated without constraining containers */}
+          <ModernHeading 
+            level={1}
+            className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-wider uppercase leading-tight p-0 max-w-none ${animationStarted ? 'animate-hero-entrance' : ''}`}
+            as="h1"
+            style={{
+              textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)'
+            }}
+          >
+            <span className="bg-gradient-to-r from-purple-400 via-cosmos-cyan via-pink-400 to-yellow-400 bg-clip-text text-transparent">
+              T00 SAVVY
+            </span>
+          </ModernHeading>
+          
+          {/* Tagline - Directly under title */}
+          <ModernHeading 
+            level={2}
+            className={`text-lg sm:text-xl lg:text-2xl font-bold text-white/90 ${animationStarted ? 'animate-subtext-slide' : ''}`}
+            as="h2"
+            style={{
+              textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
+            }}
+          >
+            Create. Own. Thrive.
+          </ModernHeading>
 
           {/* Description - Clear and Readable */}
           <ModernText 
             variant="lead"
             className={`text-sm sm:text-base lg:text-lg text-white/80 max-w-3xl mx-auto leading-relaxed font-medium animate-fade-in-delayed-1`}
+            style={{
+              textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)'
+            }}
           >
             Shape your digital future with T00 Savvy. Create freely, own your work on the blockchain, 
             and grow your community—without barriers.
