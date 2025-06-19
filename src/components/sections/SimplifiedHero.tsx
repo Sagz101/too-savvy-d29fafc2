@@ -22,7 +22,7 @@ export const SimplifiedHero: React.FC = () => {
   return (
     <section 
       ref={heroRef}
-      className="hero relative min-h-screen pt-24 pb-8 flex items-center justify-center overflow-hidden"
+      className="hero relative min-h-screen pt-32 pb-8 flex items-center justify-center overflow-hidden"
       style={{
         backgroundImage: `url('/lovable-uploads/3f0974d3-47df-4618-ab1a-75c7edc562f9.png')`,
         backgroundSize: 'cover',
@@ -66,16 +66,16 @@ export const SimplifiedHero: React.FC = () => {
 
       <ModernContainer size="lg" className="text-center relative z-10">
         {/* Main Content - Centralized and Compact */}
-        <div className={`space-y-4 max-w-5xl mx-auto transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`space-y-3 max-w-4xl mx-auto transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           
           {/* Title - Large and Prominent with Colorful Gradient */}
-          <header className="space-y-2">
+          <header className="space-y-1">
             <ModernHeading 
               level={1}
               className={`text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-wider uppercase leading-tight ${animationStarted ? 'animate-hero-entrance' : ''}`}
               as="h1"
             >
-              <span className="bg-gradient-to-r from-purple-400 via-cosmos-cyan via-pink-400 to-yellow-400 bg-clip-text text-transparent animate-hero-glow">
+              <span className="bg-gradient-to-r from-purple-400 via-cosmos-cyan via-pink-400 to-yellow-400 bg-clip-text text-transparent">
                 T00 SAVVY
               </span>
             </ModernHeading>
@@ -100,10 +100,10 @@ export const SimplifiedHero: React.FC = () => {
           </ModernText>
 
           {/* Get Started Section - More Compact */}
-          <div className={`space-y-3 animate-fade-in-delayed-2`}>
+          <div className={`space-y-2 animate-fade-in-delayed-2`}>
             <ModernHeading 
               level={3}
-              className="text-lg sm:text-xl font-bold text-cosmos-cyan mb-2"
+              className="text-lg sm:text-xl font-bold text-cosmos-cyan mb-1"
               as="h3"
             >
               Get Started in 4 Simple Steps
@@ -117,10 +117,10 @@ export const SimplifiedHero: React.FC = () => {
             </ModernText>
 
             {/* Onboarding Stepper - Compact */}
-            <OnboardingStepper currentStep={1} className="mb-3" />
+            <OnboardingStepper currentStep={1} className="mb-2" />
 
             {/* Steps Grid - More Compact */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-3">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-2">
               {/* Step 1 */}
               <div className="bg-card/20 border border-cosmos-border rounded-lg p-2 text-center hover:bg-card/30 transition-all duration-300 backdrop-blur-sm">
                 <div className="w-6 h-6 bg-cosmos-cyan/20 rounded-full flex items-center justify-center mx-auto mb-1">
@@ -169,7 +169,7 @@ export const SimplifiedHero: React.FC = () => {
 
           {/* CTAs - Compact and Well-Spaced */}
           <div 
-            className={`flex flex-col sm:flex-row items-center justify-center gap-2 pt-3 animate-fade-in-delayed-3`}
+            className={`flex flex-col sm:flex-row items-center justify-center gap-2 pt-2 animate-fade-in-delayed-3`}
             role="group" 
             aria-label="Get started actions"
           >
@@ -220,7 +220,7 @@ export const SimplifiedHero: React.FC = () => {
 
           {/* Subtle Trust Indicator - Compact */}
           <div 
-            className={`pt-3 animate-fade-in-delayed-4`}
+            className={`pt-2 animate-fade-in-delayed-4`}
           >
             <ModernText variant="caption" className="text-white/60 text-xs flex items-center justify-center gap-2">
               <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
