@@ -171,25 +171,48 @@
   }
 }
 
-@keyframes subtext-slide {
-  0% {
-    opacity: 0;
-    transform: translateY(15px);
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+  50% {
+    background-position: 100% 50%;
   }
 }
 
-@keyframes fade-in {
+@keyframes gradient-text {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes scan-lines {
   0% {
-    opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(-100%);
   }
   100% {
-    opacity: 1;
-    transform: translateY(0);
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(150px) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(150px) rotate(-360deg);
+  }
+}
+
+@keyframes hex-shift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
   }
 }
 
@@ -547,9 +570,6 @@ header {
   60% {
     transform: translate(-2px, -2px);
   }
-  80% {
-    transform: translate(-2px, 2px);
-  }
 }
 
 /* Additional Web 3.0 Animations for UserTypes */
@@ -594,5 +614,43 @@ header {
   }
   100% {
     left: 100%;
+  }
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  .hero {
+    padding: 1rem;
+    min-height: calc(100vh - 4rem);
+  }
+  
+  .hero-title {
+    font-size: 2.5rem !important;
+  }
+  
+  .hero-tagline {
+    font-size: 1.25rem !important;
+  }
+}
+
+/* Touch targets for mobile */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Ensure hamburger menu is visible on all devices */
+button[aria-label="Open navigation menu"] {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+@media (min-width: 1024px) {
+  button[aria-label="Open navigation menu"] {
+    display: none !important;
   }
 }

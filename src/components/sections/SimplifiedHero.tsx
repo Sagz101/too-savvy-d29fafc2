@@ -1,12 +1,10 @@
-
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Sparkles, Wallet, Play, Video, Headphones, ShoppingBag, Users, Zap } from 'lucide-react';
+import { ArrowRight, Sparkles, Wallet, Video, Headphones, ShoppingBag, Users, Zap, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ModernButton } from '@/components/ui/modern-button';
 import { ModernHeading, ModernText } from '@/components/ui/modern-typography';
 import { ModernContainer } from '@/components/ui/modern-container';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
-import { OnboardingStepper } from '@/components/ui/onboarding-stepper';
 import { useInView } from 'react-intersection-observer';
 
 export const SimplifiedHero: React.FC = () => {
@@ -104,7 +102,7 @@ export const SimplifiedHero: React.FC = () => {
       </div>
 
       <ModernContainer size="lg" className="text-center relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between min-h-[70vh]">
+        <div className="flex flex-col lg:flex-row items-center justify-between min-h-[70vh] gap-8">
           
           {/* Main Content */}
           <div className={`lg:w-1/2 space-y-6 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -150,7 +148,7 @@ export const SimplifiedHero: React.FC = () => {
               Create. Own. Thrive.
             </ModernHeading>
 
-            {/* Description with Typewriter Effect */}
+            {/* Description */}
             <ModernText 
               variant="lead"
               className={`text-base sm:text-lg text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed animate-fade-in-delayed-1`}
@@ -162,7 +160,7 @@ export const SimplifiedHero: React.FC = () => {
               and grow your community—without barriers.
             </ModernText>
 
-            {/* Web3 Features Grid */}
+            {/* Web3 Features Grid - Removed hover effects */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 animate-fade-in-delayed-2">
               {[
                 { icon: Video, label: 'Create', color: '#00ffff' },
@@ -172,14 +170,14 @@ export const SimplifiedHero: React.FC = () => {
               ].map((item, index) => (
                 <div 
                   key={item.label}
-                  className="bg-black/30 border border-gray-700/50 rounded-lg p-3 backdrop-blur-sm hover:border-cyan-500/50 transition-all duration-300 group cursor-pointer"
+                  className="bg-black/30 border border-gray-700/50 rounded-lg p-3 backdrop-blur-sm transition-all duration-300"
                   style={{
                     boxShadow: `0 0 0 1px ${item.color}20`,
                     animation: `cyber-pulse 3s ease-in-out infinite ${index * 0.5}s`
                   }}
                 >
                   <item.icon 
-                    className="w-6 h-6 mx-auto mb-2 group-hover:scale-110 transition-transform duration-300" 
+                    className="w-6 h-6 mx-auto mb-2 transition-transform duration-300" 
                     style={{ color: item.color }}
                   />
                   <p className="text-white text-sm font-medium">{item.label}</p>
@@ -187,7 +185,7 @@ export const SimplifiedHero: React.FC = () => {
               ))}
             </div>
 
-            {/* CTA Buttons with Cyber Effects */}
+            {/* CTA Buttons with Working Links */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 animate-fade-in-delayed-3">
               
               {/* Primary CTA - Wallet Connect */}
@@ -213,16 +211,16 @@ export const SimplifiedHero: React.FC = () => {
                 </ModernButton>
               </div>
 
-              {/* Tutorial CTA */}
+              {/* Tutorial CTA - Working Link */}
               <ModernButton
                 variant="outline"
                 size="lg"
                 className="border-2 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25"
                 asChild
               >
-                <Link to="/onboarding">
+                <Link to="/video-studio">
                   <Play size={16} aria-hidden="true" />
-                  <span>Watch Tutorial</span>
+                  <span>Start Tutorial</span>
                 </Link>
               </ModernButton>
             </div>
@@ -249,12 +247,12 @@ export const SimplifiedHero: React.FC = () => {
             </div>
           </div>
 
-          {/* Hero Image/Visual Element */}
+          {/* Hero Image/Visual Element - Fixed image display */}
           <div className={`lg:w-1/2 flex items-center justify-center animate-fade-in-delayed-2`}>
-            <div className="relative">
+            <div className="relative w-full max-w-md">
               {/* Holographic Display Frame */}
               <div 
-                className="w-80 h-80 rounded-2xl border-2 border-cyan-500/50 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 backdrop-blur-sm relative overflow-hidden"
+                className="w-80 h-80 mx-auto rounded-2xl border-2 border-cyan-500/50 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 backdrop-blur-sm relative overflow-hidden"
                 style={{
                   boxShadow: '0 0 50px rgba(0, 255, 255, 0.3), inset 0 0 50px rgba(255, 0, 255, 0.1)'
                 }}
