@@ -6,13 +6,15 @@ interface TypographyProps {
   children: React.ReactNode;
   className?: string;
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div';
+  style?: React.CSSProperties;
 }
 
 export const ModernHeading: React.FC<TypographyProps & { level: 1 | 2 | 3 | 4 | 5 | 6 }> = ({
   children,
   className,
   level,
-  as
+  as,
+  style
 }) => {
   const Component = as || `h${level}` as keyof JSX.IntrinsicElements;
   
@@ -32,7 +34,8 @@ export const ModernHeading: React.FC<TypographyProps & { level: 1 | 2 | 3 | 4 | 
         "text-foreground",
         headingClasses[level],
         className
-      )
+      ),
+      style
     },
     children
   );
@@ -46,7 +49,8 @@ export const ModernText: React.FC<TypographyProps & {
   className,
   variant = 'body',
   muted = false,
-  as = 'p'
+  as = 'p',
+  style
 }) => {
   const Component = as;
   
@@ -64,7 +68,8 @@ export const ModernText: React.FC<TypographyProps & {
         muted ? "text-muted-foreground" : "text-foreground",
         variantClasses[variant],
         className
-      )
+      ),
+      style
     },
     children
   );
