@@ -22,7 +22,7 @@ export const SimplifiedHero: React.FC = () => {
   return (
     <section 
       ref={heroRef}
-      className="hero relative min-h-screen pt-32 pb-8 flex items-center justify-center overflow-hidden"
+      className="hero relative min-h-screen pt-24 pb-8 flex items-start justify-center overflow-hidden"
       style={{
         backgroundImage: `url('/lovable-uploads/3f0974d3-47df-4618-ab1a-75c7edc562f9.png')`,
         backgroundSize: 'cover',
@@ -64,7 +64,7 @@ export const SimplifiedHero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cosmos-cyan/5 to-transparent"></div>
       </div>
 
-      <ModernContainer size="lg" className="text-center relative z-10">
+      <ModernContainer size="lg" className="text-center relative z-10 mt-16">
         {/* Main Content - Direct integration without constraining containers */}
         <div className={`space-y-3 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           
