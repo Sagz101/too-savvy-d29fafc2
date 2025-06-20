@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@/components/ui/card';
@@ -42,9 +41,9 @@ export const VideoShowcase: React.FC = () => {
               <div className="absolute -inset-1 bg-gradient-to-r from-neura-cyan via-neura-purple to-cosmos-cyan rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-gradient-x"></div>
               <div className="relative">
                 <img 
-                  src="/lovable-uploads/f3257ce7-ca51-4fb3-a2ac-1fb54f1bda62.png"
-                  alt="Creator Studio Platform Overview"
-                  className="w-[300px] h-[180px] object-cover rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                  src="/lovable-uploads/a798f3fa-a391-4578-a354-066055ede35c.png"
+                  alt="Creator Studio Platform Overview - Tech-savvy character with Web3 tools"
+                  className="w-[300px] h-[400px] object-contain rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
               </div>
