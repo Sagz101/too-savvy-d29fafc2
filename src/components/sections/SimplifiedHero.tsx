@@ -4,10 +4,15 @@ import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import { Sparkles, Code, Play, Users, Zap, Shield, X } from 'lucide-react';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
+import { smoothScrollToSection } from '@/utils/smoothScroll';
 
 export const SimplifiedHero: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [showOnboarding, setShowOnboarding] = useState(false);
+
+  const handleSectionNavigation = (sectionId: string) => {
+    smoothScrollToSection(sectionId);
+  };
 
   return (
     <section 
@@ -56,53 +61,91 @@ export const SimplifiedHero: React.FC = () => {
           </div>
         </div>
 
-        {/* Enhanced CTA Section */}
+        {/* Enhanced CTA Section with Navigation */}
         <div className={`flex flex-col items-center gap-8 transition-all duration-1000 delay-600 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Primary CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <Link 
-              to="/video-studio"
+          {/* Main Action Buttons - Create, Own, Thrive */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-4">
+            <button
+              onClick={() => handleSectionNavigation('create')}
               className="group relative overflow-hidden bg-gradient-to-r from-neura-cyan to-neura-purple text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-neura-cyan/25 min-h-[56px] flex items-center justify-center"
-              aria-label="Create your first NFT in Creator Studio"
+              aria-label="Navigate to Create section"
             >
               <span className="relative z-10 flex items-center gap-2">
                 <Sparkles size={20} />
-                Create Your First NFT
+                Create
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-neura-purple to-neura-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Link>
+            </button>
 
-            <Link 
-              to="/video-integration"
-              className="group relative overflow-hidden bg-transparent border-2 border-neura-cyan text-neura-cyan px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:bg-neura-cyan hover:text-black hover:scale-105 hover:shadow-xl hover:shadow-neura-cyan/25 min-h-[56px] flex items-center justify-center"
-              aria-label="Build on T00 Savvy platform"
+            <button
+              onClick={() => handleSectionNavigation('own')}
+              className="group relative overflow-hidden bg-gradient-to-r from-cosmos-cyan to-neura-cyan text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cosmos-cyan/25 min-h-[56px] flex items-center justify-center"
+              aria-label="Navigate to Own section"
             >
-              <span className="flex items-center gap-2">
-                <Code size={20} />
-                Build on T00 Savvy
+              <span className="relative z-10 flex items-center gap-2">
+                <Shield size={20} />
+                Own
               </span>
-            </Link>
+              <div className="absolute inset-0 bg-gradient-to-r from-neura-cyan to-cosmos-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+
+            <button
+              onClick={() => handleSectionNavigation('thrive')}
+              className="group relative overflow-hidden bg-gradient-to-r from-neura-purple to-cosmos-purple text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-neura-purple/25 min-h-[56px] flex items-center justify-center"
+              aria-label="Navigate to Thrive section"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                <Users size={20} />
+                Thrive
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-cosmos-purple to-neura-purple opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
           </div>
 
           {/* Secondary CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <button
+              onClick={() => handleSectionNavigation('get-started')}
+              className="group relative overflow-hidden bg-transparent border-2 border-neura-cyan text-neura-cyan px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:bg-neura-cyan hover:text-black hover:scale-105 hover:shadow-xl hover:shadow-neura-cyan/25 min-h-[56px] flex items-center justify-center"
+              aria-label="Navigate to Get Started section"
+            >
+              <span className="flex items-center gap-2">
+                <Play size={20} />
+                Get Started
+              </span>
+            </button>
+
+            <button
+              onClick={() => handleSectionNavigation('developer-resources')}
+              className="group relative overflow-hidden bg-transparent border-2 border-neura-purple text-neura-purple px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:bg-neura-purple hover:text-white hover:scale-105 hover:shadow-xl hover:shadow-neura-purple/25 min-h-[56px] flex items-center justify-center"
+              aria-label="Navigate to Developer Resources section"
+            >
+              <span className="flex items-center gap-2">
+                <Code size={20} />
+                Developer Resources
+              </span>
+            </button>
+          </div>
+
+          {/* Dashboard Link */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <button
+              onClick={() => handleSectionNavigation('dashboard')}
+              className="flex items-center justify-center gap-2 text-white/90 hover:text-neura-cyan px-6 py-3 rounded-lg transition-all duration-300 hover:bg-white/10 backdrop-blur-sm min-h-[48px] border border-white/20 hover:border-neura-cyan"
+              aria-label="Navigate to Dashboard section"
+            >
+              <Users size={18} />
+              Dashboard
+            </button>
+
+            <button
               onClick={() => setShowOnboarding(true)}
-              className="flex items-center justify-center gap-2 text-white/90 hover:text-neura-cyan px-6 py-3 rounded-lg transition-all duration-300 hover:bg-white/10 backdrop-blur-sm min-h-[48px]"
+              className="flex items-center justify-center gap-2 text-white/90 hover:text-neura-purple px-6 py-3 rounded-lg transition-all duration-300 hover:bg-white/10 backdrop-blur-sm min-h-[48px]"
               aria-label="Watch T00 Savvy tutorial"
             >
               <Play size={18} />
               Watch Tutorial (2 min)
             </button>
-
-            <Link
-              to="/global-innovators"
-              className="flex items-center justify-center gap-2 text-white/90 hover:text-neura-purple px-6 py-3 rounded-lg transition-all duration-300 hover:bg-white/10 backdrop-blur-sm min-h-[48px]"
-              aria-label="Join DAO governance - Earn $Neurax tokens"
-            >
-              <Users size={18} />
-              Join DAO (Earn $Neurax)
-            </Link>
           </div>
 
           {/* Onboarding Support */}
