@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
-import { Sparkles, Code, Play, Users, Zap, Shield, X } from 'lucide-react';
+import { Sparkles, Code, Play, Users, Zap, Shield, X, UserPlus } from 'lucide-react';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
 import { CircularMeerkats } from '@/components/ui/circular-meerkats';
 import { smoothScrollToSection } from '@/utils/smoothScroll';
@@ -64,8 +65,39 @@ export const SimplifiedHero: React.FC = () => {
           </div>
         </div>
 
+        {/* Primary CTA Section - Wallet Connect and Registration */}
+        <div className={`flex flex-col items-center gap-6 mb-12 transition-all duration-1000 delay-600 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Main Wallet Connect Button */}
+          <div className="flex flex-col sm:flex-row gap-4 items-center">
+            <WalletConnectButton />
+            <Link
+              to="/auth"
+              className="group relative overflow-hidden bg-gradient-to-r from-neura-purple to-cosmos-purple text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-neura-purple/25 min-h-[56px] flex items-center justify-center"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                <UserPlus size={20} />
+                Create Account
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-cosmos-purple to-neura-purple opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </Link>
+          </div>
+
+          {/* Secondary CTAs */}
+          <div className="text-center">
+            <p className="text-white/70 text-sm mb-4">
+              New to Web3? No problem! Start with email and upgrade later.
+            </p>
+            <button
+              onClick={() => setShowOnboarding(true)}
+              className="text-neura-cyan hover:text-neura-purple underline underline-offset-4 transition-colors duration-300 font-medium"
+            >
+              🚀 Get Started with Guided Setup (2 min)
+            </button>
+          </div>
+        </div>
+
         {/* Enhanced CTA Section with Navigation */}
-        <div className={`flex flex-col items-center gap-8 transition-all duration-1000 delay-600 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`flex flex-col items-center gap-8 transition-all duration-1000 delay-800 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {/* Main Action Buttons - Create, Own, Thrive */}
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-4">
             <button
@@ -105,7 +137,7 @@ export const SimplifiedHero: React.FC = () => {
             </button>
           </div>
 
-          {/* Secondary CTAs */}
+          {/* Secondary Navigation Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <button
               onClick={() => handleSectionNavigation('get-started')}
@@ -140,32 +172,11 @@ export const SimplifiedHero: React.FC = () => {
               <Users size={18} />
               Dashboard
             </button>
-
-            <button
-              onClick={() => setShowOnboarding(true)}
-              className="flex items-center justify-center gap-2 text-white/90 hover:text-neura-purple px-6 py-3 rounded-lg transition-all duration-300 hover:bg-white/10 backdrop-blur-sm min-h-[48px]"
-              aria-label="Watch T00 Savvy tutorial"
-            >
-              <Play size={18} />
-              Watch Tutorial (2 min)
-            </button>
-          </div>
-
-          {/* Onboarding Support */}
-          <div className="text-center mt-8">
-            <p className="text-white/60 text-sm mb-2">New to Web3?</p>
-            <button
-              onClick={() => setShowOnboarding(true)}
-              className="text-neura-cyan hover:text-neura-purple underline underline-offset-4 transition-colors duration-300"
-              aria-label="Get started with Web3 guidance"
-            >
-              Get Started with Guided Setup
-            </button>
           </div>
         </div>
 
         {/* Stats Section */}
-        <div className={`grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 transition-all duration-1000 delay-800 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 transition-all duration-1000 delay-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="text-center">
             <div className="text-3xl md:text-4xl font-bold text-neura-cyan mb-2">10K+</div>
             <div className="text-white/70 text-sm">Active Creators</div>
