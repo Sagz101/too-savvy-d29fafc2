@@ -2,9 +2,10 @@
 import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
-import { Sparkles, Code, Play, Users, Zap, Shield, X, UserPlus } from 'lucide-react';
+import { Sparkles, Code, Play, Users, Zap, Shield, X, UserPlus, ArrowRight, Star } from 'lucide-react';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
 import { CircularMeerkats } from '@/components/ui/circular-meerkats';
+import { InteroperabilityBadges } from '@/components/ui/interoperability-badges';
 import { smoothScrollToSection } from '@/utils/smoothScroll';
 
 export const SimplifiedHero: React.FC = () => {
@@ -21,218 +22,225 @@ export const SimplifiedHero: React.FC = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-cosmos-dark via-neura-dark to-cosmos-darker"
       id="hero"
     >
-      {/* Enhanced background effects */}
+      {/* Enhanced Futuristic Background Effects */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-neura-cyan/20 rounded-full filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-neura-purple/20 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cosmos-cyan/10 rounded-full filter blur-2xl animate-cosmic-pulse"></div>
+        {/* Primary gradient orbs */}
+        <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-neura-cyan/30 rounded-full filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-neura-purple/30 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cosmos-cyan/20 rounded-full filter blur-2xl animate-cosmic-pulse"></div>
+        
+        {/* Additional depth layers */}
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-transparent via-neura-purple/5 to-cosmos-cyan/10"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-cosmos-cyan/5 to-transparent"></div>
+        
+        {/* Animated grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_24px,rgba(103,232,249,0.03)_25px,rgba(103,232,249,0.03)_26px,transparent_27px)] bg-[size:25px_25px] animate-pulse"></div>
       </div>
 
       {/* Circular Meerkats Animation */}
       <CircularMeerkats />
 
       <div className="container mx-auto px-4 py-20 relative z-10">
-        {/* Trust Signals */}
-        <div className="text-center mb-8">
-          <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
-            <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-full px-4 py-2">
-              <Shield size={16} className="text-green-400" />
-              <span className="text-sm font-medium text-green-400">Smart Contract Audited</span>
+        {/* Enhanced Trust Signals */}
+        <div className="text-center mb-12">
+          <div className="flex flex-wrap items-center justify-center gap-6 mb-8">
+            <div className="group flex items-center gap-3 bg-gradient-to-r from-green-500/20 to-emerald-400/20 border border-green-400/40 rounded-full px-6 py-3 backdrop-blur-sm hover:scale-105 transition-all duration-300">
+              <Shield size={20} className="text-green-400 group-hover:animate-pulse" />
+              <span className="text-sm font-semibold text-green-400">Smart Contract Audited</span>
+              <Star size={16} className="text-green-300 animate-pulse" />
             </div>
-            <div className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 rounded-full px-4 py-2">
-              <Zap size={16} className="text-blue-400" />
-              <span className="text-sm font-medium text-blue-400">Multi-Chain Ready</span>
+            <div className="group flex items-center gap-3 bg-gradient-to-r from-blue-500/20 to-cyan-400/20 border border-blue-400/40 rounded-full px-6 py-3 backdrop-blur-sm hover:scale-105 transition-all duration-300">
+              <Zap size={20} className="text-blue-400 group-hover:animate-pulse" />
+              <span className="text-sm font-semibold text-blue-400">Multi-Chain Ready</span>
+              <div className="flex gap-1 ml-2">
+                <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Main Content */}
+        {/* Hero Title Section - Enhanced */}
         <div className="text-center mb-16">
-          <h1 className={`text-4xl md:text-6xl lg:text-7xl font-bold mb-6 font-orbitron leading-tight transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <span className="bg-gradient-to-r from-neura-cyan via-neura-purple to-cosmos-cyan bg-clip-text text-transparent animate-hero-glow">
+          <div className="mb-6">
+            <h1 className={`text-6xl md:text-8xl lg:text-9xl font-bold mb-4 font-orbitron leading-tight transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <span className="bg-gradient-to-r from-neura-cyan via-neura-purple to-cosmos-cyan bg-clip-text text-transparent animate-hero-glow drop-shadow-2xl">
+                Too Savvy
+              </span>
+            </h1>
+            <div className={`flex items-center justify-center gap-4 mb-6 transition-all duration-1000 delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <div className="h-px bg-gradient-to-r from-transparent via-neura-cyan to-transparent w-24"></div>
+              <span className="text-neura-cyan font-semibold tracking-wider text-lg">WEB3 CREATOR PLATFORM</span>
+              <div className="h-px bg-gradient-to-r from-transparent via-neura-cyan to-transparent w-24"></div>
+            </div>
+          </div>
+          
+          <h2 className={`text-3xl md:text-5xl lg:text-6xl font-bold mb-8 font-orbitron leading-tight transition-all duration-1000 delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="bg-gradient-to-r from-white via-neura-cyan to-white bg-clip-text text-transparent">
               Create. Own. Thrive.
             </span>
-          </h1>
+          </h2>
           
-          <p className={`text-xl md:text-2xl lg:text-3xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            The Web3 Creator Platform where you control your content, data, and digital identity—forever.
+          <p className={`text-xl md:text-2xl lg:text-3xl text-white/90 mb-8 max-w-5xl mx-auto leading-relaxed transition-all duration-1000 delay-400 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            The ultimate Web3 Creator Platform where you control your{' '}
+            <span className="text-neura-cyan font-semibold">content</span>,{' '}
+            <span className="text-neura-purple font-semibold">data</span>, and{' '}
+            <span className="text-cosmos-cyan font-semibold">digital identity</span>—forever.
           </p>
 
-          <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 transition-all duration-1000 delay-400 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <span className="text-white/70 text-lg">Smart Contract Audited</span>
-            <div className="hidden sm:block w-1 h-1 bg-white/40 rounded-full"></div>
-            <span className="text-white/70 text-lg">Multi-Chain: ETH, MATIC, BSC, AVAX</span>
+          {/* Chain Support Badges */}
+          <div className={`flex flex-col items-center gap-4 mb-12 transition-all duration-1000 delay-500 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <InteroperabilityBadges className="justify-center" />
+            <div className="text-white/60 text-sm">Seamlessly integrated across all major blockchains</div>
           </div>
         </div>
 
-        {/* Primary CTA Section - Wallet Connect and Registration */}
-        <div className={`flex flex-col items-center gap-6 mb-12 transition-all duration-1000 delay-600 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Main Wallet Connect Button */}
-          <div className="flex flex-col sm:flex-row gap-4 items-center">
-            <WalletConnectButton />
+        {/* Enhanced Primary CTA Section */}
+        <div className={`flex flex-col items-center gap-8 mb-16 transition-all duration-1000 delay-600 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Main Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 items-center">
+            <div className="group relative">
+              <WalletConnectButton />
+              <div className="absolute -inset-1 bg-gradient-to-r from-neura-cyan to-neura-purple rounded-xl blur opacity-30 group-hover:opacity-60 transition duration-300"></div>
+            </div>
+            
             <Link
               to="/auth"
-              className="group relative overflow-hidden bg-gradient-to-r from-neura-purple to-cosmos-purple text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-neura-purple/25 min-h-[56px] flex items-center justify-center"
+              className="group relative overflow-hidden bg-gradient-to-r from-neura-purple via-cosmos-purple to-neura-cyan text-white px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-neura-purple/40 min-h-[64px] flex items-center justify-center border border-neura-purple/30"
             >
-              <span className="relative z-10 flex items-center gap-2">
-                <UserPlus size={20} />
-                Create Account
+              <span className="relative z-10 flex items-center gap-3">
+                <UserPlus size={22} />
+                Create Your Account
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-cosmos-purple to-neura-purple opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-cosmos-purple via-neura-purple to-cosmos-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
           </div>
 
-          {/* Secondary CTAs */}
-          <div className="text-center">
-            <p className="text-white/70 text-sm mb-4">
-              New to Web3? No problem! Start with email and upgrade later.
+          {/* Enhanced Onboarding Support */}
+          <div className="text-center bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-neura-cyan/20">
+            <p className="text-white/80 text-lg mb-4 font-medium">
+              New to Web3? 🚀 No problem! Start with email and upgrade later.
             </p>
             <button
               onClick={() => setShowOnboarding(true)}
-              className="text-neura-cyan hover:text-neura-purple underline underline-offset-4 transition-colors duration-300 font-medium"
+              className="group bg-gradient-to-r from-neura-cyan/20 to-neura-purple/20 hover:from-neura-cyan/30 hover:to-neura-purple/30 text-neura-cyan border border-neura-cyan/40 px-8 py-3 rounded-lg transition-all duration-300 font-semibold flex items-center gap-2 mx-auto"
             >
-              🚀 Get Started with Guided Setup (2 min)
+              <Play size={18} />
+              Get Started with Guided Setup (2 min)
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
             </button>
           </div>
         </div>
 
-        {/* Enhanced CTA Section with Navigation */}
-        <div className={`flex flex-col items-center gap-8 transition-all duration-1000 delay-800 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Main Action Buttons - Create, Own, Thrive */}
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-4">
+        {/* Enhanced Navigation Buttons */}
+        <div className={`flex flex-col items-center gap-8 mb-16 transition-all duration-1000 delay-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Core Action Buttons - Create, Own, Thrive */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <button
               onClick={() => handleSectionNavigation('create')}
-              className="group relative overflow-hidden bg-gradient-to-r from-neura-cyan to-neura-purple text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-neura-cyan/25 min-h-[56px] flex items-center justify-center"
-              aria-label="Navigate to Create section"
+              className="group relative overflow-hidden bg-gradient-to-r from-neura-cyan/20 to-neura-purple/20 border border-neura-cyan/40 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-neura-cyan/25 hover:border-neura-cyan/60 min-h-[56px] flex items-center justify-center backdrop-blur-sm"
             >
               <span className="relative z-10 flex items-center gap-2">
-                <Sparkles size={20} />
+                <Sparkles size={20} className="group-hover:animate-pulse" />
                 Create
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-neura-purple to-neura-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
 
             <button
               onClick={() => handleSectionNavigation('own')}
-              className="group relative overflow-hidden bg-gradient-to-r from-cosmos-cyan to-neura-cyan text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cosmos-cyan/25 min-h-[56px] flex items-center justify-center"
-              aria-label="Navigate to Own section"
+              className="group relative overflow-hidden bg-gradient-to-r from-cosmos-cyan/20 to-neura-cyan/20 border border-cosmos-cyan/40 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cosmos-cyan/25 hover:border-cosmos-cyan/60 min-h-[56px] flex items-center justify-center backdrop-blur-sm"
             >
               <span className="relative z-10 flex items-center gap-2">
-                <Shield size={20} />
+                <Shield size={20} className="group-hover:animate-pulse" />
                 Own
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-neura-cyan to-cosmos-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
 
             <button
               onClick={() => handleSectionNavigation('thrive')}
-              className="group relative overflow-hidden bg-gradient-to-r from-neura-purple to-cosmos-purple text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-neura-purple/25 min-h-[56px] flex items-center justify-center"
-              aria-label="Navigate to Thrive section"
+              className="group relative overflow-hidden bg-gradient-to-r from-neura-purple/20 to-cosmos-purple/20 border border-neura-purple/40 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-neura-purple/25 hover:border-neura-purple/60 min-h-[56px] flex items-center justify-center backdrop-blur-sm"
             >
               <span className="relative z-10 flex items-center gap-2">
-                <Users size={20} />
+                <Users size={20} className="group-hover:animate-pulse" />
                 Thrive
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-cosmos-purple to-neura-purple opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </button>
-          </div>
-
-          {/* Secondary Navigation Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <button
-              onClick={() => handleSectionNavigation('get-started')}
-              className="group relative overflow-hidden bg-transparent border-2 border-neura-cyan text-neura-cyan px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:bg-neura-cyan hover:text-black hover:scale-105 hover:shadow-xl hover:shadow-neura-cyan/25 min-h-[56px] flex items-center justify-center"
-              aria-label="Navigate to Get Started section"
-            >
-              <span className="flex items-center gap-2">
-                <Play size={20} />
-                Get Started
-              </span>
-            </button>
-
-            <button
-              onClick={() => handleSectionNavigation('developer-resources')}
-              className="group relative overflow-hidden bg-transparent border-2 border-neura-purple text-neura-purple px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:bg-neura-purple hover:text-white hover:scale-105 hover:shadow-xl hover:shadow-neura-purple/25 min-h-[56px] flex items-center justify-center"
-              aria-label="Navigate to Developer Resources section"
-            >
-              <span className="flex items-center gap-2">
-                <Code size={20} />
-                Developer Resources
-              </span>
-            </button>
-          </div>
-
-          {/* Dashboard Link */}
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <button
-              onClick={() => handleSectionNavigation('dashboard')}
-              className="flex items-center justify-center gap-2 text-white/90 hover:text-neura-cyan px-6 py-3 rounded-lg transition-all duration-300 hover:bg-white/10 backdrop-blur-sm min-h-[48px] border border-white/20 hover:border-neura-cyan"
-              aria-label="Navigate to Dashboard section"
-            >
-              <Users size={18} />
-              Dashboard
             </button>
           </div>
         </div>
 
-        {/* Stats Section */}
-        <div className={`grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 transition-all duration-1000 delay-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-neura-cyan mb-2">10K+</div>
-            <div className="text-white/70 text-sm">Active Creators</div>
+        {/* Enhanced Stats Section with Glowing Cards */}
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 transition-all duration-1000 delay-800 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="group relative bg-gradient-to-br from-neura-cyan/10 to-transparent border border-neura-cyan/30 rounded-2xl p-6 text-center backdrop-blur-sm hover:border-neura-cyan/50 transition-all duration-300 hover:scale-105">
+            <div className="absolute inset-0 bg-gradient-to-br from-neura-cyan/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative z-10">
+              <div className="text-4xl md:text-5xl font-bold text-neura-cyan mb-2 font-orbitron group-hover:animate-pulse">10K+</div>
+              <div className="text-white/70 text-sm font-medium">Active Creators</div>
+            </div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-neura-purple mb-2">$2M+</div>
-            <div className="text-white/70 text-sm">Creator Earnings</div>
+          
+          <div className="group relative bg-gradient-to-br from-neura-purple/10 to-transparent border border-neura-purple/30 rounded-2xl p-6 text-center backdrop-blur-sm hover:border-neura-purple/50 transition-all duration-300 hover:scale-105">
+            <div className="absolute inset-0 bg-gradient-to-br from-neura-purple/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative z-10">
+              <div className="text-4xl md:text-5xl font-bold text-neura-purple mb-2 font-orbitron group-hover:animate-pulse">$2M+</div>
+              <div className="text-white/70 text-sm font-medium">Creator Earnings</div>
+            </div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-cosmos-cyan mb-2">50K+</div>
-            <div className="text-white/70 text-sm">NFTs Minted</div>
+          
+          <div className="group relative bg-gradient-to-br from-cosmos-cyan/10 to-transparent border border-cosmos-cyan/30 rounded-2xl p-6 text-center backdrop-blur-sm hover:border-cosmos-cyan/50 transition-all duration-300 hover:scale-105">
+            <div className="absolute inset-0 bg-gradient-to-br from-cosmos-cyan/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative z-10">
+              <div className="text-4xl md:text-5xl font-bold text-cosmos-cyan mb-2 font-orbitron group-hover:animate-pulse">50K+</div>
+              <div className="text-white/70 text-sm font-medium">NFTs Minted</div>
+            </div>
           </div>
-          <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-neura-cyan mb-2">4</div>
-            <div className="text-white/70 text-sm">Supported Chains</div>
+          
+          <div className="group relative bg-gradient-to-br from-green-400/10 to-transparent border border-green-400/30 rounded-2xl p-6 text-center backdrop-blur-sm hover:border-green-400/50 transition-all duration-300 hover:scale-105">
+            <div className="absolute inset-0 bg-gradient-to-br from-green-400/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative z-10">
+              <div className="text-4xl md:text-5xl font-bold text-green-400 mb-2 font-orbitron group-hover:animate-pulse">4</div>
+              <div className="text-white/70 text-sm font-medium">Supported Chains</div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Onboarding Modal */}
+      {/* Enhanced Onboarding Modal */}
       {showOnboarding && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="bg-card/95 backdrop-blur-xl border border-border/50 rounded-xl p-6 max-w-md w-full">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold">Web3 Quick Start</h3>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center p-4">
+          <div className="bg-gradient-to-br from-card/95 to-card/90 backdrop-blur-xl border border-neura-cyan/30 rounded-2xl p-8 max-w-lg w-full shadow-2xl">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-neura-cyan to-neura-purple bg-clip-text text-transparent">Web3 Quick Start</h3>
               <button
                 onClick={() => setShowOnboarding(false)}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-                aria-label="Close onboarding"
+                className="text-muted-foreground hover:text-neura-cyan transition-colors p-2 hover:bg-white/10 rounded-lg"
               >
-                <X size={20} />
+                <X size={24} />
               </button>
             </div>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center text-sm font-bold text-primary">1</div>
+            <div className="space-y-6">
+              <div className="flex items-start gap-4 p-4 bg-gradient-to-r from-neura-cyan/10 to-transparent rounded-xl border border-neura-cyan/20">
+                <div className="w-8 h-8 bg-neura-cyan/20 rounded-full flex items-center justify-center text-sm font-bold text-neura-cyan border border-neura-cyan/30">1</div>
                 <div>
-                  <div className="font-medium">Connect Your Wallet</div>
-                  <div className="text-sm text-muted-foreground">We support MetaMask, WalletConnect, and more</div>
+                  <div className="font-semibold text-white mb-1">Connect Your Wallet</div>
+                  <div className="text-sm text-white/70">We support MetaMask, WalletConnect, Coinbase, and more</div>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center text-sm font-bold text-primary">2</div>
+              <div className="flex items-start gap-4 p-4 bg-gradient-to-r from-neura-purple/10 to-transparent rounded-xl border border-neura-purple/20">
+                <div className="w-8 h-8 bg-neura-purple/20 rounded-full flex items-center justify-center text-sm font-bold text-neura-purple border border-neura-purple/30">2</div>
                 <div>
-                  <div className="font-medium">Choose Your Chain</div>
-                  <div className="text-sm text-muted-foreground">Ethereum, Polygon, BSC, or Avalanche</div>
+                  <div className="font-semibold text-white mb-1">Choose Your Chain</div>
+                  <div className="text-sm text-white/70">Ethereum, Polygon, BSC, or Avalanche</div>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center text-sm font-bold text-primary">3</div>
+              <div className="flex items-start gap-4 p-4 bg-gradient-to-r from-cosmos-cyan/10 to-transparent rounded-xl border border-cosmos-cyan/20">
+                <div className="w-8 h-8 bg-cosmos-cyan/20 rounded-full flex items-center justify-center text-sm font-bold text-cosmos-cyan border border-cosmos-cyan/30">3</div>
                 <div>
-                  <div className="font-medium">Start Creating</div>
-                  <div className="text-sm text-muted-foreground">Mint NFTs, build communities, earn rewards</div>
+                  <div className="font-semibold text-white mb-1">Start Creating</div>
+                  <div className="text-sm text-white/70">Mint NFTs, build communities, earn rewards</div>
                 </div>
               </div>
-              <div className="pt-4 border-t border-border/30">
+              <div className="pt-6 border-t border-border/30">
                 <WalletConnectButton />
               </div>
             </div>
