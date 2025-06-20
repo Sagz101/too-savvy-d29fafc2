@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import { Sparkles, Code, Play, Users, Zap, Shield, X } from 'lucide-react';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
+import { CircularMeerkats } from '@/components/ui/circular-meerkats';
 import { smoothScrollToSection } from '@/utils/smoothScroll';
 
 export const SimplifiedHero: React.FC = () => {
@@ -27,7 +27,10 @@ export const SimplifiedHero: React.FC = () => {
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cosmos-cyan/10 rounded-full filter blur-2xl animate-cosmic-pulse"></div>
       </div>
 
-      <div className="container mx-auto px-4 py-20">
+      {/* Circular Meerkats Animation */}
+      <CircularMeerkats />
+
+      <div className="container mx-auto px-4 py-20 relative z-10">
         {/* Trust Signals */}
         <div className="text-center mb-8">
           <div className="flex flex-wrap items-center justify-center gap-4 mb-6">

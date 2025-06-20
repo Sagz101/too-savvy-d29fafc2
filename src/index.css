@@ -1,4 +1,3 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap");
 @tailwind base;
 @tailwind components;
@@ -224,6 +223,15 @@
   }
 }
 
+@keyframes meerkat-orbit {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(300px) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(300px) rotate(-360deg);
+  }
+}
+
 @keyframes hex-shift {
   0% {
     transform: translate(0, 0);
@@ -375,6 +383,10 @@
 
 .animate-data-stream {
   animation: data-stream 5s linear infinite;
+}
+
+.animate-meerkat-orbit {
+  animation: meerkat-orbit 20s linear infinite;
 }
 
 /* Enhanced scrollbar styles - Cosmos inspired */
