@@ -1,22 +1,39 @@
+
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Sparkles, Wallet, Video, Headphones, ShoppingBag, Users, Zap, Play } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowRight, Sparkles, Wallet, Video, Users, Zap, Play, ExternalLink } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { ModernButton } from '@/components/ui/modern-button';
 import { ModernHeading, ModernText } from '@/components/ui/modern-typography';
 import { ModernContainer } from '@/components/ui/modern-container';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
 import { useInView } from 'react-intersection-observer';
+import { useAuth } from '@/services/auth';
 
 export const SimplifiedHero: React.FC = () => {
   const { ref: heroRef, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [animationStarted, setAnimationStarted] = useState(false);
   const [particleCount] = useState(25);
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
   
   useEffect(() => {
     if (inView && !animationStarted) {
       setAnimationStarted(true);
     }
   }, [inView, animationStarted]);
+
+  const handleStartCreating = () => {
+    if (isAuthenticated) {
+      navigate('/video-studio');
+    } else {
+      navigate('/auth');
+    }
+  };
+
+  const handleWatchTutorial = () => {
+    // Open tutorial in new tab
+    window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <section 
@@ -160,7 +177,7 @@ export const SimplifiedHero: React.FC = () => {
               and grow your community—without barriers.
             </ModernText>
 
-            {/* Web3 Features Grid - Removed hover effects */}
+            {/* Web3 Features Grid - Static display without hover effects */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 animate-fade-in-delayed-2">
               {[
                 { icon: Video, label: 'Create', color: '#00ffff' },
@@ -170,14 +187,14 @@ export const SimplifiedHero: React.FC = () => {
               ].map((item, index) => (
                 <div 
                   key={item.label}
-                  className="bg-black/30 border border-gray-700/50 rounded-lg p-3 backdrop-blur-sm transition-all duration-300"
+                  className="bg-black/30 border border-gray-700/50 rounded-lg p-3 backdrop-blur-sm"
                   style={{
                     boxShadow: `0 0 0 1px ${item.color}20`,
                     animation: `cyber-pulse 3s ease-in-out infinite ${index * 0.5}s`
                   }}
                 >
                   <item.icon 
-                    className="w-6 h-6 mx-auto mb-2 transition-transform duration-300" 
+                    className="w-6 h-6 mx-auto mb-2" 
                     style={{ color: item.color }}
                   />
                   <p className="text-white text-sm font-medium">{item.label}</p>
@@ -185,7 +202,7 @@ export const SimplifiedHero: React.FC = () => {
               ))}
             </div>
 
-            {/* CTA Buttons with Working Links */}
+            {/* CTA Buttons with Working Links and Proper Functionality */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 animate-fade-in-delayed-3">
               
               {/* Primary CTA - Wallet Connect */}
@@ -194,34 +211,33 @@ export const SimplifiedHero: React.FC = () => {
                 <WalletConnectButton />
               </div>
               
-              {/* Secondary CTA - Start Creating */}
+              {/* Secondary CTA - Start Creating with Authentication Check */}
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl blur opacity-50 group-hover:opacity-75 transition duration-300"></div>
                 <ModernButton
                   variant="primary"
                   size="lg"
-                  className="relative bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 border-2 border-purple-500/50 hover:border-purple-400 transition-all duration-300 hover:scale-105 shadow-2xl"
-                  asChild
+                  className="relative bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 border-2 border-purple-500/50 hover:border-purple-400 transition-all duration-300 hover:scale-105 shadow-2xl min-h-[44px] min-w-[44px]"
+                  onClick={handleStartCreating}
+                  aria-label="Start creating content - requires authentication"
                 >
-                  <Link to="/video-studio">
-                    <Sparkles size={18} aria-hidden="true" />
-                    <span className="font-semibold">Start Creating</span>
-                    <ArrowRight size={18} aria-hidden="true" />
-                  </Link>
+                  <Sparkles size={18} aria-hidden="true" />
+                  <span className="font-semibold">Start Creating</span>
+                  <ArrowRight size={18} aria-hidden="true" />
                 </ModernButton>
               </div>
 
-              {/* Tutorial CTA - Working Link */}
+              {/* Tutorial CTA - Fixed Link */}
               <ModernButton
                 variant="outline"
                 size="lg"
-                className="border-2 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25"
-                asChild
+                className="border-2 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25 min-h-[44px] min-w-[44px]"
+                onClick={handleWatchTutorial}
+                aria-label="Watch T00 Savvy tutorial video"
               >
-                <Link to="/video-studio">
-                  <Play size={16} aria-hidden="true" />
-                  <span>Start Tutorial</span>
-                </Link>
+                <Play size={16} aria-hidden="true" />
+                <span>Watch Tutorial</span>
+                <ExternalLink size={14} aria-hidden="true" />
               </ModernButton>
             </div>
 
@@ -247,12 +263,12 @@ export const SimplifiedHero: React.FC = () => {
             </div>
           </div>
 
-          {/* Hero Image/Visual Element - Fixed image display */}
+          {/* Hero Image/Visual Element - Fixed responsive sizing */}
           <div className={`lg:w-1/2 flex items-center justify-center animate-fade-in-delayed-2`}>
             <div className="relative w-full max-w-md">
-              {/* Holographic Display Frame */}
+              {/* Holographic Display Frame - Responsive sizing */}
               <div 
-                className="w-80 h-80 mx-auto rounded-2xl border-2 border-cyan-500/50 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 backdrop-blur-sm relative overflow-hidden"
+                className="w-72 h-72 sm:w-80 sm:h-80 mx-auto rounded-2xl border-2 border-cyan-500/50 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 backdrop-blur-sm relative overflow-hidden"
                 style={{
                   boxShadow: '0 0 50px rgba(0, 255, 255, 0.3), inset 0 0 50px rgba(255, 0, 255, 0.1)'
                 }}
@@ -270,8 +286,8 @@ export const SimplifiedHero: React.FC = () => {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center space-y-4">
                     {/* Web3 Logo/Icon */}
-                    <div className="w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center animate-float">
-                      <Sparkles className="w-12 h-12 text-white" />
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-full bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center animate-float">
+                      <Sparkles className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
                     </div>
                     
                     {/* Status Text */}

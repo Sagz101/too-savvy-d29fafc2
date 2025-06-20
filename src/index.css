@@ -1,3 +1,4 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap");
 @tailwind base;
 @tailwind components;
@@ -46,6 +47,13 @@
     --cosmos-gray: 220 8% 15%;
     --cosmos-cyan: 194 100% 50%;
     --cosmos-border: 220 8% 15%;
+    
+    /* Spacing variables for consistent layout */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
   }
 
   .dark {
@@ -171,6 +179,15 @@
   }
 }
 
+@keyframes hero-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 30px rgba(255, 0, 255, 0.7));
+  }
+}
+
 @keyframes gradient-shift {
   0%, 100% {
     background-position: 0% 50%;
@@ -274,12 +291,23 @@
   }
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .animate-hero-entrance {
   animation: hero-entrance 0.8s ease-out forwards;
 }
 
-.animate-subtext-slide {
-  animation: subtext-slide 0.6s ease-out forwards;
+.animate-hero-glow {
+  animation: hero-glow 3s ease-in-out infinite;
 }
 
 .animate-fade-in {
@@ -364,260 +392,7 @@ a:focus-visible,
   outline-offset: 2px;
 }
 
-/* CSS-only fallback for navigation active states */
-nav a[href="#create"]:target,
-nav a[href="#own"]:target,
-nav a[href="#thrive"]:target,
-nav a[href="#get-started"]:target,
-nav a[href="#developer-resources"]:target,
-nav a[href="#dashboard"]:target {
-  color: white !important;
-  font-weight: 600 !important;
-  position: relative;
-}
-
-nav a[href="#create"]:target::after,
-nav a[href="#own"]:target::after,
-nav a[href="#thrive"]:target::after,
-nav a[href="#get-started"]:target::after,
-nav a[href="#developer-resources"]:target::after,
-nav a[href="#dashboard"]:target::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: white;
-  border-radius: 9999px;
-}
-
-/* Enhanced gradient backgrounds for sections */
-.section-gradient {
-  background: linear-gradient(135deg, hsl(var(--cosmos-dark)) 0%, hsl(var(--card)) 100%);
-}
-
-/* Cosmos-inspired glow effects */
-.cosmos-glow {
-  box-shadow: 0 0 20px hsl(var(--cosmos-cyan) / 0.1);
-}
-
-.cosmos-border {
-  border: 1px solid hsl(var(--cosmos-border));
-}
-
-/* Enhanced card styles */
-.cosmos-card {
-  background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--cosmos-dark)) 100%);
-  border: 1px solid hsl(var(--border));
-  box-shadow: 0 4px 6px -1px hsl(var(--cosmos-dark) / 0.1), 0 2px 4px -1px hsl(var(--cosmos-dark) / 0.06);
-}
-
-/* Navigation enhancements - Cosmos Network inspired */
-header {
-  backdrop-filter: blur(20px);
-  background: hsl(var(--cosmos-dark) / 0.95);
-  border-bottom: 1px solid hsl(var(--cosmos-border));
-  box-shadow: 0 1px 3px 0 hsl(var(--cosmos-dark) / 0.1), 0 1px 2px 0 hsl(var(--cosmos-dark) / 0.06);
-}
-
-/* Button hover effects matching Cosmos */
-.btn-cosmos {
-  background: linear-gradient(135deg, hsl(var(--cosmos-cyan)) 0%, hsl(var(--cosmos-cyan) / 0.8) 100%);
-  transition: all 0.3s ease;
-}
-
-.btn-cosmos:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 25px hsl(var(--cosmos-cyan) / 0.2);
-}
-
-/* Mobile menu enhancements */
-@media (max-width: 767px) {
-  .hamburger {
-    display: block;
-  }
-  
-  .nav-links {
-    display: none;
-  }
-  
-  .nav-links.active {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-/* Performance optimizations */
-.transition-smooth {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-}
-
-.hero-title {
-  background: linear-gradient(135deg, #ffffff 0%, hsl(var(--cosmos-cyan)) 50%, #ffffff 100%);
-  background-size: 200% 200%;
-  animation: gradient-shift 4s ease-in-out infinite;
-}
-
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-/* Web 3.0 Card Enhancement Styles */
-.web3-card {
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(103, 232, 249, 0.2);
-  background: linear-gradient(135deg, rgba(103, 232, 249, 0.05) 0%, rgba(167, 139, 250, 0.05) 100%);
-}
-
-.web3-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.8), transparent);
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-/* Orbitron font integration */
-.font-orbitron {
-  font-family: 'Orbitron', monospace;
-}
-
-/* Hover effects for Web 3.0 aesthetic */
-.web3-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(103, 232, 249, 0.15);
-  border-color: rgba(103, 232, 249, 0.5);
-}
-
-/* Glitch text effect */
-.glitch {
-  position: relative;
-  color: white;
-}
-
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.glitch::before {
-  animation: glitch-1 0.5s infinite;
-  color: #ff00ff;
-  z-index: -1;
-}
-
-.glitch::after {
-  animation: glitch-2 0.5s infinite;
-  color: #00ffff;
-  z-index: -2;
-}
-
-@keyframes glitch-1 {
-  0%, 100% {
-    transform: translate(0);
-  }
-  20% {
-    transform: translate(-2px, 2px);
-  }
-  40% {
-    transform: translate(-2px, -2px);
-  }
-  60% {
-    transform: translate(2px, 2px);
-  }
-  80% {
-    transform: translate(2px, -2px);
-  }
-}
-
-@keyframes glitch-2 {
-  0%, 100% {
-    transform: translate(0);
-  }
-  20% {
-    transform: translate(2px, -2px);
-  }
-  40% {
-    transform: translate(2px, 2px);
-  }
-  60% {
-    transform: translate(-2px, -2px);
-  }
-}
-
-/* Additional Web 3.0 Animations for UserTypes */
-@keyframes grid-shift {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(50px, 50px);
-  }
-}
-
-@keyframes neon-glow {
-  0%, 100% {
-    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
-  }
-  50% {
-    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
-  }
-}
-
-/* Enhanced hover effects for user type cards */
-.user-card-glow {
-  position: relative;
-  overflow: hidden;
-}
-
-.user-card-glow::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.8), transparent);
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-/* Mobile-specific improvements */
+/* Mobile-first responsive design improvements */
 @media (max-width: 768px) {
   .hero {
     padding: 1rem;
@@ -633,24 +408,83 @@ header {
   }
 }
 
-/* Touch targets for mobile */
-.touch-target {
+/* Touch targets for mobile accessibility - WCAG 2.1 compliant */
+.touch-target,
+button,
+a,
+[role="button"] {
   min-height: 44px;
   min-width: 44px;
 }
 
-/* Ensure hamburger menu is visible on all devices */
-button[aria-label="Open navigation menu"] {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+/* Mobile hamburger menu styling - Enhanced visibility */
+@media (max-width: 1023px) {
+  button[aria-label*="navigation menu"],
+  button[aria-label*="Toggle navigation"] {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 255, 255, 0.1) !important;
+    border: 2px solid rgba(0, 255, 255, 0.3) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  button[aria-label*="navigation menu"]:hover,
+  button[aria-label*="Toggle navigation"]:hover {
+    background: rgba(0, 255, 255, 0.2) !important;
+    border-color: rgba(0, 255, 255, 0.5) !important;
+    transform: scale(1.05);
+  }
 }
 
 @media (min-width: 1024px) {
-  button[aria-label="Open navigation menu"] {
+  button[aria-label*="navigation menu"],
+  button[aria-label*="Toggle navigation"] {
     display: none !important;
+  }
+}
+
+/* Footer consistent spacing */
+footer {
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+footer .container {
+  max-width: 1200px;
+}
+
+/* Performance optimizations */
+.transition-smooth {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Contrast ratio improvements for WCAG 2.1 compliance */
+.text-muted-foreground {
+  color: hsl(220 5% 75%); /* Improved contrast ratio */
+}
+
+/* Button and interactive element improvements */
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

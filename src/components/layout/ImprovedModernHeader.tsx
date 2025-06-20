@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Menu } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ModernButton } from '@/components/ui/modern-button';
 import { ModernContainer } from '@/components/ui/modern-container';
@@ -11,6 +11,10 @@ import { LoginButton } from '@/components/auth/LoginButton';
 
 export const ImprovedModernHeader: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
     <>
@@ -26,7 +30,7 @@ export const ImprovedModernHeader: React.FC = () => {
               />
             </Link>
 
-            {/* Streamlined Desktop Navigation */}
+            {/* Desktop Navigation */}
             <div className="hidden lg:block">
               <StreamlinedNavigation />
             </div>
@@ -39,15 +43,21 @@ export const ImprovedModernHeader: React.FC = () => {
                 <WalletConnectButton />
               </div>
 
-              {/* Mobile Menu Button - Always visible on mobile */}
+              {/* Mobile Menu Button - Enhanced visibility and touch target */}
               <ModernButton
                 variant="ghost"
                 size="sm"
-                className="lg:hidden p-2 h-10 w-10 flex items-center justify-center border border-border/50 hover:border-border/70"
-                onClick={() => setIsMobileMenuOpen(true)}
-                aria-label="Open navigation menu"
+                className="lg:hidden p-3 h-12 w-12 flex items-center justify-center border-2 border-primary/30 hover:border-primary/50 bg-card/20 hover:bg-card/40 backdrop-blur-sm transition-all duration-300 min-h-[44px] min-w-[44px]"
+                onClick={toggleMobileMenu}
+                aria-label="Toggle navigation menu"
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-menu"
               >
-                <Menu size={20} className="text-foreground" />
+                {isMobileMenuOpen ? (
+                  <X size={24} className="text-primary" />
+                ) : (
+                  <Menu size={24} className="text-primary" />
+                )}
               </ModernButton>
             </div>
           </div>
