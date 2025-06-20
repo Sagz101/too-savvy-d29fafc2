@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
-import { Sparkles, Code, Play, Users, Zap, Shield } from 'lucide-react';
+import { Sparkles, Code, Play, Users, Zap, Shield, X } from 'lucide-react';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
 
 export const SimplifiedHero: React.FC = () => {

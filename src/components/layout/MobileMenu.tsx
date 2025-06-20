@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { X, Home, Users, Video, Code, Store, Shield, Share2, Wallet } from 'lucide-react';
+import { X, Home, Users, Video, Code, Store, Shield, Share2, Wallet, Edit, BookOpen, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ModernButton } from '@/components/ui/modern-button';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
