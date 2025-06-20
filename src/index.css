@@ -252,6 +252,18 @@
   }
 }
 
+@keyframes float-horizontal {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  33% {
+    transform: translateX(15px);
+  }
+  66% {
+    transform: translateX(-15px);
+  }
+}
+
 @keyframes neon-glow {
   0%, 100% {
     text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
@@ -347,6 +359,10 @@
 
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-horizontal {
+  animation: float-horizontal 4s ease-in-out infinite;
 }
 
 .animate-neon-glow {
