@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
@@ -95,13 +94,19 @@ export const SimplifiedHero: React.FC = () => {
           </div>
         </div>
 
-        {/* Enhanced Primary CTA Section */}
+        {/* Enhanced Primary CTA Section - Uniform Buttons */}
         <div className={`flex flex-col items-center gap-8 mb-16 transition-all duration-1000 delay-600 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Main Action Buttons */}
+          {/* Main Action Buttons - Uniform Design */}
           <div className="flex flex-col sm:flex-row gap-6 items-center">
             <div className="group relative">
-              <WalletConnectButton />
               <div className="absolute -inset-1 bg-gradient-to-r from-neura-cyan to-neura-purple rounded-xl blur opacity-30 group-hover:opacity-60 transition duration-300"></div>
+              <button className="relative bg-gradient-to-r from-neura-cyan via-neura-purple to-cosmos-cyan text-white px-10 py-5 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-neura-cyan/40 min-h-[64px] flex items-center justify-center border border-neura-cyan/30">
+                <span className="flex items-center gap-3">
+                  <Shield size={22} />
+                  Connect Wallet
+                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+              </button>
             </div>
             
             <Link
