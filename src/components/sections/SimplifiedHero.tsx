@@ -1,331 +1,186 @@
-
-import React, { useEffect, useState } from 'react';
-import { ArrowRight, Sparkles, Wallet, Video, Users, Zap, Play, ExternalLink } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ModernButton } from '@/components/ui/modern-button';
-import { ModernHeading, ModernText } from '@/components/ui/modern-typography';
-import { ModernContainer } from '@/components/ui/modern-container';
-import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
+import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useAuth } from '@/services/auth';
+import { Link } from 'react-router-dom';
+import { Sparkles, Code, Play, Users, Zap, Shield } from 'lucide-react';
+import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
 
 export const SimplifiedHero: React.FC = () => {
-  const { ref: heroRef, inView } = useInView({ threshold: 0.1, triggerOnce: true });
-  const [animationStarted, setAnimationStarted] = useState(false);
-  const [particleCount] = useState(25);
-  const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
-  
-  useEffect(() => {
-    if (inView && !animationStarted) {
-      setAnimationStarted(true);
-    }
-  }, [inView, animationStarted]);
-
-  const handleStartCreating = () => {
-    if (isAuthenticated) {
-      navigate('/video-studio');
-    } else {
-      navigate('/auth');
-    }
-  };
-
-  const handleWatchTutorial = () => {
-    // Open tutorial in new tab
-    window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '_blank', 'noopener,noreferrer');
-  };
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const [showOnboarding, setShowOnboarding] = useState(false);
 
   return (
     <section 
-      ref={heroRef}
-      className="hero relative min-h-screen pt-16 pb-8 flex items-center justify-center overflow-hidden"
-      style={{
-        background: `
-          linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 25%, #2a1a4a 50%, #1a2a4a 75%, #0a1a3a 100%),
-          radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-          radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%)
-        `,
-        backgroundSize: '400% 400%, 100% 100%, 100% 100%',
-        animation: 'gradient-shift 15s ease infinite'
-      }}
-      aria-label="T00 Savvy - Web3 Creator Platform"
+      ref={ref}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-cosmos-dark via-neura-dark to-cosmos-darker"
+      id="hero"
     >
-      {/* Animated Background Particles */}
-      <div className="absolute inset-0 z-1" aria-hidden="true">
-        {[...Array(particleCount)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full animate-float"
-            style={{
-              width: `${Math.random() * 6 + 2}px`,
-              height: `${Math.random() * 6 + 2}px`,
-              background: `linear-gradient(45deg, 
-                ${Math.random() > 0.5 ? '#00ffff' : '#ff00ff'}, 
-                ${Math.random() > 0.5 ? '#ff00ff' : '#00ffff'})`,
-              boxShadow: `0 0 10px ${Math.random() > 0.5 ? '#00ffff' : '#ff00ff'}`,
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${Math.random() * 8 + 4}s`,
-              animationDelay: `${Math.random() * 5}s`,
-            }}
-          />
-        ))}
+      {/* Enhanced background effects */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-neura-cyan/20 rounded-full filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-neura-purple/20 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-cosmos-cyan/10 rounded-full filter blur-2xl animate-cosmic-pulse"></div>
       </div>
 
-      {/* Hexagonal Grid Pattern */}
-      <div 
-        className="absolute inset-0 z-2 opacity-20"
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(
-              0deg,
-              transparent,
-              transparent 35px,
-              rgba(0, 255, 255, 0.1) 35px,
-              rgba(0, 255, 255, 0.1) 37px
-            ),
-            repeating-linear-gradient(
-              60deg,
-              transparent,
-              transparent 35px,
-              rgba(255, 0, 255, 0.1) 35px,
-              rgba(255, 0, 255, 0.1) 37px
-            ),
-            repeating-linear-gradient(
-              120deg,
-              transparent,
-              transparent 35px,
-              rgba(0, 255, 255, 0.1) 35px,
-              rgba(0, 255, 255, 0.1) 37px
-            )
-          `,
-          animation: 'hex-shift 20s linear infinite'
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Rotating Energy Ring */}
-      <div 
-        className="absolute inset-0 z-3 flex items-center justify-center"
-        aria-hidden="true"
-      >
-        <div 
-          className="w-96 h-96 border-2 border-cosmos-cyan/30 rounded-full animate-spin"
-          style={{
-            animationDuration: '30s',
-            background: 'conic-gradient(from 0deg, transparent, rgba(0, 255, 255, 0.2), transparent)'
-          }}
-        />
-      </div>
-
-      <ModernContainer size="lg" className="text-center relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between min-h-[70vh] gap-8">
-          
-          {/* Main Content */}
-          <div className={`lg:w-1/2 space-y-6 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            
-            {/* Web3 Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/20 to-purple-500/20 border border-cyan-500/30 backdrop-blur-sm">
-              <Zap className="w-4 h-4 text-cyan-400 animate-pulse" />
-              <span className="text-cyan-400 text-sm font-medium">Web3 Creator Platform</span>
+      <div className="container mx-auto px-4 py-20">
+        {/* Trust Signals */}
+        <div className="text-center mb-8">
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
+            <div className="flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-full px-4 py-2">
+              <Shield size={16} className="text-green-400" />
+              <span className="text-sm font-medium text-green-400">Smart Contract Audited</span>
             </div>
-
-            {/* Main Title with Holographic Effect */}
-            <ModernHeading 
-              level={1}
-              className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-wider uppercase leading-tight font-orbitron ${animationStarted ? 'animate-hero-glow' : ''}`}
-              as="h1"
-              style={{
-                background: 'linear-gradient(45deg, #00ffff, #ff00ff, #00ffff, #ffff00)',
-                backgroundSize: '400% 400%',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                filter: 'drop-shadow(0 0 20px rgba(0, 255, 255, 0.5))',
-                animation: 'gradient-text 3s ease infinite, neon-glow 2s ease-in-out infinite'
-              }}
-            >
-              T00 SAVVY
-            </ModernHeading>
-            
-            {/* Tagline with Glitch Effect */}
-            <ModernHeading 
-              level={2}
-              className={`text-xl sm:text-2xl lg:text-3xl font-bold text-transparent bg-clip-text ${animationStarted ? 'animate-pulse' : ''}`}
-              as="h2"
-              style={{
-                background: 'linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff)',
-                backgroundSize: '200% 200%',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                animation: 'gradient-x 2s ease infinite',
-                textShadow: '0 0 10px rgba(255, 0, 255, 0.5)'
-              }}
-            >
-              Create. Own. Thrive.
-            </ModernHeading>
-
-            {/* Description */}
-            <ModernText 
-              variant="lead"
-              className={`text-base sm:text-lg text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed animate-fade-in-delayed-1`}
-              style={{
-                textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)'
-              }}
-            >
-              Shape your digital future with T00 Savvy. Create freely, own your work on the blockchain, 
-              and grow your community—without barriers.
-            </ModernText>
-
-            {/* Web3 Features Grid - Static display without hover effects */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 animate-fade-in-delayed-2">
-              {[
-                { icon: Video, label: 'Create', color: '#00ffff' },
-                { icon: Wallet, label: 'Own', color: '#ff00ff' },
-                { icon: Users, label: 'Thrive', color: '#ffff00' },
-                { icon: Sparkles, label: 'Earn', color: '#00ff88' }
-              ].map((item, index) => (
-                <div 
-                  key={item.label}
-                  className="bg-black/30 border border-gray-700/50 rounded-lg p-3 backdrop-blur-sm"
-                  style={{
-                    boxShadow: `0 0 0 1px ${item.color}20`,
-                    animation: `cyber-pulse 3s ease-in-out infinite ${index * 0.5}s`
-                  }}
-                >
-                  <item.icon 
-                    className="w-6 h-6 mx-auto mb-2" 
-                    style={{ color: item.color }}
-                  />
-                  <p className="text-white text-sm font-medium">{item.label}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA Buttons with Working Links and Proper Functionality */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 animate-fade-in-delayed-3">
-              
-              {/* Primary CTA - Wallet Connect */}
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                <WalletConnectButton />
-              </div>
-              
-              {/* Secondary CTA - Start Creating with Authentication Check */}
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl blur opacity-50 group-hover:opacity-75 transition duration-300"></div>
-                <ModernButton
-                  variant="primary"
-                  size="lg"
-                  className="relative bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 border-2 border-purple-500/50 hover:border-purple-400 transition-all duration-300 hover:scale-105 shadow-2xl min-h-[44px] min-w-[44px]"
-                  onClick={handleStartCreating}
-                  aria-label="Start creating content - requires authentication"
-                >
-                  <Sparkles size={18} aria-hidden="true" />
-                  <span className="font-semibold">Start Creating</span>
-                  <ArrowRight size={18} aria-hidden="true" />
-                </ModernButton>
-              </div>
-
-              {/* Tutorial CTA - Fixed Link */}
-              <ModernButton
-                variant="outline"
-                size="lg"
-                className="border-2 border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:border-cyan-400 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/25 min-h-[44px] min-w-[44px]"
-                onClick={handleWatchTutorial}
-                aria-label="Watch T00 Savvy tutorial video"
-              >
-                <Play size={16} aria-hidden="true" />
-                <span>Watch Tutorial</span>
-                <ExternalLink size={14} aria-hidden="true" />
-              </ModernButton>
-            </div>
-
-            {/* Trust Indicator with Animation */}
-            <div className="flex items-center justify-center lg:justify-start gap-3 animate-fade-in-delayed-4">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
-                <ModernText variant="caption" className="text-gray-400 text-sm">
-                  Trusted by
-                </ModernText>
-                <span 
-                  className="text-cyan-400 font-bold text-lg animate-pulse"
-                  style={{
-                    textShadow: '0 0 10px rgba(0, 255, 255, 0.5)'
-                  }}
-                >
-                  10,000+
-                </span>
-                <ModernText variant="caption" className="text-gray-400 text-sm">
-                  Web3 creators
-                </ModernText>
-              </div>
-            </div>
-          </div>
-
-          {/* Hero Image/Visual Element - Fixed responsive sizing */}
-          <div className={`lg:w-1/2 flex items-center justify-center animate-fade-in-delayed-2`}>
-            <div className="relative w-full max-w-md">
-              {/* Holographic Display Frame - Responsive sizing */}
-              <div 
-                className="w-72 h-72 sm:w-80 sm:h-80 mx-auto rounded-2xl border-2 border-cyan-500/50 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 backdrop-blur-sm relative overflow-hidden"
-                style={{
-                  boxShadow: '0 0 50px rgba(0, 255, 255, 0.3), inset 0 0 50px rgba(255, 0, 255, 0.1)'
-                }}
-              >
-                {/* Scanning Lines Effect */}
-                <div 
-                  className="absolute inset-0 opacity-30"
-                  style={{
-                    background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 255, 0.1) 2px, rgba(0, 255, 255, 0.1) 4px)',
-                    animation: 'scan-lines 2s linear infinite'
-                  }}
-                />
-                
-                {/* Center Content */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center space-y-4">
-                    {/* Web3 Logo/Icon */}
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-full bg-gradient-to-br from-cyan-400 to-purple-600 flex items-center justify-center animate-float">
-                      <Sparkles className="w-10 h-10 sm:w-12 sm:h-12 text-white" />
-                    </div>
-                    
-                    {/* Status Text */}
-                    <div>
-                      <p className="text-cyan-400 text-sm font-mono">SYSTEM STATUS</p>
-                      <p className="text-green-400 text-lg font-bold animate-pulse">ONLINE</p>
-                    </div>
-                    
-                    {/* Data Streams */}
-                    <div className="space-y-1">
-                      {[...Array(3)].map((_, i) => (
-                        <div key={i} className="flex items-center gap-2">
-                          <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: `${i * 0.3}s` }} />
-                          <div className="h-1 bg-gradient-to-r from-cyan-500 to-transparent rounded flex-1" />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Orbiting Elements */}
-              {[...Array(3)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-4 h-4 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full"
-                  style={{
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    animation: `orbit 6s linear infinite ${i * 2}s`
-                  }}
-                />
-              ))}
+            <div className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 rounded-full px-4 py-2">
+              <Zap size={16} className="text-blue-400" />
+              <span className="text-sm font-medium text-blue-400">Multi-Chain Ready</span>
             </div>
           </div>
         </div>
-      </ModernContainer>
+
+        {/* Main Content */}
+        <div className="text-center mb-16">
+          <h1 className={`text-4xl md:text-6xl lg:text-7xl font-bold mb-6 font-orbitron leading-tight transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="bg-gradient-to-r from-neura-cyan via-neura-purple to-cosmos-cyan bg-clip-text text-transparent animate-hero-glow">
+              Create. Own. Thrive.
+            </span>
+          </h1>
+          
+          <p className={`text-xl md:text-2xl lg:text-3xl text-white/90 mb-8 max-w-4xl mx-auto leading-relaxed transition-all duration-1000 delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            The Web3 Creator Platform where you control your content, data, and digital identity—forever.
+          </p>
+
+          <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 transition-all duration-1000 delay-400 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="text-white/70 text-lg">Smart Contract Audited</span>
+            <div className="hidden sm:block w-1 h-1 bg-white/40 rounded-full"></div>
+            <span className="text-white/70 text-lg">Multi-Chain: ETH, MATIC, BSC, AVAX</span>
+          </div>
+        </div>
+
+        {/* Enhanced CTA Section */}
+        <div className={`flex flex-col items-center gap-8 transition-all duration-1000 delay-600 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Primary CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <Link 
+              to="/video-studio"
+              className="group relative overflow-hidden bg-gradient-to-r from-neura-cyan to-neura-purple text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-neura-cyan/25 min-h-[56px] flex items-center justify-center"
+              aria-label="Create your first NFT in Creator Studio"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                <Sparkles size={20} />
+                Create Your First NFT
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-neura-purple to-neura-cyan opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </Link>
+
+            <Link 
+              to="/video-integration"
+              className="group relative overflow-hidden bg-transparent border-2 border-neura-cyan text-neura-cyan px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:bg-neura-cyan hover:text-black hover:scale-105 hover:shadow-xl hover:shadow-neura-cyan/25 min-h-[56px] flex items-center justify-center"
+              aria-label="Build on T00 Savvy platform"
+            >
+              <span className="flex items-center gap-2">
+                <Code size={20} />
+                Build on T00 Savvy
+              </span>
+            </Link>
+          </div>
+
+          {/* Secondary CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <button
+              onClick={() => setShowOnboarding(true)}
+              className="flex items-center justify-center gap-2 text-white/90 hover:text-neura-cyan px-6 py-3 rounded-lg transition-all duration-300 hover:bg-white/10 backdrop-blur-sm min-h-[48px]"
+              aria-label="Watch T00 Savvy tutorial"
+            >
+              <Play size={18} />
+              Watch Tutorial (2 min)
+            </button>
+
+            <Link
+              to="/global-innovators"
+              className="flex items-center justify-center gap-2 text-white/90 hover:text-neura-purple px-6 py-3 rounded-lg transition-all duration-300 hover:bg-white/10 backdrop-blur-sm min-h-[48px]"
+              aria-label="Join DAO governance - Earn $Neurax tokens"
+            >
+              <Users size={18} />
+              Join DAO (Earn $Neurax)
+            </Link>
+          </div>
+
+          {/* Onboarding Support */}
+          <div className="text-center mt-8">
+            <p className="text-white/60 text-sm mb-2">New to Web3?</p>
+            <button
+              onClick={() => setShowOnboarding(true)}
+              className="text-neura-cyan hover:text-neura-purple underline underline-offset-4 transition-colors duration-300"
+              aria-label="Get started with Web3 guidance"
+            >
+              Get Started with Guided Setup
+            </button>
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <div className={`grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 transition-all duration-1000 delay-800 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-neura-cyan mb-2">10K+</div>
+            <div className="text-white/70 text-sm">Active Creators</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-neura-purple mb-2">$2M+</div>
+            <div className="text-white/70 text-sm">Creator Earnings</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-cosmos-cyan mb-2">50K+</div>
+            <div className="text-white/70 text-sm">NFTs Minted</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-neura-cyan mb-2">4</div>
+            <div className="text-white/70 text-sm">Supported Chains</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Onboarding Modal */}
+      {showOnboarding && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-card/95 backdrop-blur-xl border border-border/50 rounded-xl p-6 max-w-md w-full">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-xl font-bold">Web3 Quick Start</h3>
+              <button
+                onClick={() => setShowOnboarding(false)}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Close onboarding"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center text-sm font-bold text-primary">1</div>
+                <div>
+                  <div className="font-medium">Connect Your Wallet</div>
+                  <div className="text-sm text-muted-foreground">We support MetaMask, WalletConnect, and more</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center text-sm font-bold text-primary">2</div>
+                <div>
+                  <div className="font-medium">Choose Your Chain</div>
+                  <div className="text-sm text-muted-foreground">Ethereum, Polygon, BSC, or Avalanche</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center text-sm font-bold text-primary">3</div>
+                <div>
+                  <div className="font-medium">Start Creating</div>
+                  <div className="text-sm text-muted-foreground">Mint NFTs, build communities, earn rewards</div>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-border/30">
+                <WalletConnectButton />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
