@@ -8,23 +8,23 @@ interface CircularMeerkatsProps {
 export const CircularMeerkats: React.FC<CircularMeerkatsProps> = ({ className = "" }) => {
   const meerkats = [
     {
-      src: "/lovable-uploads/635996b1-2703-42ea-b9bf-1cd4216e0361.png",
-      alt: "Tech Meerkat with laptop and goggles",
+      src: "/lovable-uploads/f1073674-f4fa-4377-adeb-edacb2ce0dce.png",
+      alt: "Tech Meerkat with VR goggles and tablet",
       delay: "0s"
     },
     {
-      src: "/lovable-uploads/ff79e23b-b902-42a3-a11e-49c11b6b512e.png",
-      alt: "Meerkat with VR goggles and wristwatch",
+      src: "/lovable-uploads/20e2529d-8f00-43bd-880d-468848cb0ba1.png",
+      alt: "Meerkat with VR goggles and laptop",
       delay: "2s"
     },
     {
-      src: "/lovable-uploads/329a8c68-d4e0-41ff-8f13-1d3935f99ad9.png",
-      alt: "Meerkat with tablet showing blockchain interface",
+      src: "/lovable-uploads/b23de48a-9198-4249-ab8e-626bb2271b73.png",
+      alt: "Meerkat with VR goggles and smartwatch",
       delay: "4s"
     },
     {
-      src: "/lovable-uploads/c2e32ff7-7815-455f-a45e-46f719ed0eec.png",
-      alt: "Meerkat with VR goggles sitting",
+      src: "/lovable-uploads/78aaa0dc-715b-45ac-94bb-b85bbeabfcbb.png",
+      alt: "Meerkat with VR goggles and blockchain laptop",
       delay: "6s"
     }
   ];
