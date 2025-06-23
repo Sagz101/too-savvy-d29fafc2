@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -26,6 +25,7 @@ export default {
 				'poppins': ['Poppins', 'Inter', 'sans-serif'],
 				'source-sans': ['Source Sans Pro', 'sans-serif'],
 				'michroma': ['Michroma', 'sans-serif'],
+				'sphere-fez': ['SPHERE FEZ', 'Arial', 'sans-serif'],
 			},
 			colors: {
 				// Cosmic-inspired color palette from reference images
