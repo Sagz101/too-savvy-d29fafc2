@@ -1,6 +1,6 @@
 import React from 'react';
 import { CosmosInspiredNavigation } from '@/components/ui/cosmos-inspired-navigation';
-import { XAIInspiredHero } from '@/components/sections/XAIInspiredHero';
+import { SequenceInspiredHero } from '@/components/sections/SequenceInspiredHero';
 import { SimplifiedHero } from '@/components/sections/SimplifiedHero';
 import { ConsolidatedDeveloperResources } from '@/components/ui/consolidated-developer-resources';
 import { ConsolidatedStats } from '@/components/ui/consolidated-stats';
@@ -21,19 +21,19 @@ import { Footer } from '@/components/layout/Footer';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[#121212] text-white">
       <CosmosInspiredNavigation />
       <main>
-        {/* xAI-Inspired Hero Section with Black Theme */}
+        {/* Sequence.xyz-Inspired Hero Section */}
         <section id="hero">
-          <XAIInspiredHero />
+          <SequenceInspiredHero />
         </section>
         
-        {/* Core Sections with Enhanced Black Theme Styling */}
-        <section id="create" className="pt-20 bg-black">
+        {/* Core Sections with Enhanced Sequence.xyz Styling */}
+        <section id="create" className="pt-20 bg-[#121212]">
           <div className="container mx-auto px-4 py-16">
             <div className="text-center mb-12">
-              <h2 className="text-5xl font-bold mb-6 text-white font-helvetica">Create</h2>
+              <h2 className="text-5xl font-bold mb-6 text-white font-poppins tracking-tight">Create</h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto font-inter leading-relaxed">
                 Build your creator empire with audited smart contracts and multi-chain tools. 
                 Shape your digital future with powerful creation tools designed for Web3.
@@ -43,10 +43,10 @@ const Index = () => {
           </div>
         </section>
         
-        <section id="own" className="pt-20 bg-black">
+        <section id="own" className="pt-20 bg-[#121212]">
           <div className="container mx-auto px-4 py-16">
             <div className="text-center mb-12">
-              <h2 className="text-5xl font-bold mb-6 text-white font-helvetica">Own</h2>
+              <h2 className="text-5xl font-bold mb-6 text-white font-poppins tracking-tight">Own</h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto font-inter leading-relaxed">
                 You control your content, data, and digital identity—forever. 
                 True ownership backed by blockchain technology and decentralized infrastructure.
@@ -56,10 +56,10 @@ const Index = () => {
           </div>
         </section>
         
-        <section id="thrive" className="pt-20 bg-black">
+        <section id="thrive" className="pt-20 bg-[#121212]">
           <div className="container mx-auto px-4 py-16">
             <div className="text-center mb-12">
-              <h2 className="text-5xl font-bold mb-6 text-white font-helvetica">Thrive</h2>
+              <h2 className="text-5xl font-bold mb-6 text-white font-poppins tracking-tight">Thrive</h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto font-inter leading-relaxed">
                 Build loyal, token-powered audiences who grow with you. 
                 Smart Contract Audited | Multi-Chain: ETH, MATIC, BSC, AVAX
@@ -69,51 +69,51 @@ const Index = () => {
           </div>
         </section>
         
-        <section id="get-started" className="pt-20 bg-black">
+        <section id="get-started" className="pt-20 bg-[#121212]">
           <OnboardingGuide />
         </section>
         
-        <section id="developer-resources" className="pt-20 bg-black">
+        <section id="developer-resources" className="pt-20 bg-[#121212]">
           <ConsolidatedDeveloperResources />
         </section>
         
-        <section id="dashboard" className="pt-20 bg-black">
+        <section id="dashboard" className="pt-20 bg-[#121212]">
           <CreatorDashboard />
         </section>
         
-        <section id="video-showcase" className="pt-20 bg-black">
+        <section id="video-showcase" className="pt-20 bg-[#121212]">
           <VideoShowcase />
         </section>
         
-        <section id="commerce-studio" className="pt-20 bg-black">
+        <section id="commerce-studio" className="pt-20 bg-[#121212]">
           <EcommerceStore />
         </section>
         
-        <section id="social-hub" className="pt-20 bg-black">
+        <section id="social-hub" className="pt-20 bg-[#121212]">
           <SocialHub />
         </section>
         
-        <section id="threaditor" className="pt-20 bg-black">
+        <section id="threaditor" className="pt-20 bg-[#121212]">
           <Threaditor />
         </section>
         
-        <section id="ai-copilot" className="pt-20 bg-black">
+        <section id="ai-copilot" className="pt-20 bg-[#121212]">
           <AICopilot />
         </section>
         
-        <section id="trusted-creators" className="pt-20 bg-black">
+        <section id="trusted-creators" className="pt-20 bg-[#121212]">
           <TrustedByCreators />
         </section>
         
-        <section id="governance" className="pt-20 bg-black">
+        <section id="governance" className="pt-20 bg-[#121212]">
           <CommunityGovernance />
         </section>
         
-        <section id="platform-overview" className="pt-20 bg-black">
+        <section id="platform-overview" className="pt-20 bg-[#121212]">
           <PlatformOverview />
         </section>
         
-        <section id="cta" className="pt-20 bg-black">
+        <section id="cta" className="pt-20 bg-[#121212]">
           <Cta />
         </section>
       </main>

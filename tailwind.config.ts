@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -23,18 +22,31 @@ export default {
 				'lotus': ['Lotus Flower', 'cursive'],
 				'orbitron': ['Orbitron', 'monospace', 'sans-serif'],
 				'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+				'poppins': ['Poppins', 'Inter', 'sans-serif'],
 				'source-sans': ['Source Sans Pro', 'sans-serif'],
 				'michroma': ['Michroma', 'sans-serif'],
-				'porscha': ['Porscha', 'sans-serif'],
 			},
 			colors: {
-				neura: {
-					dark: '#0F1629',        // Deeper dark blue
-					purple: '#A78BFA',      // Softer purple
-					'light-purple': '#C4B5FD',
-					cyan: '#67E8F9',        // Softer cyan
-					magenta: '#F472B6',     // Softer magenta
-					teal: '#5EEAD4',        // Softer teal color
+				// Sequence.xyz-inspired color palette
+				sequence: {
+					'dark': '#121212',        // Deep background
+					'card': '#1E1E2F',       // Card backgrounds
+					'purple': '#8B5CF6',     // Primary purple
+					'blue': '#3B82F6',       // Secondary blue
+					'emerald': '#10B981',    // Accent emerald
+					'pink': '#EC4899',       // Accent pink
+					'gray': {
+						'50': '#F9FAFB',
+						'100': '#F3F4F6',
+						'200': '#E5E7EB',
+						'300': '#D1D5DB',
+						'400': '#9CA3AF',
+						'500': '#6B7280',
+						'600': '#4B5563',
+						'700': '#374151',
+						'800': '#1F2937',
+						'900': '#111827',
+					}
 				},
 				// Enhanced solar color palette inspired by the reference image
 				solar: {
