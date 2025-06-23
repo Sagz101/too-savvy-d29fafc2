@@ -57,7 +57,7 @@ export const CircularMeerkats: React.FC<CircularMeerkatsProps> = ({ className = 
         </div>
       ))}
       
-      <style jsx>{`
+      <style>{`
         @keyframes meerkat-horizontal-orbit {
           0% {
             transform: translate(-50%, -50%) translateX(-400px);
