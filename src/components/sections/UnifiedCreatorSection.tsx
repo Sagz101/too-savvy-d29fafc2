@@ -196,21 +196,21 @@ export const UnifiedCreatorSection: React.FC = () => {
             <p className="text-lg text-gray-300 font-inter">Built for creators who want ownership, monetization, and community engagement</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 h-auto lg:h-[600px]">
             {/* Ownership Column */}
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-cosmic-purple-light border-l-4 border-cosmic-purple pl-6 font-poppins">
+            <div className="flex flex-col h-full">
+              <h3 className="text-2xl font-bold text-cosmic-purple-light border-l-4 border-cosmic-purple pl-6 mb-8 font-poppins">
                 Ownership
               </h3>
-              <div className="space-y-6">
+              <div className="flex-1 space-y-6">
                 {ownershipFeatures.map((feature, index) => (
-                  <Card key={index} className="sequence-card group hover:border-cosmic-purple-light/60">
+                  <Card key={index} className="sequence-card group hover:border-cosmic-purple-light/60 h-auto">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4">
-                        <div className="bg-cosmic-purple/10 p-3 rounded-xl">
+                        <div className="bg-cosmic-purple/10 p-3 rounded-xl flex-shrink-0">
                           {feature.icon}
                         </div>
-                        <div>
+                        <div className="flex-1">
                           <h4 className="font-semibold text-white mb-2">
                             <Web3Tooltip term={feature.title} definition={feature.tooltip} />
                           </h4>
@@ -224,19 +224,19 @@ export const UnifiedCreatorSection: React.FC = () => {
             </div>
 
             {/* Monetization Column */}
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-cosmic-blue border-l-4 border-cosmic-blue pl-6 font-poppins">
+            <div className="flex flex-col h-full">
+              <h3 className="text-2xl font-bold text-cosmic-blue border-l-4 border-cosmic-blue pl-6 mb-8 font-poppins">
                 Monetization
               </h3>
-              <div className="space-y-6">
+              <div className="flex-1 space-y-6">
                 {monetizationFeatures.map((feature, index) => (
-                  <Card key={index} className="sequence-card group hover:border-cosmic-blue/60">
+                  <Card key={index} className="sequence-card group hover:border-cosmic-blue/60 h-auto">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4">
-                        <div className="bg-cosmic-blue/10 p-3 rounded-xl">
+                        <div className="bg-cosmic-blue/10 p-3 rounded-xl flex-shrink-0">
                           {feature.icon}
                         </div>
-                        <div>
+                        <div className="flex-1">
                           <h4 className="font-semibold text-white mb-2">
                             <Web3Tooltip term={feature.title} definition={feature.tooltip} />
                           </h4>
@@ -246,23 +246,37 @@ export const UnifiedCreatorSection: React.FC = () => {
                     </CardContent>
                   </Card>
                 ))}
+                {/* Add an extra empty card to balance height */}
+                <Card className="sequence-card opacity-0 pointer-events-none h-auto">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="bg-cosmic-blue/10 p-3 rounded-xl flex-shrink-0">
+                        <div className="w-6 h-6"></div>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-white mb-2 invisible">Placeholder</h4>
+                        <p className="text-gray-400 text-sm leading-relaxed invisible">Placeholder content</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
 
             {/* Community Column */}
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-cosmic-purple border-l-4 border-cosmic-purple pl-6 font-poppins">
+            <div className="flex flex-col h-full">
+              <h3 className="text-2xl font-bold text-cosmic-purple border-l-4 border-cosmic-purple pl-6 mb-8 font-poppins">
                 Community
               </h3>
-              <div className="space-y-6">
+              <div className="flex-1 space-y-6">
                 {communityFeatures.map((feature, index) => (
-                  <Card key={index} className="sequence-card group hover:border-cosmic-purple/60">
+                  <Card key={index} className="sequence-card group hover:border-cosmic-purple/60 h-auto">
                     <CardContent className="p-6">
                       <div className="flex items-start gap-4">
-                        <div className="bg-cosmic-purple/10 p-3 rounded-xl">
+                        <div className="bg-cosmic-purple/10 p-3 rounded-xl flex-shrink-0">
                           {feature.icon}
                         </div>
-                        <div>
+                        <div className="flex-1">
                           <h4 className="font-semibold text-white mb-2">
                             <Web3Tooltip term={feature.title} definition={feature.tooltip} />
                           </h4>
