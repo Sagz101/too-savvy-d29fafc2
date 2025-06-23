@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -27,6 +28,35 @@ export default {
 				'michroma': ['Michroma', 'sans-serif'],
 			},
 			colors: {
+				// Cosmic-inspired color palette from reference images
+				cosmic: {
+					'deep': '#0C0C14',        // Deep space background
+					'dark': '#141423',       // Dark cosmic navy
+					'purple': '#9333EA',     // Rich cosmic purple
+					'purple-light': '#A855F7', // Bright purple accent
+					'purple-soft': '#C084FC', // Soft purple highlight
+					'blue': '#3B82F6',       // Cosmic blue
+					'blue-light': '#6366F1', // Light cosmic blue
+					'indigo': '#6366F1',     // Cosmic indigo
+					'violet': '#8B5CF6',     // Cosmic violet
+					'pink': '#EC4899',       // Cosmic pink accent
+					'border': '#2D2D46',     // Cosmic border
+					'glow': 'rgba(147, 51, 234, 0.3)', // Purple glow
+					'beam': 'rgba(59, 130, 246, 0.2)', // Blue beam
+				},
+				// Enhanced solar color palette
+				solar: {
+					'core': '#FF4500',        // Deep orange-red core
+					'radiative': '#FF6B35',   // Bright orange
+					'convection': '#FF8C42',  // Orange-amber
+					'photosphere': '#FFB347', // Golden orange
+					'chromosphere': '#FF7F50', // Coral orange
+					'corona': '#FFA500',      // Pure orange
+					'subsurface': '#FF2D00',  // Intense red-orange
+					'plasma': '#FF1C00',      // Deep red
+					'flare': '#FFFF00',       // Bright yellow
+					'prominence': '#FF0000',  // Pure red
+				},
 				// Sequence.xyz-inspired color palette
 				sequence: {
 					'dark': '#121212',        // Deep background
@@ -48,20 +78,7 @@ export default {
 						'900': '#111827',
 					}
 				},
-				// Enhanced solar color palette inspired by the reference image
-				solar: {
-					'core': '#FF4500',        // Deep orange-red core
-					'radiative': '#FF6B35',   // Bright orange
-					'convection': '#FF8C42',  // Orange-amber
-					'photosphere': '#FFB347', // Golden orange
-					'chromosphere': '#FF7F50', // Coral orange
-					'corona': '#FFA500',      // Pure orange
-					'subsurface': '#FF2D00',  // Intense red-orange
-					'plasma': '#FF1C00',      // Deep red
-					'flare': '#FFFF00',       // Bright yellow
-					'prominence': '#FF0000',  // Pure red
-				},
-				// Enhanced softer primary color scheme with solar integration
+				// Enhanced softer primary color scheme
 				dzuwa: {
 					'light-blue': '#F0F9FF',  // Even lighter blue background
 					'bright-blue': '#38BDF8', // Softer bright blue
@@ -164,8 +181,8 @@ export default {
                     '50%': { opacity: '0.9', transform: 'scale(1.02)' }
                 },
                 'professional-glow': {
-                    '0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.2)' },
-                    '50%': { boxShadow: '0 0 40px rgba(59, 130, 246, 0.3)' }
+                    '0%, 100%': { boxShadow: '0 0 20px rgba(147, 51, 234, 0.2)' },
+                    '50%': { boxShadow: '0 0 40px rgba(147, 51, 234, 0.3)' }
                 },
                 'cosmic-pulse': {
                     '0%, 100%': { 
@@ -176,7 +193,17 @@ export default {
                     '50%': { 
                         opacity: '1', 
                         transform: 'scale(1.05)',
-                        filter: 'brightness(1.1)'
+                        filter: 'brightness(1.2)'
+                    }
+                },
+                'cosmic-glow': {
+                    '0%, 100%': { 
+                        boxShadow: '0 0 30px rgba(147, 51, 234, 0.3), 0 0 60px rgba(59, 130, 246, 0.2)',
+                        transform: 'scale(1)'
+                    },
+                    '50%': { 
+                        boxShadow: '0 0 60px rgba(147, 51, 234, 0.6), 0 0 120px rgba(59, 130, 246, 0.4), 0 0 180px rgba(168, 85, 247, 0.2)',
+                        transform: 'scale(1.02)'
                     }
                 },
                 'progress-fill': {
@@ -185,10 +212,10 @@ export default {
                 },
                 'hero-glow': {
                     '0%, 100%': { 
-                        textShadow: '0 0 10px rgba(59, 130, 246, 0.3)' 
+                        textShadow: '0 0 15px rgba(147, 51, 234, 0.4), 0 0 30px rgba(168, 85, 247, 0.3)' 
                     },
                     '50%': { 
-                        textShadow: '0 0 20px rgba(59, 130, 246, 0.5), 0 0 30px rgba(168, 85, 247, 0.3)' 
+                        textShadow: '0 0 30px rgba(147, 51, 234, 0.7), 0 0 60px rgba(168, 85, 247, 0.5), 0 0 90px rgba(196, 132, 252, 0.3)' 
                     }
                 },
                 'typewriter': {
@@ -205,6 +232,7 @@ export default {
                 'gentle-pulse': 'gentle-pulse 4s ease-in-out infinite',
                 'professional-glow': 'professional-glow 4s ease-in-out infinite',
                 'cosmic-pulse': 'cosmic-pulse 6s ease-in-out infinite',
+                'cosmic-glow': 'cosmic-glow 4s ease-in-out infinite',
                 'progress-fill': 'progress-fill 2s ease-out forwards',
                 'hero-glow': 'hero-glow 3s ease-in-out infinite',
                 'typewriter': 'typewriter 2s steps(20) forwards'
