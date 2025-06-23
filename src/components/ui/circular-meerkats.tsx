@@ -34,15 +34,17 @@ export const CircularMeerkats: React.FC<CircularMeerkatsProps> = ({ className = 
       {meerkats.map((meerkat, index) => (
         <div
           key={index}
-          className="absolute top-1/2 left-1/2 w-24 h-24 animate-meerkat-orbit"
+          className="absolute top-1/2 left-1/2 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24"
           style={{
-            animationDelay: meerkat.delay,
-            transform: `translate(-50%, -50%) rotate(${index * 90}deg) translateX(300px) rotate(-${index * 90}deg)`
+            transform: `translate(-50%, -50%)`,
+            animation: `meerkat-horizontal-orbit 12s linear infinite`,
+            animationDelay: meerkat.delay
           }}
         >
           <div
-            className="w-full h-full animate-meerkat-rotate"
+            className="w-full h-full"
             style={{
+              animation: `meerkat-gentle-float 3s ease-in-out infinite`,
               animationDelay: meerkat.delay
             }}
           >
@@ -54,6 +56,55 @@ export const CircularMeerkats: React.FC<CircularMeerkatsProps> = ({ className = 
           </div>
         </div>
       ))}
+      
+      <style jsx>{`
+        @keyframes meerkat-horizontal-orbit {
+          0% {
+            transform: translate(-50%, -50%) translateX(-400px);
+          }
+          25% {
+            transform: translate(-50%, -50%) translateX(0px) translateY(-100px);
+          }
+          50% {
+            transform: translate(-50%, -50%) translateX(400px);
+          }
+          75% {
+            transform: translate(-50%, -50%) translateX(0px) translateY(100px);
+          }
+          100% {
+            transform: translate(-50%, -50%) translateX(-400px);
+          }
+        }
+        
+        @keyframes meerkat-gentle-float {
+          0%, 100% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-10px) rotate(5deg);
+          }
+        }
+        
+        @media (max-width: 768px) {
+          @keyframes meerkat-horizontal-orbit {
+            0% {
+              transform: translate(-50%, -50%) translateX(-250px);
+            }
+            25% {
+              transform: translate(-50%, -50%) translateX(0px) translateY(-80px);
+            }
+            50% {
+              transform: translate(-50%, -50%) translateX(250px);
+            }
+            75% {
+              transform: translate(-50%, -50%) translateX(0px) translateY(80px);
+            }
+            100% {
+              transform: translate(-50%, -50%) translateX(-250px);
+            }
+          }
+        }
+      `}</style>
     </div>
   );
 };
