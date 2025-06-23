@@ -1,12 +1,11 @@
+
 import React from 'react';
 import { CosmosInspiredNavigation } from '@/components/ui/cosmos-inspired-navigation';
 import { SequenceInspiredHero } from '@/components/sections/SequenceInspiredHero';
-import { SimplifiedHero } from '@/components/sections/SimplifiedHero';
+import { UnifiedCreatorSection } from '@/components/sections/UnifiedCreatorSection';
 import { ConsolidatedDeveloperResources } from '@/components/ui/consolidated-developer-resources';
-import { ConsolidatedStats } from '@/components/ui/consolidated-stats';
 import { CommunityGovernance } from '@/components/ui/community-governance';
 import { TrustedByCreators } from '@/components/ui/trusted-by-creators';
-import { CoreFeatures } from '@/components/sections/CoreFeatures';
 import { CreatorDashboard } from '@/components/sections/CreatorDashboard';
 import { VideoShowcase } from '@/components/sections/VideoShowcase';
 import { OnboardingGuide } from '@/components/sections/OnboardingGuide';
@@ -15,7 +14,6 @@ import { SocialHub } from '@/components/sections/SocialHub';
 import { EcommerceStore } from '@/components/sections/EcommerceStore';
 import { Threaditor } from '@/components/sections/Threaditor';
 import { PlatformOverview } from '@/components/sections/PlatformOverview';
-import { UserTypes } from '@/components/sections/UserTypes';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
 
@@ -29,44 +27,9 @@ const Index = () => {
           <SequenceInspiredHero />
         </section>
         
-        {/* Core Sections with Enhanced Sequence.xyz Styling */}
-        <section id="create" className="pt-20 bg-[#121212]">
-          <div className="container mx-auto px-4 py-16">
-            <div className="text-center mb-12">
-              <h2 className="text-5xl font-bold mb-6 text-white font-poppins tracking-tight">Create</h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto font-inter leading-relaxed">
-                Build your creator empire with audited smart contracts and multi-chain tools. 
-                Shape your digital future with powerful creation tools designed for Web3.
-              </p>
-            </div>
-            <CoreFeatures />
-          </div>
-        </section>
-        
-        <section id="own" className="pt-20 bg-[#121212]">
-          <div className="container mx-auto px-4 py-16">
-            <div className="text-center mb-12">
-              <h2 className="text-5xl font-bold mb-6 text-white font-poppins tracking-tight">Own</h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto font-inter leading-relaxed">
-                You control your content, data, and digital identity—forever. 
-                True ownership backed by blockchain technology and decentralized infrastructure.
-              </p>
-            </div>
-            <UserTypes />
-          </div>
-        </section>
-        
-        <section id="thrive" className="pt-20 bg-[#121212]">
-          <div className="container mx-auto px-4 py-16">
-            <div className="text-center mb-12">
-              <h2 className="text-5xl font-bold mb-6 text-white font-poppins tracking-tight">Thrive</h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto font-inter leading-relaxed">
-                Build loyal, token-powered audiences who grow with you. 
-                Smart Contract Audited | Multi-Chain: ETH, MATIC, BSC, AVAX
-              </p>
-            </div>
-            <ConsolidatedStats />
-          </div>
+        {/* Unified Creator Section - Combines Create, Own, and Thrive */}
+        <section id="create" className="bg-[#121212]">
+          <UnifiedCreatorSection />
         </section>
         
         <section id="get-started" className="pt-20 bg-[#121212]">
