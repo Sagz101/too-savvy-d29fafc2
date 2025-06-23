@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { 
@@ -9,6 +8,7 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import { ModernButton } from '@/components/ui/modern-button';
 import { Web3Tooltip } from '@/components/ui/web3-tooltip';
+import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
 import { Link } from 'react-router-dom';
 
 export const UnifiedCreatorSection: React.FC = () => {
@@ -193,6 +193,18 @@ export const UnifiedCreatorSection: React.FC = () => {
             Build your creator empire with audited smart contracts and multi-chain tools. 
             Shape your digital future with powerful creation tools designed for Web3.
           </p>
+          
+          {/* Connect Your Wallet Section */}
+          <div className="bg-gradient-to-r from-cosmic-purple/10 to-cosmic-blue/10 backdrop-blur-sm border border-cosmic-purple/20 rounded-2xl p-8 max-w-2xl mx-auto mb-12">
+            <div className="flex items-center justify-center mb-4">
+              <Wallet className="w-8 h-8 text-cosmic-purple-light mr-3" />
+              <h3 className="text-2xl font-bold text-white font-poppins">Connect Your Wallet</h3>
+            </div>
+            <p className="text-gray-300 mb-6 font-inter">
+              Link your Web3 wallet (like MetaMask) to get started. Don't have one? We'll show you how to create one safely.
+            </p>
+            <WalletConnectButton />
+          </div>
         </div>
 
         {/* Core Features Grid */}
