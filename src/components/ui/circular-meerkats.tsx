@@ -43,7 +43,10 @@ export const CircularMeerkats: React.FC<CircularMeerkatsProps> = ({ className = 
           <img
             src={meerkat.src}
             alt={meerkat.alt}
-            className="w-full h-full object-contain drop-shadow-lg hover:scale-110 transition-transform duration-300"
+            className="w-full h-full object-contain drop-shadow-lg hover:scale-110 transition-transform duration-300 animate-meerkat-rotate"
+            style={{
+              animationDelay: meerkat.delay
+            }}
           />
         </div>
       ))}
