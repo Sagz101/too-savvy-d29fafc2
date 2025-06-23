@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -21,7 +22,7 @@ export default {
 			fontFamily: {
 				'lotus': ['Lotus Flower', 'cursive'],
 				'orbitron': ['Orbitron', 'monospace', 'sans-serif'],
-				'inter': ['Inter', 'sans-serif'],
+				'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 				'source-sans': ['Source Sans Pro', 'sans-serif'],
 				'michroma': ['Michroma', 'sans-serif'],
 				'porscha': ['Porscha', 'sans-serif'],
@@ -150,31 +151,20 @@ export default {
                     '0%, 100%': { opacity: '1', transform: 'scale(1)' },
                     '50%': { opacity: '0.9', transform: 'scale(1.02)' }
                 },
-                'soft-glow': {
-                    '0%': { boxShadow: '0 0 5px rgba(255, 107, 53, 0.3)' },
-                    '50%': { boxShadow: '0 0 20px rgba(255, 107, 53, 0.5)' },
-                    '100%': { boxShadow: '0 0 5px rgba(255, 107, 53, 0.3)' }
+                'professional-glow': {
+                    '0%, 100%': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.2)' },
+                    '50%': { boxShadow: '0 0 40px rgba(59, 130, 246, 0.3)' }
                 },
-                'solar-pulse': {
+                'cosmic-pulse': {
                     '0%, 100%': { 
                         opacity: '0.8', 
                         transform: 'scale(1)',
-                        boxShadow: '0 0 20px rgba(255, 107, 53, 0.4)'
+                        filter: 'brightness(1)'
                     },
                     '50%': { 
                         opacity: '1', 
                         transform: 'scale(1.05)',
-                        boxShadow: '0 0 40px rgba(255, 107, 53, 0.6)'
-                    }
-                },
-                'cosmic-pulse': {
-                    '0%, 100%': { 
-                        opacity: '0.6', 
-                        transform: 'scale(1) rotate(0deg)',
-                    },
-                    '50%': { 
-                        opacity: '0.9', 
-                        transform: 'scale(1.1) rotate(180deg)',
+                        filter: 'brightness(1.1)'
                     }
                 },
                 'progress-fill': {
@@ -183,10 +173,10 @@ export default {
                 },
                 'hero-glow': {
                     '0%, 100%': { 
-                        textShadow: '0 0 10px rgba(0, 209, 255, 0.5)' 
+                        textShadow: '0 0 10px rgba(59, 130, 246, 0.3)' 
                     },
                     '50%': { 
-                        textShadow: '0 0 20px rgba(0, 209, 255, 0.8), 0 0 30px rgba(123, 0, 255, 0.5)' 
+                        textShadow: '0 0 20px rgba(59, 130, 246, 0.5), 0 0 30px rgba(168, 85, 247, 0.3)' 
                     }
                 },
                 'typewriter': {
@@ -201,9 +191,8 @@ export default {
                 'slideUp': 'slideUp 0.5s ease-out forwards',
                 'slideRight': 'slideRight 0.5s ease-out forwards',
                 'gentle-pulse': 'gentle-pulse 4s ease-in-out infinite',
-                'soft-glow': 'soft-glow 3s ease-in-out infinite',
-                'solar-pulse': 'solar-pulse 6s ease-in-out infinite',
-                'cosmic-pulse': 'cosmic-pulse 8s ease-in-out infinite',
+                'professional-glow': 'professional-glow 4s ease-in-out infinite',
+                'cosmic-pulse': 'cosmic-pulse 6s ease-in-out infinite',
                 'progress-fill': 'progress-fill 2s ease-out forwards',
                 'hero-glow': 'hero-glow 3s ease-in-out infinite',
                 'typewriter': 'typewriter 2s steps(20) forwards'
