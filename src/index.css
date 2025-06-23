@@ -222,24 +222,36 @@
   }
 }
 
-@keyframes meerkat-rotate-clockwise {
+@keyframes meerkat-rotate {
   0% {
     transform: rotate(0deg);
   }
+  25% {
+    transform: rotate(90deg);
+  }
   50% {
     transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
   }
   100% {
     transform: rotate(360deg);
   }
 }
 
-@keyframes meerkat-rotate-counter-clockwise {
+@keyframes meerkat-rotate-reverse {
   0% {
     transform: rotate(360deg);
   }
+  25% {
+    transform: rotate(270deg);
+  }
   50% {
     transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(90deg);
   }
   100% {
     transform: rotate(0deg);
@@ -277,7 +289,7 @@
 }
 
 .animate-meerkat-rotate {
-  animation: meerkat-rotate-clockwise 4s ease-in-out infinite, meerkat-rotate-counter-clockwise 4s ease-in-out infinite 4s;
+  animation: meerkat-rotate 4s ease-in-out infinite, meerkat-rotate-reverse 4s ease-in-out infinite 4s;
 }
 
 /* Refined scrollbar - Sequence.xyz style */
