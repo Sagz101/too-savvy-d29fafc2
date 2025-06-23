@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer';
 import { 
   Sparkles, Shield, Users, Zap, Globe, TrendingUp, 
   FileText, BadgeCheck, Key, Code, Wallet, MessageSquare, 
-  Settings, Award, Lock, BarChart3, Eye, Coins
+  Settings, Award, Lock, BarChart3, Eye, Coins, Video, Mic, ShoppingBag, Music
 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ModernButton } from '@/components/ui/modern-button';
@@ -16,43 +16,74 @@ export const UnifiedCreatorSection: React.FC = () => {
 
   const creatorPaths = [
     {
-      title: "For Creators",
-      description: "Explore Too Savvy if you're interested in Web3, NFTs, or decentralized monetization. Start with the traditional login to test features before diving into Web3-native tools.",
+      title: "Global Innovators",
+      description: "Create collaborative projects with NFT-based ownership and decentralized funding",
       features: [
-        "Web3 & NFT monetization",
-        "Traditional login for testing", 
-        "Decentralized creator tools"
+        "Multi-Chain",
+        "NFT Ownership", 
+        "DAO Governance",
+        "Launch Project"
       ],
-      buttonText: "Start Creating",
-      link: "/creator-studio",
+      buttonText: "Launch Project",
+      link: "/global-innovators",
       gradient: "from-cosmic-purple to-cosmic-purple-light",
-      icon: <Sparkles className="w-8 h-8" />
+      icon: <Users className="w-8 h-8" />
     },
     {
-      title: "For Developers", 
-      description: "Leverage the platform's SDKs and documentation to build custom integrations or contribute to the ecosystem.",
+      title: "Live Streaming", 
+      description: "Host live streams with token-gating and NFT access passes via decentralized protocols",
       features: [
-        "Platform SDKs & APIs",
-        "Custom integrations",
-        "Ecosystem contributions"
+        "Livepeer",
+        "WebRTC",
+        "ERC-1155",
+        "Schedule Stream"
       ],
-      buttonText: "View Documentation",
-      link: "/#developer-resources",
+      buttonText: "Schedule Stream",
+      link: "/live-streaming",
       gradient: "from-cosmic-blue to-cosmic-purple",
-      icon: <Code className="w-8 h-8" />
+      icon: <Video className="w-8 h-8" />
     },
     {
-      title: "For Investors",
-      description: "Monitor Too Savvy's adoption metrics (e.g., creator growth, NFT minting volume) and $Neurax token performance to assess its potential in the Web3 creator space.",
+      title: "Video NFTs",
+      description: "Turn video content into collectible NFTs with royalty structures and ownership rights",
       features: [
-        "Creator growth metrics",
-        "NFT minting volume", 
-        "$Neurax token performance"
+        "IPFS",
+        "ERC-721M", 
+        "ERC-2981",
+        "Create NFT"
       ],
-      buttonText: "View Analytics",
-      link: "/finance-hub",
+      buttonText: "Create NFT",
+      link: "/video-nfts",
       gradient: "from-cosmic-purple-light to-cosmic-pink",
-      icon: <BarChart3 className="w-8 h-8" />
+      icon: <Video className="w-8 h-8" />
+    },
+    {
+      title: "Podcast Studio",
+      description: "Create, distribute and monetize podcasts with token-gated bonus content for supporters",
+      features: [
+        "RSS",
+        "Subscription",
+        "Analytics", 
+        "Create Podcast"
+      ],
+      buttonText: "Create Podcast",
+      link: "/podcast-studio",
+      gradient: "from-cosmic-blue to-cosmic-purple-light",
+      icon: <Mic className="w-8 h-8" />
+    },
+    {
+      title: "Music Creation",
+      description: "Compose, mint and sell music as NFTs with built-in royalties and collaboration tools",
+      features: [
+        "Stems",
+        "Royalties",
+        "Split Rights",
+        "Create Music"
+      ],
+      buttonText: "Create Music",
+      link: "/music-creation",
+      gradient: "from-cosmic-purple to-cosmic-blue",
+      icon: <Music className="w-8 h-8" />
     }
   ];
 
@@ -295,16 +326,16 @@ export const UnifiedCreatorSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Choose Your Path Section */}
+        {/* Choose Your Creator Path Section */}
         <div className={`mb-24 transition-all duration-1000 delay-500 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-poppins text-white">Choose Your Path</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-poppins text-white">Choose Your Creator Path</h2>
             <p className="text-lg text-gray-300 font-inter max-w-3xl mx-auto">
-              Whether you're creating, building, or investing, Too Savvy provides the tools and insights you need to succeed in the Web3 creator economy.
+              Select what interests you most: Video Creation, Podcasting, E-commerce, or Social Content.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {creatorPaths.map((path, index) => (
               <Card key={index} className="sequence-card group hover:scale-105 h-full">
                 <CardContent className="p-8 h-full flex flex-col">
@@ -323,24 +354,11 @@ export const UnifiedCreatorSection: React.FC = () => {
                       ))}
                     </ul>
                   </div>
-                  {path.link.startsWith('#') ? (
-                    <ModernButton 
-                      onClick={() => {
-                        const element = document.querySelector(path.link);
-                        if (element) element.scrollIntoView({ behavior: 'smooth' });
-                      }}
-                      className="w-full mt-auto"
-                      variant="primary"
-                    >
+                  <Link to={path.link} className="mt-auto">
+                    <ModernButton className="w-full" variant="primary">
                       {path.buttonText}
                     </ModernButton>
-                  ) : (
-                    <Link to={path.link} className="mt-auto">
-                      <ModernButton className="w-full" variant="primary">
-                        {path.buttonText}
-                      </ModernButton>
-                    </Link>
-                  )}
+                  </Link>
                 </CardContent>
               </Card>
             ))}
