@@ -1,19 +1,58 @@
-
 import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Sparkles, Shield, Users, Zap, X, UserPlus, ArrowRight, Star, Check, Globe, TrendingUp, Wallet } from 'lucide-react';
+import { useWallet } from '@/services/wallet';
+import { useAuth } from '@/services/auth';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
 import { CircularMeerkats } from '@/components/ui/circular-meerkats';
 import { InteroperabilityBadges } from '@/components/ui/interoperability-badges';
 import { smoothScrollToSection } from '@/utils/smoothScroll';
+import { toast } from 'sonner';
 
 export const XAIInspiredHero: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const navigate = useNavigate();
+  
+  // Wallet and auth hooks
+  const { wallet, connectWallet, isConnecting } = useWallet();
+  const { isAuthenticated, signUpWithEmail } = useAuth();
 
   const handleSectionNavigation = (sectionId: string) => {
     smoothScrollToSection(sectionId);
+  };
+
+  const handleConnectWallet = async () => {
+    try {
+      await connectWallet();
+      toast.success("Wallet connected successfully!", {
+        description: "Welcome to Too Savvy! Your Web3 journey begins now."
+      });
+    } catch (error) {
+      console.error("Wallet connection failed:", error);
+      toast.error("Connection failed", {
+        description: "Please try again or use email signup."
+      });
+    }
+  };
+
+  const handleCreateAccount = () => {
+    if (isAuthenticated) {
+      navigate('/creator-studio');
+      toast.success("Welcome back!", {
+        description: "Redirecting to your Creator Studio..."
+      });
+    } else {
+      navigate('/auth');
+    }
+  };
+
+  const handleGuidedSetup = () => {
+    setShowOnboarding(true);
+    toast.info("Starting guided setup", {
+      description: "We'll help you get started in just 2 minutes!"
+    });
   };
 
   return (
@@ -125,24 +164,28 @@ export const XAIInspiredHero: React.FC = () => {
         <div className={`flex flex-col items-center gap-10 mb-20 transition-all duration-1000 delay-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           {/* Main Action Buttons - Uniform Design */}
           <div className="flex flex-col sm:flex-row gap-6 items-center">
-            <button className="group relative cta-primary px-12 py-5 rounded-xl font-semibold text-lg min-h-[72px] flex items-center justify-center font-inter animate-neon-pulse">
+            <button 
+              onClick={handleConnectWallet}
+              disabled={isConnecting || wallet.isConnected}
+              className="group relative cta-primary px-12 py-5 rounded-xl font-semibold text-lg min-h-[72px] flex items-center justify-center font-inter animate-neon-pulse disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <span className="flex items-center gap-3">
                 <Wallet size={24} />
-                Connect Wallet
-                <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-300" />
+                {isConnecting ? 'Connecting...' : wallet.isConnected ? 'Wallet Connected' : 'Connect Wallet'}
+                {!isConnecting && <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-300" />}
               </span>
             </button>
             
-            <Link
-              to="/auth"
+            <button
+              onClick={handleCreateAccount}
               className="group relative cta-secondary px-12 py-5 rounded-xl font-semibold text-lg min-h-[72px] flex items-center justify-center font-inter animate-neon-pulse-pink"
             >
               <span className="relative z-10 flex items-center gap-3">
                 <UserPlus size={24} />
-                Create Your Account
+                {isAuthenticated ? 'Go to Studio' : 'Create Your Account'}
                 <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-300" />
               </span>
-            </Link>
+            </button>
           </div>
 
           {/* Enhanced Onboarding Support */}
@@ -151,7 +194,7 @@ export const XAIInspiredHero: React.FC = () => {
               New to Web3? 🚀 <span className="text-white font-semibold">No problem!</span> Start with email and upgrade later.
             </p>
             <button
-              onClick={() => setShowOnboarding(true)}
+              onClick={handleGuidedSetup}
               className="group bg-gray-800 hover:bg-gray-700 text-gray-200 hover:text-white border border-gray-600 hover:border-green-400 px-10 py-4 rounded-xl transition-all duration-300 font-semibold flex items-center gap-3 mx-auto font-inter hover:neon-glow-green"
             >
               <Sparkles size={22} />
@@ -166,8 +209,13 @@ export const XAIInspiredHero: React.FC = () => {
         <div className={`flex flex-col items-center gap-10 mb-20 transition-all duration-1000 delay-800 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <button
-              onClick={() => handleSectionNavigation('create')}
-              className="group xai-card hover:neon-glow-green px-10 py-4 rounded-xl font-semibold text-lg min-h-[64px] flex items-center justify-center font-inter border-gray-600 hover:border-green-400"
+              onClick={() => {
+                handleSectionNavigation('create');
+                toast.info("Scrolling to Create section", {
+                  description: "Discover our content creation tools"
+                });
+              }}
+              className="group xai-card hover:neon-glow-green px-10 py-4 rounded-xl font-semibold text-lg min-h-[64px] flex items-center justify-center font-inter border-gray-600 hover:border-green-400 transition-all duration-300"
             >
               <span className="flex items-center gap-3">
                 <Sparkles size={22} className="text-green-400" />
@@ -176,8 +224,13 @@ export const XAIInspiredHero: React.FC = () => {
             </button>
 
             <button
-              onClick={() => handleSectionNavigation('own')}
-              className="group xai-card hover:neon-glow-blue px-10 py-4 rounded-xl font-semibold text-lg min-h-[64px] flex items-center justify-center font-inter border-gray-600 hover:border-blue-400"
+              onClick={() => {
+                handleSectionNavigation('own');
+                toast.info("Scrolling to Own section", {
+                  description: "Learn about true digital ownership"
+                });
+              }}
+              className="group xai-card hover:neon-glow-blue px-10 py-4 rounded-xl font-semibold text-lg min-h-[64px] flex items-center justify-center font-inter border-gray-600 hover:border-blue-400 transition-all duration-300"
             >
               <span className="flex items-center gap-3">
                 <Shield size={22} className="text-blue-400" />
@@ -186,8 +239,13 @@ export const XAIInspiredHero: React.FC = () => {
             </button>
 
             <button
-              onClick={() => handleSectionNavigation('thrive')}
-              className="group xai-card hover:neon-glow-pink px-10 py-4 rounded-xl font-semibold text-lg min-h-[64px] flex items-center justify-center font-inter border-gray-600 hover:border-pink-400"
+              onClick={() => {
+                handleSectionNavigation('thrive');
+                toast.info("Scrolling to Thrive section", {
+                  description: "Explore monetization opportunities"
+                });
+              }}
+              className="group xai-card hover:neon-glow-pink px-10 py-4 rounded-xl font-semibold text-lg min-h-[64px] flex items-center justify-center font-inter border-gray-600 hover:border-pink-400 transition-all duration-300"
             >
               <span className="flex items-center gap-3">
                 <Users size={22} className="text-pink-400" />
@@ -228,7 +286,12 @@ export const XAIInspiredHero: React.FC = () => {
             <div className="flex items-center justify-between mb-8">
               <h3 className="text-3xl font-bold text-white font-helvetica">Web3 Quick Start</h3>
               <button
-                onClick={() => setShowOnboarding(false)}
+                onClick={() => {
+                  setShowOnboarding(false);
+                  toast.info("Setup cancelled", {
+                    description: "You can always start the guided setup later!"
+                  });
+                }}
                 className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-800 rounded-lg"
               >
                 <X size={26} />
