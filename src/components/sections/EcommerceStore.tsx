@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@/components/ui/card';
@@ -70,7 +71,7 @@ export const EcommerceStore: React.FC = () => {
                   <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">ShipBob API</span>
                 </div>
                 
-                <Button className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90" asChild>
+                <Button className="bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-400 hover:from-purple-600 hover:via-blue-600 hover:to-cyan-500 text-white font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
                   <Link to="/commerce-studio">
                     Launch Your Store <ShoppingCart className="w-4 h-4 ml-2" />
                   </Link>
@@ -139,7 +140,7 @@ export const EcommerceStore: React.FC = () => {
             <div className="bg-neura-purple/10 p-4 rounded-lg text-center">
               <h4 className="font-medium text-white mb-2">Fashion Store</h4>
               <p className="text-sm text-white/70 mb-3">Phygital fashion items with AR try-on</p>
-              <Button variant="outline" size="sm" className="w-full border-neura-purple/30 text-white hover:bg-neura-purple/20">
+              <Button variant="outline" size="sm" className="w-full bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 border-none text-white font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
                 Preview
               </Button>
             </div>
@@ -147,7 +148,7 @@ export const EcommerceStore: React.FC = () => {
             <div className="bg-neura-purple/10 p-4 rounded-lg text-center">
               <h4 className="font-medium text-white mb-2">Art Gallery</h4>
               <p className="text-sm text-white/70 mb-3">Digital + physical art with provenance</p>
-              <Button variant="outline" size="sm" className="w-full border-neura-purple/30 text-white hover:bg-neura-purple/20">
+              <Button variant="outline" size="sm" className="w-full bg-gradient-to-r from-amber-500 to-orange-400 hover:from-amber-600 hover:to-orange-500 border-none text-white font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
                 Preview
               </Button>
             </div>
@@ -155,7 +156,7 @@ export const EcommerceStore: React.FC = () => {
             <div className="bg-neura-purple/10 p-4 rounded-lg text-center">
               <h4 className="font-medium text-white mb-2">Tech Shop</h4>
               <p className="text-sm text-white/70 mb-3">Hardware with digital twin NFTs</p>
-              <Button variant="outline" size="sm" className="w-full border-neura-purple/30 text-white hover:bg-neura-purple/20">
+              <Button variant="outline" size="sm" className="w-full bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-600 hover:to-teal-500 border-none text-white font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
                 Preview
               </Button>
             </div>
