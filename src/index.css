@@ -1,45 +1,64 @@
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Cosmic-inspired dark theme with rich gradients */
-    --background: 12 12 20; /* Deep space black #0C0C14 */
-    --foreground: 255 255 255; /* Pure white */
-    --card: 20 20 35; /* Dark cosmic navy #141423 */
-    --card-foreground: 255 255 255;
-    --popover: 20 20 35;
-    --popover-foreground: 255 255 255;
-    --primary: 147 51 234; /* Rich purple #9333EA */
-    --primary-foreground: 255 255 255;
-    --secondary: 59 130 246; /* Cosmic blue #3B82F6 */
-    --secondary-foreground: 255 255 255;
-    --muted: 55 65 81; /* Muted gray */
-    --muted-foreground: 156 163 175;
-    --accent: 168 85 247; /* Bright purple accent #A855F7 */
-    --accent-foreground: 255 255 255;
-    --destructive: 239 68 68; /* Red for errors */
-    --destructive-foreground: 255 255 255;
-    --border: 45 45 70; /* Cosmic border */
-    --input: 20 20 35;
-    --ring: 147 51 234; /* Purple focus ring */
-    --chart-1: 147 51 234;
-    --chart-2: 59 130 246;
-    --chart-3: 168 85 247;
-    --chart-4: 139 92 246;
-    --chart-5: 99 102 241;
-    --radius: 0.75rem;
-    --sidebar-background: 12 12 20;
-    --sidebar-foreground: 255 255 255;
-    --sidebar-primary: 147 51 234;
-    --sidebar-primary-foreground: 255 255 255;
-    --sidebar-accent: 20 20 35;
-    --sidebar-accent-foreground: 255 255 255;
-    --sidebar-border: 45 45 70;
-    --sidebar-ring: 147 51 234;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
   }
 }
 
@@ -47,417 +66,101 @@
   * {
     @apply border-border;
   }
-  
   body {
-    @apply bg-[#0C0C14] text-white;
-    font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
-    background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 25%, #0c0c14 70%);
-    min-height: 100vh;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  :target {
-    scroll-margin-top: 80px;
+    @apply bg-background text-foreground;
   }
 }
 
-@layer utilities {
-  /* Cosmic-inspired typography */
-  .font-inter {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-  }
-  
-  .font-poppins {
-    font-family: 'Poppins', 'Inter', sans-serif;
-  }
-  
-  /* Enhanced text rendering */
-  .text-render-optimized {
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  /* Cosmic gradient effects inspired by the reference images */
-  .gradient-cosmic-purple {
-    background: linear-gradient(135deg, #9333EA, #A855F7, #C084FC);
-  }
-  
-  .gradient-cosmic-blue {
-    background: linear-gradient(135deg, #3B82F6, #6366F1, #8B5CF6);
-  }
-  
-  .gradient-cosmic-radial {
-    background: radial-gradient(circle at center, #9333EA 0%, #3B82F6 50%, #1E1B4B 100%);
-  }
-  
-  .gradient-cosmic-orb {
-    background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.3) 0%, rgba(59, 130, 246, 0.2) 40%, transparent 70%);
-  }
-  
-  .gradient-cosmic-beam {
-    background: linear-gradient(180deg, transparent 0%, rgba(147, 51, 234, 0.1) 20%, rgba(59, 130, 246, 0.05) 40%, transparent 100%);
-  }
-  
-  /* Enhanced glow effects */
-  .glow-cosmic-purple {
-    box-shadow: 0 0 30px rgba(147, 51, 234, 0.4), 0 0 60px rgba(147, 51, 234, 0.2), 0 0 100px rgba(168, 85, 247, 0.1);
-  }
-  
-  .glow-cosmic-blue {
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.4), 0 0 60px rgba(59, 130, 246, 0.2), 0 0 100px rgba(99, 102, 241, 0.1);
-  }
-  
-  .glow-cosmic-soft {
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), 0 0 40px rgba(147, 51, 234, 0.2);
-  }
-  
-  /* Text glow effects */
-  .text-glow-cosmic-purple {
-    text-shadow: 0 0 15px rgba(147, 51, 234, 0.8), 0 0 30px rgba(168, 85, 247, 0.6), 0 0 45px rgba(196, 132, 252, 0.4);
-  }
-  
-  .text-glow-cosmic-blue {
-    text-shadow: 0 0 15px rgba(59, 130, 246, 0.8), 0 0 30px rgba(99, 102, 241, 0.6), 0 0 45px rgba(139, 92, 246, 0.4);
-  }
-  
-  .text-glow-cosmic-white {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3), 0 0 30px rgba(168, 85, 247, 0.2);
-  }
-  
-  .text-glow-cosmic-soft {
-    text-shadow: 0 0 8px rgba(168, 85, 247, 0.6), 0 0 16px rgba(147, 51, 234, 0.4);
-  }
-}
-
-/* Hero Section - Cosmic inspired */
-.sequence-hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #ffffff;
-  padding: 80px 2rem;
-  overflow: hidden;
-  background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 25%, #0c0c14 70%);
-}
-
-/* Enhanced animations inspired by cosmic visuals */
-@keyframes cosmic-glow {
+/* Custom animations for the meerkat character */
+@keyframes float {
   0%, 100% {
-    box-shadow: 0 0 40px rgba(147, 51, 234, 0.3), 0 0 80px rgba(59, 130, 246, 0.2);
-    transform: scale(1);
+    transform: translateY(0px);
   }
   50% {
-    box-shadow: 0 0 80px rgba(147, 51, 234, 0.6), 0 0 120px rgba(59, 130, 246, 0.4), 0 0 160px rgba(168, 85, 247, 0.2);
-    transform: scale(1.02);
+    transform: translateY(-20px);
   }
 }
 
+@keyframes gentle-bounce {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.02) rotate(1deg);
+  }
+  50% {
+    transform: scale(1.05) rotate(0deg);
+  }
+  75% {
+    transform: scale(1.02) rotate(-1deg);
+  }
+}
+
+@keyframes float-horizontal {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+}
+
+/* Animation utility classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-gentle-bounce {
+  animation: gentle-bounce 3s ease-in-out infinite;
+}
+
+.animate-float-horizontal {
+  animation: float-horizontal 4s ease-in-out infinite;
+}
+
+/* Additional cosmic animations */
 @keyframes cosmic-pulse {
   0%, 100% {
-    opacity: 0.7;
-    transform: scale(1);
-    filter: brightness(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-    filter: brightness(1.2);
-  }
-}
-
-@keyframes cosmic-float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.8;
-  }
-  50% {
-    transform: translateY(-40px) rotate(180deg);
-    opacity: 1;
-  }
-}
-
-@keyframes cosmic-hero-text {
-  0%, 100% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 0 40px rgba(147, 51, 234, 0.2);
-  }
-  50% {
-    text-shadow: 0 0 40px rgba(255, 255, 255, 0.5), 0 0 80px rgba(147, 51, 234, 0.4), 0 0 120px rgba(168, 85, 247, 0.3);
-  }
-}
-
-@keyframes cosmic-fade-up {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes cosmic-scale-in {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
+    opacity: 0.5;
     transform: scale(1);
   }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
 }
 
-@keyframes meerkat-orbit {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg) translateX(350px) rotate(0deg);
-  }
-  25% {
-    transform: translate(-50%, -50%) rotate(90deg) translateX(350px) rotate(-90deg);
+@keyframes gradient-x {
+  0%, 100% {
+    transform: translateX(-100%);
   }
   50% {
-    transform: translate(-50%, -50%) rotate(180deg) translateX(350px) rotate(-180deg);
-  }
-  75% {
-    transform: translate(-50%, -50%) rotate(270deg) translateX(350px) rotate(-270deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg) translateX(350px) rotate(-360deg);
+    transform: translateX(100%);
   }
 }
 
-@keyframes meerkat-rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(90deg);
+@keyframes hero-glow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(103, 232, 249, 0.5);
   }
   50% {
-    transform: rotate(180deg);
+    text-shadow: 0 0 40px rgba(103, 232, 249, 0.8), 0 0 60px rgba(147, 51, 234, 0.5);
   }
-  75% {
-    transform: rotate(270deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes meerkat-rotate-reverse {
-  0% {
-    transform: rotate(360deg);
-  }
-  25% {
-    transform: rotate(270deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  75% {
-    transform: rotate(90deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
-.animate-cosmic-glow {
-  animation: cosmic-glow 4s ease-in-out infinite;
 }
 
 .animate-cosmic-pulse {
-  animation: cosmic-pulse 6s ease-in-out infinite;
+  animation: cosmic-pulse 4s ease-in-out infinite;
 }
 
-.animate-cosmic-float {
-  animation: cosmic-float 8s ease-in-out infinite;
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
 }
 
-.animate-cosmic-hero-text {
-  animation: cosmic-hero-text 6s ease-in-out infinite;
+.animate-hero-glow {
+  animation: hero-glow 3s ease-in-out infinite;
 }
 
-.animate-cosmic-fade-up {
-  animation: cosmic-fade-up 0.8s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-cosmic-scale-in {
-  animation: cosmic-scale-in 0.6s ease-out forwards;
-  opacity: 0;
-}
-
-.animate-meerkat-orbit {
-  animation: meerkat-orbit 20s linear infinite;
-}
-
-.animate-meerkat-rotate {
-  animation: meerkat-rotate 4s ease-in-out infinite, meerkat-rotate-reverse 4s ease-in-out infinite 4s;
-}
-
-/* Refined scrollbar - Cosmic style */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0c0c14;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(147, 51, 234, 0.4);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(147, 51, 234, 0.7);
-}
-
-/* Enhanced button styles - Cosmic inspired */
-.sequence-btn-primary {
-  background: linear-gradient(135deg, #9333EA, #A855F7, #C084FC);
-  border: 1px solid rgba(147, 51, 234, 0.4);
-  color: #ffffff;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  border-radius: 12px;
-  padding: 12px 32px;
-  font-size: 16px;
-  box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
-}
-
-.sequence-btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 40px rgba(147, 51, 234, 0.6), 0 0 80px rgba(168, 85, 247, 0.4);
-  background: linear-gradient(135deg, #A855F7, #C084FC, #DDD6FE);
-}
-
-.sequence-btn-secondary {
-  background: rgba(20, 20, 35, 0.8);
-  border: 1px solid rgba(45, 45, 70, 0.6);
-  color: #ffffff;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  border-radius: 12px;
-  padding: 12px 32px;
-  font-size: 16px;
-  backdrop-filter: blur(20px);
-}
-
-.sequence-btn-secondary:hover {
-  border-color: rgba(147, 51, 234, 0.7);
-  box-shadow: 0 0 30px rgba(147, 51, 234, 0.4);
-  transform: scale(1.05);
-  background: rgba(20, 20, 35, 0.95);
-}
-
-/* Enhanced card styles - Cosmic theme */
-.sequence-card {
-  background: rgba(20, 20, 35, 0.8);
-  border: 1px solid rgba(45, 45, 70, 0.4);
-  border-radius: 16px;
-  backdrop-filter: blur(20px);
-  transition: all 0.3s ease;
-  padding: 32px;
-  box-shadow: 0 8px 32px rgba(147, 51, 234, 0.1);
-}
-
-.sequence-card:hover {
-  border-color: rgba(147, 51, 234, 0.6);
-  background: rgba(20, 20, 35, 0.95);
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(147, 51, 234, 0.2), 0 0 60px rgba(168, 85, 247, 0.1);
-}
-
-/* Stats card variations - Cosmic style */
-.sequence-stats-card {
-  background: rgba(20, 20, 35, 0.7);
-  border: 1px solid rgba(45, 45, 70, 0.4);
-  border-radius: 20px;
-  backdrop-filter: blur(16px);
-  transition: all 0.3s ease;
-  padding: 24px;
-  box-shadow: 0 8px 32px rgba(147, 51, 234, 0.05);
-}
-
-.sequence-stats-card:hover {
-  transform: translateY(-6px) scale(1.03);
-}
-
-.sequence-stats-card.purple:hover {
-  border-color: rgba(147, 51, 234, 0.7);
-  box-shadow: 0 0 40px rgba(147, 51, 234, 0.3), 0 0 80px rgba(168, 85, 247, 0.2);
-}
-
-.sequence-stats-card.blue:hover {
-  border-color: rgba(59, 130, 246, 0.7);
-  box-shadow: 0 0 40px rgba(59, 130, 246, 0.3), 0 0 80px rgba(99, 102, 241, 0.2);
-}
-
-.sequence-stats-card.emerald:hover {
-  border-color: rgba(168, 85, 247, 0.7);
-  box-shadow: 0 0 40px rgba(168, 85, 247, 0.3), 0 0 80px rgba(196, 132, 252, 0.2);
-}
-
-/* Enhanced focus styles */
-button:focus-visible,
-a:focus-visible {
-  outline: 2px solid rgba(147, 51, 234, 0.8);
-  outline-offset: 2px;
-}
-
-/* Professional hover interactions */
-button:not(:disabled):hover {
-  transform: translateY(-2px) scale(1.02);
-}
-
-button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-/* Smooth transitions */
-.transition-cosmic {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-}
-
-/* Mobile optimizations */
-@media (max-width: 768px) {
-  .sequence-hero {
-    padding: 60px 1rem;
-    min-height: calc(100vh - 4rem);
-  }
-  
-  .sequence-card {
-    padding: 24px;
-  }
-  
-  .sequence-stats-card {
-    padding: 20px;
-  }
-}
-
-/* Accessibility improvements */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+/* Font families */
+.font-orbitron {
+  font-family: 'Orbitron', monospace;
 }

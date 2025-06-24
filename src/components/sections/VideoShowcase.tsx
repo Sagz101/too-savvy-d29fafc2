@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from '@/components/ui/card';
@@ -36,7 +35,7 @@ export const VideoShowcase: React.FC = () => {
             Create, stream, and monetize content with decentralized tools
           </p>
 
-          {/* Enhanced platform overview image with left-right movement */}
+          {/* Enhanced platform overview image with floating animation */}
           <div className="flex justify-center mb-12">
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-neura-cyan via-neura-purple to-cosmos-cyan rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-gradient-x"></div>
@@ -44,7 +43,10 @@ export const VideoShowcase: React.FC = () => {
                 <img 
                   src="/lovable-uploads/a798f3fa-a391-4578-a354-066055ede35c.png"
                   alt="Creator Studio Platform Overview - Tech-savvy character with Web3 tools"
-                  className="w-[300px] h-[400px] object-contain rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500 animate-float-horizontal"
+                  className="w-[300px] h-[400px] object-contain rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500 animate-float"
+                  style={{
+                    animation: 'float 6s ease-in-out infinite, gentle-bounce 3s ease-in-out infinite'
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
               </div>
@@ -449,6 +451,33 @@ export const VideoShowcase: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Custom CSS for animations */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+        
+        @keyframes gentle-bounce {
+          0%, 100% {
+            transform: scale(1) rotate(0deg);
+          }
+          25% {
+            transform: scale(1.02) rotate(1deg);
+          }
+          50% {
+            transform: scale(1.05) rotate(0deg);
+          }
+          75% {
+            transform: scale(1.02) rotate(-1deg);
+          }
+        }
+      `}</style>
     </section>
   );
 };
