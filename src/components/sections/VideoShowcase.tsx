@@ -26,8 +26,8 @@ export const VideoShowcase: React.FC = () => {
       <div className="container mx-auto px-4">
         {/* Enhanced header section */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-orbitron tracking-wider text-white">
-            <span className="bg-gradient-to-r from-white via-neura-cyan to-neura-purple bg-clip-text text-transparent animate-hero-glow drop-shadow-2xl">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-orbitron tracking-wider text-white drop-shadow-2xl">
+            <span className="bg-gradient-to-r from-white via-neura-cyan to-neura-purple bg-clip-text text-transparent animate-hero-glow">
               Creator Studio
             </span>
           </h2>
@@ -43,10 +43,7 @@ export const VideoShowcase: React.FC = () => {
                 <img 
                   src="/lovable-uploads/a798f3fa-a391-4578-a354-066055ede35c.png"
                   alt="Creator Studio Platform Overview - Tech-savvy character with Web3 tools"
-                  className="w-[300px] h-[400px] object-contain rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500 animate-float"
-                  style={{
-                    animation: 'float 6s ease-in-out infinite, gentle-bounce 3s ease-in-out infinite'
-                  }}
+                  className="w-[300px] h-[400px] object-contain rounded-2xl shadow-2xl group-hover:scale-105 transition-transform duration-500 animate-float-meerkat"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
               </div>
@@ -181,7 +178,6 @@ export const VideoShowcase: React.FC = () => {
             </CardContent>
           </Card>
 
-          {/* Additional cards with similar enhanced styling... */}
           {/* AR Visualization Card */}
           <Card className={`group relative overflow-hidden border-0 bg-gradient-to-br from-pink-500/10 via-cosmos-dark to-neura-dark backdrop-blur-sm transition-all duration-500 hover:scale-105 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} 
                 style={{ transitionDelay: '300ms' }}>
@@ -451,33 +447,6 @@ export const VideoShowcase: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Custom CSS for animations */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
-        }
-        
-        @keyframes gentle-bounce {
-          0%, 100% {
-            transform: scale(1) rotate(0deg);
-          }
-          25% {
-            transform: scale(1.02) rotate(1deg);
-          }
-          50% {
-            transform: scale(1.05) rotate(0deg);
-          }
-          75% {
-            transform: scale(1.02) rotate(-1deg);
-          }
-        }
-      `}</style>
     </section>
   );
 };

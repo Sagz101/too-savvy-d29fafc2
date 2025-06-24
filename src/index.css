@@ -105,6 +105,21 @@
   }
 }
 
+@keyframes float-meerkat {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  25% {
+    transform: translateY(-15px) scale(1.02);
+  }
+  50% {
+    transform: translateY(-25px) scale(1.05);
+  }
+  75% {
+    transform: translateY(-15px) scale(1.02);
+  }
+}
+
 /* Animation utility classes */
 .animate-float {
   animation: float 6s ease-in-out infinite;
@@ -116,6 +131,10 @@
 
 .animate-float-horizontal {
   animation: float-horizontal 4s ease-in-out infinite;
+}
+
+.animate-float-meerkat {
+  animation: float-meerkat 4s ease-in-out infinite;
 }
 
 /* Additional cosmic animations */
