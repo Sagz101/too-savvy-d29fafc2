@@ -1,7 +1,8 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { CosmosInspiredNavigation } from '@/components/ui/cosmos-inspired-navigation';
 import { SequenceInspiredHero } from '@/components/sections/SequenceInspiredHero';
+import { CreatorStudioInterests } from '@/components/sections/CreatorStudioInterests';
 import { UnifiedCreatorSection } from '@/components/sections/UnifiedCreatorSection';
 import { ConsolidatedDeveloperResources } from '@/components/ui/consolidated-developer-resources';
 import { CommunityGovernance } from '@/components/ui/community-governance';
@@ -18,6 +19,14 @@ import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
 
 const Index = () => {
+  const [selectedInterest, setSelectedInterest] = useState<string | null>(null);
+
+  const handleInterestSelection = (interest: string) => {
+    setSelectedInterest(interest);
+    // You can add navigation logic here based on the selected interest
+    console.log('Selected interest:', interest);
+  };
+
   return (
     <div className="min-h-screen bg-[#121212] text-white">
       <CosmosInspiredNavigation />
@@ -25,6 +34,11 @@ const Index = () => {
         {/* Sequence.xyz-Inspired Hero Section */}
         <section id="hero">
           <SequenceInspiredHero />
+        </section>
+        
+        {/* Creator Studio Interests Selection */}
+        <section id="creator-interests" className="bg-[#121212]">
+          <CreatorStudioInterests onContinue={handleInterestSelection} />
         </section>
         
         {/* Unified Creator Section - Combines Create, Own, and Thrive */}

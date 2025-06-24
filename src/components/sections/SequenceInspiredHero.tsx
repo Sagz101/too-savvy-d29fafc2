@@ -6,9 +6,14 @@ import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
 import { CircularMeerkats } from '@/components/ui/circular-meerkats';
 import { Badge } from '@/components/ui/badge';
 import { Shield, Layers, DollarSign } from 'lucide-react';
+import { smoothScrollToSection } from '@/utils/smoothScroll';
 
 export const SequenceInspiredHero: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+
+  const handleStartCreating = () => {
+    smoothScrollToSection('creator-interests');
+  };
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-cosmic-deep via-cosmic-dark to-cosmic-deep overflow-hidden">
@@ -69,7 +74,7 @@ export const SequenceInspiredHero: React.FC = () => {
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-            <ModernButton size="lg" className="px-8 py-4 text-lg">
+            <ModernButton size="lg" className="px-8 py-4 text-lg" onClick={handleStartCreating}>
               Start Creating
             </ModernButton>
             <WalletConnectButton />
