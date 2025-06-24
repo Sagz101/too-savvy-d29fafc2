@@ -4,7 +4,6 @@ import { CosmosInspiredNavigation } from '@/components/ui/cosmos-inspired-naviga
 import { SequenceInspiredHero } from '@/components/sections/SequenceInspiredHero';
 import { CreatorStudioInterests } from '@/components/sections/CreatorStudioInterests';
 import { UnifiedCreatorSection } from '@/components/sections/UnifiedCreatorSection';
-import { ConsolidatedDeveloperResources } from '@/components/ui/consolidated-developer-resources';
 import { CommunityGovernance } from '@/components/ui/community-governance';
 import { TrustedByCreators } from '@/components/ui/trusted-by-creators';
 import { CreatorDashboard } from '@/components/sections/CreatorDashboard';
@@ -48,10 +47,6 @@ const Index = () => {
         
         <section id="get-started" className="pt-20 bg-[#121212]">
           <OnboardingGuide />
-        </section>
-        
-        <section id="developer-resources" className="pt-20 bg-[#121212]">
-          <ConsolidatedDeveloperResources />
         </section>
         
         <section id="dashboard" className="pt-20 bg-[#121212]">
