@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Wallet, ChevronDown, CreditCard, ShoppingCart, Users, Link2, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -62,32 +61,32 @@ export const WalletConnectButton = () => {
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
             <Button 
-              variant="default"
-              size="sm" 
-              className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90"
+              variant="outline"
+              size="lg" 
+              className="bg-gradient-to-r from-cosmic-purple to-cosmic-blue text-white border-cosmic-purple/50 hover:from-cosmic-purple-light hover:to-cosmic-blue hover:border-cosmic-purple-light/70 shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-4 text-lg cosmic-glow"
             >
-              <Wallet size={16} className="mr-2" /> Connect Wallet
+              <Wallet size={20} className="mr-3" /> Connect Wallet
             </Button>
           </DialogTrigger>
-          <DialogContent className="bg-neura-dark border-neura-purple/30 text-white max-w-md">
+          <DialogContent className="bg-cosmic-dark border-cosmic-purple/30 text-white max-w-md">
             <DialogHeader>
               <DialogTitle className="text-center text-xl text-white">Connect Wallet</DialogTitle>
             </DialogHeader>
             <div className="grid gap-4 py-4">
               <p className="text-white/70 text-center mb-4">
-                Connect your wallet to access your personalized Neura portal.
+                Connect your wallet to access your personalized Too Savvy portal.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {["MetaMask", "WalletConnect", "Coinbase", "Rainbow"].map((wallet) => (
                   <Card 
                     key={wallet}
-                    className="bg-neura-dark/80 border border-neura-purple/20 hover:border-neura-purple/50 transition-all cursor-pointer"
+                    className="bg-cosmic-dark/80 border border-cosmic-purple/20 hover:border-cosmic-purple/50 transition-all cursor-pointer hover:shadow-lg hover:shadow-cosmic-purple/20"
                     onClick={() => handleConnect(wallet)}
                   >
                     <div className="p-4 flex flex-col items-center justify-center">
-                      <div className="w-12 h-12 bg-gradient-to-br from-neura-purple/20 to-neura-cyan/20 rounded-full flex items-center justify-center mb-3 border border-neura-purple/30">
-                        <Wallet size={24} className="text-neura-cyan" />
+                      <div className="w-12 h-12 bg-gradient-to-br from-cosmic-purple/20 to-cosmic-blue/20 rounded-full flex items-center justify-center mb-3 border border-cosmic-purple/30">
+                        <Wallet size={24} className="text-cosmic-purple-light" />
                       </div>
                       <span className="text-white font-medium">{wallet}</span>
                     </div>
@@ -97,7 +96,7 @@ export const WalletConnectButton = () => {
               
               {isConnecting && (
                 <div className="text-center text-white/70 mt-2 flex items-center justify-center">
-                  <div className="w-5 h-5 border-2 border-neura-cyan border-t-transparent rounded-full animate-spin mr-2"></div>
+                  <div className="w-5 h-5 border-2 border-cosmic-purple-light border-t-transparent rounded-full animate-spin mr-2"></div>
                   Connecting...
                 </div>
               )}
@@ -115,70 +114,70 @@ export const WalletConnectButton = () => {
           <DropdownMenuTrigger asChild>
             <Button 
               variant="outline"
-              size="sm" 
-              className="border-neura-purple/50 text-white hover:bg-neura-purple/10 flex items-center"
+              size="lg" 
+              className="bg-gradient-to-r from-cosmic-purple/20 to-cosmic-blue/20 border-cosmic-purple/50 text-white hover:from-cosmic-purple/30 hover:to-cosmic-blue/30 hover:border-cosmic-purple-light/70 flex items-center shadow-lg hover:shadow-xl transition-all duration-300 px-6 py-3 text-base cosmic-glow"
             >
-              <Wallet size={16} className="mr-2" /> 
+              <Wallet size={18} className="mr-2" /> 
               {formatAddress(wallet.address!)}
-              <ChevronDown size={14} className="ml-2" />
+              <ChevronDown size={16} className="ml-2" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-neura-dark border-neura-purple/30 text-white w-56">
+          <DropdownMenuContent className="bg-cosmic-dark border-cosmic-purple/30 text-white w-56">
             <DropdownMenuLabel>Financial Services</DropdownMenuLabel>
-            <DropdownMenuSeparator className="bg-neura-purple/20" />
+            <DropdownMenuSeparator className="bg-cosmic-purple/20" />
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
+              className="cursor-pointer hover:bg-cosmic-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("finance-hub")}
             >
               <Wallet className="w-4 h-4 mr-2" />
               Finance Hub
             </DropdownMenuItem>
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
+              className="cursor-pointer hover:bg-cosmic-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("credit-scoring")}
             >
               <CreditCard className="w-4 h-4 mr-2" />
               Credit Score
             </DropdownMenuItem>
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
+              className="cursor-pointer hover:bg-cosmic-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("service-marketplace")}
             >
               <ShoppingCart className="w-4 h-4 mr-2" />
               Service Marketplace
             </DropdownMenuItem>
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
+              className="cursor-pointer hover:bg-cosmic-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("reputation-graph")}
             >
               <Users className="w-4 h-4 mr-2" />
               Reputation Graph
             </DropdownMenuItem>
-            <DropdownMenuSeparator className="bg-neura-purple/20" />
+            <DropdownMenuSeparator className="bg-cosmic-purple/20" />
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
+              className="cursor-pointer hover:bg-cosmic-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("ownership")}
             >
               <Link2 className="w-4 h-4 mr-2" />
               Ownership Features
             </DropdownMenuItem>
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
+              className="cursor-pointer hover:bg-cosmic-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("monetization")}
             >
               <CreditCard className="w-4 h-4 mr-2" />
               Monetization Tools
             </DropdownMenuItem>
             <DropdownMenuItem 
-              className="cursor-pointer hover:bg-neura-purple/10 flex items-center"
+              className="cursor-pointer hover:bg-cosmic-purple/10 flex items-center"
               onClick={() => navigateToFinanceHub("ai-collaboration")}
             >
               <Zap className="w-4 h-4 mr-2" />
               AI Collaboration
             </DropdownMenuItem>
-            <DropdownMenuSeparator className="bg-neura-purple/20" />
+            <DropdownMenuSeparator className="bg-cosmic-purple/20" />
             <DropdownMenuItem 
-              className="text-red-400 cursor-pointer hover:bg-neura-purple/10"
+              className="text-red-400 cursor-pointer hover:bg-cosmic-purple/10"
               onClick={disconnectWallet}
             >
               Disconnect
