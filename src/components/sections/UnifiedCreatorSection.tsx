@@ -1,400 +1,457 @@
-import React from 'react';
-import { useInView } from 'react-intersection-observer';
-import { 
-  Sparkles, Shield, Users, Zap, Globe, TrendingUp, 
-  FileText, BadgeCheck, Key, Code, Wallet, MessageSquare, 
-  Settings, Award, Lock, BarChart3, Eye, Coins, Video, Mic, ShoppingBag, Music
-} from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { ModernButton } from '@/components/ui/modern-button';
-import { Web3Tooltip } from '@/components/ui/web3-tooltip';
-import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
-import { Link } from 'react-router-dom';
 
-export const UnifiedCreatorSection: React.FC = () => {
+import React from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { 
+  Palette, 
+  Mic, 
+  ShoppingCart, 
+  FileText, 
+  Share2, 
+  Users,
+  Zap,
+  Shield,
+  Globe,
+  TrendingUp,
+  BookOpen,
+  HelpCircle,
+  Calendar,
+  Download,
+  ExternalLink,
+  ArrowRight,
+  Check,
+  Leaf,
+  Layers
+} from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
+
+export const UnifiedCreatorSection = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
-  const creatorPaths = [
+  const modules = [
     {
+      icon: <Palette className="w-8 h-8 text-cyan-400" />,
+      title: "Creator Studio",
+      description: "Produce, stream, and monetize digital content",
+      gradient: "from-cyan-400/20 to-blue-500/20",
+      hoverGradient: "from-cyan-400/30 to-blue-500/30"
+    },
+    {
+      icon: <Mic className="w-8 h-8 text-purple-400" />,
+      title: "Podcast & Music Studios",
+      description: "Launch audio projects with NFT integration",
+      gradient: "from-purple-400/20 to-pink-500/20",
+      hoverGradient: "from-purple-400/30 to-pink-500/30"
+    },
+    {
+      icon: <ShoppingCart className="w-8 h-8 text-emerald-400" />,
+      title: "Storefront Builder",
+      description: "Sell physical and digital goods with verifiable authenticity",
+      gradient: "from-emerald-400/20 to-teal-500/20",
+      hoverGradient: "from-emerald-400/30 to-teal-500/30"
+    },
+    {
+      icon: <FileText className="w-8 h-8 text-orange-400" />,
+      title: "Threaditor",
+      description: "Decentralized blogging and professional reporting hub",
+      gradient: "from-orange-400/20 to-red-500/20",
+      hoverGradient: "from-orange-400/30 to-red-500/30"
+    },
+    {
+      icon: <Share2 className="w-8 h-8 text-blue-400" />,
+      title: "NeuraSocial",
+      description: "Web3-native content sharing with cross-platform reach",
+      gradient: "from-blue-400/20 to-indigo-500/20",
+      hoverGradient: "from-blue-400/30 to-indigo-500/30"
+    },
+    {
+      icon: <Users className="w-8 h-8 text-yellow-400" />,
       title: "Global Innovators",
-      description: "Create collaborative projects with NFT-based ownership and decentralized funding",
-      features: [
-        "Multi-Chain",
-        "NFT Ownership", 
-        "DAO Governance",
-        "Launch Project"
-      ],
-      buttonText: "Launch Project",
-      link: "/global-innovators",
-      gradient: "from-cosmic-purple to-cosmic-purple-light",
-      icon: <Users className="w-8 h-8" />
-    },
-    {
-      title: "Live Streaming", 
-      description: "Host live streams with token-gating and NFT access passes via decentralized protocols",
-      features: [
-        "Livepeer",
-        "WebRTC",
-        "ERC-1155",
-        "Schedule Stream"
-      ],
-      buttonText: "Schedule Stream",
-      link: "/live-streaming",
-      gradient: "from-cosmic-blue to-cosmic-purple",
-      icon: <Video className="w-8 h-8" />
-    },
-    {
-      title: "Video NFTs",
-      description: "Turn video content into collectible NFTs with royalty structures and ownership rights",
-      features: [
-        "IPFS",
-        "ERC-721M", 
-        "ERC-2981",
-        "Create NFT"
-      ],
-      buttonText: "Create NFT",
-      link: "/video-nfts",
-      gradient: "from-cosmic-purple-light to-cosmic-pink",
-      icon: <Video className="w-8 h-8" />
-    },
-    {
-      title: "Podcast Studio",
-      description: "Create, distribute and monetize podcasts with token-gated bonus content for supporters",
-      features: [
-        "RSS",
-        "Subscription",
-        "Analytics", 
-        "Create Podcast"
-      ],
-      buttonText: "Create Podcast",
-      link: "/podcast-studio",
-      gradient: "from-cosmic-blue to-cosmic-purple-light",
-      icon: <Mic className="w-8 h-8" />
-    },
-    {
-      title: "Music Creation",
-      description: "Compose, mint and sell music as NFTs with built-in royalties and collaboration tools",
-      features: [
-        "Stems",
-        "Royalties",
-        "Split Rights",
-        "Create Music"
-      ],
-      buttonText: "Create Music",
-      link: "/music-creation",
-      gradient: "from-cosmic-purple to-cosmic-blue",
-      icon: <Music className="w-8 h-8" />
-    }
-  ];
-
-  const ownershipFeatures = [
-    {
-      icon: <FileText className="w-6 h-6 text-cosmic-purple-light" />,
-      title: "MediaNFTs",
-      description: "Tokenized, tradable content with gated access",
-      tooltip: "Non-Fungible Tokens that represent unique digital content you truly own"
-    },
-    {
-      icon: <BadgeCheck className="w-6 h-6 text-cosmic-purple-light" />,
-      title: "Subscription NFTs", 
-      description: "Time-based access for episodic or premium content",
-      tooltip: "NFTs that grant access to exclusive content for a specific time period"
-    },
-    {
-      icon: <Users className="w-6 h-6 text-cosmic-purple-light" />,
-      title: "Decentralized Identity",
-      description: "Own your digital presence across platforms",
-      tooltip: "Your identity is controlled by you, not by any single platform or company"
-    },
-    {
-      icon: <Key className="w-6 h-6 text-cosmic-purple-light" />,
-      title: "Dynamic Licensing",
-      description: "Modify or lease content rights with smart contracts",
-      tooltip: "Automated contracts that execute licensing terms without intermediaries"
-    }
-  ];
-
-  const monetizationFeatures = [
-    {
-      icon: <Wallet className="w-6 h-6 text-cosmic-blue" />,
-      title: "Ethereum Payments",
-      description: "Power access, rewards, royalties, payments",
-      tooltip: "Cryptocurrency payments on the Ethereum blockchain for global, instant transactions"
-    },
-    {
-      icon: <Globe className="w-6 h-6 text-cosmic-blue" />,
-      title: "Product & Service Sales",
-      description: "Sell digital/physical goods from your portal",
-      tooltip: "Integrated e-commerce with crypto and traditional payment options"
-    },
-    {
-      icon: <Code className="w-6 h-6 text-cosmic-blue" />,
-      title: "Composable NFTs",
-      description: "Bundle multimedia or derivative works",
-      tooltip: "NFTs that can be combined or modified to create new unique digital assets"
-    },
-    {
-      icon: <TrendingUp className="w-6 h-6 text-cosmic-blue" />,
-      title: "Cross-Chain Revenue",
-      description: "Earn across multiple blockchain networks",
-      tooltip: "Generate income from various blockchain ecosystems simultaneously"
-    }
-  ];
-
-  const communityFeatures = [
-    {
-      icon: <MessageSquare className="w-6 h-6 text-cosmic-purple" />,
-      title: "Token-Gated Messaging",
-      description: "End-to-end encrypted messaging with exclusive access",
-      tooltip: "Only holders of specific tokens can access certain chat rooms or content"
-    },
-    {
-      icon: <Settings className="w-6 h-6 text-cosmic-purple" />,
-      title: "DAO Governance",
-      description: "Propose, vote, and manage with community tokens",
-      tooltip: "Decentralized Autonomous Organization - community-driven decision making"
-    },
-    {
-      icon: <Award className="w-6 h-6 text-cosmic-purple" />,
-      title: "Gamified Engagement",
-      description: "Badges, loyalty NFTs, missions",
-      tooltip: "Earn rewards and recognition through platform engagement and achievements"
-    },
-    {
-      icon: <Lock className="w-6 h-6 text-cosmic-purple" />,
-      title: "Privacy & Security",
-      description: "Zero-knowledge proofs, MFA, and fingerprinting",
-      tooltip: "Advanced cryptographic techniques that verify information without revealing it"
+      description: "Collaborative, tokenized project creation at scale",
+      gradient: "from-yellow-400/20 to-orange-500/20",
+      hoverGradient: "from-yellow-400/30 to-orange-500/30"
     }
   ];
 
   const ecosystemStats = [
+    { number: "12,847", label: "active monthly creators", icon: <TrendingUp className="w-5 h-5 text-emerald-400" /> },
+    { number: "421,071", label: "NFTs minted", icon: <Layers className="w-5 h-5 text-cyan-400" /> },
+    { number: "~0.002", label: "average cost per transaction", icon: <Zap className="w-5 h-5 text-yellow-400" /> },
+    { number: "3,000+", label: "validator nodes", icon: <Globe className="w-5 h-5 text-purple-400" /> }
+  ];
+
+  const ecosystemFeatures = [
+    { label: "Carbon-neutral", icon: <Leaf className="w-4 h-4 text-emerald-400" /> },
+    { label: "Multi-chain compatible", icon: <Globe className="w-4 h-4 text-blue-400" /> },
+    { label: "Creator-first infrastructure", icon: <Users className="w-4 h-4 text-purple-400" /> }
+  ];
+
+  const resources = [
     {
-      value: "12,847",
-      label: "Active Monthly Creators",
-      change: "+18% this month",
-      icon: <Users className="w-6 h-6 text-cosmic-purple-light" />,
-      gradient: "from-cosmic-purple/20 to-cosmic-purple-light/20"
+      icon: <BookOpen className="w-6 h-6 text-cyan-400" />,
+      title: "Learning Center",
+      description: "Step-by-step guides and video tutorials",
+      cta: "Start Learning"
     },
     {
-      value: "421,071", 
-      label: "NFTs Minted",
-      change: "+2.4K today",
-      icon: <Coins className="w-6 h-6 text-cosmic-blue" />,
-      gradient: "from-cosmic-blue/20 to-cosmic-purple/20"
+      icon: <Palette className="w-6 h-6 text-purple-400" />,
+      title: "Creator Toolkit",
+      description: "Templates, token strategies, pricing models",
+      cta: "Get Toolkit"
     },
     {
-      value: "~$0.002",
-      label: "Average Transaction Cost", 
-      change: "98% cheaper than ETH",
-      icon: <TrendingUp className="w-6 h-6 text-cosmic-purple" />,
-      gradient: "from-cosmic-purple/20 to-cosmic-pink/20"
+      icon: <HelpCircle className="w-6 h-6 text-emerald-400" />,
+      title: "FAQs & Community Help",
+      description: "Peer answers and verified walkthroughs",
+      cta: "Get Help"
     },
     {
-      value: "3,000+",
-      label: "Validator Nodes",
-      change: "Across networks",
-      icon: <Globe className="w-6 h-6 text-cosmic-blue" />,
-      gradient: "from-cosmic-blue/20 to-cosmic-purple-light/20"
+      icon: <Calendar className="w-6 h-6 text-orange-400" />,
+      title: "Workshops & AMAs",
+      description: "Hosted by creators and Web3 experts",
+      cta: "Join Events"
     }
   ];
 
   return (
-    <section className="py-32 relative overflow-hidden bg-cosmic-deep">
-      {/* Enhanced cosmic background effects */}
+    <section className="py-20 relative overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-black">
+      {/* Enhanced Background Effects */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 right-1/3 w-[500px] h-[500px] gradient-cosmic-orb rounded-full filter blur-3xl animate-cosmic-float"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-[400px] h-[400px] bg-gradient-to-r from-cosmic-blue/30 to-cosmic-purple/30 rounded-full filter blur-3xl animate-cosmic-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-[300px] h-[300px] bg-gradient-to-r from-cosmic-purple-light/20 to-cosmic-purple-soft/20 rounded-full filter blur-2xl animate-cosmic-pulse" style={{ animationDelay: '4s' }}></div>
-        
-        {/* Cosmic grid overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_24px,rgba(147,51,234,0.03)_25px,rgba(147,51,234,0.03)_26px,transparent_27px)] bg-[size:25px_25px]"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-cosmic-deep/90 via-cosmic-deep/95 to-cosmic-deep"></div>
+        <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-cyan-400/10 rounded-full filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-emerald-400/5 rounded-full filter blur-2xl"></div>
       </div>
 
-      <div className="container mx-auto px-4 max-w-7xl" ref={ref}>
-        {/* Main Hero Section */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <h1 className="text-6xl md:text-7xl font-bold mb-8 font-poppins">
-            <span className="bg-gradient-to-r from-white via-cosmic-purple-light to-cosmic-blue bg-clip-text text-transparent animate-cosmic-hero-text">
-              Create. Own. Thrive.
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed font-inter">
-            Build your creator empire with audited smart contracts and multi-chain tools. 
-            Shape your digital future with powerful creation tools designed for Web3.
-          </p>
-          
-          {/* Connect Your Wallet Section */}
-          <div className="bg-gradient-to-r from-cosmic-purple/10 to-cosmic-blue/10 backdrop-blur-sm border border-cosmic-purple/20 rounded-2xl p-8 max-w-2xl mx-auto mb-12">
-            <div className="flex items-center justify-center mb-4">
-              <Wallet className="w-8 h-8 text-cosmic-purple-light mr-3" />
-              <h3 className="text-2xl font-bold text-white font-poppins">Connect Your Wallet</h3>
-            </div>
-            <p className="text-gray-300 mb-6 font-inter">
-              Link your Web3 wallet (like MetaMask) to get started. Don't have one? We'll show you how to create one safely.
+      <div className="container mx-auto px-4 max-w-7xl">
+        {/* Enhanced Hero Section */}
+        <div className="text-center mb-20 relative" ref={ref}>
+          <div className={`transition-all duration-1000 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 font-orbitron">
+              <span className="bg-gradient-to-r from-cyan-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent animate-hero-glow">
+                Create. Own. Thrive.
+              </span>
+            </h2>
+            <p className="text-2xl font-semibold text-white/90 mb-6 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+              Comprehensive platform overview
             </p>
-            <WalletConnectButton />
+            <p className="text-white/70 text-xl max-w-4xl mx-auto leading-relaxed">
+              From specialized modules to ecosystem governance—your complete toolkit for Web3 creation
+            </p>
           </div>
+          
+          {/* Decorative Elements */}
+          <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
         </div>
 
-        {/* Core Features Grid */}
-        <div className={`mb-24 transition-all duration-1000 delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        {/* Enhanced Modules Section */}
+        <div className={`mb-24 transition-all duration-1000 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '200ms' }}>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-poppins text-white">Core Features</h2>
-            <p className="text-lg text-gray-300 font-inter">Built for creators who want ownership, monetization, and community engagement</p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Ownership Column */}
-            <div className="flex flex-col">
-              <h3 className="text-2xl font-bold text-cosmic-purple-light border-l-4 border-cosmic-purple pl-6 mb-8 font-poppins">
-                Ownership
-              </h3>
-              <div className="flex-1 grid grid-cols-1 gap-6">
-                {ownershipFeatures.map((feature, index) => (
-                  <Card key={index} className="sequence-card group hover:border-cosmic-purple-light/60 flex flex-col">
-                    <CardContent className="p-6 flex-1">
-                      <div className="flex items-start gap-4 h-full">
-                        <div className="bg-cosmic-purple/10 p-3 rounded-xl flex-shrink-0">
-                          {feature.icon}
-                        </div>
-                        <div className="flex-1 flex flex-col">
-                          <h4 className="font-semibold text-white mb-2">
-                            <Web3Tooltip term={feature.title} definition={feature.tooltip} />
-                          </h4>
-                          <p className="text-gray-400 text-sm leading-relaxed flex-1">{feature.description}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            {/* Monetization Column */}
-            <div className="flex flex-col">
-              <h3 className="text-2xl font-bold text-cosmic-blue border-l-4 border-cosmic-blue pl-6 mb-8 font-poppins">
-                Monetization
-              </h3>
-              <div className="flex-1 grid grid-cols-1 gap-6">
-                {monetizationFeatures.map((feature, index) => (
-                  <Card key={index} className="sequence-card group hover:border-cosmic-blue/60 flex flex-col">
-                    <CardContent className="p-6 flex-1">
-                      <div className="flex items-start gap-4 h-full">
-                        <div className="bg-cosmic-blue/10 p-3 rounded-xl flex-shrink-0">
-                          {feature.icon}
-                        </div>
-                        <div className="flex-1 flex flex-col">
-                          <h4 className="font-semibold text-white mb-2">
-                            <Web3Tooltip term={feature.title} definition={feature.tooltip} />
-                          </h4>
-                          <p className="text-gray-400 text-sm leading-relaxed flex-1">{feature.description}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-
-            {/* Community Column */}
-            <div className="flex flex-col">
-              <h3 className="text-2xl font-bold text-cosmic-purple border-l-4 border-cosmic-purple pl-6 mb-8 font-poppins">
-                Community
-              </h3>
-              <div className="flex-1 grid grid-cols-1 gap-6">
-                {communityFeatures.map((feature, index) => (
-                  <Card key={index} className="sequence-card group hover:border-cosmic-purple/60 flex flex-col">
-                    <CardContent className="p-6 flex-1">
-                      <div className="flex items-start gap-4 h-full">
-                        <div className="bg-cosmic-purple/10 p-3 rounded-xl flex-shrink-0">
-                          {feature.icon}
-                        </div>
-                        <div className="flex-1 flex flex-col">
-                          <h4 className="font-semibold text-white mb-2">
-                            <Web3Tooltip term={feature.title} definition={feature.tooltip} />
-                          </h4>
-                          <p className="text-gray-400 text-sm leading-relaxed flex-1">{feature.description}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Choose Your Creator Path Section */}
-        <div className={`mb-24 transition-all duration-1000 delay-500 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-poppins text-white">Choose Your Creator Path</h2>
-            <p className="text-lg text-gray-300 font-inter max-w-3xl mx-auto">
-              Select what interests you most: Video Creation, Podcasting, E-commerce, or Social Content.
+            <h3 className="text-4xl md:text-5xl font-bold mb-6 text-white bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+              Modules
+            </h3>
+            <p className="text-white/80 text-xl max-w-4xl mx-auto leading-relaxed">
+              Unlock specialized tools for every step of your creative journey. Modular, composable, and fully Web3-native.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {creatorPaths.map((path, index) => (
-              <Card key={index} className="sequence-card group hover:scale-105 h-full">
-                <CardContent className="p-8 h-full flex flex-col">
-                  <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${path.gradient} flex items-center justify-center mb-6 text-white`}>
-                    {path.icon}
+            {modules.map((module, index) => (
+              <Card 
+                key={index}
+                className={`bg-gradient-to-br from-slate-800/80 via-gray-800/80 to-slate-900/80 border border-cyan-400/20 backdrop-blur-sm shadow-xl hover:shadow-2xl hover:shadow-cyan-400/10 transition-all duration-500 hover:scale-105 group cursor-pointer overflow-hidden`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <CardContent className="p-8 relative">
+                  {/* Background Glow Effect */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${module.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                  
+                  <div className="relative z-10">
+                    <div className={`p-4 rounded-2xl bg-gradient-to-r ${module.gradient} backdrop-blur-sm shadow-lg mb-6 w-fit group-hover:scale-110 transition-transform duration-300`}>
+                      {module.icon}
+                    </div>
+                    <h4 className="font-bold text-2xl mb-4 text-white group-hover:text-cyan-100 transition-colors duration-300">
+                      {module.title}
+                    </h4>
+                    <p className="text-white/70 group-hover:text-white/80 transition-colors duration-300 leading-relaxed text-lg">
+                      {module.description}
+                    </p>
+                    <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <Button 
+                        variant="outline" 
+                        className="border-cyan-400/30 text-cyan-400 hover:bg-cyan-400/10 hover:border-cyan-400 transition-all duration-300"
+                      >
+                        Explore <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4 font-poppins">{path.title}</h3>
-                  <p className="text-gray-400 mb-6 leading-relaxed font-inter flex-grow">{path.description}</p>
-                  <div className="mb-6">
-                    <ul className="space-y-2">
-                      {path.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-center gap-3 text-gray-300">
-                          <div className="w-2 h-2 bg-cosmic-purple-light rounded-full"></div>
-                          <span className="text-sm font-inter">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <Link to={path.link} className="mt-auto">
-                    <ModernButton className="w-full" variant="primary">
-                      {path.buttonText}
-                    </ModernButton>
-                  </Link>
                 </CardContent>
               </Card>
             ))}
           </div>
         </div>
 
-        {/* Live Ecosystem Stats */}
-        <div className={`transition-all duration-1000 delay-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        {/* Enhanced Ecosystem Section */}
+        <div className={`mb-24 transition-all duration-1000 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '400ms' }}>
+          <Card className="bg-gradient-to-br from-slate-800/90 via-gray-800/90 to-slate-900/90 border border-purple-500/30 backdrop-blur-xl shadow-2xl overflow-hidden relative">
+            {/* Glowing Border Effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-purple-500/20 to-emerald-400/20 rounded-2xl blur-sm"></div>
+            
+            <CardContent className="p-12 relative">
+              <div className="text-center mb-12">
+                <h3 className="text-4xl md:text-5xl font-bold mb-6 text-white bg-gradient-to-r from-purple-400 to-emerald-400 bg-clip-text text-transparent">
+                  Ecosystem
+                </h3>
+                <p className="text-white/80 text-xl max-w-4xl mx-auto leading-relaxed">
+                  A self-sustaining creator economy, decentralized across 3,000+ validator nodes, supporting scalable, eco-efficient participation.
+                </p>
+              </div>
+
+              {/* Stats Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                {ecosystemStats.map((stat, index) => (
+                  <div key={index} className="text-center group">
+                    <div className="flex justify-center mb-4">
+                      <div className="p-3 rounded-full bg-gradient-to-r from-slate-800/80 to-gray-800/80 backdrop-blur-sm shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        {stat.icon}
+                      </div>
+                    </div>
+                    <div className="text-4xl font-bold text-white font-orbitron mb-2 group-hover:text-cyan-100 transition-colors duration-300">
+                      {stat.number}
+                    </div>
+                    <div className="text-white/70 text-lg group-hover:text-white/80 transition-colors duration-300">
+                      {stat.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Features */}
+              <div className="flex flex-wrap justify-center gap-6 mb-8">
+                {ecosystemFeatures.map((feature, index) => (
+                  <Badge 
+                    key={index}
+                    className="bg-gradient-to-r from-slate-800/80 to-gray-800/80 text-white border border-cyan-400/30 px-4 py-2 text-lg backdrop-blur-sm hover:bg-gradient-to-r hover:from-cyan-400/20 hover:to-purple-500/20 transition-all duration-300"
+                  >
+                    {feature.icon}
+                    <span className="ml-2">{feature.label}</span>
+                  </Badge>
+                ))}
+              </div>
+
+              <div className="text-center">
+                <Button className="bg-gradient-to-r from-purple-500 via-blue-500 to-emerald-500 hover:from-purple-600 hover:via-blue-600 hover:to-emerald-600 text-white font-semibold shadow-xl hover:shadow-2xl hover:shadow-purple-400/25 transform hover:scale-105 transition-all duration-300 rounded-xl px-8 py-3 text-lg">
+                  Join the Ecosystem
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Enhanced Resources Section */}
+        <div className={`mb-24 transition-all duration-1000 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '600ms' }}>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-poppins text-white">Live Ecosystem Stats</h2>
-            <p className="text-lg text-gray-300 font-inter">Real-time metrics from our thriving creator economy</p>
+            <h3 className="text-4xl md:text-5xl font-bold mb-6 text-white bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+              Resources
+            </h3>
+            <p className="text-white/80 text-xl max-w-4xl mx-auto leading-relaxed">
+              Get the most out of Too Savvy with curated support for every level of user—from beginner to protocol contributor.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {ecosystemStats.map((stat, index) => (
-              <Card key={index} className={`sequence-stats-card text-center hover:scale-105 bg-gradient-to-br ${stat.gradient} backdrop-blur-sm`}>
-                <CardContent className="p-8">
-                  <div className="flex justify-center mb-4">
-                    {stat.icon}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            {resources.map((resource, index) => (
+              <Card 
+                key={index}
+                className="bg-gradient-to-br from-slate-800/60 via-gray-800/60 to-slate-900/60 border border-emerald-400/20 hover:border-emerald-400/40 transition-all duration-300 cursor-pointer group hover:scale-105 hover:shadow-xl hover:shadow-emerald-400/10"
+              >
+                <CardContent className="p-8 text-center relative overflow-hidden">
+                  {/* Background Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-400/5 to-cyan-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="p-4 rounded-full bg-gradient-to-r from-emerald-400/20 to-cyan-400/20 mb-6 w-fit mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      {resource.icon}
+                    </div>
+                    <h4 className="font-bold text-xl mb-4 text-white group-hover:text-emerald-100 transition-colors duration-300">
+                      {resource.title}
+                    </h4>
+                    <p className="text-white/70 group-hover:text-white/80 transition-colors duration-300 mb-6 leading-relaxed">
+                      {resource.description}
+                    </p>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="border-emerald-400/30 text-emerald-400 hover:bg-emerald-400/10 hover:border-emerald-400 transition-all duration-300"
+                    >
+                      {resource.cta}
+                    </Button>
                   </div>
-                  <div className="text-4xl md:text-5xl font-bold text-white mb-2 font-poppins">
-                    {stat.value}
-                  </div>
-                  <div className="text-gray-300 font-medium mb-2 font-inter">{stat.label}</div>
-                  <div className="text-sm text-cosmic-purple-light font-inter">{stat.change}</div>
                 </CardContent>
               </Card>
             ))}
           </div>
+
+          {/* Documentation & Important Resources */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Documentation */}
+            <Card className="bg-gradient-to-br from-slate-800/80 via-gray-800/80 to-slate-900/80 border border-cyan-400/20 backdrop-blur-sm shadow-xl hover:shadow-2xl hover:shadow-cyan-400/10 transition-all duration-500 hover:scale-105 group">
+              <CardContent className="p-8">
+                <div className="flex items-center mb-6">
+                  <div className="p-3 rounded-full bg-gradient-to-r from-cyan-400/20 to-blue-500/20 mr-4 shadow-lg">
+                    <BookOpen className="w-6 h-6 text-cyan-400" />
+                  </div>
+                  <h4 className="font-bold text-2xl text-white">Documentation</h4>
+                </div>
+                <p className="text-white/70 mb-6 leading-relaxed">
+                  Comprehensive, developer-grade docs for integrating, building, or scaling on Too Savvy.
+                </p>
+                <ul className="space-y-3 mb-8 text-white/60">
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 text-emerald-400 mr-3" />
+                    Smart contract reference (ERC-721M, ERC-1155, ERC-2981)
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 text-emerald-400 mr-3" />
+                    SDKs and API guides for content, wallets, storefronts
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 text-emerald-400 mr-3" />
+                    IPFS, Chainlink, Livepeer integrations
+                  </li>
+                  <li className="flex items-center">
+                    <Check className="w-4 h-4 text-emerald-400 mr-3" />
+                    Governance structures and DAO voting schemas
+                  </li>
+                </ul>
+                <Button className="bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-500 hover:to-blue-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 w-full">
+                  Access Documentation <ExternalLink className="w-4 h-4 ml-2" />
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Whitepaper */}
+            <Card className="bg-gradient-to-br from-slate-800/80 via-gray-800/80 to-slate-900/80 border border-purple-500/20 backdrop-blur-sm shadow-xl hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 hover:scale-105 group">
+              <CardContent className="p-8">
+                <div className="flex items-center mb-6">
+                  <div className="p-3 rounded-full bg-gradient-to-r from-purple-400/20 to-pink-500/20 mr-4 shadow-lg">
+                    <FileText className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <h4 className="font-bold text-2xl text-white">Whitepaper</h4>
+                </div>
+                <p className="text-white/70 mb-8 leading-relaxed">
+                  The Too Savvy Whitepaper outlines our foundational thesis: reclaiming creator autonomy through programmable ownership, decentralized infrastructure, and sustainable monetization.
+                </p>
+                <Button className="bg-gradient-to-r from-purple-400 to-pink-500 hover:from-purple-500 hover:to-pink-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 w-full">
+                  <Download className="w-4 h-4 mr-2" />
+                  Download Whitepaper (PDF)
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Token Dashboard */}
+            <Card className="bg-gradient-to-br from-slate-800/80 via-gray-800/80 to-slate-900/80 border border-emerald-500/20 backdrop-blur-sm shadow-xl hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500 hover:scale-105 group">
+              <CardContent className="p-8">
+                <div className="flex items-center mb-6">
+                  <div className="p-3 rounded-full bg-gradient-to-r from-emerald-400/20 to-teal-500/20 mr-4 shadow-lg">
+                    <Zap className="w-6 h-6 text-emerald-400" />
+                  </div>
+                  <h4 className="font-bold text-2xl text-white">Token</h4>
+                </div>
+                <p className="text-white/70 mb-6 leading-relaxed">
+                  Ethereum is the native utility and governance token of the Too Savvy network.
+                </p>
+                <ul className="space-y-3 mb-8 text-white/60">
+                  <li className="flex items-center">
+                    <Zap className="w-4 h-4 text-yellow-400 mr-3" />
+                    <span><strong>Utility:</strong> Pay for minting, access premium tools</span>
+                  </li>
+                  <li className="flex items-center">
+                    <Users className="w-4 h-4 text-blue-400 mr-3" />
+                    <span><strong>Governance:</strong> Vote on protocol upgrades</span>
+                  </li>
+                  <li className="flex items-center">
+                    <TrendingUp className="w-4 h-4 text-emerald-400 mr-3" />
+                    <span><strong>Incentives:</strong> Earn through engagement</span>
+                  </li>
+                </ul>
+                <Button className="bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 w-full">
+                  View Token Dashboard <ExternalLink className="w-4 h-4 ml-2" />
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
-        <div className="text-center mt-16">
-          <p className="text-gray-400 font-inter">
-            <span className="text-cosmic-purple-light font-semibold">Smart Contract Audited</span> | 
-            <span className="text-cosmic-blue font-semibold"> Multi-Chain: ETH, MATIC, BSC, AVAX</span>
-          </p>
+        {/* Enhanced CTA Section */}
+        <div className={`text-center transition-all duration-1000 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '800ms' }}>
+          <div className="relative">
+            {/* Glowing Border Effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-purple-500/20 to-emerald-400/20 rounded-2xl blur-sm"></div>
+            
+            <Card className="relative bg-gradient-to-br from-slate-800/90 via-gray-800/90 to-slate-900/90 border border-cyan-400/30 backdrop-blur-xl shadow-2xl overflow-hidden">
+              <CardContent className="p-12">
+                <h3 className="text-4xl md:text-5xl font-bold mb-6 text-white bg-gradient-to-r from-cyan-400 via-purple-500 to-emerald-400 bg-clip-text text-transparent">
+                  Enter Too Savvy
+                </h3>
+                <p className="text-white/80 text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
+                  Your sovereign portal to Web3 awaits. Connect your wallet to join the next generation of the internet where you own your digital identity, content, and financial future.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+                  <Button className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 hover:from-cyan-500 hover:via-blue-600 hover:to-purple-700 text-white font-semibold shadow-xl hover:shadow-2xl hover:shadow-cyan-400/25 transform hover:scale-105 transition-all duration-300 rounded-xl px-8 py-4 text-lg">
+                    Connect Wallet
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    className="border-2 border-cyan-400/50 text-cyan-400 hover:bg-cyan-400/10 hover:border-cyan-400 hover:text-cyan-300 shadow-lg hover:shadow-xl hover:shadow-cyan-400/20 transform hover:scale-105 transition-all duration-300 rounded-xl px-8 py-4 text-lg backdrop-blur-sm"
+                  >
+                    Learn About Web3 Security
+                  </Button>
+                </div>
+
+                {/* Feature Highlights */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <div className="text-center group">
+                    <div className="p-4 rounded-full bg-gradient-to-r from-emerald-400/20 to-cyan-400/20 mb-4 w-fit mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <Zap className="w-6 h-6 text-emerald-400" />
+                    </div>
+                    <h4 className="font-semibold text-lg text-white mb-2 group-hover:text-emerald-100 transition-colors duration-300">
+                      Zero Platform Fees
+                    </h4>
+                    <p className="text-white/60 group-hover:text-white/70 transition-colors duration-300">
+                      Direct creator-to-audience economy
+                    </p>
+                  </div>
+                  
+                  <div className="text-center group">
+                    <div className="p-4 rounded-full bg-gradient-to-r from-purple-400/20 to-pink-500/20 mb-4 w-fit mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <Shield className="w-6 h-6 text-purple-400" />
+                    </div>
+                    <h4 className="font-semibold text-lg text-white mb-2 group-hover:text-purple-100 transition-colors duration-300">
+                      Self-Sovereign Identity
+                    </h4>
+                    <p className="text-white/60 group-hover:text-white/70 transition-colors duration-300">
+                      You own your data and content
+                    </p>
+                  </div>
+                  
+                  <div className="text-center group">
+                    <div className="p-4 rounded-full bg-gradient-to-r from-cyan-400/20 to-blue-500/20 mb-4 w-fit mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <Globe className="w-6 h-6 text-cyan-400" />
+                    </div>
+                    <h4 className="font-semibold text-lg text-white mb-2 group-hover:text-cyan-100 transition-colors duration-300">
+                      Transparent Economics
+                    </h4>
+                    <p className="text-white/60 group-hover:text-white/70 transition-colors duration-300">
+                      All transactions on-chain
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
