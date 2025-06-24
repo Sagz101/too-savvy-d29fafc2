@@ -10,31 +10,31 @@ export const EcommerceStore: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   return (
-    <section className="py-20 relative overflow-hidden" id="ecommerce">
+    <section className="py-20 relative overflow-hidden bg-[#121212]" id="ecommerce">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-neura-cyan/5 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-neura-purple/5 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-cyan-500/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-purple-500/10 rounded-full filter blur-3xl"></div>
       </div>
       
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+            <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent">
               Web3-Native E-Commerce
             </span>
           </h2>
-          <p className="text-white/70 md:text-lg max-w-2xl mx-auto">
+          <p className="text-white/80 md:text-lg max-w-2xl mx-auto">
             Build your decentralized storefront for digital and physical products with NFT-backed authenticity
           </p>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
           <div className="lg:col-span-2">
-            <Card className={`bg-neura-dark/50 border border-neura-purple/30 overflow-hidden h-full transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} 
+            <Card className={`bg-gray-900/80 border border-purple-500/30 overflow-hidden h-full transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} 
                   style={{ transitionDelay: '100ms' }}>
-              <div className="h-64 bg-gradient-to-br from-neura-purple/20 to-neura-cyan/10 relative">
+              <div className="h-64 bg-gradient-to-br from-purple-500/20 to-cyan-400/10 relative">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 rounded-full bg-neura-purple/30 flex items-center justify-center backdrop-blur-sm">
+                  <div className="w-20 h-20 rounded-full bg-purple-500/30 flex items-center justify-center backdrop-blur-sm">
                     <ShoppingCart className="w-10 h-10 text-white" />
                   </div>
                 </div>
@@ -46,17 +46,17 @@ export const EcommerceStore: React.FC = () => {
                 </p>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-neura-purple/10 p-4 rounded-lg">
+                  <div className="bg-purple-500/10 p-4 rounded-lg">
                     <div className="flex items-center gap-3 mb-2">
-                      <Tags className="w-5 h-5 text-neura-cyan" />
+                      <Tags className="w-5 h-5 text-cyan-400" />
                       <h4 className="font-medium text-white">NFT-Backed Products</h4>
                     </div>
                     <p className="text-sm text-white/70">Physical items ship with NFC chips linked to authenticity NFTs</p>
                   </div>
                   
-                  <div className="bg-neura-purple/10 p-4 rounded-lg">
+                  <div className="bg-purple-500/10 p-4 rounded-lg">
                     <div className="flex items-center gap-3 mb-2">
-                      <Truck className="w-5 h-5 text-neura-cyan" />
+                      <Truck className="w-5 h-5 text-cyan-400" />
                       <h4 className="font-medium text-white">Supply Chain Tracking</h4>
                     </div>
                     <p className="text-sm text-white/70">Follow your order from creation to delivery with Chainlink oracles</p>
@@ -64,11 +64,11 @@ export const EcommerceStore: React.FC = () => {
                 </div>
                 
                 <div ref={ref} className="flex flex-wrap gap-3 mb-6">
-                  <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">ERC-721M</span>
-                  <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">NFC Integration</span>
-                  <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">Chainlink</span>
-                  <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">UniswapX Payments</span>
-                  <span className="text-xs bg-neura-purple/20 text-neura-cyan px-2 py-1 rounded-full">ShipBob API</span>
+                  <span className="text-xs bg-purple-500/20 text-cyan-400 px-2 py-1 rounded-full">ERC-721M</span>
+                  <span className="text-xs bg-purple-500/20 text-cyan-400 px-2 py-1 rounded-full">NFC Integration</span>
+                  <span className="text-xs bg-purple-500/20 text-cyan-400 px-2 py-1 rounded-full">Chainlink</span>
+                  <span className="text-xs bg-purple-500/20 text-cyan-400 px-2 py-1 rounded-full">UniswapX Payments</span>
+                  <span className="text-xs bg-purple-500/20 text-cyan-400 px-2 py-1 rounded-full">ShipBob API</span>
                 </div>
                 
                 <Button className="bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-400 hover:from-purple-600 hover:via-blue-600 hover:to-cyan-500 text-white font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300" asChild>
@@ -81,12 +81,12 @@ export const EcommerceStore: React.FC = () => {
           </div>
           
           <div className="space-y-8">
-            <Card className={`bg-neura-dark/50 border border-neura-purple/30 overflow-hidden transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} 
+            <Card className={`bg-gray-900/80 border border-purple-500/30 overflow-hidden transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} 
                   style={{ transitionDelay: '200ms' }}>
               <CardContent className="p-6">
                 <div className="flex items-start gap-3">
-                  <div className="bg-gradient-to-br from-neura-purple/20 to-neura-cyan/10 p-3 rounded-full">
-                    <Shield className="w-5 h-5 text-neura-cyan" />
+                  <div className="bg-gradient-to-br from-purple-500/20 to-cyan-400/10 p-3 rounded-full">
+                    <Shield className="w-5 h-5 text-cyan-400" />
                   </div>
                   <div>
                     <h3 className="font-medium text-lg mb-2 text-white">Authenticity Verification</h3>
@@ -98,12 +98,12 @@ export const EcommerceStore: React.FC = () => {
               </CardContent>
             </Card>
             
-            <Card className={`bg-neura-dark/50 border border-neura-purple/30 overflow-hidden transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} 
+            <Card className={`bg-gray-900/80 border border-purple-500/30 overflow-hidden transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} 
                   style={{ transitionDelay: '300ms' }}>
               <CardContent className="p-6">
                 <div className="flex items-start gap-3">
-                  <div className="bg-gradient-to-br from-neura-purple/20 to-neura-cyan/10 p-3 rounded-full">
-                    <Sparkles className="w-5 h-5 text-neura-cyan" />
+                  <div className="bg-gradient-to-br from-purple-500/20 to-cyan-400/10 p-3 rounded-full">
+                    <Sparkles className="w-5 h-5 text-cyan-400" />
                   </div>
                   <div>
                     <h3 className="font-medium text-lg mb-2 text-white">AR Product Visualization</h3>
@@ -115,12 +115,12 @@ export const EcommerceStore: React.FC = () => {
               </CardContent>
             </Card>
             
-            <Card className={`bg-neura-dark/50 border border-neura-purple/30 overflow-hidden transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} 
+            <Card className={`bg-gray-900/80 border border-purple-500/30 overflow-hidden transition-all duration-500 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} 
                   style={{ transitionDelay: '400ms' }}>
               <CardContent className="p-6">
                 <div className="flex items-start gap-3">
-                  <div className="bg-gradient-to-br from-neura-purple/20 to-neura-cyan/10 p-3 rounded-full">
-                    <TrendingUp className="w-5 h-5 text-neura-cyan" />
+                  <div className="bg-gradient-to-br from-purple-500/20 to-cyan-400/10 p-3 rounded-full">
+                    <TrendingUp className="w-5 h-5 text-cyan-400" />
                   </div>
                   <div>
                     <h3 className="font-medium text-lg mb-2 text-white">Dynamic Pricing</h3>
@@ -134,10 +134,10 @@ export const EcommerceStore: React.FC = () => {
           </div>
         </div>
         
-        <div className="bg-neura-dark/30 border border-neura-purple/20 rounded-xl p-6 backdrop-blur-sm">
+        <div className="bg-gray-900/50 border border-purple-500/20 rounded-xl p-6 backdrop-blur-sm">
           <h3 className="font-semibold text-xl mb-4 text-center text-white">Store Templates</h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="bg-neura-purple/10 p-4 rounded-lg text-center">
+            <div className="bg-purple-500/10 p-4 rounded-lg text-center">
               <h4 className="font-medium text-white mb-2">Fashion Store</h4>
               <p className="text-sm text-white/70 mb-3">Phygital fashion items with AR try-on</p>
               <Button variant="outline" size="sm" className="w-full bg-gradient-to-r from-pink-500 to-rose-400 hover:from-pink-600 hover:to-rose-500 border-none text-white font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
@@ -145,7 +145,7 @@ export const EcommerceStore: React.FC = () => {
               </Button>
             </div>
             
-            <div className="bg-neura-purple/10 p-4 rounded-lg text-center">
+            <div className="bg-purple-500/10 p-4 rounded-lg text-center">
               <h4 className="font-medium text-white mb-2">Art Gallery</h4>
               <p className="text-sm text-white/70 mb-3">Digital + physical art with provenance</p>
               <Button variant="outline" size="sm" className="w-full bg-gradient-to-r from-amber-500 to-orange-400 hover:from-amber-600 hover:to-orange-500 border-none text-white font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
@@ -153,7 +153,7 @@ export const EcommerceStore: React.FC = () => {
               </Button>
             </div>
             
-            <div className="bg-neura-purple/10 p-4 rounded-lg text-center">
+            <div className="bg-purple-500/10 p-4 rounded-lg text-center">
               <h4 className="font-medium text-white mb-2">Tech Shop</h4>
               <p className="text-sm text-white/70 mb-3">Hardware with digital twin NFTs</p>
               <Button variant="outline" size="sm" className="w-full bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-600 hover:to-teal-500 border-none text-white font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300">
