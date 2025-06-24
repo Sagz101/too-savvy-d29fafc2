@@ -27,12 +27,12 @@ export const VideoShowcase: React.FC = () => {
       <div className="container mx-auto px-4">
         {/* Enhanced header section */}
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-orbitron tracking-wider">
-            <span className="bg-gradient-to-r from-neura-cyan via-neura-purple to-cosmos-cyan bg-clip-text text-transparent animate-hero-glow">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-orbitron tracking-wider text-white">
+            <span className="bg-gradient-to-r from-white via-neura-cyan to-neura-purple bg-clip-text text-transparent animate-hero-glow drop-shadow-2xl">
               Creator Studio
             </span>
           </h2>
-          <p className="text-white/80 md:text-xl lg:text-2xl max-w-3xl mx-auto mb-8 font-medium leading-relaxed">
+          <p className="text-white/90 md:text-xl lg:text-2xl max-w-3xl mx-auto mb-8 font-medium leading-relaxed">
             Create, stream, and monetize content with decentralized tools
           </p>
 
