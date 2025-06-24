@@ -137,10 +137,10 @@ export const AICopilot = () => {
 
   if (showFullAssistant) {
     return (
-      <section className="py-20 relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-black">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-neura-cyan/10 rounded-full filter blur-3xl"></div>
-          <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-neura-purple/10 rounded-full filter blur-3xl"></div>
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-cyan-400/10 rounded-full filter blur-3xl animate-pulse"></div>
+          <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
         
         <div className="container mx-auto px-4">
@@ -148,12 +148,12 @@ export const AICopilot = () => {
             <Button 
               onClick={() => setShowFullAssistant(false)}
               variant="outline"
-              className="mb-4 border-neura-purple/30 text-white hover:bg-neura-purple/10"
+              className="mb-4 border-cyan-400/30 text-cyan-400 hover:bg-cyan-400/10 hover:border-cyan-400 backdrop-blur-sm"
             >
               ← Back to Quick Chat
             </Button>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-orbitron">
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-hero-glow">
                 AI Content & Web3 Assistant
               </span>
             </h2>
@@ -169,127 +169,148 @@ export const AICopilot = () => {
   }
   
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden bg-gradient-to-br from-slate-900 via-gray-900 to-black">
+      {/* Enhanced Background Effects */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-neura-cyan/10 rounded-full filter blur-3xl"></div>
-        <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-neura-purple/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-cyan-400/10 rounded-full filter blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/3 left-1/2 w-64 h-64 bg-emerald-400/5 rounded-full filter blur-2xl"></div>
       </div>
       
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-neura-purple to-neura-cyan bg-clip-text text-transparent">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Enhanced Header */}
+        <div className="text-center mb-16 relative">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 font-orbitron">
+            <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-hero-glow">
               Meet Your AI Copilot
             </span>
           </h2>
-          <p className="text-white/70 md:text-lg max-w-2xl mx-auto mb-2">
+          <p className="text-white/80 md:text-xl lg:text-2xl max-w-3xl mx-auto mb-4 leading-relaxed">
             Your personal assistant for Web3 learning, content creation, and Too Savvy navigation
           </p>
-          <p className="text-white/50 text-sm">
+          <p className="text-white/60 text-lg">
             Powered by Web3-optimized AI • Content Creation • Learning Assistant
           </p>
+          
+          {/* Decorative Elements */}
+          <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+          <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
         </div>
         
-        <div className="max-w-4xl mx-auto">
-          <Card className="bg-neura-dark/50 border-neura-purple/30 backdrop-blur-md overflow-hidden">
-            <CardContent className="p-0">
-              <div className="border-b border-neura-purple/20 p-4 flex items-center justify-between">
-                <div className="flex items-center">
-                  <div className="bg-gradient-to-br from-neura-purple/30 to-neura-cyan/30 p-2 rounded-full mr-3 relative">
-                    <Bot className="w-5 h-5 text-neura-cyan" />
-                    <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-neura-dark"></div>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-white">Too AI Savvy</h3>
-                    <p className="text-white/60 text-xs">Web3 & Content Assistant • Online</p>
-                  </div>
-                </div>
-                <div className="flex gap-2">
-                  <Badge variant="outline" className="text-xs border-neura-cyan/30 text-neura-cyan">
-                    AI Powered
-                  </Badge>
-                  <Button
-                    size="sm"
-                    onClick={() => setShowFullAssistant(true)}
-                    className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white text-xs"
-                  >
-                    Full Assistant
-                  </Button>
-                </div>
-              </div>
-              
-              <div className="h-80 overflow-y-auto p-4 space-y-4 bg-neura-dark/30">
-                {messages.map((message, index) => (
-                  <div key={index} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`max-w-[80%] p-3 rounded-lg ${
-                      message.role === 'user' 
-                        ? 'bg-neura-purple/30 text-white' 
-                        : 'bg-neura-dark/60 border border-neura-purple/20'
-                    }`}>
-                      <p className="text-white">{message.content}</p>
-                      {message.hasAction && (
-                        <Button 
-                          size="sm" 
-                          className="mt-2 bg-gradient-to-r from-neura-purple to-neura-cyan text-white"
-                          onClick={() => setShowFullAssistant(true)}
-                        >
-                          Open Full Assistant ➤
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-                ))}
-                {isTyping && (
-                  <div className="flex justify-start">
-                    <div className="bg-neura-dark/60 border border-neura-purple/20 p-3 rounded-lg">
-                      <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-neura-cyan rounded-full animate-pulse"></div>
-                        <div className="w-2 h-2 bg-neura-cyan rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                        <div className="w-2 h-2 bg-neura-cyan rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+        <div className="max-w-5xl mx-auto">
+          {/* Enhanced Chat Interface */}
+          <div className="relative">
+            {/* Glowing Border Effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-purple-500/20 to-emerald-400/20 rounded-2xl blur-sm"></div>
+            
+            <Card className="relative bg-gradient-to-br from-slate-800/90 via-gray-800/90 to-slate-900/90 border border-cyan-400/30 backdrop-blur-xl shadow-2xl overflow-hidden">
+              <CardContent className="p-0">
+                {/* Enhanced Header */}
+                <div className="border-b border-cyan-400/20 p-6 bg-gradient-to-r from-slate-800/50 via-gray-800/50 to-slate-900/50 backdrop-blur-sm">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <div className="bg-gradient-to-br from-cyan-400/30 to-purple-500/30 p-3 rounded-full mr-4 relative shadow-lg">
+                        <Bot className="w-6 h-6 text-cyan-400" />
+                        <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full border-2 border-slate-800 animate-pulse"></div>
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-xl text-white bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
+                          Too AI Savvy
+                        </h3>
+                        <p className="text-white/70 text-sm">Web3 & Content Assistant • Online</p>
                       </div>
                     </div>
+                    <div className="flex gap-3">
+                      <Badge variant="outline" className="border-cyan-400/30 text-cyan-400 bg-cyan-400/10 backdrop-blur-sm">
+                        AI Powered
+                      </Badge>
+                      <Button
+                        size="sm"
+                        onClick={() => setShowFullAssistant(true)}
+                        className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 hover:from-cyan-500 hover:via-blue-600 hover:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                      >
+                        Full Assistant
+                      </Button>
+                    </div>
                   </div>
-                )}
-              </div>
-              
-              <div className="p-4 border-t border-neura-purple/20">
-                <form onSubmit={handleSubmit} className="flex gap-2 mb-4">
-                  <Button 
-                    type="button" 
-                    size="icon" 
-                    variant="outline"
-                    className="border-neura-purple/30 text-white/70 hover:text-white hover:bg-neura-purple/10"
-                  >
-                    <Mic className="h-4 w-4" />
-                  </Button>
-                  <Input 
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder="Ask about Web3, content creation, NFTs, or Too Savvy features..." 
-                    className="bg-neura-dark/50 border-neura-purple/30 text-white placeholder:text-white/50"
-                  />
-                  <Button 
-                    type="submit"
-                    className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white"
-                  >
-                    <Send className="h-4 w-4" />
-                  </Button>
-                </form>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
-                  {suggestions.map((suggestion, index) => (
-                    <SuggestionChip 
-                      key={index} 
-                      text={suggestion.text}
-                      icon={suggestion.icon}
-                      category={suggestion.category}
-                      onClick={suggestion.action}
-                    />
-                  ))}
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+                
+                {/* Enhanced Chat Area */}
+                <div className="h-96 overflow-y-auto p-6 space-y-4 bg-gradient-to-br from-slate-900/30 via-gray-900/30 to-slate-800/30 backdrop-blur-sm">
+                  {messages.map((message, index) => (
+                    <div key={index} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                      <div className={`max-w-[80%] p-4 rounded-xl transition-all duration-300 ${
+                        message.role === 'user' 
+                          ? 'bg-gradient-to-r from-cyan-400/20 to-purple-500/20 text-white border border-cyan-400/30 backdrop-blur-sm shadow-lg' 
+                          : 'bg-gradient-to-br from-slate-800/80 via-gray-800/80 to-slate-900/80 border border-purple-500/20 backdrop-blur-sm shadow-xl'
+                      }`}>
+                        <p className="text-white leading-relaxed">{message.content}</p>
+                        {message.hasAction && (
+                          <Button 
+                            size="sm" 
+                            className="mt-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 hover:from-cyan-500 hover:via-blue-600 hover:to-purple-700 text-white font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                            onClick={() => setShowFullAssistant(true)}
+                          >
+                            Open Full Assistant →
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                  {isTyping && (
+                    <div className="flex justify-start">
+                      <div className="bg-gradient-to-br from-slate-800/80 via-gray-800/80 to-slate-900/80 border border-purple-500/20 backdrop-blur-sm p-4 rounded-xl shadow-xl">
+                        <div className="flex space-x-2">
+                          <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                          <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                          <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Enhanced Input Area */}
+                <div className="p-6 border-t border-cyan-400/20 bg-gradient-to-r from-slate-800/50 via-gray-800/50 to-slate-900/50 backdrop-blur-sm">
+                  <form onSubmit={handleSubmit} className="flex gap-3 mb-6">
+                    <Button 
+                      type="button" 
+                      size="icon" 
+                      variant="outline"
+                      className="border-cyan-400/30 text-white/70 hover:text-white hover:bg-cyan-400/10 hover:border-cyan-400 backdrop-blur-sm shadow-lg"
+                    >
+                      <Mic className="h-4 w-4" />
+                    </Button>
+                    <Input 
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      placeholder="Ask about Web3, content creation, NFTs, or Too Savvy features..." 
+                      className="bg-slate-800/50 border-cyan-400/30 text-white placeholder:text-white/50 backdrop-blur-sm shadow-lg focus:border-cyan-400 focus:ring-cyan-400/20"
+                    />
+                    <Button 
+                      type="submit"
+                      className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 hover:from-cyan-500 hover:via-blue-600 hover:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                    >
+                      <Send className="h-4 w-4" />
+                    </Button>
+                  </form>
+                  
+                  {/* Enhanced Suggestion Chips */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                    {suggestions.map((suggestion, index) => (
+                      <SuggestionChip 
+                        key={index} 
+                        text={suggestion.text}
+                        icon={suggestion.icon}
+                        category={suggestion.category}
+                        onClick={suggestion.action}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </section>
@@ -299,15 +320,15 @@ export const AICopilot = () => {
 const SuggestionChip = ({ text, icon: Icon, category, onClick }) => {
   const getCategoryColor = (cat: string) => {
     switch (cat) {
-      case 'NFT': return 'border-purple-400/30 bg-purple-400/10 text-purple-300';
-      case 'Content': return 'border-cyan-400/30 bg-cyan-400/10 text-cyan-300';
-      case 'Learning': return 'border-green-400/30 bg-green-400/10 text-green-300';
-      case 'DeFi': return 'border-yellow-400/30 bg-yellow-400/10 text-yellow-300';
-      case 'Podcast': return 'border-pink-400/30 bg-pink-400/10 text-pink-300';
-      case 'Platform': return 'border-blue-400/30 bg-blue-400/10 text-blue-300';
-      case 'Writing': return 'border-orange-400/30 bg-orange-400/10 text-orange-300';
-      case 'Community': return 'border-indigo-400/30 bg-indigo-400/10 text-indigo-300';
-      default: return 'border-neura-purple/30 bg-neura-purple/10 text-white/70';
+      case 'NFT': return 'border-purple-400/30 bg-gradient-to-r from-purple-400/10 to-pink-500/10 text-purple-300 hover:from-purple-400/20 hover:to-pink-500/20';
+      case 'Content': return 'border-cyan-400/30 bg-gradient-to-r from-cyan-400/10 to-blue-500/10 text-cyan-300 hover:from-cyan-400/20 hover:to-blue-500/20';
+      case 'Learning': return 'border-emerald-400/30 bg-gradient-to-r from-emerald-400/10 to-teal-500/10 text-emerald-300 hover:from-emerald-400/20 hover:to-teal-500/20';
+      case 'DeFi': return 'border-yellow-400/30 bg-gradient-to-r from-yellow-400/10 to-orange-500/10 text-yellow-300 hover:from-yellow-400/20 hover:to-orange-500/20';
+      case 'Podcast': return 'border-pink-400/30 bg-gradient-to-r from-pink-400/10 to-rose-500/10 text-pink-300 hover:from-pink-400/20 hover:to-rose-500/20';
+      case 'Platform': return 'border-blue-400/30 bg-gradient-to-r from-blue-400/10 to-indigo-500/10 text-blue-300 hover:from-blue-400/20 hover:to-indigo-500/20';
+      case 'Writing': return 'border-orange-400/30 bg-gradient-to-r from-orange-400/10 to-red-500/10 text-orange-300 hover:from-orange-400/20 hover:to-red-500/20';
+      case 'Community': return 'border-indigo-400/30 bg-gradient-to-r from-indigo-400/10 to-purple-500/10 text-indigo-300 hover:from-indigo-400/20 hover:to-purple-500/20';
+      default: return 'border-cyan-400/30 bg-gradient-to-r from-cyan-400/10 to-purple-500/10 text-white/70 hover:from-cyan-400/20 hover:to-purple-500/20';
     }
   };
 
@@ -316,11 +337,11 @@ const SuggestionChip = ({ text, icon: Icon, category, onClick }) => {
       variant="outline" 
       size="sm"
       onClick={onClick}
-      className={`${getCategoryColor(category)} hover:bg-opacity-20 justify-start text-left h-auto p-2 transition-all duration-200 hover:scale-105`}
+      className={`${getCategoryColor(category)} justify-start text-left h-auto p-3 transition-all duration-300 hover:scale-105 hover:shadow-lg backdrop-blur-sm border group`}
     >
-      <Icon className="mr-2 h-3 w-3 flex-shrink-0" />
-      <span className="text-xs truncate">{text}</span>
-      <ArrowRight className="ml-auto h-3 w-3 opacity-50" />
+      <Icon className="mr-2 h-4 w-4 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+      <span className="text-xs truncate font-medium">{text}</span>
+      <ArrowRight className="ml-auto h-3 w-3 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
     </Button>
   );
 };
