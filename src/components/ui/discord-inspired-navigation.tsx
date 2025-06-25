@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { smoothScrollToSection } from '@/utils/smoothScroll';
@@ -11,7 +10,6 @@ export const DiscordInspiredNavigation: React.FC = () => {
   const navigationSections = [
     { id: 'hero', label: 'Create' },
     { id: 'create', label: 'Own' },
-    { id: 'features', label: 'Thrive' },
     { id: 'get-started', label: 'Get Started' },
     { id: 'developer-resources', label: 'Developer Resources' },
     { id: 'platform-overview', label: 'Dashboard' }
