@@ -90,4 +90,8 @@ export const getIPFSUrl = (hash: string): string => {
   return ipfsService.getIPFSUrl(hash);
 };
 
+export const uploadJSONToIPFS = (metadata: IPFSMetadata): Promise<string> => {
+  return ipfsService.uploadMetadata(metadata);
+};
+
 export type { IPFSMetadata };

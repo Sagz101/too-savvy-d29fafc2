@@ -35,7 +35,7 @@ export const ArCreator: React.FC = () => {
   });
   const [activeTab, setActiveTab] = useState('upload');
   
-  const { wallet } = useEnhancedWallet();
+  const { isConnected } = useEnhancedWallet();
   
   const handleModelSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -49,7 +49,7 @@ export const ArCreator: React.FC = () => {
   };
   
   const handleUploadModel = async () => {
-    if (!modelFile || !wallet.isConnected) {
+    if (!modelFile || !isConnected) {
       toast.error("Please select a 3D model file and connect your wallet");
       return;
     }
@@ -220,7 +220,7 @@ export const ArCreator: React.FC = () => {
             <Button
               className="bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90"
               onClick={handleUploadModel}
-              disabled={!modelFile || !wallet.isConnected || isUploading}
+              disabled={!modelFile || !isConnected || isUploading}
             >
               {isUploading ? (
                 <>

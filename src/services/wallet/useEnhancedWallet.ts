@@ -61,5 +61,11 @@ export const useEnhancedWallet = () => {
     
     // NFT functionality
     ...nftMinting,
+    
+    // Wallet object for backward compatibility
+    wallet: {
+      isConnected,
+      address,
+    }
   };
 };
