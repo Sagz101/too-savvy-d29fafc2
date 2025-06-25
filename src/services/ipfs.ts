@@ -1,57 +1,83 @@
 
-import { create } from 'ipfs-http-client';
-import { toast } from "sonner";
-import { Buffer } from 'buffer';
+import { toast } from 'sonner';
 
-// Configure the IPFS client
-// Note: For production, you'd want to use a dedicated IPFS node or service like Infura
-const projectId = "YOUR_INFURA_PROJECT_ID"; // Replace with actual project ID in production
-const projectSecret = "YOUR_INFURA_PROJECT_SECRET"; // Replace with actual secret in production
+interface IPFSMetadata {
+  name: string;
+  description: string;
+  image: string;
+  attributes?: Array<{
+    trait_type: string;
+    value: string | number;
+  }>;
+  external_url?: string;
+  animation_url?: string;
+}
 
-// For demo purposes, we'll use the public IPFS gateway
-const ipfs = create({
-  host: 'ipfs.infura.io',
-  port: 5001,
-  protocol: 'https',
-  headers: {
-    authorization: projectId && projectSecret 
-      ? 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64')
-      : undefined
+class IPFSService {
+  private readonly PINATA_API_KEY = process.env.VITE_PINATA_API_KEY;
+  private readonly PINATA_SECRET_KEY = process.env.VITE_PINATA_SECRET_KEY;
+  private readonly PINATA_GATEWAY = 'https://gateway.pinata.cloud/ipfs/';
+
+  async uploadFile(file: File): Promise<string> {
+    if (!this.PINATA_API_KEY || !this.PINATA_SECRET_KEY) {
+      // Fallback to mock IPFS hash for development
+      console.warn('IPFS credentials not configured, using mock hash');
+      return `Qm${Math.random().toString(36).substring(2, 15)}`;
+    }
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await fetch('https://api.pinata.cloud/pinning/pinFileToIPFS', {
+        method: 'POST',
+        headers: {
+          'pinata_api_key': this.PINATA_API_KEY,
+          'pinata_secret_api_key': this.PINATA_SECRET_KEY,
+        },
+        body: formData,
+      });
+
+      const result = await response.json();
+      return result.IpfsHash;
+    } catch (error) {
+      console.error('IPFS upload error:', error);
+      toast.error('Failed to upload to IPFS');
+      throw error;
+    }
   }
-});
 
-export const uploadToIPFS = async (file: File): Promise<string | null> => {
-  try {
-    // Show loading toast
-    toast.loading("Uploading to IPFS...");
-    
-    // Upload file to IPFS
-    const fileAdded = await ipfs.add(
-      file,
-      {
-        progress: (prog) => console.log(`Upload progress: ${prog}`)
-      }
-    );
-    
-    // Get the IPFS CID
-    const cid = fileAdded.cid.toString();
-    
-    // Success toast
-    toast.success("Upload complete!", {
-      description: `Your file has been uploaded to IPFS with CID: ${cid.slice(0, 10)}...`,
-    });
-    
-    return cid;
-  } catch (error) {
-    console.error("Error uploading to IPFS:", error);
-    toast.error("Upload failed", {
-      description: "Failed to upload file to IPFS. Please try again."
-    });
-    return null;
+  async uploadMetadata(metadata: IPFSMetadata): Promise<string> {
+    if (!this.PINATA_API_KEY || !this.PINATA_SECRET_KEY) {
+      // Fallback to mock IPFS hash for development
+      console.warn('IPFS credentials not configured, using mock hash');
+      return `Qm${Math.random().toString(36).substring(2, 15)}`;
+    }
+
+    try {
+      const response = await fetch('https://api.pinata.cloud/pinning/pinJSONToIPFS', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'pinata_api_key': this.PINATA_API_KEY,
+          'pinata_secret_api_key': this.PINATA_SECRET_KEY,
+        },
+        body: JSON.stringify(metadata),
+      });
+
+      const result = await response.json();
+      return result.IpfsHash;
+    } catch (error) {
+      console.error('IPFS metadata upload error:', error);
+      toast.error('Failed to upload metadata to IPFS');
+      throw error;
+    }
   }
-};
 
-// Get the IPFS gateway URL for a given CID
-export const getIPFSUrl = (cid: string): string => {
-  return `https://ipfs.io/ipfs/${cid}`;
-};
+  getIPFSUrl(hash: string): string {
+    return `${this.PINATA_GATEWAY}${hash}`;
+  }
+}
+
+export const ipfsService = new IPFSService();
+export type { IPFSMetadata };
