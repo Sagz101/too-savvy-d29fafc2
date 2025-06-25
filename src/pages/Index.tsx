@@ -25,7 +25,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-black">
       <DiscordInspiredNavigation />
       <main>
         {/* Hero Section */}
@@ -34,63 +34,63 @@ const Index = () => {
         </section>
         
         {/* Creator Studio Interests Selection */}
-        <section id="creator-interests" className="bg-gray-50">
+        <section id="creator-interests" className="bg-gradient-to-br from-slate-900 via-gray-800 to-slate-950">
           <CreatorStudioInterests onContinue={handleInterestSelection} />
         </section>
         
         {/* Unified Creator Section - Create, Own, Thrive */}
-        <section id="create" className="bg-white">
+        <section id="create" className="bg-gradient-to-br from-slate-950 via-gray-900 to-black">
           <UnifiedCreatorSection />
         </section>
         
-        <section id="get-started" className="pt-20 bg-gray-50">
+        <section id="get-started" className="pt-20 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-950">
           <OnboardingGuide />
         </section>
         
-        <section id="dashboard" className="pt-20 bg-white">
+        <section id="dashboard" className="pt-20 bg-gradient-to-br from-slate-950 via-gray-900 to-black">
           <CreatorDashboard />
         </section>
         
-        <section id="video-showcase" className="pt-20 bg-gray-50">
+        <section id="video-showcase" className="pt-20 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-950">
           <VideoShowcase />
         </section>
         
-        <section id="commerce-studio" className="pt-20 bg-white">
+        <section id="commerce-studio" className="pt-20 bg-gradient-to-br from-slate-950 via-gray-900 to-black">
           <EcommerceStore />
         </section>
         
-        <section id="social-hub" className="pt-20 bg-gray-50">
+        <section id="social-hub" className="pt-20 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-950">
           <SocialHub />
         </section>
         
-        <section id="threaditor" className="pt-20 bg-white">
+        <section id="threaditor" className="pt-20 bg-gradient-to-br from-slate-950 via-gray-900 to-black">
           <Threaditor />
         </section>
         
-        <section id="ai-copilot" className="pt-20 bg-gray-50">
+        <section id="ai-copilot" className="pt-20 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-950">
           <AICopilot />
         </section>
         
-        <section id="trusted-creators" className="pt-20 bg-white">
+        <section id="trusted-creators" className="pt-20 bg-gradient-to-br from-slate-950 via-gray-900 to-black">
           <TrustedByCreators />
         </section>
         
-        <section id="governance" className="pt-20 bg-gray-50">
+        <section id="governance" className="pt-20 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-950">
           <CommunityGovernance />
         </section>
         
-        <section id="developer-resources" className="pt-20 bg-gray-50">
+        <section id="developer-resources" className="pt-20 bg-gradient-to-br from-slate-950 via-gray-900 to-black">
           <div className="container mx-auto px-4 py-16">
             <div className="text-center">
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">Developer Resources</h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <h2 className="text-4xl font-bold text-white mb-6">Developer Resources</h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Build on Too Savvy with our comprehensive developer tools and documentation.
               </p>
             </div>
           </div>
         </section>
         
-        <section id="cta" className="pt-20 bg-white">
+        <section id="cta" className="pt-20 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-950">
           <Cta />
         </section>
       </main>
