@@ -2,7 +2,6 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { 
   Palette, 
   Mic, 
@@ -14,12 +13,15 @@ import {
   Layers
 } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
+import { useNavigate } from 'react-router-dom';
 
 export const ModulesGrid = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const navigate = useNavigate();
 
   const modules = [
     {
+      id: 'video-studio',
       icon: <Palette className="w-8 h-8 text-cyan-400" />,
       title: "Creator Studio",
       description: "Produce, stream, and monetize digital content with professional-grade tools",
@@ -29,6 +31,7 @@ export const ModulesGrid = () => {
       gasEstimate: "~0.001 ETH"
     },
     {
+      id: 'podcast-studio',
       icon: <Mic className="w-8 h-8 text-purple-400" />,
       title: "Podcast & Music Studios",
       description: "Launch audio projects with NFT integration and Web3 monetization",
@@ -38,6 +41,7 @@ export const ModulesGrid = () => {
       gasEstimate: "~0.0008 ETH"
     },
     {
+      id: 'store-builder',
       icon: <ShoppingCart className="w-8 h-8 text-emerald-400" />,
       title: "Storefront Builder",
       description: "Sell physical and digital goods with verifiable authenticity and smart contracts",
@@ -47,6 +51,7 @@ export const ModulesGrid = () => {
       gasEstimate: "~0.002 ETH"
     },
     {
+      id: 'threaditor',
       icon: <FileText className="w-8 h-8 text-orange-400" />,
       title: "Threaditor",
       description: "Decentralized blogging and professional reporting hub with fact-checking",
@@ -56,6 +61,7 @@ export const ModulesGrid = () => {
       gasEstimate: "~0.0005 ETH"
     },
     {
+      id: 'neura-social',
       icon: <Share2 className="w-8 h-8 text-blue-400" />,
       title: "NeuraSocial",
       description: "Web3-native content sharing with cross-platform reach and token incentives",
@@ -65,6 +71,7 @@ export const ModulesGrid = () => {
       gasEstimate: "~0.0003 ETH"
     },
     {
+      id: 'global-innovators',
       icon: <Users className="w-8 h-8 text-yellow-400" />,
       title: "Global Innovators",
       description: "Collaborative, tokenized project creation at scale with DAO governance",
@@ -74,6 +81,10 @@ export const ModulesGrid = () => {
       gasEstimate: "~0.001 ETH"
     }
   ];
+
+  const handleExploreModule = (moduleId: string) => {
+    navigate(`/studio?module=${moduleId}`);
+  };
 
   return (
     <div className={`mb-36 transition-all duration-1000 transform ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`} style={{ transitionDelay: '200ms' }}>
@@ -144,6 +155,7 @@ export const ModulesGrid = () => {
                   <Button 
                     variant="outline" 
                     className="border-cyan-400/50 text-cyan-400 hover:bg-cyan-400/20 hover:border-cyan-400 transition-all duration-300 w-full text-lg py-3"
+                    onClick={() => handleExploreModule(module.id)}
                   >
                     Explore Module <ChevronRight className="w-5 h-5 ml-2" />
                   </Button>

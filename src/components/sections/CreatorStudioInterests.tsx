@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Video, Podcast, Store, Music2, Code2, ShoppingBag, FileText, Users } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const studioComponents = [
   {
@@ -69,6 +70,15 @@ interface CreatorStudioInterestsProps {
 
 export function CreatorStudioInterests({ onContinue }: CreatorStudioInterestsProps) {
   const [interest, setInterest] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const handleContinue = () => {
+    if (interest) {
+      onContinue(interest);
+      // Navigate to studio with the selected module
+      navigate(`/studio?module=${interest}`);
+    }
+  };
 
   return (
     <section className="py-16 min-h-[70vh] flex items-center bg-gradient-to-br from-slate-900 via-gray-900 to-black">
@@ -137,7 +147,7 @@ export function CreatorStudioInterests({ onContinue }: CreatorStudioInterestsPro
                 ? "bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-white shadow-2xl shadow-cyan-400/25 hover:shadow-purple-500/30" 
                 : "bg-gray-700/50 text-gray-400 cursor-not-allowed"
             }`}
-            onClick={() => interest && onContinue(interest)}
+            onClick={handleContinue}
             disabled={!interest}
           >
             {interest && (
