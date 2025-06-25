@@ -41,8 +41,10 @@
     "@radix-ui/react-tooltip": "^1.1.4",
     "@supabase/supabase-js": "^2.50.0",
     "@tanstack/react-query": "^5.81.2",
+    "@wagmi/core": "^2.17.3",
     "@web3auth/ethereum-provider": "^9.7.0",
     "@web3auth/modal": "^10.0.3",
+    "@web3modal/wagmi": "^5.1.11",
     "buffer": "^6.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -66,6 +68,7 @@
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.3",
+    "viem": "^2.31.4",
     "zod": "^3.23.8"
   },
   "devDependencies": {
