@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,7 +18,8 @@ import {
   CheckCircle,
   Wallet,
   CreditCard,
-  Globe
+  Globe,
+  Home
 } from 'lucide-react';
 
 interface User {
@@ -128,9 +130,26 @@ export const CreatorStudioOnboarding = () => {
     }));
   };
 
+  const handleGoHome = () => {
+    navigate('/');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-black flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+        {/* Home Button - Always visible */}
+        <div className="mb-4 flex justify-start">
+          <Button
+            onClick={handleGoHome}
+            variant="ghost"
+            size="sm"
+            className="text-white/70 hover:text-white hover:bg-white/10 flex items-center gap-2"
+          >
+            <Home className="w-4 h-4" />
+            Back to Home
+          </Button>
+        </div>
+
         {/* Progress indicator */}
         <div className="mb-8">
           <div className="flex justify-between items-center mb-4">
