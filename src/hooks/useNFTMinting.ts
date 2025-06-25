@@ -14,7 +14,7 @@ interface MintingState {
 }
 
 export const useNFTMinting = () => {
-  const { address, chainId } = useAccount();
+  const { address, chainId, chain } = useAccount();
   const [state, setState] = useState<MintingState>({
     isUploading: false,
     isMinting: false,
@@ -54,6 +54,11 @@ export const useNFTMinting = () => {
       return;
     }
 
+    if (!chain) {
+      toast.error('Please connect to a supported network');
+      return;
+    }
+
     try {
       setState(prev => ({ ...prev, mintingStep: 'uploading', isUploading: true }));
 
@@ -80,13 +85,15 @@ export const useNFTMinting = () => {
         uploadProgress: 100 
       }));
 
-      // Mint NFT
+      // Mint NFT with required chain and account properties
       writeContract({
         address: contractAddress as `0x${string}`,
         abi: TOO_SAVVY_NFT_ABI,
         functionName: 'safeMint',
         args: [address, 1n, tokenURI as `0x${string}`],
         value: mintPrice as bigint,
+        chain,
+        account: address,
       });
 
       setState(prev => ({ ...prev, mintingStep: 'success', isMinting: false }));
