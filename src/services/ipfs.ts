@@ -80,4 +80,14 @@ class IPFSService {
 }
 
 export const ipfsService = new IPFSService();
+
+// Legacy function exports for backward compatibility
+export const uploadToIPFS = (file: File): Promise<string> => {
+  return ipfsService.uploadFile(file);
+};
+
+export const getIPFSUrl = (hash: string): string => {
+  return ipfsService.getIPFSUrl(hash);
+};
+
 export type { IPFSMetadata };

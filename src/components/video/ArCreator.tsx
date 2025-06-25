@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { toast } from "sonner";
 import { Upload, Box, Smartphone, Globe, Eye, Share2, Zap } from 'lucide-react';
 import { uploadToIPFS, getIPFSUrl } from '@/services/ipfs';
-import { useWallet } from '@/services/wallet';
+import { useEnhancedWallet } from '@/services/wallet/useEnhancedWallet';
 
 interface ArSettings {
   scale: number[];
@@ -36,7 +35,7 @@ export const ArCreator: React.FC = () => {
   });
   const [activeTab, setActiveTab] = useState('upload');
   
-  const { wallet } = useWallet();
+  const { wallet } = useEnhancedWallet();
   
   const handleModelSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
