@@ -7,7 +7,7 @@ import {
   optimism,
   polygon,
   sepolia,
-} from 'wagmi/chains';
+} from 'viem/chains';
 
 export const config = getDefaultConfig({
   appName: 'Too Savvy',
