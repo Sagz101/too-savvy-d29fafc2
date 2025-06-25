@@ -13,7 +13,6 @@ import { AICopilot } from '@/components/sections/AICopilot';
 import { SocialHub } from '@/components/sections/SocialHub';
 import { EcommerceStore } from '@/components/sections/EcommerceStore';
 import { Threaditor } from '@/components/sections/Threaditor';
-import { PlatformOverview } from '@/components/sections/PlatformOverview';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
 
@@ -78,10 +77,6 @@ const Index = () => {
         
         <section id="governance" className="pt-20 bg-gray-50">
           <CommunityGovernance />
-        </section>
-        
-        <section id="platform-overview" className="pt-20 bg-white">
-          <PlatformOverview />
         </section>
         
         <section id="developer-resources" className="pt-20 bg-gray-50">
