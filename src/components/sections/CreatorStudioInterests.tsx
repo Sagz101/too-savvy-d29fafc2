@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -75,8 +74,8 @@ export function CreatorStudioInterests({ onContinue }: CreatorStudioInterestsPro
   const handleContinue = () => {
     if (interest) {
       onContinue(interest);
-      // Navigate to studio with the selected module
-      navigate(`/studio?module=${interest}`);
+      // Navigate to onboarding first, then to studio with the selected module
+      navigate(`/onboarding`);
     }
   };
 
