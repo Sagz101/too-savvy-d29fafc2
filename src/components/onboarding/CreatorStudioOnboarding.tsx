@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -42,11 +41,11 @@ export const CreatorStudioOnboarding = () => {
   const { wallet, connectWallet } = useWallet();
 
   const interests = [
-    { id: 'Art', label: 'Art & Design', icon: <Palette className="w-5 h-5" /> },
-    { id: 'Music', label: 'Music & Audio', icon: <Music className="w-5 h-5" /> },
-    { id: 'Writing', label: 'Writing & Content', icon: <FileText className="w-5 h-5" /> },
-    { id: 'Design', label: 'Graphic Design', icon: <Brush className="w-5 h-5" /> },
-    { id: 'Video', label: 'Video Production', icon: <Video className="w-5 h-5" /> }
+    { id: 'Art & Design', label: 'Art & Design', icon: <Palette className="w-5 h-5" /> },
+    { id: 'Music & Audio', label: 'Music & Audio', icon: <Music className="w-5 h-5" /> },
+    { id: 'Writing & Content', label: 'Writing & Content', icon: <FileText className="w-5 h-5" /> },
+    { id: 'Graphic Design', label: 'Graphic Design', icon: <Brush className="w-5 h-5" /> },
+    { id: 'Video Production', label: 'Video Production', icon: <Video className="w-5 h-5" /> }
   ];
 
   const countries = [
