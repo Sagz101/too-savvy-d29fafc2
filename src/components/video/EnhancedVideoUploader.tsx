@@ -1,3 +1,4 @@
+
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Button } from '@/components/ui/button';
@@ -33,7 +34,9 @@ export const EnhancedVideoUploader: React.FC = () => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: 'video/*',
+    accept: {
+      'video/*': ['.mp4', '.mov', '.avi', '.mkv', '.webm']
+    },
     maxFiles: 1,
   });
 
@@ -94,7 +97,7 @@ export const EnhancedVideoUploader: React.FC = () => {
             <p className="text-white font-medium mb-1">
               {videoFile ? videoFile.name : 'Drag & Drop Video or Click to Upload'}
             </p>
-            <p className="text-white/50 text-sm">MP4, MOV, AVI (Max 200MB)</p>
+            <p className="text-white/50 text-sm">MP4, MOV, AVI, MKV, WebM (Max 200MB)</p>
             {uploadError && (
               <div className="mt-2 text-red-500 text-sm flex items-center justify-center gap-1">
                 <AlertTriangle className="w-4 h-4" />
