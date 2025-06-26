@@ -114,37 +114,44 @@ export const ModernHero: React.FC = () => {
               ))}
             </div>
 
-            {/* Enhanced CTA Section with better UX flow and Connect Wallet */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 pt-4" role="group" aria-label="Get started actions">
-              <ModernButton
-                variant="primary"
-                size="lg"
-                className={`shadow-xl ${animationStarted ? 'animate-cta-pulse' : ''}`}
-                asChild
-              >
-                <Link to="/video-studio" aria-describedby="primary-cta-description" className="flex items-center gap-2">
-                  <Sparkles size={20} aria-hidden="true" />
-                  Start Building Now
-                  <ArrowRight size={20} aria-hidden="true" />
-                </Link>
-              </ModernButton>
+            {/* Enhanced CTA Section with better UX flow and Connect Wallet - Improved layout */}
+            <div className="space-y-4 pt-4" role="group" aria-label="Get started actions">
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <ModernButton
+                  variant="primary"
+                  size="lg"
+                  className={`shadow-xl w-full sm:w-auto ${animationStarted ? 'animate-cta-pulse' : ''}`}
+                  asChild
+                >
+                  <Link to="/video-studio" aria-describedby="primary-cta-description" className="flex items-center justify-center gap-2">
+                    <Sparkles size={20} aria-hidden="true" />
+                    Start Building Now
+                    <ArrowRight size={20} aria-hidden="true" />
+                  </Link>
+                </ModernButton>
+                
+                <div className="w-full sm:w-auto">
+                  <WalletConnectButton />
+                </div>
+              </div>
               
-              <WalletConnectButton />
+              <div className="flex justify-center">
+                <ModernButton
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  asChild
+                >
+                  <Link to="/projects-creator" aria-describedby="secondary-cta-description" className="flex items-center justify-center gap-2">
+                    <Globe size={20} aria-hidden="true" />
+                    Launch Projects
+                  </Link>
+                </ModernButton>
+              </div>
               
               <span id="primary-cta-description" className="sr-only">
                 Navigate to the video studio to start creating content
               </span>
-              
-              <ModernButton
-                variant="outline"
-                size="lg"
-                asChild
-              >
-                <Link to="/projects-creator" aria-describedby="secondary-cta-description" className="flex items-center gap-2">
-                  <Globe size={20} aria-hidden="true" />
-                  Launch Projects
-                </Link>
-              </ModernButton>
               
               <span id="secondary-cta-description" className="sr-only">
                 Go to the project creator to launch new initiatives

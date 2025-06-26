@@ -72,12 +72,14 @@ export const SequenceInspiredHero: React.FC = () => {
             Built on Web3 infrastructure with zero platform fees.
           </p>
 
-          {/* CTA buttons with Connect Wallet */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-            <ModernButton size="lg" className="px-8 py-4 text-lg" onClick={handleStartCreating}>
+          {/* CTA buttons with Connect Wallet - Updated layout for better visibility */}
+          <div className="flex flex-col lg:flex-row gap-4 justify-center items-center mb-16 max-w-2xl mx-auto">
+            <ModernButton size="lg" className="px-8 py-4 text-lg w-full lg:w-auto" onClick={handleStartCreating}>
               Start Creating
             </ModernButton>
-            <WalletConnectButton />
+            <div className="w-full lg:w-auto">
+              <WalletConnectButton />
+            </div>
           </div>
 
           {/* Stats */}

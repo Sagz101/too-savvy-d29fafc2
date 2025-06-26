@@ -19,21 +19,28 @@ export const CreatorDashboard = () => {
             Your command center for Web3 content creation. Track performance, manage your community, and monetize your creativity with powerful analytics and tools.
           </p>
           
-          {/* CTA Buttons with Connect Wallet */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button size="lg" asChild className="px-8 py-3">
-              <Link to="/video-studio">
-                <Video className="w-5 h-5 mr-2" />
-                Get Started
-              </Link>
-            </Button>
-            <WalletConnectButton />
-            <Button size="lg" variant="outline" asChild className="px-8 py-3">
-              <Link to="/video-integration">
-                <BarChart3 className="w-5 h-5 mr-2" />
-                Developer Resources
-              </Link>
-            </Button>
+          {/* CTA Buttons with Connect Wallet - Improved layout for better visibility */}
+          <div className="space-y-6 mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button size="lg" asChild className="px-8 py-3 w-full sm:w-auto">
+                <Link to="/video-studio">
+                  <Video className="w-5 h-5 mr-2" />
+                  Get Started
+                </Link>
+              </Button>
+              <div className="w-full sm:w-auto">
+                <WalletConnectButton />
+              </div>
+            </div>
+            
+            <div className="flex justify-center">
+              <Button size="lg" variant="outline" asChild className="px-8 py-3 w-full sm:w-auto max-w-xs">
+                <Link to="/video-integration">
+                  <BarChart3 className="w-5 h-5 mr-2" />
+                  Developer Resources
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
 
