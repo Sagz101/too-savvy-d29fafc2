@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { ArrowRight, Sparkles, Globe } from 'lucide-react';
+import { ArrowRight, Sparkles, Globe, UserPlus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ModernButton } from '@/components/ui/modern-button';
 import { ModernCard } from '@/components/ui/modern-card';
@@ -114,8 +114,9 @@ export const ModernHero: React.FC = () => {
               ))}
             </div>
 
-            {/* Enhanced CTA Section with better UX flow and Connect Wallet - Improved layout */}
-            <div className="space-y-4 pt-4" role="group" aria-label="Get started actions">
+            {/* Enhanced CTA Section with all requested buttons */}
+            <div className="space-y-6 pt-4" role="group" aria-label="Get started actions">
+              {/* Primary Actions Row */}
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <ModernButton
                   variant="primary"
@@ -125,7 +126,7 @@ export const ModernHero: React.FC = () => {
                 >
                   <Link to="/video-studio" aria-describedby="primary-cta-description" className="flex items-center justify-center gap-2">
                     <Sparkles size={20} aria-hidden="true" />
-                    Start Building Now
+                    Start Creating
                     <ArrowRight size={20} aria-hidden="true" />
                   </Link>
                 </ModernButton>
@@ -135,7 +136,20 @@ export const ModernHero: React.FC = () => {
                 </div>
               </div>
               
-              <div className="flex justify-center">
+              {/* Secondary Actions Row */}
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <ModernButton
+                  variant="outline"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  asChild
+                >
+                  <Link to="/onboarding" className="flex items-center justify-center gap-2">
+                    <UserPlus size={20} aria-hidden="true" />
+                    New User
+                  </Link>
+                </ModernButton>
+
                 <ModernButton
                   variant="outline"
                   size="lg"
