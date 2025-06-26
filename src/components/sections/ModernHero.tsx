@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, Sparkles, Globe, UserPlus } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -22,6 +21,7 @@ export const ModernHero: React.FC = () => {
 
   return (
     <section 
+      id="main-content"
       ref={heroRef}
       className="relative min-h-screen pt-24 pb-16 flex items-center overflow-hidden"
       style={{ background: 'hsl(var(--background))' }}
@@ -114,61 +114,59 @@ export const ModernHero: React.FC = () => {
               ))}
             </div>
 
-            {/* Enhanced CTA Section with all requested buttons */}
+            {/* Enhanced CTA Section with improved accessibility and mobile optimization */}
             <div className="space-y-6 pt-4" role="group" aria-label="Get started actions">
-              {/* Primary Actions Row */}
-              <div className="flex flex-col sm:flex-row items-center gap-4">
+              {/* Primary Action */}
+              <div className="flex justify-center">
                 <ModernButton
                   variant="primary"
                   size="lg"
-                  className={`shadow-xl w-full sm:w-auto ${animationStarted ? 'animate-cta-pulse' : ''}`}
+                  className={`shadow-xl px-8 py-4 text-lg font-semibold ${animationStarted ? 'animate-cta-pulse' : ''}`}
                   asChild
                 >
-                  <Link to="/onboarding" aria-describedby="primary-cta-description" className="flex items-center justify-center gap-2">
-                    <Sparkles size={20} aria-hidden="true" />
-                    Start Creating
-                    <ArrowRight size={20} aria-hidden="true" />
+                  <Link to="/onboarding" aria-describedby="primary-cta-description" className="flex items-center justify-center gap-3">
+                    <Sparkles size={24} aria-hidden="true" />
+                    Start Creating Now
+                    <ArrowRight size={24} aria-hidden="true" />
                   </Link>
                 </ModernButton>
-                
+              </div>
+              
+              {/* Secondary Actions */}
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <div className="w-full sm:w-auto">
                   <WalletConnectButton />
                 </div>
-              </div>
-              
-              {/* Secondary Actions Row */}
-              <div className="flex flex-col sm:flex-row items-center gap-4">
+                
                 <ModernButton
                   variant="outline"
                   size="lg"
-                  className="w-full sm:w-auto"
+                  className="w-full sm:w-auto min-w-[160px]"
                   asChild
                 >
                   <Link to="/onboarding" className="flex items-center justify-center gap-2">
                     <UserPlus size={20} aria-hidden="true" />
-                    New User
+                    New User Guide
                   </Link>
                 </ModernButton>
+              </div>
 
+              {/* Interactive Tutorial Trigger */}
+              <div className="text-center">
                 <ModernButton
-                  variant="outline"
-                  size="lg"
-                  className="w-full sm:w-auto"
-                  asChild
+                  variant="ghost" 
+                  className="text-cyan-400 hover:text-cyan-300 underline-offset-4 hover:underline"
+                  onClick={() => {
+                    // This would trigger the tutorial - implementation would be added to parent component
+                    console.log('Open interactive tutorial');
+                  }}
                 >
-                  <Link to="/projects-creator" aria-describedby="secondary-cta-description" className="flex items-center justify-center gap-2">
-                    <Globe size={20} aria-hidden="true" />
-                    Launch Projects
-                  </Link>
+                  Take the 2-minute platform tour →
                 </ModernButton>
               </div>
               
               <span id="primary-cta-description" className="sr-only">
-                Navigate to the onboarding page to get started with T00 Savvy
-              </span>
-              
-              <span id="secondary-cta-description" className="sr-only">
-                Go to the project creator to launch new initiatives
+                Navigate to the onboarding page to get started with T00 Savvy platform
               </span>
             </div>
           </div>
@@ -195,7 +193,7 @@ export const ModernHero: React.FC = () => {
                 <div className="w-5" aria-hidden="true"></div>
               </header>
 
-              {/* Dashboard Content with improved data presentation */}
+              {/* Dashboard Content - keeping existing implementation */}
               <div className="relative z-10 p-6 pt-20">
                 <div className="flex items-center justify-between mb-6">
                   <ModernHeading level={5} className="font-inter">Creator Dashboard</ModernHeading>
