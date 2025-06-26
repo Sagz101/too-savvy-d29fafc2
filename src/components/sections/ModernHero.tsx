@@ -7,7 +7,7 @@ import { ModernCard } from '@/components/ui/modern-card';
 import { ModernHeading, ModernText } from '@/components/ui/modern-typography';
 import { ModernContainer } from '@/components/ui/modern-container';
 import { EnhancedIcon } from '@/components/ui/enhanced-icon';
-import { WalletButton } from '@/components/ui/wallet-button';
+import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
 import { useInView } from 'react-intersection-observer';
 
 export const ModernHero: React.FC = () => {
@@ -114,7 +114,7 @@ export const ModernHero: React.FC = () => {
               ))}
             </div>
 
-            {/* Enhanced CTA Section with better UX flow */}
+            {/* Enhanced CTA Section with better UX flow and Connect Wallet */}
             <div className="flex flex-col sm:flex-row items-center gap-4 pt-4" role="group" aria-label="Get started actions">
               <ModernButton
                 variant="primary"
@@ -128,6 +128,8 @@ export const ModernHero: React.FC = () => {
                   <ArrowRight size={20} aria-hidden="true" />
                 </Link>
               </ModernButton>
+              
+              <WalletConnectButton />
               
               <span id="primary-cta-description" className="sr-only">
                 Navigate to the video studio to start creating content
@@ -147,8 +149,6 @@ export const ModernHero: React.FC = () => {
               <span id="secondary-cta-description" className="sr-only">
                 Go to the project creator to launch new initiatives
               </span>
-              
-              <WalletButton />
             </div>
           </div>
 
