@@ -7,6 +7,7 @@ import { Web3Provider } from "@/providers/Web3Provider";
 import Index from "./pages/Index";
 import StudioDashboard from "./pages/StudioDashboard";
 import Onboarding from "./pages/Onboarding";
+import Messaging from "./pages/Messaging";
 
 const App = () => (
   <Web3Provider>
@@ -18,6 +19,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/studio" element={<StudioDashboard />} />
           <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/messaging" element={<Messaging />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
