@@ -124,7 +124,7 @@ export const ModernHero: React.FC = () => {
                   className={`shadow-xl w-full sm:w-auto ${animationStarted ? 'animate-cta-pulse' : ''}`}
                   asChild
                 >
-                  <Link to="/video-studio" aria-describedby="primary-cta-description" className="flex items-center justify-center gap-2">
+                  <Link to="/onboarding" aria-describedby="primary-cta-description" className="flex items-center justify-center gap-2">
                     <Sparkles size={20} aria-hidden="true" />
                     Start Creating
                     <ArrowRight size={20} aria-hidden="true" />
@@ -164,7 +164,7 @@ export const ModernHero: React.FC = () => {
               </div>
               
               <span id="primary-cta-description" className="sr-only">
-                Navigate to the video studio to start creating content
+                Navigate to the onboarding page to get started with T00 Savvy
               </span>
               
               <span id="secondary-cta-description" className="sr-only">
