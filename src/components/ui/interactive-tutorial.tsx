@@ -136,7 +136,9 @@ export const InteractiveTutorial: React.FC<InteractiveTutorialProps> = ({
               <CardTitle className="text-xl text-white mb-2">
                 {currentStepData.title}
               </CardTitle>
-              <Progress value={progress} className="w-full h-2 mb-4" />
+              <div className="w-full mb-4">
+                <Progress value={progress} className="h-2" />
+              </div>
             </div>
           </CardHeader>
           
