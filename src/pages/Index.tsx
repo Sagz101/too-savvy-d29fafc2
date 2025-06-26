@@ -17,11 +17,11 @@ import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
 
 const Index = () => {
-  const [selectedInterest, setSelectedInterest] = useState<string | null>(null);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
 
-  const handleInterestSelection = (interest: string) => {
-    setSelectedInterest(interest);
-    console.log('Selected interest:', interest);
+  const handleInterestSelection = (interests: string[]) => {
+    setSelectedInterests(interests);
+    console.log('Selected interests:', interests);
   };
 
   return (
