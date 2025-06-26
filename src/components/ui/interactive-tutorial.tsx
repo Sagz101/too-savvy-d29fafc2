@@ -11,8 +11,7 @@ interface TutorialStep {
   id: string;
   title: string;
   description: string;
-  icon: React.ComponentType;
-  visual?: string;
+  icon: React.ComponentType<{ className?: string; size?: number }>;
   tips?: string[];
 }
 
@@ -22,61 +21,61 @@ interface InteractiveTutorialProps {
   userType?: 'new' | 'returning';
 }
 
-export const InteractiveTutorial: React.FC<InteractiveTutorialProps> = ({ 
-  onComplete, 
-  onSkip, 
-  userType = 'new' 
+const newUserSteps: TutorialStep[] = [
+  {
+    id: 'welcome',
+    title: 'Welcome to Web3 Creation',
+    description: 'T00 Savvy is your gateway to creating, owning, and monetizing content on the blockchain. Let\'s explore the basics!',
+    icon: Play,
+    tips: ['Own your content forever', 'Earn directly from fans', 'No platform fees'],
+  },
+  {
+    id: 'wallet',
+    title: 'Connect Your Digital Wallet',
+    description: 'A crypto wallet is like your digital identity. It stores your cryptocurrencies, NFTs, and proves ownership of your creations.',
+    icon: Wallet,
+    tips: ['MetaMask is beginner-friendly', 'Your wallet = your account', 'Keep your seed phrase safe'],
+  },
+  {
+    id: 'nfts',
+    title: 'Understanding NFTs',
+    description: 'NFTs (Non-Fungible Tokens) are unique digital certificates that prove you own a specific piece of content or art.',
+    icon: Shield,
+    tips: ['Each NFT is unique', 'Stored on blockchain', 'Can be sold or traded'],
+  },
+  {
+    id: 'gas-fees',
+    title: 'Gas Fees Explained',
+    description: 'Gas fees are small payments to process transactions on the blockchain. We optimize these costs for you!',
+    icon: Coins,
+    tips: ['Varies by network activity', 'We use low-cost chains', 'Batch transactions to save'],
+  },
+];
+
+const returningUserSteps: TutorialStep[] = [
+  {
+    id: 'dashboard',
+    title: 'Your Creator Dashboard',
+    description: 'Track your content performance, revenue, and community growth all in one place.',
+    icon: Play,
+    tips: ['Real-time analytics', 'Revenue tracking', 'Community insights'],
+  },
+  {
+    id: 'new-features',
+    title: 'What\'s New',
+    description: 'Discover new features: AI content assistant, cross-chain support, and enhanced monetization tools.',
+    icon: Shield,
+    tips: ['AI-powered suggestions', 'Multi-chain deployment', 'Advanced royalties'],
+  },
+];
+
+export const InteractiveTutorial: React.FC<InteractiveTutorialProps> = ({
+  onComplete,
+  onSkip,
+  userType = 'new',
 }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-
-  const newUserSteps: TutorialStep[] = [
-    {
-      id: 'welcome',
-      title: 'Welcome to Web3 Creation',
-      description: 'T00 Savvy is your gateway to creating, owning, and monetizing content on the blockchain. Let\'s explore the basics!',
-      icon: Play,
-      tips: ['Own your content forever', 'Earn directly from fans', 'No platform fees']
-    },
-    {
-      id: 'wallet',
-      title: 'Connect Your Digital Wallet',
-      description: 'A crypto wallet is like your digital identity. It stores your cryptocurrencies, NFTs, and proves ownership of your creations.',
-      icon: Wallet,
-      tips: ['MetaMask is beginner-friendly', 'Your wallet = your account', 'Keep your seed phrase safe']
-    },
-    {
-      id: 'nfts',
-      title: 'Understanding NFTs',
-      description: 'NFTs (Non-Fungible Tokens) are unique digital certificates that prove you own a specific piece of content or art.',
-      icon: Shield,
-      tips: ['Each NFT is unique', 'Stored on blockchain', 'Can be sold or traded']
-    },
-    {
-      id: 'gas-fees',
-      title: 'Gas Fees Explained',
-      description: 'Gas fees are small payments to process transactions on the blockchain. We optimize these costs for you!',
-      icon: Coins,
-      tips: ['Varies by network activity', 'We use low-cost chains', 'Batch transactions to save']
-    }
-  ];
-
-  const returningUserSteps: TutorialStep[] = [
-    {
-      id: 'dashboard',
-      title: 'Your Creator Dashboard',
-      description: 'Track your content performance, revenue, and community growth all in one place.',
-      icon: Play,
-      tips: ['Real-time analytics', 'Revenue tracking', 'Community insights']
-    },
-    {
-      id: 'new-features',
-      title: 'What\'s New',
-      description: 'Discover new features: AI content assistant, cross-chain support, and enhanced monetization tools.',
-      icon: Shield,
-      tips: ['AI-powered suggestions', 'Multi-chain deployment', 'Advanced royalties']
-    }
-  ];
 
   const steps = userType === 'new' ? newUserSteps : returningUserSteps;
   const progress = ((currentStep + 1) / steps.length) * 100;
@@ -85,6 +84,7 @@ export const InteractiveTutorial: React.FC<InteractiveTutorialProps> = ({
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
+      setIsVisible(false);
       onComplete();
     }
   };
@@ -112,6 +112,7 @@ export const InteractiveTutorial: React.FC<InteractiveTutorialProps> = ({
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.3 }}
         className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
       >
         <Card className="w-full max-w-lg bg-gradient-to-br from-slate-800/95 to-gray-800/95 border border-cyan-400/20 backdrop-blur-xl">
