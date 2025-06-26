@@ -11,7 +11,7 @@ interface TutorialStep {
   id: string;
   title: string;
   description: string;
-  icon: React.ComponentType<{ className?: string; size?: number }>;
+  icon: React.ComponentType<any>;
   tips?: string[];
 }
 
