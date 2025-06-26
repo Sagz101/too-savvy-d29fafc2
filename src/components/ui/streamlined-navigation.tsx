@@ -29,7 +29,7 @@ export const StreamlinedNavigation: React.FC<StreamlinedNavigationProps> = ({ cl
       description: "DAO & community voting"
     },
     { 
-      to: "/whitepaper", 
+      to: "/learn", 
       icon: Book, 
       label: "Learn",
       description: "Docs & tokenomics"

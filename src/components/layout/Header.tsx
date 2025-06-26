@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
-import { Menu, MessageCircle, Video, Mic } from 'lucide-react';
+import { Menu, MessageCircle } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 export const Header = () => {
@@ -14,7 +14,7 @@ export const Header = () => {
     { name: 'Home', href: '/' },
     { name: 'Studio', href: '/studio' },
     { name: 'Messaging', href: '/messaging', icon: MessageCircle },
-    { name: 'Onboarding', href: '/onboarding' },
+    { name: 'Learn', href: '/learn' },
   ];
 
   return (

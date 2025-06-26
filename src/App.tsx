@@ -12,6 +12,7 @@ import StudioDashboard from "./pages/StudioDashboard";
 import Onboarding from "./pages/Onboarding";
 import Messaging from "./pages/Messaging";
 import Learn from "./pages/Learn";
+import NotFound from "./pages/NotFound";
 
 const App = () => (
   <Web3Provider>
@@ -27,6 +28,14 @@ const App = () => (
             <Route path="/onboarding" element={<Onboarding />} />
             <Route path="/messaging" element={<Messaging />} />
             <Route path="/learn" element={<Learn />} />
+            <Route path="/video-studio" element={<StudioDashboard />} />
+            <Route path="/video-integration" element={<Learn />} />
+            <Route path="/global-innovators" element={<StudioDashboard />} />
+            <Route path="/whitepaper" element={<Learn />} />
+            <Route path="/privacy" element={<Learn />} />
+            <Route path="/terms" element={<Learn />} />
+            <Route path="/finance-hub" element={<StudioDashboard />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <AIChatbot />
           <UserFeedbackWidget />

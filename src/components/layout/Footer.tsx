@@ -28,22 +28,22 @@ export const Footer = () => {
               <h4 className="text-foreground font-medium mb-4 md:mb-6">Platform</h4>
               <ul className="space-y-2 md:space-y-3">
                 <li>
-                  <Link 
-                    to="/#features" 
+                  <a 
+                    href="/#features" 
                     className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                     aria-label="View platform features"
                   >
                     Features
-                  </Link>
+                  </a>
                 </li>
                 <li>
-                  <Link 
-                    to="/#user-types" 
+                  <a 
+                    href="/#create" 
                     className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                     aria-label="Explore user types"
                   >
                     User Types
-                  </Link>
+                  </a>
                 </li>
                 <li>
                   <Link 
@@ -62,7 +62,7 @@ export const Footer = () => {
               <ul className="space-y-2 md:space-y-3">
                 <li>
                   <Link 
-                    to="/video-integration" 
+                    to="/learn" 
                     className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                     aria-label="View documentation"
                   >
@@ -71,7 +71,7 @@ export const Footer = () => {
                 </li>
                 <li>
                   <Link 
-                    to="/finance-hub" 
+                    to="/studio" 
                     className="text-muted-foreground hover:text-foreground transition-colors text-sm"
                     aria-label="Access analytics dashboard"
                   >
@@ -147,7 +147,7 @@ export const Footer = () => {
                 Terms of Service
               </Link>
               <Link 
-                to="/whitepaper" 
+                to="/learn" 
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 aria-label="Read whitepaper"
               >
