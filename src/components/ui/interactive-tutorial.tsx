@@ -108,6 +108,7 @@ export const InteractiveTutorial: React.FC<InteractiveTutorialProps> = ({
   return (
     <AnimatePresence>
       <motion.div
+        key="tutorial-modal"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
@@ -137,7 +138,7 @@ export const InteractiveTutorial: React.FC<InteractiveTutorialProps> = ({
                 {currentStepData.title}
               </CardTitle>
               <div className="w-full mb-4">
-                <Progress value={progress} className="h-2" />
+                <Progress value={progress} />
               </div>
             </div>
           </CardHeader>
