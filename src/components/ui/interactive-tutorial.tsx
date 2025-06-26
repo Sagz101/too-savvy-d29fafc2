@@ -117,14 +117,13 @@ export const InteractiveTutorial: React.FC<InteractiveTutorialProps> = ({
         <Card className="w-full max-w-lg bg-gradient-to-br from-slate-800/95 to-gray-800/95 border border-cyan-400/20 backdrop-blur-xl">
           <CardHeader className="text-center">
             <div className="flex justify-between items-start mb-4">
-              <Badge variant="outline" className="bg-cyan-400/10 text-cyan-400 border-cyan-400/30">
+              <Badge variant="outline">
                 {userType === 'new' ? 'New User Guide' : 'Welcome Back'}
               </Badge>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={handleSkip}
-                className="text-gray-400 hover:text-white"
               >
                 <X size={16} />
               </Button>
