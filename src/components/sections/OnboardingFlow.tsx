@@ -50,7 +50,7 @@ const onboardingSteps = [
 
 export const OnboardingFlow = () => {
   // Add interest selection as step 0
-  const [studioInterest, setStudioInterest] = useState<string | null>(null);
+  const [studioInterests, setStudioInterests] = useState<string[]>([]);
   const [role, setRole] = useState<null | string>(null);
   // Replace old step logic: step 0 → Studio Interest, step 1 → Role, etc.
   const [step, setStep] = useState(0);
@@ -61,8 +61,8 @@ export const OnboardingFlow = () => {
   if (step === 0) {
     return (
       <CreatorStudioInterests
-        onContinue={(interest) => {
-          setStudioInterest(interest);
+        onContinue={(interests) => {
+          setStudioInterests(interests);
           setStep(1);
         }}
       />
@@ -183,9 +183,19 @@ export const OnboardingFlow = () => {
             <p className="mt-2 text-muted-foreground max-w-xl mx-auto">
               Connect with the community and unlock your Web3 journey—mentors, DAOs, and rewards await!
             </p>
-            {studioInterest && (
-              <div className="mt-4 font-semibold text-solar-core">
-                Your Interest: <span className="capitalize">{studioInterest.replace(/[-_]/g, " ")}</span>
+            {studioInterests.length > 0 && (
+              <div className="mt-4">
+                <div className="font-semibold text-solar-core mb-2">Your Selected Interests:</div>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {studioInterests.map((interest) => (
+                    <span 
+                      key={interest}
+                      className="bg-solar-core/20 text-solar-core px-3 py-1 rounded-full text-sm capitalize"
+                    >
+                      {interest.replace(/[-_]/g, " ")}
+                    </span>
+                  ))}
+                </div>
               </div>
             )}
           </div>

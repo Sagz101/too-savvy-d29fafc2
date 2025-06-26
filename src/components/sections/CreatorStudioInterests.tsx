@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -64,17 +65,25 @@ const studioComponents = [
 ];
 
 interface CreatorStudioInterestsProps {
-  onContinue: (interest: string) => void;
+  onContinue: (interests: string[]) => void;
 }
 
 export function CreatorStudioInterests({ onContinue }: CreatorStudioInterestsProps) {
-  const [interest, setInterest] = useState<string | null>(null);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const navigate = useNavigate();
 
+  const handleInterestToggle = (interestKey: string) => {
+    setSelectedInterests(prev => 
+      prev.includes(interestKey)
+        ? prev.filter(key => key !== interestKey)
+        : [...prev, interestKey]
+    );
+  };
+
   const handleContinue = () => {
-    if (interest) {
-      onContinue(interest);
-      // Navigate to onboarding first, then to studio with the selected module
+    if (selectedInterests.length > 0) {
+      onContinue(selectedInterests);
+      // Navigate to onboarding first, then to studio with the selected modules
       navigate(`/onboarding`);
     }
   };
@@ -92,69 +101,80 @@ export function CreatorStudioInterests({ onContinue }: CreatorStudioInterestsPro
             Choose what interests you in the Creator Studio
           </p>
           <p className="text-white/60 text-lg max-w-2xl mx-auto mt-3">
-            Select one component you'd like to start with. You can always add or change your interests as a returning user.
+            Select one or more components you'd like to start with. You can always add or change your interests as a returning user.
           </p>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          {studioComponents.map(comp => (
-            <button
-              key={comp.key}
-              onClick={() => setInterest(comp.key)}
-              className={`group relative overflow-hidden rounded-2xl p-1 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 ${
-                interest === comp.key
-                  ? "ring-2 ring-cyan-400 shadow-2xl shadow-cyan-400/25"
-                  : "hover:shadow-2xl hover:shadow-purple-500/20"
-              }`}
-              type="button"
-              aria-pressed={interest === comp.key}
-            >
-              {/* Animated gradient border */}
-              <div className={`absolute inset-0 bg-gradient-to-r ${comp.gradient} rounded-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-300`}></div>
-              
-              {/* Inner content container */}
-              <div className="relative bg-gradient-to-br from-slate-800/90 via-gray-800/90 to-slate-900/90 backdrop-blur-sm rounded-xl p-6 h-full flex flex-col items-center text-center transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-slate-700/90 group-hover:via-gray-700/90 group-hover:to-slate-800/90">
-                {/* Icon container with glow effect */}
-                <div className={`relative mb-4 p-4 rounded-full bg-gradient-to-r ${comp.gradient} shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110`}>
-                  {comp.icon}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${comp.gradient} rounded-full blur opacity-50 group-hover:opacity-75 transition-opacity duration-300 -z-10`}></div>
-                </div>
+          {studioComponents.map(comp => {
+            const isSelected = selectedInterests.includes(comp.key);
+            return (
+              <button
+                key={comp.key}
+                onClick={() => handleInterestToggle(comp.key)}
+                className={`group relative overflow-hidden rounded-2xl p-1 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 ${
+                  isSelected
+                    ? "ring-2 ring-cyan-400 shadow-2xl shadow-cyan-400/25"
+                    : "hover:shadow-2xl hover:shadow-purple-500/20"
+                }`}
+                type="button"
+                aria-pressed={isSelected}
+              >
+                {/* Animated gradient border */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${comp.gradient} rounded-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-300`}></div>
                 
-                <h3 className="font-bold text-xl mb-2 text-white group-hover:text-cyan-100 transition-colors duration-300">
-                  {comp.label}
-                </h3>
-                <p className="text-white/70 text-sm leading-relaxed group-hover:text-white/80 transition-colors duration-300">
-                  {comp.description}
-                </p>
-                
-                {/* Selection indicator */}
-                {interest === comp.key && (
-                  <div className="absolute top-3 right-3">
-                    <div className="w-3 h-3 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full animate-pulse shadow-lg shadow-cyan-400/50"></div>
+                {/* Inner content container */}
+                <div className="relative bg-gradient-to-br from-slate-800/90 via-gray-800/90 to-slate-900/90 backdrop-blur-sm rounded-xl p-6 h-full flex flex-col items-center text-center transition-all duration-300 group-hover:bg-gradient-to-br group-hover:from-slate-700/90 group-hover:via-gray-700/90 group-hover:to-slate-800/90">
+                  {/* Icon container with glow effect */}
+                  <div className={`relative mb-4 p-4 rounded-full bg-gradient-to-r ${comp.gradient} shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110`}>
+                    {comp.icon}
+                    <div className={`absolute inset-0 bg-gradient-to-r ${comp.gradient} rounded-full blur opacity-50 group-hover:opacity-75 transition-opacity duration-300 -z-10`}></div>
                   </div>
-                )}
-              </div>
-            </button>
-          ))}
+                  
+                  <h3 className="font-bold text-xl mb-2 text-white group-hover:text-cyan-100 transition-colors duration-300">
+                    {comp.label}
+                  </h3>
+                  <p className="text-white/70 text-sm leading-relaxed group-hover:text-white/80 transition-colors duration-300">
+                    {comp.description}
+                  </p>
+                  
+                  {/* Selection indicator */}
+                  {isSelected && (
+                    <div className="absolute top-3 right-3">
+                      <div className="w-6 h-6 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg shadow-cyan-400/50">
+                        <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </button>
+            );
+          })}
         </div>
         
         <div className="text-center">
           <Button
             size="lg"
             className={`relative overflow-hidden px-12 py-4 text-lg font-bold rounded-2xl transition-all duration-300 transform hover:scale-105 ${
-              interest 
+              selectedInterests.length > 0
                 ? "bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-white shadow-2xl shadow-cyan-400/25 hover:shadow-purple-500/30" 
                 : "bg-gray-700/50 text-gray-400 cursor-not-allowed"
             }`}
             onClick={handleContinue}
-            disabled={!interest}
+            disabled={selectedInterests.length === 0}
           >
-            {interest && (
+            {selectedInterests.length > 0 && (
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 opacity-0 hover:opacity-20 transition-opacity duration-300 rounded-2xl"></div>
             )}
             <span className="relative z-10 flex items-center gap-3">
               Continue to Studio
-              <div className={`w-2 h-2 rounded-full ${interest ? 'bg-white animate-pulse' : 'bg-gray-500'}`}></div>
+              {selectedInterests.length > 0 && (
+                <span className="bg-white/20 text-white text-sm px-2 py-1 rounded-full">
+                  {selectedInterests.length}
+                </span>
+              )}
             </span>
           </Button>
           
