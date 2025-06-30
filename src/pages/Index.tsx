@@ -15,9 +15,13 @@ import { EcommerceStore } from '@/components/sections/EcommerceStore';
 import { Threaditor } from '@/components/sections/Threaditor';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
+import { useAuth } from '@/services/auth';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const { isAuthenticated, user } = useAuth();
 
   const handleInterestSelection = (interests: string[]) => {
     setSelectedInterests(interests);
@@ -31,6 +35,28 @@ const Index = () => {
         {/* Hero Section */}
         <section id="hero">
           <SequenceInspiredHero />
+          
+          {/* Show welcome message for authenticated users */}
+          {isAuthenticated && user && (
+            <div className="container mx-auto px-4 py-8">
+              <div className="text-center bg-gradient-to-r from-solar-core/10 to-solar-photosphere/10 border border-solar-core/20 rounded-lg p-6 mb-8">
+                <h2 className="text-2xl font-bold text-white mb-2">
+                  Welcome back, {user.profile?.name || user.email?.split('@')[0]}!
+                </h2>
+                <p className="text-gray-300 mb-4">
+                  Ready to continue your creative journey? Access your dashboard or explore new features.
+                </p>
+                <div className="flex gap-4 justify-center">
+                  <Button asChild className="bg-solar-core hover:bg-solar-photosphere">
+                    <Link to="/studio">Go to Studio</Link>
+                  </Button>
+                  <Button asChild variant="outline">
+                    <Link to="/messaging">Messages</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
         </section>
         
         {/* Creator Studio Interests Selection */}
