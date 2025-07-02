@@ -1,4 +1,26 @@
-# Welcome to your Lovable project
+# Too Savvy Creator Platform
+
+A Web3-enabled creator platform built with React, TypeScript, and Supabase, featuring decentralized tools for content creation, collaboration, and monetization.
+
+## 🚀 MVP Status
+
+### ✅ Implemented Features
+- **Landing Page**: Complete with hero section, feature showcase, and navigation
+- **Authentication**: Supabase-based auth with login/signup flows
+- **Web3 Integration**: Wallet connection using Wagmi/RainbowKit
+- **Creator Studio Dashboard**: Module-based interface for different creative tools
+- **Podcast Studio**: Functional podcast creation and management
+- **Global Innovators Hub**: Project collaboration and DAO governance tools
+- **Responsive UI**: Modern design with Patreon-inspired hover effects and animations
+
+### ⚠️ Current Limitations
+- **Most Studio Modules are Placeholders**: Video Studio, Store Builder, Threaditor, and NeuraSocial show "Coming Soon"
+- **No Real NFT Minting**: Despite Web3 integration, no actual blockchain transactions
+- **No Commerce Functionality**: Store builder exists but lacks payment processing
+- **Limited Social Features**: Social hub is mostly conceptual
+- **No Database Schema**: Supabase is connected but has no tables for data persistence
+
+**Status**: This is a **presentation-ready MVP** - excellent for demos and user feedback, with solid foundation architecture, but needs core feature implementation for production use.
 
 ## Project info
 
