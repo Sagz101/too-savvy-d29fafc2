@@ -5,6 +5,9 @@ import { useWallet } from '@/services/wallet';
 import { PodcastCreator } from '@/components/podcast/PodcastCreator';
 import { GlobalInnovatorsHub } from '@/components/innovators/GlobalInnovatorsHub';
 import { StoreBuilder } from '@/components/commerce/StoreBuilder';
+import { ThreaditorHub } from '@/components/threaditor/ThreaditorHub';
+import { VideoStudioHub } from '@/components/video/VideoStudioHub';
+import { NeuraSocialHub } from '@/components/social/NeuraSocialHub';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { 
@@ -39,7 +42,7 @@ const StudioDashboard = () => {
       title: 'Video Studio',
       description: 'Create, mint, and manage Video NFTs or streams',
       gradient: 'from-cyan-400 via-blue-500 to-purple-600',
-      component: <div className="p-8 text-center text-white">Video Studio - Coming Soon</div>
+      component: <VideoStudioHub />
     },
     {
       id: 'podcast-studio',
@@ -63,7 +66,7 @@ const StudioDashboard = () => {
       title: 'Threaditor',
       description: 'Create and monetize long-form content threads',
       gradient: 'from-blue-400 via-indigo-500 to-purple-600',
-      component: <div className="p-8 text-center text-white">Threaditor - Coming Soon</div>
+      component: <ThreaditorHub />
     },
     {
       id: 'neura-social',
@@ -71,7 +74,7 @@ const StudioDashboard = () => {
       title: 'NeuraSocial',
       description: 'Social networking with decentralized features',
       gradient: 'from-cyan-400 via-blue-500 to-indigo-600',
-      component: <div className="p-8 text-center text-white">NeuraSocial - Coming Soon</div>
+      component: <NeuraSocialHub />
     },
     {
       id: 'global-innovators',
