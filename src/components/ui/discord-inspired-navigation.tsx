@@ -11,10 +11,42 @@ export const DiscordInspiredNavigation = () => {
   const location = useLocation();
 
   const navigation = [
-    { name: 'Home', href: '/', icon: Home },
-    { name: 'Studio', href: '/studio', icon: Palette },
-    { name: 'Messaging', href: '/messaging', icon: MessageCircle },
-    { name: 'Learn', href: '/learn', icon: BookOpen },
+    { 
+      name: 'Home', 
+      href: '/', 
+      icon: Home,
+      colors: {
+        default: 'border-cyan-400 text-white',
+        hover: 'bg-gradient-to-r from-cyan-400 to-blue-500 text-white border-cyan-400 shadow-cyan-400/50'
+      }
+    },
+    { 
+      name: 'Creator Studio', 
+      href: '/studio', 
+      icon: Palette,
+      colors: {
+        default: 'border-purple-500 text-white',
+        hover: 'bg-gradient-to-r from-purple-500 to-cyan-400 text-white border-purple-500 shadow-purple-500/50'
+      }
+    },
+    { 
+      name: 'Community', 
+      href: '/messaging', 
+      icon: MessageCircle,
+      colors: {
+        default: 'border-green-400 text-white',
+        hover: 'bg-green-400 text-black border-green-400 shadow-green-400/50'
+      }
+    },
+    { 
+      name: 'Developer Resources', 
+      href: '/learn', 
+      icon: BookOpen,
+      colors: {
+        default: 'border-cyan-400 text-white',
+        hover: 'bg-cyan-400 text-black border-cyan-400 shadow-cyan-400/50'
+      }
+    },
   ];
 
   return (
@@ -34,24 +66,60 @@ export const DiscordInspiredNavigation = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav className="hidden md:flex items-center space-x-4">
           {navigation.map((item) => {
             const Icon = item.icon;
+            const isActive = location.pathname === item.href;
             return (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`flex items-center gap-2 text-sm font-medium playful-nav px-3 py-2 rounded-lg bubble-hover transition-all duration-300 ${
-                  location.pathname === item.href
-                    ? 'text-solar-core bg-gradient-to-r from-solar-core/20 to-solar-photosphere/20 shadow-lg shadow-solar-core/30'
-                    : 'text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-solar-core/15 hover:to-solar-photosphere/15 hover:shadow-lg hover:shadow-solar-core/25 hover:scale-105'
-                }`}
+                className={`
+                  relative flex items-center gap-2 text-sm font-medium px-4 py-2 rounded-xl
+                  border-2 bg-slate-900/80 backdrop-blur-xl
+                  transition-all duration-300 ease-in-out
+                  hover:scale-105 hover:shadow-xl
+                  group overflow-hidden
+                  ${isActive 
+                    ? `${item.colors.hover} shadow-lg animate-gentle-pulse` 
+                    : `${item.colors.default} hover:${item.colors.hover}`
+                  }
+                `}
               >
-                <Icon className="w-4 h-4" />
-                {item.name}
+                {/* Wobbly spotlight effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                </div>
+                
+                {/* Border chase effect */}
+                <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-cyan-400 via-purple-500 to-green-400 animate-spin-slow opacity-30"></div>
+                </div>
+                
+                <Icon className="w-4 h-4 relative z-10" />
+                <span className="relative z-10">{item.name}</span>
               </Link>
             );
           })}
+          
+          {/* Enhanced Search Input */}
+          <div className="relative group">
+            <input
+              type="text"
+              placeholder="Search platform..."
+              className="
+                w-64 px-4 py-2 rounded-xl border-2 border-cyan-400
+                bg-slate-900/80 text-white placeholder-gray-400
+                backdrop-blur-xl transition-all duration-300
+                focus:outline-none focus:border-purple-500
+                focus:bg-gradient-to-r focus:from-cyan-400/10 focus:to-purple-500/10
+                focus:shadow-lg focus:shadow-cyan-400/30
+              "
+            />
+            <div className="absolute inset-0 rounded-xl opacity-0 focus-within:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-400/20 via-purple-500/20 to-cyan-400/20 animate-pulse"></div>
+            </div>
+          </div>
         </nav>
 
         {/* Desktop Actions */}
@@ -70,18 +138,23 @@ export const DiscordInspiredNavigation = () => {
             <div className="flex flex-col space-y-4 mt-8">
               {navigation.map((item) => {
                 const Icon = item.icon;
+                const isActive = location.pathname === item.href;
                 return (
                   <Link
                     key={item.name}
                     to={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center gap-2 text-sm font-medium playful-nav px-3 py-2 rounded-lg bubble-hover ${
-                      location.pathname === item.href
-                        ? 'text-solar-core bg-solar-core/10'
-                        : 'text-gray-300 hover:text-solar-core hover:bg-solar-core/5'
-                    }`}
+                    className={`
+                      flex items-center gap-3 text-sm font-medium px-4 py-3 rounded-xl
+                      border-2 bg-slate-900/50 backdrop-blur-xl
+                      transition-all duration-300
+                      ${isActive 
+                        ? `${item.colors.hover} shadow-lg` 
+                        : `${item.colors.default} hover:${item.colors.hover}`
+                      }
+                    `}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-5 h-5" />
                     {item.name}
                   </Link>
                 );

@@ -96,6 +96,20 @@
   }
 }
 
+/* Navigation button animations */
+@keyframes animate-spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: animate-spin-slow 8s linear infinite;
+}
+
 @keyframes float-horizontal {
   0%, 100% {
     transform: translateX(0px);
