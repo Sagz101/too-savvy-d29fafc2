@@ -41,10 +41,10 @@ export const DiscordInspiredNavigation = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`flex items-center gap-2 text-sm font-medium playful-nav px-3 py-2 rounded-lg bubble-hover ${
+                className={`flex items-center gap-2 text-sm font-medium playful-nav px-3 py-2 rounded-lg bubble-hover transition-all duration-300 ${
                   location.pathname === item.href
-                    ? 'text-solar-core bg-solar-core/10'
-                    : 'text-gray-300 hover:text-solar-core hover:bg-solar-core/5'
+                    ? 'text-solar-core bg-gradient-to-r from-solar-core/20 to-solar-photosphere/20 shadow-lg shadow-solar-core/30'
+                    : 'text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-solar-core/15 hover:to-solar-photosphere/15 hover:shadow-lg hover:shadow-solar-core/25 hover:scale-105'
                 }`}
               >
                 <Icon className="w-4 h-4" />
