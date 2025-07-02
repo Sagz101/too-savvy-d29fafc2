@@ -21,8 +21,8 @@ export const DiscordInspiredNavigation = () => {
     <header className="sticky top-0 z-50 w-full border-b border-slate-800/50 bg-slate-950/95 backdrop-blur supports-[backdrop-filter]:bg-slate-950/90">
       <div className="container flex h-16 items-center justify-between px-4">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-3">
-          <div className="h-10 w-10 bg-gradient-to-br from-solar-core via-solar-radiative to-solar-photosphere rounded-lg flex items-center justify-center shadow-lg">
+        <Link to="/" className="flex items-center space-x-3 group">
+          <div className="h-10 w-10 bg-gradient-to-br from-solar-core via-solar-radiative to-solar-photosphere rounded-lg flex items-center justify-center shadow-lg wobbly-hover group-hover:animate-wobbly-scale">
             <span className="text-white font-bold text-lg">T</span>
           </div>
           <div className="flex flex-col">
@@ -41,10 +41,10 @@ export const DiscordInspiredNavigation = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`flex items-center gap-2 text-sm font-medium transition-colors hover:text-solar-core ${
+                className={`flex items-center gap-2 text-sm font-medium playful-nav px-3 py-2 rounded-lg bubble-hover ${
                   location.pathname === item.href
-                    ? 'text-solar-core'
-                    : 'text-gray-300'
+                    ? 'text-solar-core bg-solar-core/10'
+                    : 'text-gray-300 hover:text-solar-core hover:bg-solar-core/5'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -75,10 +75,10 @@ export const DiscordInspiredNavigation = () => {
                     key={item.name}
                     to={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center gap-2 text-sm font-medium transition-colors hover:text-solar-core ${
+                    className={`flex items-center gap-2 text-sm font-medium playful-nav px-3 py-2 rounded-lg bubble-hover ${
                       location.pathname === item.href
-                        ? 'text-solar-core'
-                        : 'text-gray-300'
+                        ? 'text-solar-core bg-solar-core/10'
+                        : 'text-gray-300 hover:text-solar-core hover:bg-solar-core/5'
                     }`}
                   >
                     <Icon className="w-4 h-4" />

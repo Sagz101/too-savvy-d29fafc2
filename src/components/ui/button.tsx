@@ -6,19 +6,19 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 wobbly-hover",
   {
     variants: {
       variant: {
-        default: "grok-button-primary",
+        default: "grok-button-primary organic-button",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-lg",
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-lg wobbly-hover",
         outline:
-          "grok-button-secondary border",
+          "grok-button-secondary border bubble-hover",
         secondary:
-          "grok-button-secondary",
-        ghost: "text-foreground hover:bg-card/60 hover:text-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+          "grok-button-secondary bubble-hover",
+        ghost: "text-foreground hover:bg-card/60 hover:text-foreground playful-nav",
+        link: "text-primary underline-offset-4 hover:underline playful-nav",
       },
       size: {
         default: "h-10 px-4 py-2",

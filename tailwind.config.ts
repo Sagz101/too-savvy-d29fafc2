@@ -221,6 +221,48 @@ export default {
                 'typewriter': {
                     'from': { width: '0' },
                     'to': { width: '100%' }
+                },
+                // Patreon-inspired organic hover effects
+                'wobbly-scale': {
+                    '0%': { 
+                        transform: 'scale(1) rotate(0deg)',
+                        borderRadius: '12px'
+                    },
+                    '25%': { 
+                        transform: 'scale(1.02) rotate(0.5deg)',
+                        borderRadius: '18px 12px 16px 14px'
+                    },
+                    '50%': { 
+                        transform: 'scale(1.05) rotate(0deg)',
+                        borderRadius: '14px 20px 12px 18px'
+                    },
+                    '75%': { 
+                        transform: 'scale(1.02) rotate(-0.5deg)',
+                        borderRadius: '16px 14px 20px 12px'
+                    },
+                    '100%': { 
+                        transform: 'scale(1) rotate(0deg)',
+                        borderRadius: '12px'
+                    }
+                },
+                'organic-glow': {
+                    '0%, 100%': { 
+                        boxShadow: '0 0 20px rgba(147, 51, 234, 0.3), 0 0 40px rgba(59, 130, 246, 0.2)'
+                    },
+                    '50%': { 
+                        boxShadow: '0 0 40px rgba(147, 51, 234, 0.6), 0 0 80px rgba(59, 130, 246, 0.4), 0 0 120px rgba(168, 85, 247, 0.2)'
+                    }
+                },
+                'bubble-expand': {
+                    '0%': { transform: 'scale(0)', opacity: '0' },
+                    '50%': { transform: 'scale(1.2)', opacity: '0.8' },
+                    '100%': { transform: 'scale(1)', opacity: '1' }
+                },
+                'playful-bounce': {
+                    '0%, 100%': { transform: 'translateY(0px) scale(1)' },
+                    '25%': { transform: 'translateY(-2px) scale(1.02)' },
+                    '50%': { transform: 'translateY(-4px) scale(1.05)' },
+                    '75%': { transform: 'translateY(-2px) scale(1.02)' }
                 }
 			},
 			animation: {
@@ -235,7 +277,12 @@ export default {
                 'cosmic-glow': 'cosmic-glow 4s ease-in-out infinite',
                 'progress-fill': 'progress-fill 2s ease-out forwards',
                 'hero-glow': 'hero-glow 3s ease-in-out infinite',
-                'typewriter': 'typewriter 2s steps(20) forwards'
+                'typewriter': 'typewriter 2s steps(20) forwards',
+                // Patreon-inspired animations
+                'wobbly-scale': 'wobbly-scale 0.6s ease-in-out',
+                'organic-glow': 'organic-glow 2s ease-in-out infinite',
+                'bubble-expand': 'bubble-expand 0.4s ease-out',
+                'playful-bounce': 'playful-bounce 0.4s ease-out'
 			}
 		}
 	},
