@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useWallet } from '@/services/wallet';
 import { PodcastCreator } from '@/components/podcast/PodcastCreator';
 import { GlobalInnovatorsHub } from '@/components/innovators/GlobalInnovatorsHub';
+import { StoreBuilder } from '@/components/commerce/StoreBuilder';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { 
@@ -54,7 +55,7 @@ const StudioDashboard = () => {
       title: 'Store Builder',
       description: 'Build a storefront to sell content, NFTs, and products',
       gradient: 'from-pink-400 via-rose-500 to-red-600',
-      component: <div className="p-8 text-center text-white">Store Builder - Coming Soon</div>
+      component: <StoreBuilder />
     },
     {
       id: 'threaditor',

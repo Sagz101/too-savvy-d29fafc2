@@ -14,6 +14,7 @@ import StudioDashboard from "./pages/StudioDashboard";
 import Onboarding from "./pages/Onboarding";
 import Messaging from "./pages/Messaging";
 import Learn from "./pages/Learn";
+import StoreSuccess from "./pages/StoreSuccess";
 import NotFound from "./pages/NotFound";
 
 const App = () => (
@@ -32,6 +33,7 @@ const App = () => (
               <Route path="/onboarding" element={<Onboarding />} />
               <Route path="/messaging" element={<Messaging />} />
               <Route path="/learn" element={<Learn />} />
+              <Route path="/store/success" element={<StoreSuccess />} />
               <Route path="/video-studio" element={<StudioDashboard />} />
               <Route path="/video-integration" element={<Learn />} />
               <Route path="/global-innovators" element={<StudioDashboard />} />
