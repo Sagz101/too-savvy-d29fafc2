@@ -31,17 +31,17 @@ export const SequenceInspiredHero: React.FC = () => {
       {/* Main hero content */}
       <div className="container mx-auto px-4 pt-32 pb-20 relative z-10" ref={ref}>
         <div className={`text-center transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          {/* Trust badges */}
+          {/* Enhanced Trust badges with Web3 colors */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Badge variant="outline" className="bg-cosmic-purple/10 border-cosmic-purple/30 text-cosmic-purple-light px-4 py-2">
+            <Badge variant="outline" className="bg-[hsl(var(--web3-purple))]/10 border-[hsl(var(--web3-purple))]/30 text-[hsl(var(--web3-purple))] px-4 py-2 wobbly-hover">
               <Shield className="w-4 h-4 mr-2" />
               CertiK Audited
             </Badge>
-            <Badge variant="outline" className="bg-cosmic-blue/10 border-cosmic-blue/30 text-cosmic-blue px-4 py-2">
+            <Badge variant="outline" className="bg-[hsl(var(--web3-cyan))]/10 border-[hsl(var(--web3-cyan))]/30 text-[hsl(var(--web3-cyan))] px-4 py-2 wobbly-hover">
               <Layers className="w-4 h-4 mr-2" />
               Multi-Chain Ready
             </Badge>
-            <Badge variant="outline" className="bg-cosmic-purple-light/10 border-cosmic-purple-light/30 text-cosmic-purple-light px-4 py-2">
+            <Badge variant="outline" className="bg-[hsl(var(--web3-green))]/10 border-[hsl(var(--web3-green))]/30 text-[hsl(var(--web3-green))] px-4 py-2 wobbly-hover">
               <DollarSign className="w-4 h-4 mr-2" />
               Zero Platform Fees
             </Badge>
@@ -59,12 +59,12 @@ export const SequenceInspiredHero: React.FC = () => {
             Your Web3 Creator Platform
           </p>
 
-          {/* Main tagline */}
-          <p className="text-4xl md:text-5xl font-bold mb-12 font-poppins">
-            <span className="bg-gradient-to-r from-cosmic-purple-light via-white to-cosmic-blue bg-clip-text text-transparent">
+          {/* Main tagline with typewriter effect */}
+          <div className="text-4xl md:text-5xl font-bold mb-12 font-poppins overflow-hidden">
+            <span className="bg-gradient-to-r from-[hsl(var(--web3-purple))] via-white to-[hsl(var(--web3-cyan))] bg-clip-text text-transparent animate-typewriter">
               Create. Own. Thrive.
             </span>
-          </p>
+          </div>
 
           {/* Description */}
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed font-inter">
@@ -82,18 +82,18 @@ export const SequenceInspiredHero: React.FC = () => {
             </div>
           </div>
 
-          {/* Stats */}
+          {/* Animated Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-cosmic-purple-light mb-2 font-poppins">12,847+</div>
+            <div className="text-center animate-count-up" style={{ animationDelay: '1s' }}>
+              <div className="text-3xl font-bold text-[hsl(var(--web3-purple))] mb-2 font-poppins wobbly-hover">12,847+</div>
               <div className="text-gray-400 font-inter">Active Creators</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-cosmic-blue mb-2 font-poppins">421,071</div>
+            <div className="text-center animate-count-up" style={{ animationDelay: '1.2s' }}>
+              <div className="text-3xl font-bold text-[hsl(var(--web3-cyan))] mb-2 font-poppins wobbly-hover">421,071</div>
               <div className="text-gray-400 font-inter">NFTs Minted</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-cosmic-purple mb-2 font-poppins">$2.1M+</div>
+            <div className="text-center animate-count-up" style={{ animationDelay: '1.4s' }}>
+              <div className="text-3xl font-bold text-[hsl(var(--web3-green))] mb-2 font-poppins wobbly-hover">$2.1M+</div>
               <div className="text-gray-400 font-inter">Creator Earnings</div>
             </div>
           </div>

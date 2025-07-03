@@ -120,7 +120,18 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Web3 Semantic Colors
+				'web3-cyan': 'hsl(var(--web3-cyan))',
+				'web3-purple': 'hsl(var(--web3-purple))',
+				'web3-green': 'hsl(var(--web3-green))',
+				'web3-navy': 'hsl(var(--web3-navy))',
+				'cosmic-deep': 'hsl(var(--cosmic-deep))',
+				'cosmic-dark': 'hsl(var(--cosmic-dark))',
+				'cosmic-blue': 'hsl(var(--cosmic-blue))',
+				'cosmic-purple': 'hsl(var(--cosmic-purple))',
+				'cosmic-purple-light': 'hsl(var(--cosmic-purple-light))',
+				'cosmic-purple-soft': 'hsl(var(--cosmic-purple-soft))'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

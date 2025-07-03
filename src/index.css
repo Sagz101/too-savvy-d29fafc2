@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+:root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -32,28 +32,40 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+
+    /* Web3 Theme Colors */
+    --web3-cyan: 192 100% 56%;        /* #00D1FF */
+    --web3-purple: 262 83% 58%;       /* #7B00FF */
+    --web3-green: 152 100% 50%;       /* #00FF99 */
+    --web3-navy: 225 32% 15%;         /* #1A1A2E */
+    --cosmic-deep: 225 50% 8%;        /* Deep cosmic background */
+    --cosmic-dark: 225 45% 12%;       /* Cosmic dark variant */
+    --cosmic-blue: 192 100% 56%;      /* Cosmic blue */
+    --cosmic-purple: 262 83% 58%;     /* Cosmic purple */
+    --cosmic-purple-light: 262 85% 70%; /* Light cosmic purple */
+    --cosmic-purple-soft: 262 80% 75%; /* Soft cosmic purple */
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 225 50% 8%;         /* Cosmic deep background */
     --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    --card: 225 45% 12%;              /* Cosmic dark card */
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 225 45% 12%;           /* Cosmic dark popover */
     --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
+    --primary: 192 100% 56%;          /* Web3 cyan primary */
+    --primary-foreground: 225 50% 8%;
+    --secondary: 262 83% 58%;         /* Web3 purple secondary */
     --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
+    --muted: 225 32% 20%;             /* Muted cosmic */
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 152 100% 50%;           /* Web3 green accent */
+    --accent-foreground: 225 50% 8%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 225 32% 20%;            /* Cosmic border */
+    --input: 225 32% 20%;             /* Cosmic input */
+    --ring: 192 100% 56%;             /* Web3 cyan ring */
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -269,10 +281,47 @@
 
 @keyframes hero-glow {
   0%, 100% {
-    text-shadow: 0 0 20px rgba(103, 232, 249, 0.5);
+    text-shadow: 0 0 20px hsl(var(--web3-cyan) / 0.5);
   }
   50% {
-    text-shadow: 0 0 40px rgba(103, 232, 249, 0.8), 0 0 60px rgba(147, 51, 234, 0.5);
+    text-shadow: 0 0 40px hsl(var(--web3-cyan) / 0.8), 0 0 60px hsl(var(--web3-purple) / 0.5);
+  }
+}
+
+@keyframes typewriter {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes count-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cosmic-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+  66% {
+    transform: translateY(-10px) rotate(-2deg);
   }
 }
 
@@ -286,6 +335,49 @@
 
 .animate-hero-glow {
   animation: hero-glow 3s ease-in-out infinite;
+}
+
+.animate-typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 3s steps(20) forwards;
+}
+
+.animate-count-up {
+  animation: count-up 1s ease-out forwards;
+}
+
+.animate-cosmic-float {
+  animation: cosmic-float 6s ease-in-out infinite;
+}
+
+/* Enhanced Web3 button styles */
+.web3-button-cyan {
+  background: linear-gradient(135deg, hsl(var(--web3-cyan)), hsl(var(--web3-purple)));
+  color: hsl(var(--cosmic-deep));
+  border: 1px solid hsl(var(--web3-cyan) / 0.3);
+  box-shadow: 0 4px 20px hsl(var(--web3-cyan) / 0.3);
+  transition: all 0.3s ease;
+}
+
+.web3-button-cyan:hover {
+  background: linear-gradient(135deg, hsl(var(--web3-purple)), hsl(var(--web3-cyan)));
+  box-shadow: 0 8px 30px hsl(var(--web3-cyan) / 0.5);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.web3-button-green {
+  background: linear-gradient(135deg, hsl(var(--web3-green)), hsl(var(--web3-cyan)));
+  color: hsl(var(--cosmic-deep));
+  border: 1px solid hsl(var(--web3-green) / 0.3);
+  box-shadow: 0 4px 20px hsl(var(--web3-green) / 0.3);
+  transition: all 0.3s ease;
+}
+
+.web3-button-green:hover {
+  background: linear-gradient(135deg, hsl(var(--web3-cyan)), hsl(var(--web3-green)));
+  box-shadow: 0 8px 30px hsl(var(--web3-green) / 0.5);
+  transform: translateY(-2px) scale(1.02);
 }
 
 /* Patreon-inspired interaction classes */
