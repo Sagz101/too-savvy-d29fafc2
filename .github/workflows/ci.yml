@@ -17,6 +17,8 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run lint
+      - run: npm run lint:solidity
+      - run: npm run lint:style
 
   test:
     runs-on: ubuntu-latest
