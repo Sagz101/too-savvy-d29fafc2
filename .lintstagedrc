@@ -1,0 +1,15 @@
+{
+  "src/**/*.{js,ts,jsx,tsx}": [
+    "eslint --fix",
+    "prettier --write"
+  ],
+  "contracts/**/*.sol": [
+    "solhint"
+  ],
+  "src/**/*.{css,scss}": [
+    "stylelint --fix"
+  ],
+  "*.{json,md}": [
+    "prettier --write"
+  ]
+}
