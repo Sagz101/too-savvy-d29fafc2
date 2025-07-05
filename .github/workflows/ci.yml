@@ -1,24 +1,45 @@
-name: CI
+name: Continuous Integration
 
 on:
   pull_request:
-    branches: [main, develop]
+    branches: [main, develop, staging, release/*]
   push:
-    branches: [main, develop]
+    branches: [main, develop, staging]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+
+env:
+  NODE_VERSION: '18'
 
 jobs:
   lint:
+    name: Code Quality & Linting
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run lint:solidity
-      - run: npm run lint:style
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run ESLint (TypeScript/React)
+        run: npm run lint
+        
+      - name: Run Solhint (Smart Contracts)
+        run: npm run lint:solidity
+        
+      - name: Run Stylelint (CSS/SCSS)
+        run: npm run lint:style
+        
+      - name: Check code formatting
+        run: npx prettier --check "**/*.{js,ts,jsx,tsx,json,md}"
 
   test:
     runs-on: ubuntu-latest

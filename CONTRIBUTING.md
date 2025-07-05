@@ -2,32 +2,84 @@
 
 ## Development Workflow
 
-### Git Branching Strategy
+### Modified GitHub Flow with Environment Branches
 
-We use a feature branch workflow to maintain code quality and enable safe collaboration:
+T00 Savvy uses a modified GitHub Flow with environment branches optimized for Web3 development, multi-chain deployments, and continuous delivery of creator tools.
 
-1. **Main Branch**: Contains production-ready code
-2. **Develop Branch**: Integration branch for features  
-3. **Feature Branches**: Individual features and bug fixes
+#### Branch Structure
 
-### Creating a Feature Branch
+1. **main**: Production-ready code deployed to mainnet (Ethereum, Polygon, Arbitrum)
+2. **develop**: Integration branch for feature testing and multi-chain compatibility
+3. **staging**: Pre-production environment for QA and testnet validation
+4. **feature/***: Short-lived branches for individual features and modules
+5. **hotfix/***: Emergency fixes deployed directly to production
+6. **release/***: Major version releases with final polishing
 
+#### Why This Strategy?
+
+- **Simplicity**: Lightweight workflow supporting rapid creator onboarding
+- **Continuous Delivery**: Supports real-time features (live streaming, NeuraSocial)
+- **Web3-Specific**: Environment branches enable blockchain testing across networks
+- **Security**: CertiK-audited smart contracts require rigorous testing
+- **Collaboration**: Pull request model fosters community contributions and DAO governance
+
+### Branch Workflow
+
+#### 1. Feature Development
 ```bash
-# Create and switch to a new feature branch
-git checkout -b feature/your-feature-name
+# Create feature branch from develop
+git checkout develop
+git pull origin develop
+git checkout -b feature/video-nft-minting
 
-# Or for bug fixes
-git checkout -b bugfix/issue-description
+# For Web3-specific features, use descriptive names:
+# feature/threaditor-fact-checking
+# feature/nft-minting-erc721m
+# feature/neurasocial-web2-integration
+# bugfix/smart-contract-gas-optimization
+```
+
+#### 2. Hotfix Process
+```bash
+# For urgent production issues
+git checkout main
+git pull origin main
+git checkout -b hotfix/token-gate-bug
+# Fix, test, and merge to both main and develop
+```
+
+#### 3. Release Process
+```bash
+# For major updates (new Creator Studio modules)
+git checkout develop
+git checkout -b release/v1.2.0
+# Final polishing and testing
+# Merge to main and tag version
 ```
 
 ### Development Process
 
-1. **Write Code**: Implement your feature or fix
-2. **Lint**: Code is automatically linted on commit via Husky
-3. **Test**: Write tests for new functionality
-4. **Commit**: Use descriptive commit messages
-5. **Push**: Push your branch to remote
-6. **Pull Request**: Create a PR to `develop` branch
+#### Complete Workflow Steps
+
+1. **Create Feature Branch**: From `develop` for new features
+2. **Develop & Commit**: Frequent commits with descriptive messages
+   ```bash
+   git commit -m "Add ERC-721M minting logic for Video NFTs"
+   git commit -m "Implement oracle integration for Threaditor fact-checking"
+   ```
+3. **Push & PR**: Create pull request to `develop`
+4. **Code Review**: Team reviews for security and Web3 best practices
+5. **Test in Staging**: Merge `develop` → `staging` for QA
+6. **Testnet Validation**: Deploy to testnets (Polygon Mumbai, Arbitrum Goerli)
+7. **Production Deploy**: Merge `staging` → `main` → deploy to mainnet
+8. **Release Tagging**: Tag production releases (v1.2.0)
+
+#### Environment Flow
+```
+feature/branch → develop → staging → main (production)
+                     ↓         ↓        ↓
+                 Integration  QA/Test  Mainnet
+```
 
 ### Code Quality Standards
 
@@ -73,11 +125,33 @@ npm run lint
 
 ### Web3 Development Notes
 
-- **Multi-chain Support**: Test on Ethereum, Polygon, and Arbitrum
-- **Gas Optimization**: Consider transaction costs (~$0.002 on L2s)
-- **Wallet Integration**: Use RainbowKit for wallet connections
-- **NFT Standards**: Follow ERC-721M for gas-efficient minting
-- **IPFS Storage**: Use for decentralized metadata storage
+#### Multi-Chain Testing Strategy
+- **Staging Environment**: Test on testnets first
+  - Polygon Mumbai (~0.0014 MATIC gas)
+  - Arbitrum Goerli (~0.0000 ARB gas)
+  - Ethereum Sepolia (higher gas for final validation)
+- **Production**: Deploy to mainnets after staging validation
+- **Gas Optimization**: Validate costs before production deployment
+
+#### Smart Contract Development
+- **Feature Branches**: Create separate branches for contract updates
+- **Testing**: Use Hardhat/Foundry in staging environment
+- **Security**: Run CertiK/Slither analysis before merging to main
+- **Audit Trail**: Document all contract changes for DAO governance
+
+#### Web3-Specific Branch Naming
+```bash
+feature/erc-2981-royalty-split      # NFT royalty implementation
+feature/dao-governance-voting       # DAO voting mechanisms  
+feature/ipfs-metadata-storage       # Decentralized storage
+bugfix/gas-optimization-minting     # Performance improvements
+hotfix/wallet-connection-issue      # Critical user-facing fixes
+```
+
+#### Environment-Specific Configurations
+- **Develop**: Local/testnet configurations
+- **Staging**: Testnet with production-like setup  
+- **Main**: Mainnet configurations with live contracts
 
 ### Troubleshooting
 
