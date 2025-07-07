@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { DiscordInspiredNavigation } from '@/components/ui/discord-inspired-navigation';
+import { StickyNavigation } from '@/components/ui/sticky-navigation';
 import { SequenceInspiredHero } from '@/components/sections/SequenceInspiredHero';
 import { CreatorStudioInterests } from '@/components/sections/CreatorStudioInterests';
 import { UnifiedCreatorSection } from '@/components/sections/UnifiedCreatorSection';
@@ -30,7 +30,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-black">
-      <DiscordInspiredNavigation />
+      <StickyNavigation />
       <main>
         {/* Hero Section */}
         <section id="hero">
