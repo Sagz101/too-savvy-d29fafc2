@@ -72,12 +72,27 @@ export const SequenceInspiredHero: React.FC = () => {
             Built on Web3 infrastructure with zero platform fees.
           </p>
 
-          {/* CTA buttons with Connect Wallet - Updated layout for better visibility */}
-          <div className="flex flex-col lg:flex-row gap-4 justify-center items-center mb-16 max-w-2xl mx-auto">
-            <ModernButton size="lg" className="px-8 py-4 text-lg w-full lg:w-auto" onClick={handleStartCreating}>
-              Start Creating
+          {/* Enhanced CTA Layout - Single Primary with Secondary */}
+          <div className="flex flex-col items-center mb-16 max-w-lg mx-auto space-y-6">
+            {/* Primary CTA - Get Started */}
+            <ModernButton 
+              size="lg" 
+              className="px-12 py-4 text-lg font-semibold w-full max-w-sm bg-gradient-to-r from-[hsl(var(--web3-cyan))] to-[hsl(var(--web3-purple))] hover:from-[hsl(var(--web3-purple))] hover:to-[hsl(var(--web3-cyan))] text-[hsl(var(--cosmic-deep))] border-none shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" 
+              onClick={handleStartCreating}
+            >
+              Get Started
             </ModernButton>
-            <div className="w-full lg:w-auto">
+            
+            {/* Secondary CTA - Explore Creator Studio */}
+            <button 
+              className="text-[hsl(var(--web3-cyan))] hover:text-white font-medium underline underline-offset-4 decoration-[hsl(var(--web3-cyan))]/50 hover:decoration-white transition-all duration-300"
+              onClick={() => smoothScrollToSection('create')}
+            >
+              Explore Creator Studio
+            </button>
+            
+            {/* Wallet Connection - Tertiary */}
+            <div className="pt-4 border-t border-[hsl(var(--web3-purple))]/20 w-full max-w-sm">
               <WalletConnectButton />
             </div>
           </div>

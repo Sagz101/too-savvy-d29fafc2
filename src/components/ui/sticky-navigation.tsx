@@ -33,9 +33,8 @@ export const StickyNavigation: React.FC = () => {
   const navigationItems = [
     { name: 'Home', href: '/', icon: Home, color: 'text-cyan-400', glow: 'hover:shadow-cyan-400/25' },
     { name: 'Creator Studio', href: '/studio', icon: Video, color: 'text-purple-400', glow: 'hover:shadow-purple-400/25' },
-    { name: 'Dashboard', href: '/dashboard', icon: BarChart3, color: 'text-green-400', glow: 'hover:shadow-green-400/25' },
-    { name: 'Community', href: '/community', icon: Users, color: 'text-blue-400', glow: 'hover:shadow-blue-400/25' },
-    { name: 'Developer Resources', href: '/developer', icon: Code, color: 'text-orange-400', glow: 'hover:shadow-orange-400/25' }
+    { name: 'Community', href: '/messaging', icon: Users, color: 'text-blue-400', glow: 'hover:shadow-blue-400/25' },
+    { name: 'Developer Resources', href: '/learn', icon: Code, color: 'text-orange-400', glow: 'hover:shadow-orange-400/25' }
   ];
 
   const handleSearch = (e: React.FormEvent) => {
@@ -85,8 +84,8 @@ export const StickyNavigation: React.FC = () => {
             </div>
           </Link>
 
-          {/* Enhanced Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-2">
+          {/* Enhanced Desktop Navigation - Streamlined */}
+          <div className="hidden lg:flex items-center space-x-1">
             {navigationItems.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.href;
@@ -95,13 +94,13 @@ export const StickyNavigation: React.FC = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`group relative flex items-center gap-3 px-5 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                  className={`group relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${
                     isActive
                       ? `${item.color} bg-gradient-to-r from-card/60 to-card/40 backdrop-blur-sm shadow-lg border border-primary/20 ${item.glow} shadow-lg`
                       : 'text-muted-foreground hover:text-foreground hover:bg-card/30 hover:backdrop-blur-sm hover:border hover:border-primary/10'
                   }`}
                 >
-                  <Icon size={18} className={`transition-all duration-300 ${isActive ? 'drop-shadow-glow' : 'group-hover:scale-110'}`} />
+                  <Icon size={16} className={`transition-all duration-300 ${isActive ? 'drop-shadow-glow' : 'group-hover:scale-110'}`} />
                   <span className="font-medium tracking-wide">{item.name}</span>
                   
                   {/* Active indicator */}
@@ -116,32 +115,34 @@ export const StickyNavigation: React.FC = () => {
             })}
           </div>
 
-          {/* Enhanced Search Bar */}
-          <div className="hidden md:flex items-center flex-1 max-w-md mx-6">
-            <form onSubmit={handleSearch} className="relative w-full group">
-              <div className="relative">
-                <Input
-                  type="text"
-                  placeholder="Search features, tutorials, creators..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 bg-card/40 backdrop-blur-sm border border-border/50 text-foreground placeholder-muted-foreground rounded-xl focus:border-primary/50 focus:ring-2 focus:ring-primary/20 focus:bg-card/60 transition-all duration-300 hover:bg-card/50"
-                />
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors duration-300" size={18} />
-                
-                {/* Search glow effect */}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-focus-within:opacity-100 transition-opacity duration-300 -z-10 blur-xl" />
-              </div>
-            </form>
+          {/* Enhanced Search Icon - Collapsible */}
+          <div className="hidden md:flex items-center">
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="group relative flex items-center justify-center w-10 h-10 rounded-xl bg-card/20 backdrop-blur-sm border border-border/30 hover:bg-card/40 hover:border-primary/30 transition-all duration-300 hover:scale-105"
+            >
+              <Search size={18} className="text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </button>
           </div>
 
-          {/* Enhanced Wallet Connection */}
+          {/* Enhanced Wallet Connection - Primary Action */}
           <div className="hidden md:block">
             <div className="relative">
               <WalletConnectButton />
               {/* Wallet connection glow */}
               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-accent/20 to-primary/20 opacity-0 hover:opacity-100 transition-opacity duration-300 -z-10 blur-lg" />
             </div>
+          </div>
+
+          {/* Accessibility Settings Icon */}
+          <div className="hidden md:block">
+            <button className="group relative flex items-center justify-center w-10 h-10 rounded-xl bg-card/20 backdrop-blur-sm border border-border/30 hover:bg-card/40 hover:border-primary/30 transition-all duration-300 hover:scale-105">
+              <svg className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clipRule="evenodd" />
+              </svg>
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </button>
           </div>
 
           {/* Enhanced Mobile Menu Button */}
