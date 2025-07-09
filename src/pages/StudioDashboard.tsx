@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useWallet } from '@/services/wallet';
+import { useAccount, useConnect } from 'wagmi';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { PodcastCreator } from '@/components/podcast/PodcastCreator';
 import { GlobalInnovatorsHub } from '@/components/innovators/GlobalInnovatorsHub';
 import { StoreBuilder } from '@/components/commerce/StoreBuilder';
@@ -25,7 +26,8 @@ import {
 const StudioDashboard = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { wallet, connectWallet, isConnecting } = useWallet();
+  const { isConnected } = useAccount();
+  const { connect, connectors, isPending } = useConnect();
   const [activeModule, setActiveModule] = useState<string | null>(null);
 
   useEffect(() => {
@@ -88,7 +90,7 @@ const StudioDashboard = () => {
 
   const currentModule = modules.find(m => m.id === activeModule);
 
-  if (!wallet.isConnected) {
+  if (!isConnected) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-black flex items-center justify-center p-4">
         <Card className="max-w-md w-full bg-gradient-to-br from-slate-800/90 to-gray-800/90 border border-cyan-400/30 backdrop-blur-xl">
@@ -102,23 +104,42 @@ const StudioDashboard = () => {
             <p className="text-white/70 text-center">
               Connect your wallet to access Too Savvy Creator Studio and start building your Web3 presence.
             </p>
-            <Button 
-              onClick={connectWallet}
-              disabled={isConnecting}
-              className="w-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-white hover:from-cyan-300 hover:via-blue-400 hover:to-purple-500 transition-all duration-300"
-            >
-              {isConnecting ? (
-                <>
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
-                  Connecting...
-                </>
-              ) : (
-                <>
-                  <Wallet className="w-4 h-4 mr-2" />
-                  Connect Wallet
-                </>
-              )}
-            </Button>
+            <ConnectButton.Custom>
+              {({ account, chain, openConnectModal, mounted }) => {
+                const ready = mounted;
+                
+                return (
+                  <div
+                    {...(!ready && {
+                      'aria-hidden': true,
+                      style: {
+                        opacity: 0,
+                        pointerEvents: 'none',
+                        userSelect: 'none',
+                      },
+                    })}
+                  >
+                    <Button 
+                      onClick={openConnectModal}
+                      disabled={isPending}
+                      className="w-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-white hover:from-cyan-300 hover:via-blue-400 hover:to-purple-500 transition-all duration-300"
+                    >
+                      {isPending ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2" />
+                          Connecting...
+                        </>
+                      ) : (
+                        <>
+                          <Wallet className="w-4 h-4 mr-2" />
+                          Connect Wallet
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                );
+              }}
+            </ConnectButton.Custom>
             <Button 
               variant="outline" 
               onClick={() => navigate('/')}
