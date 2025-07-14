@@ -14,8 +14,8 @@ interface IPFSMetadata {
 }
 
 class IPFSService {
-  private readonly PINATA_API_KEY = process.env.VITE_PINATA_API_KEY;
-  private readonly PINATA_SECRET_KEY = process.env.VITE_PINATA_SECRET_KEY;
+  private readonly PINATA_API_KEY = import.meta.env.VITE_PINATA_API_KEY;
+  private readonly PINATA_SECRET_KEY = import.meta.env.VITE_PINATA_SECRET_KEY;
   private readonly PINATA_GATEWAY = 'https://gateway.pinata.cloud/ipfs/';
 
   async uploadFile(file: File): Promise<string> {
