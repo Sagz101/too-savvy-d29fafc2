@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StickyNavigation } from '@/components/ui/sticky-navigation';
 import { SequenceInspiredHero } from '@/components/sections/SequenceInspiredHero';
 import { CreatorStudioInterests } from '@/components/sections/CreatorStudioInterests';
@@ -15,18 +15,34 @@ import { EcommerceStore } from '@/components/sections/EcommerceStore';
 import { Threaditor } from '@/components/sections/Threaditor';
 import { Cta } from '@/components/sections/Cta';
 import { Footer } from '@/components/layout/Footer';
+import { MobileBottomNavigation } from '@/components/ui/mobile-optimized-navigation';
+import { TrustSignals } from '@/components/ui/trust-signals';
+import { InteractiveAnalytics } from '@/components/ui/interactive-analytics';
+import { PerformanceDashboard } from '@/components/ui/performance-dashboard';
 import { useAuth } from '@/services/auth';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+  const [showAnalytics, setShowAnalytics] = useState(false);
   const { isAuthenticated, user } = useAuth();
 
   const handleInterestSelection = (interests: string[]) => {
     setSelectedInterests(interests);
     console.log('Selected interests:', interests);
   };
+
+  // Enhanced scroll tracking for performance
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY > 100;
+      // Add any scroll-based optimizations here
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-black">
@@ -105,7 +121,50 @@ const Index = () => {
           <CommunityGovernance />
         </section>
         
-        <section id="developer-resources" className="pt-20 bg-gradient-to-br from-slate-950 via-gray-900 to-black">
+        {/* Interactive Analytics Section */}
+        {isAuthenticated && (
+          <section id="analytics" className="pt-20 bg-gradient-to-br from-slate-950 via-gray-900 to-black">
+            <div className="container mx-auto px-4 py-16">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl font-bold text-white mb-6">Your Creator Analytics</h2>
+                <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                  Real-time insights into your content performance and community growth.
+                </p>
+              </div>
+              <InteractiveAnalytics />
+            </div>
+          </section>
+        )}
+
+        {/* Performance Dashboard */}
+        <section id="performance" className="pt-20 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-950">
+          <div className="container mx-auto px-4 py-16">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-white mb-6">Platform Performance</h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Transparent metrics showing our commitment to security, performance, and sustainability.
+              </p>
+            </div>
+            <PerformanceDashboard />
+          </div>
+        </section>
+
+        {/* Enhanced Trust Signals Section */}
+        <section id="trust-signals" className="pt-20 bg-gradient-to-br from-slate-950 via-gray-900 to-black">
+          <div className="container mx-auto px-4 py-16">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-white mb-6">Trust & Security</h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Independently verified security, compliance, and sustainability certifications.
+              </p>
+            </div>
+            <div className="max-w-4xl mx-auto">
+              <TrustSignals variant="footer" showLabels={true} />
+            </div>
+          </div>
+        </section>
+
+        <section id="developer-resources" className="pt-20 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-950">
           <div className="container mx-auto px-4 py-16">
             <div className="text-center">
               <h2 className="text-4xl font-bold text-white mb-6">Developer Resources</h2>
@@ -121,6 +180,7 @@ const Index = () => {
         </section>
       </main>
       <Footer />
+      <MobileBottomNavigation />
     </div>
   );
 };

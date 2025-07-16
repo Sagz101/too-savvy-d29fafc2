@@ -33,7 +33,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
 
-    /* Web3 Theme Colors */
+/* Enhanced Web3 Theme Colors with Trust Signals */
     --web3-cyan: 192 100% 56%;        /* #00D1FF */
     --web3-purple: 262 83% 58%;       /* #7B00FF */
     --web3-green: 152 100% 50%;       /* #00FF99 */
@@ -44,6 +44,23 @@
     --cosmic-purple: 262 83% 58%;     /* Cosmic purple */
     --cosmic-purple-light: 262 85% 70%; /* Light cosmic purple */
     --cosmic-purple-soft: 262 80% 75%; /* Soft cosmic purple */
+    
+    /* Trust & Security Colors */
+    --trust-verified: 152 100% 45%;   /* Green for verified badges */
+    --trust-audit: 45 93% 47%;        /* Orange for audit badges */
+    --trust-carbon: 120 60% 50%;      /* Green for carbon neutral */
+    --trust-security: 220 91% 56%;    /* Blue for security score */
+    
+    /* Performance Colors */
+    --performance-excellent: 152 100% 45%;
+    --performance-good: 60 100% 50%;
+    --performance-warning: 45 93% 47%;
+    --performance-critical: 0 84% 60%;
+    
+    /* Interactive Elements */
+    --hover-glow: 192 100% 56% / 0.2;
+    --focus-ring: 262 83% 58% / 0.3;
+    --active-pulse: 152 100% 50% / 0.4;
   }
 
   .dark {
@@ -364,6 +381,58 @@
   }
 }
 
+@keyframes trust-pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px hsl(var(--trust-verified) / 0.3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px hsl(var(--trust-verified) / 0.6);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes gas-fee-update {
+  0% {
+    background-color: hsl(var(--cosmic-dark));
+  }
+  50% {
+    background-color: hsl(var(--web3-cyan) / 0.1);
+  }
+  100% {
+    background-color: hsl(var(--cosmic-dark));
+  }
+}
+
+@keyframes mobile-touch-feedback {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 hsl(var(--web3-cyan) / 0.4);
+  }
+  70% {
+    transform: scale(0.98);
+    box-shadow: 0 0 0 10px hsl(var(--web3-cyan) / 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 hsl(var(--web3-cyan) / 0);
+  }
+}
+
+@keyframes progress-bar-fill {
+  0% {
+    width: 0%;
+    background: hsl(var(--web3-cyan));
+  }
+  50% {
+    background: hsl(var(--web3-purple));
+  }
+  100% {
+    width: 100%;
+    background: hsl(var(--web3-green));
+  }
+}
+
 .animate-cosmic-pulse {
   animation: cosmic-pulse 4s ease-in-out infinite;
 }
@@ -388,6 +457,73 @@
 
 .animate-cosmic-float {
   animation: cosmic-float 6s ease-in-out infinite;
+}
+
+.animate-trust-pulse {
+  animation: trust-pulse 2s ease-in-out infinite;
+}
+
+.animate-gas-fee-update {
+  animation: gas-fee-update 0.5s ease-in-out;
+}
+
+.animate-mobile-touch {
+  animation: mobile-touch-feedback 0.3s ease-out;
+}
+
+.animate-progress-fill {
+  animation: progress-bar-fill 2s ease-out forwards;
+}
+
+/* Enhanced Mobile-First Design */
+.touch-target {
+  min-height: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.touch-target:active {
+  animation: mobile-touch-feedback 0.3s ease-out;
+}
+
+/* Accessibility Enhancements */
+.focus-visible {
+  outline: 2px solid hsl(var(--focus-ring));
+  outline-offset: 2px;
+}
+
+.screen-reader-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Performance Optimizations */
+.lazy-load {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lazy-load.loaded {
+  opacity: 1;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
 }
 
 /* Enhanced Web3 button styles */
