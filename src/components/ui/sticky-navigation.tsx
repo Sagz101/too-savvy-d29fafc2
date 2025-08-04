@@ -12,13 +12,15 @@ import {
   Users, 
   Code, 
   Menu,
-  X
+  X,
+  ChevronDown
 } from 'lucide-react';
 
 export const StickyNavigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -31,10 +33,46 @@ export const StickyNavigation: React.FC = () => {
   }, []);
 
   const navigationItems = [
-    { name: 'Home', href: '/', icon: Home, color: 'text-cyan-400', glow: 'hover:shadow-cyan-400/25' },
-    { name: 'Creator Studio', href: '/studio', icon: Video, color: 'text-purple-400', glow: 'hover:shadow-purple-400/25' },
-    { name: 'Community', href: '/messaging', icon: Users, color: 'text-blue-400', glow: 'hover:shadow-blue-400/25' },
-    { name: 'Developer Resources', href: '/learn', icon: Code, color: 'text-orange-400', glow: 'hover:shadow-orange-400/25' }
+    { name: 'Home', href: '/', icon: Home, color: 'text-cyan-400', glow: 'hover:shadow-cyan-400/25', modules: [] },
+    { 
+      name: 'Creator Studio', 
+      href: '/studio', 
+      icon: Video, 
+      color: 'text-purple-400', 
+      glow: 'hover:shadow-purple-400/25',
+      modules: [
+        { name: 'Video Studio', href: '/video-studio' },
+        { name: 'Podcast Studio', href: '/podcast-studio' },
+        { name: 'Music Creation', href: '/music-creation' },
+        { name: 'Live Streaming', href: '/live-streaming' }
+      ]
+    },
+    { 
+      name: 'Platform', 
+      href: '/neura-social', 
+      icon: Users, 
+      color: 'text-blue-400', 
+      glow: 'hover:shadow-blue-400/25',
+      modules: [
+        { name: 'NeuraSocial', href: '/neura-social' },
+        { name: 'Threaditor', href: '/threaditor' },
+        { name: 'Messaging', href: '/messaging' },
+        { name: 'Commerce Studio', href: '/commerce-studio' }
+      ]
+    },
+    { 
+      name: 'Ecosystem', 
+      href: '/global-innovators', 
+      icon: BarChart3, 
+      color: 'text-green-400', 
+      glow: 'hover:shadow-green-400/25',
+      modules: [
+        { name: 'Global Innovators', href: '/global-innovators' },
+        { name: 'Finance Hub', href: '/finance-hub' },
+        { name: 'Projects Creator', href: '/projects-creator' }
+      ]
+    },
+    { name: 'Learn', href: '/learn', icon: Code, color: 'text-orange-400', glow: 'hover:shadow-orange-400/25', modules: [] }
   ];
 
   const handleSearch = (e: React.FormEvent) => {
@@ -84,33 +122,60 @@ export const StickyNavigation: React.FC = () => {
             </div>
           </Link>
 
-          {/* Enhanced Desktop Navigation - Streamlined */}
+          {/* Enhanced Desktop Navigation with Dropdown Menus */}
           <div className="hidden lg:flex items-center space-x-1">
             {navigationItems.map((item) => {
               const Icon = item.icon;
-              const isActive = location.pathname === item.href;
+              const isActive = location.pathname === item.href || item.modules?.some(module => location.pathname === module.href);
+              const hasModules = item.modules && item.modules.length > 0;
               
               return (
-                <Link
+                <div
                   key={item.name}
-                  to={item.href}
-                  className={`group relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                    isActive
-                      ? `${item.color} bg-gradient-to-r from-card/60 to-card/40 backdrop-blur-sm shadow-lg border border-primary/20 ${item.glow} shadow-lg`
-                      : 'text-muted-foreground hover:text-foreground hover:bg-card/30 hover:backdrop-blur-sm hover:border hover:border-primary/10'
-                  }`}
+                  className="relative"
+                  onMouseEnter={() => setHoveredItem(hasModules ? item.name : null)}
+                  onMouseLeave={() => setHoveredItem(null)}
                 >
-                  <Icon size={16} className={`transition-all duration-300 ${isActive ? 'drop-shadow-glow' : 'group-hover:scale-110'}`} />
-                  <span className="font-medium tracking-wide">{item.name}</span>
+                  <Link
+                    to={item.href}
+                    className={`group relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                      isActive
+                        ? `${item.color} bg-gradient-to-r from-card/60 to-card/40 backdrop-blur-sm shadow-lg border border-primary/20 ${item.glow} shadow-lg`
+                        : 'text-muted-foreground hover:text-foreground hover:bg-card/30 hover:backdrop-blur-sm hover:border hover:border-primary/10'
+                    }`}
+                  >
+                    <Icon size={16} className={`transition-all duration-300 ${isActive ? 'drop-shadow-glow' : 'group-hover:scale-110'}`} />
+                    <span className="font-medium tracking-wide">{item.name}</span>
+                    {hasModules && (
+                      <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
+                    )}
+                    
+                    {/* Active indicator */}
+                    {isActive && (
+                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 animate-pulse" />
+                    )}
+                    
+                    {/* Hover glow effect */}
+                    <div className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${item.glow.replace('hover:', '')} shadow-xl`} />
+                  </Link>
                   
-                  {/* Active indicator */}
-                  {isActive && (
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 animate-pulse" />
+                  {/* Dropdown Menu */}
+                  {hasModules && hoveredItem === item.name && (
+                    <div className="absolute top-full left-0 mt-2 w-64 bg-card/95 backdrop-blur-2xl border border-border/50 rounded-xl shadow-2xl p-4 z-50 animate-fade-in">
+                      <div className="space-y-2">
+                        {item.modules!.map((module) => (
+                          <Link
+                            key={module.name}
+                            to={module.href}
+                            className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-background/60 rounded-lg transition-all duration-200"
+                          >
+                            {module.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   )}
-                  
-                  {/* Hover glow effect */}
-                  <div className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${item.glow.replace('hover:', '')} shadow-xl`} />
-                </Link>
+                </div>
               );
             })}
           </div>

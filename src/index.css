@@ -416,6 +416,11 @@
   }
 }
 
+/* Drop Shadow Glow */
+.drop-shadow-glow {
+  filter: drop-shadow(0 0 8px hsl(var(--primary) / 0.3));
+}
+
 @keyframes trust-pulse {
   0%, 100% {
     box-shadow: 0 0 10px hsl(var(--trust-verified) / 0.3);

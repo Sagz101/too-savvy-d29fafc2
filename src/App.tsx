@@ -8,6 +8,8 @@ import { AuthProvider } from "@/services/auth";
 import { EnhancedHeader } from "@/components/ui/enhanced-header";
 import { AIChatbot } from "@/components/ui/ai-chatbot";
 import { UserFeedbackWidget } from "@/components/ui/user-feedback-widget";
+import { SharedUserProvider } from "@/components/ui/shared-user-context";
+import { ModuleIntegrationProvider } from "@/hooks/useModuleIntegration";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import StudioDashboard from "./pages/StudioDashboard";
@@ -36,14 +38,16 @@ import Whitepaper from "./pages/Whitepaper";
 
 const App = () => (
   <AuthProvider>
-    <Web3Provider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <div className="min-h-screen w-full">
-            <EnhancedHeader />
-            <Routes>
+    <SharedUserProvider>
+      <ModuleIntegrationProvider>
+        <Web3Provider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <div className="min-h-screen w-full">
+                <EnhancedHeader />
+                <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/studio" element={<StudioDashboard />} />
@@ -72,12 +76,14 @@ const App = () => (
               <Route path="/terms" element={<Learn />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-            <AIChatbot />
-            <UserFeedbackWidget />
-          </div>
-        </BrowserRouter>
-      </TooltipProvider>
-    </Web3Provider>
+                <AIChatbot />
+                <UserFeedbackWidget />
+              </div>
+            </BrowserRouter>
+          </TooltipProvider>
+        </Web3Provider>
+      </ModuleIntegrationProvider>
+    </SharedUserProvider>
   </AuthProvider>
 );
 
