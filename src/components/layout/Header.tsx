@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
+import { UserMenu } from '@/components/auth/UserMenu';
 import { Menu, MessageCircle } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -51,6 +52,7 @@ export const Header = () => {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center space-x-4">
+          <UserMenu />
           <WalletConnectButton />
         </div>
 
@@ -81,7 +83,8 @@ export const Header = () => {
                   </Link>
                 );
               })}
-              <div className="pt-4 border-t">
+              <div className="pt-4 border-t space-y-2">
+                <UserMenu />
                 <WalletConnectButton />
               </div>
             </div>

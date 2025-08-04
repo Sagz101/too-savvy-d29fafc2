@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Web3Provider } from "@/providers/Web3Provider";
-import { AuthProvider } from "@/services/auth";
+import { AuthProvider } from "@/components/auth/AuthProvider";
 import { EnhancedHeader } from "@/components/ui/enhanced-header";
 import { AIChatbot } from "@/components/ui/ai-chatbot";
 import { UserFeedbackWidget } from "@/components/ui/user-feedback-widget";
