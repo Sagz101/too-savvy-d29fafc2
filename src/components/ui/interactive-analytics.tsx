@@ -75,10 +75,10 @@ export const InteractiveAnalytics: React.FC = () => {
   const totalRevenue = data.reduce((sum, item) => sum + item.revenue, 0);
 
   const pieData = [
-    { name: 'Video Content', value: 35, color: '#8B5CF6' },
-    { name: 'NFT Sales', value: 25, color: '#06B6D4' },
-    { name: 'Music Streaming', value: 20, color: '#10B981' },
-    { name: 'Social Posts', value: 20, color: '#F59E0B' }
+    { name: 'Video Content', value: 35, color: 'hsl(var(--web3-purple))' },
+    { name: 'NFT Sales', value: 25, color: 'hsl(var(--web3-cyan))' },
+    { name: 'Music Streaming', value: 20, color: 'hsl(var(--web3-green))' },
+    { name: 'Social Posts', value: 20, color: 'hsl(var(--web3-accent))' }
   ];
 
   const metrics = [

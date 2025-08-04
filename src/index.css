@@ -137,6 +137,20 @@
       transform: translateY(0);
     }
   }
+
+  /* Gas Fee Update Animation */
+  .animate-gas-fee-update {
+    animation: gas-fee-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes gas-fee-pulse {
+    0%, 100% {
+      background-color: hsl(var(--muted) / 0.5);
+    }
+    50% {
+      background-color: hsl(var(--muted) / 0.8);
+    }
+  }
 }
 
 /* Custom animations for the meerkat character */

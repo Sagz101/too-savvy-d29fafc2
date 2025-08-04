@@ -29,7 +29,7 @@ export const GasFeeTracker: React.FC<GasFeeTrackerProps> = ({
       feeInUsd: '$12.30',
       trend: 'down',
       speed: 'standard',
-      color: 'text-blue-400'
+      color: 'text-web3-cyan'
     },
     {
       network: 'Polygon',
@@ -38,7 +38,7 @@ export const GasFeeTracker: React.FC<GasFeeTrackerProps> = ({
       feeInUsd: '$0.89',
       trend: 'stable',
       speed: 'fast',
-      color: 'text-purple-400'
+      color: 'text-web3-purple'
     },
     {
       network: 'Optimism',
@@ -47,7 +47,7 @@ export const GasFeeTracker: React.FC<GasFeeTrackerProps> = ({
       feeInUsd: '$2.10',
       trend: 'up',
       speed: 'fast',
-      color: 'text-red-400'
+      color: 'text-web3-accent'
     },
     {
       network: 'Arbitrum',
@@ -56,7 +56,7 @@ export const GasFeeTracker: React.FC<GasFeeTrackerProps> = ({
       feeInUsd: '$3.15',
       trend: 'down',
       speed: 'standard',
-      color: 'text-blue-500'
+      color: 'text-web3-green'
     }
   ]);
 
@@ -80,18 +80,18 @@ export const GasFeeTracker: React.FC<GasFeeTrackerProps> = ({
   const getTrendIcon = (trend: string) => {
     switch (trend) {
       case 'up':
-        return <TrendingUp className="h-3 w-3 text-red-400" />;
+        return <TrendingUp className="h-3 w-3 text-destructive" />;
       case 'down':
-        return <TrendingDown className="h-3 w-3 text-green-400" />;
+        return <TrendingDown className="h-3 w-3 text-web3-green" />;
       default:
-        return <div className="h-3 w-3 rounded-full bg-gray-400" />;
+        return <div className="h-3 w-3 rounded-full bg-muted-foreground" />;
     }
   };
 
   const getSpeedIcon = (speed: string) => {
     return speed === 'fast' ? 
-      <Zap className="h-3 w-3 text-yellow-400" /> : 
-      <Clock className="h-3 w-3 text-gray-400" />;
+      <Zap className="h-3 w-3 text-web3-accent" /> : 
+      <Clock className="h-3 w-3 text-muted-foreground" />;
   };
 
   if (variant === 'compact') {
