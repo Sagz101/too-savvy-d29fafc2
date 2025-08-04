@@ -1,7 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { StickyNavigation } from '@/components/ui/sticky-navigation';
-import { SequenceInspiredHero } from '@/components/sections/SequenceInspiredHero';
+import { EnhancedHeroSection } from '@/components/ui/enhanced-hero-section';
+import { ModuleOverviewTable } from '@/components/ui/module-overview-table';
+import { LiveStatsDashboard } from '@/components/ui/live-stats-dashboard';
 import { CreatorStudioInterests } from '@/components/sections/CreatorStudioInterests';
 import { UnifiedCreatorSection } from '@/components/sections/UnifiedCreatorSection';
 import { CommunityGovernance } from '@/components/ui/community-governance';
@@ -19,6 +21,7 @@ import { MobileBottomNavigation } from '@/components/ui/mobile-optimized-navigat
 import { TrustSignals } from '@/components/ui/trust-signals';
 import { InteractiveAnalytics } from '@/components/ui/interactive-analytics';
 import { PerformanceDashboard } from '@/components/ui/performance-dashboard';
+import { GasFeeTracker } from '@/components/ui/gas-fee-tracker';
 import { useAuth } from '@/services/auth';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -48,14 +51,14 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-black">
       <StickyNavigation />
       <main>
-        {/* Hero Section */}
+        {/* Enhanced Hero Section */}
         <section id="hero">
-          <SequenceInspiredHero />
+          <EnhancedHeroSection />
           
           {/* Show welcome message for authenticated users */}
           {isAuthenticated && user && (
             <div className="container mx-auto px-4 py-8">
-              <div className="text-center bg-gradient-to-r from-solar-core/10 to-solar-photosphere/10 border border-solar-core/20 rounded-lg p-6 mb-8">
+              <div className="text-center bg-gradient-to-r from-web3-cyan/10 to-web3-purple/10 border border-web3-cyan/20 rounded-lg p-6 mb-8">
                 <h2 className="text-2xl font-bold text-white mb-2">
                   Welcome back, {user.profile?.name || user.email?.split('@')[0]}!
                 </h2>
@@ -63,7 +66,7 @@ const Index = () => {
                   Ready to continue your creative journey? Access your dashboard or explore new features.
                 </p>
                 <div className="flex gap-4 justify-center">
-                  <Button asChild className="bg-solar-core hover:bg-solar-photosphere">
+                  <Button asChild className="bg-web3-cyan hover:bg-web3-cyan/80">
                     <Link to="/studio">Go to Studio</Link>
                   </Button>
                   <Button asChild variant="outline">
@@ -73,6 +76,41 @@ const Index = () => {
               </div>
             </div>
           )}
+        </section>
+
+        {/* Live Platform Statistics */}
+        <section id="live-stats" className="pt-20 bg-gradient-to-br from-slate-950 via-gray-900 to-black">
+          <div className="container mx-auto px-4 py-16">
+            <LiveStatsDashboard />
+          </div>
+        </section>
+
+        {/* Module Overview Table */}
+        <section id="modules-overview" className="pt-20 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-950">
+          <div className="container mx-auto px-4 py-16">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-white mb-6">Creator Studio Modules</h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Comprehensive tools for every type of creator, optimized for Web3 with minimal gas fees.
+              </p>
+            </div>
+            <ModuleOverviewTable />
+          </div>
+        </section>
+
+        {/* Real-time Gas Fees */}
+        <section id="gas-fees" className="pt-20 bg-gradient-to-br from-slate-950 via-gray-900 to-black">
+          <div className="container mx-auto px-4 py-16">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-white mb-6">Real-time Gas Optimization</h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Live gas fee tracking across multiple networks, optimized for creator activities.
+              </p>
+            </div>
+            <div className="max-w-4xl mx-auto">
+              <GasFeeTracker variant="detailed" showTrends={true} />
+            </div>
+          </div>
         </section>
         
         {/* Creator Studio Interests Selection */}
