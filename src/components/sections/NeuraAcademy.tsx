@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { BookOpen, Video, FileText, Award, Clock, ArrowRight } from 'lucide-react';
@@ -81,10 +82,10 @@ export const NeuraAcademy: React.FC = () => {
         </div>
         
         <div className="text-center mt-10">
-          <a href="#" className="inline-flex items-center text-neura-cyan hover:text-neura-purple transition-colors">
+          <Link to="/learn" className="inline-flex items-center text-neura-cyan hover:text-neura-purple transition-colors">
             View all courses
             <ArrowRight className="w-4 h-4 ml-1" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

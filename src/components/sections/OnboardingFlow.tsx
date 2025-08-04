@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { DualOnboarding } from '@/components/auth/DualOnboarding';
 import { Web3UpgradePrompt } from '@/components/auth/Web3UpgradePrompt';
 import { Card, CardContent } from '@/components/ui/card';
@@ -313,16 +314,16 @@ function RoleQuickActions({ role }: { role: string | null }) {
   if (role === 'creator') {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-        <a href="/video-studio" className="grok-card p-6 flex flex-col items-center hover-scale transition-all text-center">
+        <Link to="/video-studio" className="grok-card p-6 flex flex-col items-center hover-scale transition-all text-center">
           <Palette className="w-6 h-6 mb-2 text-solar-core" />
           <div className="font-bold mb-1">Create a Video NFT</div>
           <span className="text-sm text-muted-foreground">Turn your creative content into an on-chain NFT—no code needed.</span>
-        </a>
-        <a href="/projects-creator" className="grok-card p-6 flex flex-col items-center hover-scale transition-all text-center">
+        </Link>
+        <Link to="/projects-creator" className="grok-card p-6 flex flex-col items-center hover-scale transition-all text-center">
           <ShoppingCart className="w-6 h-6 mb-2 text-solar-core" />
           <div className="font-bold mb-1">Launch a Project</div>
           <span className="text-sm text-muted-foreground">Start building your community and monetize your work.</span>
-        </a>
+        </Link>
       </div>
     );
   }
@@ -345,11 +346,11 @@ function RoleQuickActions({ role }: { role: string | null }) {
   if (role === 'investor') {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-        <a href="/creator-dashboard" className="grok-card p-6 flex flex-col items-center hover-scale transition-all text-center">
+        <Link to="/studio" className="grok-card p-6 flex flex-col items-center hover-scale transition-all text-center">
           <BarChart2 className="w-6 h-6 mb-2 text-green-500" />
           <div className="font-bold mb-1">View Analytics</div>
           <span className="text-sm text-muted-foreground">Track NFT minting, token stats, and creator growth.</span>
-        </a>
+        </Link>
         <a href="https://docs.toosavvy.xyz/tokenomics" target="_blank" rel="noopener noreferrer" className="grok-card p-6 flex flex-col items-center hover-scale transition-all text-center">
           <BookOpen className="w-6 h-6 mb-2 text-green-500" />
           <div className="font-bold mb-1">Learn about $Neurax</div>

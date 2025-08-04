@@ -34,6 +34,7 @@ import LiveStreaming from "./pages/LiveStreaming";
 import ARVisualization from "./pages/ARVisualization";
 import StreamingDashboard from "./pages/StreamingDashboard";
 import NeuraSocial from "./pages/NeuraSocial";
+import Neurapathy from "./pages/Neurapathy";
 import Whitepaper from "./pages/Whitepaper";
 
 const App = () => (
@@ -55,7 +56,7 @@ const App = () => (
               <Route path="/onboarding" element={<Onboarding />} />
               <Route path="/messaging" element={<Messaging />} />
               <Route path="/learn" element={<Learn />} />
-              <Route path="/store/success" element={<StoreSuccess />} />
+              <Route path="/store-success" element={<StoreSuccess />} />
               <Route path="/video-studio" element={<VideoStudio />} />
               <Route path="/video-integration" element={<VideoIntegration />} />
               <Route path="/video-marketplace" element={<VideoMarketplace />} />
@@ -71,6 +72,7 @@ const App = () => (
               <Route path="/ar-visualization" element={<ARVisualization />} />
               <Route path="/streaming-dashboard" element={<StreamingDashboard />} />
               <Route path="/neura-social" element={<NeuraSocial />} />
+              <Route path="/neurapathy" element={<Neurapathy />} />
               <Route path="/whitepaper" element={<Whitepaper />} />
               <Route path="/privacy" element={<Learn />} />
               <Route path="/terms" element={<Learn />} />

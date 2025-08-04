@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { User, LogIn, LogOut } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { ModernButton } from '@/components/ui/modern-button';
 import { useAuth } from '@/services/auth';
 
@@ -49,10 +50,10 @@ export const LoginButton: React.FC = () => {
       asChild
       className="text-xs"
     >
-      <a href="/auth">
+      <Link to="/auth">
         <LogIn size={14} />
         <span className="hidden sm:inline">Sign In</span>
-      </a>
+      </Link>
     </ModernButton>
   );
 };

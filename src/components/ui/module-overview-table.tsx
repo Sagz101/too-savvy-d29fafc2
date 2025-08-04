@@ -74,7 +74,7 @@ export const ModuleOverviewTable: React.FC = () => {
       gasFee: '~0.0005 ETH',
       keyFeatures: ['Social Tokens', 'Community Governance', 'Cross-Platform'],
       description: 'Decentralized social network for creators and fans',
-      route: '/neurasocial',
+      route: '/neura-social',
       color: 'text-web3-accent'
     },
     {
