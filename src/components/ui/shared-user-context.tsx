@@ -45,11 +45,11 @@ export const SharedUserProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   useEffect(() => {
     if (isAuthenticated && user) {
       const initialData: SharedUserData = {
-        walletAddress: user.wallet_address,
+        walletAddress: user.walletAddress,
         profile: {
           name: user.profile?.name || user.email?.split('@')[0] || 'Creator',
-          avatar: user.profile?.avatar_url,
-          bio: user.profile?.bio
+          avatar: user.profile?.avatar,
+          bio: undefined
         },
         preferences: {
           theme: localStorage.getItem('theme') || 'dark',

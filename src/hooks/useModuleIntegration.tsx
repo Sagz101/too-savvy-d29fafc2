@@ -39,11 +39,11 @@ export const useModuleIntegration = () => {
   useEffect(() => {
     if (isAuthenticated && user) {
       setSharedData({
-        walletAddress: user.wallet_address,
+        walletAddress: user.walletAddress,
         profile: {
           name: user.profile?.name || 'Creator',
-          avatar: user.profile?.avatar_url,
-          bio: user.profile?.bio
+          avatar: user.profile?.avatar,
+          bio: undefined
         },
         preferences: {
           theme: localStorage.getItem('theme') || 'dark',
