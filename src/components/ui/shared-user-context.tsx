@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useAuth } from '@/services/auth';
+import { useAuth } from '@/components/auth/AuthProvider';
 
 interface SharedUserData {
   walletAddress?: string;
@@ -37,18 +37,18 @@ interface SharedUserContextType {
 const SharedUserContext = createContext<SharedUserContextType | undefined>(undefined);
 
 export const SharedUserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { user, isAuthenticated } = useAuth();
+  const { user, session } = useAuth();
   const [userData, setUserData] = useState<SharedUserData>({});
   const [isDataLoaded, setIsDataLoaded] = useState(false);
 
   // Initialize user data from authentication
   useEffect(() => {
-    if (isAuthenticated && user) {
+    if (session && user) {
       const initialData: SharedUserData = {
-        walletAddress: user.walletAddress,
+        walletAddress: undefined, // Will be set when wallet is connected
         profile: {
-          name: user.profile?.name || user.email?.split('@')[0] || 'Creator',
-          avatar: user.profile?.avatar,
+          name: user.email?.split('@')[0] || 'Creator',
+          avatar: undefined,
           bio: undefined
         },
         preferences: {
@@ -68,7 +68,7 @@ export const SharedUserProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       setUserData(initialData);
       setIsDataLoaded(true);
     }
-  }, [isAuthenticated, user]);
+  }, [session, user]);
 
   const updateUserData = (updates: Partial<SharedUserData>) => {
     setUserData(prev => ({
