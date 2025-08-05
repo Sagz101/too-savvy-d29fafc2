@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, createContext, useContext } from 'react';
-import { useAuth } from '@/services/auth';
+import { useAuth } from '@/components/auth/AuthProvider';
 
 interface ModuleData {
   id: string;
@@ -30,19 +30,19 @@ interface SharedUserData {
 
 // Hook for managing cross-module data sharing and integration
 export const useModuleIntegration = () => {
-  const { user, isAuthenticated } = useAuth();
+  const { user, session } = useAuth();
   const [sharedData, setSharedData] = useState<SharedUserData>({});
   const [activeModules, setActiveModules] = useState<ModuleData[]>([]);
   const [isDataSynced, setIsDataSynced] = useState(false);
 
   // Initialize shared data from user session
   useEffect(() => {
-    if (isAuthenticated && user) {
+    if (session && user) {
       setSharedData({
-        walletAddress: user.walletAddress,
+        walletAddress: undefined, // Will be set when wallet is connected
         profile: {
-          name: user.profile?.name || 'Creator',
-          avatar: user.profile?.avatar,
+          name: user.email?.split('@')[0] || 'Creator',
+          avatar: undefined,
           bio: undefined
         },
         preferences: {
@@ -58,7 +58,7 @@ export const useModuleIntegration = () => {
       });
       setIsDataSynced(true);
     }
-  }, [isAuthenticated, user]);
+  }, [session, user]);
 
   // Track module access and update last accessed time
   const trackModuleAccess = useCallback((moduleId: string, moduleName: string) => {
