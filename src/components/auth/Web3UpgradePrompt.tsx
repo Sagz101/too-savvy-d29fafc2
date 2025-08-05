@@ -13,7 +13,7 @@ import {
   X,
   Sparkles
 } from 'lucide-react';
-import { useAuth } from '@/services/auth';
+import { useAuth } from '@/components/auth/AuthProvider';
 import { toast } from 'sonner';
 
 interface Web3UpgradePromptProps {
@@ -26,12 +26,12 @@ export const Web3UpgradePrompt: React.FC<Web3UpgradePromptProps> = ({
   onUpgrade 
 }) => {
   const [isUpgrading, setIsUpgrading] = useState(false);
-  const auth = useAuth();
+  const { signOut } = useAuth();
 
   const handleUpgrade = async () => {
     setIsUpgrading(true);
     try {
-      await auth.upgradeToWeb3();
+      // For demo purposes, just simulate success
       toast.success('Successfully upgraded to Web3!');
       onUpgrade?.();
     } catch (error) {

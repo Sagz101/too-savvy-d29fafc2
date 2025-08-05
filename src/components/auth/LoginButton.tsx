@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { User, LogIn, LogOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ModernButton } from '@/components/ui/modern-button';
-import { useAuth } from '@/services/auth';
+import { useAuth } from '@/components/auth/AuthProvider';
 
 export const LoginButton: React.FC = () => {
-  const { user, isAuthenticated, signOut } = useAuth();
+  const { user, session, signOut } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSignOut = async () => {
@@ -20,13 +20,13 @@ export const LoginButton: React.FC = () => {
     }
   };
 
-  if (isAuthenticated && user) {
+  if (session && user) {
     return (
       <div className="flex items-center gap-2">
         <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-card/40 rounded-lg border border-border/30">
           <User size={16} className="text-primary" />
           <span className="text-sm text-foreground truncate max-w-20">
-            {user.profile?.name || user.email?.split('@')[0] || 'User'}
+            {user.email?.split('@')[0] || 'User'}
           </span>
         </div>
         <ModernButton

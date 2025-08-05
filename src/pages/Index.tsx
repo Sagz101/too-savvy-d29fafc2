@@ -22,14 +22,14 @@ import { TrustSignals } from '@/components/ui/trust-signals';
 import { InteractiveAnalytics } from '@/components/ui/interactive-analytics';
 import { PerformanceDashboard } from '@/components/ui/performance-dashboard';
 import { GasFeeTracker } from '@/components/ui/gas-fee-tracker';
-import { useAuth } from '@/services/auth';
+import { useAuth } from '@/components/auth/AuthProvider';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const [showAnalytics, setShowAnalytics] = useState(false);
-  const { isAuthenticated, user } = useAuth();
+  const { session, user } = useAuth();
 
   const handleInterestSelection = (interests: string[]) => {
     setSelectedInterests(interests);
@@ -56,11 +56,11 @@ const Index = () => {
           <EnhancedHeroSection />
           
           {/* Show welcome message for authenticated users */}
-          {isAuthenticated && user && (
+          {session && user && (
             <div className="container mx-auto px-4 py-8">
               <div className="text-center bg-gradient-to-r from-web3-cyan/10 to-web3-purple/10 border border-web3-cyan/20 rounded-lg p-6 mb-8">
                 <h2 className="text-2xl font-bold text-white mb-2">
-                  Welcome back, {user.profile?.name || user.email?.split('@')[0]}!
+                  Welcome back, {user.email?.split('@')[0]}!
                 </h2>
                 <p className="text-gray-300 mb-4">
                   Ready to continue your creative journey? Access your dashboard or explore new features.
@@ -160,7 +160,7 @@ const Index = () => {
         </section>
         
         {/* Interactive Analytics Section */}
-        {isAuthenticated && (
+        {session && (
           <section id="analytics" className="pt-20 bg-gradient-to-br from-slate-950 via-gray-900 to-black">
             <div className="container mx-auto px-4 py-16">
               <div className="text-center mb-12">

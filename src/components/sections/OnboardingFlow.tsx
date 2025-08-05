@@ -5,7 +5,7 @@ import { Web3UpgradePrompt } from '@/components/auth/Web3UpgradePrompt';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { useAuth } from '@/services/auth';
+import { useAuth } from '@/components/auth/AuthProvider';
 import {
   Palette,
   BookOpen,
@@ -56,7 +56,7 @@ export const OnboardingFlow = () => {
   // Replace old step logic: step 0 → Studio Interest, step 1 → Role, etc.
   const [step, setStep] = useState(0);
   const [showUpgradePrompt, setShowUpgradePrompt] = useState(false);
-  const auth = useAuth();
+  const { session, user } = useAuth();
 
   // Step 0: User selects a Creator Studio interest (first-time users)
   if (step === 0) {
@@ -143,13 +143,13 @@ export const OnboardingFlow = () => {
   }
 
   // Step 3: Explore/first actions
-  if (step === 3 && auth.isAuthenticated) {
+  if (step === 3 && session) {
     return (
       <section className="py-20 min-h-[70vh] flex items-center">
         <div className="container mx-auto px-4 max-w-2xl">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-3">
-              {afterAuthWelcome(role, auth.user?.profile?.name)}
+              {afterAuthWelcome(role, user?.email?.split('@')[0])}
             </h2>
             <p className="text-muted-foreground md:text-lg max-w-xl mx-auto">
               {afterAuthSubtitle(role)}

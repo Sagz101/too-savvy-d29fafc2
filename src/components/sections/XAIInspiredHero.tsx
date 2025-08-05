@@ -3,7 +3,7 @@ import { useInView } from 'react-intersection-observer';
 import { Link, useNavigate } from 'react-router-dom';
 import { Sparkles, Shield, Users, Zap, X, UserPlus, ArrowRight, Star, Check, Globe, TrendingUp, Wallet } from 'lucide-react';
 import { useWallet } from '@/services/wallet';
-import { useAuth } from '@/services/auth';
+import { useAuth } from '@/components/auth/AuthProvider';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
 import { CircularMeerkats } from '@/components/ui/circular-meerkats';
 import { InteroperabilityBadges } from '@/components/ui/interoperability-badges';
@@ -17,7 +17,7 @@ export const XAIInspiredHero: React.FC = () => {
   
   // Wallet and auth hooks
   const { wallet, connectWallet, isConnecting } = useWallet();
-  const { isAuthenticated, signUpWithEmail } = useAuth();
+  const { session } = useAuth();
 
   const handleSectionNavigation = (sectionId: string) => {
     smoothScrollToSection(sectionId);
@@ -38,7 +38,7 @@ export const XAIInspiredHero: React.FC = () => {
   };
 
   const handleCreateAccount = () => {
-    if (isAuthenticated) {
+    if (session) {
       navigate('/creator-studio');
       toast.success("Welcome back!", {
         description: "Redirecting to your Creator Studio..."
@@ -182,7 +182,7 @@ export const XAIInspiredHero: React.FC = () => {
             >
               <span className="relative z-10 flex items-center gap-3">
                 <UserPlus size={24} />
-                {isAuthenticated ? 'Go to Studio' : 'Create Your Account'}
+                {session ? 'Go to Studio' : 'Create Your Account'}
                 <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-300" />
               </span>
             </button>
