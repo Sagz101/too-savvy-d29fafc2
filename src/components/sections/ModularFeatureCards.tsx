@@ -129,7 +129,88 @@ export const ModularFeatureCards: React.FC<ModularFeatureCardsProps> = ({
         )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      {/* Desktop: Horizontal Scrollable Carousel */}
+      <div className="hidden lg:block mb-12">
+        <div className="flex gap-6 overflow-x-auto pb-4 scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-web3-cyan">
+          {modules.map((module) => {
+            const IconComponent = module.icon;
+            const isSelected = selectedModules.includes(module.id);
+            const isExpanded = expandedCard === module.id;
+          
+            return (
+              <Card
+                key={module.id}
+                className={`flex-shrink-0 w-80 relative overflow-hidden transition-all duration-300 cursor-pointer hover:scale-105 ${
+                  isSelected 
+                    ? 'ring-2 ring-web3-cyan bg-web3-cyan/5' 
+                    : 'bg-background/40 backdrop-blur-sm hover:bg-background/60'
+                } ${isExpanded ? 'w-96' : ''}`}
+                onClick={() => handleCardExpand(module.id)}
+              >
+              <CardHeader className="pb-3">
+                <div className="flex items-center justify-between mb-3">
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${module.gradient} flex items-center justify-center`}>
+                    <IconComponent size={24} className="text-white" />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Badge variant="outline" className="text-xs">
+                      <TrendingUp size={12} className="mr-1" />
+                      {module.trendScore}%
+                    </Badge>
+                    <Badge variant="outline" className="text-xs text-green-400 border-green-400/30">
+                      <Zap size={12} className="mr-1" />
+                      {module.gasEstimate}
+                    </Badge>
+                  </div>
+                </div>
+                
+                <CardTitle className="text-lg font-semibold text-white">
+                  {module.title}
+                </CardTitle>
+                <p className="text-sm text-gray-300">{module.description}</p>
+              </CardHeader>
+              
+              {isExpanded && (
+                <CardContent className="pt-0">
+                  <div className="space-y-3">
+                    <h4 className="font-medium text-white flex items-center gap-2">
+                      <Shield size={16} className="text-web3-cyan" />
+                      Key Features
+                    </h4>
+                    <ul className="space-y-2">
+                      {module.features.map((feature, index) => (
+                        <li key={index} className="text-sm text-gray-300 flex items-center gap-2">
+                          <div className="w-1.5 h-1.5 bg-web3-cyan rounded-full" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    <Button
+                      className={`w-full mt-4 ${
+                        isSelected 
+                          ? 'bg-web3-cyan text-cosmic-deep hover:bg-web3-cyan/90'
+                          : 'bg-gradient-to-r from-web3-cyan to-web3-purple hover:opacity-90'
+                      }`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleModuleToggle(module.id);
+                      }}
+                    >
+                      {isSelected ? 'Selected' : 'Add to Toolkit'}
+                      <ArrowRight size={16} className="ml-2" />
+                    </Button>
+                  </div>
+                </CardContent>
+              )}
+              </Card>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Mobile & Tablet: Grid Layout */}
+      <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         {modules.map((module) => {
           const IconComponent = module.icon;
           const isSelected = selectedModules.includes(module.id);
@@ -142,7 +223,7 @@ export const ModularFeatureCards: React.FC<ModularFeatureCardsProps> = ({
                 isSelected 
                   ? 'ring-2 ring-web3-cyan bg-web3-cyan/5' 
                   : 'bg-background/40 backdrop-blur-sm hover:bg-background/60'
-              } ${isExpanded ? 'md:col-span-2 lg:col-span-1' : ''}`}
+              }`}
               onClick={() => handleCardExpand(module.id)}
             >
               <CardHeader className="pb-3">

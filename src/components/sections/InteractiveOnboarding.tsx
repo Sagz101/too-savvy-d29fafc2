@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import { TimelineStepper } from '@/components/ui/timeline-stepper';
 import { 
   Users, 
   Trophy, 
@@ -86,7 +87,59 @@ export const InteractiveOnboarding: React.FC<InteractiveOnboardingProps> = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      {/* Desktop Timeline View */}
+      <div className="hidden lg:block mb-12">
+        <TimelineStepper 
+          steps={onboardingSteps.map((step, index) => ({
+            title: step.title,
+            description: step.description,
+            completed: step.completed,
+            current: currentStep === index
+          }))}
+          orientation="horizontal"
+          className="max-w-5xl mx-auto"
+        />
+        
+        {/* XP and Badges Display */}
+        <div className="grid grid-cols-4 gap-6 mt-8 max-w-5xl mx-auto">
+          {onboardingSteps.map((step, index) => (
+            <Card
+              key={index}
+              className={`text-center transition-all duration-300 ${
+                step.completed 
+                  ? 'bg-web3-green/10 border-web3-green/30' 
+                  : currentStep === index
+                  ? 'bg-web3-cyan/10 border-web3-cyan/30'
+                  : 'bg-background/40 backdrop-blur-sm'
+              }`}
+            >
+              <CardContent className="p-4">
+                <Badge variant="outline" className="mb-2">
+                  <Zap size={10} className="mr-1" />
+                  +{step.xpReward} XP
+                </Badge>
+                {step.completed ? (
+                  <div className="flex items-center justify-center gap-2 text-web3-green text-sm">
+                    <Trophy size={16} />
+                    <span>{step.badge}</span>
+                  </div>
+                ) : (
+                  <Button 
+                    size="sm" 
+                    className="w-full"
+                    variant={currentStep === index ? "default" : "outline"}
+                  >
+                    {currentStep === index ? 'Current' : 'Start'}
+                  </Button>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
+      {/* Mobile/Tablet Card Grid */}
+      <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         {onboardingSteps.map((step, index) => (
           <Card
             key={index}
