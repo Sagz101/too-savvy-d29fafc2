@@ -11,6 +11,7 @@ import { VideoStudioHub } from '@/components/video/VideoStudioHub';
 import { NeuraSocialHub } from '@/components/social/NeuraSocialHub';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 import { 
   Video, 
   Mic, 
@@ -20,7 +21,8 @@ import {
   Users, 
   ArrowLeft,
   Wallet,
-  Zap
+  Zap,
+  CheckCircle
 } from 'lucide-react';
 
 const StudioDashboard = () => {
@@ -29,6 +31,23 @@ const StudioDashboard = () => {
   const { isConnected } = useAccount();
   const { connect, connectors, isPending } = useConnect();
   const [activeModule, setActiveModule] = useState<string | null>(null);
+
+  // Get selected modules from URL parameters and map to studio module IDs
+  const selectedModulesFromUrl = searchParams.get('modules')?.split(',') || [];
+  
+  // Map ModularFeatureCards IDs to StudioDashboard module IDs
+  const moduleMapping: { [key: string]: string } = {
+    'video': 'video-studio',
+    'music': 'podcast-studio', 
+    'commerce': 'store-builder',
+    'writing': 'threaditor',
+    'social': 'neura-social',
+    'ai': 'global-innovators' // closest match for AI functionality
+  };
+  
+  const mappedSelectedModules = selectedModulesFromUrl
+    .map(moduleId => moduleMapping[moduleId])
+    .filter(Boolean);
 
   useEffect(() => {
     const module = searchParams.get('module');
@@ -192,7 +211,12 @@ const StudioDashboard = () => {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-4xl font-bold text-white mb-2">Creator Studio Dashboard</h1>
-            <p className="text-white/70">Welcome to your Web3 creative workspace</p>
+            <p className="text-white/70">
+              {mappedSelectedModules.length > 0 
+                ? `Welcome! Here are your ${mappedSelectedModules.length} selected module${mappedSelectedModules.length > 1 ? 's' : ''}.`
+                : 'Welcome to your Web3 creative workspace'
+              }
+            </p>
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-400/20 to-green-500/20 rounded-full border border-emerald-400/30">
@@ -210,42 +234,78 @@ const StudioDashboard = () => {
           </div>
         </div>
 
+        {/* Show selected modules if coming from feature cards */}
+        {mappedSelectedModules.length > 0 && (
+          <div className="mb-8 p-4 bg-cyan-400/10 border border-cyan-400/20 rounded-lg">
+            <div className="flex items-center gap-2 mb-3">
+              <CheckCircle className="w-5 h-5 text-cyan-400" />
+              <h3 className="font-semibold text-cyan-400">Your Selected Modules</h3>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {mappedSelectedModules.map(moduleId => {
+                const module = modules.find(m => m.id === moduleId);
+                return module ? (
+                  <Badge 
+                    key={moduleId}
+                    className="bg-cyan-400/20 text-cyan-400 border-cyan-400/30"
+                  >
+                    {module.title}
+                  </Badge>
+                ) : null;
+              })}
+            </div>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {modules.map((module) => (
-            <Card 
-              key={module.id}
-              className="group relative bg-gradient-to-br from-slate-800/90 to-gray-800/90 border border-cyan-400/20 backdrop-blur-xl hover:shadow-2xl hover:shadow-cyan-400/20 transition-all duration-300 hover:scale-105 cursor-pointer"
-              onClick={() => setActiveModule(module.id)}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${module.gradient} opacity-0 group-hover:opacity-10 transition-all duration-300 rounded-xl`}></div>
-              
-              <CardContent className="p-8 relative z-10">
-                <div className={`p-4 rounded-2xl bg-gradient-to-r ${module.gradient} w-fit mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  {module.icon}
-                </div>
+          {modules.map((module) => {
+            const isSelected = mappedSelectedModules.includes(module.id);
+            
+            return (
+              <Card 
+                key={module.id}
+                className={`group relative bg-gradient-to-br from-slate-800/90 to-gray-800/90 backdrop-blur-xl hover:shadow-2xl hover:shadow-cyan-400/20 transition-all duration-300 hover:scale-105 cursor-pointer ${
+                  isSelected ? 'ring-2 ring-cyan-400 border-cyan-400/50' : 'border border-cyan-400/20'
+                }`}
+                onClick={() => setActiveModule(module.id)}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${module.gradient} opacity-0 group-hover:opacity-10 transition-all duration-300 rounded-xl`}></div>
                 
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-100 transition-colors">
-                  {module.title}
-                </h3>
-                
-                <p className="text-white/70 mb-6 group-hover:text-white/90 transition-colors">
-                  {module.description}
-                </p>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-sm text-white/60">
-                    <Zap className="w-4 h-4" />
-                    Ready to Launch
+                <CardContent className="p-8 relative z-10">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className={`p-4 rounded-2xl bg-gradient-to-r ${module.gradient} w-fit group-hover:scale-110 transition-transform duration-300`}>
+                      {module.icon}
+                    </div>
+                    {isSelected && (
+                      <Badge className="bg-cyan-400/20 text-cyan-400 border-cyan-400/30">
+                        Selected
+                      </Badge>
+                    )}
                   </div>
-                  <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
-                    <Button size="sm" className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:from-cyan-300 hover:to-blue-400">
-                      Launch Studio
-                    </Button>
+                  
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-100 transition-colors">
+                    {module.title}
+                  </h3>
+                  
+                  <p className="text-white/70 mb-6 group-hover:text-white/90 transition-colors">
+                    {module.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm text-white/60">
+                      <Zap className="w-4 h-4" />
+                      Ready to Launch
+                    </div>
+                    <div className="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-4 group-hover:translate-x-0">
+                      <Button size="sm" className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white hover:from-cyan-300 hover:to-blue-400">
+                        Launch Studio
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </div>

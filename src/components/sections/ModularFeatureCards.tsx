@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 import { 
   Video, 
   Music, 
@@ -18,11 +19,14 @@ import {
 
 interface ModularFeatureCardsProps {
   onInterestSelect: (interests: string[]) => void;
+  onContinue?: () => void;
 }
 
 export const ModularFeatureCards: React.FC<ModularFeatureCardsProps> = ({ 
-  onInterestSelect 
+  onInterestSelect,
+  onContinue 
 }) => {
+  const navigate = useNavigate();
   const [selectedModules, setSelectedModules] = useState<string[]>([]);
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
 
@@ -100,6 +104,16 @@ export const ModularFeatureCards: React.FC<ModularFeatureCardsProps> = ({
 
   const handleCardExpand = (moduleId: string) => {
     setExpandedCard(expandedCard === moduleId ? null : moduleId);
+  };
+
+  const handleContinue = () => {
+    if (onContinue) {
+      onContinue();
+    } else {
+      // Navigate to studio dashboard with selected modules
+      const moduleParams = selectedModules.length > 0 ? `?modules=${selectedModules.join(',')}` : '';
+      navigate(`/studio${moduleParams}`);
+    }
   };
 
   return (
@@ -291,6 +305,7 @@ export const ModularFeatureCards: React.FC<ModularFeatureCardsProps> = ({
         <div className="text-center">
           <Button
             size="lg"
+            onClick={handleContinue}
             className="bg-gradient-to-r from-web3-cyan to-web3-purple hover:opacity-90 text-white font-semibold px-8 py-4"
           >
             Continue with {selectedModules.length} Module{selectedModules.length > 1 ? 's' : ''}
