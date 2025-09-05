@@ -10,15 +10,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "grok-button-primary organic-button",
+        default: "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:from-primary/90 hover:to-accent/90 shadow-lg hover:shadow-xl glow-effect organic-button wobbly-hover",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-lg wobbly-hover",
+          "bg-gradient-to-r from-destructive to-red-600 text-destructive-foreground hover:from-destructive/90 hover:to-red-600/90 shadow-lg wobbly-hover",
         outline:
-          "grok-button-secondary border bubble-hover",
+          "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground shadow-md hover:shadow-lg bubble-hover glow-border",
         secondary:
-          "grok-button-secondary bubble-hover",
-        ghost: "text-foreground hover:bg-card/60 hover:text-foreground playful-nav",
-        link: "text-primary underline-offset-4 hover:underline playful-nav",
+          "bg-gradient-to-r from-secondary to-purple-600 text-secondary-foreground hover:from-secondary/90 hover:to-purple-600/90 shadow-md hover:shadow-lg bubble-hover",
+        ghost: "text-primary hover:bg-primary/10 hover:text-primary playful-nav glow-text",
+        link: "text-primary underline-offset-4 hover:underline playful-nav glow-text",
       },
       size: {
         default: "h-10 px-4 py-2",
