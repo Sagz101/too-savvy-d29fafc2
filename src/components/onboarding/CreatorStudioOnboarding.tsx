@@ -51,14 +51,57 @@ export const CreatorStudioOnboarding = () => {
   ];
 
   const countries = [
-    { code: 'US', name: 'United States' },
-    { code: 'UK', name: 'United Kingdom' },
-    { code: 'CA', name: 'Canada' },
-    { code: 'AU', name: 'Australia' },
-    { code: 'DE', name: 'Germany' },
-    { code: 'FR', name: 'France' },
-    { code: 'JP', name: 'Japan' },
-    { code: 'IN', name: 'India' }
+    { code: 'US', name: 'United States', currency: 'USD', methods: ['Visa', 'Mastercard', 'American Express', 'Discover'] },
+    { code: 'CA', name: 'Canada', currency: 'CAD', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'UK', name: 'United Kingdom', currency: 'GBP', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'AU', name: 'Australia', currency: 'AUD', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'DE', name: 'Germany', currency: 'EUR', methods: ['Visa', 'Mastercard', 'American Express', 'SEPA'] },
+    { code: 'FR', name: 'France', currency: 'EUR', methods: ['Visa', 'Mastercard', 'American Express', 'SEPA'] },
+    { code: 'IT', name: 'Italy', currency: 'EUR', methods: ['Visa', 'Mastercard', 'American Express', 'SEPA'] },
+    { code: 'ES', name: 'Spain', currency: 'EUR', methods: ['Visa', 'Mastercard', 'American Express', 'SEPA'] },
+    { code: 'NL', name: 'Netherlands', currency: 'EUR', methods: ['Visa', 'Mastercard', 'American Express', 'iDEAL'] },
+    { code: 'JP', name: 'Japan', currency: 'JPY', methods: ['Visa', 'Mastercard', 'JCB', 'American Express'] },
+    { code: 'KR', name: 'South Korea', currency: 'KRW', methods: ['Visa', 'Mastercard', 'Union Pay'] },
+    { code: 'CN', name: 'China', currency: 'CNY', methods: ['Union Pay', 'Visa', 'Mastercard'] },
+    { code: 'HK', name: 'Hong Kong', currency: 'HKD', methods: ['Visa', 'Mastercard', 'Union Pay', 'American Express'] },
+    { code: 'SG', name: 'Singapore', currency: 'SGD', methods: ['Visa', 'Mastercard', 'American Express', 'Union Pay'] },
+    { code: 'IN', name: 'India', currency: 'INR', methods: ['Visa', 'Mastercard', 'RuPay', 'American Express'] },
+    { code: 'BR', name: 'Brazil', currency: 'BRL', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'MX', name: 'Mexico', currency: 'MXN', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'AR', name: 'Argentina', currency: 'ARS', methods: ['Visa', 'Mastercard'] },
+    { code: 'ZA', name: 'South Africa', currency: 'ZAR', methods: ['Visa', 'Mastercard'] },
+    { code: 'AE', name: 'United Arab Emirates', currency: 'AED', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'SA', name: 'Saudi Arabia', currency: 'SAR', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'EG', name: 'Egypt', currency: 'EGP', methods: ['Visa', 'Mastercard'] },
+    { code: 'NG', name: 'Nigeria', currency: 'NGN', methods: ['Visa', 'Mastercard'] },
+    { code: 'KE', name: 'Kenya', currency: 'KES', methods: ['Visa', 'Mastercard'] },
+    { code: 'SE', name: 'Sweden', currency: 'SEK', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'NO', name: 'Norway', currency: 'NOK', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'DK', name: 'Denmark', currency: 'DKK', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'FI', name: 'Finland', currency: 'EUR', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'CH', name: 'Switzerland', currency: 'CHF', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'AT', name: 'Austria', currency: 'EUR', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'BE', name: 'Belgium', currency: 'EUR', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'PT', name: 'Portugal', currency: 'EUR', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'IE', name: 'Ireland', currency: 'EUR', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'NZ', name: 'New Zealand', currency: 'NZD', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'MY', name: 'Malaysia', currency: 'MYR', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'TH', name: 'Thailand', currency: 'THB', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'ID', name: 'Indonesia', currency: 'IDR', methods: ['Visa', 'Mastercard'] },
+    { code: 'PH', name: 'Philippines', currency: 'PHP', methods: ['Visa', 'Mastercard'] },
+    { code: 'VN', name: 'Vietnam', currency: 'VND', methods: ['Visa', 'Mastercard'] },
+    { code: 'TW', name: 'Taiwan', currency: 'TWD', methods: ['Visa', 'Mastercard', 'Union Pay'] },
+    { code: 'CL', name: 'Chile', currency: 'CLP', methods: ['Visa', 'Mastercard'] },
+    { code: 'CO', name: 'Colombia', currency: 'COP', methods: ['Visa', 'Mastercard'] },
+    { code: 'PE', name: 'Peru', currency: 'PEN', methods: ['Visa', 'Mastercard'] },
+    { code: 'RU', name: 'Russia', currency: 'RUB', methods: ['Visa', 'Mastercard', 'Mir'] },
+    { code: 'TR', name: 'Turkey', currency: 'TRY', methods: ['Visa', 'Mastercard'] },
+    { code: 'IL', name: 'Israel', currency: 'ILS', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'GR', name: 'Greece', currency: 'EUR', methods: ['Visa', 'Mastercard', 'American Express'] },
+    { code: 'CZ', name: 'Czech Republic', currency: 'CZK', methods: ['Visa', 'Mastercard'] },
+    { code: 'PL', name: 'Poland', currency: 'PLN', methods: ['Visa', 'Mastercard'] },
+    { code: 'HU', name: 'Hungary', currency: 'HUF', methods: ['Visa', 'Mastercard'] },
+    { code: 'RO', name: 'Romania', currency: 'RON', methods: ['Visa', 'Mastercard'] }
   ];
 
   const handleRegister = (e: React.FormEvent) => {
@@ -336,42 +379,142 @@ export const CreatorStudioOnboarding = () => {
                 </div>
               ) : (
                 <>
-                  <div className="mb-4">
-                    <label className="block text-white mb-2 flex items-center gap-2">
+                  <div className="mb-6">
+                    <label className="block text-white mb-3 flex items-center gap-2">
                       <Globe className="w-4 h-4" />
                       Country of Residence
                     </label>
                     <select
                       value={user.country}
                       onChange={(e) => setUser({ ...user, country: e.target.value })}
-                      className="w-full p-3 bg-slate-700/50 border border-gray-600 rounded-lg text-white"
+                      className="w-full p-3 bg-slate-700/50 border border-gray-600 rounded-lg text-white focus:border-cyan-400 focus:outline-none transition-colors"
                       required
                     >
-                      <option value="">Select Country</option>
+                      <option value="">Select Your Country</option>
                       {countries.map((country) => (
                         <option key={country.code} value={country.code}>
-                          {country.name}
+                          {country.name} ({country.currency})
                         </option>
                       ))}
                     </select>
                   </div>
+
+                  {user.country && (
+                    <div className="mb-6">
+                      <h3 className="text-white mb-3 font-medium">Available Payment Methods</h3>
+                      <div className="grid grid-cols-2 gap-3">
+                        {countries.find(c => c.code === user.country)?.methods.map((method) => (
+                          <div
+                            key={method}
+                            className="p-3 bg-slate-700/30 border border-gray-600 rounded-lg text-center"
+                          >
+                            <div className="w-8 h-5 mx-auto mb-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded flex items-center justify-center">
+                              <span className="text-xs font-bold text-white">
+                                {method === 'Visa' && '💳'}
+                                {method === 'Mastercard' && '🔴'}
+                                {method === 'American Express' && '🔵'}
+                                {method === 'Union Pay' && '🟡'}
+                                {method === 'JCB' && '🟢'}
+                                {method === 'Discover' && '🟠'}
+                                {method === 'SEPA' && '🏦'}
+                                {method === 'iDEAL' && '🇳🇱'}
+                                {method === 'RuPay' && '🇮🇳'}
+                                {method === 'Mir' && '🇷🇺'}
+                                {!['Visa', 'Mastercard', 'American Express', 'Union Pay', 'JCB', 'Discover', 'SEPA', 'iDEAL', 'RuPay', 'Mir'].includes(method) && '💳'}
+                              </span>
+                            </div>
+                            <span className="text-sm text-gray-300">{method}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   
-                  <p className="text-gray-300 mb-4">Select a payment method:</p>
-                  <div className="space-y-3">
-                    <Button
-                      onClick={() => handlePaymentSetup('PayPal')}
-                      disabled={!user.country}
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50"
-                    >
-                      Set Up PayPal
-                    </Button>
-                    <Button
-                      onClick={() => handlePaymentSetup('Stripe')}
-                      disabled={!user.country}
-                      className="w-full bg-indigo-600 hover:bg-indigo-700 text-white disabled:opacity-50"
-                    >
-                      Set Up Stripe
-                    </Button>
+                  <div className="space-y-4">
+                    <h3 className="text-white font-medium">Choose Payment Processor</h3>
+                    
+                    <div className="space-y-3">
+                      <div className="p-4 border border-gray-600 rounded-lg hover:border-cyan-400/50 transition-colors">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-12 h-8 bg-gradient-to-r from-indigo-500 to-purple-600 rounded flex items-center justify-center">
+                              <span className="text-white font-bold text-sm">S</span>
+                            </div>
+                            <div>
+                              <h4 className="text-white font-medium">Stripe</h4>
+                              <p className="text-sm text-gray-400">Global payment processing</p>
+                            </div>
+                          </div>
+                          <Button
+                            onClick={() => handlePaymentSetup('Stripe')}
+                            disabled={!user.country}
+                            className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white disabled:opacity-50"
+                          >
+                            Set Up Stripe
+                          </Button>
+                        </div>
+                        <div className="text-xs text-gray-400">
+                          Supports: {user.country && countries.find(c => c.code === user.country)?.methods.join(', ')}
+                        </div>
+                      </div>
+
+                      <div className="p-4 border border-gray-600 rounded-lg hover:border-cyan-400/50 transition-colors">
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-12 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded flex items-center justify-center">
+                              <span className="text-white font-bold text-sm">P</span>
+                            </div>
+                            <div>
+                              <h4 className="text-white font-medium">PayPal</h4>
+                              <p className="text-sm text-gray-400">Digital wallet & payments</p>
+                            </div>
+                          </div>
+                          <Button
+                            onClick={() => handlePaymentSetup('PayPal')}
+                            disabled={!user.country}
+                            className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-400 hover:to-blue-500 text-white disabled:opacity-50"
+                          >
+                            Set Up PayPal
+                          </Button>
+                        </div>
+                        <div className="text-xs text-gray-400">
+                          Global coverage with buyer protection
+                        </div>
+                      </div>
+
+                      {user.country === 'CN' && (
+                        <div className="p-4 border border-gray-600 rounded-lg hover:border-cyan-400/50 transition-colors">
+                          <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-3">
+                              <div className="w-12 h-8 bg-gradient-to-r from-red-500 to-red-600 rounded flex items-center justify-center">
+                                <span className="text-white font-bold text-sm">支</span>
+                              </div>
+                              <div>
+                                <h4 className="text-white font-medium">Alipay</h4>
+                                <p className="text-sm text-gray-400">China's leading payment platform</p>
+                              </div>
+                            </div>
+                            <Button
+                              onClick={() => handlePaymentSetup('Alipay')}
+                              className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-400 hover:to-red-500 text-white"
+                            >
+                              Set Up Alipay
+                            </Button>
+                          </div>
+                          <div className="text-xs text-gray-400">
+                            Optimized for Chinese market
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {!user.country && (
+                      <div className="text-center p-4 bg-yellow-500/10 border border-yellow-400/30 rounded-lg">
+                        <p className="text-yellow-300 text-sm">
+                          Please select your country to see available payment methods
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </>
               )}
