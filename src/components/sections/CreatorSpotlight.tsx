@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -223,9 +224,12 @@ export const CreatorSpotlight: React.FC = () => {
             <Button
               size="lg"
               className="bg-gradient-to-r from-web3-cyan to-web3-purple hover:opacity-90 text-white font-semibold mb-4"
+              asChild
             >
-              Join Community
-              <ExternalLink size={20} className="ml-2" />
+              <Link to="/neura-social">
+                Join Community
+                <ExternalLink size={20} className="ml-2" />
+              </Link>
             </Button>
             <div className="text-sm text-gray-400">
               Get exclusive insights and early access to new features

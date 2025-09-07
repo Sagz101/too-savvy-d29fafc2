@@ -214,14 +214,14 @@ export const Web3Glossary: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Badge 
                 className="bg-cyan-400/10 text-cyan-400 border-cyan-400/30 cursor-pointer hover:bg-cyan-400/20 transition-colors px-4 py-2"
-                onClick={() => window.open('#tutorials', '_blank')}
+                onClick={() => window.open('/learn', '_blank')}
               >
                 <ExternalLink size={14} className="mr-2" />
                 Video Tutorials
               </Badge>
               <Badge 
                 className="bg-blue-400/10 text-blue-400 border-blue-400/30 cursor-pointer hover:bg-blue-400/20 transition-colors px-4 py-2"
-                onClick={() => window.open('#community', '_blank')}
+                onClick={() => window.open('/neura-social', '_blank')}
               >
                 <ExternalLink size={14} className="mr-2" />
                 Community Support

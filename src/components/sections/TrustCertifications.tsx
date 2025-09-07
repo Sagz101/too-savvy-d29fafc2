@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -26,7 +27,7 @@ export const TrustCertifications: React.FC = () => {
         status: 'Verified',
         description: 'Smart contracts audited by leading blockchain security firm',
         id: 'TSV-2024-001',
-        link: '#',
+        link: '/whitepaper',
         color: 'text-green-400'
       },
       {
@@ -35,7 +36,7 @@ export const TrustCertifications: React.FC = () => {
         status: 'Active',
         description: '3/5 multi-signature wallet for community funds',
         id: 'MSIG-001',
-        link: '#',
+        link: '/finance-hub',
         color: 'text-blue-400'
       }
     ],
@@ -46,7 +47,7 @@ export const TrustCertifications: React.FC = () => {
         status: 'Certified',
         description: '100% renewable energy for all operations',
         id: 'CN-2024-001',
-        link: '#',
+        link: '/whitepaper',
         color: 'text-green-400'
       },
       {
@@ -55,7 +56,7 @@ export const TrustCertifications: React.FC = () => {
         status: 'Verified',
         description: 'Environmental, Social, and Governance standards met',
         id: 'ESG-001',
-        link: '#',
+        link: '/whitepaper',
         color: 'text-purple-400'
       }
     ],
@@ -66,7 +67,7 @@ export const TrustCertifications: React.FC = () => {
         status: 'Live',
         description: 'Real-time view of platform treasury and fund allocation',
         id: 'TREAS-001',
-        link: '#',
+        link: '/finance-hub',
         color: 'text-cyan-400'
       },
       {
@@ -75,7 +76,7 @@ export const TrustCertifications: React.FC = () => {
         status: 'Public',
         description: 'Open dashboard of platform performance and growth',
         id: 'PERF-001',
-        link: '#',
+        link: '/studio',
         color: 'text-orange-400'
       }
     ]
@@ -175,9 +176,12 @@ export const TrustCertifications: React.FC = () => {
                     size="sm"
                     variant="ghost"
                     className="text-web3-cyan hover:bg-web3-cyan/10"
+                    asChild
                   >
-                    View Report
-                    <ExternalLink size={14} className="ml-1" />
+                    <Link to={cert.link}>
+                      View Report
+                      <ExternalLink size={14} className="ml-1" />
+                    </Link>
                   </Button>
                 </div>
               </CardContent>
@@ -202,9 +206,12 @@ export const TrustCertifications: React.FC = () => {
           <Button
             size="lg"
             className="bg-gradient-to-r from-web3-purple to-web3-cyan hover:opacity-90 text-white font-semibold"
+            asChild
           >
-            Join DAO Governance
-            <ExternalLink size={20} className="ml-2" />
+            <Link to="/global-innovators">
+              Join DAO Governance
+              <ExternalLink size={20} className="ml-2" />
+            </Link>
           </Button>
         </div>
       </div>

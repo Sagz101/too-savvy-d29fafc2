@@ -147,7 +147,7 @@ export const Footer = () => {
                 Terms of Service
               </Link>
               <Link 
-                to="/learn" 
+                to="/whitepaper" 
                 className="text-muted-foreground hover:text-foreground transition-colors"
                 aria-label="Read whitepaper"
               >

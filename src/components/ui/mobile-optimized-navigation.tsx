@@ -121,15 +121,17 @@ export const MobileOptimizedNavigation: React.FC<MobileOptimizedNavigationProps>
             <Button 
               className="w-full touch-target bg-web3-cyan text-cosmic-deep hover:bg-web3-cyan/90"
               onClick={() => setIsOpen(false)}
+              asChild
             >
-              Get Started
+              <Link to="/onboarding">Get Started</Link>
             </Button>
             <Button 
               variant="outline" 
               className="w-full touch-target border-white/20 text-white hover:bg-white/5"
               onClick={() => setIsOpen(false)}
+              asChild
             >
-              View Whitepaper
+              <Link to="/whitepaper">View Whitepaper</Link>
             </Button>
           </div>
         </SheetContent>

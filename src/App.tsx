@@ -74,8 +74,8 @@ const App = () => (
               <Route path="/neura-social" element={<NeuraSocial />} />
               <Route path="/neurapathy" element={<Neurapathy />} />
               <Route path="/whitepaper" element={<Whitepaper />} />
-              <Route path="/privacy" element={<Learn />} />
-              <Route path="/terms" element={<Learn />} />
+              <Route path="/privacy" element={<Whitepaper />} />
+              <Route path="/terms" element={<Whitepaper />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
                 <AIChatbot />
