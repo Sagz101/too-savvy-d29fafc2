@@ -66,7 +66,7 @@ export const TimelineStepper: React.FC<TimelineStepperProps> = ({
   return (
     <div className={`flex items-center justify-between ${className}`}>
       {steps.map((step, index) => (
-        <React.Fragment key={index}>
+        <div key={index} className="contents">
           <div className="flex flex-col items-center text-center flex-1">
             {/* Step Icon */}
             <div className={`w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-300 mb-3 ${
@@ -106,7 +106,7 @@ export const TimelineStepper: React.FC<TimelineStepperProps> = ({
               steps[index + 1].completed ? 'bg-web3-green' : 'bg-gray-600'
             }`} />
           )}
-        </React.Fragment>
+        </div>
       ))}
     </div>
   );

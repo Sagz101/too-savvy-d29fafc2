@@ -36,6 +36,8 @@ import StreamingDashboard from "./pages/StreamingDashboard";
 import NeuraSocial from "./pages/NeuraSocial";
 import Neurapathy from "./pages/Neurapathy";
 import Whitepaper from "./pages/Whitepaper";
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
 
 const App = () => (
   <AuthProvider>
@@ -76,6 +78,8 @@ const App = () => (
               <Route path="/whitepaper" element={<Whitepaper />} />
               <Route path="/privacy" element={<Whitepaper />} />
               <Route path="/terms" element={<Whitepaper />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/settings" element={<Settings />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
                 <AIChatbot />
