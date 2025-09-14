@@ -10,13 +10,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:from-primary/90 hover:to-accent/90 shadow-lg hover:shadow-xl glow-effect organic-button wobbly-hover",
+        default: "bg-gradient-to-r from-primary via-secondary to-accent text-primary-foreground hover:from-primary/90 hover:via-secondary/90 hover:to-accent/90 shadow-lg hover:shadow-xl glow-effect organic-button wobbly-hover",
         destructive:
-          "bg-gradient-to-r from-destructive to-red-600 text-destructive-foreground hover:from-destructive/90 hover:to-red-600/90 shadow-lg wobbly-hover",
+          "bg-gradient-to-r from-destructive to-red-500 text-destructive-foreground hover:from-destructive/90 hover:to-red-500/90 shadow-lg wobbly-hover",
         outline:
-          "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground shadow-md hover:shadow-lg bubble-hover glow-border",
+          "border-2 border-primary bg-background text-primary hover:bg-primary hover:text-primary-foreground shadow-md hover:shadow-lg bubble-hover glow-border",
         secondary:
-          "bg-gradient-to-r from-secondary to-purple-600 text-secondary-foreground hover:from-secondary/90 hover:to-purple-600/90 shadow-md hover:shadow-lg bubble-hover",
+          "bg-gradient-to-r from-secondary to-accent text-secondary-foreground hover:from-secondary/90 hover:to-accent/90 shadow-md hover:shadow-lg bubble-hover",
         ghost: "text-primary hover:bg-primary/10 hover:text-primary playful-nav glow-text",
         link: "text-primary underline-offset-4 hover:underline playful-nav glow-text",
       },
