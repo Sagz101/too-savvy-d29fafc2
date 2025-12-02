@@ -1,10 +1,10 @@
-# Contributing to T00 Savvy
+# Contributing to Diminga
 
 ## Development Workflow
 
 ### Modified GitHub Flow with Environment Branches
 
-T00 Savvy uses a modified GitHub Flow with environment branches optimized for Web3 development, multi-chain deployments, and continuous delivery of creator tools.
+Diminga uses a modified GitHub Flow with environment branches optimized for Web3 development, multi-chain deployments, and continuous delivery of creator tools.
 
 #### Branch Structure
 

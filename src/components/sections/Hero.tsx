@@ -86,7 +86,7 @@ export const Hero = () => {
             <div className="mb-12 flex justify-center lg:justify-start">
               <div className="p-8">
                 <h2 className={`text-5xl font-bold font-porscha text-foreground tracking-tight uppercase ${animationStarted ? 'animate-logo-glow' : ''}`}>
-                  T00 SAVVY
+                  DIMINGA
                 </h2>
               </div>
             </div>
@@ -115,7 +115,7 @@ export const Hero = () => {
             
             {/* Enhanced Subtext with fade-in animation */}
             <p className={`text-xl md:text-2xl font-inter text-muted-foreground mb-12 max-w-2xl leading-relaxed font-medium hero-subtext ${animationStarted ? 'animate-subtext-slide' : ''}`}>
-              Shape your digital future with T00 Savvy. Create freely, own your work on the blockchain, and grow your community—without barriers.
+              Shape your digital future with Diminga. Create freely, own your work on the blockchain, and grow your community—without barriers.
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
@@ -216,7 +216,7 @@ export const Hero = () => {
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-sm text-foreground font-medium font-inter">T00 Savvy Creator Dashboard</div>
+              <div className="text-sm text-foreground font-medium font-inter">Diminga Creator Dashboard</div>
               <div className="w-5"></div>
             </div>
             

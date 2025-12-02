@@ -28,7 +28,7 @@ export const ModernHeader: React.FC = () => {
           <Link to="/" className="flex items-center">
             <img 
               src="/lovable-uploads/2e6dc416-59b6-4048-a87d-858554756c11.png" 
-              alt="T00 Savvy Logo" 
+              alt="Diminga Logo" 
               className="w-[300px] h-[75px] object-contain hover:opacity-80 transition-opacity"
             />
           </Link>

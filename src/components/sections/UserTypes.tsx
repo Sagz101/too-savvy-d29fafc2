@@ -16,7 +16,7 @@ export const UserTypes = () => {
       id: 'creators',
       icon: Users,
       title: 'For Creators',
-      description: 'Explore Too Savvy if you\'re interested in Web3, NFTs, or decentralized monetization. Start with the traditional login to test features before diving into Web3-native tools.',
+      description: 'Explore Diminga if you\'re interested in Web3, NFTs, or decentralized monetization. Start with the traditional login to test features before diving into Web3-native tools.',
       features: [
         { icon: Sparkles, text: 'Web3 & NFT monetization' },
         { icon: Sparkles, text: 'Traditional login for testing' },
@@ -50,7 +50,7 @@ export const UserTypes = () => {
       id: 'investors',
       icon: TrendingUp,
       title: 'For Investors',
-      description: 'Monitor Too Savvy\'s adoption metrics (e.g., creator growth, NFT minting volume) and $Neurax token performance to assess its potential in the Web3 creator space.',
+      description: 'Monitor Diminga\'s adoption metrics (e.g., creator growth, NFT minting volume) and $Neurax token performance to assess its potential in the Web3 creator space.',
       features: [
         { icon: BarChart, text: 'Creator growth metrics' },
         { icon: BarChart, text: 'NFT minting volume' },
@@ -134,14 +134,14 @@ export const UserTypes = () => {
               animation: 'gradient-x 3s ease infinite'
             }}
           >
-            Who is T00 Savvy For?
+            Who is Diminga For?
           </ModernHeading>
           
           <ModernText 
             variant="lead" 
             className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
           >
-            Whether you're creating, building, or investing, T00 Savvy provides the tools and insights 
+            Whether you're creating, building, or investing, Diminga provides the tools and insights 
             you need to succeed in the Web3 creator economy.
           </ModernText>
         </div>

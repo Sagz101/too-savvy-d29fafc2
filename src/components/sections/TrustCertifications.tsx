@@ -201,7 +201,7 @@ export const TrustCertifications: React.FC = () => {
           </h3>
           <p className="text-gray-300 mb-6">
             All major platform decisions are voted on by the creator community. 
-            Your voice matters in shaping the future of T00 Savvy.
+            Your voice matters in shaping the future of Diminga.
           </p>
           <Button
             size="lg"

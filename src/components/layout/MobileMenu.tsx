@@ -62,7 +62,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-border/30 bg-gradient-to-r from-primary/5 to-secondary/5">
             <div>
-              <h2 className="text-lg font-semibold text-foreground">T00 Savvy</h2>
+              <h2 className="text-lg font-semibold text-foreground">Diminga</h2>
               <p className="text-sm text-muted-foreground">Web3 Creator Platform</p>
             </div>
             <ModernButton

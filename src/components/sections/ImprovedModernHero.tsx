@@ -73,7 +73,7 @@ export const ImprovedModernHero: React.FC = () => {
     <section 
       ref={heroRef}
       className="relative min-h-screen pt-20 pb-8 sm:pt-24 sm:pb-16 flex items-center overflow-hidden bg-gradient-to-br from-background via-background/95 to-card/10"
-      aria-label="T00 Savvy - Web3 Creator Platform"
+      aria-label="Diminga - Web3 Creator Platform"
     >
       {/* Enhanced Gradient Background with Web3 Visual Elements */}
       <div className="absolute inset-0 -z-10" aria-hidden="true">
@@ -109,7 +109,7 @@ export const ImprovedModernHero: React.FC = () => {
                   className={`text-3xl sm:text-4xl lg:text-5xl font-porscha text-foreground tracking-tight uppercase ${animationStarted ? 'animate-logo-glow' : ''}`}
                   as="h1"
                 >
-                  T00 SAVVY
+                  DIMINGA
                 </ModernHeading>
                 <div className="flex items-center gap-1 bg-primary/10 border border-primary/30 rounded-full px-2 py-1">
                   <CheckCircle size={12} className="text-primary" />
@@ -165,7 +165,7 @@ export const ImprovedModernHero: React.FC = () => {
                 className={`max-w-2xl font-inter font-medium ${animationStarted ? 'animate-subtext-slide' : ''}`}
                 muted
               >
-                Shape your digital future with T00 Savvy. Create freely, own your work on the blockchain, and grow your community—with enterprise-grade security and multi-chain compatibility.
+                Shape your digital future with Diminga. Create freely, own your work on the blockchain, and grow your community—with enterprise-grade security and multi-chain compatibility.
               </ModernText>
 
               {/* Decentralized Benefits Grid */}
@@ -263,7 +263,7 @@ export const ImprovedModernHero: React.FC = () => {
               size="lg"
               className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl border border-primary/20 shadow-2xl"
               role="img"
-              aria-label="T00 Savvy Creator Dashboard Preview"
+              aria-label="Diminga Creator Dashboard Preview"
             >
               {/* Dashboard Header with Enhanced Security Indicators */}
               <header className="absolute top-0 left-0 right-0 bg-card/90 backdrop-blur-sm border-b border-border/30 p-4 flex items-center justify-between z-10">
@@ -274,7 +274,7 @@ export const ImprovedModernHero: React.FC = () => {
                 </div>
                 <ModernText variant="caption" className="font-medium font-inter text-xs sm:text-sm flex items-center gap-2">
                   <Lock size={12} className="text-primary" />
-                  T00 Savvy Creator Dashboard
+                  Diminga Creator Dashboard
                 </ModernText>
                 <div className="flex items-center gap-1">
                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>

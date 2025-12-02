@@ -88,7 +88,7 @@ export const ModularStats = () => {
             className={`text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto mb-16 leading-relaxed transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ transitionDelay: '0.4s' }}
           >
-            T00 Savvy, the Web3 network, is a distributed platform for next-gen creators.
+            Diminga, the Web3 network, is a distributed platform for next-gen creators.
             <br />
             Decentralized via 3,000+ nodes, scalable through sharding, fast, secure & green.
           </p>

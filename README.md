@@ -1,4 +1,4 @@
-# Too Savvy Creator Platform
+# Diminga Creator Platform
 
 A Web3-enabled creator platform built with React, TypeScript, and Supabase, featuring decentralized tools for content creation, collaboration, and monetization.
 

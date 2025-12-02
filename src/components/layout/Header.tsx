@@ -26,7 +26,7 @@ export const Header = () => {
           <div className="h-8 w-8 bg-gradient-to-br from-primary to-secondary rounded-md flex items-center justify-center">
             <span className="text-white font-bold text-sm">TS</span>
           </div>
-          <span className="text-xl font-bold">Too Savvy</span>
+          <span className="text-xl font-bold">Diminga</span>
         </Link>
 
         {/* Desktop Navigation */}
