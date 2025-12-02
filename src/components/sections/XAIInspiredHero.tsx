@@ -27,7 +27,7 @@ export const XAIInspiredHero: React.FC = () => {
     try {
       await connectWallet();
       toast.success("Wallet connected successfully!", {
-        description: "Welcome to Too Savvy! Your Web3 journey begins now."
+        description: "Welcome to Diminga! Your Web3 journey begins now."
       });
     } catch (error) {
       console.error("Wallet connection failed:", error);
@@ -111,7 +111,7 @@ export const XAIInspiredHero: React.FC = () => {
           <div className="mb-12">
             <h1 className={`text-6xl md:text-8xl lg:text-9xl font-bold mb-8 leading-tight transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} animate-hero-text-glow`}>
               <span className="text-white font-helvetica tracking-tight">
-                Too Savvy
+                Diminga
               </span>
             </h1>
             <div className={`flex items-center justify-center gap-8 mb-10 transition-all duration-1000 delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>

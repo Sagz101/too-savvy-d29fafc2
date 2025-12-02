@@ -72,7 +72,7 @@ export const SimplifiedHero: React.FC = () => {
           <div className="mb-8">
             <h1 className={`text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight transition-all duration-1000 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent font-inter tracking-tight">
-                Too Savvy
+                Diminga
               </span>
             </h1>
             <div className={`flex items-center justify-center gap-6 mb-8 transition-all duration-1000 delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>

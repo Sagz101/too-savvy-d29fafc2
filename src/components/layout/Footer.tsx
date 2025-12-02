@@ -14,7 +14,7 @@ export const Footer = () => {
           <div className="max-w-md mx-auto">
             <div className="text-2xl md:text-3xl font-bold text-foreground mb-4">
               <span className="font-lotus bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                T00 Savvy
+                Diminga
               </span>
             </div>
             <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
@@ -96,7 +96,7 @@ export const Footer = () => {
                 <a 
                   href="https://twitter.com/toosavvy" 
                   className="text-muted-foreground hover:text-cyan-400 transition-colors"
-                  aria-label="Follow T00 Savvy on Twitter"
+                  aria-label="Follow Diminga on Twitter"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -105,7 +105,7 @@ export const Footer = () => {
                 <a 
                   href="https://discord.gg/toosavvy" 
                   className="text-muted-foreground hover:text-purple-400 transition-colors"
-                  aria-label="Join T00 Savvy Discord community"
+                  aria-label="Join Diminga Discord community"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -114,7 +114,7 @@ export const Footer = () => {
                 <a 
                   href="https://github.com/toosavvy" 
                   className="text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="View T00 Savvy on GitHub"
+                  aria-label="View Diminga on GitHub"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -129,7 +129,7 @@ export const Footer = () => {
         <div className="border-t border-border/50 pt-6 md:pt-8 mt-8 md:mt-12">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <div className="text-muted-foreground text-sm order-2 md:order-1">
-              © 2025 T00 Savvy. All rights reserved.
+              © 2025 Diminga. All rights reserved.
             </div>
             <div className="flex flex-wrap justify-center gap-6 text-sm order-1 md:order-2">
               <Link 

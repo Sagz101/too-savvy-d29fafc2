@@ -25,7 +25,7 @@ export const ModernHero: React.FC = () => {
       ref={heroRef}
       className="relative min-h-screen pt-24 pb-16 flex items-center overflow-hidden"
       style={{ background: 'hsl(var(--background))' }}
-      aria-label="T00 Savvy Platform Introduction"
+      aria-label="Diminga Platform Introduction"
     >
       {/* Enhanced Background with improved accessibility */}
       <div className="absolute inset-0 -z-10" aria-hidden="true">
@@ -45,7 +45,7 @@ export const ModernHero: React.FC = () => {
                   className={`text-4xl lg:text-5xl font-porscha text-foreground tracking-tight uppercase ${animationStarted ? 'animate-logo-glow' : ''}`}
                   as="h1"
                 >
-                  T00 SAVVY
+                  DIMINGA
                 </ModernHeading>
               </div>
             </header>
@@ -73,7 +73,7 @@ export const ModernHero: React.FC = () => {
                 className={`max-w-2xl hero-subtext font-inter font-medium ${animationStarted ? 'animate-subtext-slide' : ''}`}
                 muted
               >
-                Shape your digital future with T00 Savvy. Create freely, own your work on the blockchain, and grow your community—without barriers.
+                Shape your digital future with Diminga. Create freely, own your work on the blockchain, and grow your community—without barriers.
               </ModernText>
             </div>
 
@@ -166,7 +166,7 @@ export const ModernHero: React.FC = () => {
               </div>
               
               <span id="primary-cta-description" className="sr-only">
-                Navigate to the onboarding page to get started with T00 Savvy platform
+                Navigate to the onboarding page to get started with Diminga platform
               </span>
             </div>
           </div>
@@ -178,7 +178,7 @@ export const ModernHero: React.FC = () => {
               size="lg"
               className="relative overflow-hidden min-h-[500px] bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl"
               role="img"
-              aria-label="T00 Savvy Creator Dashboard Preview"
+              aria-label="Diminga Creator Dashboard Preview"
             >
               {/* Dashboard Header with better semantic structure */}
               <header className="absolute top-0 left-0 right-0 bg-card/90 backdrop-blur-sm border-b border-border/30 p-4 flex items-center justify-between z-10">
@@ -188,7 +188,7 @@ export const ModernHero: React.FC = () => {
                   <div className="w-3 h-3 rounded-full bg-green-400" aria-hidden="true"></div>
                 </div>
                 <ModernText variant="caption" className="font-medium font-inter">
-                  T00 Savvy Creator Dashboard
+                  Diminga Creator Dashboard
                 </ModernText>
                 <div className="w-5" aria-hidden="true"></div>
               </header>

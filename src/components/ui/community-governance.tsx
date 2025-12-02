@@ -37,7 +37,7 @@ export const CommunityGovernance: React.FC = () => {
             Community & Governance
           </ModernHeading>
           <ModernText variant="lead" muted className="max-w-2xl mx-auto">
-            Shape the future of T00 Savvy through decentralized governance and community participation
+            Shape the future of Diminga through decentralized governance and community participation
           </ModernText>
         </div>
 

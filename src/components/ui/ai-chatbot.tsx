@@ -103,7 +103,7 @@ export const AIChatbot: React.FC<ChatbotProps> = ({ onClose }) => {
 
     if (input.includes('nft') || input.includes('create')) {
       return {
-        content: 'To create your first NFT on T00 Savvy:\n\n1. Connect your Web3 wallet\n2. Go to Creator Studio\n3. Upload your content (image, video, audio)\n4. Add metadata (title, description, properties)\n5. Choose your blockchain (Polygon for low fees)\n6. Mint your NFT!\n\nThe process typically costs $2-5 in gas fees on Polygon.',
+        content: 'To create your first NFT on Diminga:\n\n1. Connect your Web3 wallet\n2. Go to Creator Studio\n3. Upload your content (image, video, audio)\n4. Add metadata (title, description, properties)\n5. Choose your blockchain (Polygon for low fees)\n6. Mint your NFT!\n\nThe process typically costs $2-5 in gas fees on Polygon.',
         suggestions: ['Show me Creator Studio', 'Explain metadata', 'Gas fee calculator', 'Wallet setup guide']
       };
     }
@@ -124,7 +124,7 @@ export const AIChatbot: React.FC<ChatbotProps> = ({ onClose }) => {
 
     if (input.includes('monetize') || input.includes('money') || input.includes('earn')) {
       return {
-        content: 'T00 Savvy offers multiple monetization options:\n\n🎨 **NFT Sales** - Sell unique content\n💎 **Royalties** - Earn from resales (up to 10%)\n🔒 **Token-gated content** - Premium subscriptions\n💬 **Community tokens** - Fan engagement rewards\n📊 **Creator fund** - Performance bonuses\n\n**Best part:** No platform fees on direct sales!',
+        content: 'Diminga offers multiple monetization options:\n\n🎨 **NFT Sales** - Sell unique content\n💎 **Royalties** - Earn from resales (up to 10%)\n🔒 **Token-gated content** - Premium subscriptions\n💬 **Community tokens** - Fan engagement rewards\n📊 **Creator fund** - Performance bonuses\n\n**Best part:** No platform fees on direct sales!',
         suggestions: ['Set up royalties', 'Create premium content', 'Launch community token']
       };
     }
