@@ -2,8 +2,10 @@ import React from 'react';
 import { ArrowRight, Shield, Zap, Globe, Award, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ModernCard } from '@/components/ui/modern-card';
-import { AnimatedCounter } from '@/components/ui/animated-counter';
+import { AnimatedStats } from '@/components/wallet/AnimatedStats';
+import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
 import { Link } from 'react-router-dom';
+import dimingaLogo from '@/assets/diminga-logo.png';
 
 export const EnhancedHeroSection: React.FC = () => {
   const certifications = [
@@ -25,13 +27,6 @@ export const EnhancedHeroSection: React.FC = () => {
       description: "Keep 100% of your revenue",
       highlight: true
     }
-  ];
-
-  const stats = [
-    { label: "Active Creators", value: 12847, suffix: "+", growth: "+15.2%" },
-    { label: "NFTs Minted", value: 421071, suffix: "", growth: "+8.7%" },
-    { label: "Creator Earnings", value: 2.1, prefix: "$", suffix: "M+", decimals: 1, growth: "+24.3%" },
-    { label: "Community Members", value: 2847, suffix: "", growth: "+12.1%" }
   ];
 
   return (
@@ -60,9 +55,17 @@ export const EnhancedHeroSection: React.FC = () => {
 
         {/* Main Hero Content */}
         <div className="text-center max-w-4xl mx-auto mb-16">
+          <div className="flex justify-center mb-6">
+            <img 
+              src={dimingaLogo} 
+              alt="Diminga" 
+              className="h-24 w-auto object-contain animate-fade-in"
+            />
+          </div>
+          
           <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
             <span className="bg-gradient-to-r from-web3-cyan via-web3-purple to-web3-accent bg-clip-text text-transparent">
-              T00 Savvy
+              Diminga
             </span>
           </h1>
           
@@ -70,9 +73,12 @@ export const EnhancedHeroSection: React.FC = () => {
             Create. Own. Thrive.
           </h2>
           
-          <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in animation-delay-300">
-            The Web3 creator platform that puts you in control. Build your audience, 
-            monetize your content, and own your digital future with zero platform fees.
+          <p className="text-xl text-gray-300 mb-6 max-w-3xl mx-auto leading-relaxed animate-fade-in animation-delay-300">
+            The All-in-One Web3 E-commerce & Creator Platform.
+          </p>
+          
+          <p className="text-lg text-web3-purple font-semibold mb-12 animate-fade-in animation-delay-300">
+            CertiK Audited • Multi-Chain • Zero Platform Fees
           </p>
 
           {/* Primary Actions */}
@@ -82,8 +88,8 @@ export const EnhancedHeroSection: React.FC = () => {
               className="bg-gradient-to-r from-web3-cyan to-web3-purple hover:opacity-90 text-white font-semibold px-8 py-4 text-lg"
               asChild
             >
-              <Link to="/onboarding">
-                Get Started
+              <Link to="/studio">
+                Launch Creator Studio
                 <ArrowRight className="ml-2" size={20} />
               </Link>
             </Button>
@@ -94,43 +100,16 @@ export const EnhancedHeroSection: React.FC = () => {
               className="border-web3-cyan/30 text-web3-cyan hover:bg-web3-cyan/10 px-8 py-4 text-lg"
               asChild
             >
-              <Link to="/creator-studio">Explore Creator Studio</Link>
+              <Link to="/commerce-studio">Explore Marketplace</Link>
             </Button>
             
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="border-web3-accent/30 text-web3-accent hover:bg-web3-accent/10 px-8 py-4 text-lg"
-              asChild
-            >
-              <Link to="/auth">Connect Wallet</Link>
-            </Button>
+            <WalletConnectButton />
           </div>
         </div>
 
-        {/* Platform Statistics with Animated Counters */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mx-auto animate-fade-in animation-delay-500">
-          {stats.map((stat, index) => (
-            <ModernCard 
-              key={index}
-              variant="filled"
-              className="text-center p-6 hover:scale-105 transition-all duration-500 bg-background/20 backdrop-blur-sm group hover:bg-web3-cyan/10 hover:border-web3-cyan/30"
-            >
-              <div className="text-3xl font-bold text-white mb-2 group-hover:text-web3-cyan transition-colors">
-                <AnimatedCounter 
-                  end={stat.value}
-                  prefix={stat.prefix}
-                  suffix={stat.suffix}
-                  decimals={stat.decimals || 0}
-                />
-              </div>
-              <div className="text-sm text-gray-400 mb-2 group-hover:text-gray-300 transition-colors">{stat.label}</div>
-              <div className="inline-flex items-center px-2 py-1 rounded-full bg-web3-green/20 text-web3-green text-xs font-medium animate-pulse">
-                <div className="w-1.5 h-1.5 bg-web3-green rounded-full mr-2 animate-ping" />
-                {stat.growth}
-              </div>
-            </ModernCard>
-          ))}
+        {/* Animated Platform Statistics */}
+        <div className="max-w-6xl mx-auto animate-fade-in animation-delay-500">
+          <AnimatedStats />
         </div>
 
         {/* Tech Meerkat Visual with Enhanced Animation */}
@@ -140,7 +119,7 @@ export const EnhancedHeroSection: React.FC = () => {
               <Award size={120} className="text-web3-cyan opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500" />
             </div>
             <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-background/80 backdrop-blur-sm border border-border rounded-lg px-4 py-2 group-hover:bg-web3-cyan/10 group-hover:border-web3-cyan/30 transition-all duration-300">
-              <span className="text-sm text-foreground font-medium group-hover:text-web3-cyan transition-colors">Tech Meerkat with VR & AR</span>
+              <span className="text-sm text-foreground font-medium group-hover:text-web3-cyan transition-colors">Web3 Creator Platform</span>
             </div>
           </div>
         </div>

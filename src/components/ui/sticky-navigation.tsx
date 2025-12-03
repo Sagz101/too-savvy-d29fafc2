@@ -1,9 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { WalletConnectButton } from '@/components/ui/wallet-connect-button';
+import { ChainSwitcher } from '@/components/wallet/ChainSwitcher';
+import { SIWEButton } from '@/components/wallet/SIWEButton';
+import { useAccount } from 'wagmi';
 import { 
   Search, 
   Home, 
@@ -15,6 +17,7 @@ import {
   X,
   ChevronDown
 } from 'lucide-react';
+import dimingaLogo from '@/assets/diminga-logo.png';
 
 export const StickyNavigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,6 +25,7 @@ export const StickyNavigation: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const location = useLocation();
+  const { isConnected } = useAccount();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,18 +107,20 @@ export const StickyNavigation: React.FC = () => {
       
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Enhanced Logo */}
+          {/* Diminga Logo */}
           <Link to="/" className="flex items-center space-x-3 flex-shrink-0 group">
             <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary via-secondary to-accent rounded-xl flex items-center justify-center shadow-lg shadow-primary/25 transition-all duration-300 group-hover:shadow-primary/40 group-hover:scale-105">
-                <span className="text-primary-foreground font-bold text-sm font-mono">TS</span>
-                {/* Animated glow ring */}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-secondary opacity-0 group-hover:opacity-20 animate-pulse transition-opacity duration-300" />
-              </div>
+              <img 
+                src={dimingaLogo} 
+                alt="Diminga" 
+                className="h-10 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+              />
+              {/* Animated glow ring */}
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-secondary opacity-0 group-hover:opacity-20 animate-pulse transition-opacity duration-300" />
             </div>
             <div className="hidden sm:block">
-              <span className="text-xl font-bold text-foreground font-orbitron tracking-wide group-hover:text-primary transition-colors duration-300">
-                T00 Savvy
+              <span className="text-xl font-bold bg-gradient-to-r from-primary via-purple-400 to-pink-500 bg-clip-text text-transparent font-orbitron tracking-wide group-hover:from-primary/80 transition-colors duration-300">
+                Diminga
               </span>
               <div className="text-xs text-muted-foreground font-medium tracking-wider opacity-80">
                 Web3 Creator Platform
@@ -191,10 +197,11 @@ export const StickyNavigation: React.FC = () => {
             </button>
           </div>
 
-          {/* Enhanced Wallet Connection - Primary Action */}
-          <div className="hidden md:block">
+          {/* Chain Switcher & Wallet Connection */}
+          <div className="hidden md:flex items-center gap-3">
+            {isConnected && <ChainSwitcher />}
             <div className="relative">
-              <WalletConnectButton />
+              <SIWEButton variant="compact" />
               {/* Wallet connection glow */}
               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-accent/20 to-primary/20 opacity-0 hover:opacity-100 transition-opacity duration-300 -z-10 blur-lg" />
             </div>
@@ -273,10 +280,15 @@ export const StickyNavigation: React.FC = () => {
                 );
               })}
 
-              {/* Enhanced Mobile Wallet Connection */}
-              <div className="px-4 pt-6 border-t border-border/30">
+              {/* Mobile Chain Switcher & Wallet Connection */}
+              <div className="px-4 pt-6 border-t border-border/30 space-y-3">
+                {isConnected && (
+                  <div className="flex justify-center">
+                    <ChainSwitcher />
+                  </div>
+                )}
                 <div className="relative">
-                  <WalletConnectButton />
+                  <SIWEButton />
                   <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-accent/10 to-primary/10 opacity-50 blur-lg -z-10" />
                 </div>
               </div>
