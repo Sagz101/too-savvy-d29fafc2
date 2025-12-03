@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Twitter, MessageCircle, Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -12,11 +11,13 @@ export const Footer = () => {
           
           {/* Brand Section */}
           <div className="max-w-md mx-auto">
-            <div className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              <span className="font-lotus bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                Diminga
-              </span>
-            </div>
+            <Link to="/" className="inline-block mb-4">
+              <img 
+                src="/favicon.png" 
+                alt="Diminga Logo" 
+                className="h-12 w-auto object-contain mx-auto"
+              />
+            </Link>
             <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
               Your sovereign portal to Web3—where your content, commerce, community, and crypto intersect.
             </p>
@@ -94,8 +95,8 @@ export const Footer = () => {
               <h4 className="text-foreground font-medium mb-4 md:mb-6">Connect</h4>
               <div className="flex justify-center space-x-6 mb-4">
                 <a 
-                  href="https://twitter.com/toosavvy" 
-                  className="text-muted-foreground hover:text-cyan-400 transition-colors"
+                  href="https://twitter.com/diminga" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
                   aria-label="Follow Diminga on Twitter"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -103,8 +104,8 @@ export const Footer = () => {
                   <Twitter size={20} />
                 </a>
                 <a 
-                  href="https://discord.gg/toosavvy" 
-                  className="text-muted-foreground hover:text-purple-400 transition-colors"
+                  href="https://discord.gg/diminga" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
                   aria-label="Join Diminga Discord community"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -112,8 +113,8 @@ export const Footer = () => {
                   <MessageCircle size={20} />
                 </a>
                 <a 
-                  href="https://github.com/toosavvy" 
-                  className="text-muted-foreground hover:text-foreground transition-colors"
+                  href="https://github.com/diminga" 
+                  className="text-muted-foreground hover:text-primary transition-colors"
                   aria-label="View Diminga on GitHub"
                   target="_blank"
                   rel="noopener noreferrer"
