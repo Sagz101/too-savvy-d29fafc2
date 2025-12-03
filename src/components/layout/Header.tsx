@@ -23,10 +23,11 @@ export const Header = () => {
       <div className="container flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link to="/" className="flex items-center space-x-2">
-          <div className="h-8 w-8 bg-gradient-to-br from-primary to-secondary rounded-md flex items-center justify-center">
-            <span className="text-white font-bold text-sm">TS</span>
-          </div>
-          <span className="text-xl font-bold">Diminga</span>
+          <img 
+            src="/favicon.png" 
+            alt="Diminga Logo" 
+            className="h-10 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop Navigation */}

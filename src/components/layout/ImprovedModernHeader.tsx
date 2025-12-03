@@ -40,7 +40,7 @@ export const ImprovedModernHeader: React.FC = () => {
             {/* Logo */}
             <Link to="/" className="flex items-center flex-shrink-0" aria-label="Diminga Home">
               <img 
-                src="/lovable-uploads/2e6dc416-59b6-4048-a87d-858554756c11.png" 
+                src="/favicon.png" 
                 alt="Diminga - Decentralized Creator Platform" 
                 className="h-8 sm:h-10 w-auto object-contain hover:opacity-80 transition-opacity"
               />

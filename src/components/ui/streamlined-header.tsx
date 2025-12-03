@@ -75,8 +75,8 @@ export const StreamlinedHeader: React.FC = () => {
           {/* Logo - Consistent Branding */}
           <Link to="/" className="flex items-center flex-shrink-0">
             <img 
-              src="/lovable-uploads/2e6dc416-59b6-4048-a87d-858554756c11.png" 
-              alt="T00 Savvy - Decentralized Creator Platform" 
+              src="/favicon.png" 
+              alt="Diminga - Decentralized Creator Platform" 
               className="h-10 w-auto object-contain hover:opacity-80 transition-opacity"
             />
           </Link>
