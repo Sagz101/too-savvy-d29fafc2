@@ -15,7 +15,8 @@ import {
   Code, 
   Menu,
   X,
-  ChevronDown
+  ChevronDown,
+  User
 } from 'lucide-react';
 import dimingaLogo from '@/assets/diminga-logo.png';
 
@@ -200,6 +201,14 @@ export const StickyNavigation: React.FC = () => {
           {/* Chain Switcher & Wallet Connection */}
           <div className="hidden md:flex items-center gap-3">
             {isConnected && <ChainSwitcher />}
+            {isConnected && (
+              <Link
+                to="/profile"
+                className="flex items-center justify-center w-10 h-10 rounded-xl bg-card/20 backdrop-blur-sm border border-border/30 hover:bg-card/40 hover:border-primary/30 transition-all duration-300 hover:scale-105"
+              >
+                <User size={18} className="text-muted-foreground hover:text-primary transition-colors" />
+              </Link>
+            )}
             <div className="relative">
               <SIWEButton variant="compact" />
               {/* Wallet connection glow */}
@@ -283,9 +292,19 @@ export const StickyNavigation: React.FC = () => {
               {/* Mobile Chain Switcher & Wallet Connection */}
               <div className="px-4 pt-6 border-t border-border/30 space-y-3">
                 {isConnected && (
-                  <div className="flex justify-center">
-                    <ChainSwitcher />
-                  </div>
+                  <>
+                    <Link
+                      to="/profile"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="flex items-center gap-4 px-4 py-4 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-card/40 rounded-xl transition-all duration-300"
+                    >
+                      <User size={20} />
+                      <span className="font-medium tracking-wide">Profile</span>
+                    </Link>
+                    <div className="flex justify-center">
+                      <ChainSwitcher />
+                    </div>
+                  </>
                 )}
                 <div className="relative">
                   <SIWEButton />
