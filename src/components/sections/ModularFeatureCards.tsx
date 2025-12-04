@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -11,10 +10,9 @@ import {
   MessageSquare, 
   FileText, 
   Bot,
-  TrendingUp,
   Shield,
-  Zap,
-  ArrowRight
+  ArrowRight,
+  Sparkles
 } from 'lucide-react';
 
 interface ModularFeatureCardsProps {
@@ -30,66 +28,67 @@ export const ModularFeatureCards: React.FC<ModularFeatureCardsProps> = ({
   const [selectedModules, setSelectedModules] = useState<string[]>([]);
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
 
+  // Reordered by creator value - most popular/appealing first
   const modules = [
-    {
-      id: 'video',
-      icon: Video,
-      title: 'Video Studio',
-      description: 'Create, mint, and monetize video content',
-      features: ['NFT Minting', 'Live Streaming', 'AR Integration'],
-      gasEstimate: '~$0.02',
-      gradient: 'from-cyan-500 to-blue-600',
-      trendScore: 98
-    },
-    {
-      id: 'music',
-      icon: Music,
-      title: 'Music Creator',
-      description: 'Compose, distribute, and earn from music',
-      features: ['Podcast Studio', 'Music NFTs', 'Royalty Tracking'],
-      gasEstimate: '~$0.015',
-      gradient: 'from-purple-500 to-pink-600',
-      trendScore: 94
-    },
     {
       id: 'commerce',
       icon: ShoppingBag,
       title: 'E-commerce Store',
-      description: 'Build your decentralized marketplace',
+      benefit: 'Launch a decentralized storefront in minutes',
+      description: 'Zero platform fees, crypto payments, global reach',
       features: ['No Platform Fees', 'Crypto Payments', 'Global Reach'],
-      gasEstimate: '~$0.03',
-      gradient: 'from-green-500 to-emerald-600',
-      trendScore: 96
+      mintCost: '$0.03 est. minting',
+      gradient: 'from-green-500 to-emerald-600'
     },
     {
-      id: 'social',
-      icon: MessageSquare,
-      title: 'Social Hub',
-      description: 'Connect with your community',
-      features: ['Token Gating', 'DAO Governance', 'Cross-Platform'],
-      gasEstimate: '~$0.01',
-      gradient: 'from-orange-500 to-red-600',
-      trendScore: 92
-    },
-    {
-      id: 'writing',
-      icon: FileText,
-      title: 'Threaditor',
-      description: 'Decentralized blogging platform',
-      features: ['Fact Checking', 'Revenue Sharing', 'Community Voting'],
-      gasEstimate: '~$0.008',
-      gradient: 'from-indigo-500 to-purple-600',
-      trendScore: 89
+      id: 'video',
+      icon: Video,
+      title: 'Video Studio',
+      benefit: 'Monetize your visual content directly on-chain',
+      description: 'Create, mint, and stream with full ownership',
+      features: ['NFT Minting', 'Live Streaming', 'AR Integration'],
+      mintCost: '$0.02 est. minting',
+      gradient: 'from-cyan-500 to-blue-600'
     },
     {
       id: 'ai',
       icon: Bot,
       title: 'AI Copilot',
-      description: 'Intelligent content assistance',
+      benefit: 'Supercharge your content with intelligent assistance',
+      description: 'Generate, optimize, and analyze with AI',
       features: ['Content Generation', 'Analytics Insights', 'Optimization'],
-      gasEstimate: '~$0.005',
-      gradient: 'from-yellow-500 to-orange-600',
-      trendScore: 99
+      mintCost: '$0.005 per request',
+      gradient: 'from-yellow-500 to-orange-600'
+    },
+    {
+      id: 'music',
+      icon: Music,
+      title: 'Music Creator',
+      benefit: 'Distribute and earn from your music globally',
+      description: 'Podcast studio, music NFTs, royalty tracking',
+      features: ['Podcast Studio', 'Music NFTs', 'Royalty Tracking'],
+      mintCost: '$0.015 est. minting',
+      gradient: 'from-purple-500 to-pink-600'
+    },
+    {
+      id: 'social',
+      icon: MessageSquare,
+      title: 'Social Hub',
+      benefit: 'Build token-gated communities with governance',
+      description: 'Connect with your audience on your terms',
+      features: ['Token Gating', 'DAO Governance', 'Cross-Platform'],
+      mintCost: '$0.01 est. action',
+      gradient: 'from-orange-500 to-red-600'
+    },
+    {
+      id: 'writing',
+      icon: FileText,
+      title: 'Threaditor',
+      benefit: 'Publish fact-checked content with revenue sharing',
+      description: 'Decentralized blogging with community voting',
+      features: ['Fact Checking', 'Revenue Sharing', 'Community Voting'],
+      mintCost: '$0.008 est. publish',
+      gradient: 'from-indigo-500 to-purple-600'
     }
   ];
 
@@ -110,7 +109,6 @@ export const ModularFeatureCards: React.FC<ModularFeatureCardsProps> = ({
     if (onContinue) {
       onContinue();
     } else {
-      // Navigate to studio dashboard with selected modules
       const moduleParams = selectedModules.length > 0 ? `?modules=${selectedModules.join(',')}` : '';
       navigate(`/studio${moduleParams}`);
     }
@@ -119,10 +117,10 @@ export const ModularFeatureCards: React.FC<ModularFeatureCardsProps> = ({
   return (
     <div className="container mx-auto px-4">
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-white mb-6">
+        <h2 className="text-4xl font-bold text-white mb-4">
           Choose Your Creator Toolkit
         </h2>
-        <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
           Modular tools that grow with your creative journey. Select what you need, when you need it.
         </p>
         
@@ -161,62 +159,56 @@ export const ModularFeatureCards: React.FC<ModularFeatureCardsProps> = ({
                 } ${isExpanded ? 'w-96' : ''}`}
                 onClick={() => handleCardExpand(module.id)}
               >
-              <CardHeader className="pb-3">
-                <div className="flex items-center justify-between mb-3">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${module.gradient} flex items-center justify-center`}>
-                    <IconComponent size={24} className="text-white" />
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="text-xs">
-                      <TrendingUp size={12} className="mr-1" />
-                      {module.trendScore}%
-                    </Badge>
-                    <Badge variant="outline" className="text-xs text-green-400 border-green-400/30">
-                      <Zap size={12} className="mr-1" />
-                      {module.gasEstimate}
+                <CardHeader className="pb-3">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${module.gradient} flex items-center justify-center`}>
+                      <IconComponent size={24} className="text-white" />
+                    </div>
+                    <Badge variant="outline" className="text-xs text-muted-foreground border-border/50">
+                      {module.mintCost}
                     </Badge>
                   </div>
-                </div>
+                  
+                  <CardTitle className="text-lg font-semibold text-white">
+                    {module.title}
+                  </CardTitle>
+                  <p className="text-sm text-web3-cyan font-medium">{module.benefit}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{module.description}</p>
+                </CardHeader>
                 
-                <CardTitle className="text-lg font-semibold text-white">
-                  {module.title}
-                </CardTitle>
-                <p className="text-sm text-gray-300">{module.description}</p>
-              </CardHeader>
-              
-              {isExpanded && (
-                <CardContent className="pt-0">
-                  <div className="space-y-3">
-                    <h4 className="font-medium text-white flex items-center gap-2">
-                      <Shield size={16} className="text-web3-cyan" />
-                      Key Features
-                    </h4>
-                    <ul className="space-y-2">
-                      {module.features.map((feature, index) => (
-                        <li key={index} className="text-sm text-gray-300 flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 bg-web3-cyan rounded-full" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    <Button
-                      className={`w-full mt-4 ${
-                        isSelected 
-                          ? 'bg-web3-cyan text-cosmic-deep hover:bg-web3-cyan/90'
-                          : 'bg-gradient-to-r from-web3-cyan to-web3-purple hover:opacity-90'
-                      }`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleModuleToggle(module.id);
-                      }}
-                    >
-                      {isSelected ? 'Selected' : 'Add to Toolkit'}
-                      <ArrowRight size={16} className="ml-2" />
-                    </Button>
-                  </div>
-                </CardContent>
-              )}
+                {isExpanded && (
+                  <CardContent className="pt-0">
+                    <div className="space-y-3">
+                      <h4 className="font-medium text-white flex items-center gap-2">
+                        <Shield size={16} className="text-web3-cyan" />
+                        Key Features
+                      </h4>
+                      <ul className="space-y-2">
+                        {module.features.map((feature, index) => (
+                          <li key={index} className="text-sm text-muted-foreground flex items-center gap-2">
+                            <div className="w-1.5 h-1.5 bg-web3-cyan rounded-full" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      <Button
+                        className={`w-full mt-4 ${
+                          isSelected 
+                            ? 'bg-web3-cyan text-cosmic-deep hover:bg-web3-cyan/90'
+                            : 'bg-gradient-to-r from-web3-cyan to-web3-purple hover:opacity-90'
+                        }`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleModuleToggle(module.id);
+                        }}
+                      >
+                        {isSelected ? 'Selected' : 'Add to Toolkit'}
+                        <ArrowRight size={16} className="ml-2" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                )}
               </Card>
             );
           })}
@@ -245,22 +237,16 @@ export const ModularFeatureCards: React.FC<ModularFeatureCardsProps> = ({
                   <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${module.gradient} flex items-center justify-center`}>
                     <IconComponent size={24} className="text-white" />
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="text-xs">
-                      <TrendingUp size={12} className="mr-1" />
-                      {module.trendScore}%
-                    </Badge>
-                    <Badge variant="outline" className="text-xs text-green-400 border-green-400/30">
-                      <Zap size={12} className="mr-1" />
-                      {module.gasEstimate}
-                    </Badge>
-                  </div>
+                  <Badge variant="outline" className="text-xs text-muted-foreground border-border/50">
+                    {module.mintCost}
+                  </Badge>
                 </div>
                 
                 <CardTitle className="text-lg font-semibold text-white">
                   {module.title}
                 </CardTitle>
-                <p className="text-sm text-gray-300">{module.description}</p>
+                <p className="text-sm text-web3-cyan font-medium">{module.benefit}</p>
+                <p className="text-xs text-muted-foreground mt-1">{module.description}</p>
               </CardHeader>
               
               {isExpanded && (
@@ -272,7 +258,7 @@ export const ModularFeatureCards: React.FC<ModularFeatureCardsProps> = ({
                     </h4>
                     <ul className="space-y-2">
                       {module.features.map((feature, index) => (
-                        <li key={index} className="text-sm text-gray-300 flex items-center gap-2">
+                        <li key={index} className="text-sm text-muted-foreground flex items-center gap-2">
                           <div className="w-1.5 h-1.5 bg-web3-cyan rounded-full" />
                           {feature}
                         </li>
@@ -308,6 +294,7 @@ export const ModularFeatureCards: React.FC<ModularFeatureCardsProps> = ({
             onClick={handleContinue}
             className="bg-gradient-to-r from-web3-cyan to-web3-purple hover:opacity-90 text-white font-semibold px-8 py-4"
           >
+            <Sparkles size={20} className="mr-2" />
             Continue with {selectedModules.length} Module{selectedModules.length > 1 ? 's' : ''}
             <ArrowRight size={20} className="ml-2" />
           </Button>
