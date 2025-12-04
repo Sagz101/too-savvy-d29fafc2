@@ -7,6 +7,7 @@ import { ModularFeatureCards } from '@/components/sections/ModularFeatureCards';
 import { InteractiveOnboarding } from '@/components/sections/InteractiveOnboarding';
 import { TrustCertifications } from '@/components/sections/TrustCertifications';
 import { CreatorSpotlight } from '@/components/sections/CreatorSpotlight';
+import { PremiumFeatures } from '@/components/sections/PremiumFeatures';
 import { FloatingCTA } from '@/components/ui/floating-cta';
 import { Footer } from '@/components/layout/Footer';
 import { MobileBottomNavigation } from '@/components/ui/mobile-optimized-navigation';
@@ -17,7 +18,7 @@ const IndexRefactored = () => {
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
   const { session, user } = useAuth();
   
-  const sectionIds = ['hero', 'stats', 'features', 'onboarding', 'trust', 'creators'];
+  const sectionIds = ['hero', 'stats', 'features', 'premium', 'onboarding', 'trust', 'creators'];
   const currentSection = useActiveSection(sectionIds);
 
   const handleInterestSelection = (interests: string[]) => {
@@ -71,8 +72,14 @@ const IndexRefactored = () => {
           <ModularFeatureCards onInterestSelect={handleInterestSelection} />
         </section>
 
+        {/* Premium Features - Wallet Gated Content */}
+        <section id="premium" className="py-20 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-950 relative">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_50%,_hsl(var(--primary)/0.1)_0%,_transparent_70%)]" />
+          <PremiumFeatures />
+        </section>
+
         {/* Gamified Onboarding with Timeline */}
-        <section id="onboarding" className="py-20 bg-gradient-to-br from-slate-900 via-gray-800 to-slate-950 relative">
+        <section id="onboarding" className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-black relative">
           <InteractiveOnboarding selectedInterests={selectedInterests} />
         </section>
 
