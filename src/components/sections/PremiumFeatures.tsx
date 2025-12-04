@@ -135,7 +135,8 @@ export const PremiumFeatures: React.FC = () => {
 
         <GatedContent
           title="Premium Features Locked"
-          description="Connect your wallet to access exclusive member benefits, priority minting, and special rewards."
+          description="Connect your wallet and sign in with Ethereum to access exclusive member benefits, priority minting, and special rewards."
+          requireSIWE={true}
         >
           <PremiumContent />
         </GatedContent>
