@@ -2,6 +2,8 @@ import React from 'react';
 import { Award, TrendingUp, MessageCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 interface CreatorStoryProps {
   name: string;
@@ -14,6 +16,7 @@ interface CreatorStoryProps {
   growth: string;
   headline: string;
   online?: boolean;
+  index: number;
 }
 
 const CreatorCard: React.FC<CreatorStoryProps> = ({
@@ -26,27 +29,60 @@ const CreatorCard: React.FC<CreatorStoryProps> = ({
   tools,
   growth,
   headline,
-  online
+  online,
+  index
 }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
-    <div className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-indigo-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/5">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50, scale: 0.95 }}
+      animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{ 
+        duration: 0.6, 
+        delay: index * 0.2,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }}
+      whileHover={{ 
+        scale: 1.02, 
+        y: -8,
+        transition: { duration: 0.3 }
+      }}
+      className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-indigo-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/5"
+    >
       {/* Headline Banner */}
-      <div className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-xl p-3 mb-4">
+      <motion.div 
+        className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-xl p-3 mb-4"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={inView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ delay: index * 0.2 + 0.2 }}
+      >
         <p className="text-sm font-medium text-indigo-300 text-center">{headline}</p>
-      </div>
+      </motion.div>
 
       {/* Creator Info */}
       <div className="flex items-center gap-4 mb-4">
-        <div className="relative">
+        <motion.div 
+          className="relative"
+          whileHover={{ scale: 1.1 }}
+        >
           <img 
             src={image} 
             alt={name}
             className="w-14 h-14 rounded-full ring-2 ring-indigo-500/30 object-cover"
           />
           {online && (
-            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-gray-900" />
+            <motion.div 
+              className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-gray-900"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
           )}
-        </div>
+        </motion.div>
         <div>
           <h4 className="text-lg font-bold text-white">{name}</h4>
           <p className="text-sm text-indigo-400">{handle}</p>
@@ -55,23 +91,34 @@ const CreatorCard: React.FC<CreatorStoryProps> = ({
       </div>
 
       {/* Quote */}
-      <blockquote className="text-gray-300 text-sm italic border-l-2 border-indigo-500 pl-4 mb-4">
+      <motion.blockquote 
+        className="text-gray-300 text-sm italic border-l-2 border-indigo-500 pl-4 mb-4"
+        initial={{ opacity: 0, x: -20 }}
+        animate={inView ? { opacity: 1, x: 0 } : {}}
+        transition={{ delay: index * 0.2 + 0.3 }}
+      >
         "{quote}"
-      </blockquote>
+      </motion.blockquote>
 
       {/* Stats */}
       <div className="grid grid-cols-2 gap-4 mb-4">
-        <div className="bg-gray-800/40 rounded-xl p-3 text-center">
+        <motion.div 
+          className="bg-gray-800/40 rounded-xl p-3 text-center"
+          whileHover={{ scale: 1.05 }}
+        >
           <div className="text-xl font-bold text-white">{earnings}</div>
           <div className="text-xs text-gray-400">Total Earnings</div>
-        </div>
-        <div className="bg-gray-800/40 rounded-xl p-3 text-center">
+        </motion.div>
+        <motion.div 
+          className="bg-gray-800/40 rounded-xl p-3 text-center"
+          whileHover={{ scale: 1.05 }}
+        >
           <div className="text-xl font-bold text-green-400 flex items-center justify-center gap-1">
             <TrendingUp className="w-4 h-4" />
             {growth}
           </div>
           <div className="text-xs text-gray-400">Growth</div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Tools Used */}
@@ -81,13 +128,17 @@ const CreatorCard: React.FC<CreatorStoryProps> = ({
           Tools Used
         </p>
         <div className="flex flex-wrap gap-2">
-          {tools.map((tool, index) => (
-            <span 
-              key={index}
+          {tools.map((tool, i) => (
+            <motion.span 
+              key={i}
               className="text-xs bg-gray-800/60 text-gray-300 px-3 py-1 rounded-full"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={inView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: index * 0.2 + 0.4 + i * 0.1 }}
+              whileHover={{ scale: 1.1 }}
             >
               {tool}
-            </span>
+            </motion.span>
           ))}
         </div>
       </div>
@@ -100,12 +151,25 @@ const CreatorCard: React.FC<CreatorStoryProps> = ({
         <MessageCircle className="w-4 h-4 mr-2" />
         Message Creator
       </Button>
-    </div>
+    </motion.div>
   );
 };
 
 export const SuccessStories: React.FC = () => {
-  const stories: CreatorStoryProps[] = [
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -40]);
+
+  const [headerRef, headerInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+  const [ctaRef, ctaInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.5,
+  });
+
+  const stories = [
     {
       name: 'Maya Chen',
       handle: '@mayacreates',
@@ -133,42 +197,68 @@ export const SuccessStories: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 relative">
-      <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl" />
+    <section className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 relative overflow-hidden">
+      <motion.div 
+        style={{ y }}
+        className="absolute top-1/2 left-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl" 
+      />
       
       <div className="container mx-auto px-4 relative">
         {/* Header */}
-        <div className="mb-12">
+        <motion.div 
+          ref={headerRef}
+          initial={{ opacity: 0, y: 30 }}
+          animate={headerInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
+        >
           <h2 className="text-4xl font-bold text-white mb-4 flex items-center gap-3">
-            <span className="text-yellow-400">✨</span>
+            <motion.span 
+              className="text-yellow-400"
+              animate={{ rotate: [0, 15, -15, 0] }}
+              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+            >
+              ✨
+            </motion.span>
             Creator Success Stories
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl">
             Meet the creators who are redefining their careers and earnings on Diminga's decentralized network.
           </p>
-        </div>
+        </motion.div>
 
         {/* Stories Grid */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           {stories.map((story, index) => (
-            <CreatorCard key={index} {...story} />
+            <CreatorCard key={index} {...story} index={index} />
           ))}
         </div>
 
         {/* CTA */}
-        <div className="text-center">
+        <motion.div 
+          ref={ctaRef}
+          initial={{ opacity: 0, y: 30 }}
+          animate={ctaInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="text-center"
+        >
           <p className="text-gray-400 mb-4">Ready to write your own success story?</p>
-          <Button 
-            size="lg"
-            className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:opacity-90 text-white font-semibold"
-            asChild
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <Link to="/studio">
-              Begin Your Journey
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-          </Button>
-        </div>
+            <Button 
+              size="lg"
+              className="bg-gradient-to-r from-indigo-500 to-purple-500 hover:opacity-90 text-white font-semibold"
+              asChild
+            >
+              <Link to="/studio">
+                Begin Your Journey
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+            </Button>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

@@ -2,55 +2,150 @@ import React from 'react';
 import { Users, Award, Shield, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 export const CreatorCommunity: React.FC = () => {
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const scale = useTransform(scrollYProgress, [0.7, 1], [0.95, 1]);
+
+  const [leftRef, leftInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+  const [rightRef, rightInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 relative">
-      {/* Subtle gradient orb */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-3xl" />
+    <section className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 relative overflow-hidden">
+      {/* Parallax gradient orb */}
+      <motion.div 
+        style={{ y, scale }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-3xl" 
+      />
       
       <div className="container mx-auto px-4 relative">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="space-y-6">
-            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+          <motion.div 
+            ref={leftRef}
+            className="space-y-6"
+            variants={containerVariants}
+            initial="hidden"
+            animate={leftInView ? "visible" : "hidden"}
+          >
+            <motion.h2 
+              variants={itemVariants}
+              className="text-4xl md:text-5xl font-bold text-white leading-tight"
+            >
               Join Our Creator Community
-            </h2>
+            </motion.h2>
             
-            <p className="text-lg text-gray-400 max-w-lg">
+            <motion.p 
+              variants={itemVariants}
+              className="text-lg text-gray-400 max-w-lg"
+            >
               Connect with 13,000+ monthly active creators sharing tips, 
               collaboration opportunities, and growing together on Diminga.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-wrap gap-4 pt-4">
+            <motion.div 
+              variants={itemVariants}
+              className="flex flex-wrap gap-4 pt-4"
+            >
               <div className="flex items-center gap-2 text-gray-300">
                 <Users className="w-5 h-5 text-indigo-400" />
                 <span>Join TooSavvey Pro Community</span>
               </div>
-            </div>
+            </motion.div>
 
-            <Button 
-              size="lg"
-              className="bg-indigo-500 hover:bg-indigo-400 text-white font-semibold mt-4"
-              asChild
+            <motion.div
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <Link to="/neura-social">
-                Enter Now
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
-            </Button>
-          </div>
+              <Button 
+                size="lg"
+                className="bg-indigo-500 hover:bg-indigo-400 text-white font-semibold mt-4"
+                asChild
+              >
+                <Link to="/neura-social">
+                  Enter Now
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+              </Button>
+            </motion.div>
+          </motion.div>
 
           {/* Right - Success Stories */}
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white">Creator Success Stories</h3>
-            <p className="text-gray-400">Real creators building sustainable income through our DAO-governed platform.</p>
+          <motion.div 
+            ref={rightRef}
+            className="space-y-6"
+            initial={{ opacity: 0, x: 50 }}
+            animate={rightInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <motion.h3 
+              className="text-2xl font-bold text-white"
+              initial={{ opacity: 0, y: 20 }}
+              animate={rightInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1 }}
+            >
+              Creator Success Stories
+            </motion.h3>
+            <motion.p 
+              className="text-gray-400"
+              initial={{ opacity: 0, y: 20 }}
+              animate={rightInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2 }}
+            >
+              Real creators building sustainable income through our DAO-governed platform.
+            </motion.p>
 
             {/* Community Stats */}
-            <div className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-6">
+            <motion.div 
+              className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-6"
+              initial={{ opacity: 0, y: 30 }}
+              animate={rightInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3 }}
+              whileHover={{ scale: 1.02, borderColor: 'rgba(99, 102, 241, 0.3)' }}
+            >
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <div className="text-3xl font-bold text-white">15,247 Members</div>
+                  <motion.div 
+                    className="text-3xl font-bold text-white"
+                    initial={{ opacity: 0 }}
+                    animate={rightInView ? { opacity: 1 } : {}}
+                    transition={{ delay: 0.5 }}
+                  >
+                    15,247 Members
+                  </motion.div>
                   <div className="text-sm text-gray-500">Monthly Active Community</div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -58,16 +153,23 @@ export const CreatorCommunity: React.FC = () => {
                   <span className="px-3 py-1 bg-gray-800 rounded-full text-sm text-gray-400">• 24/7 Support</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Creator Cards */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-5 hover:border-indigo-500/30 transition-colors">
+              <motion.div 
+                className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-5 hover:border-indigo-500/30 transition-colors"
+                initial={{ opacity: 0, y: 30 }}
+                animate={rightInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.4 }}
+                whileHover={{ scale: 1.03, y: -5 }}
+              >
                 <div className="flex items-center gap-3 mb-4">
-                  <img 
+                  <motion.img 
                     src="https://placehold.co/48x48/6366f1/ffffff?text=MC" 
                     alt="Maya Chen"
                     className="w-12 h-12 rounded-full ring-2 ring-indigo-500/20"
+                    whileHover={{ scale: 1.1 }}
                   />
                   <div>
                     <div className="font-semibold text-white">Maya Chen</div>
@@ -86,14 +188,21 @@ export const CreatorCommunity: React.FC = () => {
                 <Button size="sm" variant="outline" className="w-full border-gray-700 text-gray-300 hover:bg-gray-800">
                   View Profile
                 </Button>
-              </div>
+              </motion.div>
 
-              <div className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-5 hover:border-indigo-500/30 transition-colors">
+              <motion.div 
+                className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-5 hover:border-indigo-500/30 transition-colors"
+                initial={{ opacity: 0, y: 30 }}
+                animate={rightInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.5 }}
+                whileHover={{ scale: 1.03, y: -5 }}
+              >
                 <div className="flex items-center gap-3 mb-4">
-                  <img 
+                  <motion.img 
                     src="https://placehold.co/48x48/8b5cf6/ffffff?text=JK" 
                     alt="Jordan Kim"
                     className="w-12 h-12 rounded-full ring-2 ring-purple-500/20"
+                    whileHover={{ scale: 1.1 }}
                   />
                   <div>
                     <div className="font-semibold text-white">Jordan Kim</div>
@@ -101,7 +210,14 @@ export const CreatorCommunity: React.FC = () => {
                   </div>
                 </div>
                 
-                <div className="text-2xl font-bold text-white mb-2">$15,934</div>
+                <motion.div 
+                  className="text-2xl font-bold text-white mb-2"
+                  initial={{ opacity: 0 }}
+                  animate={rightInView ? { opacity: 1 } : {}}
+                  transition={{ delay: 0.7 }}
+                >
+                  $15,934
+                </motion.div>
                 <p className="text-sm text-gray-400 mb-3">• Best Seller</p>
                 
                 <div className="flex items-center gap-2 mb-3">
@@ -113,16 +229,22 @@ export const CreatorCommunity: React.FC = () => {
                 <Button size="sm" variant="outline" className="w-full border-gray-700 text-gray-300 hover:bg-gray-800">
                   View Profile
                 </Button>
-              </div>
+              </motion.div>
             </div>
 
             {/* Passive Income CTA */}
-            <div className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-xl p-4 text-center">
+            <motion.div 
+              className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-xl p-4 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={rightInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.6 }}
+              whileHover={{ scale: 1.02 }}
+            >
               <p className="text-sm text-gray-300">
                 Earn passive income by sharing your <span className="text-indigo-400 font-medium">success story!</span>
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
