@@ -10,6 +10,7 @@ import { UserFeedbackWidget } from "@/components/ui/user-feedback-widget";
 import { SharedUserProvider } from "@/components/ui/shared-user-context";
 import { ModuleIntegrationProvider } from "@/hooks/useModuleIntegration";
 import { AnimatedRoutes } from "@/components/layout/AnimatedRoutes";
+import { FloatingChatWidget } from "@/components/messaging/FloatingChatWidget";
 
 const App = () => (
   <AuthProvider>
@@ -25,6 +26,7 @@ const App = () => (
                 <AnimatedRoutes />
                 <AIChatbot />
                 <UserFeedbackWidget />
+                <FloatingChatWidget />
               </div>
             </BrowserRouter>
           </TooltipProvider>
