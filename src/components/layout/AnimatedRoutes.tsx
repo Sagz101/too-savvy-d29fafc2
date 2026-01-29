@@ -32,6 +32,7 @@ import Neurapathy from '@/pages/Neurapathy';
 import Whitepaper from '@/pages/Whitepaper';
 import Profile from '@/pages/Profile';
 import Settings from '@/pages/Settings';
+import SkeletonDemo from '@/pages/SkeletonDemo';
 
 export const AnimatedRoutes: React.FC = () => {
   const location = useLocation();
@@ -68,6 +69,7 @@ export const AnimatedRoutes: React.FC = () => {
         <Route path="/terms" element={<PageTransition><Whitepaper /></PageTransition>} />
         <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />
         <Route path="/settings" element={<PageTransition><Settings /></PageTransition>} />
+        <Route path="/skeleton-demo" element={<PageTransition><SkeletonDemo /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
