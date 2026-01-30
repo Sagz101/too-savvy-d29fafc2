@@ -17,6 +17,13 @@ import { SearchBar } from '@/components/finance/SearchBar';
 import { TransactionsHistory } from '@/components/finance/TransactionsHistory';
 import { useWallet } from '@/services/wallet';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { usePageLoading } from '@/hooks/useLoading';
+import { 
+  FinanceHubSkeleton, 
+  CreditScoringSkeleton, 
+  ServiceMarketplaceSkeleton, 
+  ReputationGraphSkeleton 
+} from '@/components/finance/FinanceHubSkeleton';
 
 const FinanceHub = () => {
   const { 
@@ -29,6 +36,21 @@ const FinanceHub = () => {
   } = useWallet();
   
   const [activeTab, setActiveTab] = useState("dashboard");
+  const isLoading = usePageLoading(1200);
+  
+  if (isLoading) {
+    return (
+      <div className={`min-h-screen bg-neura-dark text-white`}>
+        <Header />
+        <div className="pt-20">
+          <div className="container mx-auto px-4 py-6">
+            <FinanceHubSkeleton />
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
   
   return (
     <div className={`min-h-screen bg-neura-dark text-white ${wallet.theme === 'light' ? 'light-theme' : ''}`}>
