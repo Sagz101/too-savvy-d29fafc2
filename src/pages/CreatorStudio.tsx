@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -7,6 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
+import { usePageLoading } from "@/hooks/useLoading";
+import { CreatorStudioSkeleton } from "@/components/sections/CreatorStudioSkeleton";
 import { 
   Video, 
   Users, 
@@ -111,6 +112,12 @@ const platformFeatures = [
 ];
 
 export default function CreatorStudio() {
+  const isLoading = usePageLoading(1200);
+
+  if (isLoading) {
+    return <CreatorStudioSkeleton />;
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-black text-white">
       <Header />
