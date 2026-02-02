@@ -1,14 +1,30 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@14.21.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+import { z } from "https://esm.sh/zod@3.23.8";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const logStep = (step: string, details?: any) => {
-  const detailsStr = details ? ` - ${JSON.stringify(details)}` : '';
+// Input validation schema - Stripe session IDs start with "cs_"
+const verifyPaymentSchema = z.object({
+  sessionId: z.string()
+    .min(1, { message: "Session ID is required" })
+    .max(500, { message: "Session ID is too long" })
+    .regex(/^cs_/, { message: "Invalid Stripe session ID format" }),
+});
+
+// Helper logging function (no PII)
+const logStep = (step: string, details?: Record<string, unknown>) => {
+  // Sanitize details to remove any potential PII
+  const sanitizedDetails = details ? Object.fromEntries(
+    Object.entries(details).filter(([key]) => 
+      !['email', 'customerEmail', 'customer_email', 'user_email'].includes(key.toLowerCase())
+    )
+  ) : undefined;
+  const detailsStr = sanitizedDetails ? ` - ${JSON.stringify(sanitizedDetails)}` : '';
   console.log(`[VERIFY-PAYMENT] ${step}${detailsStr}`);
 };
 
@@ -29,17 +45,29 @@ serve(async (req) => {
       { auth: { persistSession: false } }
     );
 
-    const { sessionId } = await req.json();
-    if (!sessionId) throw new Error("Session ID is required");
-    logStep("Session ID received", { sessionId });
+    // Parse and validate request body
+    let rawBody: unknown;
+    try {
+      rawBody = await req.json();
+    } catch {
+      throw new Error("Invalid JSON in request body");
+    }
+
+    const validationResult = verifyPaymentSchema.safeParse(rawBody);
+    if (!validationResult.success) {
+      const errorMessages = validationResult.error.errors.map(e => e.message).join(", ");
+      throw new Error(`Validation error: ${errorMessages}`);
+    }
+
+    const { sessionId } = validationResult.data;
+    logStep("Session ID validated", { sessionId });
 
     const stripe = new Stripe(stripeKey, { apiVersion: "2023-10-16" });
     
     // Retrieve the checkout session
     const session = await stripe.checkout.sessions.retrieve(sessionId);
     logStep("Stripe session retrieved", { 
-      paymentStatus: session.payment_status,
-      customerEmail: session.customer_email 
+      paymentStatus: session.payment_status
     });
 
     if (session.payment_status === "paid") {

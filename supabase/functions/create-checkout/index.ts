@@ -1,15 +1,28 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@14.21.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+import { z } from "https://esm.sh/zod@3.23.8";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// Helper logging function for debugging
-const logStep = (step: string, details?: any) => {
-  const detailsStr = details ? ` - ${JSON.stringify(details)}` : '';
+// Input validation schema
+const checkoutRequestSchema = z.object({
+  productId: z.string().uuid({ message: "Invalid product ID format" }),
+  quantity: z.number().int().min(1).max(100).optional().default(1),
+});
+
+// Helper logging function for debugging (no PII)
+const logStep = (step: string, details?: Record<string, unknown>) => {
+  // Sanitize details to remove any potential PII
+  const sanitizedDetails = details ? Object.fromEntries(
+    Object.entries(details).filter(([key]) => 
+      !['email', 'customerEmail', 'user_email'].includes(key.toLowerCase())
+    )
+  ) : undefined;
+  const detailsStr = sanitizedDetails ? ` - ${JSON.stringify(sanitizedDetails)}` : '';
   console.log(`[CREATE-CHECKOUT] ${step}${detailsStr}`);
 };
 
@@ -41,11 +54,24 @@ serve(async (req) => {
     if (userError) throw new Error(`Authentication error: ${userError.message}`);
     const user = userData.user;
     if (!user?.email) throw new Error("User not authenticated or email not available");
-    logStep("User authenticated", { userId: user.id, email: user.email });
+    logStep("User authenticated", { userId: user.id });
 
-    const { productId, quantity = 1 } = await req.json();
-    if (!productId) throw new Error("Product ID is required");
-    logStep("Request data parsed", { productId, quantity });
+    // Parse and validate request body
+    let rawBody: unknown;
+    try {
+      rawBody = await req.json();
+    } catch {
+      throw new Error("Invalid JSON in request body");
+    }
+
+    const validationResult = checkoutRequestSchema.safeParse(rawBody);
+    if (!validationResult.success) {
+      const errorMessages = validationResult.error.errors.map(e => e.message).join(", ");
+      throw new Error(`Validation error: ${errorMessages}`);
+    }
+
+    const { productId, quantity } = validationResult.data;
+    logStep("Request data validated", { productId, quantity });
 
     // Fetch product details from Supabase
     const { data: product, error: productError } = await supabaseClient
@@ -101,7 +127,7 @@ serve(async (req) => {
       },
     });
 
-    logStep("Checkout session created", { sessionId: session.id, url: session.url });
+    logStep("Checkout session created", { sessionId: session.id });
 
     // Create pending order record
     const { error: orderError } = await supabaseClient

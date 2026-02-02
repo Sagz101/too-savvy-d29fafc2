@@ -1,14 +1,25 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import Stripe from "https://esm.sh/stripe@14.21.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+import { z } from "https://esm.sh/zod@3.23.8";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-const logStep = (step: string, details?: any) => {
-  const detailsStr = details ? ` - ${JSON.stringify(details)}` : '';
+// Optional request body validation (function works with no body too)
+const checkSubscriptionSchema = z.object({}).optional();
+
+// Helper logging function (no PII - removed email logging)
+const logStep = (step: string, details?: Record<string, unknown>) => {
+  // Sanitize details to remove any potential PII
+  const sanitizedDetails = details ? Object.fromEntries(
+    Object.entries(details).filter(([key]) => 
+      !['email', 'customerEmail', 'customer_email', 'user_email'].includes(key.toLowerCase())
+    )
+  ) : undefined;
+  const detailsStr = sanitizedDetails ? ` - ${JSON.stringify(sanitizedDetails)}` : '';
   console.log(`[CHECK-SUBSCRIPTION] ${step}${detailsStr}`);
 };
 
@@ -41,14 +52,29 @@ serve(async (req) => {
     if (!authHeader) throw new Error("No authorization header provided");
     logStep("Authorization header found");
 
+    // Validate authorization header format
+    const authHeaderSchema = z.string().min(1).startsWith("Bearer ");
+    const authValidation = authHeaderSchema.safeParse(authHeader);
+    if (!authValidation.success) {
+      throw new Error("Invalid authorization header format");
+    }
+
     const token = authHeader.replace("Bearer ", "");
+    
+    // Validate token is not empty and has reasonable length
+    const tokenSchema = z.string().min(10).max(5000);
+    const tokenValidation = tokenSchema.safeParse(token);
+    if (!tokenValidation.success) {
+      throw new Error("Invalid token format");
+    }
+
     logStep("Authenticating user with token");
     
     const { data: userData, error: userError } = await supabaseClient.auth.getUser(token);
     if (userError) throw new Error(`Authentication error: ${userError.message}`);
     const user = userData.user;
     if (!user?.email) throw new Error("User not authenticated or email not available");
-    logStep("User authenticated", { userId: user.id, email: user.email });
+    logStep("User authenticated", { userId: user.id });
 
     const stripe = new Stripe(stripeKey, { apiVersion: "2023-10-16" });
     const customers = await stripe.customers.list({ email: user.email, limit: 1 });
