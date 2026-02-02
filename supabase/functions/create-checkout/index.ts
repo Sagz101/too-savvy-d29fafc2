@@ -34,6 +34,24 @@ serve(async (req) => {
   try {
     logStep("Function started");
 
+    // Parse and validate request body FIRST (before checking dependencies)
+    let rawBody: unknown;
+    try {
+      rawBody = await req.json();
+    } catch {
+      throw new Error("Invalid JSON in request body");
+    }
+
+    const validationResult = checkoutRequestSchema.safeParse(rawBody);
+    if (!validationResult.success) {
+      const errorMessages = validationResult.error.errors.map(e => e.message).join(", ");
+      throw new Error(`Validation error: ${errorMessages}`);
+    }
+
+    const { productId, quantity } = validationResult.data;
+    logStep("Request data validated", { productId, quantity });
+
+    // Now check for required configuration
     const stripeKey = Deno.env.get("STRIPE_SECRET_KEY");
     if (!stripeKey) throw new Error("STRIPE_SECRET_KEY is not set");
     logStep("Stripe key verified");
@@ -55,23 +73,6 @@ serve(async (req) => {
     const user = userData.user;
     if (!user?.email) throw new Error("User not authenticated or email not available");
     logStep("User authenticated", { userId: user.id });
-
-    // Parse and validate request body
-    let rawBody: unknown;
-    try {
-      rawBody = await req.json();
-    } catch {
-      throw new Error("Invalid JSON in request body");
-    }
-
-    const validationResult = checkoutRequestSchema.safeParse(rawBody);
-    if (!validationResult.success) {
-      const errorMessages = validationResult.error.errors.map(e => e.message).join(", ");
-      throw new Error(`Validation error: ${errorMessages}`);
-    }
-
-    const { productId, quantity } = validationResult.data;
-    logStep("Request data validated", { productId, quantity });
 
     // Fetch product details from Supabase
     const { data: product, error: productError } = await supabaseClient
