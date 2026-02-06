@@ -34,10 +34,10 @@ const TrustMetric: React.FC<TrustMetricProps> = ({ icon: Icon, value, label, col
         y: -5,
         transition: { duration: 0.2 }
       }}
-      className="flex items-center gap-4 p-4 bg-gray-900/40 backdrop-blur-sm border border-gray-800 rounded-xl hover:border-indigo-500/30 transition-all duration-300"
+      className="flex items-center gap-4 p-4 glass-card backdrop-blur-xl bg-white/5 border-2 border-white/10 rounded-xl hover:border-indigo-500/40 hover:bg-white/10 transition-all duration-300"
     >
       <motion.div 
-        className={`w-12 h-12 rounded-xl ${color} flex items-center justify-center`}
+        className={`w-12 h-12 rounded-xl ${color} backdrop-blur-md border border-white/20 flex items-center justify-center shadow-glow-primary`}
         whileHover={{ rotate: 10 }}
       >
         <Icon className="w-6 h-6 text-white" />
@@ -51,7 +51,7 @@ const TrustMetric: React.FC<TrustMetricProps> = ({ icon: Icon, value, label, col
         >
           {value}
         </motion.div>
-        <div className="text-sm text-gray-400">{label}</div>
+        <div className="text-sm text-gray-300">{label}</div>
       </div>
     </motion.div>
   );
@@ -104,8 +104,11 @@ export const TrustSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 relative overflow-hidden">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 relative overflow-hidden aurora-bg">
+      {/* Mesh gradient background */}
+      <div className="absolute inset-0 mesh-gradient-animated opacity-25" />
+      
+      <div className="container mx-auto px-4 relative">
         {/* Header */}
         <motion.div 
           ref={headerRef}
@@ -115,7 +118,7 @@ export const TrustSection: React.FC = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl font-bold text-white mb-4">Trust & Transparency</h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Built on security, sustainability, and community-first principles.
           </p>
         </motion.div>
@@ -138,29 +141,29 @@ export const TrustSection: React.FC = () => {
             animate={cardsInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
             whileHover={{ scale: 1.02, borderColor: 'rgba(99, 102, 241, 0.5)' }}
-            className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 transition-colors"
+            className="glass-card gradient-border-animated backdrop-blur-xl bg-white/5 border-2 rounded-2xl p-6 transition-all hover:bg-white/10"
           >
             <div className="flex items-start gap-4">
               <motion.div 
-                className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0"
+                className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center flex-shrink-0 shadow-glow-primary"
                 whileHover={{ rotate: 5, scale: 1.1 }}
               >
                 <Shield className="w-8 h-8 text-white" />
               </motion.div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-2">CertiK Security Audit</h3>
-                <p className="text-gray-400 text-sm mb-4">
+                <p className="text-gray-300 text-sm mb-4">
                   Our smart contracts have been audited by CertiK, the leading blockchain security firm. 
                   All critical vulnerabilities addressed.
                 </p>
                 <div className="flex items-center gap-4">
                   <motion.span 
-                    className="px-3 py-1 bg-blue-500/20 text-blue-300 text-sm rounded-full border border-blue-500/30"
+                    className="px-3 py-1 bg-blue-500/25 text-blue-200 text-sm rounded-full border border-blue-500/40 backdrop-blur-md"
                     whileHover={{ scale: 1.05 }}
                   >
                     Verified ✓
                   </motion.span>
-                  <span className="text-xs text-gray-500">Audit ID: TSV-2024-001</span>
+                  <span className="text-xs text-gray-400">Audit ID: TSV-2024-001</span>
                 </div>
               </div>
             </div>
@@ -172,29 +175,29 @@ export const TrustSection: React.FC = () => {
             animate={cardsInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
             whileHover={{ scale: 1.02, borderColor: 'rgba(99, 102, 241, 0.5)' }}
-            className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 transition-colors"
+            className="glass-card gradient-border-animated backdrop-blur-xl bg-white/5 border-2 rounded-2xl p-6 transition-all hover:bg-white/10"
           >
             <div className="flex items-start gap-4">
               <motion.div 
-                className="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center flex-shrink-0"
+                className="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center flex-shrink-0 shadow-glow-primary"
                 whileHover={{ rotate: 5, scale: 1.1 }}
               >
                 <Award className="w-8 h-8 text-white" />
               </motion.div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-2">Multi-Sig Treasury</h3>
-                <p className="text-gray-400 text-sm mb-4">
+                <p className="text-gray-300 text-sm mb-4">
                   Platform funds are secured in a multi-signature wallet requiring 3/5 key holders 
                   to approve any transaction.
                 </p>
                 <div className="flex items-center gap-4">
                   <motion.span 
-                    className="px-3 py-1 bg-purple-500/20 text-purple-300 text-sm rounded-full border border-purple-500/30"
+                    className="px-3 py-1 bg-purple-500/25 text-purple-200 text-sm rounded-full border border-purple-500/40 backdrop-blur-md"
                     whileHover={{ scale: 1.05 }}
                   >
                     3/5 Multisig
                   </motion.span>
-                  <span className="text-xs text-gray-500">Gnosis Safe</span>
+                  <span className="text-xs text-gray-400">Gnosis Safe</span>
                 </div>
               </div>
             </div>
@@ -208,7 +211,7 @@ export const TrustSection: React.FC = () => {
           animate={daoInView ? { opacity: 1, y: 0, scale: 1 } : {}}
           transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
           style={{ y }}
-          className="bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 rounded-2xl p-8 text-center"
+          className="glass-card gradient-border-animated bg-gradient-to-r from-indigo-500/15 via-purple-500/15 to-pink-500/15 border-2 rounded-2xl p-8 text-center backdrop-blur-xl"
         >
           <motion.div 
             className="w-16 h-16 rounded-full bg-indigo-500/20 flex items-center justify-center mx-auto mb-4"
