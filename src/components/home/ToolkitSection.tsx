@@ -59,10 +59,10 @@ const ToolkitCard: React.FC<ToolkitItemProps> = ({
         y: -8,
         transition: { duration: 0.3 }
       }}
-      className={`group relative p-6 rounded-2xl border transition-all duration-300 ${
+      className={`group relative p-6 rounded-2xl transition-all duration-300 ${
         highlight 
-          ? 'bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border-indigo-500/30 shadow-xl shadow-indigo-500/10' 
-          : 'bg-gray-900/40 backdrop-blur-sm border-gray-800 hover:border-indigo-500/30'
+          ? 'glass-card gradient-border-animated bg-gradient-to-br from-indigo-500/15 to-purple-500/15 border-2 shadow-glow-primary hover:bg-white/10' 
+          : 'glass-card backdrop-blur-xl bg-white/5 border-2 border-white/10 hover:border-indigo-500/40 hover:bg-white/10'
       }`}
     >
       {/* Tags */}
@@ -74,12 +74,12 @@ const ToolkitCard: React.FC<ToolkitItemProps> = ({
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: index * 0.1 + 0.3 }}
-              className={`text-xs font-medium px-2.5 py-1 rounded-full ${
+              className={`text-xs font-medium px-2.5 py-1 rounded-full backdrop-blur-md ${
                 tag === 'Featured' 
-                  ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30' 
+                  ? 'bg-yellow-500/25 text-yellow-200 border border-yellow-500/40' 
                   : tag === 'Popular'
-                  ? 'bg-green-500/20 text-green-300 border border-green-500/30'
-                  : 'bg-indigo-500/20 text-indigo-300'
+                  ? 'bg-green-500/25 text-green-200 border border-green-500/40'
+                  : 'bg-indigo-500/25 text-indigo-200 border border-indigo-500/40'
               }`}
             >
               {tag}
@@ -90,10 +90,10 @@ const ToolkitCard: React.FC<ToolkitItemProps> = ({
 
       {/* Icon */}
       <motion.div 
-        className="w-14 h-14 rounded-xl bg-gray-800/60 flex items-center justify-center mb-4 group-hover:bg-indigo-500/20 transition-colors"
+        className="w-14 h-14 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-4 group-hover:bg-indigo-500/20 group-hover:border-indigo-500/40 transition-all shadow-glow-primary"
         whileHover={{ rotate: 5, scale: 1.1 }}
       >
-        <Icon className="w-7 h-7 text-indigo-400" />
+        <Icon className="w-7 h-7 text-indigo-300" />
       </motion.div>
 
       {/* Content */}
@@ -209,14 +209,17 @@ export const ToolkitSection: React.FC = () => {
 
   return (
     <section className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 relative overflow-hidden">
+      {/* Mesh gradient background */}
+      <div className="absolute inset-0 mesh-gradient-animated opacity-30" />
+      
       {/* Parallax Background effects */}
       <motion.div 
         style={{ y }}
-        className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl" 
+        className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl shadow-glow-primary" 
       />
       <motion.div 
         style={{ y: useTransform(scrollYProgress, [0, 1], [0, 100]) }}
-        className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl" 
+        className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" 
       />
 
       <div className="container mx-auto px-4 relative">

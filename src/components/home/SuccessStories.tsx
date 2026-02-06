@@ -52,16 +52,16 @@ const CreatorCard: React.FC<CreatorStoryProps> = ({
         y: -8,
         transition: { duration: 0.3 }
       }}
-      className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-indigo-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/5"
+      className="glass-card gradient-border-animated backdrop-blur-xl bg-white/5 border-2 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 hover:shadow-elevated-lg"
     >
       {/* Headline Banner */}
       <motion.div 
-        className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-xl p-3 mb-4"
+        className="bg-gradient-to-r from-indigo-500/15 to-purple-500/15 border border-indigo-500/30 rounded-xl p-3 mb-4 backdrop-blur-md"
         initial={{ opacity: 0, scale: 0.95 }}
         animate={inView ? { opacity: 1, scale: 1 } : {}}
         transition={{ delay: index * 0.2 + 0.2 }}
       >
-        <p className="text-sm font-medium text-indigo-300 text-center">{headline}</p>
+        <p className="text-sm font-medium text-indigo-200 text-center">{headline}</p>
       </motion.div>
 
       {/* Creator Info */}
@@ -103,35 +103,35 @@ const CreatorCard: React.FC<CreatorStoryProps> = ({
       {/* Stats */}
       <div className="grid grid-cols-2 gap-4 mb-4">
         <motion.div 
-          className="bg-gray-800/40 rounded-xl p-3 text-center"
+          className="glass-card backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-3 text-center"
           whileHover={{ scale: 1.05 }}
         >
           <div className="text-xl font-bold text-white">{earnings}</div>
-          <div className="text-xs text-gray-400">Total Earnings</div>
+          <div className="text-xs text-gray-300">Total Earnings</div>
         </motion.div>
         <motion.div 
-          className="bg-gray-800/40 rounded-xl p-3 text-center"
+          className="glass-card backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-3 text-center"
           whileHover={{ scale: 1.05 }}
         >
-          <div className="text-xl font-bold text-green-400 flex items-center justify-center gap-1">
+          <div className="text-xl font-bold text-green-300 flex items-center justify-center gap-1">
             <TrendingUp className="w-4 h-4" />
             {growth}
           </div>
-          <div className="text-xs text-gray-400">Growth</div>
+          <div className="text-xs text-gray-300">Growth</div>
         </motion.div>
       </div>
 
       {/* Tools Used */}
-      <div className="border-t border-gray-800 pt-4 mb-4">
-        <p className="text-sm font-medium text-gray-300 flex items-center gap-2 mb-2">
-          <Award className="w-4 h-4 text-yellow-500" />
+      <div className="border-t border-white/10 pt-4 mb-4">
+        <p className="text-sm font-medium text-gray-200 flex items-center gap-2 mb-2">
+          <Award className="w-4 h-4 text-yellow-400" />
           Tools Used
         </p>
         <div className="flex flex-wrap gap-2">
           {tools.map((tool, i) => (
             <motion.span 
               key={i}
-              className="text-xs bg-gray-800/60 text-gray-300 px-3 py-1 rounded-full"
+              className="text-xs bg-white/10 backdrop-blur-md text-gray-200 px-3 py-1 rounded-full border border-white/20"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: index * 0.2 + 0.4 + i * 0.1 }}
@@ -198,9 +198,12 @@ export const SuccessStories: React.FC = () => {
 
   return (
     <section className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 relative overflow-hidden">
+      {/* Mesh gradient background */}
+      <div className="absolute inset-0 mesh-gradient-animated opacity-20" />
+      
       <motion.div 
         style={{ y }}
-        className="absolute top-1/2 left-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl" 
+        className="absolute top-1/2 left-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl shadow-glow-primary" 
       />
       
       <div className="container mx-auto px-4 relative">
@@ -214,7 +217,7 @@ export const SuccessStories: React.FC = () => {
         >
           <h2 className="text-4xl font-bold text-white mb-4 flex items-center gap-3">
             <motion.span 
-              className="text-yellow-400"
+              className="text-yellow-300"
               animate={{ rotate: [0, 15, -15, 0] }}
               transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
             >
@@ -222,7 +225,7 @@ export const SuccessStories: React.FC = () => {
             </motion.span>
             Creator Success Stories
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl">
+          <p className="text-xl text-gray-300 max-w-2xl">
             Meet the creators who are redefining their careers and earnings on Diminga's decentralized network.
           </p>
         </motion.div>
