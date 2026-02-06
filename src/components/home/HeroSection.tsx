@@ -53,18 +53,21 @@ export const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 overflow-hidden">
-      {/* Subtle grid background */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+    <section className="relative min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 overflow-hidden aurora-bg">
+      {/* Animated mesh gradient background */}
+      <div className="absolute inset-0 mesh-gradient-animated opacity-40" />
       
-      {/* Parallax Gradient orbs */}
+      {/* Subtle grid overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.02)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      
+      {/* Parallax Gradient orbs with glow */}
       <motion.div 
         style={{ y: y1 }}
-        className="absolute top-20 left-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl" 
+        className="absolute top-20 left-10 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl shadow-glow-primary" 
       />
       <motion.div 
         style={{ y: y2 }}
-        className="absolute bottom-20 right-10 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" 
+        className="absolute bottom-20 right-10 w-80 h-80 bg-purple-500/15 rounded-full blur-3xl shadow-elevated-lg" 
       />
 
       <motion.div 
@@ -128,15 +131,15 @@ export const HeroSection: React.FC = () => {
             {/* E-commerce Store Card */}
             <motion.div 
               variants={cardVariants}
-              className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 space-y-4 mt-8"
+              className="glass-card border-2 gradient-border-animated p-6 space-y-4 mt-8 backdrop-blur-xl bg-white/5 hover:bg-white/10 transition-all duration-300"
             >
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-glow-primary">
                   <ShoppingBag className="w-5 h-5 text-white" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-white">E-commerce Store:</h3>
-                  <p className="text-sm text-gray-400">Launch & Grow Your Marketplace</p>
+                  <p className="text-sm text-gray-300">Launch & Grow Your Marketplace</p>
                 </div>
               </div>
               
@@ -145,19 +148,19 @@ export const HeroSection: React.FC = () => {
                 Zero platform fees, multi-chain support, built for creators.
               </p>
 
-              <div className="flex items-center justify-between pt-4 border-t border-gray-800">
+              <div className="flex items-center justify-between pt-4 border-t border-white/10">
                 <div>
-                  <div className="text-3xl font-bold text-white">$21,000+</div>
+                  <div className="text-3xl font-bold bg-gradient-to-r from-indigo-300 to-purple-300 bg-clip-text text-transparent">$21,000+</div>
                   <div className="text-sm text-gray-500">Total Transaction Volume</div>
                 </div>
-                <Button size="sm" className="bg-indigo-500 hover:bg-indigo-400" asChild>
+                <Button size="sm" className="bg-indigo-500 hover:bg-indigo-400 shadow-glow-primary" asChild>
                   <Link to="/commerce-studio">Start</Link>
                 </Button>
               </div>
 
               {/* Wallet Connect */}
-              <div className="flex items-center justify-between pt-4 border-t border-gray-800">
-                <div className="flex items-center gap-2 text-gray-400 text-sm">
+              <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                <div className="flex items-center gap-2 text-gray-300 text-sm">
                   <Wallet className="w-4 h-4" />
                   <span>Connect Your Wallet</span>
                 </div>
@@ -216,7 +219,7 @@ export const HeroSection: React.FC = () => {
 
             {/* Community Stats */}
             <motion.div 
-              className="bg-gray-900/40 backdrop-blur-sm border border-gray-800 rounded-2xl p-6"
+              className="glass-card backdrop-blur-xl bg-white/5 border-2 gradient-border-animated p-6 hover:bg-white/10 transition-all duration-300"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
@@ -226,73 +229,73 @@ export const HeroSection: React.FC = () => {
               
               <div className="grid grid-cols-3 gap-4 text-center">
                 <motion.div 
-                  className="bg-indigo-500/10 border border-indigo-500/20 rounded-xl p-4"
+                  className="bg-indigo-500/15 border border-indigo-500/30 rounded-xl p-4 backdrop-blur-md shadow-glow-primary"
                   whileHover={{ scale: 1.05 }}
                 >
-                  <div className="text-2xl font-bold text-indigo-400">$2.1M+</div>
-                  <div className="text-xs text-gray-400">Total Creator Earnings</div>
+                  <div className="text-2xl font-bold text-indigo-300">$2.1M+</div>
+                  <div className="text-xs text-gray-300">Total Creator Earnings</div>
                 </motion.div>
                 <motion.div 
-                  className="bg-gray-800/40 rounded-xl p-4"
+                  className="glass-card backdrop-blur-md rounded-xl p-4 border border-white/10"
                   whileHover={{ scale: 1.05 }}
                 >
                   <div className="text-2xl font-bold text-white">847</div>
-                  <div className="text-xs text-gray-400">Active NFTs Minted</div>
+                  <div className="text-xs text-gray-300">Active NFTs Minted</div>
                 </motion.div>
                 <motion.div 
-                  className="bg-gray-800/40 rounded-xl p-4"
+                  className="glass-card backdrop-blur-md rounded-xl p-4 border border-white/10"
                   whileHover={{ scale: 1.05 }}
                 >
                   <div className="text-2xl font-bold text-white">12.8M</div>
-                  <div className="text-xs text-gray-400">Cross-Platform Reach</div>
+                  <div className="text-xs text-gray-300">Cross-Platform Reach</div>
                 </motion.div>
               </div>
             </motion.div>
 
             {/* Trust & Transparency */}
             <motion.div 
-              className="bg-gray-900/40 backdrop-blur-sm border border-gray-800 rounded-2xl p-6"
+              className="glass-card backdrop-blur-xl bg-white/5 border-2 gradient-border-animated p-6 hover:bg-white/10 transition-all duration-300"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.7 }}
               whileHover={{ scale: 1.02, borderColor: 'rgba(99, 102, 241, 0.3)' }}
             >
               <h3 className="text-lg font-semibold text-white mb-2">Trust & Transparency</h3>
-              <p className="text-sm text-gray-400 mb-4">Your sovereign community where creators thrive together.</p>
+              <p className="text-sm text-gray-300 mb-4">Your sovereign community where creators thrive together.</p>
               
               <div className="flex flex-wrap gap-3">
-                <span className="px-3 py-1.5 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-sm text-indigo-300">Exclusive Perks</span>
-                <span className="px-3 py-1.5 bg-gray-800/60 rounded-full text-sm text-gray-400">• CertiK Audited</span>
-                <span className="px-3 py-1.5 bg-gray-800/60 rounded-full text-sm text-gray-400">• 24/7 Support</span>
-                <span className="px-3 py-1.5 bg-gray-800/60 rounded-full text-sm text-gray-400">• DAO Governance</span>
+                <span className="px-3 py-1.5 bg-indigo-500/20 border border-indigo-500/40 rounded-full text-sm text-indigo-200 backdrop-blur-sm">Exclusive Perks</span>
+                <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-sm text-gray-300 border border-white/20">• CertiK Audited</span>
+                <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-sm text-gray-300 border border-white/20">• 24/7 Support</span>
+                <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-sm text-gray-300 border border-white/20">• DAO Governance</span>
               </div>
 
               {/* Growth Cards */}
               <div className="grid grid-cols-2 gap-4 mt-6">
                 <motion.div 
-                  className="bg-gray-800/40 rounded-xl p-4 border border-gray-700/50"
+                  className="glass-card backdrop-blur-md rounded-xl p-4 border border-white/20 hover:border-indigo-500/50 transition-all"
                   whileHover={{ scale: 1.03, y: -3 }}
                 >
                   <div className="flex items-center gap-2 mb-2">
-                    <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
-                      <span className="text-green-400 text-xs">✓</span>
+                    <div className="w-8 h-8 rounded-full bg-green-500/30 flex items-center justify-center backdrop-blur-sm border border-green-500/50">
+                      <span className="text-green-300 text-xs">✓</span>
                     </div>
                     <span className="text-sm font-medium text-white">+300% More Earnings</span>
                   </div>
-                  <p className="text-xs text-gray-500">vs. Gallery Sales</p>
-                  <p className="text-sm font-semibold text-indigo-400 mt-1">$12,847 earned</p>
+                  <p className="text-xs text-gray-400">vs. Gallery Sales</p>
+                  <p className="text-sm font-semibold text-indigo-300 mt-1">$12,847 earned</p>
                 </motion.div>
                 <motion.div 
-                  className="bg-gray-800/40 rounded-xl p-4 border border-gray-700/50"
+                  className="glass-card backdrop-blur-md rounded-xl p-4 border border-white/20 hover:border-purple-500/50 transition-all"
                   whileHover={{ scale: 1.03, y: -3 }}
                 >
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center">
-                      <span className="text-purple-400 text-xs">♪</span>
+                    <div className="w-8 h-8 rounded-full bg-purple-500/30 flex items-center justify-center backdrop-blur-sm border border-purple-500/50">
+                      <span className="text-purple-300 text-xs">♪</span>
                     </div>
                     <div>
                       <div className="text-sm font-medium text-white">Global Fanbase</div>
-                      <div className="text-xs text-gray-500">Tokenized Music</div>
+                      <div className="text-xs text-gray-400">Tokenized Music</div>
                     </div>
                   </div>
                   <div className="text-lg font-bold text-white mt-2">$11,934</div>
