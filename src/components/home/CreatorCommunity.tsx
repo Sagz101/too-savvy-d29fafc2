@@ -44,13 +44,16 @@ export const CreatorCommunity: React.FC = () => {
 
   return (
     <section className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 mesh-gradient-animated opacity-25" />
+      <div className="absolute inset-0 aurora-bg opacity-10" />
       {/* Parallax gradient orb */}
       <motion.div 
         style={{ y, scale }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-3xl" 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl shadow-glow-primary" 
       />
       
-      <div className="container mx-auto px-4 relative">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div 
@@ -92,7 +95,7 @@ export const CreatorCommunity: React.FC = () => {
             >
               <Button 
                 size="lg"
-                className="bg-indigo-500 hover:bg-indigo-400 text-white font-semibold mt-4"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold mt-4 shadow-glow-primary"
                 asChild
               >
                 <Link to="/neura-social">
@@ -130,7 +133,7 @@ export const CreatorCommunity: React.FC = () => {
 
             {/* Community Stats */}
             <motion.div 
-              className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-6"
+              className="glass-card gradient-border-animated rounded-2xl p-6 shadow-elevated-lg"
               initial={{ opacity: 0, y: 30 }}
               animate={rightInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 }}
@@ -158,7 +161,7 @@ export const CreatorCommunity: React.FC = () => {
             {/* Creator Cards */}
             <div className="grid grid-cols-2 gap-4">
               <motion.div 
-                className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-5 hover:border-indigo-500/30 transition-colors"
+                className="glass-card gradient-border-animated rounded-2xl p-5 transition-colors"
                 initial={{ opacity: 0, y: 30 }}
                 animate={rightInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.4 }}
@@ -191,7 +194,7 @@ export const CreatorCommunity: React.FC = () => {
               </motion.div>
 
               <motion.div 
-                className="bg-gray-900/60 backdrop-blur-sm border border-gray-800 rounded-2xl p-5 hover:border-indigo-500/30 transition-colors"
+                className="glass-card gradient-border-animated rounded-2xl p-5 transition-colors"
                 initial={{ opacity: 0, y: 30 }}
                 animate={rightInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.5 }}
@@ -234,14 +237,14 @@ export const CreatorCommunity: React.FC = () => {
 
             {/* Passive Income CTA */}
             <motion.div 
-              className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border border-indigo-500/20 rounded-xl p-4 text-center"
+              className="glass-card bg-primary/5 border border-primary/20 rounded-xl p-4 text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={rightInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.6 }}
               whileHover={{ scale: 1.02 }}
             >
               <p className="text-sm text-gray-300">
-                Earn passive income by sharing your <span className="text-indigo-400 font-medium">success story!</span>
+                Earn passive income by sharing your <span className="text-primary font-medium">success story!</span>
               </p>
             </motion.div>
           </motion.div>

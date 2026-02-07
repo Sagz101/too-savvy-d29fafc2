@@ -34,13 +34,13 @@ const StatItem: React.FC<StatItemProps> = ({ value, label, change, trend, icon: 
         borderColor: 'rgba(99, 102, 241, 0.5)',
         transition: { duration: 0.2 }
       }}
-      className="flex items-center gap-4 p-4 bg-gray-900/40 backdrop-blur-sm border border-gray-800 rounded-xl transition-all duration-300"
+      className="flex items-center gap-4 p-4 glass-card gradient-border-animated rounded-xl transition-all duration-300"
     >
       <motion.div 
-        className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center"
+        className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shadow-glow-primary"
         whileHover={{ rotate: 5 }}
       >
-        <Icon className="w-6 h-6 text-indigo-400" />
+        <Icon className="w-6 h-6 text-primary" />
       </motion.div>
       <div className="flex-1">
         <motion.div 
@@ -103,8 +103,11 @@ export const StatsBar: React.FC = () => {
   ];
 
   return (
-    <section className="py-12 bg-gradient-to-r from-slate-950 via-gray-900 to-slate-950 border-y border-gray-800">
-      <div className="container mx-auto px-4">
+    <section className="py-12 bg-gradient-to-r from-slate-950 via-gray-900 to-slate-950 border-y border-white/5 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 mesh-gradient-animated opacity-20" />
+      <div className="absolute inset-0 aurora-bg opacity-10" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {stats.map((stat, index) => (
             <StatItem key={index} {...stat} index={index} />
