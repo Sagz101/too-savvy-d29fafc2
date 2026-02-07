@@ -92,14 +92,9 @@ export const StickyNavigation: React.FC = () => {
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
         isScrolled 
-          ? 'bg-background/80 backdrop-blur-2xl border-b border-primary/20 shadow-2xl shadow-primary/10' 
-          : 'bg-gradient-to-r from-background/40 via-background/60 to-background/40 backdrop-blur-md'
+          ? 'glass-card border-b border-primary/20 shadow-2xl shadow-primary/10' 
+          : 'backdrop-blur-md bg-background/30'
       }`}
-      style={{
-        background: isScrolled 
-          ? 'linear-gradient(135deg, hsl(var(--background))/0.9, hsl(var(--card))/0.95)' 
-          : 'linear-gradient(135deg, hsl(var(--background))/0.4, hsl(var(--card))/0.6)'
-      }}
     >
       {/* Animated border glow */}
       <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent transition-opacity duration-500 ${
@@ -168,7 +163,7 @@ export const StickyNavigation: React.FC = () => {
                   
                   {/* Dropdown Menu */}
                   {hasModules && hoveredItem === item.name && (
-                    <div className="absolute top-full left-0 mt-2 w-64 bg-card/95 backdrop-blur-2xl border border-border/50 rounded-xl shadow-2xl p-4 z-50 animate-fade-in">
+                    <div className="absolute top-full left-0 mt-2 w-64 glass-card gradient-border-animated rounded-xl shadow-elevated-lg p-4 z-50 animate-fade-in">
                       <div className="space-y-2">
                         {item.modules!.map((module) => (
                           <Link
@@ -246,7 +241,7 @@ export const StickyNavigation: React.FC = () => {
 
         {/* Enhanced Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden border-t border-primary/20 bg-card/90 backdrop-blur-2xl animate-fade-in">
+          <div className="lg:hidden border-t border-primary/20 glass-card animate-fade-in">
             <div className="py-6 space-y-3">
               {/* Enhanced Mobile Search */}
               <div className="px-4 mb-6">
