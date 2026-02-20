@@ -1,254 +1,212 @@
-import React from 'react';
-import { 
-  ShoppingBag, 
-  Video, 
-  Users, 
-  Music, 
-  Brain, 
-  FileText,
-  ArrowRight,
-  Sparkles,
-  BarChart3
-} from 'lucide-react';
+import React, { useState } from 'react';
+import { ShoppingBag, Video, Users, Music, Brain, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-interface ToolkitItemProps {
+interface ToolkitItem {
   id: string;
+  emoji: string;
   name: string;
   icon: React.ElementType;
-  value: string;
-  label: string;
+  statValue: string;
+  statLabel: string;
   description: string;
-  highlight?: boolean;
-  tags?: string[];
   route: string;
+  category: 'popular' | 'new';
+}
+
+const toolkitItems: ToolkitItem[] = [
+  {
+    id: 'ecommerce',
+    emoji: '🏪',
+    name: 'E-commerce Store',
+    icon: ShoppingBag,
+    statValue: '$2,847',
+    statLabel: 'Total Sales',
+    description: 'Launch decentralized storefront in minutes • Zero fees',
+    route: '/commerce-studio',
+    category: 'popular',
+  },
+  {
+    id: 'video',
+    emoji: '▶️',
+    name: 'Video Studio',
+    icon: Video,
+    statValue: '$2.1M',
+    statLabel: 'Content Minted',
+    description: 'Create, mint & monetize video on-chain',
+    route: '/video-studio',
+    category: 'popular',
+  },
+  {
+    id: 'social',
+    emoji: '💫',
+    name: 'Social Hub',
+    icon: Users,
+    statValue: '421K+',
+    statLabel: 'Interactions',
+    description: 'Build your sovereign brand',
+    route: '/neura-social',
+    category: 'popular',
+  },
+  {
+    id: 'music',
+    emoji: '🎵',
+    name: 'Music Creator',
+    icon: Music,
+    statValue: '$8,934',
+    statLabel: 'Avg Monthly',
+    description: 'Tokenized music releases',
+    route: '/music-creation',
+    category: 'popular',
+  },
+  {
+    id: 'ai',
+    emoji: '✨',
+    name: 'AI Copilot',
+    icon: Brain,
+    statValue: 'Threaditor ✨',
+    statLabel: '',
+    description: '157K Newsletters',
+    route: '/studio',
+    category: 'new',
+  },
+  {
+    id: 'threaditor',
+    emoji: '📝',
+    name: 'Threaditor',
+    icon: FileText,
+    statValue: '15.7K',
+    statLabel: 'Active Newsletters',
+    description: 'Decentralized blogging for passive income',
+    route: '/threaditor',
+    category: 'new',
+  },
+];
+
+interface ToolkitCardProps {
+  item: ToolkitItem;
   index: number;
 }
 
-const ToolkitCard: React.FC<ToolkitItemProps> = ({ 
-  name, 
-  icon: Icon, 
-  value, 
-  label, 
-  description, 
-  highlight,
-  tags,
-  route,
-  index
-}) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+const ToolkitCard: React.FC<ToolkitCardProps> = ({ item, index }) => {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+      initial={{ opacity: 0, y: 30, scale: 0.95 }}
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{ 
-        duration: 0.6, 
-        delay: index * 0.1,
-        ease: [0.25, 0.46, 0.45, 0.94]
+      transition={{ duration: 0.5, delay: index * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
+      whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.25 } }}
+      className="group relative rounded-2xl p-5 flex flex-col gap-3 cursor-pointer transition-all duration-300"
+      style={{
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%)',
+        border: '1px solid rgba(255,255,255,0.08)',
+        backdropFilter: 'blur(12px)',
       }}
-      whileHover={{ 
-        scale: 1.03, 
-        y: -8,
-        transition: { duration: 0.3 }
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = 'rgba(192,132,252,0.3)';
+        e.currentTarget.style.boxShadow = '0 8px 40px rgba(147, 51, 234, 0.15)';
       }}
-      className={`group relative p-6 rounded-2xl transition-all duration-300 ${
-        highlight 
-          ? 'glass-card gradient-border-animated bg-gradient-to-br from-indigo-500/15 to-purple-500/15 border-2 shadow-glow-primary hover:bg-white/10' 
-          : 'glass-card backdrop-blur-xl bg-white/5 border-2 border-white/10 hover:border-indigo-500/40 hover:bg-white/10'
-      }`}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
+        e.currentTarget.style.boxShadow = 'none';
+      }}
     >
-      {/* Tags */}
-      {tags && tags.length > 0 && (
-        <div className="absolute top-4 right-4 flex gap-2">
-          {tags.map(tag => (
-            <motion.span 
-              key={tag}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: index * 0.1 + 0.3 }}
-              className={`text-xs font-medium px-2.5 py-1 rounded-full backdrop-blur-md ${
-                tag === 'Featured' 
-                  ? 'bg-yellow-500/25 text-yellow-200 border border-yellow-500/40' 
-                  : tag === 'Popular'
-                  ? 'bg-green-500/25 text-green-200 border border-green-500/40'
-                  : 'bg-indigo-500/25 text-indigo-200 border border-indigo-500/40'
-              }`}
-            >
-              {tag}
-            </motion.span>
-          ))}
-        </div>
-      )}
+      {/* Icon + Name row */}
+      <div className="flex items-center gap-2">
+        <span className="text-2xl">{item.emoji}</span>
+        <h3 className="text-white font-semibold text-sm leading-tight">{item.name}</h3>
+      </div>
 
-      {/* Icon */}
-      <motion.div 
-        className="w-14 h-14 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-4 group-hover:bg-indigo-500/20 group-hover:border-indigo-500/40 transition-all shadow-glow-primary"
-        whileHover={{ rotate: 5, scale: 1.1 }}
-      >
-        <Icon className="w-7 h-7 text-indigo-300" />
-      </motion.div>
-
-      {/* Content */}
-      <h3 className="text-xl font-bold text-white mb-2">{name}</h3>
-      
-      <div className="mb-3">
-        <motion.div 
-          className="text-3xl font-bold text-white"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: index * 0.1 + 0.2 }}
-        >
-          {value}
-        </motion.div>
-        <div className="text-sm text-gray-400 flex items-center gap-2">
-          {highlight ? (
-            <Sparkles className="w-4 h-4 text-yellow-400" />
-          ) : (
-            <BarChart3 className="w-4 h-4 text-gray-500" />
+      {/* Stat Value */}
+      <div>
+        <div className="text-xl font-bold text-white">
+          {item.statValue}{' '}
+          {item.statLabel && (
+            <span className="text-sm font-normal text-gray-300">{item.statLabel}</span>
           )}
-          {label}
         </div>
       </div>
 
-      <p className="text-sm text-gray-400 mb-6">{description}</p>
+      {/* Description */}
+      <p className="text-xs text-gray-400 leading-relaxed flex-1">{item.description}</p>
 
-      <Button 
-        className={`w-full ${
-          highlight 
-            ? 'bg-indigo-500 hover:bg-indigo-400 text-white' 
-            : 'bg-gray-800 hover:bg-indigo-500 text-white'
-        } transition-colors`}
+      {/* Launch Button */}
+      <Button
+        size="sm"
+        className="w-fit text-xs font-semibold text-white rounded-lg px-4 py-1.5 mt-1"
+        style={{
+          background: 'linear-gradient(135deg, #7c3aed, #6d28d9)',
+          boxShadow: '0 2px 12px rgba(124, 58, 237, 0.4)',
+        }}
         asChild
       >
-        <Link to={route}>
-          Launch App
-          <ArrowRight className="ml-2 w-4 h-4" />
-        </Link>
+        <Link to={item.route}>Launch App</Link>
       </Button>
     </motion.div>
   );
 };
 
 export const ToolkitSection: React.FC = () => {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const [activeTab, setActiveTab] = useState<'popular' | 'new'>('popular');
+  const [headerRef, headerInView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
-  const [headerRef, headerInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.2,
-  });
-
-  const toolkitItems = [
-    {
-      id: 'ecommerce',
-      name: 'E-commerce Store',
-      icon: ShoppingBag,
-      value: '$2,847',
-      label: 'Total Sales Processed',
-      description: 'Launch your decentralized storefront in minutes with zero fees.',
-      highlight: true,
-      tags: ['Popular', 'Featured'],
-      route: '/commerce-studio'
-    },
-    {
-      id: 'video',
-      name: 'Video Studio',
-      icon: Video,
-      value: '$2.1M',
-      label: 'Content Minted Value',
-      description: 'Create, mint, and monetize video content directly on-chain.',
-      tags: ['New'],
-      route: '/video-studio'
-    },
-    {
-      id: 'social',
-      name: 'Social Hub',
-      icon: Users,
-      value: '421K+',
-      label: 'Community Interactions',
-      description: 'Connect with your community and build your sovereign brand.',
-      route: '/neura-social'
-    },
-    {
-      id: 'music',
-      name: 'Music Creator',
-      icon: Music,
-      value: '$8,934',
-      label: 'Monthly Earnings Avg.',
-      description: 'Compose, distribute, and earn from tokenized music releases.',
-      route: '/music-creation'
-    },
-    {
-      id: 'ai',
-      name: 'AI Copilot',
-      icon: Brain,
-      value: '89%',
-      label: 'Content Assist Efficiency',
-      description: 'Intelligent content assistance to speed up your creative flow.',
-      tags: ['AI'],
-      route: '/studio'
-    },
-    {
-      id: 'threaditor',
-      name: 'Threaditor',
-      icon: FileText,
-      value: '15.7K',
-      label: 'Active Newsletters',
-      description: 'Decentralized blogging platform for passive income generation.',
-      route: '/threaditor'
-    },
-  ];
+  const visibleItems = toolkitItems.filter(
+    (item) => activeTab === 'popular' ? item.category === 'popular' : true
+  );
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 relative overflow-hidden">
-      {/* Mesh gradient background */}
-      <div className="absolute inset-0 mesh-gradient-animated opacity-30" />
-      
-      {/* Parallax Background effects */}
-      <motion.div 
-        style={{ y }}
-        className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl shadow-glow-primary" 
-      />
-      <motion.div 
-        style={{ y: useTransform(scrollYProgress, [0, 1], [0, 100]) }}
-        className="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" 
-      />
+    <section
+      className="py-16 relative overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #0d001e 0%, #0a0018 50%, #0d001e 100%)' }}
+    >
+      {/* Subtle grid */}
+      <div className="absolute inset-0 opacity-5"
+        style={{ backgroundImage: 'linear-gradient(rgba(147,51,234,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(147,51,234,0.3) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
-      <div className="container mx-auto px-4 relative">
-        {/* Header */}
-        <motion.div 
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header row */}
+        <motion.div
           ref={headerRef}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="flex items-center justify-between mb-8"
         >
-          <h2 className="text-4xl font-bold text-white mb-4 flex items-center gap-3">
-            <motion.div
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-            >
-              <Sparkles className="w-8 h-8 text-indigo-400" />
-            </motion.div>
+          <h2 className="text-2xl md:text-3xl font-bold text-white font-space">
             Creator Studio Toolkit
           </h2>
-          <p className="text-xl text-gray-400 max-w-2xl">
-            A suite of decentralized tools to manage your entire creative and monetization workflow in one place.
-          </p>
+
+          {/* Tab pills */}
+          <div
+            className="flex items-center gap-1 p-1 rounded-full"
+            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+          >
+            {(['popular', 'new'] as const).map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className="px-4 py-1.5 rounded-full text-sm font-medium capitalize transition-all duration-300"
+                style={
+                  activeTab === tab
+                    ? { background: 'rgba(255,255,255,0.15)', color: '#fff' }
+                    : { color: 'rgba(255,255,255,0.5)' }
+                }
+              >
+                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {toolkitItems.map((item, index) => (
-            <ToolkitCard key={item.id} {...item} index={index} />
+        {/* Cards grid - matches reference: 5 columns on large screens */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {visibleItems.map((item, index) => (
+            <ToolkitCard key={item.id} item={item} index={index} />
           ))}
         </div>
       </div>
