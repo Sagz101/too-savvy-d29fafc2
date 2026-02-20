@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
+import { CosmicPageLayout } from '@/components/layout/CosmicPageLayout';
 import { AnimatedGradient } from '@/components/ui/animated-gradient';
 import { AnimatedText } from '@/components/ui/animated-text';
 import { Button } from '@/components/ui/button';
@@ -28,11 +27,8 @@ const VideoStudio = () => {
   const [activeTab, setActiveTab] = useState('upload');
 
   return (
-    <div className="min-h-screen bg-neura-dark text-white">
-      <Header />
-      <main>
+    <CosmicPageLayout>
         <section className="py-16 relative">
-          <AnimatedGradient />
           
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
@@ -215,9 +211,7 @@ const VideoStudio = () => {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </CosmicPageLayout>
   );
 };
 

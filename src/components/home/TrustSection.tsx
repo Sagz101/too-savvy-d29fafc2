@@ -104,7 +104,7 @@ export const TrustSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 relative overflow-hidden aurora-bg">
+    <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0a0018 0%, #060010 100%)' }}>
       {/* Mesh gradient background */}
       <div className="absolute inset-0 mesh-gradient-animated opacity-25" />
       

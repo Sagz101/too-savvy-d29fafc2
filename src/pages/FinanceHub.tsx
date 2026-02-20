@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
+import { CosmicPageLayout } from '@/components/layout/CosmicPageLayout';
 import { DecentralizedFinanceHub } from '@/components/finance/DecentralizedFinanceHub';
 import { CreditScoring } from '@/components/finance/CreditScoring';
 import { ServiceMarketplace } from '@/components/finance/ServiceMarketplace';
@@ -40,21 +39,18 @@ const FinanceHub = () => {
   
   if (isLoading) {
     return (
-      <div className={`min-h-screen bg-neura-dark text-white`}>
-        <Header />
+      <CosmicPageLayout>
         <div className="pt-20">
           <div className="container mx-auto px-4 py-6">
             <FinanceHubSkeleton />
           </div>
         </div>
-        <Footer />
-      </div>
+      </CosmicPageLayout>
     );
   }
   
   return (
-    <div className={`min-h-screen bg-neura-dark text-white ${wallet.theme === 'light' ? 'light-theme' : ''}`}>
-      <Header />
+    <CosmicPageLayout>
       <div className="pt-20">
         <div className="container mx-auto px-4 py-6">
           <div className="text-center mb-6">
@@ -181,9 +177,9 @@ const FinanceHub = () => {
           </Tabs>
         </div>
       </div>
-      <Footer />
-    </div>
+    </CosmicPageLayout>
   );
 };
 
 export default FinanceHub;
+
