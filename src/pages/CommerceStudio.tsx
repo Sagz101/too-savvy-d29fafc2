@@ -1,14 +1,12 @@
-
 import React from 'react';
-import { Header } from '@/components/layout/Header';
+import { CosmicPageLayout } from '@/components/layout/CosmicPageLayout';
 import { StoreBuilder } from '@/components/commerce/StoreBuilder';
 
 const CommerceStudio = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
+    <CosmicPageLayout>
       <StoreBuilder />
-    </div>
+    </CosmicPageLayout>
   );
 };
 

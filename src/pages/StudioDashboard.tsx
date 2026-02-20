@@ -111,7 +111,7 @@ const StudioDashboard = () => {
 
   if (!isConnected) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-black flex items-center justify-center p-4">
+      <div className="min-h-screen" style={{ background: 'linear-gradient(180deg, #0d0020 0%, #0a0018 50%, #060010 100%)' }} >
         <Card className="max-w-md w-full bg-gradient-to-br from-slate-800/90 to-gray-800/90 border border-cyan-400/30 backdrop-blur-xl">
           <CardHeader className="text-center">
             <div className="mx-auto mb-4 p-4 rounded-full bg-gradient-to-r from-cyan-400/20 to-purple-500/20 w-fit">
@@ -175,7 +175,7 @@ const StudioDashboard = () => {
 
   if (currentModule) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-black">
+      <div className="min-h-screen" style={{ background: 'linear-gradient(180deg, #0d0020 0%, #0a0018 50%, #060010 100%)' }}>
         <div className="container mx-auto px-4 py-8">
           <div className="flex items-center gap-4 mb-8">
             <Button
@@ -206,7 +206,7 @@ const StudioDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-black">
+    <div className="min-h-screen" style={{ background: 'linear-gradient(180deg, #0d0020 0%, #0a0018 50%, #060010 100%)' }}>
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <div>

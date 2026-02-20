@@ -197,7 +197,7 @@ export const SuccessStories: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #060010 0%, #0a0018 100%)' }}>
       {/* Mesh gradient background */}
       <div className="absolute inset-0 mesh-gradient-animated opacity-20" />
       

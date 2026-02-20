@@ -43,7 +43,7 @@ export const CreatorCommunity: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-950 via-gray-900 to-slate-950 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #0a0018 0%, #060010 100%)' }}>
       {/* Background effects */}
       <div className="absolute inset-0 mesh-gradient-animated opacity-25" />
       <div className="absolute inset-0 aurora-bg opacity-10" />

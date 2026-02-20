@@ -69,7 +69,7 @@ const Profile = () => {
 
   if (!isConnected) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-black pt-24">
+      <div className="min-h-screen pt-24" style={{ background: 'linear-gradient(180deg, #0d0020 0%, #0a0018 50%, #060010 100%)' }}>
         <div className="container mx-auto px-4 py-16">
           <Card className="max-w-md mx-auto bg-card/50 border-border/50 backdrop-blur-xl">
             <CardHeader className="text-center">
@@ -98,7 +98,7 @@ const Profile = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-black pt-24">
+    <div className="min-h-screen pt-24" style={{ background: 'linear-gradient(180deg, #0d0020 0%, #0a0018 50%, #060010 100%)' }}>
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-5xl mx-auto space-y-8">
           {/* Profile Header with ENS */}

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
-    <footer className="bg-background border-t border-border/50">
+    <footer className="border-t border-white/10" style={{ background: 'linear-gradient(180deg, #060010 0%, #030008 100%)' }}>
       <div className="container mx-auto px-4 py-12 md:py-16 max-w-6xl">
         {/* Main Footer Content */}
         <div className="flex flex-col items-center text-center space-y-8 md:space-y-12">
