@@ -14,7 +14,7 @@ const IndexRefactored = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-gray-900 to-black relative overflow-x-hidden">
+    <div className="min-h-screen relative overflow-x-hidden" style={{ background: 'linear-gradient(180deg, #0d0020 0%, #0a0018 50%, #060010 100%)' }}>
       <StickyNavigation />
       <FloatingCTA />
       

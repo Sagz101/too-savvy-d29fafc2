@@ -16,7 +16,8 @@ import {
   Menu,
   X,
   ChevronDown,
-  User
+  User,
+  ShoppingBag
 } from 'lucide-react';
 import dimingaLogo from '@/assets/diminga-logo.png';
 
@@ -38,13 +39,7 @@ export const StickyNavigation: React.FC = () => {
   }, []);
 
   const navigationItems = [
-    { name: 'Home', href: '/', icon: Home, color: 'text-cyan-400', glow: 'hover:shadow-cyan-400/25', modules: [] },
-    { 
-      name: 'Creator Studio', 
-      href: '/studio', 
-      icon: Video, 
-      color: 'text-purple-400', 
-      glow: 'hover:shadow-purple-400/25',
+    { name: 'Studio', href: '/studio', icon: Video, color: 'text-purple-400', glow: 'hover:shadow-purple-400/25',
       modules: [
         { name: 'Video Studio', href: '/video-studio' },
         { name: 'Podcast Studio', href: '/podcast-studio' },
@@ -52,32 +47,28 @@ export const StickyNavigation: React.FC = () => {
         { name: 'Live Streaming', href: '/live-streaming' }
       ]
     },
-    { 
-      name: 'Platform', 
-      href: '/neura-social', 
-      icon: Users, 
-      color: 'text-blue-400', 
-      glow: 'hover:shadow-blue-400/25',
+    { name: 'Marketplace', href: '/commerce-studio', icon: ShoppingBag, color: 'text-pink-400', glow: 'hover:shadow-pink-400/25',
+      modules: [
+        { name: 'Commerce Studio', href: '/commerce-studio' },
+        { name: 'Video NFTs', href: '/video-nfts' },
+        { name: 'Video Marketplace', href: '/video-marketplace' }
+      ]
+    },
+    { name: 'Tools', href: '/neura-social', icon: BarChart3, color: 'text-cyan-400', glow: 'hover:shadow-cyan-400/25',
       modules: [
         { name: 'NeuraSocial', href: '/neura-social' },
         { name: 'Threaditor', href: '/threaditor' },
         { name: 'Messaging', href: '/messaging' },
-        { name: 'Commerce Studio', href: '/commerce-studio' }
+        { name: 'Finance Hub', href: '/finance-hub' }
       ]
     },
-    { 
-      name: 'Ecosystem', 
-      href: '/global-innovators', 
-      icon: BarChart3, 
-      color: 'text-green-400', 
-      glow: 'hover:shadow-green-400/25',
+    { name: 'Community', href: '/global-innovators', icon: Users, color: 'text-green-400', glow: 'hover:shadow-green-400/25',
       modules: [
         { name: 'Global Innovators', href: '/global-innovators' },
-        { name: 'Finance Hub', href: '/finance-hub' },
         { name: 'Projects Creator', href: '/projects-creator' }
       ]
     },
-    { name: 'Learn', href: '/learn', icon: Code, color: 'text-orange-400', glow: 'hover:shadow-orange-400/25', modules: [] }
+    { name: 'DAO', href: '/learn', icon: Code, color: 'text-orange-400', glow: 'hover:shadow-orange-400/25', modules: [] },
   ];
 
   const handleSearch = (e: React.FormEvent) => {
@@ -90,11 +81,14 @@ export const StickyNavigation: React.FC = () => {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
-        isScrolled 
-          ? 'glass-card border-b border-primary/20 shadow-2xl shadow-primary/10' 
-          : 'backdrop-blur-md bg-background/30'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out`}
+      style={{
+        background: isScrolled
+          ? 'rgba(10, 0, 24, 0.92)'
+          : 'rgba(10, 0, 24, 0.75)',
+        backdropFilter: 'blur(20px)',
+        borderBottom: isScrolled ? '1px solid rgba(147, 51, 234, 0.2)' : 'none',
+      }}
     >
       {/* Animated border glow */}
       <div className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent transition-opacity duration-500 ${
@@ -103,25 +97,23 @@ export const StickyNavigation: React.FC = () => {
       
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Diminga Logo */}
+          {/* Diminga Logo + Sovereign Hub badge */}
           <Link to="/" className="flex items-center space-x-3 flex-shrink-0 group">
             <div className="relative">
               <img 
                 src={dimingaLogo} 
                 alt="Diminga" 
-                className="h-10 w-auto object-contain transition-all duration-300 group-hover:scale-105"
+                className="h-8 w-auto object-contain transition-all duration-300 group-hover:scale-105"
               />
-              {/* Animated glow ring */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary to-secondary opacity-0 group-hover:opacity-20 animate-pulse transition-opacity duration-300" />
             </div>
-            <div className="hidden sm:block">
-              <span className="text-xl font-bold bg-gradient-to-r from-primary via-purple-400 to-pink-500 bg-clip-text text-transparent font-orbitron tracking-wide group-hover:from-primary/80 transition-colors duration-300">
-                Diminga
-              </span>
-              <div className="text-xs text-muted-foreground font-medium tracking-wider opacity-80">
-                Web3 Creator Platform
-              </div>
-            </div>
+            <span className="text-lg font-bold text-white font-orbitron tracking-wide">
+              Diminga
+            </span>
+            {/* Sovereign Hub pill */}
+            <span className="hidden sm:inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-white border border-white/20"
+              style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(8px)' }}>
+              Sovereign Hub
+            </span>
           </Link>
 
           {/* Enhanced Desktop Navigation with Dropdown Menus */}
@@ -142,34 +134,27 @@ export const StickyNavigation: React.FC = () => {
                     to={item.href}
                     className={`group relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${
                       isActive
-                        ? `${item.color} bg-gradient-to-r from-card/60 to-card/40 backdrop-blur-sm shadow-lg border border-primary/20 ${item.glow} shadow-lg`
-                        : 'text-muted-foreground hover:text-foreground hover:bg-card/30 hover:backdrop-blur-sm hover:border hover:border-primary/10'
+                        ? `text-white bg-white/10 border border-white/20`
+                        : 'text-gray-300 hover:text-white hover:bg-white/10'
                     }`}
                   >
-                    <Icon size={16} className={`transition-all duration-300 ${isActive ? 'drop-shadow-glow' : 'group-hover:scale-110'}`} />
+                    <Icon size={16} className="transition-all duration-300 group-hover:scale-110" />
                     <span className="font-medium tracking-wide">{item.name}</span>
                     {hasModules && (
                       <ChevronDown size={14} className="transition-transform duration-300 group-hover:rotate-180" />
                     )}
-                    
-                    {/* Active indicator */}
-                    {isActive && (
-                      <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 animate-pulse" />
-                    )}
-                    
-                    {/* Hover glow effect */}
-                    <div className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${item.glow.replace('hover:', '')} shadow-xl`} />
                   </Link>
                   
                   {/* Dropdown Menu */}
                   {hasModules && hoveredItem === item.name && (
-                    <div className="absolute top-full left-0 mt-2 w-64 glass-card gradient-border-animated rounded-xl shadow-elevated-lg p-4 z-50 animate-fade-in">
-                      <div className="space-y-2">
+                    <div className="absolute top-full left-0 mt-2 w-56 rounded-xl p-3 z-50 animate-fade-in"
+                      style={{ background: 'rgba(15, 0, 40, 0.95)', backdropFilter: 'blur(20px)', border: '1px solid rgba(147,51,234,0.2)', boxShadow: '0 8px 40px rgba(0,0,0,0.5)' }}>
+                      <div className="space-y-1">
                         {item.modules!.map((module) => (
                           <Link
                             key={module.name}
                             to={module.href}
-                            className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-background/60 rounded-lg transition-all duration-200"
+                            className="block px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
                           >
                             {module.name}
                           </Link>
@@ -182,43 +167,30 @@ export const StickyNavigation: React.FC = () => {
             })}
           </div>
 
-          {/* Enhanced Search Icon - Collapsible */}
-          <div className="hidden md:flex items-center">
-            <button 
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="group relative flex items-center justify-center w-10 h-10 rounded-xl bg-card/20 backdrop-blur-sm border border-border/30 hover:bg-card/40 hover:border-primary/30 transition-all duration-300 hover:scale-105"
-            >
-              <Search size={18} className="text-muted-foreground group-hover:text-primary transition-colors duration-300" />
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
-          </div>
-
-          {/* Chain Switcher & Wallet Connection */}
+          {/* Desktop Right: Connect Wallet + Explore Marketplace */}
           <div className="hidden md:flex items-center gap-3">
             {isConnected && <ChainSwitcher />}
             {isConnected && (
               <Link
                 to="/profile"
-                className="flex items-center justify-center w-10 h-10 rounded-xl bg-card/20 backdrop-blur-sm border border-border/30 hover:bg-card/40 hover:border-primary/30 transition-all duration-300 hover:scale-105"
+                className="flex items-center justify-center w-9 h-9 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300"
               >
-                <User size={18} className="text-muted-foreground hover:text-primary transition-colors" />
+                <User size={16} className="text-white" />
               </Link>
             )}
+            {/* Connect Wallet button - outlined */}
             <div className="relative">
               <SIWEButton variant="compact" />
-              {/* Wallet connection glow */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-accent/20 to-primary/20 opacity-0 hover:opacity-100 transition-opacity duration-300 -z-10 blur-lg" />
             </div>
-          </div>
-
-          {/* Accessibility Settings Icon */}
-          <div className="hidden md:block">
-            <button className="group relative flex items-center justify-center w-10 h-10 rounded-xl bg-card/20 backdrop-blur-sm border border-border/30 hover:bg-card/40 hover:border-primary/30 transition-all duration-300 hover:scale-105">
-              <svg className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors duration-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clipRule="evenodd" />
-              </svg>
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </button>
+            {/* Explore Marketplace - gradient pill */}
+            <Button
+              size="sm"
+              className="rounded-xl px-4 py-2 text-sm font-semibold text-white hidden lg:flex"
+              style={{ background: 'linear-gradient(135deg, #f472b6, #c084fc)', boxShadow: '0 2px 20px rgba(196,132,252,0.3)' }}
+              asChild
+            >
+              <Link to="/commerce-studio">Explore Marketplace</Link>
+            </Button>
           </div>
 
           {/* Enhanced Mobile Menu Button */}
