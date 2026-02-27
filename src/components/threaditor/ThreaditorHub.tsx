@@ -20,7 +20,7 @@ export const ThreaditorHub: React.FC = () => {
   const [activeTab, setActiveTab] = useState('feed');
 
   return (
-    <div className="min-h-screen bg-background p-6">
+    <div className="min-h-screen p-6 pt-20">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-4xl font-bold mb-2">Threaditor</h1>
