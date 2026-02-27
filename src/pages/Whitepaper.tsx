@@ -1,16 +1,15 @@
 
 import React from 'react';
-import { Header } from '@/components/layout/Header';
+import { CosmicPageLayout } from '@/components/layout/CosmicPageLayout';
 import { Whitepaper as WhitepaperComponent } from '@/components/whitepaper/Whitepaper';
-import { Footer } from '@/components/layout/Footer';
 
 const Whitepaper = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Header />
-      <WhitepaperComponent />
-      <Footer />
-    </div>
+    <CosmicPageLayout>
+      <div className="pt-20">
+        <WhitepaperComponent />
+      </div>
+    </CosmicPageLayout>
   );
 };
 
