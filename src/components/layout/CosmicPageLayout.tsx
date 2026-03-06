@@ -1,5 +1,4 @@
 import React from 'react';
-import { Header } from './Header';
 import { Footer } from './Footer';
 
 interface CosmicPageLayoutProps {
@@ -52,7 +51,7 @@ export const CosmicPageLayout: React.FC<CosmicPageLayoutProps> = ({
         />
       </div>
 
-      <Header />
+      {/* Header is provided globally by App.tsx EnhancedHeader */}
 
       <main className="relative z-10">{children}</main>
 
