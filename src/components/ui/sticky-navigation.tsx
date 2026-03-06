@@ -39,36 +39,45 @@ export const StickyNavigation: React.FC = () => {
   }, []);
 
   const navigationItems = [
-    { name: 'Studio', href: '/studio', icon: Video, color: 'text-purple-400', glow: 'hover:shadow-purple-400/25',
+    { name: 'Platform', href: '/platform', icon: Home, color: 'text-purple-400', glow: 'hover:shadow-purple-400/25',
       modules: [
+        { name: 'Creator Studio', href: '/creator-studio' },
         { name: 'Video Studio', href: '/video-studio' },
-        { name: 'Podcast Studio', href: '/podcast-studio' },
-        { name: 'Music Creation', href: '/music-creation' },
-        { name: 'Live Streaming', href: '/live-streaming' }
+        { name: 'E-commerce Store', href: '/commerce-studio' },
+        { name: 'Social Hub', href: '/neura-social' },
+        { name: 'Music Creator', href: '/music-creation' },
       ]
     },
-    { name: 'Marketplace', href: '/commerce-studio', icon: ShoppingBag, color: 'text-pink-400', glow: 'hover:shadow-pink-400/25',
+    { name: 'Features', href: '/features', icon: BarChart3, color: 'text-cyan-400', glow: 'hover:shadow-cyan-400/25',
       modules: [
-        { name: 'Commerce Studio', href: '/commerce-studio' },
-        { name: 'Video NFTs', href: '/video-nfts' },
-        { name: 'Video Marketplace', href: '/video-marketplace' }
+        { name: 'Media NFTs', href: '/video-nfts' },
+        { name: 'Creator Monetization', href: '/finance-hub' },
+        { name: 'Web3 Commerce', href: '/commerce-studio' },
+        { name: 'DAO Governance', href: '/dao-governance' },
       ]
     },
-    { name: 'Tools', href: '/neura-social', icon: BarChart3, color: 'text-cyan-400', glow: 'hover:shadow-cyan-400/25',
+    { name: 'Community', href: '/community', icon: Users, color: 'text-green-400', glow: 'hover:shadow-green-400/25',
       modules: [
-        { name: 'NeuraSocial', href: '/neura-social' },
-        { name: 'Threaditor', href: '/threaditor' },
-        { name: 'Messaging', href: '/messaging' },
-        { name: 'Finance Hub', href: '/finance-hub' }
-      ]
-    },
-    { name: 'Community', href: '/global-innovators', icon: Users, color: 'text-green-400', glow: 'hover:shadow-green-400/25',
-      modules: [
+        { name: 'Creator Community', href: '/community' },
         { name: 'Global Innovators', href: '/global-innovators' },
-        { name: 'Projects Creator', href: '/projects-creator' }
+        { name: 'Success Stories', href: '/community' },
+        { name: 'Analytics', href: '/analytics' },
       ]
     },
-    { name: 'DAO', href: '/learn', icon: Code, color: 'text-orange-400', glow: 'hover:shadow-orange-400/25', modules: [] },
+    { name: 'Resources', href: '/resources', icon: Code, color: 'text-orange-400', glow: 'hover:shadow-orange-400/25',
+      modules: [
+        { name: 'Documentation', href: '/learn' },
+        { name: 'Whitepaper', href: '/whitepaper' },
+        { name: 'Creator Guides', href: '/resources' },
+      ]
+    },
+    { name: 'DAO', href: '/dao-governance', icon: ShoppingBag, color: 'text-pink-400', glow: 'hover:shadow-pink-400/25',
+      modules: [
+        { name: 'Proposals & Voting', href: '/dao-governance' },
+        { name: 'Governance Rules', href: '/dao-governance-rules' },
+        { name: 'Treasury', href: '/dao-governance' },
+      ]
+    },
   ];
 
   const handleSearch = (e: React.FormEvent) => {
