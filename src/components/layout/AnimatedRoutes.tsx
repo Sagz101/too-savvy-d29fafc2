@@ -48,6 +48,7 @@ import PrivacyPolicy from '@/pages/PrivacyPolicy';
 
 export const AnimatedRoutes: React.FC = () => {
   const location = useLocation();
+  useScrollToTop();
 
   return (
     <AnimatePresence mode="wait" initial={false}>
