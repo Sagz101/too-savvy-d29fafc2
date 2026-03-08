@@ -35,8 +35,6 @@ export const MobileOptimization: React.FC = () => {
   });
   const [showOptimizationTips, setShowOptimizationTips] = useState(false);
 
-  if (dismissed) return null;
-
   useEffect(() => {
     // Detect device type
     const detectDevice = (): DeviceInfo['type'] => {
