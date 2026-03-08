@@ -1,5 +1,6 @@
 import React from 'react';
 import { Footer } from './Footer';
+import { Breadcrumbs } from './Breadcrumbs';
 
 interface CosmicPageLayoutProps {
   children: React.ReactNode;
