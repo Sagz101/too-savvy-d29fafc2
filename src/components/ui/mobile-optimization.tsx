@@ -214,12 +214,12 @@ export const MobileOptimization: React.FC = () => {
                 </div>
               ))}
             
-            <div className="pt-2 border-t border-gray-700">
+            <div className="pt-2 border-t border-border/50">
               <Button
                 size="sm"
                 variant="ghost"
-                onClick={() => setShowOptimizationTips(false)}
-                className="text-xs text-gray-400 hover:text-white w-full"
+                onClick={handleDismiss}
+                className="text-xs text-muted-foreground hover:text-foreground w-full"
               >
                 Dismiss
               </Button>
