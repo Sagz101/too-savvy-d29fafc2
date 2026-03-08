@@ -21,6 +21,13 @@ interface DeviceInfo {
 }
 
 export const MobileOptimization: React.FC = () => {
+  const [dismissed, setDismissed] = useState(() => {
+    try {
+      return localStorage.getItem('mobile-optimization-dismissed') === 'true';
+    } catch {
+      return false;
+    }
+  });
   const [deviceInfo, setDeviceInfo] = useState<DeviceInfo>({
     type: 'desktop',
     isOnline: navigator.onLine,
@@ -90,6 +97,13 @@ export const MobileOptimization: React.FC = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const handleDismiss = () => {
+    try { localStorage.setItem('mobile-optimization-dismissed', 'true'); } catch {}
+    setDismissed(true);
+  };
+
+  if (dismissed) return null;
 
   const getDeviceIcon = () => {
     switch (deviceInfo.type) {
@@ -200,12 +214,12 @@ export const MobileOptimization: React.FC = () => {
                 </div>
               ))}
             
-            <div className="pt-2 border-t border-gray-700">
+            <div className="pt-2 border-t border-border/50">
               <Button
                 size="sm"
                 variant="ghost"
-                onClick={() => setShowOptimizationTips(false)}
-                className="text-xs text-gray-400 hover:text-white w-full"
+                onClick={handleDismiss}
+                className="text-xs text-muted-foreground hover:text-foreground w-full"
               >
                 Dismiss
               </Button>
