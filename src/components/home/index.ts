@@ -4,3 +4,4 @@ export { ToolkitSection } from './ToolkitSection';
 export { TrustSection } from './TrustSection';
 export { SuccessStories } from './SuccessStories';
 export { CreatorCommunity } from './CreatorCommunity';
+export { default as InnovateFundSell } from './InnovateFundSell';
