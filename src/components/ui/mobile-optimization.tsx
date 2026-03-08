@@ -98,6 +98,13 @@ export const MobileOptimization: React.FC = () => {
     };
   }, []);
 
+  const handleDismiss = () => {
+    try { localStorage.setItem('mobile-optimization-dismissed', 'true'); } catch {}
+    setDismissed(true);
+  };
+
+  if (dismissed) return null;
+
   const getDeviceIcon = () => {
     switch (deviceInfo.type) {
       case 'mobile': return <Smartphone size={16} />;
