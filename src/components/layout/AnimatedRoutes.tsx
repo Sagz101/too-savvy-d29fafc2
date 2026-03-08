@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { PageTransition } from './PageTransition';
+import { useScrollToTop } from '@/hooks/useScrollToTop';
 
 // Import all pages
 import Index from '@/pages/Index';
