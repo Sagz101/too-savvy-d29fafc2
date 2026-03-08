@@ -1,5 +1,6 @@
 import React from 'react';
 import { Footer } from './Footer';
+import { Breadcrumbs } from './Breadcrumbs';
 
 interface CosmicPageLayoutProps {
   children: React.ReactNode;
@@ -53,7 +54,12 @@ export const CosmicPageLayout: React.FC<CosmicPageLayoutProps> = ({
 
       {/* Header is provided globally by App.tsx EnhancedHeader */}
 
-      <main className="relative z-10">{children}</main>
+      <main className="relative z-10">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <Breadcrumbs />
+        </div>
+        {children}
+      </main>
 
       <Footer />
     </div>
