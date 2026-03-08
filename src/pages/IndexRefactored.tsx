@@ -34,6 +34,11 @@ const IndexRefactored = () => {
           <ToolkitSection />
         </section>
 
+        {/* Innovate. Fund. Sell. - Product Showcase */}
+        <section id="innovate">
+          <InnovateFundSell />
+        </section>
+
         {/* Trust & Transparency */}
         <section id="trust">
           <TrustSection />
