@@ -21,12 +21,21 @@ interface DeviceInfo {
 }
 
 export const MobileOptimization: React.FC = () => {
+  const [dismissed, setDismissed] = useState(() => {
+    try {
+      return localStorage.getItem('mobile-optimization-dismissed') === 'true';
+    } catch {
+      return false;
+    }
+  });
   const [deviceInfo, setDeviceInfo] = useState<DeviceInfo>({
     type: 'desktop',
     isOnline: navigator.onLine,
     connection: 'unknown'
   });
   const [showOptimizationTips, setShowOptimizationTips] = useState(false);
+
+  if (dismissed) return null;
 
   useEffect(() => {
     // Detect device type
