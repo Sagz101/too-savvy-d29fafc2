@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { StickyNavigation } from '@/components/ui/sticky-navigation';
-import { HeroSection, StatsBar, ToolkitSection, TrustSection, SuccessStories, CreatorCommunity } from '@/components/home';
+import { HeroSection, StatsBar, ToolkitSection, TrustSection, SuccessStories, CreatorCommunity, InnovateFundSell } from '@/components/home';
 import { FloatingCTA } from '@/components/ui/floating-cta';
 import { Footer } from '@/components/layout/Footer';
 import { MobileBottomNavigation } from '@/components/ui/mobile-optimized-navigation';
@@ -32,6 +32,11 @@ const IndexRefactored = () => {
         {/* Creator Toolkit - Modular Tools */}
         <section id="toolkit">
           <ToolkitSection />
+        </section>
+
+        {/* Innovate. Fund. Sell. - Product Showcase */}
+        <section id="innovate">
+          <InnovateFundSell />
         </section>
 
         {/* Trust & Transparency */}
