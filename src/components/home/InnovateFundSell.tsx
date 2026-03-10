@@ -6,6 +6,8 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { supabase } from '@/integrations/supabase/client';
 
 import productTokenizedArt from '@/assets/product-tokenized-art.jpg';
 import productSmartMerch from '@/assets/product-smart-merch.jpg';
@@ -22,11 +24,12 @@ interface ProductCard {
   creator: { name: string; handle: string; avatar: string };
   description: string;
   stats: { raised: string; backers: string; mints: string; rating: string };
+  isFromDb?: boolean;
 }
 
-const products: ProductCard[] = [
+const fallbackProducts: ProductCard[] = [
   {
-    id: '1',
+    id: 'fallback-1',
     name: 'Holographic Genesis Print',
     image: productTokenizedArt,
     badge: { label: 'New 🔥', icon: <Flame className="w-3 h-3" />, color: 'from-orange-500 to-red-500' },
@@ -35,7 +38,7 @@ const products: ProductCard[] = [
     stats: { raised: '$4,800', backers: '220', mints: '450', rating: '4.9' },
   },
   {
-    id: '2',
+    id: 'fallback-2',
     name: 'NeuraTech Smart Hoodie',
     image: productSmartMerch,
     badge: { label: 'Physical + NFT', icon: <Link2 className="w-3 h-3" />, color: 'from-cyan-500 to-blue-500' },
@@ -44,7 +47,7 @@ const products: ProductCard[] = [
     stats: { raised: '$12,400', backers: '580', mints: '1.2K', rating: '4.8' },
   },
   {
-    id: '3',
+    id: 'fallback-3',
     name: 'SolarPulse Eco Charger',
     image: productEcoGadget,
     badge: { label: 'Top Seller', icon: <Award className="w-3 h-3" />, color: 'from-green-500 to-emerald-500' },
@@ -53,7 +56,7 @@ const products: ProductCard[] = [
     stats: { raised: '$28,900', backers: '1.4K', mints: '890', rating: '4.9' },
   },
   {
-    id: '4',
+    id: 'fallback-4',
     name: 'Resonance Vinyl + Fan Token',
     image: productVinylToken,
     badge: { label: 'DAO-Voted', icon: <Vote className="w-3 h-3" />, color: 'from-purple-500 to-pink-500' },
@@ -62,7 +65,7 @@ const products: ProductCard[] = [
     stats: { raised: '$8,200', backers: '340', mints: '670', rating: '4.7' },
   },
   {
-    id: '5',
+    id: 'fallback-5',
     name: 'Prismatic Crystal NFT',
     image: productDigitalSculpture,
     badge: { label: 'New 🔥', icon: <Flame className="w-3 h-3" />, color: 'from-orange-500 to-red-500' },
@@ -71,7 +74,7 @@ const products: ProductCard[] = [
     stats: { raised: '$6,100', backers: '190', mints: '320', rating: '4.8' },
   },
   {
-    id: '6',
+    id: 'fallback-6',
     name: 'AR Artisan Ceramic Mug',
     image: productArtisanCeramic,
     badge: { label: 'Physical + NFT', icon: <Link2 className="w-3 h-3" />, color: 'from-cyan-500 to-blue-500' },
@@ -80,6 +83,47 @@ const products: ProductCard[] = [
     stats: { raised: '$3,600', backers: '150', mints: '280', rating: '4.9' },
   },
 ];
+
+const fallbackImages = [
+  productTokenizedArt, productSmartMerch, productEcoGadget,
+  productVinylToken, productDigitalSculpture, productArtisanCeramic,
+];
+
+const badgeOptions = [
+  { label: 'New 🔥', icon: <Flame className="w-3 h-3" />, color: 'from-orange-500 to-red-500' },
+  { label: 'Physical + NFT', icon: <Link2 className="w-3 h-3" />, color: 'from-cyan-500 to-blue-500' },
+  { label: 'Top Seller', icon: <Award className="w-3 h-3" />, color: 'from-green-500 to-emerald-500' },
+  { label: 'DAO-Voted', icon: <Vote className="w-3 h-3" />, color: 'from-purple-500 to-pink-500' },
+];
+
+function mapDbProductToCard(product: any, index: number): ProductCard {
+  const badge = product.is_physical && product.is_digital
+    ? badgeOptions[1]
+    : product.nft_token_id
+      ? badgeOptions[3]
+      : badgeOptions[index % badgeOptions.length];
+
+  const price = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: product.currency || 'usd',
+  }).format(product.price);
+
+  return {
+    id: product.id,
+    name: product.name,
+    image: product.images?.[0] || fallbackImages[index % fallbackImages.length],
+    badge,
+    creator: { name: 'Creator', handle: '@creator', avatar: 'CR' },
+    description: product.description || 'A unique product available on Diminga.',
+    stats: {
+      raised: price,
+      backers: String(product.inventory_count || 0),
+      mints: product.nft_token_id ? '1' : '—',
+      rating: '—',
+    },
+    isFromDb: true,
+  };
+}
 
 const StatIcon = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
   <div className="flex items-center gap-1.5 text-xs">
@@ -91,6 +135,7 @@ const StatIcon = ({ icon: Icon, value, label }: { icon: React.ElementType; value
 
 const ProductShowcaseCard = ({ product, index }: { product: ProductCard; index: number }) => {
   const navigate = useNavigate();
+  const detailPath = product.isFromDb ? `/product/${product.id}` : '/commerce-studio';
 
   return (
     <motion.div
@@ -99,7 +144,8 @@ const ProductShowcaseCard = ({ product, index }: { product: ProductCard; index: 
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative rounded-2xl overflow-hidden"
+      className="group relative rounded-2xl overflow-hidden cursor-pointer"
+      onClick={() => navigate(detailPath)}
       style={{
         background: 'linear-gradient(145deg, hsl(var(--cosmic-surface) / 0.8), hsl(var(--cosmic-dark) / 0.6))',
         border: '1px solid hsl(var(--glass-border))',
@@ -114,7 +160,6 @@ const ProductShowcaseCard = ({ product, index }: { product: ProductCard; index: 
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           loading="lazy"
         />
-        {/* Overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
         {/* Badge */}
@@ -165,8 +210,8 @@ const ProductShowcaseCard = ({ product, index }: { product: ProductCard; index: 
 
         {/* Stats */}
         <div className="grid grid-cols-2 gap-2 pt-1">
-          <StatIcon icon={TrendingUp} value={product.stats.raised} label="Raised" />
-          <StatIcon icon={Users} value={product.stats.backers} label="Backers" />
+          <StatIcon icon={TrendingUp} value={product.stats.raised} label={product.isFromDb ? 'Price' : 'Raised'} />
+          <StatIcon icon={Users} value={product.stats.backers} label={product.isFromDb ? 'Stock' : 'Backers'} />
           <StatIcon icon={Zap} value={product.stats.mints} label="Mints" />
           <StatIcon icon={Star} value={product.stats.rating} label="Rating" />
         </div>
@@ -176,7 +221,7 @@ const ProductShowcaseCard = ({ product, index }: { product: ProductCard; index: 
           <Button
             size="sm"
             className="flex-1 bg-gradient-to-r from-accent to-cyan-400 text-black font-bold hover:shadow-lg hover:shadow-accent/30 transition-all text-xs"
-            onClick={() => navigate('/store')}
+            onClick={(e) => { e.stopPropagation(); navigate(detailPath); }}
           >
             <ExternalLink className="w-3.5 h-3.5 mr-1" />
             View & Mint
@@ -185,7 +230,7 @@ const ProductShowcaseCard = ({ product, index }: { product: ProductCard; index: 
             size="sm"
             variant="outline"
             className="flex-1 border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/60 transition-all text-xs"
-            onClick={() => navigate('/store')}
+            onClick={(e) => { e.stopPropagation(); navigate(detailPath); }}
           >
             <Heart className="w-3.5 h-3.5 mr-1" />
             Support Creator
@@ -200,6 +245,26 @@ const InnovateFundSell: React.FC = () => {
   const navigate = useNavigate();
   const [carouselStart, setCarouselStart] = useState(0);
   const visibleCount = 3;
+
+  const { data: dbProducts } = useQuery({
+    queryKey: ['featured-products'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('status', 'active')
+        .order('created_at', { ascending: false })
+        .limit(6);
+      if (error) throw error;
+      return data;
+    },
+  });
+
+  const products: ProductCard[] =
+    dbProducts && dbProducts.length > 0
+      ? dbProducts.map((p, i) => mapDbProductToCard(p, i))
+      : fallbackProducts;
+
   const maxStart = Math.max(0, products.length - visibleCount);
 
   const handlePrev = () => setCarouselStart((s) => Math.max(0, s - 1));
@@ -215,7 +280,6 @@ const InnovateFundSell: React.FC = () => {
         <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full opacity-[0.04]"
           style={{ background: 'radial-gradient(circle, hsl(var(--web3-purple)), transparent 70%)' }}
         />
-        {/* Chain pattern overlay */}
         <div className="absolute inset-0 opacity-[0.02]"
           style={{
             backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 80px, hsl(var(--web3-cyan)) 80px, hsl(var(--web3-cyan)) 81px),
@@ -252,7 +316,7 @@ const InnovateFundSell: React.FC = () => {
             <Button
               size="lg"
               className="bg-gradient-to-r from-accent to-cyan-400 text-black font-bold px-8 py-3 text-base hover:shadow-xl hover:shadow-accent/25 transition-all"
-              onClick={() => navigate('/store')}
+              onClick={() => navigate('/commerce-studio')}
             >
               Explore All Products
             </Button>
@@ -308,16 +372,13 @@ const InnovateFundSell: React.FC = () => {
           </button>
         </div>
 
-        {/* Product Grid — desktop: carousel of 3, tablet: 2, mobile: 1 */}
+        {/* Product Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Mobile/Tablet: show all */}
           <div className="contents lg:hidden">
             {products.map((product, i) => (
               <ProductShowcaseCard key={product.id} product={product} index={i} />
             ))}
           </div>
-
-          {/* Desktop: show carousel window */}
           <div className="hidden lg:contents">
             {products.slice(carouselStart, carouselStart + visibleCount).map((product, i) => (
               <ProductShowcaseCard key={product.id} product={product} index={i} />
@@ -325,7 +386,7 @@ const InnovateFundSell: React.FC = () => {
           </div>
         </div>
 
-        {/* Carousel dots (desktop) */}
+        {/* Carousel dots */}
         <div className="hidden lg:flex items-center justify-center gap-2 mt-8">
           {Array.from({ length: maxStart + 1 }).map((_, i) => (
             <button
@@ -353,7 +414,6 @@ const InnovateFundSell: React.FC = () => {
             backdropFilter: 'blur(20px)',
           }}
         >
-          {/* CTA glow */}
           <div className="absolute inset-0 pointer-events-none opacity-20"
             style={{
               background: 'radial-gradient(ellipse at center, hsl(var(--web3-cyan) / 0.3), transparent 70%)',

@@ -12,6 +12,7 @@ import Onboarding from '@/pages/Onboarding';
 import Messaging from '@/pages/Messaging';
 import Learn from '@/pages/Learn';
 import StoreSuccess from '@/pages/StoreSuccess';
+import ProductDetail from '@/pages/ProductDetail';
 import NotFound from '@/pages/NotFound';
 import CreatorStudio from '@/pages/CreatorStudio';
 import VideoStudio from '@/pages/VideoStudio';
@@ -90,6 +91,7 @@ export const AnimatedRoutes: React.FC = () => {
         {/* Commerce */}
         <Route path="/commerce-studio" element={<PageTransition><CommerceStudio /></PageTransition>} />
         <Route path="/store-success" element={<PageTransition><StoreSuccess /></PageTransition>} />
+        <Route path="/product/:id" element={<PageTransition><ProductDetail /></PageTransition>} />
 
         {/* Social & Content */}
         <Route path="/threaditor" element={<PageTransition><Threaditor /></PageTransition>} />
