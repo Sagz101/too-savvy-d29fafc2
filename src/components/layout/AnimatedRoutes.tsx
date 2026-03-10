@@ -91,6 +91,7 @@ export const AnimatedRoutes: React.FC = () => {
         {/* Commerce */}
         <Route path="/commerce-studio" element={<PageTransition><CommerceStudio /></PageTransition>} />
         <Route path="/store-success" element={<PageTransition><StoreSuccess /></PageTransition>} />
+        <Route path="/product/:id" element={<PageTransition><ProductDetail /></PageTransition>} />
 
         {/* Social & Content */}
         <Route path="/threaditor" element={<PageTransition><Threaditor /></PageTransition>} />
