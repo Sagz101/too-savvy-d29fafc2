@@ -12,6 +12,7 @@ import Onboarding from '@/pages/Onboarding';
 import Messaging from '@/pages/Messaging';
 import Learn from '@/pages/Learn';
 import StoreSuccess from '@/pages/StoreSuccess';
+import ProductDetail from '@/pages/ProductDetail';
 import NotFound from '@/pages/NotFound';
 import CreatorStudio from '@/pages/CreatorStudio';
 import VideoStudio from '@/pages/VideoStudio';
