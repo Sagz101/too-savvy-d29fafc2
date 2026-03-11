@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import {
-  Link2, Shield, Users, Star, TrendingUp, Zap, ChevronLeft, ChevronRight,
-  Flame, Award, Vote, ExternalLink, Heart, Wallet
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
@@ -12,239 +8,71 @@ import { supabase } from '@/integrations/supabase/client';
 import productTokenizedArt from '@/assets/product-tokenized-art.jpg';
 import productSmartMerch from '@/assets/product-smart-merch.jpg';
 import productEcoGadget from '@/assets/product-eco-gadget.jpg';
-import productVinylToken from '@/assets/product-vinyl-token.jpg';
-import productDigitalSculpture from '@/assets/product-digital-sculpture.jpg';
-import productArtisanCeramic from '@/assets/product-artisan-ceramic.jpg';
 
 interface ProductCard {
   id: string;
   name: string;
-  image: string;
-  badge: { label: string; icon: React.ReactNode; color: string };
-  creator: { name: string; handle: string; avatar: string };
+  emoji: string;
+  gradient: string;
+  badge: string;
+  badgeColor: string;
+  creator: { initials: string; handle: string; cls: string };
   description: string;
-  stats: { raised: string; backers: string; mints: string; rating: string };
+  raised: string;
+  backers: string;
+  mints: string;
+  rating: string;
   isFromDb?: boolean;
 }
 
 const fallbackProducts: ProductCard[] = [
   {
-    id: 'fallback-1',
+    id: 'f1',
     name: 'Holographic Genesis Print',
-    image: productTokenizedArt,
-    badge: { label: 'New 🔥', icon: <Flame className="w-3 h-3" />, color: 'from-orange-500 to-red-500' },
-    creator: { name: 'Maya Chen', handle: '@mayacreates', avatar: 'MC' },
+    emoji: '🖼️',
+    gradient: 'linear-gradient(135deg, #1a0533, #2d1050)',
+    badge: '🔥 HOT DROP',
+    badgeColor: 'text-amber-400',
+    creator: { initials: 'MC', handle: '@mayacreates', cls: 'bg-indigo-500/20 text-indigo-400' },
     description: 'Limited-edition tokenized prints with on-chain provenance and redeemable physical art.',
-    stats: { raised: '$4,800', backers: '220', mints: '450', rating: '4.9' },
+    raised: '$4,800',
+    backers: '220 backers',
+    mints: '450 mints · 4.9★',
+    rating: '4.9',
   },
   {
-    id: 'fallback-2',
+    id: 'f2',
     name: 'NeuraTech Smart Hoodie',
-    image: productSmartMerch,
-    badge: { label: 'Physical + NFT', icon: <Link2 className="w-3 h-3" />, color: 'from-cyan-500 to-blue-500' },
-    creator: { name: 'Alex Rivera', handle: '@alexbuilds', avatar: 'AR' },
+    emoji: '👕',
+    gradient: 'linear-gradient(135deg, #001a2c, #003052)',
+    badge: 'Physical + NFT',
+    badgeColor: 'text-amber-400',
+    creator: { initials: 'AR', handle: '@alexbuilds', cls: 'bg-cyan-500/20 text-cyan-400' },
     description: 'Smart merch with embedded NFC chip — scan to unlock exclusive NFT content and community perks.',
-    stats: { raised: '$12,400', backers: '580', mints: '1.2K', rating: '4.8' },
+    raised: '$12,400',
+    backers: '580 backers',
+    mints: '1.2K mints · 4.8★',
+    rating: '4.8',
   },
   {
-    id: 'fallback-3',
+    id: 'f3',
     name: 'SolarPulse Eco Charger',
-    image: productEcoGadget,
-    badge: { label: 'Top Seller', icon: <Award className="w-3 h-3" />, color: 'from-green-500 to-emerald-500' },
-    creator: { name: 'Priya Sharma', handle: '@priyagreen', avatar: 'PS' },
+    emoji: '⚡',
+    gradient: 'linear-gradient(135deg, #0a1a0a, #1a3a1a)',
+    badge: 'Top Seller',
+    badgeColor: 'text-amber-400',
+    creator: { initials: 'PS', handle: '@priyagreen', cls: 'bg-pink-500/20 text-pink-400' },
     description: 'Solar-powered portable charger funded by the community. Carbon-neutral, DAO-governed supply chain.',
-    stats: { raised: '$28,900', backers: '1.4K', mints: '890', rating: '4.9' },
-  },
-  {
-    id: 'fallback-4',
-    name: 'Resonance Vinyl + Fan Token',
-    image: productVinylToken,
-    badge: { label: 'DAO-Voted', icon: <Vote className="w-3 h-3" />, color: 'from-purple-500 to-pink-500' },
-    creator: { name: 'DJ Lumina', handle: '@djlumina', avatar: 'DL' },
-    description: 'Collector vinyl bundle with fan governance token — vote on setlists, get backstage passes.',
-    stats: { raised: '$8,200', backers: '340', mints: '670', rating: '4.7' },
-  },
-  {
-    id: 'fallback-5',
-    name: 'Prismatic Crystal NFT',
-    image: productDigitalSculpture,
-    badge: { label: 'New 🔥', icon: <Flame className="w-3 h-3" />, color: 'from-orange-500 to-red-500' },
-    creator: { name: 'Kai Nomura', handle: '@kaidigital', avatar: 'KN' },
-    description: 'Generative 3D sculpture with real-time blockchain data visualization. Each piece is unique.',
-    stats: { raised: '$6,100', backers: '190', mints: '320', rating: '4.8' },
-  },
-  {
-    id: 'fallback-6',
-    name: 'AR Artisan Ceramic Mug',
-    image: productArtisanCeramic,
-    badge: { label: 'Physical + NFT', icon: <Link2 className="w-3 h-3" />, color: 'from-cyan-500 to-blue-500' },
-    creator: { name: 'Sofia Moreno', handle: '@sofiacrafts', avatar: 'SM' },
-    description: 'Handcrafted ceramic with AR-enabled QR — scan to view the creation process and artist story.',
-    stats: { raised: '$3,600', backers: '150', mints: '280', rating: '4.9' },
+    raised: '$28,900',
+    backers: '1.4K backers',
+    mints: '890 mints · 4.9★',
+    rating: '4.9',
   },
 ];
-
-const fallbackImages = [
-  productTokenizedArt, productSmartMerch, productEcoGadget,
-  productVinylToken, productDigitalSculpture, productArtisanCeramic,
-];
-
-const badgeOptions = [
-  { label: 'New 🔥', icon: <Flame className="w-3 h-3" />, color: 'from-orange-500 to-red-500' },
-  { label: 'Physical + NFT', icon: <Link2 className="w-3 h-3" />, color: 'from-cyan-500 to-blue-500' },
-  { label: 'Top Seller', icon: <Award className="w-3 h-3" />, color: 'from-green-500 to-emerald-500' },
-  { label: 'DAO-Voted', icon: <Vote className="w-3 h-3" />, color: 'from-purple-500 to-pink-500' },
-];
-
-function mapDbProductToCard(product: any, index: number): ProductCard {
-  const badge = product.is_physical && product.is_digital
-    ? badgeOptions[1]
-    : product.nft_token_id
-      ? badgeOptions[3]
-      : badgeOptions[index % badgeOptions.length];
-
-  const price = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: product.currency || 'usd',
-  }).format(product.price);
-
-  return {
-    id: product.id,
-    name: product.name,
-    image: product.images?.[0] || fallbackImages[index % fallbackImages.length],
-    badge,
-    creator: { name: 'Creator', handle: '@creator', avatar: 'CR' },
-    description: product.description || 'A unique product available on Diminga.',
-    stats: {
-      raised: price,
-      backers: String(product.inventory_count || 0),
-      mints: product.nft_token_id ? '1' : '—',
-      rating: '—',
-    },
-    isFromDb: true,
-  };
-}
-
-const StatIcon = ({ icon: Icon, value, label }: { icon: React.ElementType; value: string; label: string }) => (
-  <div className="flex items-center gap-1.5 text-xs">
-    <Icon className="w-3.5 h-3.5 text-accent" />
-    <span className="font-semibold text-foreground/90">{value}</span>
-    <span className="text-muted-foreground hidden sm:inline">{label}</span>
-  </div>
-);
-
-const ProductShowcaseCard = ({ product, index }: { product: ProductCard; index: number }) => {
-  const navigate = useNavigate();
-  const detailPath = product.isFromDb ? `/product/${product.id}` : '/commerce-studio';
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative rounded-2xl overflow-hidden cursor-pointer"
-      onClick={() => navigate(detailPath)}
-      style={{
-        background: 'linear-gradient(145deg, hsl(var(--cosmic-surface) / 0.8), hsl(var(--cosmic-dark) / 0.6))',
-        border: '1px solid hsl(var(--glass-border))',
-        backdropFilter: 'blur(20px)',
-      }}
-    >
-      {/* Product Image */}
-      <div className="relative aspect-square overflow-hidden">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-        {/* Badge */}
-        <div className="absolute top-3 left-3">
-          <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold text-white bg-gradient-to-r ${product.badge.color} shadow-lg`}>
-            {product.badge.icon}
-            {product.badge.label}
-          </span>
-        </div>
-
-        {/* Web3 trust icons */}
-        <div className="absolute top-3 right-3 flex gap-1.5">
-          <div className="w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center border border-white/10" title="On-chain verified">
-            <Link2 className="w-3.5 h-3.5 text-accent" />
-          </div>
-          <div className="w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center border border-white/10" title="Zero fees">
-            <Zap className="w-3.5 h-3.5 text-secondary" />
-          </div>
-          <div className="w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center border border-white/10" title="Multi-sig secured">
-            <Shield className="w-3.5 h-3.5 text-primary" />
-          </div>
-        </div>
-
-        {/* Hover glow effect */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{ boxShadow: 'inset 0 0 60px hsl(var(--web3-cyan) / 0.15)' }}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="p-5 space-y-3.5">
-        {/* Creator */}
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-[11px] font-bold text-white shrink-0">
-            {product.creator.avatar}
-          </div>
-          <div className="min-w-0">
-            <p className="text-sm font-semibold text-foreground truncate">{product.creator.name}</p>
-            <p className="text-xs text-muted-foreground">{product.creator.handle}</p>
-          </div>
-        </div>
-
-        {/* Product name */}
-        <h3 className="text-lg font-bold text-foreground leading-tight">{product.name}</h3>
-
-        {/* Description */}
-        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">{product.description}</p>
-
-        {/* Stats */}
-        <div className="grid grid-cols-2 gap-2 pt-1">
-          <StatIcon icon={TrendingUp} value={product.stats.raised} label={product.isFromDb ? 'Price' : 'Raised'} />
-          <StatIcon icon={Users} value={product.stats.backers} label={product.isFromDb ? 'Stock' : 'Backers'} />
-          <StatIcon icon={Zap} value={product.stats.mints} label="Mints" />
-          <StatIcon icon={Star} value={product.stats.rating} label="Rating" />
-        </div>
-
-        {/* Buttons */}
-        <div className="flex gap-2.5 pt-2">
-          <Button
-            size="sm"
-            className="flex-1 bg-gradient-to-r from-accent to-cyan-400 text-black font-bold hover:shadow-lg hover:shadow-accent/30 transition-all text-xs"
-            onClick={(e) => { e.stopPropagation(); navigate(detailPath); }}
-          >
-            <ExternalLink className="w-3.5 h-3.5 mr-1" />
-            View & Mint
-          </Button>
-          <Button
-            size="sm"
-            variant="outline"
-            className="flex-1 border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/60 transition-all text-xs"
-            onClick={(e) => { e.stopPropagation(); navigate(detailPath); }}
-          >
-            <Heart className="w-3.5 h-3.5 mr-1" />
-            Support Creator
-          </Button>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
 
 const InnovateFundSell: React.FC = () => {
   const navigate = useNavigate();
-  const [carouselStart, setCarouselStart] = useState(0);
-  const visibleCount = 3;
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const { data: dbProducts } = useQuery({
     queryKey: ['featured-products'],
@@ -254,7 +82,7 @@ const InnovateFundSell: React.FC = () => {
         .select('*')
         .eq('status', 'active')
         .order('created_at', { ascending: false })
-        .limit(6);
+        .limit(3);
       if (error) throw error;
       return data;
     },
@@ -262,191 +90,116 @@ const InnovateFundSell: React.FC = () => {
 
   const products: ProductCard[] =
     dbProducts && dbProducts.length > 0
-      ? dbProducts.map((p, i) => mapDbProductToCard(p, i))
+      ? dbProducts.map((p, i) => ({
+          id: p.id,
+          name: p.name,
+          emoji: ['🖼️', '👕', '⚡'][i % 3],
+          gradient: ['linear-gradient(135deg, #1a0533, #2d1050)', 'linear-gradient(135deg, #001a2c, #003052)', 'linear-gradient(135deg, #0a1a0a, #1a3a1a)'][i % 3],
+          badge: p.is_physical ? 'Physical + NFT' : '🔥 HOT DROP',
+          badgeColor: 'text-amber-400',
+          creator: { initials: 'CR', handle: '@creator', cls: 'bg-indigo-500/20 text-indigo-400' },
+          description: p.description || 'A unique product on Diminga.',
+          raised: new Intl.NumberFormat('en-US', { style: 'currency', currency: p.currency || 'usd' }).format(p.price),
+          backers: `${p.inventory_count || 0} backers`,
+          mints: p.nft_token_id ? '1 mint' : '—',
+          rating: '—',
+          isFromDb: true,
+        }))
       : fallbackProducts;
 
-  const maxStart = Math.max(0, products.length - visibleCount);
-
-  const handlePrev = () => setCarouselStart((s) => Math.max(0, s - 1));
-  const handleNext = () => setCarouselStart((s) => Math.min(maxStart, s + 1));
-
   return (
-    <section className="relative py-20 md:py-28 overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full opacity-[0.04]"
-          style={{ background: 'radial-gradient(circle, hsl(var(--web3-cyan)), transparent 70%)' }}
-        />
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full opacity-[0.04]"
-          style={{ background: 'radial-gradient(circle, hsl(var(--web3-purple)), transparent 70%)' }}
-        />
-        <div className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `repeating-linear-gradient(90deg, transparent, transparent 80px, hsl(var(--web3-cyan)) 80px, hsl(var(--web3-cyan)) 81px),
-                              repeating-linear-gradient(0deg, transparent, transparent 80px, hsl(var(--web3-purple)) 80px, hsl(var(--web3-purple)) 81px)`,
-          }}
-        />
-      </div>
+    <section ref={ref} className="relative z-[2] py-16 md:py-24 px-4 md:px-16">
+      <div className="h-px mb-16 md:mb-24" style={{ background: 'rgba(255,255,255,0.06)' }} />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Intro */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16 md:mb-20"
-        >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6">
-            <span className="bg-gradient-to-r from-accent via-primary to-pink-500 bg-clip-text text-transparent">
-              Innovate.
-            </span>{' '}
-            <span className="bg-gradient-to-r from-primary via-purple-400 to-accent bg-clip-text text-transparent">
-              Fund.
-            </span>{' '}
-            <span className="bg-gradient-to-r from-secondary via-emerald-400 to-accent bg-clip-text text-transparent">
-              Sell.
-            </span>
-          </h2>
-          <p className="max-w-3xl mx-auto text-base sm:text-lg text-muted-foreground leading-relaxed mb-8">
-            Discover groundbreaking products from sovereign creators — crowdfunded, tokenized, and sold directly on Diminga.{' '}
-            <span className="text-foreground font-medium">Zero fees, full ownership, community-backed.</span>
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-accent to-cyan-400 text-black font-bold px-8 py-3 text-base hover:shadow-xl hover:shadow-accent/25 transition-all"
-              onClick={() => navigate('/commerce-studio')}
-            >
-              Explore All Products
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-primary/50 text-primary hover:bg-primary/10 hover:border-primary px-8 py-3 text-base transition-all"
-              onClick={() => navigate('/creator-studio')}
-            >
-              Launch Your Campaign
-            </Button>
-          </div>
-        </motion.div>
-
-        {/* On-chain transparency bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="flex items-center justify-center gap-6 mb-12 text-sm text-muted-foreground"
-        >
-          <div className="flex items-center gap-1.5">
-            <Shield className="w-4 h-4 text-secondary" />
-            <span>All sales verifiable on-chain</span>
-          </div>
-          <span className="hidden sm:inline text-border">|</span>
-          <div className="hidden sm:flex items-center gap-1.5">
-            <Zap className="w-4 h-4 text-accent" />
-            <span>Zero platform fees</span>
-          </div>
-          <span className="hidden md:inline text-border">|</span>
-          <div className="hidden md:flex items-center gap-1.5">
-            <Link2 className="w-4 h-4 text-primary" />
-            <span>Create. Own. Thrive.</span>
-          </div>
-        </motion.div>
-
-        {/* Desktop carousel controls */}
-        <div className="hidden lg:flex items-center justify-end gap-2 mb-6">
-          <button
-            onClick={handlePrev}
-            disabled={carouselStart === 0}
-            className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-accent/50 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={handleNext}
-            disabled={carouselStart >= maxStart}
-            className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-accent/50 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="font-space-mono text-[0.65rem] tracking-[0.15em] uppercase text-indigo-400 mb-4">
+          // Live Campaigns
         </div>
+        <h2 className="font-syne font-extrabold text-3xl md:text-5xl tracking-tight text-foreground leading-[1.05] mb-12">
+          Backed by the<br /><em className="text-foreground/30 italic">community.</em>
+        </h2>
+      </motion.div>
 
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="contents lg:hidden">
-            {products.map((product, i) => (
-              <ProductShowcaseCard key={product.id} product={product} index={i} />
-            ))}
-          </div>
-          <div className="hidden lg:contents">
-            {products.slice(carouselStart, carouselStart + visibleCount).map((product, i) => (
-              <ProductShowcaseCard key={product.id} product={product} index={i} />
-            ))}
-          </div>
-        </div>
-
-        {/* Carousel dots */}
-        <div className="hidden lg:flex items-center justify-center gap-2 mt-8">
-          {Array.from({ length: maxStart + 1 }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCarouselStart(i)}
-              className={`w-2 h-2 rounded-full transition-all ${
-                i === carouselStart
-                  ? 'w-6 bg-accent'
-                  : 'bg-muted-foreground/30 hover:bg-muted-foreground/50'
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* Bottom CTA Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-16 md:mt-20 relative rounded-2xl overflow-hidden p-8 md:p-12 text-center"
-          style={{
-            background: 'linear-gradient(135deg, hsl(var(--cosmic-surface) / 0.9), hsl(var(--cosmic-dark) / 0.7))',
-            border: '1px solid hsl(var(--glass-border))',
-            backdropFilter: 'blur(20px)',
-          }}
-        >
-          <div className="absolute inset-0 pointer-events-none opacity-20"
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {products.map((p, i) => (
+          <motion.div
+            key={p.id}
+            initial={{ opacity: 0, y: 30 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: i * 0.12 }}
+            className="group rounded-2xl overflow-hidden cursor-pointer transition-all hover:-translate-y-1"
             style={{
-              background: 'radial-gradient(ellipse at center, hsl(var(--web3-cyan) / 0.3), transparent 70%)',
+              background: '#0d0d14',
+              border: '1px solid rgba(255,255,255,0.06)',
             }}
-          />
-          <div className="relative z-10">
-            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-              Ready to showcase your innovation?
-            </h3>
-            <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
-              Start creating for free. Launch campaigns, tokenize your products, and connect with a global community of backers.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-accent to-cyan-400 text-black font-bold px-10 py-3 text-base hover:shadow-xl hover:shadow-accent/25 transition-all"
-                onClick={() => navigate('/creator-studio')}
+            onClick={() => navigate(p.isFromDb ? `/product/${p.id}` : '/commerce-studio')}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(99,102,241,0.3)';
+              e.currentTarget.style.boxShadow = '0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(99,102,241,0.08)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            {/* Image area */}
+            <div
+              className="h-40 grid place-items-center text-4xl relative overflow-hidden"
+              style={{ background: p.gradient }}
+            >
+              {p.emoji}
+              <div
+                className="absolute top-3 right-3 px-2.5 py-1 rounded-full font-space-mono text-[0.62rem]"
+                style={{
+                  background: 'rgba(0,0,0,0.6)',
+                  backdropFilter: 'blur(8px)',
+                  border: '1px solid rgba(255,255,255,0.06)',
+                  color: '#f59e0b',
+                }}
               >
-                <Zap className="w-5 h-5 mr-2" />
-                Launch App
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-primary/50 text-primary hover:bg-primary/10 hover:border-primary px-10 py-3 text-base transition-all"
-                onClick={() => navigate('/onboarding')}
-              >
-                <Wallet className="w-5 h-5 mr-2" />
-                Connect Wallet
-              </Button>
+                {p.badge}
+              </div>
             </div>
-          </div>
-        </motion.div>
+
+            {/* Body */}
+            <div className="p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <div className={`w-5 h-5 rounded-full grid place-items-center text-[0.6rem] font-bold ${p.creator.cls}`}>
+                  {p.creator.initials}
+                </div>
+                <span className="font-space-mono text-xs text-muted-foreground">{p.creator.handle}</span>
+              </div>
+
+              <div className="font-syne font-bold text-base text-foreground mb-1.5 leading-snug">{p.name}</div>
+              <div className="text-xs text-muted-foreground leading-relaxed mb-4">{p.description}</div>
+
+              <div className="flex items-center justify-between pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                <div>
+                  <div className="font-syne font-bold text-lg text-foreground">{p.raised}</div>
+                  <div className="text-[0.65rem] text-muted-foreground">raised</div>
+                </div>
+                <div className="text-right font-space-mono text-[0.7rem] text-muted-foreground leading-relaxed">
+                  {p.backers}<br />{p.mints}
+                </div>
+              </div>
+
+              <button
+                className="w-full mt-3 py-2.5 rounded-lg font-syne font-semibold text-sm text-foreground flex items-center justify-center gap-1.5 transition-all hover:bg-indigo-500 hover:border-indigo-500"
+                style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.06)' }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigate(p.isFromDb ? `/product/${p.id}` : '/commerce-studio');
+                }}
+              >
+                ⬡ View & Mint
+              </button>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );

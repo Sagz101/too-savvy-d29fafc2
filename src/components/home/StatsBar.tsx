@@ -2,62 +2,38 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-interface StatItemProps {
-  value: string;
-  label: string;
-  index: number;
-}
+const stats = [
+  { value: '$2.1M+', label: 'Total creator earnings, on-chain verifiable', sub: '↑ 18% this month' },
+  { value: '15,247', label: 'Active creators across 5 continents', sub: '↑ 847 joined this week' },
+  { value: '0%', label: 'Platform fees — ever', sub: 'You keep 100% of revenue' },
+  { value: '98/100', label: 'CertiK security score', sub: 'Audit ID: TSV-2024-001 ✓' },
+];
 
-const StatItem: React.FC<StatItemProps> = ({ value, label, index }) => {
+export const StatsBar: React.FC = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="flex flex-col items-center justify-center text-center px-4 py-6 relative"
-    >
-      <div
-        className="text-4xl md:text-5xl font-bold text-white mb-2 font-space"
-        style={{ textShadow: '0 0 30px rgba(192, 132, 252, 0.3)' }}
-      >
-        {value}
-      </div>
-      <div className="text-sm text-gray-400 font-medium">{label}</div>
-      
-      {/* Separator line between items (hidden for last) */}
-      {index < 4 && (
-        <div className="absolute right-0 top-1/4 h-1/2 w-px bg-white/10 hidden md:block" />
-      )}
-    </motion.div>
-  );
-};
+    <div ref={ref} className="relative z-[2] grid grid-cols-2 md:grid-cols-4">
+      {stats.map((stat, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: i * 0.1 }}
+          className="group relative px-6 md:px-8 py-8 md:py-10 overflow-hidden transition-colors hover:bg-[#0d0d14]"
+          style={{ borderRight: i < 3 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}
+        >
+          {/* Bottom glow on hover */}
+          <div className="absolute bottom-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+            style={{ background: 'linear-gradient(90deg, transparent, #6366f1, transparent)' }} />
 
-export const StatsBar: React.FC = () => {
-  const stats = [
-    { value: '$21,000+', label: 'Total Volume' },
-    { value: '$847', label: 'Avg Creator Earnings' },
-    { value: '$2.1M+', label: 'Total Creator Earnings' },
-    { value: '15,247', label: 'Active Creators' },
-    { value: '15 plost', label: 'Active Creators' },
-  ];
-
-  return (
-    <section
-      className="relative border-y border-white/5 overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #0f0025, #0d001e, #0a0018)' }}
-    >
-      <div className="absolute inset-0 opacity-20"
-        style={{ background: 'radial-gradient(ellipse at 50% 50%, #7c3aed20, transparent 70%)' }} />
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-5 divide-x divide-white/5">
-          {stats.map((stat, index) => (
-            <StatItem key={index} {...stat} index={index} />
-          ))}
-        </div>
-      </div>
-    </section>
+          <div className="font-syne font-extrabold text-3xl md:text-4xl tracking-tight text-foreground mb-1">
+            {stat.value}
+          </div>
+          <div className="text-xs md:text-sm text-muted-foreground leading-snug">{stat.label}</div>
+          <div className="font-space-mono text-[0.65rem] text-emerald-400 mt-1.5">{stat.sub}</div>
+        </motion.div>
+      ))}
+    </div>
   );
 };
