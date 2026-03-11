@@ -19,9 +19,11 @@ export default {
 		},
 		extend: {
 			fontFamily: {
+				'syne': ['Syne', 'sans-serif'],
+				'space-mono': ['Space Mono', 'monospace'],
+				'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 				'lotus': ['Lotus Flower', 'cursive'],
 				'orbitron': ['Orbitron', 'monospace', 'sans-serif'],
-				'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
 				'poppins': ['Poppins', 'Inter', 'sans-serif'],
 				'source-sans': ['Source Sans Pro', 'sans-serif'],
 				'michroma': ['Michroma', 'sans-serif'],
