@@ -1,141 +1,100 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const proposals = [
-  {
-    id: 'DIP-047',
-    status: 'active' as const,
-    statusLabel: 'Active · 2d left',
-    title: 'Add Solana chain support to Video Studio',
-    votePercent: 73,
-    votesLabel: '73% For',
-    votesCount: '3,420 votes cast',
-  },
-  {
-    id: 'DIP-046',
-    status: 'active' as const,
-    statusLabel: 'Active · 4d left',
-    title: 'Allocate 50K treasury to creator grants Q2',
-    votePercent: 89,
-    votesLabel: '89% For',
-    votesCount: '5,102 votes cast',
-  },
-  {
-    id: 'DIP-045',
-    status: 'pending' as const,
-    statusLabel: 'Pending',
-    title: 'Introduce referral rewards for creator onboarding',
-    votePercent: 0,
-    votesLabel: 'Voting opens in 12h',
-    votesCount: '0 votes',
-  },
+  { dip: 'DIP-47', status: 'Active', statusColor: 'text-emerald-600 bg-emerald-50', title: 'Reduce marketplace fee from 2.5% to 0%', yes: 94, votes: '12,847' },
+  { dip: 'DIP-48', status: 'Active', statusColor: 'text-emerald-600 bg-emerald-50', title: 'Add Solana chain support for NFT minting', yes: 78, votes: '9,234' },
+  { dip: 'DIP-49', status: 'Pending', statusColor: 'text-diminga-accent bg-diminga-hover', title: 'Creator grant program — $50K quarterly fund', yes: 0, votes: 'Opens in 2d' },
 ];
 
 export const DAOSection: React.FC = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section
-      ref={ref}
-      className="relative z-[2] py-24 px-4 md:px-16 overflow-hidden"
-      style={{
-        background: '#0d0d14',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        borderBottom: '1px solid rgba(255,255,255,0.06)',
-      }}
-    >
-      {/* Glow blob */}
-      <div
-        className="absolute -top-48 -right-24 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: '#06b6d4', filter: 'blur(100px)', opacity: 0.12 }}
-      />
-
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        {/* Left copy */}
+    <section className="bg-diminga-alt py-20" style={{ borderTop: '1px solid rgba(17,17,16,0.06)', borderBottom: '1px solid rgba(17,17,16,0.06)' }}>
+      <div ref={ref} className="max-w-[1280px] mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        {/* Left */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <div className="font-space-mono text-[0.65rem] tracking-[0.15em] uppercase text-indigo-400 mb-4">
-            // DAO Governance
-          </div>
-          <h2 className="font-syne font-extrabold text-4xl md:text-5xl leading-[1.05] tracking-tight text-foreground mb-6">
-            You don't use<br />Diminga.<br />
-            <em className="text-foreground/30 italic">You govern it.</em>
+          <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-diminga-accent mb-3 block">
+            DAO Governance
+          </span>
+          <h2 className="font-fraunces font-bold text-3xl md:text-4xl tracking-[-0.03em] text-diminga-text mb-4">
+            You don't govern Diminga.{' '}
+            <span className="italic font-light text-diminga-accent">You ARE Diminga.</span>
           </h2>
-          <p className="text-muted-foreground text-sm leading-relaxed max-w-md mb-8">
-            Every platform decision — fees, features, grants, treasury — is voted on by token holders. 
-            This isn't a governance facade. It's the actual mechanism of control.
+          <p className="font-dm-sans text-diminga-muted leading-relaxed mb-6 max-w-md">
+            Every $DMG token holder can propose, vote, and shape the platform's future. No central authority. No gatekeepers.
           </p>
-          <div className="flex gap-3 flex-wrap">
-            <Button className="bg-indigo-500 hover:bg-indigo-400 text-white font-syne font-bold" asChild>
-              <Link to="/dao-governance">Join DAO</Link>
-            </Button>
-            <Button
-              variant="outline"
-              className="border-white/10 text-foreground hover:border-indigo-400/40 hover:bg-indigo-500/10 font-syne font-semibold"
-              asChild
-            >
-              <Link to="/dao-governance">View All Proposals</Link>
-            </Button>
-          </div>
-        </motion.div>
+          <Button
+            className="bg-diminga-accent hover:bg-diminga-accent/90 text-white font-dm-sans font-semibold px-6 py-5 text-sm rounded-lg mb-8"
+            asChild
+          >
+            <Link to="/dao-governance">Enter Governance →</Link>
+          </Button>
 
-        {/* Right proposals */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <div className="font-space-mono text-[0.7rem] uppercase tracking-[0.1em] text-muted-foreground mb-4">
-            Active Proposals
-          </div>
-          <div className="flex flex-col gap-3">
-            {proposals.map((p) => (
-              <div
-                key={p.id}
-                className="rounded-xl p-4 transition-colors"
-                style={{
-                  background: '#050508',
-                  border: '1px solid rgba(255,255,255,0.06)',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'rgba(99,102,241,0.3)')}
-                onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}
-              >
-                <div className="flex items-center justify-between mb-3">
-                  <span className="font-space-mono text-[0.65rem] text-muted-foreground/50">{p.id}</span>
-                  <span
-                    className={`font-space-mono text-[0.62rem] px-2 py-0.5 rounded-full uppercase tracking-wider ${
-                      p.status === 'active'
-                        ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/20'
-                        : 'bg-amber-500/15 text-amber-400 border border-amber-500/20'
-                    }`}
-                  >
-                    {p.statusLabel}
-                  </span>
-                </div>
-                <div className="font-syne font-semibold text-sm text-foreground mb-3">{p.title}</div>
-                <div className="h-1 rounded-full overflow-hidden" style={{ background: '#12121c' }}>
-                  <div
-                    className="h-full rounded-full"
-                    style={{
-                      width: `${p.votePercent}%`,
-                      background: 'linear-gradient(90deg, #6366f1, #06b6d4)',
-                    }}
-                  />
-                </div>
-                <div className="flex justify-between mt-2 font-space-mono text-[0.62rem] text-muted-foreground">
-                  <span>{p.votesLabel}</span>
-                  <span>{p.votesCount}</span>
-                </div>
+          {/* Token stats */}
+          <div className="grid grid-cols-2 gap-4 pt-6" style={{ borderTop: '1px solid rgba(17,17,16,0.08)' }}>
+            {[
+              { value: '1M', label: 'Total $DMG supply' },
+              { value: '67%', label: 'Staked tokens' },
+              { value: '847', label: 'Governance participants' },
+              { value: '47', label: 'Active proposals' },
+            ].map(s => (
+              <div key={s.label}>
+                <div className="font-fraunces font-bold text-lg text-diminga-text">{s.value}</div>
+                <div className="font-dm-sans text-[0.7rem] text-diminga-muted">{s.label}</div>
               </div>
             ))}
           </div>
         </motion.div>
+
+        {/* Right — Proposals */}
+        <div className="flex flex-col gap-4">
+          {proposals.map((p, i) => (
+            <motion.div
+              key={p.dip}
+              className="bg-white rounded-xl p-5 transition-all hover:-translate-y-0.5"
+              style={{ border: '1px solid rgba(17,17,16,0.06)' }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <span className="font-dm-sans text-[0.7rem] font-semibold text-diminga-muted">{p.dip}</span>
+                <span className={`px-2 py-0.5 rounded-md text-[0.6rem] font-dm-sans font-semibold ${p.statusColor}`}>
+                  {p.status}
+                </span>
+              </div>
+              <h4 className="font-fraunces font-bold text-sm text-diminga-text mb-3">{p.title}</h4>
+              {p.yes > 0 ? (
+                <>
+                  <div className="w-full h-2 bg-diminga-alt rounded-full overflow-hidden mb-2">
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${p.yes}%`,
+                        background: 'linear-gradient(90deg, #E8650A, #F07820)',
+                      }}
+                    />
+                  </div>
+                  <div className="flex justify-between font-dm-sans text-[0.65rem] text-diminga-muted">
+                    <span><strong className="text-diminga-text">{p.yes}%</strong> YES</span>
+                    <span>{p.votes} votes</span>
+                  </div>
+                </>
+              ) : (
+                <div className="font-dm-sans text-[0.7rem] text-diminga-muted">{p.votes}</div>
+              )}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

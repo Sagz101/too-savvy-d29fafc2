@@ -2,59 +2,51 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-const trustCards = [
-  { value: '98/100', label: 'CertiK Security Score', sub: 'Audit ID: TSV-2024-001 ✓', subColor: 'text-emerald-400' },
-  { value: '3/5', label: 'Multisig treasury', sub: 'Gnosis Safe · verified', subColor: 'text-muted-foreground/50' },
-  { value: '127%', label: 'Carbon offset', sub: 'Net-positive operations', subColor: 'text-emerald-400' },
-  { value: '99.9%', label: 'Platform uptime', sub: '30-day rolling average', subColor: 'text-muted-foreground/50' },
+const trustItems = [
+  { value: '98/', accent: '100', label: 'CertiK security audit score', verify: '✓ Verified · Audit #CTK-2024-DMG' },
+  { value: '3/', accent: '5', label: 'Multi-signature treasury control', verify: '✓ Verified · Gnosis Safe' },
+  { value: '127', accent: '%', label: 'Carbon offset via on-chain credits', verify: '✓ Verified · Toucan Protocol' },
+  { value: '99.9', accent: '%', label: 'Platform uptime · enterprise SLA', verify: '✓ Verified · Status page' },
 ];
 
 export const TrustSection: React.FC = () => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section ref={ref} className="relative z-[2] py-16 md:py-24 px-4 md:px-16">
+    <section className="max-w-[1280px] mx-auto px-6 md:px-10 py-20">
       <motion.div
+        ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
+        className="mb-12"
       >
-        <div className="font-space-mono text-[0.65rem] tracking-[0.15em] uppercase text-indigo-400 mb-4">
-          // Security & Trust
-        </div>
-        <h2 className="font-syne font-extrabold text-3xl md:text-5xl tracking-tight text-foreground leading-[1.05] mb-12">
-          Built on proof,<br /><em className="text-foreground/30 italic">not promises.</em>
+        <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-diminga-accent mb-3 block">
+          Security & Trust
+        </span>
+        <h2 className="font-fraunces font-bold text-3xl md:text-4xl tracking-[-0.03em] text-diminga-text">
+          Built for trust. <span className="italic font-light text-diminga-accent">Verified on-chain.</span>
         </h2>
       </motion.div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-        {trustCards.map((card, i) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {trustItems.map((t, i) => (
           <motion.div
             key={i}
+            className="bg-white rounded-xl p-6 group transition-all hover:-translate-y-0.5"
+            style={{ border: '1px solid rgba(17,17,16,0.06)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="group text-center p-6 rounded-2xl overflow-hidden transition-all hover:-translate-y-1"
-            style={{
-              background: '#0d0d14',
-              border: '1px solid rgba(255,255,255,0.06)',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = 'rgba(99,102,241,0.3)')}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}
           >
-            <div
-              className="font-syne font-extrabold text-3xl md:text-4xl tracking-tight mb-2"
-              style={{
-                background: 'linear-gradient(135deg, #f1f5f9 0%, #6366f1 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
-              {card.value}
+            <div className="w-10 h-10 rounded-lg bg-diminga-alt group-hover:bg-diminga-hover flex items-center justify-center text-lg mb-4 transition-colors">
+              🛡️
             </div>
-            <div className="text-sm text-muted-foreground mb-1">{card.label}</div>
-            <div className={`text-[0.7rem] ${card.subColor}`}>{card.sub}</div>
+            <div className="font-fraunces font-bold text-2xl tracking-tight text-diminga-text mb-1">
+              {t.value}<span className="italic font-light text-diminga-accent">{t.accent}</span>
+            </div>
+            <p className="font-dm-sans text-sm text-diminga-muted leading-relaxed mb-3">{t.label}</p>
+            <div className="font-dm-sans text-[0.65rem] text-emerald-600 font-medium">{t.verify}</div>
           </motion.div>
         ))}
       </div>
