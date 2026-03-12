@@ -138,7 +138,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+			},
+			// Diminga editorial palette
+			diminga: {
+				'bg': '#FAFAF7',
+				'card': '#FFFFFF',
+				'text': '#111110',
+				'muted': '#6B6B68',
+				'accent': '#E8650A',
+				'hover': '#FEF3EB',
+				'alt': '#F4F4F0',
+				'ticker': '#F07820',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
