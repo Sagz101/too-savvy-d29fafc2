@@ -116,7 +116,16 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+  
+  .font-fraunces {
+    font-family: 'Fraunces', Georgia, serif;
+  }
+
+  .font-dm-sans {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
   }
   
   .font-orbitron {
@@ -1679,10 +1688,20 @@
   z-index: 1;
 }
 
-/* ─── Diminga Redesign Animations ─── */
+/* ─── Diminga Editorial Redesign Animations ─── */
 @keyframes ticker-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+@keyframes chipFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
 @keyframes shimmer-text {
@@ -1693,9 +1712,4 @@
 @keyframes float-card {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
-}
-
-@keyframes cosmic-pulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.8; }
 }

@@ -18,17 +18,13 @@ export default {
 			}
 		},
 		extend: {
-			fontFamily: {
-				'syne': ['Syne', 'sans-serif'],
-				'space-mono': ['Space Mono', 'monospace'],
-				'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-				'lotus': ['Lotus Flower', 'cursive'],
-				'orbitron': ['Orbitron', 'monospace', 'sans-serif'],
-				'poppins': ['Poppins', 'Inter', 'sans-serif'],
-				'source-sans': ['Source Sans Pro', 'sans-serif'],
-				'michroma': ['Michroma', 'sans-serif'],
-				'sphere-fez': ['SPHERE FEZ', 'Arial', 'sans-serif'],
-			},
+		fontFamily: {
+			'fraunces': ['Fraunces', 'Georgia', 'serif'],
+			'dm-sans': ['DM Sans', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+			'syne': ['Syne', 'sans-serif'],
+			'space-mono': ['Space Mono', 'monospace'],
+			'inter': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+		},
 			colors: {
 				// Cosmic-inspired color palette from reference images
 				cosmic: {
@@ -142,7 +138,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+			},
+			// Diminga editorial palette
+			diminga: {
+				'bg': '#FAFAF7',
+				'card': '#FFFFFF',
+				'text': '#111110',
+				'muted': '#6B6B68',
+				'accent': '#E8650A',
+				'hover': '#FEF3EB',
+				'alt': '#F4F4F0',
+				'ticker': '#F07820',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
