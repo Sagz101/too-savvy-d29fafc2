@@ -116,7 +116,16 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
+    letter-spacing: -0.01em;
+  }
+  
+  .font-fraunces {
+    font-family: 'Fraunces', Georgia, serif;
+  }
+
+  .font-dm-sans {
+    font-family: 'DM Sans', 'Inter', system-ui, sans-serif;
   }
   
   .font-orbitron {
