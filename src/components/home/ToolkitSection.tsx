@@ -21,7 +21,7 @@ export const ToolkitSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="max-w-[1280px] mx-auto px-6 md:px-10 py-20">
+    <section id="toolkit" className="max-w-[1280px] mx-auto px-6 md:px-10 py-20 scroll-mt-20">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 20 }}

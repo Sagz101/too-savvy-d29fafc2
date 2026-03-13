@@ -23,7 +23,7 @@ export const SuccessStories: React.FC = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section className="max-w-[1280px] mx-auto px-6 md:px-10 py-20">
+    <section id="stories" className="max-w-[1280px] mx-auto px-6 md:px-10 py-20 scroll-mt-20">
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
