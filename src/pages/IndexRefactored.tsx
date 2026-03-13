@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   HeroSection,
   StatsBar,
@@ -13,6 +13,15 @@ import { CtaBanner } from '@/components/home/CtaBanner';
 import { TrustStrip } from '@/components/home/TrustStrip';
 import { Footer } from '@/components/layout/Footer';
 import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+
+const navLinks = [
+  { label: 'Studio', href: '#toolkit' },
+  { label: 'Marketplace', href: '#marketplace' },
+  { label: 'Governance', href: '#governance' },
+  { label: 'Community', href: '#stories' },
+  { label: 'Docs', to: '/learn' },
+] as const;
 
 const IndexRefactored = () => {
   useEffect(() => {
