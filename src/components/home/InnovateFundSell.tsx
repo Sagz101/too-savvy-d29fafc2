@@ -41,7 +41,7 @@ export default function InnovateFundSell() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section className="bg-diminga-text py-20">
+    <section id="marketplace" className="bg-diminga-text py-20 scroll-mt-20">
       <div ref={ref} className="max-w-[1280px] mx-auto px-6 md:px-10">
         {/* Header */}
         <div className="flex items-end justify-between mb-12">

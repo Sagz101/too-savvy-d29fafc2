@@ -39,16 +39,29 @@ const IndexRefactored = () => {
 
         <ul className="hidden md:flex gap-8 list-none">
           {[
-            { label: 'Studio', to: '/studio' },
-            { label: 'Marketplace', to: '/commerce-studio' },
-            { label: 'Governance', to: '/dao-governance' },
-            { label: 'Community', to: '/community' },
+            { label: 'Studio', href: '#toolkit' },
+            { label: 'Marketplace', href: '#marketplace' },
+            { label: 'Governance', href: '#governance' },
+            { label: 'Community', href: '#stories' },
             { label: 'Docs', to: '/learn' },
           ].map((l) => (
             <li key={l.label}>
-              <Link to={l.to} className="font-dm-sans text-sm text-diminga-muted hover:text-diminga-text transition-colors tracking-[-0.01em]">
-                {l.label}
-              </Link>
+              {'href' in l ? (
+                <a
+                  href={l.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.querySelector(l.href!)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }}
+                  className="font-dm-sans text-sm text-diminga-muted hover:text-diminga-text transition-colors tracking-[-0.01em]"
+                >
+                  {l.label}
+                </a>
+              ) : (
+                <Link to={l.to!} className="font-dm-sans text-sm text-diminga-muted hover:text-diminga-text transition-[-0.01em]">
+                  {l.label}
+                </Link>
+              )}
             </li>
           ))}
         </ul>
