@@ -10,6 +10,16 @@ const proposals = [
   { dip: 'DIP-49', status: 'Pending', statusColor: 'text-diminga-accent bg-diminga-hover', title: 'Creator grant program — $50K quarterly fund', yes: 0, votes: 'Opens in 2d' },
 ];
 
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+};
+
 export const DAOSection: React.FC = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
@@ -20,7 +30,7 @@ export const DAOSection: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-diminga-accent mb-3 block">
             DAO Governance
@@ -40,31 +50,40 @@ export const DAOSection: React.FC = () => {
           </Button>
 
           {/* Token stats */}
-          <div className="grid grid-cols-2 gap-4 pt-6" style={{ borderTop: '1px solid rgba(17,17,16,0.08)' }}>
+          <motion.div
+            className="grid grid-cols-2 gap-4 pt-6"
+            style={{ borderTop: '1px solid rgba(17,17,16,0.08)' }}
+            variants={container}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+          >
             {[
               { value: '1M', label: 'Total $DMG supply' },
               { value: '67%', label: 'Staked tokens' },
               { value: '847', label: 'Governance participants' },
               { value: '47', label: 'Active proposals' },
             ].map(s => (
-              <div key={s.label}>
+              <motion.div key={s.label} variants={item}>
                 <div className="font-fraunces font-bold text-lg text-diminga-text">{s.value}</div>
                 <div className="font-dm-sans text-[0.7rem] text-diminga-muted">{s.label}</div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Right — Proposals */}
-        <div className="flex flex-col gap-4">
-          {proposals.map((p, i) => (
+        <motion.div
+          className="flex flex-col gap-4"
+          variants={container}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+        >
+          {proposals.map((p) => (
             <motion.div
               key={p.dip}
               className="bg-white rounded-xl p-5 transition-all hover:-translate-y-0.5"
               style={{ border: '1px solid rgba(17,17,16,0.06)' }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              variants={item}
             >
               <div className="flex items-center gap-2 mb-2">
                 <span className="font-dm-sans text-[0.7rem] font-semibold text-diminga-muted">{p.dip}</span>
@@ -94,7 +113,7 @@ export const DAOSection: React.FC = () => {
               )}
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

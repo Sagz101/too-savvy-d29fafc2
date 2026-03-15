@@ -19,6 +19,16 @@ const stories = [
   },
 ];
 
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+};
+
 export const SuccessStories: React.FC = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
@@ -28,7 +38,7 @@ export const SuccessStories: React.FC = () => {
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="mb-12"
       >
         <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-diminga-accent mb-3 block">
@@ -39,15 +49,18 @@ export const SuccessStories: React.FC = () => {
         </h2>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {stories.map((s, i) => (
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 gap-6"
+        variants={container}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+      >
+        {stories.map((s) => (
           <motion.div
             key={s.name}
             className="bg-white rounded-xl p-6 transition-all hover:-translate-y-0.5"
             style={{ border: '1px solid rgba(17,17,16,0.06)' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: i * 0.15 }}
+            variants={item}
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-11 h-11 rounded-full bg-diminga-alt flex items-center justify-center font-fraunces font-bold text-sm text-diminga-accent">
@@ -66,7 +79,7 @@ export const SuccessStories: React.FC = () => {
             <div className="flex gap-6">
               <div>
                 <div className="font-fraunces font-bold text-xl text-diminga-text">
-                  {s.earnings.replace('$', '$')}<span className="italic font-light text-diminga-accent" />
+                  {s.earnings}
                 </div>
                 <div className="font-dm-sans text-[0.65rem] text-diminga-muted">Total earnings</div>
               </div>
@@ -77,7 +90,7 @@ export const SuccessStories: React.FC = () => {
             </div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };
