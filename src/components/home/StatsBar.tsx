@@ -9,14 +9,28 @@ const stats = [
   { value: '98/', accent: '100', label: 'CertiK security audit score' },
 ];
 
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+};
+
 export const StatsBar: React.FC = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section ref={ref} className="max-w-[1280px] mx-auto px-6 md:px-10 py-16">
-      <div
+    <section className="max-w-[1280px] mx-auto px-6 md:px-10 py-16">
+      <motion.div
+        ref={ref}
         className="grid grid-cols-2 md:grid-cols-4 rounded-2xl overflow-hidden"
         style={{ border: '1px solid rgba(17,17,16,0.08)' }}
+        variants={container}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
       >
         {stats.map((s, i) => (
           <motion.div
@@ -25,9 +39,7 @@ export const StatsBar: React.FC = () => {
             style={{
               borderRight: i < 3 ? '1px solid rgba(17,17,16,0.08)' : 'none',
             }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
+            variants={item}
           >
             <div className="font-fraunces font-bold text-2xl md:text-3xl tracking-tight text-diminga-text">
               {s.value}<span className="italic font-light text-diminga-accent">{s.accent}</span>
@@ -35,7 +47,7 @@ export const StatsBar: React.FC = () => {
             <div className="font-dm-sans text-[0.78rem] text-diminga-muted mt-1.5 leading-snug">{s.label}</div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -9,6 +9,16 @@ const trustItems = [
   { value: '99.9', accent: '%', label: 'Platform uptime · enterprise SLA', verify: '✓ Verified · Status page' },
 ];
 
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+};
+
 export const TrustSection: React.FC = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
@@ -18,7 +28,7 @@ export const TrustSection: React.FC = () => {
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="mb-12"
       >
         <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-diminga-accent mb-3 block">
@@ -29,15 +39,18 @@ export const TrustSection: React.FC = () => {
         </h2>
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+        variants={container}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+      >
         {trustItems.map((t, i) => (
           <motion.div
             key={i}
             className="bg-white rounded-xl p-6 group transition-all hover:-translate-y-0.5"
             style={{ border: '1px solid rgba(17,17,16,0.06)' }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
+            variants={item}
           >
             <div className="w-10 h-10 rounded-lg bg-diminga-alt group-hover:bg-diminga-hover flex items-center justify-center text-lg mb-4 transition-colors">
               🛡️
@@ -49,7 +62,7 @@ export const TrustSection: React.FC = () => {
             <div className="font-dm-sans text-[0.65rem] text-emerald-600 font-medium">{t.verify}</div>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

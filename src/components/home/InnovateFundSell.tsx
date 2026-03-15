@@ -37,6 +37,16 @@ const products = [
   },
 ];
 
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.14 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+};
+
 export default function InnovateFundSell() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
@@ -44,7 +54,12 @@ export default function InnovateFundSell() {
     <section id="marketplace" className="bg-diminga-text py-20 scroll-mt-20">
       <div ref={ref} className="max-w-[1280px] mx-auto px-6 md:px-10">
         {/* Header */}
-        <div className="flex items-end justify-between mb-12">
+        <motion.div
+          className="flex items-end justify-between mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
           <div>
             <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-diminga-accent mb-3 block">
               Featured Campaigns
@@ -60,11 +75,16 @@ export default function InnovateFundSell() {
           >
             <Link to="/commerce-studio">View all →</Link>
           </Button>
-        </div>
+        </motion.div>
 
         {/* Product cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {products.map((p, i) => (
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          variants={container}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+        >
+          {products.map((p) => (
             <motion.div
               key={p.name}
               className="rounded-2xl overflow-hidden transition-all hover:-translate-y-0.5"
@@ -73,9 +93,7 @@ export default function InnovateFundSell() {
                 backdropFilter: 'blur(12px)',
                 border: '1px solid rgba(255,255,255,0.06)',
               }}
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.12 }}
+              variants={item}
             >
               {/* Image placeholder */}
               <div className="h-44 relative" style={{ background: p.gradient }}>
@@ -109,7 +127,7 @@ export default function InnovateFundSell() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
