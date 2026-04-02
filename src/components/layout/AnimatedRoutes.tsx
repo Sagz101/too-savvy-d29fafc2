@@ -48,6 +48,15 @@ import Analytics from '@/pages/Analytics';
 import TermsOfService from '@/pages/TermsOfService';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
 
+// Diminga pages
+import DimingaDashboard from '@/pages/DimingaDashboard';
+import DimingaAuth from '@/pages/DimingaAuth';
+import DimingaProfile from '@/pages/DimingaProfile';
+import DimingaSettings from '@/pages/DimingaSettings';
+import Pricing from '@/pages/Pricing';
+import Docs from '@/pages/Docs';
+import { Store, StudioThreaditor, StudioVideoStudio, Podcast, StudioNeuraSocial, Hub } from '@/pages/studios/index';
+
 export const AnimatedRoutes: React.FC = () => {
   const location = useLocation();
   useScrollToTop();
