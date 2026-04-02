@@ -48,6 +48,15 @@ import Analytics from '@/pages/Analytics';
 import TermsOfService from '@/pages/TermsOfService';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
 
+// Diminga pages
+import DimingaDashboard from '@/pages/DimingaDashboard';
+import DimingaAuth from '@/pages/DimingaAuth';
+import DimingaProfile from '@/pages/DimingaProfile';
+import DimingaSettings from '@/pages/DimingaSettings';
+import Pricing from '@/pages/Pricing';
+import Docs from '@/pages/Docs';
+import { Store, StudioThreaditor, StudioVideoStudio, Podcast, StudioNeuraSocial, Hub } from '@/pages/studios/index';
+
 export const AnimatedRoutes: React.FC = () => {
   const location = useLocation();
   useScrollToTop();
@@ -60,7 +69,7 @@ export const AnimatedRoutes: React.FC = () => {
         <Route path="/auth" element={<PageTransition><Auth /></PageTransition>} />
         <Route path="/onboarding" element={<PageTransition><Onboarding /></PageTransition>} />
         <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />
-        <Route path="/settings" element={<PageTransition><Settings /></PageTransition>} />
+        <Route path="/settings" element={<PageTransition><DimingaSettings /></PageTransition>} />
 
         {/* Platform & Features */}
         <Route path="/platform" element={<PageTransition><Platform /></PageTransition>} />
@@ -123,6 +132,19 @@ export const AnimatedRoutes: React.FC = () => {
 
         {/* Demo */}
         <Route path="/skeleton-demo" element={<PageTransition><SkeletonDemo /></PageTransition>} />
+
+        {/* Diminga App Pages */}
+        <Route path="/dashboard" element={<PageTransition><DimingaDashboard /></PageTransition>} />
+        <Route path="/diminga-auth" element={<PageTransition><DimingaAuth /></PageTransition>} />
+        <Route path="/profile/:username" element={<PageTransition><DimingaProfile /></PageTransition>} />
+        <Route path="/pricing" element={<PageTransition><Pricing /></PageTransition>} />
+        <Route path="/docs" element={<PageTransition><Docs /></PageTransition>} />
+        <Route path="/studio/store" element={<PageTransition><Store /></PageTransition>} />
+        <Route path="/studio/threaditor" element={<PageTransition><StudioThreaditor /></PageTransition>} />
+        <Route path="/studio/video" element={<PageTransition><StudioVideoStudio /></PageTransition>} />
+        <Route path="/studio/podcast" element={<PageTransition><Podcast /></PageTransition>} />
+        <Route path="/studio/social" element={<PageTransition><StudioNeuraSocial /></PageTransition>} />
+        <Route path="/studio/hub" element={<PageTransition><Hub /></PageTransition>} />
 
         {/* 404 */}
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
