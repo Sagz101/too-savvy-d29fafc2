@@ -122,7 +122,7 @@ export default function Index() {
           </span>
           <div style={styles.navLinks}>
             {NAV_LINKS.map((l) => (
-              <a key={l} href="#" style={styles.navLink}>{l}</a>
+              <a key={l.label} href={l.path} style={styles.navLink} onClick={(e) => { e.preventDefault(); navigate(l.path); }}>{l.label}</a>
             ))}
           </div>
           <div style={styles.navCtas}>
