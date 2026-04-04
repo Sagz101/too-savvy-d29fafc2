@@ -421,11 +421,17 @@ export default function Index() {
           <span style={styles.logo}>
             <span style={styles.logoMark}>◈</span> Diminga
           </span>
-          <div style={styles.footerLinks}>
-            {["Privacy", "Terms", "Docs", "GitHub", "Discord"].map((l) => (
-              <a key={l} href="#" style={styles.footerLink}>{l}</a>
-            ))}
-          </div>
+           <div style={styles.footerLinks}>
+             {[
+               { label: "Privacy", path: "/privacy" },
+               { label: "Terms", path: "/terms" },
+               { label: "Docs", path: "/docs" },
+               { label: "Pricing", path: "/pricing" },
+               { label: "Dashboard", path: "/dashboard" },
+             ].map((l) => (
+               <a key={l.label} href={l.path} style={styles.footerLink} onClick={(e) => { e.preventDefault(); navigate(l.path); }}>{l.label}</a>
+             ))}
+           </div>
           <span style={styles.footerCopy}>© 2025 Diminga. Built for creators.</span>
         </div>
       </footer>
