@@ -85,10 +85,7 @@ export const AnimatedRoutes: React.FC = () => {
         <Route path="/live-streaming" element={<PageTransition><LiveStreaming /></PageTransition>} />
         <Route path="/streaming-dashboard" element={<PageTransition><StreamingDashboard /></PageTransition>} />
 
-        {/* Studio sub-routes (redirect to main pages) */}
-        <Route path="/studio/store" element={<Navigate to="/commerce-studio" replace />} />
-        <Route path="/studio/video" element={<Navigate to="/video-studio" replace />} />
-        <Route path="/studio/social" element={<Navigate to="/neura-social" replace />} />
+        {/* Studio sub-routes */}
         <Route path="/studio/music" element={<Navigate to="/music-creation" replace />} />
 
         {/* Video */}
