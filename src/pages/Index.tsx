@@ -244,6 +244,17 @@ export default function Index() {
                     ...styles.previewCta,
                     background: FEATURES[activeFeature].color,
                   }}
+                  onClick={() => {
+                    const routes: Record<string, string> = {
+                      "Store Builder": "/studio/store",
+                      "Threaditor": "/studio/threaditor",
+                      "Video Studio": "/studio/video",
+                      "NeuraSocial": "/studio/social",
+                      "Podcast Studio": "/studio/podcast",
+                      "Innovators Hub": "/studio/hub",
+                    };
+                    navigate(routes[FEATURES[activeFeature].title] || "/dashboard");
+                  }}
                 >
                   Open {FEATURES[activeFeature].title} →
                 </button>
