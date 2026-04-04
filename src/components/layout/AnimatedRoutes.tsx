@@ -66,7 +66,7 @@ export const AnimatedRoutes: React.FC = () => {
       <Routes location={location} key={location.pathname}>
         {/* Core */}
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
-        <Route path="/auth" element={<PageTransition><Auth /></PageTransition>} />
+        <Route path="/auth" element={<PageTransition><DimingaAuth /></PageTransition>} />
         <Route path="/onboarding" element={<PageTransition><Onboarding /></PageTransition>} />
         <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />
         <Route path="/settings" element={<PageTransition><DimingaSettings /></PageTransition>} />
