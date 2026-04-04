@@ -80,6 +80,7 @@ const TESTIMONIALS = [
 const NAV_LINKS = ["Features", "Pricing", "Creators", "Docs"];
 
 export default function Index() {
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [activeFeature, setActiveFeature] = useState(0);
   const [demoOpen, setDemoOpen] = useState(false);
