@@ -371,7 +371,7 @@ export default function Index() {
                   <span style={styles.web3MetaVal}>ERC-721</span>
                 </div>
               </div>
-              <button style={styles.web3MintBtn}>Connect wallet to mint</button>
+              <button style={styles.web3MintBtn} onClick={() => navigate("/auth")}>Connect wallet to mint</button>
             </div>
           </div>
         </div>
