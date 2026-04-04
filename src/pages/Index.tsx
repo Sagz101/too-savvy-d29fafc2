@@ -121,8 +121,8 @@ export default function Index() {
             ))}
           </div>
           <div style={styles.navCtas}>
-            <a href="/auth" style={styles.navSignIn}>Sign in</a>
-            <a href="/auth" style={styles.navCta}>Get started free</a>
+            <a href="/auth" style={styles.navSignIn} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Sign in</a>
+            <a href="/auth" style={styles.navCta} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Get started free</a>
           </div>
         </div>
       </nav>
@@ -157,7 +157,7 @@ export default function Index() {
             >
               ▶ Watch the demo
             </button>
-            <a href="/auth" style={styles.ctaSecondary}>
+            <a href="/auth" style={styles.ctaSecondary} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>
               Start for free →
             </a>
           </div>
@@ -410,7 +410,7 @@ export default function Index() {
             </div>
           )}
           <p style={styles.ctaNote}>
-            Or <a href="/auth" style={styles.ctaLink}>sign in with Google / wallet</a> to get started instantly.
+            Or <a href="/auth" style={styles.ctaLink} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>sign in with Google / wallet</a> to get started instantly.
           </p>
         </div>
       </section>
@@ -439,10 +439,10 @@ export default function Index() {
             <div style={styles.videoPlaceholder}>
               <div style={styles.playBtnLarge}>▶</div>
               <p style={{ color: "#888", marginTop: 12, fontSize: 14 }}>
-                Demo video coming soon — <a href="/auth" style={{ color: "#0066FF" }}>sign up</a> for early access
+                Demo video coming soon — <a href="/auth" style={{ color: "#0066FF" }} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>sign up</a> for early access
               </p>
             </div>
-            <a href="/auth" style={{ ...styles.ctaSubmit, display: "block", textAlign: "center", textDecoration: "none" }}>
+            <a href="/auth" style={{ ...styles.ctaSubmit, display: "block", textAlign: "center", textDecoration: "none" }} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>
               Start building for free →
             </a>
           </div>
