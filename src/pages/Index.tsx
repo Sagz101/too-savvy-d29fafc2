@@ -77,7 +77,12 @@ const TESTIMONIALS = [
   },
 ];
 
-const NAV_LINKS = ["Features", "Pricing", "Creators", "Docs"];
+const NAV_LINKS = [
+  { label: "Features", path: "/features" },
+  { label: "Pricing", path: "/pricing" },
+  { label: "Creators", path: "/community" },
+  { label: "Docs", path: "/docs" },
+];
 
 export default function Index() {
   const navigate = useNavigate();
