@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FEATURES = [
   {
@@ -76,9 +77,15 @@ const TESTIMONIALS = [
   },
 ];
 
-const NAV_LINKS = ["Features", "Pricing", "Creators", "Docs"];
+const NAV_LINKS = [
+  { label: "Features", path: "/features" },
+  { label: "Pricing", path: "/pricing" },
+  { label: "Creators", path: "/community" },
+  { label: "Docs", path: "/docs" },
+];
 
 export default function Index() {
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
   const [activeFeature, setActiveFeature] = useState(0);
   const [demoOpen, setDemoOpen] = useState(false);
@@ -115,12 +122,12 @@ export default function Index() {
           </span>
           <div style={styles.navLinks}>
             {NAV_LINKS.map((l) => (
-              <a key={l} href="#" style={styles.navLink}>{l}</a>
+              <a key={l.label} href={l.path} style={styles.navLink} onClick={(e) => { e.preventDefault(); navigate(l.path); }}>{l.label}</a>
             ))}
           </div>
           <div style={styles.navCtas}>
-            <a href="/auth" style={styles.navSignIn}>Sign in</a>
-            <a href="/auth" style={styles.navCta}>Get started free</a>
+            <a href="/auth" style={styles.navSignIn} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Sign in</a>
+            <a href="/auth" style={styles.navCta} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Get started free</a>
           </div>
         </div>
       </nav>
@@ -155,7 +162,7 @@ export default function Index() {
             >
               ▶ Watch the demo
             </button>
-            <a href="/auth" style={styles.ctaSecondary}>
+            <a href="/auth" style={styles.ctaSecondary} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>
               Start for free →
             </a>
           </div>
@@ -236,6 +243,17 @@ export default function Index() {
                   style={{
                     ...styles.previewCta,
                     background: FEATURES[activeFeature].color,
+                  }}
+                  onClick={() => {
+                    const routes: Record<string, string> = {
+                      "Store Builder": "/studio/store",
+                      "Threaditor": "/studio/threaditor",
+                      "Video Studio": "/studio/video",
+                      "NeuraSocial": "/studio/social",
+                      "Podcast Studio": "/studio/podcast",
+                      "Innovators Hub": "/studio/hub",
+                    };
+                    navigate(routes[FEATURES[activeFeature].title] || "/dashboard");
                   }}
                 >
                   Open {FEATURES[activeFeature].title} →
@@ -353,7 +371,7 @@ export default function Index() {
                   <span style={styles.web3MetaVal}>ERC-721</span>
                 </div>
               </div>
-              <button style={styles.web3MintBtn}>Connect wallet to mint</button>
+              <button style={styles.web3MintBtn} onClick={() => navigate("/auth")}>Connect wallet to mint</button>
             </div>
           </div>
         </div>
@@ -408,7 +426,7 @@ export default function Index() {
             </div>
           )}
           <p style={styles.ctaNote}>
-            Or <a href="/auth" style={styles.ctaLink}>sign in with Google / wallet</a> to get started instantly.
+            Or <a href="/auth" style={styles.ctaLink} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>sign in with Google / wallet</a> to get started instantly.
           </p>
         </div>
       </section>
@@ -419,11 +437,17 @@ export default function Index() {
           <span style={styles.logo}>
             <span style={styles.logoMark}>◈</span> Diminga
           </span>
-          <div style={styles.footerLinks}>
-            {["Privacy", "Terms", "Docs", "GitHub", "Discord"].map((l) => (
-              <a key={l} href="#" style={styles.footerLink}>{l}</a>
-            ))}
-          </div>
+           <div style={styles.footerLinks}>
+             {[
+               { label: "Privacy", path: "/privacy" },
+               { label: "Terms", path: "/terms" },
+               { label: "Docs", path: "/docs" },
+               { label: "Pricing", path: "/pricing" },
+               { label: "Dashboard", path: "/dashboard" },
+             ].map((l) => (
+               <a key={l.label} href={l.path} style={styles.footerLink} onClick={(e) => { e.preventDefault(); navigate(l.path); }}>{l.label}</a>
+             ))}
+           </div>
           <span style={styles.footerCopy}>© 2025 Diminga. Built for creators.</span>
         </div>
       </footer>
@@ -437,10 +461,10 @@ export default function Index() {
             <div style={styles.videoPlaceholder}>
               <div style={styles.playBtnLarge}>▶</div>
               <p style={{ color: "#888", marginTop: 12, fontSize: 14 }}>
-                Demo video coming soon — <a href="/auth" style={{ color: "#0066FF" }}>sign up</a> for early access
+                Demo video coming soon — <a href="/auth" style={{ color: "#0066FF" }} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>sign up</a> for early access
               </p>
             </div>
-            <a href="/auth" style={{ ...styles.ctaSubmit, display: "block", textAlign: "center", textDecoration: "none" }}>
+            <a href="/auth" style={{ ...styles.ctaSubmit, display: "block", textAlign: "center", textDecoration: "none" }} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>
               Start building for free →
             </a>
           </div>
