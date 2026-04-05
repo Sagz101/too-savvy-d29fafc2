@@ -55,6 +55,7 @@ import DimingaProfile from '@/pages/DimingaProfile';
 import DimingaSettings from '@/pages/DimingaSettings';
 import Pricing from '@/pages/Pricing';
 import Docs from '@/pages/Docs';
+import ResetPassword from '@/pages/ResetPassword';
 import { Store, StudioThreaditor, StudioVideoStudio, Podcast, StudioNeuraSocial, Hub } from '@/pages/studios/index';
 
 export const AnimatedRoutes: React.FC = () => {
@@ -67,6 +68,7 @@ export const AnimatedRoutes: React.FC = () => {
         {/* Core */}
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/auth" element={<PageTransition><DimingaAuth /></PageTransition>} />
+        <Route path="/reset-password" element={<PageTransition><ResetPassword /></PageTransition>} />
         <Route path="/onboarding" element={<PageTransition><Onboarding /></PageTransition>} />
         <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />
         <Route path="/settings" element={<PageTransition><DimingaSettings /></PageTransition>} />
