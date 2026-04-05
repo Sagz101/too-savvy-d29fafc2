@@ -241,6 +241,10 @@ const s: Record<string, React.CSSProperties> = {
     fontSize: 12, color: "#aaa", background: "#FAFAF8",
     padding: "0 12px", marginTop: -1, whiteSpace: "nowrap" as const,
   },
+  successBox: {
+    background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: 8,
+    padding: "10px 14px", fontSize: 13, color: "#166534", marginBottom: 16,
+  },
   errorBox: {
     background: "#FEF2F2", border: "1px solid #FECACA", borderRadius: 8,
     padding: "10px 14px", fontSize: 13, color: "#B91C1C", marginBottom: 16,
