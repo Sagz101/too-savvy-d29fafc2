@@ -31,7 +31,13 @@ export default function DimingaAuth() {
     setSuccess("");
 
     try {
-      if (mode === "signup") {
+      if (mode === "forgot") {
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: `${window.location.origin}/reset-password`,
+        });
+        if (error) throw error;
+        setSuccess("Check your email for a password reset link!");
+      } else if (mode === "signup") {
         const { error } = await supabase.auth.signUp({
           email,
           password,
