@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/lib/constants";
+import { supabase } from "@/integrations/supabase/client";
 
 type Mode = "login" | "signup";
 
@@ -12,16 +13,57 @@ export default function DimingaAuth() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session) {
+        navigate(ROUTES.DASHBOARD);
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
-    // TODO: wire to supabase.auth.signInWithPassword / signUp
-    setTimeout(() => {
+    setSuccess("");
+
+    try {
+      if (mode === "signup") {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: { display_name: name, username: name.toLowerCase().replace(/\s+/g, '_') },
+            emailRedirectTo: window.location.origin,
+          },
+        });
+        if (error) throw error;
+        setSuccess("Check your email for a confirmation link!");
+      } else {
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+      }
+    } catch (err: any) {
+      setError(err.message || "Authentication failed");
+    } finally {
       setLoading(false);
-      navigate(ROUTES.DASHBOARD);
-    }, 900);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    setError("");
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo: window.location.origin + ROUTES.DASHBOARD },
+    });
+    if (error) {
+      setError(error.message);
+      setLoading(false);
+    }
   };
 
   return (
