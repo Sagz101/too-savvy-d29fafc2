@@ -298,4 +298,9 @@ const s: Record<string, React.CSSProperties> = {
   },
   terms: { fontSize: 12, color: "#aaa", textAlign: "center" as const, marginTop: 12, lineHeight: 1.6 },
   link: { color: "#0066FF", fontWeight: 600 },
+  forgotBtn: {
+    background: "none", border: "none", color: "#0066FF", fontSize: 12,
+    fontWeight: 600, cursor: "pointer", fontFamily: "inherit",
+    padding: 0, marginTop: 4, alignSelf: "flex-end" as const,
+  },
 };
