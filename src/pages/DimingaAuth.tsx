@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/lib/constants";
+import { supabase } from "@/integrations/supabase/client";
 
 type Mode = "login" | "signup";
 
@@ -12,16 +13,57 @@ export default function DimingaAuth() {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session) {
+        navigate(ROUTES.DASHBOARD);
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
-    // TODO: wire to supabase.auth.signInWithPassword / signUp
-    setTimeout(() => {
+    setSuccess("");
+
+    try {
+      if (mode === "signup") {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: { display_name: name, username: name.toLowerCase().replace(/\s+/g, '_') },
+            emailRedirectTo: window.location.origin,
+          },
+        });
+        if (error) throw error;
+        setSuccess("Check your email for a confirmation link!");
+      } else {
+        const { error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) throw error;
+      }
+    } catch (err: any) {
+      setError(err.message || "Authentication failed");
+    } finally {
       setLoading(false);
-      navigate(ROUTES.DASHBOARD);
-    }, 900);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    setError("");
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo: window.location.origin + ROUTES.DASHBOARD },
+    });
+    if (error) {
+      setError(error.message);
+      setLoading(false);
+    }
   };
 
   return (
@@ -63,7 +105,7 @@ export default function DimingaAuth() {
           </p>
 
           <div style={s.socialBtns}>
-            <button style={s.socialBtn}>
+            <button style={s.socialBtn} onClick={handleGoogleSignIn} disabled={loading}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
@@ -80,6 +122,7 @@ export default function DimingaAuth() {
 
           <div style={s.divider}><span style={s.dividerText}>or continue with email</span></div>
 
+          {success && <div style={s.successBox}>{success}</div>}
           {error && <div style={s.errorBox}>{error}</div>}
 
           <form onSubmit={handleSubmit} style={s.form}>
@@ -197,6 +240,10 @@ const s: Record<string, React.CSSProperties> = {
   dividerText: {
     fontSize: 12, color: "#aaa", background: "#FAFAF8",
     padding: "0 12px", marginTop: -1, whiteSpace: "nowrap" as const,
+  },
+  successBox: {
+    background: "#F0FDF4", border: "1px solid #BBF7D0", borderRadius: 8,
+    padding: "10px 14px", fontSize: 13, color: "#166534", marginBottom: 16,
   },
   errorBox: {
     background: "#FEF2F2", border: "1px solid #FECACA", borderRadius: 8,
