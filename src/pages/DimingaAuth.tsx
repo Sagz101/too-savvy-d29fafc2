@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/lib/constants";
 import { supabase } from "@/integrations/supabase/client";
 
-type Mode = "login" | "signup";
+type Mode = "login" | "signup" | "forgot";
 
 export default function DimingaAuth() {
   const navigate = useNavigate();
