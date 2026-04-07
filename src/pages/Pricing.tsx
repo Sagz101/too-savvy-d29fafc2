@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ROUTES } from "@/lib/constants";
+import PageMeta from "@/components/shared/PageMeta";
 
 const PLANS = [
   {
