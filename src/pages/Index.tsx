@@ -928,7 +928,8 @@ const styles: Record<string, React.CSSProperties> = {
   web3Left: {},
   web3Title: {
     fontSize: "clamp(28px, 3.5vw, 44px)",
-    fontWeight: 800,
+    fontFamily: "'Fraunces', serif",
+    fontWeight: 700,
     letterSpacing: "-0.03em",
     color: "#111110",
     margin: "0 0 20px",
@@ -1133,7 +1134,8 @@ const styles: Record<string, React.CSSProperties> = {
   },
   ctaTitle: {
     fontSize: "clamp(28px, 4vw, 44px)",
-    fontWeight: 800,
+    fontFamily: "'Fraunces', serif",
+    fontWeight: 700,
     color: "#fff",
     letterSpacing: "-0.03em",
     margin: "0 0 16px",
