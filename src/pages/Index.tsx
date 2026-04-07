@@ -90,6 +90,7 @@ export default function Index() {
   const [scrolled, setScrolled] = useState(false);
   const [activeFeature, setActiveFeature] = useState(0);
   const [demoOpen, setDemoOpen] = useState(false);
+  const [demoStep, setDemoStep] = useState(0);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -455,23 +456,50 @@ export default function Index() {
       </footer>
 
       {/* ── DEMO MODAL ── */}
-      {demoOpen && (
-        <div style={styles.modalOverlay} onClick={() => setDemoOpen(false)}>
-          <div style={styles.modal} onClick={(e) => e.stopPropagation()}>
-            <button style={styles.modalClose} onClick={() => setDemoOpen(false)}>✕</button>
-            <h3 style={styles.modalTitle}>Diminga Platform Demo</h3>
-            <div style={styles.videoPlaceholder}>
-              <div style={styles.playBtnLarge}>▶</div>
-              <p style={{ color: "#888", marginTop: 12, fontSize: 14 }}>
-                Demo video coming soon — <a href="/auth" style={{ color: "#0066FF" }} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>sign up</a> for early access
-              </p>
+      {demoOpen && (() => {
+        const WALKTHROUGH = [
+          { title: "Your Dashboard", desc: "See all your stats, earnings, and content in one place. Quick-launch any studio from here.", icon: "⊞", color: "#0066FF" },
+          { title: "Store Builder", desc: "Add products — digital downloads, merch, or NFT-gated access. Accept crypto and fiat payments.", icon: "◈", color: "#0066FF" },
+          { title: "Threaditor", desc: "Write long-form posts with Markdown. Mint articles as NFTs so readers can collect your words.", icon: "✦", color: "#00C896" },
+          { title: "Video Studio", desc: "Upload videos, set token-gating, and track analytics. Your content, your rules.", icon: "▶", color: "#FF6B35" },
+          { title: "Mint as NFT", desc: "One click mints any content as an ERC-721 NFT on Polygon. Set royalties and let fans collect.", icon: "◈", color: "#9B5CF6" },
+        ];
+        const step = WALKTHROUGH[demoStep];
+        return (
+          <div style={styles.modalOverlay} onClick={() => { setDemoOpen(false); setDemoStep(0); }}>
+            <div style={{ ...styles.modal, maxWidth: 520 }} onClick={(e) => e.stopPropagation()}>
+              <button style={styles.modalClose} onClick={() => { setDemoOpen(false); setDemoStep(0); }}>✕</button>
+              <div style={{ textAlign: "center" as const, marginBottom: 24 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.1em", color: "#888", marginBottom: 6 }}>
+                  Platform walkthrough · {demoStep + 1}/{WALKTHROUGH.length}
+                </div>
+                <div style={{ display: "flex", gap: 4, justifyContent: "center", marginBottom: 24 }}>
+                  {WALKTHROUGH.map((_, i) => (
+                    <div key={i} style={{ width: i === demoStep ? 24 : 8, height: 4, borderRadius: 2, background: i === demoStep ? step.color : "#E8E8E4", transition: "all 0.3s", cursor: "pointer" }} onClick={() => setDemoStep(i)} />
+                  ))}
+                </div>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" as const, alignItems: "center", textAlign: "center" as const }}>
+                <div style={{ width: 72, height: 72, borderRadius: 18, background: step.color + "14", color: step.color, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 32, marginBottom: 20 }}>
+                  {step.icon}
+                </div>
+                <h3 style={{ fontSize: 22, fontWeight: 700, fontFamily: "'Fraunces', serif", color: "#111110", margin: "0 0 10px" }}>{step.title}</h3>
+                <p style={{ fontSize: 15, color: "#666", lineHeight: 1.65, maxWidth: 400, margin: "0 0 28px" }}>{step.desc}</p>
+              </div>
+              <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
+                {demoStep > 0 && (
+                  <button onClick={() => setDemoStep(demoStep - 1)} style={{ ...styles.ctaSecondary, border: "1.5px solid #E8E8E4", borderRadius: 10, padding: "10px 22px", fontSize: 14, fontWeight: 600, cursor: "pointer", background: "#fff" }}>← Back</button>
+                )}
+                {demoStep < WALKTHROUGH.length - 1 ? (
+                  <button onClick={() => setDemoStep(demoStep + 1)} style={{ background: step.color, color: "#fff", border: "none", borderRadius: 10, padding: "10px 28px", fontSize: 14, fontWeight: 600, cursor: "pointer" }}>Next →</button>
+                ) : (
+                  <button onClick={() => { setDemoOpen(false); setDemoStep(0); navigate("/auth"); }} style={{ background: "#0066FF", color: "#fff", border: "none", borderRadius: 10, padding: "10px 28px", fontSize: 14, fontWeight: 600, cursor: "pointer" }}>Start building for free →</button>
+                )}
+              </div>
             </div>
-            <a href="/auth" style={{ ...styles.ctaSubmit, display: "block", textAlign: "center", textDecoration: "none" }} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>
-              Start building for free →
-            </a>
           </div>
-        </div>
-      )}
+        );
+      })()}
     </div>
   );
 }
