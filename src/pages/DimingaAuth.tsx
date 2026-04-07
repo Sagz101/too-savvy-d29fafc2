@@ -75,6 +75,7 @@ export default function DimingaAuth() {
 
   return (
     <div style={s.root}>
+      <PageMeta title={mode === "login" ? "Sign In" : mode === "signup" ? "Sign Up" : "Reset Password"} description="Sign in or create your Diminga account to start building." />
       <div style={s.left}>
         <Link to={ROUTES.HOME} style={s.logo}>
           <span style={s.logoMark}>◈</span> Diminga
