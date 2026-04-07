@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/lib/constants";
 import { supabase } from "@/integrations/supabase/client";
+import PageMeta from "@/components/shared/PageMeta";
 
 type Mode = "login" | "signup" | "forgot";
 
@@ -74,6 +75,7 @@ export default function DimingaAuth() {
 
   return (
     <div style={s.root}>
+      <PageMeta title={mode === "login" ? "Sign In" : mode === "signup" ? "Sign Up" : "Reset Password"} description="Sign in or create your Diminga account to start building." />
       <div style={s.left}>
         <Link to={ROUTES.HOME} style={s.logo}>
           <span style={s.logoMark}>◈</span> Diminga

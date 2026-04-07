@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import DashboardLayout from "@/components/DashboardLayout";
 import { STUDIO_MODULES, ROUTES } from "@/lib/constants";
+import PageMeta from "@/components/shared/PageMeta";
 
 const STATS = [
   { label: "Total earnings",    value: "$0.00",  sub: "Connect wallet to track",  icon: "◈" },
@@ -22,6 +23,7 @@ export default function DimingaDashboard() {
       title="Dashboard"
       subtitle="Welcome back — here's an overview of your creator studio."
     >
+      <PageMeta title="Dashboard" description="Your Diminga creator dashboard — stats, studios, and quick actions." />
       <div style={s.statsRow}>
         {STATS.map((st) => (
           <div key={st.label} style={s.statCard}>

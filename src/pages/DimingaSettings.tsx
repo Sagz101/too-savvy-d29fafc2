@@ -1,5 +1,6 @@
 import { useState } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
+import PageMeta from "@/components/shared/PageMeta";
 
 type Tab = "profile" | "wallet" | "billing" | "notifications";
 
@@ -9,6 +10,7 @@ export default function DimingaSettings() {
 
   return (
     <DashboardLayout title="Settings" subtitle="Manage your account, wallet & billing">
+      <PageMeta title="Settings" description="Manage your Diminga account, wallet connections, and billing." />
       <div style={s.layout}>
         <div style={s.sideNav}>
           {(["profile","wallet","billing","notifications"] as Tab[]).map(t => (
