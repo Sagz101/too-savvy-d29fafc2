@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import PageMeta from "@/components/shared/PageMeta";
 
 const FEATURES = [
   {
@@ -114,6 +115,7 @@ export default function Index() {
 
   return (
     <div style={styles.root}>
+      <PageMeta title="Diminga" description="The Web3 creator platform for content creation, NFT monetization, and community building. Own your work and earn from it." />
       {/* ── NAV ── */}
       <nav style={{ ...styles.nav, ...(scrolled ? styles.navScrolled : {}) }}>
         <div style={styles.navInner}>
@@ -601,7 +603,8 @@ const styles: Record<string, React.CSSProperties> = {
   },
   heroHeadline: {
     fontSize: "clamp(40px, 5.5vw, 68px)",
-    fontWeight: 800,
+    fontFamily: "'Fraunces', serif",
+    fontWeight: 700,
     lineHeight: 1.08,
     letterSpacing: "-0.03em",
     margin: "0 0 20px",
