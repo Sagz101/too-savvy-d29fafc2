@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import DashboardLayout from "@/components/DashboardLayout";
 import { STUDIO_MODULES, ROUTES } from "@/lib/constants";
 import PageMeta from "@/components/shared/PageMeta";
-import { STUDIO_MODULES, ROUTES } from "@/lib/constants";
 
 const STATS = [
   { label: "Total earnings",    value: "$0.00",  sub: "Connect wallet to track",  icon: "◈" },
