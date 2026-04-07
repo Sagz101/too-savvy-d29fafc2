@@ -259,7 +259,23 @@ function EmptyStudio({ icon, color, heading, body, cta, ctaColor, onCta, ctaLink
 }) {
   return (
     <div style={s.emptyState}>
-      <div style={{ ...s.emptyIcon, color }}>{icon}</div>
+      {/* Decorative illustration */}
+      <div style={{ position: "relative" as const, marginBottom: 20 }}>
+        <div style={{
+          width: 96, height: 96, borderRadius: "50%",
+          background: `linear-gradient(135deg, ${color}12, ${color}08)`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          border: `2px dashed ${color}30`,
+        }}>
+          <div style={{ fontSize: 36, color }}>{icon}</div>
+        </div>
+        <div style={{
+          position: "absolute" as const, top: -6, right: -6,
+          width: 28, height: 28, borderRadius: "50%",
+          background: color, color: "#fff", fontSize: 16, fontWeight: 700,
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>+</div>
+      </div>
       <h3 style={s.emptyHeading}>{heading}</h3>
       <p style={s.emptyBody}>{body}</p>
       {cta && (ctaLink ? (
