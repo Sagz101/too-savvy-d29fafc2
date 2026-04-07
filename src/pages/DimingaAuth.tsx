@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ROUTES } from "@/lib/constants";
 import { supabase } from "@/integrations/supabase/client";
+import PageMeta from "@/components/shared/PageMeta";
 
 type Mode = "login" | "signup" | "forgot";
 
