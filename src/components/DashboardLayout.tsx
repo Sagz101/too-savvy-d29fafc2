@@ -250,7 +250,7 @@ const s: Record<string, React.CSSProperties> = {
     top: 0,
     zIndex: 5,
   },
-  pageTitle: { fontSize: 22, fontWeight: 800, letterSpacing: "-0.02em", margin: 0, color: "#111110" },
+  pageTitle: { fontSize: 22, fontFamily: "'Fraunces', serif", fontWeight: 700, letterSpacing: "-0.02em", margin: 0, color: "#111110" },
   pageSub: { fontSize: 13, color: "#888", margin: "4px 0 0", fontWeight: 400 },
   topbarRight: { display: "flex", alignItems: "center", gap: 14 },
   upgradeBtn: {
