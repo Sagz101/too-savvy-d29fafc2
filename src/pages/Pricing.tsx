@@ -63,6 +63,7 @@ const PLANS = [
 export default function Pricing() {
   return (
     <div style={s.root}>
+      <PageMeta title="Pricing" description="Simple, transparent pricing for creators. Free forever on the base plan." />
       <nav style={s.nav}>
         <Link to={ROUTES.HOME} style={s.logo}>
           <span style={s.logoMark}>◈</span> Diminga
