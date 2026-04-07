@@ -851,7 +851,8 @@ const styles: Record<string, React.CSSProperties> = {
   },
   sectionTitle: {
     fontSize: "clamp(28px, 4vw, 48px)",
-    fontWeight: 800,
+    fontFamily: "'Fraunces', serif",
+    fontWeight: 700,
     letterSpacing: "-0.03em",
     color: "#111110",
     margin: "0 0 16px",
