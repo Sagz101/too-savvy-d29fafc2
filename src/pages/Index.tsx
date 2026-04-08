@@ -93,6 +93,7 @@ export default function Index() {
   const [demoStep, setDemoStep] = useState(0);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
 
@@ -116,6 +117,23 @@ export default function Index() {
 
   return (
     <div style={styles.root}>
+      <style>{`
+        @media (max-width: 900px) {
+          .idx-hero-preview { display: none !important; }
+          .idx-nav-links { display: none !important; }
+          .idx-nav-signin { display: none !important; }
+          .idx-nav-cta { display: none !important; }
+          .idx-hamburger { display: flex !important; }
+          .idx-web3-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .idx-hero { padding-top: 96px !important; padding-bottom: 48px !important; }
+          .idx-auth-left { display: none !important; }
+          .idx-auth-right { padding: 24px 16px !important; }
+        }
+        @media (min-width: 901px) {
+          .idx-hamburger { display: none !important; }
+          .idx-mobile-menu { display: none !important; }
+        }
+      `}</style>
       <PageMeta title="Diminga" description="The Web3 creator platform for content creation, NFT monetization, and community building. Own your work and earn from it." />
       {/* ── NAV ── */}
       <nav style={{ ...styles.nav, ...(scrolled ? styles.navScrolled : {}) }}>
