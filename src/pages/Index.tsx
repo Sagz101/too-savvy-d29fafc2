@@ -354,7 +354,7 @@ export default function Index() {
 
       {/* ── WEB3 CALLOUT ── */}
       <section style={styles.web3Section}>
-        <div style={styles.web3Inner}>
+        <div className="idx-web3-grid" style={styles.web3Inner}>
           <div style={styles.web3Left}>
             <div style={styles.sectionLabel}>True ownership</div>
             <h2 style={styles.web3Title}>Your content lives on-chain.</h2>
