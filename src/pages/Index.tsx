@@ -141,20 +141,38 @@ export default function Index() {
           <span style={styles.logo}>
             <span style={styles.logoMark}>◈</span> Diminga
           </span>
-          <div style={styles.navLinks}>
+          <div className="idx-nav-links" style={styles.navLinks}>
             {NAV_LINKS.map((l) => (
               <a key={l.label} href={l.path} style={styles.navLink} onClick={(e) => { e.preventDefault(); navigate(l.path); }}>{l.label}</a>
             ))}
           </div>
           <div style={styles.navCtas}>
-            <a href="/auth" style={styles.navSignIn} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Sign in</a>
-            <a href="/auth" style={styles.navCta} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Get started free</a>
+            <a href="/auth" className="idx-nav-signin" style={styles.navSignIn} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Sign in</a>
+            <a href="/auth" className="idx-nav-cta" style={styles.navCta} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Get started free</a>
+            <button
+              className="idx-hamburger"
+              style={{ background: "none", border: "none", fontSize: 24, cursor: "pointer", color: "#111110", padding: 4 }}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? "✕" : "☰"}
+            </button>
           </div>
         </div>
       </nav>
 
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="idx-mobile-menu" style={{ position: "fixed", inset: 0, top: 64, zIndex: 99, background: "rgba(250,250,248,0.98)", backdropFilter: "blur(12px)", padding: "24px", display: "flex", flexDirection: "column" as const, gap: 8 }}>
+          {NAV_LINKS.map((l) => (
+            <a key={l.label} href={l.path} style={{ fontSize: 18, fontWeight: 600, color: "#111110", textDecoration: "none", padding: "14px 0", borderBottom: "1px solid #E8E8E4" }} onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); navigate(l.path); }}>{l.label}</a>
+          ))}
+          <a href="/auth" style={{ fontSize: 16, fontWeight: 600, color: "#fff", background: "#111110", borderRadius: 10, padding: "14px 0", textAlign: "center" as const, textDecoration: "none", marginTop: 16 }} onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); navigate("/auth"); }}>Get started free</a>
+        </div>
+      )}
+
       {/* ── HERO ── */}
-      <section ref={heroRef} style={styles.hero}>
+      <section ref={heroRef} className="idx-hero" style={styles.hero}>
         <div style={styles.heroGrid} />
         <div style={styles.heroContent}>
           <div style={styles.heroBadge}>
