@@ -107,7 +107,7 @@ export default function DimingaAuth() {
         </div>
       </div>
 
-      <div style={s.right}>
+      <div className="auth-right-panel" style={s.right}>
         <div style={s.card}>
           <h1 style={s.title}>
             {mode === "forgot" ? "Reset your password" : mode === "signup" ? "Create your account" : "Welcome back"}
