@@ -227,7 +227,7 @@ export default function Index() {
         </div>
 
         {/* Animated feature preview */}
-        <div style={styles.heroPreview}>
+        <div className="idx-hero-preview" style={styles.heroPreview}>
           <div style={styles.previewBrowser}>
             <div style={styles.browserChrome}>
               <div style={styles.browserDots}>
