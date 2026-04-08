@@ -210,8 +210,8 @@ export default function DimingaAuth() {
           {mode === "signup" && (
             <p style={s.terms}>
               By signing up you agree to our{" "}
-              <Link to="/docs" style={s.link}>Terms of Service</Link> and{" "}
-              <Link to="/docs" style={s.link}>Privacy Policy</Link>.
+              <Link to="/terms" style={s.link}>Terms of Service</Link> and{" "}
+              <Link to="/privacy" style={s.link}>Privacy Policy</Link>.
             </p>
           )}
         </div>

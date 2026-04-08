@@ -720,7 +720,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   tickerLabel: {},
 
-  /* Hero Preview */
+  /* Hero Preview — hidden on mobile via CSS class */
   heroPreview: {
     position: "absolute",
     right: 24,
