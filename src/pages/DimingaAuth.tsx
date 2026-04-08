@@ -75,8 +75,14 @@ export default function DimingaAuth() {
 
   return (
     <div style={s.root}>
+      <style>{`
+        @media (max-width: 768px) {
+          .auth-left-panel { display: none !important; }
+          .auth-right-panel { padding: 24px 16px !important; }
+        }
+      `}</style>
       <PageMeta title={mode === "login" ? "Sign In" : mode === "signup" ? "Sign Up" : "Reset Password"} description="Sign in or create your Diminga account to start building." />
-      <div style={s.left}>
+      <div className="auth-left-panel" style={s.left}>
         <Link to={ROUTES.HOME} style={s.logo}>
           <span style={s.logoMark}>◈</span> Diminga
         </Link>
@@ -101,7 +107,7 @@ export default function DimingaAuth() {
         </div>
       </div>
 
-      <div style={s.right}>
+      <div className="auth-right-panel" style={s.right}>
         <div style={s.card}>
           <h1 style={s.title}>
             {mode === "forgot" ? "Reset your password" : mode === "signup" ? "Create your account" : "Welcome back"}
@@ -210,8 +216,8 @@ export default function DimingaAuth() {
           {mode === "signup" && (
             <p style={s.terms}>
               By signing up you agree to our{" "}
-              <Link to="/docs" style={s.link}>Terms of Service</Link> and{" "}
-              <Link to="/docs" style={s.link}>Privacy Policy</Link>.
+              <Link to="/terms" style={s.link}>Terms of Service</Link> and{" "}
+              <Link to="/privacy" style={s.link}>Privacy Policy</Link>.
             </p>
           )}
         </div>

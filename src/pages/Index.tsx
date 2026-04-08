@@ -93,6 +93,7 @@ export default function Index() {
   const [demoStep, setDemoStep] = useState(0);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
 
@@ -116,6 +117,23 @@ export default function Index() {
 
   return (
     <div style={styles.root}>
+      <style>{`
+        @media (max-width: 900px) {
+          .idx-hero-preview { display: none !important; }
+          .idx-nav-links { display: none !important; }
+          .idx-nav-signin { display: none !important; }
+          .idx-nav-cta { display: none !important; }
+          .idx-hamburger { display: flex !important; }
+          .idx-web3-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .idx-hero { padding-top: 96px !important; padding-bottom: 48px !important; }
+          .idx-auth-left { display: none !important; }
+          .idx-auth-right { padding: 24px 16px !important; }
+        }
+        @media (min-width: 901px) {
+          .idx-hamburger { display: none !important; }
+          .idx-mobile-menu { display: none !important; }
+        }
+      `}</style>
       <PageMeta title="Diminga" description="The Web3 creator platform for content creation, NFT monetization, and community building. Own your work and earn from it." />
       {/* ── NAV ── */}
       <nav style={{ ...styles.nav, ...(scrolled ? styles.navScrolled : {}) }}>
@@ -123,20 +141,38 @@ export default function Index() {
           <span style={styles.logo}>
             <span style={styles.logoMark}>◈</span> Diminga
           </span>
-          <div style={styles.navLinks}>
+          <div className="idx-nav-links" style={styles.navLinks}>
             {NAV_LINKS.map((l) => (
               <a key={l.label} href={l.path} style={styles.navLink} onClick={(e) => { e.preventDefault(); navigate(l.path); }}>{l.label}</a>
             ))}
           </div>
           <div style={styles.navCtas}>
-            <a href="/auth" style={styles.navSignIn} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Sign in</a>
-            <a href="/auth" style={styles.navCta} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Get started free</a>
+            <a href="/auth" className="idx-nav-signin" style={styles.navSignIn} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Sign in</a>
+            <a href="/auth" className="idx-nav-cta" style={styles.navCta} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Get started free</a>
+            <button
+              className="idx-hamburger"
+              style={{ background: "none", border: "none", fontSize: 24, cursor: "pointer", color: "#111110", padding: 4 }}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? "✕" : "☰"}
+            </button>
           </div>
         </div>
       </nav>
 
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="idx-mobile-menu" style={{ position: "fixed", inset: 0, top: 64, zIndex: 99, background: "rgba(250,250,248,0.98)", backdropFilter: "blur(12px)", padding: "24px", display: "flex", flexDirection: "column" as const, gap: 8 }}>
+          {NAV_LINKS.map((l) => (
+            <a key={l.label} href={l.path} style={{ fontSize: 18, fontWeight: 600, color: "#111110", textDecoration: "none", padding: "14px 0", borderBottom: "1px solid #E8E8E4" }} onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); navigate(l.path); }}>{l.label}</a>
+          ))}
+          <a href="/auth" style={{ fontSize: 16, fontWeight: 600, color: "#fff", background: "#111110", borderRadius: 10, padding: "14px 0", textAlign: "center" as const, textDecoration: "none", marginTop: 16 }} onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); navigate("/auth"); }}>Get started free</a>
+        </div>
+      )}
+
       {/* ── HERO ── */}
-      <section ref={heroRef} style={styles.hero}>
+      <section ref={heroRef} className="idx-hero" style={styles.hero}>
         <div style={styles.heroGrid} />
         <div style={styles.heroContent}>
           <div style={styles.heroBadge}>
@@ -191,7 +227,7 @@ export default function Index() {
         </div>
 
         {/* Animated feature preview */}
-        <div style={styles.heroPreview}>
+        <div className="idx-hero-preview" style={styles.heroPreview}>
           <div style={styles.previewBrowser}>
             <div style={styles.browserChrome}>
               <div style={styles.browserDots}>
@@ -318,7 +354,7 @@ export default function Index() {
 
       {/* ── WEB3 CALLOUT ── */}
       <section style={styles.web3Section}>
-        <div style={styles.web3Inner}>
+        <div className="idx-web3-grid" style={styles.web3Inner}>
           <div style={styles.web3Left}>
             <div style={styles.sectionLabel}>True ownership</div>
             <h2 style={styles.web3Title}>Your content lives on-chain.</h2>
@@ -720,7 +756,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   tickerLabel: {},
 
-  /* Hero Preview */
+  /* Hero Preview — hidden on mobile via CSS class */
   heroPreview: {
     position: "absolute",
     right: 24,
