@@ -75,8 +75,14 @@ export default function DimingaAuth() {
 
   return (
     <div style={s.root}>
+      <style>{`
+        @media (max-width: 768px) {
+          .auth-left-panel { display: none !important; }
+          .auth-right-panel { padding: 24px 16px !important; }
+        }
+      `}</style>
       <PageMeta title={mode === "login" ? "Sign In" : mode === "signup" ? "Sign Up" : "Reset Password"} description="Sign in or create your Diminga account to start building." />
-      <div style={s.left}>
+      <div className="auth-left-panel" style={s.left}>
         <Link to={ROUTES.HOME} style={s.logo}>
           <span style={s.logoMark}>◈</span> Diminga
         </Link>
