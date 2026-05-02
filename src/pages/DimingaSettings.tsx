@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
 import PageMeta from "@/components/shared/PageMeta";
+import { supabase } from "@/integrations/supabase/client";
 
-type Tab = "profile" | "wallet" | "billing" | "notifications";
+type Tab = "profile" | "wallet" | "billing" | "notifications" | "connection";
 
 export default function DimingaSettings() {
   const [tab, setTab] = useState<Tab>("profile");
@@ -13,7 +14,7 @@ export default function DimingaSettings() {
       <PageMeta title="Settings" description="Manage your Diminga account, wallet connections, and billing." />
       <div style={s.layout}>
         <div style={s.sideNav}>
-          {(["profile","wallet","billing","notifications"] as Tab[]).map(t => (
+          {(["profile","wallet","billing","notifications","connection"] as Tab[]).map(t => (
             <button
               key={t}
               style={{ ...s.sideNavItem, ...(tab === t ? s.sideNavActive : {}) }}
@@ -23,6 +24,7 @@ export default function DimingaSettings() {
               {t === "wallet" && "◈ "}
               {t === "billing" && "◆ "}
               {t === "notifications" && "◎ "}
+              {t === "connection" && "⚡ "}
               {t.charAt(0).toUpperCase() + t.slice(1)}
             </button>
           ))}
@@ -139,9 +141,157 @@ export default function DimingaSettings() {
               <SaveBtn label="Save preferences" />
             </Section>
           )}
+
+          {tab === "connection" && (
+            <Section title="Supabase Connection" sub="Verify your project URL, anon key, and database access are wired up correctly.">
+              <SupabaseConnectionCheck />
+            </Section>
+          )}
         </div>
       </div>
     </DashboardLayout>
+  );
+}
+
+type CheckStatus = "idle" | "running" | "ok" | "fail";
+interface CheckResult {
+  status: CheckStatus;
+  detail?: string;
+}
+
+function SupabaseConnectionCheck() {
+  const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
+  const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string | undefined;
+  const projectId = import.meta.env.VITE_SUPABASE_PROJECT_ID as string | undefined;
+
+  const [envCheck, setEnvCheck] = useState<CheckResult>({ status: "idle" });
+  const [restCheck, setRestCheck] = useState<CheckResult>({ status: "idle" });
+  const [authCheck, setAuthCheck] = useState<CheckResult>({ status: "idle" });
+  const [dbCheck, setDbCheck] = useState<CheckResult>({ status: "idle" });
+  const [running, setRunning] = useState(false);
+
+  const runChecks = async () => {
+    setRunning(true);
+    setEnvCheck({ status: "running" });
+    setRestCheck({ status: "running" });
+    setAuthCheck({ status: "running" });
+    setDbCheck({ status: "running" });
+
+    // 1. Env vars present
+    if (url && anonKey && projectId) {
+      setEnvCheck({ status: "ok", detail: `Project ${projectId}` });
+    } else {
+      setEnvCheck({ status: "fail", detail: "Missing VITE_SUPABASE_* env vars" });
+      setRestCheck({ status: "fail", detail: "Skipped — env vars missing" });
+      setAuthCheck({ status: "fail", detail: "Skipped — env vars missing" });
+      setDbCheck({ status: "fail", detail: "Skipped — env vars missing" });
+      setRunning(false);
+      return;
+    }
+
+    // 2. REST endpoint reachable with anon key
+    try {
+      const res = await fetch(`${url}/rest/v1/`, {
+        headers: { apikey: anonKey!, Authorization: `Bearer ${anonKey}` },
+      });
+      if (res.ok || res.status === 200 || res.status === 404) {
+        setRestCheck({ status: "ok", detail: `HTTP ${res.status} from /rest/v1/` });
+      } else if (res.status === 401) {
+        setRestCheck({ status: "fail", detail: "401 Unauthorized — anon key rejected" });
+      } else {
+        setRestCheck({ status: "fail", detail: `Unexpected HTTP ${res.status}` });
+      }
+    } catch (e: any) {
+      setRestCheck({ status: "fail", detail: e?.message ?? "Network error" });
+    }
+
+    // 3. Auth client reachable
+    try {
+      const { data, error } = await supabase.auth.getSession();
+      if (error) {
+        setAuthCheck({ status: "fail", detail: error.message });
+      } else {
+        setAuthCheck({
+          status: "ok",
+          detail: data.session ? `Signed in as ${data.session.user.email ?? data.session.user.id}` : "Reachable · no active session",
+        });
+      }
+    } catch (e: any) {
+      setAuthCheck({ status: "fail", detail: e?.message ?? "Auth error" });
+    }
+
+    // 4. Database query (profiles table — public RLS-safe count)
+    try {
+      const { error, count } = await supabase
+        .from("profiles")
+        .select("*", { count: "exact", head: true });
+      if (error) {
+        setDbCheck({ status: "fail", detail: error.message });
+      } else {
+        setDbCheck({ status: "ok", detail: `profiles table reachable (${count ?? 0} visible rows)` });
+      }
+    } catch (e: any) {
+      setDbCheck({ status: "fail", detail: e?.message ?? "DB error" });
+    }
+
+    setRunning(false);
+  };
+
+  useEffect(() => { runChecks(); /* eslint-disable-next-line */ }, []);
+
+  const maskedKey = anonKey ? `${anonKey.slice(0, 12)}…${anonKey.slice(-6)}` : "—";
+
+  return (
+    <div>
+      <div style={s.connMetaGrid}>
+        <MetaRow label="Project URL" value={url ?? "missing"} />
+        <MetaRow label="Project ID" value={projectId ?? "missing"} />
+        <MetaRow label="Anon key" value={maskedKey} mono />
+      </div>
+
+      <div style={s.checkList}>
+        <CheckRow title="Environment variables" result={envCheck} />
+        <CheckRow title="REST endpoint reachable" result={restCheck} />
+        <CheckRow title="Auth service" result={authCheck} />
+        <CheckRow title="Database query (profiles)" result={dbCheck} />
+      </div>
+
+      <button style={s.runBtn} onClick={runChecks} disabled={running}>
+        {running ? "Running checks…" : "Re-run checks"}
+      </button>
+    </div>
+  );
+}
+
+function MetaRow({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
+  return (
+    <div style={s.metaRow}>
+      <span style={s.metaLabel}>{label}</span>
+      <span style={{ ...s.metaValue, fontFamily: mono ? "'Space Mono', monospace" : undefined }}>{value}</span>
+    </div>
+  );
+}
+
+function CheckRow({ title, result }: { title: string; result: CheckResult }) {
+  const color =
+    result.status === "ok" ? "#00C896" :
+    result.status === "fail" ? "#E8650A" :
+    result.status === "running" ? "#888" : "#ccc";
+  const icon =
+    result.status === "ok" ? "✓" :
+    result.status === "fail" ? "✕" :
+    result.status === "running" ? "…" : "○";
+  return (
+    <div style={s.checkRow}>
+      <div style={{ ...s.checkDot, background: color }}>{icon}</div>
+      <div style={{ flex: 1 }}>
+        <div style={s.checkTitle}>{title}</div>
+        {result.detail && <div style={s.checkDetail}>{result.detail}</div>}
+      </div>
+      <div style={{ ...s.checkBadge, color, borderColor: color + "55" }}>
+        {result.status.toUpperCase()}
+      </div>
+    </div>
   );
 }
 
