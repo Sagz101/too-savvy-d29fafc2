@@ -336,6 +336,35 @@ const s: Record<string, React.CSSProperties> = {
   sectionTitle: { fontSize: 20, fontWeight: 800, color: "#111110", margin: "0 0 6px", letterSpacing: "-0.02em" },
   sectionSub: { fontSize: 14, color: "#888", margin: "0 0 28px" },
   sectionBody: { display: "flex", flexDirection: "column" as const, gap: 18, maxWidth: 520 },
+  connMetaGrid: {
+    display: "flex", flexDirection: "column" as const, gap: 8,
+    background: "#F8F8F4", border: "1px solid #E8E8E4", borderRadius: 12,
+    padding: "14px 16px", marginBottom: 20,
+  },
+  metaRow: { display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, fontSize: 13 },
+  metaLabel: { color: "#888", fontWeight: 500 },
+  metaValue: { color: "#111110", fontWeight: 600, wordBreak: "break-all" as const, textAlign: "right" as const },
+  checkList: { display: "flex", flexDirection: "column" as const, gap: 10, marginBottom: 18 },
+  checkRow: {
+    display: "flex", alignItems: "center", gap: 12, padding: "12px 14px",
+    background: "#fff", border: "1px solid #E8E8E4", borderRadius: 10,
+  },
+  checkDot: {
+    width: 26, height: 26, borderRadius: "50%", display: "flex",
+    alignItems: "center", justifyContent: "center", color: "#fff",
+    fontSize: 13, fontWeight: 700, flexShrink: 0,
+  },
+  checkTitle: { fontSize: 14, fontWeight: 600, color: "#111110" },
+  checkDetail: { fontSize: 12, color: "#888", marginTop: 2, fontFamily: "'Space Mono', monospace" },
+  checkBadge: {
+    fontSize: 10, fontWeight: 700, letterSpacing: "0.08em",
+    border: "1px solid", borderRadius: 6, padding: "3px 8px",
+  },
+  runBtn: {
+    padding: "10px 18px", background: "#111110", color: "#fff", border: "none",
+    borderRadius: 10, fontSize: 13, fontWeight: 700, cursor: "pointer",
+    fontFamily: "inherit",
+  },
   avatarRow: { display: "flex", alignItems: "center", gap: 16, marginBottom: 8 },
   avatarLarge: {
     width: 64, height: 64, borderRadius: "50%", background: "#0066FF",
