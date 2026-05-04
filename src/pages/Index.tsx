@@ -597,7 +597,7 @@ export default function Index() {
                <a key={l.label} href={l.path} style={styles.footerLink} onClick={(e) => { e.preventDefault(); navigate(l.path); }}>{l.label}</a>
              ))}
            </div>
-          <span style={styles.footerCopy}>© 2025 Diminga. Built for creators.</span>
+          <span style={styles.footerCopy}>© 2025 Renegade. Built for creators.</span>
         </div>
       </footer>
 
@@ -1014,6 +1014,57 @@ const styles: Record<string, React.CSSProperties> = {
     margin: "0 auto",
     padding: "100px 24px",
     textAlign: "center" as const,
+  },
+  /* HOW IT WORKS */
+  howSection: {
+    maxWidth: 1200,
+    margin: "0 auto",
+    padding: "20px 24px 100px",
+    textAlign: "center" as const,
+  },
+  howGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: 20,
+    marginTop: 48,
+    textAlign: "left" as const,
+  },
+  howCard: {
+    background: "#fff",
+    border: "1.5px solid #E8E8E4",
+    borderRadius: 14,
+    padding: 28,
+    position: "relative" as const,
+  },
+  howStepNum: {
+    fontSize: 11,
+    fontWeight: 700,
+    letterSpacing: "0.1em",
+    color: "#999",
+    marginBottom: 16,
+    fontFamily: "'Space Mono', monospace",
+  },
+  howIconWrap: {
+    width: 48,
+    height: 48,
+    borderRadius: 12,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 16,
+  },
+  howTitle: {
+    fontSize: 18,
+    fontWeight: 700,
+    color: "#111110",
+    margin: "0 0 8px",
+    letterSpacing: "-0.02em",
+  },
+  howDesc: {
+    fontSize: 14,
+    color: "#666",
+    lineHeight: 1.65,
+    margin: 0,
   },
   sectionLabel: {
     fontSize: 13,
