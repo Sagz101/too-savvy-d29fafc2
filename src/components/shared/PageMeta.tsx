@@ -6,7 +6,9 @@ interface PageMetaProps {
 }
 
 export default function PageMeta({ title, description }: PageMetaProps) {
-  const fullTitle = title === 'Diminga' ? 'Diminga — Web3 Creator Platform' : `${title} | Diminga`;
+  const fullTitle = title === 'Diminga' || title === 'Renegade'
+    ? 'Renegade — Web3 Creator Platform'
+    : `${title} | Renegade`;
   return (
     <Helmet>
       <title>{fullTitle}</title>
