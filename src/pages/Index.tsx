@@ -268,7 +268,7 @@ export default function Index() {
               }}
               onClick={() => setActiveFeature(i)}
             >
-              <span style={{ ...styles.tickerIcon, color: f.color }}>{f.icon}</span>
+              <f.Icon size={15} color={f.color} strokeWidth={2.25} />
               <span style={styles.tickerLabel}>{f.title}</span>
             </div>
           ))}
@@ -285,7 +285,7 @@ export default function Index() {
               </div>
               <div style={styles.browserBar}>
                 <span style={{ color: "#999", fontSize: 12 }}>
-                  diminga.xyz/{FEATURES[activeFeature].tag.toLowerCase()}
+                  renegade.xyz/{FEATURES[activeFeature].tag.toLowerCase()}
                 </span>
               </div>
             </div>
@@ -304,14 +304,25 @@ export default function Index() {
                       color: FEATURES[activeFeature].color,
                     }}
                   >
-                    {FEATURES[activeFeature].icon}
+                    {(() => { const I = FEATURES[activeFeature].Icon; return <I size={22} strokeWidth={2.25} />; })()}
                   </span>
                   <div>
                     <div style={styles.previewTitle}>{FEATURES[activeFeature].title}</div>
                     <div style={styles.previewTag}>{FEATURES[activeFeature].tag}</div>
                   </div>
                 </div>
-                <p style={styles.previewDesc}>{FEATURES[activeFeature].desc}</p>
+                <p style={styles.previewDesc}>
+                  <strong style={{ color: "#111110", fontWeight: 600 }}>{FEATURES[activeFeature].preview.headline}.</strong>{" "}
+                  {FEATURES[activeFeature].desc}
+                </p>
+                <ul style={{ listStyle: "none", padding: 0, margin: "0 0 18px", display: "flex", flexDirection: "column", gap: 8 }}>
+                  {FEATURES[activeFeature].preview.bullets.map((b) => (
+                    <li key={b} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12.5, color: "#444" }}>
+                      <CheckCircle2 size={14} color={FEATURES[activeFeature].color} strokeWidth={2.5} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
                 <div style={styles.previewStats}>
                   <div style={styles.previewStat}>
                     <div style={{ ...styles.previewStatVal, color: FEATURES[activeFeature].color }}>∞</div>
