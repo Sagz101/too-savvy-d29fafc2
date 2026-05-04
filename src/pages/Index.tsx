@@ -125,13 +125,11 @@ const TESTIMONIALS = [
 const NAV_LINKS = [
   { label: "Features", path: "/features" },
   { label: "Pricing", path: "/pricing" },
-  { label: "Creators", path: "/community" },
   { label: "Docs", path: "/docs" },
 ];
 
 export default function Index() {
   const navigate = useNavigate();
-  const [scrolled, setScrolled] = useState(false);
   const [activeFeature, setActiveFeature] = useState(0);
   const [demoOpen, setDemoOpen] = useState(false);
   const [demoStep, setDemoStep] = useState(0);
@@ -140,12 +138,6 @@ export default function Index() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -162,6 +154,18 @@ export default function Index() {
   return (
     <div style={styles.root}>
       <style>{`
+        @keyframes idxPulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.55; transform: scale(1.08); }
+        }
+        @keyframes idxGlow {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(0,200,150,0.55); }
+          50% { box-shadow: 0 0 0 8px rgba(0,200,150,0); }
+        }
+        @keyframes idxBarFill {
+          from { width: 0%; }
+          to { width: 37%; }
+        }
         @media (max-width: 900px) {
           .idx-hero-preview { display: none !important; }
           .idx-nav-links { display: none !important; }
@@ -178,12 +182,12 @@ export default function Index() {
           .idx-mobile-menu { display: none !important; }
         }
       `}</style>
-      <PageMeta title="Diminga" description="The Web3 creator platform for content creation, NFT monetization, and community building. Own your work and earn from it." />
+      <PageMeta title="Renegade" description="The Web3 creator platform for content creation, NFT monetization, and community building. Own your work and earn from it." />
       {/* ── NAV ── */}
-      <nav style={{ ...styles.nav, ...(scrolled ? styles.navScrolled : {}) }}>
+      <nav style={{ ...styles.nav, ...styles.navScrolled }}>
         <div style={styles.navInner}>
           <span style={styles.logo}>
-            <span style={styles.logoMark}>◈</span> Diminga
+            <span style={styles.logoMark}>◈</span> Renegade
           </span>
           <div className="idx-nav-links" style={styles.navLinks}>
             {NAV_LINKS.map((l) => (
@@ -192,7 +196,7 @@ export default function Index() {
           </div>
           <div style={styles.navCtas}>
             <a href="/auth" className="idx-nav-signin" style={styles.navSignIn} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Sign in</a>
-            <a href="/auth" className="idx-nav-cta" style={styles.navCta} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Get started free</a>
+            <a href="/auth" className="idx-nav-cta" style={styles.navCta} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Start for free</a>
             <button
               className="idx-hamburger"
               style={{ background: "none", border: "none", fontSize: 24, cursor: "pointer", color: "#111110", padding: 4 }}
@@ -211,7 +215,7 @@ export default function Index() {
           {NAV_LINKS.map((l) => (
             <a key={l.label} href={l.path} style={{ fontSize: 18, fontWeight: 600, color: "#111110", textDecoration: "none", padding: "14px 0", borderBottom: "1px solid #E8E8E4" }} onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); navigate(l.path); }}>{l.label}</a>
           ))}
-          <a href="/auth" style={{ fontSize: 16, fontWeight: 600, color: "#fff", background: "#111110", borderRadius: 10, padding: "14px 0", textAlign: "center" as const, textDecoration: "none", marginTop: 16 }} onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); navigate("/auth"); }}>Get started free</a>
+          <a href="/auth" style={{ fontSize: 16, fontWeight: 600, color: "#fff", background: "#111110", borderRadius: 10, padding: "14px 0", textAlign: "center" as const, textDecoration: "none", marginTop: 16 }} onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); navigate("/auth"); }}>Start for free</a>
         </div>
       )}
 
