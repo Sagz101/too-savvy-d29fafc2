@@ -233,7 +233,7 @@ export default function Index() {
           </h1>
           <p style={styles.heroSub}>
             One platform for content creation, NFT monetization, and community
-            building. Diminga gives creators the tools to own their work — and
+            building. Renegade gives creators the tools to own their work — and
             earn from it.
           </p>
           <div style={styles.heroCtas}>
