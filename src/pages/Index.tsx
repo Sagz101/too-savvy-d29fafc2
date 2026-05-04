@@ -364,12 +364,20 @@ export default function Index() {
 
       {/* ── STATS ── */}
       <section style={styles.stats}>
-        {STATS.map((s) => (
-          <div key={s.label} style={styles.statItem}>
-            <div style={styles.statValue}>{s.value}</div>
-            <div style={styles.statLabel}>{s.label}</div>
+        <div style={{ width: "100%", maxWidth: 1100, margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
+          <div style={{ display: "flex", justifyContent: "center", gap: "clamp(32px, 6vw, 96px)", flexWrap: "wrap" }}>
+            {STATS.map((s) => (
+              <div key={s.label} style={styles.statItem}>
+                <div style={styles.statValue}>{s.value}</div>
+                <div style={styles.statLabel}>{s.label}</div>
+              </div>
+            ))}
           </div>
-        ))}
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 12, color: "#888" }}>
+            <ShieldCheck size={13} color="#00C896" />
+            <span>as of May 2025 · Verified on-chain</span>
+          </div>
+        </div>
       </section>
 
       {/* ── FEATURES GRID ── */}
@@ -399,13 +407,35 @@ export default function Index() {
               }}
             >
               <div style={{ ...styles.featureIconWrap, background: f.color + "12", color: f.color }}>
-                {f.icon}
+                <f.Icon size={22} strokeWidth={2.25} />
               </div>
               <div style={{ ...styles.featureTag, color: f.color, background: f.color + "10" }}>
                 {f.tag}
               </div>
               <h3 style={styles.featureTitle}>{f.title}</h3>
               <p style={styles.featureDesc}>{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── HOW IT WORKS ── */}
+      <section style={styles.howSection}>
+        <div style={styles.sectionLabel}>How it works</div>
+        <h2 style={styles.sectionTitle}>From signup to first mint in minutes.</h2>
+        <div style={styles.howGrid}>
+          {[
+            { Icon: UserPlus, title: "Create your free account", desc: "No card, no wallet required. Sign up with email and you're in.", color: "#0066FF" },
+            { Icon: LayoutGrid, title: "Choose your studio", desc: "Pick from store, blog, video, podcast, social, or community — switch any time.", color: "#9B5CF6" },
+            { Icon: Sparkles, title: "Publish, mint & earn", desc: "One click publishes your work and mints it on-chain. Royalties flow back forever.", color: "#00C896" },
+          ].map((s, i) => (
+            <div key={s.title} style={styles.howCard}>
+              <div style={{ ...styles.howStepNum }}>0{i + 1}</div>
+              <div style={{ ...styles.howIconWrap, background: s.color + "14", color: s.color }}>
+                <s.Icon size={24} strokeWidth={2.25} />
+              </div>
+              <h3 style={styles.howTitle}>{s.title}</h3>
+              <p style={styles.howDesc}>{s.desc}</p>
             </div>
           ))}
         </div>
@@ -443,7 +473,10 @@ export default function Index() {
             <div style={styles.web3Card}>
               <div style={styles.web3CardHeader}>
                 <span style={styles.web3CardLabel}>NFT Preview</span>
-                <span style={styles.web3CardStatus}>● Live</span>
+                <span style={{ ...styles.web3CardStatus, display: "inline-flex", alignItems: "center", gap: 6, padding: "3px 10px", borderRadius: 999, background: "#00C89614", animation: "idxGlow 2s ease-in-out infinite" }}>
+                  <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#00C896", display: "inline-block", animation: "idxPulse 1.6s ease-in-out infinite" }} />
+                  Live
+                </span>
               </div>
               <div style={styles.web3CardArt}>
                 <div style={styles.web3ArtInner}>
@@ -469,6 +502,16 @@ export default function Index() {
                   <span style={styles.web3MetaVal}>ERC-721</span>
                 </div>
               </div>
+              {/* Mint counter */}
+              <div style={{ marginBottom: 16 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, marginBottom: 6 }}>
+                  <span style={{ color: "#888", fontWeight: 600 }}>Minted</span>
+                  <span style={{ color: "#111110", fontWeight: 700 }}>37 of 100</span>
+                </div>
+                <div style={{ width: "100%", height: 6, borderRadius: 999, background: "#F2F2EF", overflow: "hidden" }}>
+                  <div style={{ height: "100%", width: "37%", background: "linear-gradient(90deg, #0066FF, #9B5CF6)", borderRadius: 999, animation: "idxBarFill 1.4s ease-out" }} />
+                </div>
+              </div>
               <button style={styles.web3MintBtn} onClick={() => navigate("/auth")}>Connect wallet to mint</button>
             </div>
           </div>
@@ -484,12 +527,17 @@ export default function Index() {
             <div key={t.name} style={styles.testimonialCard}>
               <p style={styles.testimonialQuote}>"{t.quote}"</p>
               <div style={styles.testimonialAuthor}>
-                <div style={{ ...styles.testimonialAvatar, background: t.color }}>
-                  {t.avatar}
+                <div style={{ ...styles.testimonialAvatar, background: t.gradient, boxShadow: `0 6px 20px ${t.color}33` }}>
+                  {t.initials}
                 </div>
-                <div>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={styles.testimonialName}>{t.name}</div>
+                  <div style={{ fontSize: 12, color: t.color, fontWeight: 600, marginTop: 1 }}>{t.handle}</div>
                   <div style={styles.testimonialRole}>{t.role}</div>
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: 8, padding: "3px 8px", borderRadius: 999, background: "#00C89614", color: "#00A077", fontSize: 10.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                    <CheckCircle2 size={11} strokeWidth={2.5} />
+                    Verified Renegade creator
+                  </div>
                 </div>
               </div>
             </div>
@@ -502,7 +550,7 @@ export default function Index() {
         <div style={styles.ctaInner}>
           <h2 style={styles.ctaTitle}>Ready to own your creative future?</h2>
           <p style={styles.ctaSub}>
-            Join 12,000+ creators already building on Diminga. Free to start, no credit card needed.
+            Join 12,000+ creators already building on Renegade. Free to start, no credit card needed.
           </p>
           {!submitted ? (
             <form style={styles.ctaForm} onSubmit={handleSubmit}>
@@ -515,7 +563,7 @@ export default function Index() {
                 required
               />
               <button type="submit" style={styles.ctaSubmit}>
-                Create free account →
+                Create free account <ArrowRight size={16} style={{ marginLeft: 4, verticalAlign: "-3px" }} />
               </button>
             </form>
           ) : (
@@ -524,7 +572,10 @@ export default function Index() {
             </div>
           )}
           <p style={styles.ctaNote}>
-            Or <a href="/auth" style={styles.ctaLink} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>sign in with Google / wallet</a> to get started instantly.
+            Already have an account?{" "}
+            <a href="/auth" style={styles.ctaLink} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>
+              Sign in →
+            </a>
           </p>
         </div>
       </section>
@@ -533,7 +584,7 @@ export default function Index() {
       <footer style={styles.footer}>
         <div style={styles.footerInner}>
           <span style={styles.logo}>
-            <span style={styles.logoMark}>◈</span> Diminga
+            <span style={styles.logoMark}>◈</span> Renegade
           </span>
            <div style={styles.footerLinks}>
              {[
