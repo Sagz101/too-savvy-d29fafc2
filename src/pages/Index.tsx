@@ -1,49 +1,87 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import PageMeta from "@/components/shared/PageMeta";
+import {
+  ShoppingBag,
+  PenLine,
+  Play,
+  Share2,
+  Mic,
+  Users,
+  UserPlus,
+  LayoutGrid,
+  Sparkles,
+  ArrowRight,
+  CheckCircle2,
+  ShieldCheck,
+} from "lucide-react";
 
 const FEATURES = [
   {
-    icon: "✦",
+    Icon: ShoppingBag,
     title: "Store Builder",
     desc: "Launch your own storefront. Sell digital goods, merchandise, or NFT-gated content with Stripe + Web3 payments in one place.",
     tag: "Commerce",
     color: "#0066FF",
+    preview: {
+      headline: "Your storefront, your rules",
+      bullets: ["Stripe + crypto checkout", "NFT-gated products", "Zero platform fees"],
+    },
   },
   {
-    icon: "◈",
+    Icon: PenLine,
     title: "Threaditor",
     desc: "Write long-form posts backed by NFTs. Your words, your ownership. Readers mint your articles as collectibles.",
     tag: "Publishing",
     color: "#00C896",
+    preview: {
+      headline: "Mint every article you publish",
+      bullets: ["Markdown + rich media", "ERC-721 collectible posts", "Lifetime royalties"],
+    },
   },
   {
-    icon: "▶",
+    Icon: Play,
     title: "Video Studio",
     desc: "Upload, manage and monetize video content. Gate premium series behind token ownership.",
     tag: "Video",
     color: "#FF6B35",
+    preview: {
+      headline: "Token-gated video, made simple",
+      bullets: ["Upload & host in one click", "Series + season support", "Pay-per-view or subs"],
+    },
   },
   {
-    icon: "◎",
+    Icon: Share2,
     title: "NeuraSocial",
     desc: "A social hub that syncs across platforms. Share once, post everywhere — with analytics that actually make sense.",
     tag: "Social",
     color: "#9B5CF6",
+    preview: {
+      headline: "Post once. Reach everywhere.",
+      bullets: ["Cross-post to 8+ networks", "Smart-link analytics", "Wallet-verified handles"],
+    },
   },
   {
-    icon: "◆",
+    Icon: Mic,
     title: "Podcast Studio",
     desc: "Record, host, distribute. Offer token-gated episodes to your most loyal listeners.",
     tag: "Audio",
     color: "#F59E0B",
+    preview: {
+      headline: "Podcasting with on-chain perks",
+      bullets: ["RSS auto-distribution", "Token-gated bonus episodes", "Listener NFT drops"],
+    },
   },
   {
-    icon: "⬡",
+    Icon: Users,
     title: "Innovators Hub",
     desc: "Collaborate on projects with DAO governance. Vote on direction, share revenue, build together.",
     tag: "Community",
     color: "#EC4899",
+    preview: {
+      headline: "Build together. Govern together.",
+      bullets: ["DAO voting baked in", "Revenue-share splits", "On-chain treasury"],
+    },
   },
 ];
 
@@ -56,25 +94,31 @@ const STATS = [
 
 const TESTIMONIALS = [
   {
-    quote: "Diminga replaced five different tools. I run my whole creative business from one dashboard.",
+    quote: "Renegade replaced five different tools. I run my whole creative business from one dashboard.",
     name: "Aisha M.",
+    handle: "@aisha.creates",
     role: "Podcast host & NFT artist",
-    avatar: "A",
+    initials: "AM",
     color: "#0066FF",
+    gradient: "linear-gradient(135deg, #0066FF, #9B5CF6)",
   },
   {
     quote: "I minted my first article as an NFT and sold 40 copies in 48 hours. Wild.",
     name: "Kwame O.",
+    handle: "@kwame.writes",
     role: "Long-form writer",
-    avatar: "K",
+    initials: "KO",
     color: "#00C896",
+    gradient: "linear-gradient(135deg, #00C896, #0066FF)",
   },
   {
     quote: "Token-gated video series changed everything. My top fans pay once, get lifetime access.",
     name: "Thandiwe R.",
+    handle: "@thandi.films",
     role: "Video creator",
-    avatar: "T",
+    initials: "TR",
     color: "#FF6B35",
+    gradient: "linear-gradient(135deg, #FF6B35, #EC4899)",
   },
 ];
 
