@@ -6,14 +6,14 @@ const stories = [
   {
     name: 'Maya Chen',
     role: 'Digital Artist & Store Owner',
-    quote: 'Diminga helped me turn my traditional art into a thriving NFT business, earning 300% more than my gallery sales.',
+    quote: 'Renegade helped me turn my traditional art into a thriving NFT business, earning 300% more than my gallery sales.',
     earnings: '$12,847',
     growth: '+325%',
   },
   {
     name: 'Alex Rodriguez',
     role: 'Music Producer',
-    quote: 'I built a global fanbase through tokenized music releases and interactive live streaming on Diminga.',
+    quote: 'I built a global fanbase through tokenized music releases and interactive live streaming on Renegade.',
     earnings: '$8,934',
     growth: '+189%',
   },

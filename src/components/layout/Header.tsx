@@ -25,7 +25,7 @@ export const Header = () => {
         <Link to="/" className="flex items-center space-x-2">
           <img 
             src="/favicon.png" 
-            alt="Diminga Logo" 
+            alt="Renegade Logo" 
             className="h-10 w-auto object-contain"
           />
         </Link>

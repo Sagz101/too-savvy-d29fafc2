@@ -36,8 +36,8 @@ export const DAOSection: React.FC = () => {
             DAO Governance
           </span>
           <h2 className="font-fraunces font-bold text-3xl md:text-4xl tracking-[-0.03em] text-diminga-text mb-4">
-            You don't govern Diminga.{' '}
-            <span className="italic font-light text-diminga-accent">You ARE Diminga.</span>
+            You don't govern Renegade.{' '}
+            <span className="italic font-light text-diminga-accent">You ARE Renegade.</span>
           </h2>
           <p className="font-dm-sans text-diminga-muted leading-relaxed mb-6 max-w-md">
             Every $DMG token holder can propose, vote, and shape the platform's future. No central authority. No gatekeepers.

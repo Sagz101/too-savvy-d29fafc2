@@ -10,7 +10,7 @@ import {
 } from 'wagmi/chains';
 
 export const config = getDefaultConfig({
-  appName: 'Diminga - Web3 Creator Platform',
+  appName: 'Renegade - Web3 Creator Platform',
   projectId: '2f5a2345b67891c34d5e67f890a12b3c',
   chains: [
     mainnet,

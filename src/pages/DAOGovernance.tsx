@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
 const sections = [
-  { title: 'Active Proposals', icon: FileText, desc: 'View and submit governance proposals that shape the future of Diminga.', items: [
+  { title: 'Active Proposals', icon: FileText, desc: 'View and submit governance proposals that shape the future of Renegade.', items: [
     { name: 'DIP-42: Reduce Creator Fee to 0%', status: 'Voting', votes: '12.4K' },
     { name: 'DIP-41: Cross-chain Bridge Integration', status: 'Passed', votes: '8.7K' },
     { name: 'DIP-40: Community Grant Program', status: 'Discussion', votes: '3.2K' },
@@ -29,7 +29,7 @@ const DAOGovernance = () => (
       <div className="container mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 font-space">DAO Governance</h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">Diminga is community-governed. Propose, vote, and shape the platform's future.</p>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">Renegade is community-governed. Propose, vote, and shape the platform's future.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">

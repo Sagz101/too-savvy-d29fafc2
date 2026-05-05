@@ -1,5 +1,5 @@
 export const BRAND = {
-  name: "Diminga",
+  name: "Renegade",
   tagline: "The creator platform for the ownership era",
 };
 

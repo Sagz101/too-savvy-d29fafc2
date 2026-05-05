@@ -14,7 +14,7 @@ export const useSIWE = () => {
     
     const domain = window.location.host;
     const origin = window.location.origin;
-    const statement = 'Sign in with Ethereum to Diminga. This will not trigger a blockchain transaction or cost any gas fees.';
+    const statement = 'Sign in with Ethereum to Renegade. This will not trigger a blockchain transaction or cost any gas fees.';
     
     const siweMessage = new SiweMessage({
       domain,

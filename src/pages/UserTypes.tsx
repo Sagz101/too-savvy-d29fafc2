@@ -18,7 +18,7 @@ const UserTypes = () => (
       <div className="container mx-auto max-w-5xl">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 font-space">Built for Everyone</h1>
-          <p className="text-gray-400 text-lg max-w-2xl mx-auto">Whether you create, collect, build or govern — Diminga has a home for you.</p>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">Whether you create, collect, build or govern — Renegade has a home for you.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

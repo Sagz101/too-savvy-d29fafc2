@@ -31,7 +31,7 @@ import { toast } from 'sonner';
 const mockActivity = [
   { id: 1, type: 'send', amount: '0.5', token: 'ETH', to: '0x742d...9F3a', timestamp: '2 hours ago', status: 'confirmed', hash: '0xabc123...' },
   { id: 2, type: 'receive', amount: '100', token: 'USDC', from: '0x123d...4F2b', timestamp: '5 hours ago', status: 'confirmed', hash: '0xdef456...' },
-  { id: 3, type: 'mint', amount: '1', token: 'NFT', collection: 'Diminga Creators', timestamp: '1 day ago', status: 'confirmed', hash: '0xghi789...' },
+  { id: 3, type: 'mint', amount: '1', token: 'NFT', collection: 'Renegade Creators', timestamp: '1 day ago', status: 'confirmed', hash: '0xghi789...' },
   { id: 4, type: 'swap', amountIn: '1', tokenIn: 'ETH', amountOut: '1850', tokenOut: 'USDC', timestamp: '2 days ago', status: 'confirmed', hash: '0xjkl012...' },
   { id: 5, type: 'send', amount: '0.1', token: 'ETH', to: '0x852d...3F1c', timestamp: '3 days ago', status: 'pending', hash: '0xmno345...' },
 ];

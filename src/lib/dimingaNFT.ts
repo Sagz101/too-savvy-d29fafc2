@@ -164,7 +164,7 @@ export const DIMINGA_NFT_ADDRESSES: Record<number, `0x${string}`> = {
  * Get the deployed contract address for a given chain.
  * Returns undefined if the contract isn't deployed on that chain.
  */
-export const getDimingaContractAddress = (
+export const getRenegadeContractAddress = (
   chainId: number
 ): `0x${string}` | undefined => {
   return DIMINGA_NFT_ADDRESSES[chainId];

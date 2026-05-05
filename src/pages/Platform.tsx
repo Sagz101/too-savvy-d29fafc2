@@ -18,7 +18,7 @@ const Platform = () => (
     <div className="pt-24 pb-16 px-4">
       <div className="container mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center mb-16">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 font-space">The Diminga Platform</h1>
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 font-space">The Renegade Platform</h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">A modular Web3 ecosystem where creators own their content, commerce, community & crypto.</p>
         </motion.div>
 

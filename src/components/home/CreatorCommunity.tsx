@@ -75,7 +75,7 @@ export const CreatorCommunity: React.FC = () => {
               className="text-lg text-gray-400 max-w-lg"
             >
               Connect with 13,000+ monthly active creators sharing tips, 
-              collaboration opportunities, and growing together on Diminga.
+              collaboration opportunities, and growing together on Renegade.
             </motion.p>
 
             <motion.div 

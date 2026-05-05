@@ -162,7 +162,7 @@ export const TrustCertifications: React.FC = () => {
           
           <p className="text-lg text-muted-foreground mb-6">
             All platform decisions are voted on by the creator community. 
-            Join our DAO and shape the future of Diminga.
+            Join our DAO and shape the future of Renegade.
           </p>
           
           <div className="flex flex-wrap justify-center gap-4 mb-8">
