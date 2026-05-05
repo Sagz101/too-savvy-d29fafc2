@@ -38,10 +38,10 @@ export const ImprovedModernHeader: React.FC = () => {
         <ModernContainer size="full" padded>
           <div className="h-16 flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="flex items-center flex-shrink-0" aria-label="Diminga Home">
+            <Link to="/" className="flex items-center flex-shrink-0" aria-label="Renegade Home">
               <img 
                 src="/favicon.png" 
-                alt="Diminga - Decentralized Creator Platform" 
+                alt="Renegade - Decentralized Creator Platform" 
                 className="h-8 sm:h-10 w-auto object-contain hover:opacity-80 transition-opacity"
               />
             </Link>

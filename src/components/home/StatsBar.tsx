@@ -4,7 +4,7 @@ import { useInView } from 'react-intersection-observer';
 
 const stats = [
   { value: '$2.1', accent: 'M+', label: 'Total creator earnings across all chains' },
-  { value: '15,', accent: '247', label: 'Active creators building on Diminga' },
+  { value: '15,', accent: '247', label: 'Active creators building on Renegade' },
   { value: '0', accent: '%', label: 'Platform fees — you keep everything' },
   { value: '98/', accent: '100', label: 'CertiK security audit score' },
 ];

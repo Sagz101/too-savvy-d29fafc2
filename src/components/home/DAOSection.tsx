@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 const proposals = [
-  { dip: 'DIP-47', status: 'Active', statusColor: 'text-emerald-600 bg-emerald-50', title: 'Reduce marketplace fee from 2.5% to 0%', yes: 94, votes: '12,847' },
-  { dip: 'DIP-48', status: 'Active', statusColor: 'text-emerald-600 bg-emerald-50', title: 'Add Solana chain support for NFT minting', yes: 78, votes: '9,234' },
-  { dip: 'DIP-49', status: 'Pending', statusColor: 'text-diminga-accent bg-diminga-hover', title: 'Creator grant program — $50K quarterly fund', yes: 0, votes: 'Opens in 2d' },
+  { dip: 'RIP-47', status: 'Active', statusColor: 'text-emerald-600 bg-emerald-50', title: 'Reduce marketplace fee from 2.5% to 0%', yes: 94, votes: '12,847' },
+  { dip: 'RIP-48', status: 'Active', statusColor: 'text-emerald-600 bg-emerald-50', title: 'Add Solana chain support for NFT minting', yes: 78, votes: '9,234' },
+  { dip: 'RIP-49', status: 'Pending', statusColor: 'text-diminga-accent bg-diminga-hover', title: 'Creator grant program — $50K quarterly fund', yes: 0, votes: 'Opens in 2d' },
 ];
 
 const container = {
@@ -36,11 +36,11 @@ export const DAOSection: React.FC = () => {
             DAO Governance
           </span>
           <h2 className="font-fraunces font-bold text-3xl md:text-4xl tracking-[-0.03em] text-diminga-text mb-4">
-            You don't govern Diminga.{' '}
-            <span className="italic font-light text-diminga-accent">You ARE Diminga.</span>
+            You don't govern Renegade.{' '}
+            <span className="italic font-light text-diminga-accent">You ARE Renegade.</span>
           </h2>
           <p className="font-dm-sans text-diminga-muted leading-relaxed mb-6 max-w-md">
-            Every $DMG token holder can propose, vote, and shape the platform's future. No central authority. No gatekeepers.
+            Every $RNGD token holder can propose, vote, and shape the platform's future. No central authority. No gatekeepers.
           </p>
           <Button
             className="bg-diminga-accent hover:bg-diminga-accent/90 text-white font-dm-sans font-semibold px-6 py-5 text-sm rounded-lg mb-8"
@@ -58,7 +58,7 @@ export const DAOSection: React.FC = () => {
             animate={inView ? 'visible' : 'hidden'}
           >
             {[
-              { value: '1M', label: 'Total $DMG supply' },
+              { value: '1M', label: 'Total $RNGD supply' },
               { value: '67%', label: 'Staked tokens' },
               { value: '847', label: 'Governance participants' },
               { value: '47', label: 'Active proposals' },

@@ -31,7 +31,7 @@ export const TrustSignals = () => {
     {
       name: "Sarah Chen",
       role: "Digital Artist",
-      content: "Diminga gave me true ownership of my art. I've earned 3x more through NFT royalties than traditional platforms.",
+      content: "Renegade gave me true ownership of my art. I've earned 3x more through NFT royalties than traditional platforms.",
       avatar: "/placeholder.svg",
       earnings: "$12,400",
       verificationLink: "https://polygonscan.com/address/0x...",
@@ -51,7 +51,7 @@ export const TrustSignals = () => {
     {
       name: "TechFlow DAO",
       role: "Developer Community", 
-      content: "Building on Diminga's APIs was seamless. Their developer sandbox made integration effortless.",
+      content: "Building on Renegade's APIs was seamless. Their developer sandbox made integration effortless.",
       avatar: "/placeholder.svg",
       integrations: "47",
       verificationLink: "https://github.com/techflow-dao/toosavvy-integration",

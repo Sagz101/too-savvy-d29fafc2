@@ -1,47 +1,87 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import PageMeta from "@/components/shared/PageMeta";
+import {
+  ShoppingBag,
+  PenLine,
+  Play,
+  Share2,
+  Mic,
+  Users,
+  UserPlus,
+  LayoutGrid,
+  Sparkles,
+  ArrowRight,
+  CheckCircle2,
+  ShieldCheck,
+} from "lucide-react";
 
 const FEATURES = [
   {
-    icon: "✦",
+    Icon: ShoppingBag,
     title: "Store Builder",
     desc: "Launch your own storefront. Sell digital goods, merchandise, or NFT-gated content with Stripe + Web3 payments in one place.",
     tag: "Commerce",
     color: "#0066FF",
+    preview: {
+      headline: "Your storefront, your rules",
+      bullets: ["Stripe + crypto checkout", "NFT-gated products", "Zero platform fees"],
+    },
   },
   {
-    icon: "◈",
+    Icon: PenLine,
     title: "Threaditor",
     desc: "Write long-form posts backed by NFTs. Your words, your ownership. Readers mint your articles as collectibles.",
     tag: "Publishing",
     color: "#00C896",
+    preview: {
+      headline: "Mint every article you publish",
+      bullets: ["Markdown + rich media", "ERC-721 collectible posts", "Lifetime royalties"],
+    },
   },
   {
-    icon: "▶",
+    Icon: Play,
     title: "Video Studio",
     desc: "Upload, manage and monetize video content. Gate premium series behind token ownership.",
     tag: "Video",
     color: "#FF6B35",
+    preview: {
+      headline: "Token-gated video, made simple",
+      bullets: ["Upload & host in one click", "Series + season support", "Pay-per-view or subs"],
+    },
   },
   {
-    icon: "◎",
+    Icon: Share2,
     title: "NeuraSocial",
     desc: "A social hub that syncs across platforms. Share once, post everywhere — with analytics that actually make sense.",
     tag: "Social",
     color: "#9B5CF6",
+    preview: {
+      headline: "Post once. Reach everywhere.",
+      bullets: ["Cross-post to 8+ networks", "Smart-link analytics", "Wallet-verified handles"],
+    },
   },
   {
-    icon: "◆",
+    Icon: Mic,
     title: "Podcast Studio",
     desc: "Record, host, distribute. Offer token-gated episodes to your most loyal listeners.",
     tag: "Audio",
     color: "#F59E0B",
+    preview: {
+      headline: "Podcasting with on-chain perks",
+      bullets: ["RSS auto-distribution", "Token-gated bonus episodes", "Listener NFT drops"],
+    },
   },
   {
-    icon: "⬡",
+    Icon: Users,
     title: "Innovators Hub",
     desc: "Collaborate on projects with DAO governance. Vote on direction, share revenue, build together.",
     tag: "Community",
     color: "#EC4899",
+    preview: {
+      headline: "Build together. Govern together.",
+      bullets: ["DAO voting baked in", "Revenue-share splits", "On-chain treasury"],
+    },
   },
 ];
 
@@ -54,44 +94,50 @@ const STATS = [
 
 const TESTIMONIALS = [
   {
-    quote: "Diminga replaced five different tools. I run my whole creative business from one dashboard.",
+    quote: "Renegade replaced five different tools. I run my whole creative business from one dashboard.",
     name: "Aisha M.",
+    handle: "@aisha.creates",
     role: "Podcast host & NFT artist",
-    avatar: "A",
+    initials: "AM",
     color: "#0066FF",
+    gradient: "linear-gradient(135deg, #0066FF, #9B5CF6)",
   },
   {
     quote: "I minted my first article as an NFT and sold 40 copies in 48 hours. Wild.",
     name: "Kwame O.",
+    handle: "@kwame.writes",
     role: "Long-form writer",
-    avatar: "K",
+    initials: "KO",
     color: "#00C896",
+    gradient: "linear-gradient(135deg, #00C896, #0066FF)",
   },
   {
     quote: "Token-gated video series changed everything. My top fans pay once, get lifetime access.",
     name: "Thandiwe R.",
+    handle: "@thandi.films",
     role: "Video creator",
-    avatar: "T",
+    initials: "TR",
     color: "#FF6B35",
+    gradient: "linear-gradient(135deg, #FF6B35, #EC4899)",
   },
 ];
 
-const NAV_LINKS = ["Features", "Pricing", "Creators", "Docs"];
+const NAV_LINKS = [
+  { label: "Features", path: "/features" },
+  { label: "Pricing", path: "/pricing" },
+  { label: "Docs", path: "/docs" },
+];
 
 export default function Index() {
-  const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
   const [activeFeature, setActiveFeature] = useState(0);
   const [demoOpen, setDemoOpen] = useState(false);
+  const [demoStep, setDemoStep] = useState(0);
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -107,26 +153,74 @@ export default function Index() {
 
   return (
     <div style={styles.root}>
+      <style>{`
+        @keyframes idxPulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.55; transform: scale(1.08); }
+        }
+        @keyframes idxGlow {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(0,200,150,0.55); }
+          50% { box-shadow: 0 0 0 8px rgba(0,200,150,0); }
+        }
+        @keyframes idxBarFill {
+          from { width: 0%; }
+          to { width: 37%; }
+        }
+        @media (max-width: 900px) {
+          .idx-hero-preview { display: none !important; }
+          .idx-nav-links { display: none !important; }
+          .idx-nav-signin { display: none !important; }
+          .idx-nav-cta { display: none !important; }
+          .idx-hamburger { display: flex !important; }
+          .idx-web3-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .idx-hero { padding-top: 96px !important; padding-bottom: 48px !important; }
+          .idx-auth-left { display: none !important; }
+          .idx-auth-right { padding: 24px 16px !important; }
+        }
+        @media (min-width: 901px) {
+          .idx-hamburger { display: none !important; }
+          .idx-mobile-menu { display: none !important; }
+        }
+      `}</style>
+      <PageMeta title="Renegade" description="The Web3 creator platform for content creation, NFT monetization, and community building. Own your work and earn from it." />
       {/* ── NAV ── */}
-      <nav style={{ ...styles.nav, ...(scrolled ? styles.navScrolled : {}) }}>
+      <nav style={{ ...styles.nav, ...styles.navScrolled }}>
         <div style={styles.navInner}>
           <span style={styles.logo}>
-            <span style={styles.logoMark}>◈</span> Diminga
+            <span style={styles.logoMark}>◈</span> Renegade
           </span>
-          <div style={styles.navLinks}>
+          <div className="idx-nav-links" style={styles.navLinks}>
             {NAV_LINKS.map((l) => (
-              <a key={l} href="#" style={styles.navLink}>{l}</a>
+              <a key={l.label} href={l.path} style={styles.navLink} onClick={(e) => { e.preventDefault(); navigate(l.path); }}>{l.label}</a>
             ))}
           </div>
           <div style={styles.navCtas}>
-            <a href="/auth" style={styles.navSignIn}>Sign in</a>
-            <a href="/auth" style={styles.navCta}>Get started free</a>
+            <a href="/auth" className="idx-nav-signin" style={styles.navSignIn} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Sign in</a>
+            <a href="/auth" className="idx-nav-cta" style={styles.navCta} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>Start for free</a>
+            <button
+              className="idx-hamburger"
+              style={{ background: "none", border: "none", fontSize: 24, cursor: "pointer", color: "#111110", padding: 4 }}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? "✕" : "☰"}
+            </button>
           </div>
         </div>
       </nav>
 
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="idx-mobile-menu" style={{ position: "fixed", inset: 0, top: 64, zIndex: 99, background: "rgba(250,250,248,0.98)", backdropFilter: "blur(12px)", padding: "24px", display: "flex", flexDirection: "column" as const, gap: 8 }}>
+          {NAV_LINKS.map((l) => (
+            <a key={l.label} href={l.path} style={{ fontSize: 18, fontWeight: 600, color: "#111110", textDecoration: "none", padding: "14px 0", borderBottom: "1px solid #E8E8E4" }} onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); navigate(l.path); }}>{l.label}</a>
+          ))}
+          <a href="/auth" style={{ fontSize: 16, fontWeight: 600, color: "#fff", background: "#111110", borderRadius: 10, padding: "14px 0", textAlign: "center" as const, textDecoration: "none", marginTop: 16 }} onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); navigate("/auth"); }}>Start for free</a>
+        </div>
+      )}
+
       {/* ── HERO ── */}
-      <section ref={heroRef} style={styles.hero}>
+      <section ref={heroRef} className="idx-hero" style={styles.hero}>
         <div style={styles.heroGrid} />
         <div style={styles.heroContent}>
           <div style={styles.heroBadge}>
@@ -139,7 +233,7 @@ export default function Index() {
           </h1>
           <p style={styles.heroSub}>
             One platform for content creation, NFT monetization, and community
-            building. Diminga gives creators the tools to own their work — and
+            building. Renegade gives creators the tools to own their work — and
             earn from it.
           </p>
           <div style={styles.heroCtas}>
@@ -155,7 +249,7 @@ export default function Index() {
             >
               ▶ Watch the demo
             </button>
-            <a href="/auth" style={styles.ctaSecondary}>
+            <a href="/auth" style={styles.ctaSecondary} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>
               Start for free →
             </a>
           </div>
@@ -174,14 +268,14 @@ export default function Index() {
               }}
               onClick={() => setActiveFeature(i)}
             >
-              <span style={{ ...styles.tickerIcon, color: f.color }}>{f.icon}</span>
+              <f.Icon size={15} color={f.color} strokeWidth={2.25} />
               <span style={styles.tickerLabel}>{f.title}</span>
             </div>
           ))}
         </div>
 
         {/* Animated feature preview */}
-        <div style={styles.heroPreview}>
+        <div className="idx-hero-preview" style={styles.heroPreview}>
           <div style={styles.previewBrowser}>
             <div style={styles.browserChrome}>
               <div style={styles.browserDots}>
@@ -191,7 +285,7 @@ export default function Index() {
               </div>
               <div style={styles.browserBar}>
                 <span style={{ color: "#999", fontSize: 12 }}>
-                  diminga.xyz/{FEATURES[activeFeature].tag.toLowerCase()}
+                  renegade.xyz/{FEATURES[activeFeature].tag.toLowerCase()}
                 </span>
               </div>
             </div>
@@ -210,14 +304,25 @@ export default function Index() {
                       color: FEATURES[activeFeature].color,
                     }}
                   >
-                    {FEATURES[activeFeature].icon}
+                    {(() => { const I = FEATURES[activeFeature].Icon; return <I size={22} strokeWidth={2.25} />; })()}
                   </span>
                   <div>
                     <div style={styles.previewTitle}>{FEATURES[activeFeature].title}</div>
                     <div style={styles.previewTag}>{FEATURES[activeFeature].tag}</div>
                   </div>
                 </div>
-                <p style={styles.previewDesc}>{FEATURES[activeFeature].desc}</p>
+                <p style={styles.previewDesc}>
+                  <strong style={{ color: "#111110", fontWeight: 600 }}>{FEATURES[activeFeature].preview.headline}.</strong>{" "}
+                  {FEATURES[activeFeature].desc}
+                </p>
+                <ul style={{ listStyle: "none", padding: 0, margin: "0 0 18px", display: "flex", flexDirection: "column", gap: 8 }}>
+                  {FEATURES[activeFeature].preview.bullets.map((b) => (
+                    <li key={b} style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 12.5, color: "#444" }}>
+                      <CheckCircle2 size={14} color={FEATURES[activeFeature].color} strokeWidth={2.5} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
                 <div style={styles.previewStats}>
                   <div style={styles.previewStat}>
                     <div style={{ ...styles.previewStatVal, color: FEATURES[activeFeature].color }}>∞</div>
@@ -237,6 +342,17 @@ export default function Index() {
                     ...styles.previewCta,
                     background: FEATURES[activeFeature].color,
                   }}
+                  onClick={() => {
+                    const routes: Record<string, string> = {
+                      "Store Builder": "/studio/store",
+                      "Threaditor": "/studio/threaditor",
+                      "Video Studio": "/studio/video",
+                      "NeuraSocial": "/studio/social",
+                      "Podcast Studio": "/studio/podcast",
+                      "Innovators Hub": "/studio/hub",
+                    };
+                    navigate(routes[FEATURES[activeFeature].title] || "/dashboard");
+                  }}
                 >
                   Open {FEATURES[activeFeature].title} →
                 </button>
@@ -248,12 +364,20 @@ export default function Index() {
 
       {/* ── STATS ── */}
       <section style={styles.stats}>
-        {STATS.map((s) => (
-          <div key={s.label} style={styles.statItem}>
-            <div style={styles.statValue}>{s.value}</div>
-            <div style={styles.statLabel}>{s.label}</div>
+        <div style={{ width: "100%", maxWidth: 1100, margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
+          <div style={{ display: "flex", justifyContent: "center", gap: "clamp(32px, 6vw, 96px)", flexWrap: "wrap" }}>
+            {STATS.map((s) => (
+              <div key={s.label} style={styles.statItem}>
+                <div style={styles.statValue}>{s.value}</div>
+                <div style={styles.statLabel}>{s.label}</div>
+              </div>
+            ))}
           </div>
-        ))}
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 12, color: "#888" }}>
+            <ShieldCheck size={13} color="#00C896" />
+            <span>as of May 2025 · Verified on-chain</span>
+          </div>
+        </div>
       </section>
 
       {/* ── FEATURES GRID ── */}
@@ -283,7 +407,7 @@ export default function Index() {
               }}
             >
               <div style={{ ...styles.featureIconWrap, background: f.color + "12", color: f.color }}>
-                {f.icon}
+                <f.Icon size={22} strokeWidth={2.25} />
               </div>
               <div style={{ ...styles.featureTag, color: f.color, background: f.color + "10" }}>
                 {f.tag}
@@ -295,9 +419,31 @@ export default function Index() {
         </div>
       </section>
 
+      {/* ── HOW IT WORKS ── */}
+      <section style={styles.howSection}>
+        <div style={styles.sectionLabel}>How it works</div>
+        <h2 style={styles.sectionTitle}>From signup to first mint in minutes.</h2>
+        <div style={styles.howGrid}>
+          {[
+            { Icon: UserPlus, title: "Create your free account", desc: "No card, no wallet required. Sign up with email and you're in.", color: "#0066FF" },
+            { Icon: LayoutGrid, title: "Choose your studio", desc: "Pick from store, blog, video, podcast, social, or community — switch any time.", color: "#9B5CF6" },
+            { Icon: Sparkles, title: "Publish, mint & earn", desc: "One click publishes your work and mints it on-chain. Royalties flow back forever.", color: "#00C896" },
+          ].map((s, i) => (
+            <div key={s.title} style={styles.howCard}>
+              <div style={{ ...styles.howStepNum }}>0{i + 1}</div>
+              <div style={{ ...styles.howIconWrap, background: s.color + "14", color: s.color }}>
+                <s.Icon size={24} strokeWidth={2.25} />
+              </div>
+              <h3 style={styles.howTitle}>{s.title}</h3>
+              <p style={styles.howDesc}>{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ── WEB3 CALLOUT ── */}
       <section style={styles.web3Section}>
-        <div style={styles.web3Inner}>
+        <div className="idx-web3-grid" style={styles.web3Inner}>
           <div style={styles.web3Left}>
             <div style={styles.sectionLabel}>True ownership</div>
             <h2 style={styles.web3Title}>Your content lives on-chain.</h2>
@@ -327,7 +473,10 @@ export default function Index() {
             <div style={styles.web3Card}>
               <div style={styles.web3CardHeader}>
                 <span style={styles.web3CardLabel}>NFT Preview</span>
-                <span style={styles.web3CardStatus}>● Live</span>
+                <span style={{ ...styles.web3CardStatus, display: "inline-flex", alignItems: "center", gap: 6, padding: "3px 10px", borderRadius: 999, background: "#00C89614", animation: "idxGlow 2s ease-in-out infinite" }}>
+                  <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#00C896", display: "inline-block", animation: "idxPulse 1.6s ease-in-out infinite" }} />
+                  Live
+                </span>
               </div>
               <div style={styles.web3CardArt}>
                 <div style={styles.web3ArtInner}>
@@ -353,7 +502,17 @@ export default function Index() {
                   <span style={styles.web3MetaVal}>ERC-721</span>
                 </div>
               </div>
-              <button style={styles.web3MintBtn}>Connect wallet to mint</button>
+              {/* Mint counter */}
+              <div style={{ marginBottom: 16 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", fontSize: 12, marginBottom: 6 }}>
+                  <span style={{ color: "#888", fontWeight: 600 }}>Minted</span>
+                  <span style={{ color: "#111110", fontWeight: 700 }}>37 of 100</span>
+                </div>
+                <div style={{ width: "100%", height: 6, borderRadius: 999, background: "#F2F2EF", overflow: "hidden" }}>
+                  <div style={{ height: "100%", width: "37%", background: "linear-gradient(90deg, #0066FF, #9B5CF6)", borderRadius: 999, animation: "idxBarFill 1.4s ease-out" }} />
+                </div>
+              </div>
+              <button style={styles.web3MintBtn} onClick={() => navigate("/auth")}>Connect wallet to mint</button>
             </div>
           </div>
         </div>
@@ -368,12 +527,17 @@ export default function Index() {
             <div key={t.name} style={styles.testimonialCard}>
               <p style={styles.testimonialQuote}>"{t.quote}"</p>
               <div style={styles.testimonialAuthor}>
-                <div style={{ ...styles.testimonialAvatar, background: t.color }}>
-                  {t.avatar}
+                <div style={{ ...styles.testimonialAvatar, background: t.gradient, boxShadow: `0 6px 20px ${t.color}33` }}>
+                  {t.initials}
                 </div>
-                <div>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={styles.testimonialName}>{t.name}</div>
+                  <div style={{ fontSize: 12, color: t.color, fontWeight: 600, marginTop: 1 }}>{t.handle}</div>
                   <div style={styles.testimonialRole}>{t.role}</div>
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: 8, padding: "3px 8px", borderRadius: 999, background: "#00C89614", color: "#00A077", fontSize: 10.5, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                    <CheckCircle2 size={11} strokeWidth={2.5} />
+                    Verified Renegade creator
+                  </div>
                 </div>
               </div>
             </div>
@@ -386,7 +550,7 @@ export default function Index() {
         <div style={styles.ctaInner}>
           <h2 style={styles.ctaTitle}>Ready to own your creative future?</h2>
           <p style={styles.ctaSub}>
-            Join 12,000+ creators already building on Diminga. Free to start, no credit card needed.
+            Join 12,000+ creators already building on Renegade. Free to start, no credit card needed.
           </p>
           {!submitted ? (
             <form style={styles.ctaForm} onSubmit={handleSubmit}>
@@ -399,7 +563,7 @@ export default function Index() {
                 required
               />
               <button type="submit" style={styles.ctaSubmit}>
-                Create free account →
+                Create free account <ArrowRight size={16} style={{ marginLeft: 4, verticalAlign: "-3px" }} />
               </button>
             </form>
           ) : (
@@ -408,7 +572,10 @@ export default function Index() {
             </div>
           )}
           <p style={styles.ctaNote}>
-            Or <a href="/auth" style={styles.ctaLink}>sign in with Google / wallet</a> to get started instantly.
+            Already have an account?{" "}
+            <a href="/auth" style={styles.ctaLink} onClick={(e) => { e.preventDefault(); navigate("/auth"); }}>
+              Sign in →
+            </a>
           </p>
         </div>
       </section>
@@ -417,35 +584,68 @@ export default function Index() {
       <footer style={styles.footer}>
         <div style={styles.footerInner}>
           <span style={styles.logo}>
-            <span style={styles.logoMark}>◈</span> Diminga
+            <span style={styles.logoMark}>◈</span> Renegade
           </span>
-          <div style={styles.footerLinks}>
-            {["Privacy", "Terms", "Docs", "GitHub", "Discord"].map((l) => (
-              <a key={l} href="#" style={styles.footerLink}>{l}</a>
-            ))}
-          </div>
-          <span style={styles.footerCopy}>© 2025 Diminga. Built for creators.</span>
+           <div style={styles.footerLinks}>
+             {[
+               { label: "Privacy", path: "/privacy" },
+               { label: "Terms", path: "/terms" },
+               { label: "Docs", path: "/docs" },
+               { label: "Pricing", path: "/pricing" },
+               { label: "Dashboard", path: "/dashboard" },
+             ].map((l) => (
+               <a key={l.label} href={l.path} style={styles.footerLink} onClick={(e) => { e.preventDefault(); navigate(l.path); }}>{l.label}</a>
+             ))}
+           </div>
+          <span style={styles.footerCopy}>© 2025 Renegade. Built for creators.</span>
         </div>
       </footer>
 
       {/* ── DEMO MODAL ── */}
-      {demoOpen && (
-        <div style={styles.modalOverlay} onClick={() => setDemoOpen(false)}>
-          <div style={styles.modal} onClick={(e) => e.stopPropagation()}>
-            <button style={styles.modalClose} onClick={() => setDemoOpen(false)}>✕</button>
-            <h3 style={styles.modalTitle}>Diminga Platform Demo</h3>
-            <div style={styles.videoPlaceholder}>
-              <div style={styles.playBtnLarge}>▶</div>
-              <p style={{ color: "#888", marginTop: 12, fontSize: 14 }}>
-                Demo video coming soon — <a href="/auth" style={{ color: "#0066FF" }}>sign up</a> for early access
-              </p>
+      {demoOpen && (() => {
+        const WALKTHROUGH = [
+          { title: "Your Dashboard", desc: "See all your stats, earnings, and content in one place. Quick-launch any studio from here.", icon: "⊞", color: "#0066FF" },
+          { title: "Store Builder", desc: "Add products — digital downloads, merch, or NFT-gated access. Accept crypto and fiat payments.", icon: "◈", color: "#0066FF" },
+          { title: "Threaditor", desc: "Write long-form posts with Markdown. Mint articles as NFTs so readers can collect your words.", icon: "✦", color: "#00C896" },
+          { title: "Video Studio", desc: "Upload videos, set token-gating, and track analytics. Your content, your rules.", icon: "▶", color: "#FF6B35" },
+          { title: "Mint as NFT", desc: "One click mints any content as an ERC-721 NFT on Polygon. Set royalties and let fans collect.", icon: "◈", color: "#9B5CF6" },
+        ];
+        const step = WALKTHROUGH[demoStep];
+        return (
+          <div style={styles.modalOverlay} onClick={() => { setDemoOpen(false); setDemoStep(0); }}>
+            <div style={{ ...styles.modal, maxWidth: 520 }} onClick={(e) => e.stopPropagation()}>
+              <button style={styles.modalClose} onClick={() => { setDemoOpen(false); setDemoStep(0); }}>✕</button>
+              <div style={{ textAlign: "center" as const, marginBottom: 24 }}>
+                <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase" as const, letterSpacing: "0.1em", color: "#888", marginBottom: 6 }}>
+                  Platform walkthrough · {demoStep + 1}/{WALKTHROUGH.length}
+                </div>
+                <div style={{ display: "flex", gap: 4, justifyContent: "center", marginBottom: 24 }}>
+                  {WALKTHROUGH.map((_, i) => (
+                    <div key={i} style={{ width: i === demoStep ? 24 : 8, height: 4, borderRadius: 2, background: i === demoStep ? step.color : "#E8E8E4", transition: "all 0.3s", cursor: "pointer" }} onClick={() => setDemoStep(i)} />
+                  ))}
+                </div>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column" as const, alignItems: "center", textAlign: "center" as const }}>
+                <div style={{ width: 72, height: 72, borderRadius: 18, background: step.color + "14", color: step.color, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 32, marginBottom: 20 }}>
+                  {step.icon}
+                </div>
+                <h3 style={{ fontSize: 22, fontWeight: 700, fontFamily: "'Fraunces', serif", color: "#111110", margin: "0 0 10px" }}>{step.title}</h3>
+                <p style={{ fontSize: 15, color: "#666", lineHeight: 1.65, maxWidth: 400, margin: "0 0 28px" }}>{step.desc}</p>
+              </div>
+              <div style={{ display: "flex", gap: 10, justifyContent: "center" }}>
+                {demoStep > 0 && (
+                  <button onClick={() => setDemoStep(demoStep - 1)} style={{ ...styles.ctaSecondary, border: "1.5px solid #E8E8E4", borderRadius: 10, padding: "10px 22px", fontSize: 14, fontWeight: 600, cursor: "pointer", background: "#fff" }}>← Back</button>
+                )}
+                {demoStep < WALKTHROUGH.length - 1 ? (
+                  <button onClick={() => setDemoStep(demoStep + 1)} style={{ background: step.color, color: "#fff", border: "none", borderRadius: 10, padding: "10px 28px", fontSize: 14, fontWeight: 600, cursor: "pointer" }}>Next →</button>
+                ) : (
+                  <button onClick={() => { setDemoOpen(false); setDemoStep(0); navigate("/auth"); }} style={{ background: "#0066FF", color: "#fff", border: "none", borderRadius: 10, padding: "10px 28px", fontSize: 14, fontWeight: 600, cursor: "pointer" }}>Start building for free →</button>
+                )}
+              </div>
             </div>
-            <a href="/auth" style={{ ...styles.ctaSubmit, display: "block", textAlign: "center", textDecoration: "none" }}>
-              Start building for free →
-            </a>
           </div>
-        </div>
-      )}
+        );
+      })()}
     </div>
   );
 }
@@ -577,7 +777,8 @@ const styles: Record<string, React.CSSProperties> = {
   },
   heroHeadline: {
     fontSize: "clamp(40px, 5.5vw, 68px)",
-    fontWeight: 800,
+    fontFamily: "'Fraunces', serif",
+    fontWeight: 700,
     lineHeight: 1.08,
     letterSpacing: "-0.03em",
     margin: "0 0 20px",
@@ -665,7 +866,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   tickerLabel: {},
 
-  /* Hero Preview */
+  /* Hero Preview — hidden on mobile via CSS class */
   heroPreview: {
     position: "absolute",
     right: 24,
@@ -814,6 +1015,57 @@ const styles: Record<string, React.CSSProperties> = {
     padding: "100px 24px",
     textAlign: "center" as const,
   },
+  /* HOW IT WORKS */
+  howSection: {
+    maxWidth: 1200,
+    margin: "0 auto",
+    padding: "20px 24px 100px",
+    textAlign: "center" as const,
+  },
+  howGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: 20,
+    marginTop: 48,
+    textAlign: "left" as const,
+  },
+  howCard: {
+    background: "#fff",
+    border: "1.5px solid #E8E8E4",
+    borderRadius: 14,
+    padding: 28,
+    position: "relative" as const,
+  },
+  howStepNum: {
+    fontSize: 11,
+    fontWeight: 700,
+    letterSpacing: "0.1em",
+    color: "#999",
+    marginBottom: 16,
+    fontFamily: "'Space Mono', monospace",
+  },
+  howIconWrap: {
+    width: 48,
+    height: 48,
+    borderRadius: 12,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 16,
+  },
+  howTitle: {
+    fontSize: 18,
+    fontWeight: 700,
+    color: "#111110",
+    margin: "0 0 8px",
+    letterSpacing: "-0.02em",
+  },
+  howDesc: {
+    fontSize: 14,
+    color: "#666",
+    lineHeight: 1.65,
+    margin: 0,
+  },
   sectionLabel: {
     fontSize: 13,
     fontWeight: 600,
@@ -824,7 +1076,8 @@ const styles: Record<string, React.CSSProperties> = {
   },
   sectionTitle: {
     fontSize: "clamp(28px, 4vw, 48px)",
-    fontWeight: 800,
+    fontFamily: "'Fraunces', serif",
+    fontWeight: 700,
     letterSpacing: "-0.03em",
     color: "#111110",
     margin: "0 0 16px",
@@ -900,7 +1153,8 @@ const styles: Record<string, React.CSSProperties> = {
   web3Left: {},
   web3Title: {
     fontSize: "clamp(28px, 3.5vw, 44px)",
-    fontWeight: 800,
+    fontFamily: "'Fraunces', serif",
+    fontWeight: 700,
     letterSpacing: "-0.03em",
     color: "#111110",
     margin: "0 0 20px",
@@ -1105,7 +1359,8 @@ const styles: Record<string, React.CSSProperties> = {
   },
   ctaTitle: {
     fontSize: "clamp(28px, 4vw, 44px)",
-    fontWeight: 800,
+    fontFamily: "'Fraunces', serif",
+    fontWeight: 700,
     color: "#fff",
     letterSpacing: "-0.03em",
     margin: "0 0 16px",
@@ -1260,4 +1515,3 @@ const styles: Record<string, React.CSSProperties> = {
     cursor: "pointer",
   },
 };
-

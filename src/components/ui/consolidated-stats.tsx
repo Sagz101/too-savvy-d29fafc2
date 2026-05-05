@@ -11,7 +11,7 @@ export const ConsolidatedStats: React.FC = () => {
       <ModernContainer size="xl">
         <div className="text-center mb-12">
           <ModernHeading level={2} className="mb-4 text-3xl font-bold">
-            Why Diminga is the Future of Commerce
+            Why Renegade is the Future of Commerce
           </ModernHeading>
           <ModernText variant="lead" muted className="max-w-2xl mx-auto">
             Industry-leading cost efficiency and creator-first economics

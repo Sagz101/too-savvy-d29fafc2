@@ -67,7 +67,7 @@ export function AppSidebar() {
     <aside className="bg-background border-r border-border/40 h-screen px-3 pt-8 flex flex-col w-64 fixed z-40">
       <div className="mb-8">
         <Link to="/" className="flex items-center space-x-3 px-3">
-          <span className="text-2xl font-porscha text-neura-cyan">Diminga</span>
+          <span className="text-2xl font-porscha text-neura-cyan">Renegade</span>
         </Link>
       </div>
       <nav className="flex-1">

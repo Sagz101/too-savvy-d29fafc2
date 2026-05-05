@@ -89,7 +89,7 @@ export const DualOnboarding: React.FC<DualOnboardingProps> = ({ onComplete }) =>
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-4">
           <span className="bg-gradient-to-r from-solar-core via-solar-radiative to-solar-photosphere bg-clip-text text-transparent">
-            Welcome to Diminga
+            Welcome to Renegade
           </span>
         </h2>
         <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -300,7 +300,7 @@ export const DualOnboarding: React.FC<DualOnboardingProps> = ({ onComplete }) =>
       </Tabs>
 
       <div className="text-center mt-6 text-xs text-gray-500">
-        By continuing, you agree to Diminga's Terms of Service and Privacy Policy
+        By continuing, you agree to Renegade's Terms of Service and Privacy Policy
       </div>
     </div>
   );

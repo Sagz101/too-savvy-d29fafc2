@@ -12,7 +12,7 @@ const stats = [
 ];
 
 const stories = [
-  { name: 'Maya Chen', role: 'Digital Artist', quote: 'Diminga helped me earn $48K from my first NFT collection with zero platform fees.', avatar: '🎨' },
+  { name: 'Maya Chen', role: 'Digital Artist', quote: 'Renegade helped me earn $48K from my first NFT collection with zero platform fees.', avatar: '🎨' },
   { name: 'DJ Cosmos', role: 'Music Producer', quote: 'Dynamic royalties changed everything. I earn passive income from every resale.', avatar: '🎵' },
   { name: 'NovaBrand Co.', role: 'Web3 Brand', quote: 'Our tokenized commerce store generated 3x more engagement than traditional e-commerce.', avatar: '🏪' },
 ];

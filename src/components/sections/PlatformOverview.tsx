@@ -123,7 +123,7 @@ export const PlatformOverview = () => {
               <h3 className="text-2xl font-bold text-white">Modules</h3>
             </div>
             <p className="text-white/70 mb-8 max-w-4xl">
-              Unlock specialized tools for every step of your creative journey. From NFT minting and token-gated content to streaming, e-commerce, and community governance, Diminga Modules are modular, composable, and fully Web3-native.
+              Unlock specialized tools for every step of your creative journey. From NFT minting and token-gated content to streaming, e-commerce, and community governance, Renegade Modules are modular, composable, and fully Web3-native.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {modules.map((module, index) => (
@@ -146,7 +146,7 @@ export const PlatformOverview = () => {
               <h3 className="text-2xl font-bold text-white">Ecosystem</h3>
             </div>
             <p className="text-white/70 mb-8 max-w-4xl">
-              Diminga is a self-sustaining creator economy, decentralized across 3,000+ validator nodes, supporting scalable, eco-efficient participation. Engage in projects, launch storefronts, publish content, or govern DAOs—all on a network built for creators.
+              Renegade is a self-sustaining creator economy, decentralized across 3,000+ validator nodes, supporting scalable, eco-efficient participation. Engage in projects, launch storefronts, publish content, or govern DAOs—all on a network built for creators.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
               {ecosystemStats.map((stat, index) => (
@@ -179,7 +179,7 @@ export const PlatformOverview = () => {
               <h3 className="text-2xl font-bold text-white">Resources</h3>
             </div>
             <p className="text-white/70 mb-8 max-w-4xl">
-              Get the most out of Diminga with curated support for every level of user—from beginner to protocol contributor.
+              Get the most out of Renegade with curated support for every level of user—from beginner to protocol contributor.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {resources.map((resource, index) => (
@@ -212,7 +212,7 @@ export const PlatformOverview = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-white/70 text-sm">
-                  Comprehensive, developer-grade docs for integrating, building, or scaling on Diminga.
+                  Comprehensive, developer-grade docs for integrating, building, or scaling on Renegade.
                 </p>
                 <ul className="space-y-2 text-sm text-white/70">
                   <li>• Smart contract reference (ERC-721M, ERC-1155, ERC-2981, DAO modules)</li>
@@ -239,7 +239,7 @@ export const PlatformOverview = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-white/70 text-sm">
-                  The Diminga Whitepaper outlines our foundational thesis: reclaiming creator autonomy through programmable ownership, decentralized infrastructure, and sustainable monetization. It details system architecture, tokenomics, consensus models, and governance mechanics.
+                  The Renegade Whitepaper outlines our foundational thesis: reclaiming creator autonomy through programmable ownership, decentralized infrastructure, and sustainable monetization. It details system architecture, tokenomics, consensus models, and governance mechanics.
                 </p>
                 <Button className="w-full bg-gradient-to-r from-neura-purple to-neura-cyan text-white">
                   <Download className="w-4 h-4 mr-2" />
@@ -258,7 +258,7 @@ export const PlatformOverview = () => {
               <h3 className="text-2xl font-bold text-white">Token</h3>
             </div>
             <p className="text-white/70 mb-8 max-w-4xl">
-              Ethereum is the native utility and governance token of the Diminga network. It powers access, rewards, DAO proposals, and creator incentives.
+              Ethereum is the native utility and governance token of the Renegade network. It powers access, rewards, DAO proposals, and creator incentives.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               {tokenUtilities.map((utility, index) => (

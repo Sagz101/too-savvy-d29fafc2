@@ -50,7 +50,7 @@ export const SequenceInspiredHero: React.FC = () => {
           {/* Main title with SPHERE FEZ font */}
           <h1 className="text-7xl md:text-8xl lg:text-9xl font-bold mb-4 relative">
             <span className="bg-gradient-to-r from-white via-cosmic-purple-light to-cosmic-blue bg-clip-text text-transparent animate-hero-glow font-sphere-fez">
-              Diminga
+              Renegade
             </span>
           </h1>
 
