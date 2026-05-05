@@ -14,8 +14,8 @@ const DAOGovernanceRules = () => (
             <p className="text-gray-400">The rules and framework governing the Renegade DAO.</p>
 
             {[
-              { title: '1. Proposal Submission', content: 'Any token holder with a minimum of 1,000 DIMG tokens may submit a Renegade Improvement Proposal (DIP). Proposals must include a clear title, description, implementation plan, and budget if applicable. A 7-day discussion period precedes voting.' },
-              { title: '2. Voting Mechanism', content: 'Voting is conducted on-chain using token-weighted governance. One DIMG token equals one vote. Voting periods last 5 days. A quorum of 10% of circulating supply is required for a vote to be valid. Simple majority (>50%) passes standard proposals.' },
+              { title: '1. Proposal Submission', content: 'Any token holder with a minimum of 1,000 RNGD tokens may submit a Renegade Improvement Proposal (RIP). Proposals must include a clear title, description, implementation plan, and budget if applicable. A 7-day discussion period precedes voting.' },
+              { title: '2. Voting Mechanism', content: 'Voting is conducted on-chain using token-weighted governance. One RNGD token equals one vote. Voting periods last 5 days. A quorum of 10% of circulating supply is required for a vote to be valid. Simple majority (>50%) passes standard proposals.' },
               { title: '3. Treasury Management', content: 'The DAO treasury is managed through multi-signature wallets requiring 4-of-7 signers. All disbursements above $10,000 require a governance vote. Monthly treasury reports are published on-chain.' },
               { title: '4. Delegation', content: 'Token holders may delegate their voting power to trusted community members. Delegation is revocable at any time. Delegates must maintain transparency about their voting rationale.' },
               { title: '5. Emergency Actions', content: 'The core team retains emergency action rights for security vulnerabilities and critical bugs. Emergency actions must be ratified by governance within 14 days or they are automatically reversed.' },
