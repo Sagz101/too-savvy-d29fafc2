@@ -13,7 +13,7 @@ const PrivacyPolicy = () => (
 
             <section className="rounded-2xl p-6" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
               <h2 className="text-xl font-bold text-white mb-3">1. Data We Collect</h2>
-              <p className="text-gray-400 text-sm leading-relaxed">Diminga collects minimal data. We store wallet addresses for authentication, on-chain transaction data for display purposes, and optional profile information you choose to provide. We do not collect emails unless explicitly provided for notifications.</p>
+              <p className="text-gray-400 text-sm leading-relaxed">Renegade collects minimal data. We store wallet addresses for authentication, on-chain transaction data for display purposes, and optional profile information you choose to provide. We do not collect emails unless explicitly provided for notifications.</p>
             </section>
 
             <section className="rounded-2xl p-6" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
@@ -23,7 +23,7 @@ const PrivacyPolicy = () => (
 
             <section className="rounded-2xl p-6" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
               <h2 className="text-xl font-bold text-white mb-3">3. Web3 & Blockchain Data</h2>
-              <p className="text-gray-400 text-sm leading-relaxed">All blockchain transactions are public by nature. Wallet addresses, transaction history, and NFT ownership are visible on-chain. Diminga does not control or have the ability to delete on-chain data.</p>
+              <p className="text-gray-400 text-sm leading-relaxed">All blockchain transactions are public by nature. Wallet addresses, transaction history, and NFT ownership are visible on-chain. Renegade does not control or have the ability to delete on-chain data.</p>
             </section>
 
             <section className="rounded-2xl p-6" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
@@ -38,7 +38,7 @@ const PrivacyPolicy = () => (
 
             <section className="rounded-2xl p-6" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
               <h2 className="text-xl font-bold text-white mb-3">6. Contact</h2>
-              <p className="text-gray-400 text-sm leading-relaxed">For privacy inquiries, reach the Diminga DAO governance team through the community channels or submit a governance proposal for privacy-related changes.</p>
+              <p className="text-gray-400 text-sm leading-relaxed">For privacy inquiries, reach the Renegade DAO governance team through the community channels or submit a governance proposal for privacy-related changes.</p>
             </section>
           </div>
         </motion.div>

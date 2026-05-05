@@ -24,7 +24,7 @@ export const EnhancedHeroSection: React.FC = () => {
           <div className="flex justify-center mb-8 animate-fade-in">
             <img 
               src={dimingaLogo} 
-              alt="Diminga" 
+              alt="Renegade" 
               className="h-20 w-auto object-contain"
             />
           </div>

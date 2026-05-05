@@ -59,7 +59,7 @@ export function useWeb3() {
 
     try {
       const nonce = Math.random().toString(36).slice(2);
-      const message = `Diminga: Verify wallet ownership\nAddress: ${address}\nNonce: ${nonce}`;
+      const message = `Renegade: Verify wallet ownership\nAddress: ${address}\nNonce: ${nonce}`;
       const signature = await signMessageAsync({ message, account: address });
 
       // In production, verify `signature` server-side via an Edge Function.

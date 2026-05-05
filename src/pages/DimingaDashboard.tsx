@@ -23,7 +23,7 @@ export default function DimingaDashboard() {
       title="Dashboard"
       subtitle="Welcome back — here's an overview of your creator studio."
     >
-      <PageMeta title="Dashboard" description="Your Diminga creator dashboard — stats, studios, and quick actions." />
+      <PageMeta title="Dashboard" description="Your Renegade creator dashboard — stats, studios, and quick actions." />
       <div style={s.statsRow}>
         {STATS.map((st) => (
           <div key={st.label} style={s.statCard}>

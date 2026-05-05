@@ -23,7 +23,7 @@ export default function DashboardLayout({ children, title, subtitle }: Dashboard
         <div style={s.sidebarTop}>
           <Link to={ROUTES.HOME} style={s.logo}>
             <span style={s.logoMark}>◈</span>
-            {sidebarOpen && <span style={s.logoText}>Diminga</span>}
+            {sidebarOpen && <span style={s.logoText}>Renegade</span>}
           </Link>
           <button style={s.toggleBtn} onClick={() => setSidebarOpen(!sidebarOpen)}>
             {sidebarOpen ? "‹" : "›"}

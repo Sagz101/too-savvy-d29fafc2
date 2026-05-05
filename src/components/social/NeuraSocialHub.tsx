@@ -45,7 +45,7 @@ export const NeuraSocialHub: React.FC = () => {
     window.open("https://discord.gg/t00savvy", "_blank");
     toast({
       title: "Join Our DAO Community",
-      description: "Opened Diminga DAO community Discord in a new tab.",
+      description: "Opened Renegade DAO community Discord in a new tab.",
     });
   };
 

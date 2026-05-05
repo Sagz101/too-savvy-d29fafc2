@@ -91,7 +91,7 @@ export const AIContentAssistant: React.FC = () => {
     {
       id: '1',
       role: 'assistant',
-      content: "Hi! I'm your AI assistant for Diminga. I can help you generate content ideas, learn about Web3 concepts, write scripts, design tokenomics, and much more. What would you like to create or learn about today?",
+      content: "Hi! I'm your AI assistant for Renegade. I can help you generate content ideas, learn about Web3 concepts, write scripts, design tokenomics, and much more. What would you like to create or learn about today?",
       type: 'text'
     }
   ]);
@@ -316,9 +316,9 @@ Would you like me to detail any specific aspect of the tokenomics?`;
 "Creators like Beeple sold NFT art for $69 million, musicians like 3LAU made $11 million from tokenized albums, and thousands of creators now earn more through Web3 than traditional platforms!"
 
 **[CALL TO ACTION - 4:00-5:00]**
-*[Show Diminga platform]*
+*[Show Renegade platform]*
 
-"Ready to join the Web3 creator revolution? Diminga makes it easy - no coding required! Create NFTs, set up token-gated content, and build your Web3 presence today.
+"Ready to join the Web3 creator revolution? Renegade makes it easy - no coding required! Create NFTs, set up token-gated content, and build your Web3 presence today.
 
 Link in description - let's build the future of creativity together!"
 
@@ -390,7 +390,7 @@ Which episode would you like me to develop a full outline for?`;
 
 🎨 **Content Creation**: Scripts, ideas, NFT concepts, social media content
 📚 **Web3 Education**: Blockchain basics, DeFi, NFTs, smart contracts  
-💡 **Platform Features**: How to use Diminga's tools effectively
+💡 **Platform Features**: How to use Renegade's tools effectively
 🚀 **Creator Strategy**: Monetization, community building, marketing
 💰 **Tokenomics**: Design token systems for your projects
 
@@ -517,7 +517,7 @@ I'm here to make Web3 creation easier for you!`;
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask me anything about Web3, content creation, or Diminga..."
+              placeholder="Ask me anything about Web3, content creation, or Renegade..."
               className="flex-1 bg-neura-dark/50 border-neura-purple/30 text-white placeholder:text-white/50"
               disabled={isLoading}
             />

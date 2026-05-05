@@ -11,7 +11,7 @@ export default function DimingaSettings() {
 
   return (
     <DashboardLayout title="Settings" subtitle="Manage your account, wallet & billing">
-      <PageMeta title="Settings" description="Manage your Diminga account, wallet connections, and billing." />
+      <PageMeta title="Settings" description="Manage your Renegade account, wallet connections, and billing." />
       <div style={s.layout}>
         <div style={s.sideNav}>
           {(["profile","wallet","billing","notifications","connection"] as Tab[]).map(t => (

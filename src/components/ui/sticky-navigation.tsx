@@ -106,17 +106,17 @@ export const StickyNavigation: React.FC = () => {
       
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Diminga Logo + Sovereign Hub badge */}
+          {/* Renegade Logo + Sovereign Hub badge */}
           <Link to="/" className="flex items-center space-x-3 flex-shrink-0 group">
             <div className="relative">
               <img 
                 src={dimingaLogo} 
-                alt="Diminga" 
+                alt="Renegade" 
                 className="h-8 w-auto object-contain transition-all duration-300 group-hover:scale-105"
               />
             </div>
             <span className="text-lg font-bold text-white font-orbitron tracking-wide">
-              Diminga
+              Renegade
             </span>
             {/* Sovereign Hub pill */}
             <span className="hidden sm:inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-white border border-white/20"

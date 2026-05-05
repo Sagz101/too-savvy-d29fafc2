@@ -78,7 +78,7 @@ export const OnboardingFlow = () => {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-5">
               <span className="bg-gradient-to-r from-solar-core to-solar-photosphere bg-clip-text text-transparent">
-                Welcome to Diminga
+                Welcome to Renegade
               </span>
             </h2>
             <p className="text-muted-foreground md:text-lg max-w-2xl mx-auto">
@@ -178,7 +178,7 @@ export const OnboardingFlow = () => {
         <div className="container mx-auto px-4 max-w-2xl">
           <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-solar-core to-solar-photosphere bg-clip-text text-transparent">
-              🎉 You're in! Explore Diminga
+              🎉 You're in! Explore Renegade
             </h2>
             <ProgressBar step={5} total={onboardingSteps.length + 1} />
             <p className="mt-2 text-muted-foreground max-w-xl mx-auto">
@@ -269,7 +269,7 @@ function personalizedStepTitle(role: string | null) {
     case 'investor':
       return "Investor Onboarding";
     default:
-      return "Get Started with Diminga";
+      return "Get Started with Renegade";
   }
 }
 function personalizedStepSubtext(role: string | null) {
@@ -305,7 +305,7 @@ function afterAuthSubtitle(role: string | null) {
     case 'investor':
       return "Dive into analytics, track NFT sales, or join governance.";
     default:
-      return "Explore Diminga features and tools.";
+      return "Explore Renegade features and tools.";
   }
 }
 

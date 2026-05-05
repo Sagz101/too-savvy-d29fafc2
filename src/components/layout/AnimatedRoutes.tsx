@@ -48,7 +48,7 @@ import Analytics from '@/pages/Analytics';
 import TermsOfService from '@/pages/TermsOfService';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
 
-// Diminga pages
+// Renegade pages
 import DimingaDashboard from '@/pages/DimingaDashboard';
 import DimingaAuth from '@/pages/DimingaAuth';
 import DimingaProfile from '@/pages/DimingaProfile';
@@ -132,7 +132,7 @@ export const AnimatedRoutes: React.FC = () => {
         {/* Demo */}
         <Route path="/skeleton-demo" element={<PageTransition><SkeletonDemo /></PageTransition>} />
 
-        {/* Diminga App Pages */}
+        {/* Renegade App Pages */}
         <Route path="/dashboard" element={<PageTransition><DimingaDashboard /></PageTransition>} />
         <Route path="/diminga-auth" element={<PageTransition><DimingaAuth /></PageTransition>} />
         <Route path="/profile/:username" element={<PageTransition><DimingaProfile /></PageTransition>} />

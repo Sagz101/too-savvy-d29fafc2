@@ -76,7 +76,7 @@ export const StreamlinedHeader: React.FC = () => {
           <Link to="/" className="flex items-center flex-shrink-0">
             <img 
               src="/favicon.png" 
-              alt="Diminga - Decentralized Creator Platform" 
+              alt="Renegade - Decentralized Creator Platform" 
               className="h-10 w-auto object-contain hover:opacity-80 transition-opacity"
             />
           </Link>

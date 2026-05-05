@@ -18,7 +18,7 @@ export const AICopilot = () => {
   const [messages, setMessages] = useState<Message[]>([
     { 
       role: 'system', 
-      content: 'Hi! I\'m Too AI Savvy, your personal Web3 assistant. I can help you create content, learn about Web3, generate NFT ideas, write scripts, design tokenomics, and navigate Diminga. How can I help you today?' 
+      content: 'Hi! I\'m Too AI Savvy, your personal Web3 assistant. I can help you create content, learn about Web3, generate NFT ideas, write scripts, design tokenomics, and navigate Renegade. How can I help you today?' 
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
@@ -59,7 +59,7 @@ export const AICopilot = () => {
       text: "Set up token-gated content", 
       icon: Wallet, 
       category: "Platform",
-      action: () => handleSuggestionClick("How do I set up token-gated content on Diminga?")
+      action: () => handleSuggestionClick("How do I set up token-gated content on Renegade?")
     },
     { 
       text: "Blog post about DAOs", 
@@ -110,7 +110,7 @@ export const AICopilot = () => {
         response = '🎙️ Podcast content about Web3 is super valuable! I can generate episode ideas, outlines, guest suggestions, and monetization strategies. For detailed podcast planning, let me open the content creation assistant!';
         hasAction = true;
       } else if (messageText.toLowerCase().includes('token-gated')) {
-        response = '🛡️ Token-gating lets you create exclusive content for NFT or token holders! On Diminga, you can easily set access requirements using ERC-721 or ERC-1155 tokens. Want step-by-step setup instructions? Let\'s dive deeper!';
+        response = '🛡️ Token-gating lets you create exclusive content for NFT or token holders! On Renegade, you can easily set access requirements using ERC-721 or ERC-1155 tokens. Want step-by-step setup instructions? Let\'s dive deeper!';
         hasAction = true;
       } else if (messageText.toLowerCase().includes('blog') || messageText.toLowerCase().includes('dao')) {
         response = '📝 Writing about DAOs is a great way to educate the community! I can help you structure articles, explain complex concepts simply, and create engaging content. For detailed writing assistance, let me open the full content assistant!';
@@ -119,7 +119,7 @@ export const AICopilot = () => {
         response = '🤝 Web3 creator communities are amazing for networking and learning! I can recommend Discord servers, Twitter spaces, DAOs, and platforms where creators collaborate. Want personalized community recommendations? Let\'s explore options!';
         hasAction = true;
       } else {
-        response = 'I can help you with Web3 concepts, content creation, NFT strategies, smart contracts, tokenomics, and navigating Diminga! I specialize in making complex Web3 topics simple and actionable for creators. What specific area interests you most?';
+        response = 'I can help you with Web3 concepts, content creation, NFT strategies, smart contracts, tokenomics, and navigating Renegade! I specialize in making complex Web3 topics simple and actionable for creators. What specific area interests you most?';
         hasAction = true;
       }
       
@@ -186,7 +186,7 @@ export const AICopilot = () => {
             </span>
           </h2>
           <p className="text-white/80 md:text-xl lg:text-2xl max-w-3xl mx-auto mb-4 leading-relaxed">
-            Your personal assistant for Web3 learning, content creation, and Diminga navigation
+            Your personal assistant for Web3 learning, content creation, and Renegade navigation
           </p>
           <p className="text-white/60 text-lg">
             Powered by Web3-optimized AI • Content Creation • Learning Assistant
@@ -284,7 +284,7 @@ export const AICopilot = () => {
                     <Input 
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
-                      placeholder="Ask about Web3, content creation, NFTs, or Diminga features..." 
+                      placeholder="Ask about Web3, content creation, NFTs, or Renegade features..." 
                       className="bg-slate-800/50 border-cyan-400/30 text-white placeholder:text-white/50 backdrop-blur-sm shadow-lg focus:border-cyan-400 focus:ring-cyan-400/20"
                     />
                     <Button 

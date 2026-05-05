@@ -15,7 +15,7 @@ export default function DimingaProfile() {
     <div style={s.root}>
       <nav style={s.nav}>
         <Link to={ROUTES.HOME} style={s.logo}>
-          <span style={s.logoMark}>◈</span> Diminga
+          <span style={s.logoMark}>◈</span> Renegade
         </Link>
         <div style={s.navRight}>
           <Link to={ROUTES.DASHBOARD} style={s.dashLink}>Go to studio →</Link>
@@ -30,7 +30,7 @@ export default function DimingaProfile() {
         </div>
         <div style={s.profileMeta}>
           <h1 style={s.name}>{displayName}</h1>
-          <p style={s.bio}>Creator · Web3 enthusiast · Building on Diminga</p>
+          <p style={s.bio}>Creator · Web3 enthusiast · Building on Renegade</p>
           <div style={s.profileStats}>
             <span style={s.stat}><strong>0</strong> followers</span>
             <span style={s.stat}><strong>0</strong> following</span>
@@ -80,8 +80,8 @@ export default function DimingaProfile() {
       </div>
 
       <footer style={s.footer}>
-        <Link to={ROUTES.HOME} style={s.footerLink}>← Back to Diminga</Link>
-        <span style={s.footerCopy}>© 2025 Diminga</span>
+        <Link to={ROUTES.HOME} style={s.footerLink}>← Back to Renegade</Link>
+        <span style={s.footerCopy}>© 2025 Renegade</span>
       </footer>
     </div>
   );
