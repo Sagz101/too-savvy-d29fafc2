@@ -1,5 +1,4 @@
 name: Continuous Integration
-
 on:
   pull_request:
     branches: [main, develop, staging, release/*]
@@ -8,10 +7,8 @@ on:
     paths-ignore:
       - '**.md'
       - 'docs/**'
-
 env:
-  NODE_VERSION: '18'
-
+  NODE_VERSION: '20'
 jobs:
   lint:
     name: Code Quality & Linting
@@ -40,28 +37,26 @@ jobs:
         
       - name: Check code formatting
         run: npx prettier --check "**/*.{js,ts,jsx,tsx,json,md}"
-
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
       - run: npm ci
       - run: npm run test:coverage
       - uses: codecov/codecov-action@v3
         with:
           file: ./coverage/lcov.info
-
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
           cache: 'npm'
       - run: npm ci
       - run: npm run build
