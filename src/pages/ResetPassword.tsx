@@ -55,7 +55,7 @@ export default function ResetPassword() {
       <div style={s.root}>
         <div style={s.card}>
           <Link to={ROUTES.HOME} style={s.logo}>
-            <span style={s.logoMark}>◈</span> Diminga
+            <span style={s.logoMark}>◈</span> Renegade
           </Link>
           <h1 style={s.title}>Invalid reset link</h1>
           <p style={s.sub}>
@@ -71,7 +71,7 @@ export default function ResetPassword() {
     <div style={s.root}>
       <div style={s.card}>
         <Link to={ROUTES.HOME} style={s.logo}>
-          <span style={s.logoMark}>◈</span> Diminga
+          <span style={s.logoMark}>◈</span> Renegade
         </Link>
         <h1 style={s.title}>Set new password</h1>
         <p style={s.sub}>Enter your new password below.</p>

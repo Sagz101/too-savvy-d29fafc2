@@ -66,7 +66,7 @@ export default function Pricing() {
       <PageMeta title="Pricing" description="Simple, transparent pricing for creators. Free forever on the base plan." />
       <nav style={s.nav}>
         <Link to={ROUTES.HOME} style={s.logo}>
-          <span style={s.logoMark}>◈</span> Diminga
+          <span style={s.logoMark}>◈</span> Renegade
         </Link>
         <div style={s.navRight}>
           <Link to={ROUTES.AUTH} style={s.signIn}>Sign in</Link>
@@ -123,7 +123,7 @@ export default function Pricing() {
         <h2 style={s.faqTitle}>Frequently asked questions</h2>
         <div style={s.faqGrid}>
           {[
-            ["Do I need a crypto wallet?", "No! You can use Diminga entirely with email and Stripe. A wallet is only needed for NFT features."],
+            ["Do I need a crypto wallet?", "No! You can use Renegade entirely with email and Stripe. A wallet is only needed for NFT features."],
             ["What's the platform fee?", "Free plan has a 5% fee. Creator and Pro plans have 0% platform fee — you keep everything."],
             ["Can I cancel anytime?", "Yes, you can cancel or downgrade at any time. No contracts, no penalties."],
             ["Which blockchains are supported?", "Ethereum mainnet, Polygon, and Base. We recommend Polygon for low fees."],
@@ -138,7 +138,7 @@ export default function Pricing() {
 
       <div style={s.footer}>
         <Link to={ROUTES.HOME} style={s.footerLink}>← Back to home</Link>
-        <span style={s.footerCopy}>© 2025 Diminga</span>
+        <span style={s.footerCopy}>© 2025 Renegade</span>
       </div>
     </div>
   );

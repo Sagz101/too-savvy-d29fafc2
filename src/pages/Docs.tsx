@@ -27,9 +27,9 @@ export default function Docs() {
 
   return (
     <div style={s.root}>
-      <PageMeta title="Documentation" description="Learn how to use Diminga — guides, API docs, and tutorials." />
+      <PageMeta title="Documentation" description="Learn how to use Renegade — guides, API docs, and tutorials." />
       <nav style={s.nav}>
-        <Link to={ROUTES.HOME} style={s.logo}><span style={s.logoMark}>◈</span> Diminga</Link>
+        <Link to={ROUTES.HOME} style={s.logo}><span style={s.logoMark}>◈</span> Renegade</Link>
         <div style={s.navRight}>
           <Link to={ROUTES.DASHBOARD} style={s.navLink}>Dashboard</Link>
           <Link to={ROUTES.AUTH} style={s.cta}>Sign up free</Link>

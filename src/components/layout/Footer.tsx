@@ -42,7 +42,7 @@ export const Footer = () => {
         <div>
           <div className="flex items-center gap-2 mb-3">
             <div className="w-5 h-5 bg-diminga-text rounded-sm" />
-            <span className="font-fraunces font-bold text-base text-diminga-text">diminga</span>
+            <span className="font-fraunces font-bold text-base text-diminga-text">renegade</span>
           </div>
           <p className="font-dm-sans text-sm text-diminga-muted leading-relaxed max-w-[220px] mb-4">
             Your sovereign portal to Web3 — where content, commerce, community, and crypto intersect.
@@ -78,7 +78,7 @@ export const Footer = () => {
         style={{ borderTop: '1px solid rgba(17,17,16,0.06)' }}
       >
         <p className="font-dm-sans text-[0.7rem] text-diminga-muted/50">
-          © 2025 Diminga Protocol. Decentralized. Open. Yours.
+          © 2025 Renegade Protocol. Decentralized. Open. Yours.
         </p>
         <div className="flex gap-4 text-[0.7rem]">
           <Link to="/privacy" className="font-dm-sans text-diminga-muted/50 hover:text-diminga-text transition-colors">Privacy</Link>

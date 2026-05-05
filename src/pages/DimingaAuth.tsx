@@ -81,14 +81,14 @@ export default function DimingaAuth() {
           .auth-right-panel { padding: 24px 16px !important; }
         }
       `}</style>
-      <PageMeta title={mode === "login" ? "Sign In" : mode === "signup" ? "Sign Up" : "Reset Password"} description="Sign in or create your Diminga account to start building." />
+      <PageMeta title={mode === "login" ? "Sign In" : mode === "signup" ? "Sign Up" : "Reset Password"} description="Sign in or create your Renegade account to start building." />
       <div className="auth-left-panel" style={s.left}>
         <Link to={ROUTES.HOME} style={s.logo}>
-          <span style={s.logoMark}>◈</span> Diminga
+          <span style={s.logoMark}>◈</span> Renegade
         </Link>
         <div style={s.leftContent}>
           <div style={s.quote}>
-            "Diminga replaced five different tools. I run my whole creative business from one dashboard."
+            "Renegade replaced five different tools. I run my whole creative business from one dashboard."
           </div>
           <div style={s.quoteAuthor}>
             <div style={s.quoteAvatar}>A</div>
@@ -117,7 +117,7 @@ export default function DimingaAuth() {
               ? "Enter your email and we'll send you a reset link."
               : mode === "signup"
               ? "Free forever on the base plan. No credit card needed."
-              : "Sign in to your Diminga creator account."}
+              : "Sign in to your Renegade creator account."}
           </p>
 
           {mode !== "forgot" && (
