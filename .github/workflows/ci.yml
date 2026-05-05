@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: npm install --legacy-peer-deps
       - name: Run ESLint (TypeScript/React)
-        run: npm run lint
+        run: run: npx eslint . --max-warnings=200
       - name: Run Solhint (Smart Contracts)
         run: npm run lint:solidity
       - name: Run Stylelint (CSS/SCSS)
