@@ -2,6 +2,9 @@
  * useWeb3.ts
  * Drop-in replacement for the existing stub wallet integration.
  * Uses wagmi v2 + viem. Connects to Ethereum mainnet, Polygon, and Base.
+ *
+ * Install deps:
+ *   bun add wagmi viem @tanstack/react-query @rainbow-me/rainbowkit
  */
 
 import { useState, useCallback } from "react";
@@ -35,7 +38,8 @@ export function useWeb3() {
   const [isSavingWallet, setIsSavingWallet] = useState(false);
 
   /**
-   * Connect a wallet using the specified connector.
+   * Connect a wallet and link it to the current Supabase user.
+   * Uses sign-in-with-ethereum (SIWE) style message signing to verify ownership.
    */
   const connectAndLink = useCallback(async (connectorIndex = 0) => {
     setError(undefined);
@@ -59,7 +63,7 @@ export function useWeb3() {
 
     try {
       const nonce = Math.random().toString(36).slice(2);
-      const message = `Renegade: Verify wallet ownership\nAddress: ${address}\nNonce: ${nonce}`;
+      const message = `Too Savvy: Verify wallet ownership\nAddress: ${address}\nNonce: ${nonce}`;
       const signature = await signMessageAsync({ message, account: address });
 
       // In production, verify `signature` server-side via an Edge Function.
@@ -75,17 +79,29 @@ export function useWeb3() {
 
       if (profileErr) throw profileErr;
 
+      // Insert into wallets table (multi-wallet support)
+      const { error: walletErr } = await supabase
+        .from("wallets")
+        .upsert({
+          profile_id: user.id,
+          address: address.toLowerCase(),
+          chain_id: chainId ?? 1,
+          is_primary: true,
+        }, { onConflict: "address" });
+
+      if (walletErr) throw walletErr;
+
       console.log("Wallet linked:", address, "sig:", signature.slice(0, 20) + "...");
     } catch (e: any) {
       setError(e.message ?? "Failed to verify wallet");
     } finally {
       setIsSavingWallet(false);
     }
-  }, [address, signMessageAsync]);
+  }, [address, chainId, signMessageAsync]);
 
   /**
    * Mint content as an NFT.
-   * Calls the DimingaCreatorNFT contract via wagmi's writeContract.
+   * Calls the TooSavvyNFT contract via wagmi's writeContractAsync.
    */
   const mintContentNFT = useCallback(async (params: {
     contentId:   string;
@@ -142,7 +158,7 @@ export function useWeb3() {
     balance: balanceData
       ? `${Number(balanceData.formatted).toFixed(4)} ${balanceData.symbol}`
       : undefined,
-    ensName: undefined,
+    ensName: undefined, // populate via useEnsName() if needed
     error,
   };
 
