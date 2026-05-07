@@ -15,6 +15,7 @@ import {
   CheckCircle2,
   ShieldCheck,
 } from "lucide-react";
+import StudiosShowcase from "@/components/home/StudiosShowcase";
 
 const FEATURES = [
   {
