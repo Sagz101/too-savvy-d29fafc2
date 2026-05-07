@@ -382,43 +382,9 @@ export default function Index() {
       </section>
 
       {/* ── FEATURES GRID ── */}
-      <section ref={featuresRef} style={styles.featuresSection}>
-        <div style={styles.sectionLabel}>Everything you need</div>
-        <h2 style={styles.sectionTitle}>Six studios. One platform.</h2>
-        <p style={styles.sectionSub}>
-          Every tool a creator needs — store, blog, video, podcast, social, and DAO
-          — unified under one roof with Web3 built in from day one.
-        </p>
-        <div style={styles.featuresGrid}>
-          {FEATURES.map((f, i) => (
-            <div
-              key={f.title}
-              style={styles.featureCard}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLDivElement;
-                el.style.borderColor = f.color;
-                el.style.transform = "translateY(-4px)";
-                el.style.boxShadow = `0 12px 40px ${f.color}18`;
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLDivElement;
-                el.style.borderColor = "#E8E8E4";
-                el.style.transform = "translateY(0)";
-                el.style.boxShadow = "none";
-              }}
-            >
-              <div style={{ ...styles.featureIconWrap, background: f.color + "12", color: f.color }}>
-                <f.Icon size={22} strokeWidth={2.25} />
-              </div>
-              <div style={{ ...styles.featureTag, color: f.color, background: f.color + "10" }}>
-                {f.tag}
-              </div>
-              <h3 style={styles.featureTitle}>{f.title}</h3>
-              <p style={styles.featureDesc}>{f.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <div ref={featuresRef}>
+        <StudiosShowcase />
+      </div>
 
       {/* ── HOW IT WORKS ── */}
       <section style={styles.howSection}>
