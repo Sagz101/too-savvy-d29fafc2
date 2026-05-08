@@ -45,7 +45,7 @@ export const ModernHero: React.FC = () => {
                   className={`text-4xl lg:text-5xl font-porscha text-foreground tracking-tight uppercase ${animationStarted ? 'animate-logo-glow' : ''}`}
                   as="h1"
                 >
-                  DIMINGA
+                  RENEGADE
                 </ModernHeading>
               </div>
             </header>

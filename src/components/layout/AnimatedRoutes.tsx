@@ -49,10 +49,10 @@ import TermsOfService from '@/pages/TermsOfService';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
 
 // Renegade pages
-import DimingaDashboard from '@/pages/DimingaDashboard';
-import DimingaAuth from '@/pages/DimingaAuth';
-import DimingaProfile from '@/pages/DimingaProfile';
-import DimingaSettings from '@/pages/DimingaSettings';
+import RenegadeDashboard from '@/pages/RenegadeDashboard';
+import RenegadeAuth from '@/pages/RenegadeAuth';
+import RenegadeProfile from '@/pages/RenegadeProfile';
+import RenegadeSettings from '@/pages/RenegadeSettings';
 import Pricing from '@/pages/Pricing';
 import Docs from '@/pages/Docs';
 import ResetPassword from '@/pages/ResetPassword';
@@ -67,11 +67,11 @@ export const AnimatedRoutes: React.FC = () => {
       <Routes location={location} key={location.pathname}>
         {/* Core */}
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
-        <Route path="/auth" element={<PageTransition><DimingaAuth /></PageTransition>} />
+        <Route path="/auth" element={<PageTransition><RenegadeAuth /></PageTransition>} />
         <Route path="/reset-password" element={<PageTransition><ResetPassword /></PageTransition>} />
         <Route path="/onboarding" element={<PageTransition><Onboarding /></PageTransition>} />
         <Route path="/profile" element={<PageTransition><Profile /></PageTransition>} />
-        <Route path="/settings" element={<PageTransition><DimingaSettings /></PageTransition>} />
+        <Route path="/settings" element={<PageTransition><RenegadeSettings /></PageTransition>} />
 
         {/* Platform & Features */}
         <Route path="/platform" element={<PageTransition><Platform /></PageTransition>} />
@@ -133,9 +133,9 @@ export const AnimatedRoutes: React.FC = () => {
         <Route path="/skeleton-demo" element={<PageTransition><SkeletonDemo /></PageTransition>} />
 
         {/* Renegade App Pages */}
-        <Route path="/dashboard" element={<PageTransition><DimingaDashboard /></PageTransition>} />
-        <Route path="/diminga-auth" element={<PageTransition><DimingaAuth /></PageTransition>} />
-        <Route path="/profile/:username" element={<PageTransition><DimingaProfile /></PageTransition>} />
+        <Route path="/dashboard" element={<PageTransition><RenegadeDashboard /></PageTransition>} />
+        <Route path="/renegade-auth" element={<PageTransition><RenegadeAuth /></PageTransition>} />
+        <Route path="/profile/:username" element={<PageTransition><RenegadeProfile /></PageTransition>} />
         <Route path="/pricing" element={<PageTransition><Pricing /></PageTransition>} />
         <Route path="/docs" element={<PageTransition><Docs /></PageTransition>} />
         <Route path="/studio/store" element={<PageTransition><Store /></PageTransition>} />

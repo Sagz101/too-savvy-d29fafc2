@@ -19,7 +19,7 @@ import {
   User,
   ShoppingBag
 } from 'lucide-react';
-import dimingaLogo from '@/assets/diminga-logo.png';
+import renegadeLogo from '@/assets/renegade-logo.png';
 
 export const StickyNavigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -110,7 +110,7 @@ export const StickyNavigation: React.FC = () => {
           <Link to="/" className="flex items-center space-x-3 flex-shrink-0 group">
             <div className="relative">
               <img 
-                src={dimingaLogo} 
+                src={renegadeLogo} 
                 alt="Renegade" 
                 className="h-8 w-auto object-contain transition-all duration-300 group-hover:scale-105"
               />

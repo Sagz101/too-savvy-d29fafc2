@@ -1,6 +1,6 @@
 
-// Too Savvy ERC-721M Contract ABI (simplified for core functions)
-export const TOO_SAVVY_NFT_ABI = [
+// Renegade ERC-721M Contract ABI (simplified for core functions)
+export const RENEGADE_NFT_ABI = [
   {
     "inputs": [
       {"name": "to", "type": "address"},
@@ -36,12 +36,12 @@ export const TOO_SAVVY_NFT_ABI = [
 ] as const;
 
 // Contract addresses (replace with actual deployed addresses)
-export const TOO_SAVVY_NFT_ADDRESSES = {
+export const RENEGADE_NFT_ADDRESSES = {
   1: '0x...', // Mainnet
   137: '0x...', // Polygon
   11155111: '0x...', // Sepolia testnet
 } as const;
 
 export const getContractAddress = (chainId: number): string => {
-  return TOO_SAVVY_NFT_ADDRESSES[chainId as keyof typeof TOO_SAVVY_NFT_ADDRESSES] || '';
+  return RENEGADE_NFT_ADDRESSES[chainId as keyof typeof RENEGADE_NFT_ADDRESSES] || '';
 };

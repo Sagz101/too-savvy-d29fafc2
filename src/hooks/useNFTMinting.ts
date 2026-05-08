@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useAccount, useWriteContract, useEstimateGas, useReadContract } from 'wagmi';
 import { parseEther, formatEther } from 'viem';
 import { toast } from 'sonner';
-import { TOO_SAVVY_NFT_ABI, getContractAddress } from '@/contracts/tooSavvyNFT';
+import { RENEGADE_NFT_ABI, getContractAddress } from '@/contracts/renegadeNFT';
 import { ipfsService, IPFSMetadata } from '@/services/ipfs';
 
 interface MintingState {
@@ -27,7 +27,7 @@ export const useNFTMinting = () => {
   // Read mint price from contract
   const { data: mintPrice } = useReadContract({
     address: contractAddress as `0x${string}`,
-    abi: TOO_SAVVY_NFT_ABI,
+    abi: RENEGADE_NFT_ABI,
     functionName: 'mintPrice',
   });
 
@@ -88,7 +88,7 @@ export const useNFTMinting = () => {
       // Mint NFT with required chain and account properties
       writeContract({
         address: contractAddress as `0x${string}`,
-        abi: TOO_SAVVY_NFT_ABI,
+        abi: RENEGADE_NFT_ABI,
         functionName: 'safeMint',
         args: [address, 1n, tokenURI as `0x${string}`],
         value: mintPrice as bigint,

@@ -109,7 +109,7 @@ export const ImprovedModernHero: React.FC = () => {
                   className={`text-3xl sm:text-4xl lg:text-5xl font-porscha text-foreground tracking-tight uppercase ${animationStarted ? 'animate-logo-glow' : ''}`}
                   as="h1"
                 >
-                  DIMINGA
+                  RENEGADE
                 </ModernHeading>
                 <div className="flex items-center gap-1 bg-primary/10 border border-primary/30 rounded-full px-2 py-1">
                   <CheckCircle size={12} className="text-primary" />

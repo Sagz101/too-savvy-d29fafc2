@@ -139,8 +139,8 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 			},
-			// Diminga editorial palette
-			diminga: {
+			// Renegade editorial palette
+			renegade: {
 				'bg': '#FAFAF7',
 				'card': '#FFFFFF',
 				'text': '#111110',

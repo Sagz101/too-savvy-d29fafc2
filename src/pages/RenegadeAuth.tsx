@@ -6,7 +6,7 @@ import PageMeta from "@/components/shared/PageMeta";
 
 type Mode = "login" | "signup" | "forgot";
 
-export default function DimingaAuth() {
+export default function RenegadeAuth() {
   const navigate = useNavigate();
   const [mode, setMode] = useState<Mode>("signup");
   const [email, setEmail] = useState("");

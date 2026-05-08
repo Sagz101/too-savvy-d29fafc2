@@ -39,13 +39,13 @@ export const ToolkitSection: React.FC = () => {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="mb-12"
       >
-        <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-diminga-accent mb-3 block">
+        <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-renegade-accent mb-3 block">
           Creator Toolkit
         </span>
-        <h2 className="font-fraunces font-bold text-3xl md:text-4xl tracking-[-0.03em] text-diminga-text">
+        <h2 className="font-fraunces font-bold text-3xl md:text-4xl tracking-[-0.03em] text-renegade-text">
           Everything you need to build,{' '}
-          <span className="text-diminga-text/20">monetize,</span>{' '}
-          and <span className="italic font-light text-diminga-accent">own.</span>
+          <span className="text-renegade-text/20">monetize,</span>{' '}
+          and <span className="italic font-light text-renegade-accent">own.</span>
         </h2>
       </motion.div>
 
@@ -59,7 +59,7 @@ export const ToolkitSection: React.FC = () => {
         {tools.map((t, i) => (
           <motion.div
             key={t.name}
-            className={`relative bg-white p-6 md:p-7 group transition-colors cursor-default overflow-hidden ${t.isDAO ? 'bg-diminga-alt' : ''}`}
+            className={`relative bg-white p-6 md:p-7 group transition-colors cursor-default overflow-hidden ${t.isDAO ? 'bg-renegade-alt' : ''}`}
             style={{
               borderRight: (i % 3 !== 2) ? '1px solid rgba(17,17,16,0.08)' : 'none',
               borderBottom: i < 3 ? '1px solid rgba(17,17,16,0.08)' : 'none',
@@ -76,16 +76,16 @@ export const ToolkitSection: React.FC = () => {
             />
 
             {/* Arrow */}
-            <div className="absolute top-5 right-5 text-diminga-accent opacity-0 -translate-x-1 translate-y-1 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all text-sm">
+            <div className="absolute top-5 right-5 text-renegade-accent opacity-0 -translate-x-1 translate-y-1 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all text-sm">
               ↗
             </div>
 
-            <div className="w-10 h-10 rounded-lg bg-diminga-alt group-hover:bg-diminga-hover flex items-center justify-center text-lg mb-4 transition-colors">
+            <div className="w-10 h-10 rounded-lg bg-renegade-alt group-hover:bg-renegade-hover flex items-center justify-center text-lg mb-4 transition-colors">
               {t.icon}
             </div>
-            <h3 className="font-fraunces font-bold text-lg tracking-[-0.02em] text-diminga-text mb-2">{t.name}</h3>
-            <p className="font-dm-sans text-sm text-diminga-muted leading-relaxed tracking-[-0.01em] mb-4">{t.desc}</p>
-            <div className="font-dm-sans text-[0.7rem] text-diminga-accent font-semibold tracking-[-0.01em]">{t.stat}</div>
+            <h3 className="font-fraunces font-bold text-lg tracking-[-0.02em] text-renegade-text mb-2">{t.name}</h3>
+            <p className="font-dm-sans text-sm text-renegade-muted leading-relaxed tracking-[-0.01em] mb-4">{t.desc}</p>
+            <div className="font-dm-sans text-[0.7rem] text-renegade-accent font-semibold tracking-[-0.01em]">{t.stat}</div>
           </motion.div>
         ))}
       </motion.div>

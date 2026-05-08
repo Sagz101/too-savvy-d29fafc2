@@ -31,11 +31,11 @@ export const TrustSection: React.FC = () => {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="mb-12"
       >
-        <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-diminga-accent mb-3 block">
+        <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-renegade-accent mb-3 block">
           Security & Trust
         </span>
-        <h2 className="font-fraunces font-bold text-3xl md:text-4xl tracking-[-0.03em] text-diminga-text">
-          Built for trust. <span className="italic font-light text-diminga-accent">Verified on-chain.</span>
+        <h2 className="font-fraunces font-bold text-3xl md:text-4xl tracking-[-0.03em] text-renegade-text">
+          Built for trust. <span className="italic font-light text-renegade-accent">Verified on-chain.</span>
         </h2>
       </motion.div>
 
@@ -52,13 +52,13 @@ export const TrustSection: React.FC = () => {
             style={{ border: '1px solid rgba(17,17,16,0.06)' }}
             variants={item}
           >
-            <div className="w-10 h-10 rounded-lg bg-diminga-alt group-hover:bg-diminga-hover flex items-center justify-center text-lg mb-4 transition-colors">
+            <div className="w-10 h-10 rounded-lg bg-renegade-alt group-hover:bg-renegade-hover flex items-center justify-center text-lg mb-4 transition-colors">
               🛡️
             </div>
-            <div className="font-fraunces font-bold text-2xl tracking-tight text-diminga-text mb-1">
-              {t.value}<span className="italic font-light text-diminga-accent">{t.accent}</span>
+            <div className="font-fraunces font-bold text-2xl tracking-tight text-renegade-text mb-1">
+              {t.value}<span className="italic font-light text-renegade-accent">{t.accent}</span>
             </div>
-            <p className="font-dm-sans text-sm text-diminga-muted leading-relaxed mb-3">{t.label}</p>
+            <p className="font-dm-sans text-sm text-renegade-muted leading-relaxed mb-3">{t.label}</p>
             <div className="font-dm-sans text-[0.65rem] text-emerald-600 font-medium">{t.verify}</div>
           </motion.div>
         ))}

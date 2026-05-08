@@ -13,7 +13,7 @@ export const TrustedByCreators: React.FC = () => {
       title: "Smart Contract Audited",
       description: "Verified by CertiK for maximum security",
       badge: "CertiK Verified",
-      link: "https://skynet.certik.com/projects/toosavvy",
+      link: "https://skynet.certik.com/projects/renegade",
       reportId: "TSV-2024-001"
     },
     {
@@ -21,7 +21,7 @@ export const TrustedByCreators: React.FC = () => {
       title: "Carbon Neutral",
       description: "Certified sustainable blockchain practices",
       badge: "Carbon Trust",
-      link: "https://carbontrust.com/our-clients/t/too-savvy",
+      link: "https://carbontrust.com/our-clients/t/renegade",
       certId: "CT-CN-2024-TSV"
     },
     {

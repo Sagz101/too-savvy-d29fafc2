@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 type Tab = "profile" | "wallet" | "billing" | "notifications" | "connection";
 
-export default function DimingaSettings() {
+export default function RenegadeSettings() {
   const [tab, setTab] = useState<Tab>("profile");
   const [walletConnected, setWalletConnected] = useState(false);
 

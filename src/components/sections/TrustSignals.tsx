@@ -9,7 +9,7 @@ export const TrustSignals = () => {
       company: "CertiK",
       type: "Smart Contract Audit", 
       status: "Passed",
-      link: "https://skynet.certik.com/projects/toosavvy",
+      link: "https://skynet.certik.com/projects/renegade",
       reportId: "TSV-2024-001",
       icon: Shield,
       color: "emerald",
@@ -19,7 +19,7 @@ export const TrustSignals = () => {
       company: "Carbon Trust", 
       type: "Carbon Neutral Certification",
       status: "Verified",
-      link: "https://carbontrust.com/our-clients/t/too-savvy",
+      link: "https://carbontrust.com/our-clients/t/renegade",
       certId: "CT-CN-2024-TSV",
       icon: Globe,
       color: "green",
@@ -54,7 +54,7 @@ export const TrustSignals = () => {
       content: "Building on Renegade's APIs was seamless. Their developer sandbox made integration effortless.",
       avatar: "/placeholder.svg",
       integrations: "47",
-      verificationLink: "https://github.com/techflow-dao/toosavvy-integration",
+      verificationLink: "https://github.com/techflow-dao/renegade-integration",
       icon: Star,
       gradient: "from-yellow-400 to-orange-500"
     }
@@ -229,7 +229,7 @@ export const TrustSignals = () => {
             </p>
             <div className="mt-4 flex justify-center gap-4">
               <a 
-                href="https://skynet.certik.com/projects/toosavvy" 
+                href="https://skynet.certik.com/projects/renegade" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-emerald-400 hover:text-emerald-300 text-sm underline"

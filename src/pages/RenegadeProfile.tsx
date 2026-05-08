@@ -7,7 +7,7 @@ const MOCK_CONTENT = [
   { type: "nft",     title: "Genesis collection #001",            tag: "NFT",       color: "#9B5CF6", icon: "◈" },
 ];
 
-export default function DimingaProfile() {
+export default function RenegadeProfile() {
   const { username } = useParams();
   const displayName = username === "me" ? "Your Profile" : username ?? "Creator";
 

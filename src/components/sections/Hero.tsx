@@ -86,7 +86,7 @@ export const Hero = () => {
             <div className="mb-12 flex justify-center lg:justify-start">
               <div className="p-8">
                 <h2 className={`text-5xl font-bold font-porscha text-foreground tracking-tight uppercase ${animationStarted ? 'animate-logo-glow' : ''}`}>
-                  DIMINGA
+                  RENEGADE
                 </h2>
               </div>
             </div>
