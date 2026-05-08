@@ -59,7 +59,7 @@ export const useSIWE = () => {
         signedAt: Date.now(),
       };
       
-      localStorage.setItem('diminga_siwe_auth', JSON.stringify(authData));
+      localStorage.setItem('renegade_siwe_auth', JSON.stringify(authData));
       setIsSignedIn(true);
       toast.success('Successfully signed in with Ethereum!');
       
@@ -78,14 +78,14 @@ export const useSIWE = () => {
   }, [address, createSiweMessage, signMessageAsync]);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('diminga_siwe_auth');
+    localStorage.removeItem('renegade_siwe_auth');
     setIsSignedIn(false);
     toast.info('Signed out successfully');
   }, []);
 
   const checkExistingAuth = useCallback(() => {
     try {
-      const stored = localStorage.getItem('diminga_siwe_auth');
+      const stored = localStorage.getItem('renegade_siwe_auth');
       if (!stored) return false;
       
       const authData = JSON.parse(stored);
@@ -93,7 +93,7 @@ export const useSIWE = () => {
       const isSameAddress = authData.address?.toLowerCase() === address?.toLowerCase();
       
       if (isExpired || !isSameAddress) {
-        localStorage.removeItem('diminga_siwe_auth');
+        localStorage.removeItem('renegade_siwe_auth');
         return false;
       }
       
