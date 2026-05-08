@@ -60,13 +60,6 @@ export type Database = {
             referencedRelation: "products"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "analytics_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
         ]
       }
       content: {
@@ -117,13 +110,6 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "content_creator_id_fkey"
-            columns: ["creator_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "content_nft_id_fkey"
             columns: ["nft_id"]
             isOneToOne: false
@@ -167,13 +153,6 @@ export type Database = {
           transaction_hash?: string | null
         }
         Relationships: [
-          {
-            foreignKeyName: "nfts_owner_id_fkey"
-            columns: ["owner_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
           {
             foreignKeyName: "nfts_product_id_fkey"
             columns: ["product_id"]
@@ -229,13 +208,6 @@ export type Database = {
             columns: ["product_id"]
             isOneToOne: false
             referencedRelation: "products"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "orders_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
@@ -298,15 +270,7 @@ export type Database = {
           tags?: string[] | null
           updated_at?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "products_creator_id_fkey"
-            columns: ["creator_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       profiles: {
         Row: {
@@ -390,15 +354,7 @@ export type Database = {
           theme_config?: Json | null
           updated_at?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "stores_creator_id_fkey"
-            columns: ["creator_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       subscribers: {
         Row: {
@@ -433,39 +389,6 @@ export type Database = {
           subscription_tier?: string | null
           updated_at?: string
           user_id?: string | null
-        }
-        Relationships: []
-      }
-      users: {
-        Row: {
-          avatar_url: string | null
-          bio: string | null
-          created_at: string
-          email: string | null
-          id: string
-          updated_at: string
-          username: string | null
-          wallet_address: string | null
-        }
-        Insert: {
-          avatar_url?: string | null
-          bio?: string | null
-          created_at?: string
-          email?: string | null
-          id?: string
-          updated_at?: string
-          username?: string | null
-          wallet_address?: string | null
-        }
-        Update: {
-          avatar_url?: string | null
-          bio?: string | null
-          created_at?: string
-          email?: string | null
-          id?: string
-          updated_at?: string
-          username?: string | null
-          wallet_address?: string | null
         }
         Relationships: []
       }
