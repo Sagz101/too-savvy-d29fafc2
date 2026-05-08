@@ -13,7 +13,7 @@ export const LiveTicker: React.FC = () => {
   const items = [...tickerItems, ...tickerItems];
 
   return (
-    <div className="relative z-[2] overflow-hidden py-3 bg-diminga-text">
+    <div className="relative z-[2] overflow-hidden py-3 bg-renegade-text">
       <div
         className="flex gap-12 w-max"
         style={{ animation: 'ticker-scroll 28s linear infinite' }}
@@ -24,7 +24,7 @@ export const LiveTicker: React.FC = () => {
             <span className="text-white/30">·</span>
             <span className="text-white/50">{item.action}</span>
             <span className="text-white/30">·</span>
-            <span className="text-diminga-ticker font-semibold">{item.amount}</span>
+            <span className="text-renegade-ticker font-semibold">{item.amount}</span>
           </div>
         ))}
       </div>

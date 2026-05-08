@@ -21,7 +21,7 @@ export const CtaBanner: React.FC = () => {
     <section className="max-w-[1280px] mx-auto px-6 md:px-10 py-16">
       <motion.div
         ref={ref}
-        className="relative rounded-[28px] bg-diminga-text overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-10 md:p-14"
+        className="relative rounded-[28px] bg-renegade-text overflow-hidden grid grid-cols-1 md:grid-cols-2 gap-8 items-center p-10 md:p-14"
         initial={{ opacity: 0, y: 24 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -39,7 +39,7 @@ export const CtaBanner: React.FC = () => {
           >
             Start building your<br />
             sovereign creator{' '}
-            <span className="italic font-light text-diminga-accent">empire.</span>
+            <span className="italic font-light text-renegade-accent">empire.</span>
           </motion.h2>
         </motion.div>
 
@@ -51,7 +51,7 @@ export const CtaBanner: React.FC = () => {
         >
           <motion.div variants={item}>
             <Button
-              className="bg-diminga-accent hover:bg-diminga-accent/90 text-white font-dm-sans font-semibold px-8 py-5 text-sm rounded-lg w-full md:w-auto"
+              className="bg-renegade-accent hover:bg-renegade-accent/90 text-white font-dm-sans font-semibold px-8 py-5 text-sm rounded-lg w-full md:w-auto"
               asChild
             >
               <Link to="/studio">Connect Wallet & Create</Link>

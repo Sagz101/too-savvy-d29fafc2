@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRight, Shield, Zap, Globe, ChevronDown, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import dimingaLogo from '@/assets/diminga-logo.png';
+import dimingaLogo from '@/assets/renegade-logo.png';
 
 export const EnhancedHeroSection: React.FC = () => {
   const valueProps = [

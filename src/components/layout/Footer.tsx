@@ -41,10 +41,10 @@ export const Footer = () => {
         {/* Brand */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-5 h-5 bg-diminga-text rounded-sm" />
-            <span className="font-fraunces font-bold text-base text-diminga-text">renegade</span>
+            <div className="w-5 h-5 bg-renegade-text rounded-sm" />
+            <span className="font-fraunces font-bold text-base text-renegade-text">renegade</span>
           </div>
-          <p className="font-dm-sans text-sm text-diminga-muted leading-relaxed max-w-[220px] mb-4">
+          <p className="font-dm-sans text-sm text-renegade-muted leading-relaxed max-w-[220px] mb-4">
             Your sovereign portal to Web3 — where content, commerce, community, and crypto intersect.
           </p>
           <div className="inline-flex items-center gap-2 font-dm-sans text-[0.7rem] text-emerald-600">
@@ -55,13 +55,13 @@ export const Footer = () => {
 
         {footerCols.map((col) => (
           <div key={col.title}>
-            <h4 className="font-dm-sans font-semibold text-sm text-diminga-text mb-4">{col.title}</h4>
+            <h4 className="font-dm-sans font-semibold text-sm text-renegade-text mb-4">{col.title}</h4>
             <ul className="space-y-2">
               {col.links.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.to}
-                    className="font-dm-sans text-sm text-diminga-muted hover:text-diminga-text transition-colors"
+                    className="font-dm-sans text-sm text-renegade-muted hover:text-renegade-text transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -77,13 +77,13 @@ export const Footer = () => {
         className="relative z-[2] flex flex-col md:flex-row items-center justify-between gap-2 px-6 md:px-10 py-5 max-w-[1280px] mx-auto"
         style={{ borderTop: '1px solid rgba(17,17,16,0.06)' }}
       >
-        <p className="font-dm-sans text-[0.7rem] text-diminga-muted/50">
+        <p className="font-dm-sans text-[0.7rem] text-renegade-muted/50">
           © 2025 Renegade Protocol. Decentralized. Open. Yours.
         </p>
         <div className="flex gap-4 text-[0.7rem]">
-          <Link to="/privacy" className="font-dm-sans text-diminga-muted/50 hover:text-diminga-text transition-colors">Privacy</Link>
-          <Link to="/terms" className="font-dm-sans text-diminga-muted/50 hover:text-diminga-text transition-colors">Terms</Link>
-          <Link to="/dao-governance-rules" className="font-dm-sans text-diminga-muted/50 hover:text-diminga-text transition-colors">DAO Rules</Link>
+          <Link to="/privacy" className="font-dm-sans text-renegade-muted/50 hover:text-renegade-text transition-colors">Privacy</Link>
+          <Link to="/terms" className="font-dm-sans text-renegade-muted/50 hover:text-renegade-text transition-colors">Terms</Link>
+          <Link to="/dao-governance-rules" className="font-dm-sans text-renegade-muted/50 hover:text-renegade-text transition-colors">DAO Rules</Link>
         </div>
       </div>
     </>

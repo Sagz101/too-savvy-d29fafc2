@@ -134,7 +134,7 @@ export const AnimatedRoutes: React.FC = () => {
 
         {/* Renegade App Pages */}
         <Route path="/dashboard" element={<PageTransition><DimingaDashboard /></PageTransition>} />
-        <Route path="/diminga-auth" element={<PageTransition><DimingaAuth /></PageTransition>} />
+        <Route path="/renegade-auth" element={<PageTransition><DimingaAuth /></PageTransition>} />
         <Route path="/profile/:username" element={<PageTransition><DimingaProfile /></PageTransition>} />
         <Route path="/pricing" element={<PageTransition><Pricing /></PageTransition>} />
         <Route path="/docs" element={<PageTransition><Docs /></PageTransition>} />

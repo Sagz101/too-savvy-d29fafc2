@@ -35,16 +35,16 @@ export const StatsBar: React.FC = () => {
         {stats.map((s, i) => (
           <motion.div
             key={i}
-            className="bg-white p-6 md:p-8 transition-colors hover:bg-diminga-alt cursor-default"
+            className="bg-white p-6 md:p-8 transition-colors hover:bg-renegade-alt cursor-default"
             style={{
               borderRight: i < 3 ? '1px solid rgba(17,17,16,0.08)' : 'none',
             }}
             variants={item}
           >
-            <div className="font-fraunces font-bold text-2xl md:text-3xl tracking-tight text-diminga-text">
-              {s.value}<span className="italic font-light text-diminga-accent">{s.accent}</span>
+            <div className="font-fraunces font-bold text-2xl md:text-3xl tracking-tight text-renegade-text">
+              {s.value}<span className="italic font-light text-renegade-accent">{s.accent}</span>
             </div>
-            <div className="font-dm-sans text-[0.78rem] text-diminga-muted mt-1.5 leading-snug">{s.label}</div>
+            <div className="font-dm-sans text-[0.78rem] text-renegade-muted mt-1.5 leading-snug">{s.label}</div>
           </motion.div>
         ))}
       </motion.div>

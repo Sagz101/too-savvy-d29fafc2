@@ -40,8 +40,8 @@ export const HeroSection: React.FC = () => {
           className="flex items-center gap-3 mb-6"
           custom={0} variants={fadeUp} initial="hidden" animate="visible"
         >
-          <div className="w-6 h-px bg-diminga-accent" />
-          <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-diminga-accent">
+          <div className="w-6 h-px bg-renegade-accent" />
+          <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-renegade-accent">
             Sovereign Web3 Platform
           </span>
         </motion.div>
@@ -51,13 +51,13 @@ export const HeroSection: React.FC = () => {
           style={{ fontSize: 'clamp(2.5rem, 4.5vw, 4rem)' }}
           custom={1} variants={fadeUp} initial="hidden" animate="visible"
         >
-          <span className="text-diminga-text">The sovereign platform</span><br />
-          <span className="text-diminga-text">for </span>
-          <span className="font-fraunces italic font-light text-diminga-accent">creators.</span>
+          <span className="text-renegade-text">The sovereign platform</span><br />
+          <span className="text-renegade-text">for </span>
+          <span className="font-fraunces italic font-light text-renegade-accent">creators.</span>
         </motion.h1>
 
         <motion.p
-          className="font-dm-sans text-diminga-muted text-base md:text-lg leading-relaxed max-w-md mb-8 tracking-[-0.01em]"
+          className="font-dm-sans text-renegade-muted text-base md:text-lg leading-relaxed max-w-md mb-8 tracking-[-0.01em]"
           custom={2} variants={fadeUp} initial="hidden" animate="visible"
         >
           Launch stores, mint content, tokenize music — with zero platform fees and full on-chain ownership.
@@ -68,14 +68,14 @@ export const HeroSection: React.FC = () => {
           custom={3} variants={fadeUp} initial="hidden" animate="visible"
         >
           <Button
-            className="bg-diminga-accent hover:bg-diminga-accent/90 text-white font-dm-sans font-semibold px-6 py-5 text-sm rounded-lg"
+            className="bg-renegade-accent hover:bg-renegade-accent/90 text-white font-dm-sans font-semibold px-6 py-5 text-sm rounded-lg"
             asChild
           >
             <Link to="/studio">Connect Wallet & Create</Link>
           </Button>
           <Button
             variant="outline"
-            className="border-diminga-text/15 text-diminga-text hover:bg-diminga-hover font-dm-sans font-medium px-6 py-5 text-sm rounded-lg"
+            className="border-renegade-text/15 text-renegade-text hover:bg-renegade-hover font-dm-sans font-medium px-6 py-5 text-sm rounded-lg"
             asChild
           >
             <Link to="/commerce-studio">Explore Marketplace</Link>
@@ -95,8 +95,8 @@ export const HeroSection: React.FC = () => {
             { value: '98/100', label: 'Security score' },
           ].map(s => (
             <div key={s.label}>
-              <div className="font-fraunces font-bold text-lg tracking-tight text-diminga-accent">{s.value}</div>
-              <div className="font-dm-sans text-[0.7rem] text-diminga-muted mt-0.5">{s.label}</div>
+              <div className="font-fraunces font-bold text-lg tracking-tight text-renegade-accent">{s.value}</div>
+              <div className="font-dm-sans text-[0.7rem] text-renegade-muted mt-0.5">{s.label}</div>
             </div>
           ))}
         </motion.div>
@@ -113,7 +113,7 @@ export const HeroSection: React.FC = () => {
         >
           {/* Header */}
           <div className="flex items-center justify-between mb-5">
-            <span className="font-dm-sans font-semibold text-[0.7rem] uppercase tracking-[0.06em] text-diminga-muted">
+            <span className="font-dm-sans font-semibold text-[0.7rem] uppercase tracking-[0.06em] text-renegade-muted">
               Creator Dashboard
             </span>
             <span className="flex items-center gap-1.5 font-dm-sans text-[0.65rem] text-emerald-600">
@@ -132,35 +132,35 @@ export const HeroSection: React.FC = () => {
             ].map((s, i) => (
               <div
                 key={i}
-                className="rounded-xl p-4 transition-colors bg-diminga-alt hover:bg-diminga-hover cursor-default"
+                className="rounded-xl p-4 transition-colors bg-renegade-alt hover:bg-renegade-hover cursor-default"
               >
-                <div className="font-fraunces font-bold text-xl tracking-tight text-diminga-text">{s.value}</div>
-                <div className="font-dm-sans text-[0.7rem] text-diminga-muted mt-0.5">{s.label}</div>
-                <div className="font-dm-sans text-[0.65rem] text-diminga-accent mt-1 font-medium">{s.change}</div>
+                <div className="font-fraunces font-bold text-xl tracking-tight text-renegade-text">{s.value}</div>
+                <div className="font-dm-sans text-[0.7rem] text-renegade-muted mt-0.5">{s.label}</div>
+                <div className="font-dm-sans text-[0.65rem] text-renegade-accent mt-1 font-medium">{s.change}</div>
               </div>
             ))}
           </div>
 
           {/* Activity Feed */}
-          <div className="font-dm-sans font-semibold text-[0.7rem] uppercase tracking-[0.06em] text-diminga-muted mb-3">
+          <div className="font-dm-sans font-semibold text-[0.7rem] uppercase tracking-[0.06em] text-renegade-muted mb-3">
             Live Activity
           </div>
           <div className="flex flex-col gap-2">
             {feed.map((a, i) => (
               <motion.div
                 key={`${a.handle}-${i}`}
-                className="flex items-center gap-3 p-2.5 rounded-lg text-[0.78rem] bg-diminga-alt"
+                className="flex items-center gap-3 p-2.5 rounded-lg text-[0.78rem] bg-renegade-alt"
                 initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: i * 0.08 }}
               >
-                <div className="w-7 h-7 rounded-full grid place-items-center text-[0.65rem] font-bold shrink-0 bg-diminga-hover text-diminga-accent">
+                <div className="w-7 h-7 rounded-full grid place-items-center text-[0.65rem] font-bold shrink-0 bg-renegade-hover text-renegade-accent">
                   {a.av}
                 </div>
-                <div className="text-diminga-muted flex-1 truncate font-dm-sans">
-                  <strong className="text-diminga-text">{a.handle}</strong> {a.action}
+                <div className="text-renegade-muted flex-1 truncate font-dm-sans">
+                  <strong className="text-renegade-text">{a.handle}</strong> {a.action}
                 </div>
-                <span className="font-dm-sans text-[0.7rem] text-diminga-accent font-semibold whitespace-nowrap">{a.amount}</span>
+                <span className="font-dm-sans text-[0.7rem] text-renegade-accent font-semibold whitespace-nowrap">{a.amount}</span>
               </motion.div>
             ))}
           </div>
@@ -169,13 +169,13 @@ export const HeroSection: React.FC = () => {
         {/* Floating chips */}
         <div className="flex gap-3 mt-4 justify-center">
           <div
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white shadow-[0_1px_3px_rgba(17,17,16,0.06)] text-[0.75rem] font-dm-sans text-diminga-muted"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white shadow-[0_1px_3px_rgba(17,17,16,0.06)] text-[0.75rem] font-dm-sans text-renegade-muted"
             style={{ animation: 'chipFloat 3.5s ease-in-out infinite' }}
           >
-            <span className="text-diminga-accent font-semibold">⚡ $2.1M+</span> Creator earnings
+            <span className="text-renegade-accent font-semibold">⚡ $2.1M+</span> Creator earnings
           </div>
           <div
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white shadow-[0_1px_3px_rgba(17,17,16,0.06)] text-[0.75rem] font-dm-sans text-diminga-muted"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white shadow-[0_1px_3px_rgba(17,17,16,0.06)] text-[0.75rem] font-dm-sans text-renegade-muted"
             style={{ animation: 'chipFloat 3.5s ease-in-out infinite 0.5s' }}
           >
             <span className="text-emerald-600 font-semibold">✓ Audited</span> CertiK 98/100

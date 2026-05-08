@@ -26,11 +26,11 @@ export const TrustStrip: React.FC = () => {
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
       >
-        <motion.span variants={item} className="font-dm-sans font-semibold text-[0.65rem] tracking-[0.06em] uppercase text-diminga-muted shrink-0">
+        <motion.span variants={item} className="font-dm-sans font-semibold text-[0.65rem] tracking-[0.06em] uppercase text-renegade-muted shrink-0">
           Trusted by
         </motion.span>
         {partners.map(p => (
-          <motion.span key={p} variants={item} className="font-dm-sans text-sm text-diminga-muted/60">
+          <motion.span key={p} variants={item} className="font-dm-sans text-sm text-renegade-muted/60">
             {p}
           </motion.span>
         ))}

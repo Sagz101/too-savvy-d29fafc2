@@ -51,7 +51,7 @@ export default function InnovateFundSell() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section id="marketplace" className="bg-diminga-text py-20 scroll-mt-20">
+    <section id="marketplace" className="bg-renegade-text py-20 scroll-mt-20">
       <div ref={ref} className="max-w-[1280px] mx-auto px-6 md:px-10">
         {/* Header */}
         <motion.div
@@ -61,11 +61,11 @@ export default function InnovateFundSell() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <div>
-            <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-diminga-accent mb-3 block">
+            <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-renegade-accent mb-3 block">
               Featured Campaigns
             </span>
             <h2 className="font-fraunces font-bold text-3xl md:text-4xl tracking-[-0.03em] text-white">
-              Innovate. Fund. <span className="italic font-light text-diminga-accent">Sell.</span>
+              Innovate. Fund. <span className="italic font-light text-renegade-accent">Sell.</span>
             </h2>
           </div>
           <Button
@@ -97,7 +97,7 @@ export default function InnovateFundSell() {
             >
               {/* Image placeholder */}
               <div className="h-44 relative" style={{ background: p.gradient }}>
-                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-diminga-accent text-white text-[0.65rem] font-dm-sans font-semibold">
+                <span className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-renegade-accent text-white text-[0.65rem] font-dm-sans font-semibold">
                   {p.badge}
                 </span>
               </div>
@@ -115,13 +115,13 @@ export default function InnovateFundSell() {
 
                 {/* Stats */}
                 <div className="grid grid-cols-2 gap-2 mb-4 text-[0.7rem] font-dm-sans text-white/50">
-                  <div><span className="text-diminga-accent font-semibold">{p.raised}</span> raised</div>
+                  <div><span className="text-renegade-accent font-semibold">{p.raised}</span> raised</div>
                   <div>{p.backers}</div>
                   <div>{p.mints}</div>
                   <div>★ {p.rating}</div>
                 </div>
 
-                <button className="w-full py-2.5 rounded-lg font-dm-sans text-sm font-medium transition-all border border-diminga-accent/40 text-diminga-accent hover:bg-diminga-accent hover:text-white">
+                <button className="w-full py-2.5 rounded-lg font-dm-sans text-sm font-medium transition-all border border-renegade-accent/40 text-renegade-accent hover:bg-renegade-accent hover:text-white">
                   Mint now →
                 </button>
               </div>

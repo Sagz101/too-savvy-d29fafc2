@@ -41,11 +41,11 @@ export const SuccessStories: React.FC = () => {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="mb-12"
       >
-        <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-diminga-accent mb-3 block">
+        <span className="font-dm-sans font-semibold text-[0.7rem] tracking-[0.06em] uppercase text-renegade-accent mb-3 block">
           Creator Stories
         </span>
-        <h2 className="font-fraunces font-bold text-3xl md:text-4xl tracking-[-0.03em] text-diminga-text">
-          Real creators. <span className="italic font-light text-diminga-accent">Real earnings.</span>
+        <h2 className="font-fraunces font-bold text-3xl md:text-4xl tracking-[-0.03em] text-renegade-text">
+          Real creators. <span className="italic font-light text-renegade-accent">Real earnings.</span>
         </h2>
       </motion.div>
 
@@ -63,29 +63,29 @@ export const SuccessStories: React.FC = () => {
             variants={item}
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-11 h-11 rounded-full bg-diminga-alt flex items-center justify-center font-fraunces font-bold text-sm text-diminga-accent">
+              <div className="w-11 h-11 rounded-full bg-renegade-alt flex items-center justify-center font-fraunces font-bold text-sm text-renegade-accent">
                 {s.name.split(' ').map(w => w[0]).join('')}
               </div>
               <div>
-                <div className="font-fraunces font-bold text-base text-diminga-text">{s.name}</div>
-                <div className="font-dm-sans text-[0.7rem] text-diminga-muted">{s.role}</div>
+                <div className="font-fraunces font-bold text-base text-renegade-text">{s.name}</div>
+                <div className="font-dm-sans text-[0.7rem] text-renegade-muted">{s.role}</div>
               </div>
             </div>
 
-            <blockquote className="font-dm-sans text-sm text-diminga-muted leading-relaxed mb-5 italic">
+            <blockquote className="font-dm-sans text-sm text-renegade-muted leading-relaxed mb-5 italic">
               "{s.quote}"
             </blockquote>
 
             <div className="flex gap-6">
               <div>
-                <div className="font-fraunces font-bold text-xl text-diminga-text">
+                <div className="font-fraunces font-bold text-xl text-renegade-text">
                   {s.earnings}
                 </div>
-                <div className="font-dm-sans text-[0.65rem] text-diminga-muted">Total earnings</div>
+                <div className="font-dm-sans text-[0.65rem] text-renegade-muted">Total earnings</div>
               </div>
               <div>
-                <div className="font-fraunces font-bold text-xl text-diminga-accent italic">{s.growth}</div>
-                <div className="font-dm-sans text-[0.65rem] text-diminga-muted">Growth</div>
+                <div className="font-fraunces font-bold text-xl text-renegade-accent italic">{s.growth}</div>
+                <div className="font-dm-sans text-[0.65rem] text-renegade-muted">Growth</div>
               </div>
             </div>
           </motion.div>

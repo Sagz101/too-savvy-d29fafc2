@@ -19,7 +19,7 @@ import {
   User,
   ShoppingBag
 } from 'lucide-react';
-import dimingaLogo from '@/assets/diminga-logo.png';
+import dimingaLogo from '@/assets/renegade-logo.png';
 
 export const StickyNavigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
