@@ -60,7 +60,7 @@ export default function ResetPassword() {
           <h1 style={s.title}>Invalid reset link</h1>
           <p style={s.sub}>
             This link is invalid or has expired.{" "}
-            <Link to="/diminga-auth" style={s.link}>Request a new one →</Link>
+            <Link to="/auth" style={s.link}>Request a new one →</Link>
           </p>
         </div>
       </div>
@@ -110,7 +110,7 @@ export default function ResetPassword() {
         </form>
 
         <p style={s.switchText}>
-          <Link to="/diminga-auth" style={s.link}>← Back to sign in</Link>
+          <Link to="/auth" style={s.link}>← Back to sign in</Link>
         </p>
       </div>
     </div>
