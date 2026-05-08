@@ -10,6 +10,24 @@ import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { Loader2 } from 'lucide-react';
 import { CosmicPageLayout } from '@/components/layout/CosmicPageLayout';
+import { z } from 'zod';
+
+const passwordSchema = z
+  .string()
+  .min(12, 'Password must be at least 12 characters')
+  .max(128, 'Password must be less than 128 characters')
+  .regex(/[A-Z]/, 'Password must contain at least one uppercase letter')
+  .regex(/[a-z]/, 'Password must contain at least one lowercase letter')
+  .regex(/[0-9]/, 'Password must contain at least one number')
+  .regex(/[^A-Za-z0-9]/, 'Password must contain at least one special character');
+
+const emailSchema = z.string().trim().email('Invalid email address').max(255);
+const usernameSchema = z
+  .string()
+  .trim()
+  .min(3, 'Username must be at least 3 characters')
+  .max(32, 'Username must be less than 32 characters')
+  .regex(/^[a-zA-Z0-9_-]+$/, 'Username may only contain letters, numbers, _ and -');
 
 const Auth = () => {
   const [loading, setLoading] = useState(false);
@@ -30,6 +48,12 @@ const Auth = () => {
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    const emailCheck = emailSchema.safeParse(email);
+    if (!emailCheck.success) { toast.error(emailCheck.error.errors[0].message); return; }
+    const usernameCheck = usernameSchema.safeParse(username);
+    if (!usernameCheck.success) { toast.error(usernameCheck.error.errors[0].message); return; }
+    const passwordCheck = passwordSchema.safeParse(password);
+    if (!passwordCheck.success) { toast.error(passwordCheck.error.errors[0].message); return; }
     setLoading(true);
     try {
       const redirectUrl = `${window.location.origin}/`;
@@ -84,7 +108,7 @@ const Auth = () => {
       <div className="min-h-[80vh] flex items-center justify-center p-4">
         <Card className="w-full max-w-md bg-white/5 border-white/10 backdrop-blur-sm">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Welcome to T00 Savvy</CardTitle>
+            <CardTitle className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Welcome to Renegade</CardTitle>
             <CardDescription className="text-white/60">
               Create your account or sign in to access the Web3 creator platform
             </CardDescription>
@@ -125,7 +149,10 @@ const Auth = () => {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="signup-password" className="text-white/80">Password</Label>
-                    <Input id="signup-password" type="password" placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} className="bg-white/5 border-white/10 text-white" />
+                    <Input id="signup-password" type="password" placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={12} aria-describedby="password-requirements" className="bg-white/5 border-white/10 text-white" />
+                    <p id="password-requirements" className="text-xs text-white/50 mt-1">
+                      At least 12 characters with uppercase, lowercase, number, and special character.
+                    </p>
                   </div>
                   <Button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700" disabled={loading}>
                     {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
