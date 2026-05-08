@@ -202,7 +202,7 @@ export const OnboardingFlow = () => {
           </div>
           <div className="flex flex-col items-center gap-4 mb-8">
             <a
-              href="https://discord.gg/toosavvy"
+              href="https://discord.gg/renegade"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-semibold text-solar-core hover:underline hover:text-solar-photosphere text-lg"
@@ -210,7 +210,7 @@ export const OnboardingFlow = () => {
               <Users className="w-5 h-5" /> Join Discord for mentorship and support
             </a>
             <a
-              href="https://docs.toosavvy.xyz/"
+              href="https://docs.renegade.xyz/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-semibold text-solar-core hover:underline hover:text-solar-photosphere text-lg"
@@ -330,12 +330,12 @@ function RoleQuickActions({ role }: { role: string | null }) {
   if (role === 'developer') {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-        <a href="https://docs.toosavvy.xyz/" target="_blank" rel="noopener noreferrer" className="grok-card p-6 flex flex-col items-center hover-scale transition-all text-center">
+        <a href="https://docs.renegade.xyz/" target="_blank" rel="noopener noreferrer" className="grok-card p-6 flex flex-col items-center hover-scale transition-all text-center">
           <Code className="w-6 h-6 mb-2 text-solar-radiative" />
           <div className="font-bold mb-1">Read Developer Docs</div>
           <span className="text-sm text-muted-foreground">Get started with our APIs, SDKs, and guides.</span>
         </a>
-        <a href="https://discord.gg/toosavvy" target="_blank" rel="noopener noreferrer" className="grok-card p-6 flex flex-col items-center hover-scale transition-all text-center">
+        <a href="https://discord.gg/renegade" target="_blank" rel="noopener noreferrer" className="grok-card p-6 flex flex-col items-center hover-scale transition-all text-center">
           <Users className="w-6 h-6 mb-2 text-solar-radiative" />
           <div className="font-bold mb-1">Join Dev Community</div>
           <span className="text-sm text-muted-foreground">Find hackathons, support, and contributors.</span>
@@ -351,7 +351,7 @@ function RoleQuickActions({ role }: { role: string | null }) {
           <div className="font-bold mb-1">View Analytics</div>
           <span className="text-sm text-muted-foreground">Track NFT minting, token stats, and creator growth.</span>
         </Link>
-        <a href="https://docs.toosavvy.xyz/tokenomics" target="_blank" rel="noopener noreferrer" className="grok-card p-6 flex flex-col items-center hover-scale transition-all text-center">
+        <a href="https://docs.renegade.xyz/tokenomics" target="_blank" rel="noopener noreferrer" className="grok-card p-6 flex flex-col items-center hover-scale transition-all text-center">
           <BookOpen className="w-6 h-6 mb-2 text-green-500" />
           <div className="font-bold mb-1">Learn about $Neurax</div>
           <span className="text-sm text-muted-foreground">Discover platform economics and opportunities.</span>

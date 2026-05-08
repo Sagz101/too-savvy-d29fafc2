@@ -17,7 +17,7 @@ const QUICK_ACTIONS = [
   { label: "Record a podcast",   route: ROUTES.PODCAST,     icon: "◆", color: "#F59E0B" },
 ];
 
-export default function DimingaDashboard() {
+export default function RenegadeDashboard() {
   return (
     <DashboardLayout
       title="Dashboard"

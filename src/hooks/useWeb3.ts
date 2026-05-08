@@ -7,7 +7,7 @@
 import { useState, useCallback } from "react";
 import { useAccount, useConnect, useDisconnect, useSignMessage, useBalance, useWriteContract } from "wagmi";
 import { supabase } from "@/integrations/supabase/client";
-import { TOO_SAVVY_NFT_ABI, getContractAddress } from "@/contracts/tooSavvyNFT";
+import { RENEGADE_NFT_ABI, getContractAddress } from "@/contracts/renegadeNFT";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -85,7 +85,7 @@ export function useWeb3() {
 
   /**
    * Mint content as an NFT.
-   * Calls the DimingaCreatorNFT contract via wagmi's writeContract.
+   * Calls the RenegadeCreatorNFT contract via wagmi's writeContract.
    */
   const mintContentNFT = useCallback(async (params: {
     contentId:   string;
@@ -104,7 +104,7 @@ export function useWeb3() {
 
     const txHash = await writeContractAsync({
       address: contractAddress as `0x${string}`,
-      abi: TOO_SAVVY_NFT_ABI,
+      abi: RENEGADE_NFT_ABI,
       functionName: "safeMint",
       args: [
         address as `0x${string}`,

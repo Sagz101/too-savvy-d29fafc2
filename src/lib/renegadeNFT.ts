@@ -1,11 +1,11 @@
 /**
- * DimingaCreatorNFT — ABI, addresses, and helpers.
+ * RenegadeCreatorNFT — ABI, addresses, and helpers.
  *
  * After deploying with Hardhat to Polygon (or other chains),
- * paste the contract address into DIMINGA_NFT_ADDRESSES below.
+ * paste the contract address into RENEGADE_NFT_ADDRESSES below.
  */
 
-export const DIMINGA_NFT_ABI = [
+export const RENEGADE_NFT_ABI = [
   // ── Minting ────────────────────────────────────────────────────────────
   {
     inputs: [
@@ -153,7 +153,7 @@ export const DIMINGA_NFT_ABI = [
  *   3. Base (8453)
  *   4. Ethereum mainnet (1) — optional, high gas
  */
-export const DIMINGA_NFT_ADDRESSES: Record<number, `0x${string}`> = {
+export const RENEGADE_NFT_ADDRESSES: Record<number, `0x${string}`> = {
   // 80001: "0x...",  // Polygon Mumbai testnet — deploy here first
   // 137:   "0x...",  // Polygon mainnet
   // 8453:  "0x...",  // Base
@@ -167,7 +167,7 @@ export const DIMINGA_NFT_ADDRESSES: Record<number, `0x${string}`> = {
 export const getRenegadeContractAddress = (
   chainId: number
 ): `0x${string}` | undefined => {
-  return DIMINGA_NFT_ADDRESSES[chainId];
+  return RENEGADE_NFT_ADDRESSES[chainId];
 };
 
 /** Default mint fee in wei (0.001 ETH / MATIC) — matches contract default */

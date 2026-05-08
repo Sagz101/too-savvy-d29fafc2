@@ -121,7 +121,7 @@ const StudioDashboard = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <p className="text-white/70 text-center">
-              Connect your wallet to access Too Savvy Creator Studio and start building your Web3 presence.
+              Connect your wallet to access Renegade Creator Studio and start building your Web3 presence.
             </p>
             <ConnectButton.Custom>
               {({ account, chain, openConnectModal, mounted }) => {

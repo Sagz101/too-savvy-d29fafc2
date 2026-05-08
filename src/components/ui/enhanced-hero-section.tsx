@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowRight, Shield, Zap, Globe, ChevronDown, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import dimingaLogo from '@/assets/renegade-logo.png';
+import renegadeLogo from '@/assets/renegade-logo.png';
 
 export const EnhancedHeroSection: React.FC = () => {
   const valueProps = [
@@ -23,7 +23,7 @@ export const EnhancedHeroSection: React.FC = () => {
           {/* Logo */}
           <div className="flex justify-center mb-8 animate-fade-in">
             <img 
-              src={dimingaLogo} 
+              src={renegadeLogo} 
               alt="Renegade" 
               className="h-20 w-auto object-contain"
             />

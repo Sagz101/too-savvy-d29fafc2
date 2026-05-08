@@ -38,7 +38,7 @@ export const ConsolidatedDeveloperResources: React.FC = () => {
       title: "Open Source Code",
       description: "Explore smart contracts, contribute, and build integrations",
       action: "View GitHub",
-      path: "https://github.com/toosavvy",
+      path: "https://github.com/renegade",
       external: true
     }
   ];
@@ -47,7 +47,7 @@ export const ConsolidatedDeveloperResources: React.FC = () => {
     {
       title: "Security Dashboard",
       description: "Real-time monitoring via CertiK Skynet",
-      link: "https://skynet.certik.com/projects/toosavvy",
+      link: "https://skynet.certik.com/projects/renegade",
       external: true
     },
     {
@@ -65,7 +65,7 @@ export const ConsolidatedDeveloperResources: React.FC = () => {
     {
       title: "Bug Bounty Program",
       description: "Help secure the platform and earn rewards",
-      link: "https://immunefi.com/bounty/toosavvy",
+      link: "https://immunefi.com/bounty/renegade",
       external: true
     }
   ];
@@ -185,7 +185,7 @@ export const ConsolidatedDeveloperResources: React.FC = () => {
           </ModernText>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
             <a 
-              href="https://github.com/toosavvy"
+              href="https://github.com/renegade"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline flex items-center gap-2"
@@ -194,7 +194,7 @@ export const ConsolidatedDeveloperResources: React.FC = () => {
               View Source Code
             </a>
             <a 
-              href="https://skynet.certik.com/projects/toosavvy"
+              href="https://skynet.certik.com/projects/renegade"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline flex items-center gap-2"
