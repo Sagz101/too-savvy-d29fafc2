@@ -22,7 +22,7 @@ export const createWalletOperations = (
   // Theme toggling functionality
   const toggleTheme = () => {
     const newTheme = wallet.theme === 'dark' ? 'light' : 'dark';
-    setWallet((prev: any) => ({ ...prev, theme: newTheme }));
+    setWallet((prev: WalletState) => ({ ...prev, theme: newTheme }));
     document.documentElement.classList.toggle('dark', newTheme === 'dark');
     return newTheme;
   };
@@ -36,7 +36,7 @@ export const createWalletOperations = (
       if (wallet.provider) {
         await new Promise(resolve => setTimeout(resolve, 1000));
         
-        setWallet((prev: any) => ({
+        setWallet((prev: WalletState) => ({
           ...prev,
           chainId: chainId,
           selectedChain: chain
@@ -66,7 +66,7 @@ export const createWalletOperations = (
     try {
       toast.loading("Preparing transaction...");
       
-      const token = wallet.tokens.find((t: any) => t.address === tokenAddress);
+      const token = wallet.tokens.find((t: Token) => t.address === tokenAddress);
       if (!token) throw new Error("Token not found");
       
       const tokenContract = new Contract(tokenAddress, ERC20_ABI, wallet.signer);
@@ -77,12 +77,12 @@ export const createWalletOperations = (
       
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      const selectedToken = wallet.tokens.find((t: any) => t.address === tokenAddress);
+      const selectedToken = wallet.tokens.find((t: Token) => t.address === tokenAddress);
       if (selectedToken && selectedToken.balance) {
         const currentBalance = parseFloat(selectedToken.balance);
         const sentAmount = parseFloat(amount);
         
-        const updatedTokens = wallet.tokens.map((t: any) => {
+        const updatedTokens = wallet.tokens.map((t: Token) => {
           if (t.address === tokenAddress) {
             return {
               ...t,
@@ -92,7 +92,7 @@ export const createWalletOperations = (
           return t;
         });
         
-        setWallet((prev: any) => ({ ...prev, tokens: updatedTokens }));
+        setWallet((prev: WalletState) => ({ ...prev, tokens: updatedTokens }));
       }
       
       toast.success("Tokens Sent Successfully!", {
@@ -120,7 +120,7 @@ export const createWalletOperations = (
       
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      const token = wallet.tokens.find((t: any) => t.address === tokenAddress);
+      const token = wallet.tokens.find((t: Token) => t.address === tokenAddress);
       if (!token) throw new Error("Token not found");
       
       const newVault: VaultInfo = {
@@ -132,7 +132,7 @@ export const createWalletOperations = (
         autoDeposit
       };
       
-      setWallet((prev: any) => ({
+      setWallet((prev: WalletState) => ({
         ...prev,
         vaults: [...prev.vaults, newVault]
       }));
@@ -162,7 +162,7 @@ export const createWalletOperations = (
       
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      const token = wallet.tokens.find((t: any) => t.address === tokenAddress);
+      const token = wallet.tokens.find((t: Token) => t.address === tokenAddress);
       if (!token) throw new Error("Token not found");
       
       const newGroupWallet: GroupWallet = {
@@ -174,7 +174,7 @@ export const createWalletOperations = (
         isAdmin: true
       };
       
-      setGroupWallets((prev: any) => [...prev, newGroupWallet]);
+      setGroupWallets((prev: WalletState) => [...prev, newGroupWallet]);
       
       toast.success("Group Wallet Created!", {
         description: `Created ${name} group wallet for ${token.symbol}`
@@ -201,7 +201,7 @@ export const createWalletOperations = (
       
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      const token = wallet.tokens.find((t: any) => t.address === tokenAddress);
+      const token = wallet.tokens.find((t: Token) => t.address === tokenAddress);
       if (!token) throw new Error("Token not found");
       
       const defaultSchedule = schedule || members.map((address, index) => {
@@ -224,7 +224,7 @@ export const createWalletOperations = (
         isActive: true
       };
       
-      setSavingsCircles((prev: any) => [...prev, newSavingsCircle]);
+      setSavingsCircles((prev: WalletState) => [...prev, newSavingsCircle]);
       
       toast.success("Savings Circle Created!", {
         description: `Created ${name} savings circle for ${members.length} members`
@@ -263,7 +263,7 @@ export const createWalletOperations = (
         created: new Date()
       };
       
-      setBarterListings((prev: any) => [...prev, newListing]);
+      setBarterListings((prev: WalletState) => [...prev, newListing]);
       
       toast.success("Barter Listing Created!", {
         description: `Created listing: ${title}`
@@ -288,7 +288,7 @@ export const createWalletOperations = (
     try {
       toast.loading("Processing service purchase...");
       
-      const service = wallet.serviceItems.find((s: any) => s.id === serviceId);
+      const service = wallet.serviceItems.find((s: ServiceItem) => s.id === serviceId);
       if (!service) throw new Error("Service not found");
       
       await new Promise(resolve => setTimeout(resolve, 2000));
@@ -316,12 +316,12 @@ export const createWalletOperations = (
     try {
       toast.loading("Processing investment...");
       
-      const project = wallet.impactProjects.find((p: any) => p.id === projectId);
+      const project = wallet.impactProjects.find((p: ImpactProject) => p.id === projectId);
       if (!project) throw new Error("Project not found");
       
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      const updatedProjects = wallet.impactProjects.map((p: any) => {
+      const updatedProjects = wallet.impactProjects.map((p: ImpactProject) => {
         if (p.id === projectId) {
           return {
             ...p,
@@ -331,7 +331,7 @@ export const createWalletOperations = (
         return p;
       });
       
-      setWallet((prev: any) => ({
+      setWallet((prev: WalletState) => ({
         ...prev,
         impactProjects: updatedProjects
       }));
@@ -355,7 +355,7 @@ export const createWalletOperations = (
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      setWallet((prev: any) => ({
+      setWallet((prev: WalletState) => ({
         ...prev,
         gaslessTransactionsEnabled: enabled
       }));
@@ -381,7 +381,7 @@ export const createWalletOperations = (
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      setWallet((prev: any) => ({
+      setWallet((prev: WalletState) => ({
         ...prev,
         walletSovereigntyLevel: level
       }));
@@ -424,7 +424,7 @@ export const createWalletOperations = (
         }
       };
       
-      setWallet((prev: any) => ({
+      setWallet((prev: WalletState) => ({
         ...prev,
         aiCollaborations: [...prev.aiCollaborations, newCollaboration]
       }));
@@ -482,7 +482,7 @@ export const createWalletOperations = (
       
       if (format === 'csv') {
         const headers = "Date,Type,Amount,Currency,From,To,Status\n";
-        const rows = wallet.transactionHistory.map((tx: any) => 
+        const rows = wallet.transactionHistory.map((tx: Transaction) => 
           `${tx.timestamp.toISOString()},${tx.type},${tx.amount},${tx.currency},${tx.from},${tx.to},${tx.status}`
         ).join('\n');
         exportData = headers + rows;
