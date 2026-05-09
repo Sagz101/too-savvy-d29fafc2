@@ -179,7 +179,7 @@ export const createWalletOperations = (
         isAdmin: true
       };
       
-      setGroupWallets((prev: WalletState) => [...prev, newGroupWallet]);
+      setGroupWallets((prev: GroupWallet[]) => [...prev, newGroupWallet]);
       
       toast.success("Group Wallet Created!", {
         description: `Created ${name} group wallet for ${token.symbol}`
@@ -229,7 +229,7 @@ export const createWalletOperations = (
         isActive: true
       };
       
-      setSavingsCircles((prev: WalletState) => [...prev, newSavingsCircle]);
+      setSavingsCircles((prev: SavingsCircle[]) => [...prev, newSavingsCircle]);
       
       toast.success("Savings Circle Created!", {
         description: `Created ${name} savings circle for ${members.length} members`
@@ -268,7 +268,7 @@ export const createWalletOperations = (
         created: new Date()
       };
       
-      setBarterListings((prev: WalletState) => [...prev, newListing]);
+      setBarterListings((prev: BarterListing[]) => [...prev, newListing]);
       
       toast.success("Barter Listing Created!", {
         description: `Created listing: ${title}`
