@@ -1,4 +1,5 @@
 import type { WalletState } from './walletState';
+import type { GroupWallet, SavingsCircle, BarterListing } from './types';
 
 import { 
   fetchMockVaults,
@@ -19,9 +20,9 @@ import {
 
 export const createMockDataHelpers = (
   setWallet: React.Dispatch<React.SetStateAction<WalletState>>,
-  setGroupWallets: React.Dispatch<React.SetStateAction<WalletState>>,
-  setSavingsCircles: React.Dispatch<React.SetStateAction<WalletState>>,
-  setBarterListings: React.Dispatch<React.SetStateAction<WalletState>>
+  setGroupWallets: React.Dispatch<React.SetStateAction<GroupWallet[]>>,
+  setSavingsCircles: React.Dispatch<React.SetStateAction<SavingsCircle[]>>,
+  setBarterListings: React.Dispatch<React.SetStateAction<BarterListing[]>>
 ) => {
   const fetchMockVaultsData = () => {
     const mockVaults = fetchMockVaults();
