@@ -44,12 +44,19 @@ export const StreamScheduler: React.FC = () => {
     }
   ]);
 
-  const [newStream, setNewStream] = useState({
+  const [newStream, setNewStream] = useState<{
+    name: string;
+    description: string;
+    startTime: string;
+    endTime: string;
+    tier: 'standard' | 'vip' | 'backstage';
+    maxViewers: number;
+  }>({
     name: '',
     description: '',
     startTime: '',
     endTime: '',
-    tier: 'standard' as const,
+    tier: 'standard',
     maxViewers: 100
   });
 
