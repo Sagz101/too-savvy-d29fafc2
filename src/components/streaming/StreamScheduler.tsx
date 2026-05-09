@@ -140,7 +140,12 @@ export const StreamScheduler: React.FC = () => {
             </div>
             <div>
               <Label htmlFor="tier">Access Tier</Label>
-              <Select value={newStream.tier} onValueChange={(value: any) => setNewStream({ ...newStream, tier: value })}>
+              <Select
+                value={newStream.tier}
+                onValueChange={(value) =>
+                  setNewStream({ ...newStream, tier: value as 'standard' | 'vip' | 'backstage' })
+                }
+              >
                 <SelectTrigger className="grok-input">
                   <SelectValue />
                 </SelectTrigger>

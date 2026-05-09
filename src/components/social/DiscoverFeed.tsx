@@ -117,7 +117,7 @@ export function DiscoverFeed() {
       title: "Boost Content (Coming Soon)",
       description: `You will be able to boost "${title}" by staking $Neurax.`,
     });
-  const onBuyUnlock = (item: any) =>
+  const onBuyUnlock = (item: { title: string; gated?: boolean; price?: string }) =>
     toast({
       title: item.gated ? "Unlock Content (Soon)" : "Buy Content (Soon)",
       description: `Access for ${item.price} or with tokens/NFTs coming soon!`,

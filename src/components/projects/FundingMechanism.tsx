@@ -388,7 +388,9 @@ export const FundingMechanism: React.FC<FundingMechanismProps> = ({ projectId })
           <Tabs 
             defaultValue="overview" 
             value={activeDashboardTab}
-            onValueChange={(value) => setActiveDashboardTab(value as any)}
+            onValueChange={(value) =>
+              setActiveDashboardTab(value as "overview" | "tokenomics" | "royalties" | "impact")
+            }
             className="w-full"
           >
             <TabsList className="grid grid-cols-4 mb-6">
