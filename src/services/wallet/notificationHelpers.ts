@@ -1,8 +1,9 @@
+import type { WalletState } from './walletState';
 
 import type { Notification } from './types';
 
 export const createNotificationHelpers = (
-  setWallet: React.Dispatch<React.SetStateAction<any>>
+  setWallet: React.Dispatch<React.SetStateAction<WalletState>>
 ) => {
   // Add a new notification
   const addNotification = (notification: Omit<Notification, 'id' | 'timestamp' | 'read'>) => {
@@ -13,7 +14,7 @@ export const createNotificationHelpers = (
       read: false
     };
     
-    setWallet((prev: any) => ({
+    setWallet((prev: WalletState) => ({
       ...prev,
       notifications: [newNotification, ...prev.notifications].slice(0, 50) // Keep last 50 notifications
     }));
@@ -23,7 +24,7 @@ export const createNotificationHelpers = (
 
   // Mark notification as read
   const markNotificationRead = (id: string) => {
-    setWallet((prev: any) => ({
+    setWallet((prev: WalletState) => ({
       ...prev,
       notifications: prev.notifications.map((notif: Notification) => 
         notif.id === id ? { ...notif, read: true } : notif
