@@ -64,9 +64,10 @@ export const useSIWE = () => {
       toast.success('Successfully signed in with Ethereum!');
       
       return true;
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('SIWE error:', error);
-      if (error.message?.includes('rejected')) {
+      const message = error instanceof Error ? error.message : String(error);
+      if (message.includes('rejected')) {
         toast.error('Signature request was rejected');
       } else {
         toast.error('Failed to sign in. Please try again.');

@@ -10,7 +10,11 @@ import { CosmicPageLayout } from '@/components/layout/CosmicPageLayout';
 export default function StoreSuccess() {
   const [searchParams] = useSearchParams();
   const { toast } = useToast();
-  const [orderDetails, setOrderDetails] = useState<any>(null);
+  interface OrderDetails {
+    amount?: number | string;
+    currency?: string;
+  }
+  const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);
   const [loading, setLoading] = useState(true);
   
   const sessionId = searchParams.get('session_id');

@@ -201,8 +201,8 @@ function SupabaseConnectionCheck() {
       } else {
         setRestCheck({ status: "fail", detail: `Unexpected HTTP ${res.status}` });
       }
-    } catch (e: any) {
-      setRestCheck({ status: "fail", detail: e?.message ?? "Network error" });
+    } catch (e: unknown) {
+      setRestCheck({ status: "fail", detail: e instanceof Error ? e.message : "Network error" });
     }
 
     // 3. Auth client reachable
@@ -216,8 +216,8 @@ function SupabaseConnectionCheck() {
           detail: data.session ? `Signed in as ${data.session.user.email ?? data.session.user.id}` : "Reachable · no active session",
         });
       }
-    } catch (e: any) {
-      setAuthCheck({ status: "fail", detail: e?.message ?? "Auth error" });
+    } catch (e: unknown) {
+      setAuthCheck({ status: "fail", detail: e instanceof Error ? e.message : "Auth error" });
     }
 
     // 4. Database query (profiles table — public RLS-safe count)
@@ -230,8 +230,8 @@ function SupabaseConnectionCheck() {
       } else {
         setDbCheck({ status: "ok", detail: `profiles table reachable (${count ?? 0} visible rows)` });
       }
-    } catch (e: any) {
-      setDbCheck({ status: "fail", detail: e?.message ?? "DB error" });
+    } catch (e: unknown) {
+      setDbCheck({ status: "fail", detail: e instanceof Error ? e.message : "DB error" });
     }
 
     setRunning(false);
