@@ -15,6 +15,7 @@ import {
   Shield,
   Trash2
 } from 'lucide-react';
+import type { StoreConfig } from '@/types/commerce';
 
 interface Product {
   id: string;
@@ -29,7 +30,7 @@ interface Product {
 }
 
 interface ProductManagerProps {
-  storeConfig: any;
+  storeConfig: StoreConfig;
 }
 
 export const ProductManager: React.FC<ProductManagerProps> = ({ storeConfig }) => {
