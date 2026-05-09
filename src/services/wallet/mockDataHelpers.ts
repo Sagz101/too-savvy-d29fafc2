@@ -1,3 +1,5 @@
+import type { WalletState } from './walletState';
+import type { GroupWallet, SavingsCircle, BarterListing } from './types';
 
 import { 
   fetchMockVaults,
@@ -17,14 +19,14 @@ import {
 } from './mockDataFetchers';
 
 export const createMockDataHelpers = (
-  setWallet: React.Dispatch<React.SetStateAction<any>>,
-  setGroupWallets: React.Dispatch<React.SetStateAction<any>>,
-  setSavingsCircles: React.Dispatch<React.SetStateAction<any>>,
-  setBarterListings: React.Dispatch<React.SetStateAction<any>>
+  setWallet: React.Dispatch<React.SetStateAction<WalletState>>,
+  setGroupWallets: React.Dispatch<React.SetStateAction<GroupWallet[]>>,
+  setSavingsCircles: React.Dispatch<React.SetStateAction<SavingsCircle[]>>,
+  setBarterListings: React.Dispatch<React.SetStateAction<BarterListing[]>>
 ) => {
   const fetchMockVaultsData = () => {
     const mockVaults = fetchMockVaults();
-    setWallet((prev: any) => ({ ...prev, vaults: mockVaults }));
+    setWallet((prev: WalletState) => ({ ...prev, vaults: mockVaults }));
   };
   
   const fetchMockGroupWalletsData = () => {
@@ -44,22 +46,22 @@ export const createMockDataHelpers = (
   
   const fetchMockCreditScoreData = () => {
     const mockCreditScore = fetchMockCreditScore();
-    setWallet((prev: any) => ({ ...prev, creditScore: mockCreditScore }));
+    setWallet((prev: WalletState) => ({ ...prev, creditScore: mockCreditScore }));
   };
   
   const fetchMockServiceItemsData = () => {
     const mockServices = fetchMockServiceItems();
-    setWallet((prev: any) => ({ ...prev, serviceItems: mockServices }));
+    setWallet((prev: WalletState) => ({ ...prev, serviceItems: mockServices }));
   };
   
   const fetchMockReputationStatsData = () => {
     const mockStats = fetchMockReputationStats();
-    setWallet((prev: any) => ({ ...prev, reputationStats: mockStats }));
+    setWallet((prev: WalletState) => ({ ...prev, reputationStats: mockStats }));
   };
   
   const fetchMockImpactFinanceData = () => {
     const { impactProjects, impactBonds } = fetchMockImpactFinance();
-    setWallet((prev: any) => ({ 
+    setWallet((prev: WalletState) => ({ 
       ...prev, 
       impactProjects,
       impactBonds
@@ -68,7 +70,7 @@ export const createMockDataHelpers = (
   
   const fetchMockRoyaltyAndLicensingData = () => {
     const { royaltyStreams, licenses } = fetchMockRoyaltyAndLicensing();
-    setWallet((prev: any) => ({ 
+    setWallet((prev: WalletState) => ({ 
       ...prev, 
       royaltyStreams,
       licenses
@@ -77,27 +79,27 @@ export const createMockDataHelpers = (
   
   const fetchMockProvenanceGraphData = async () => {
     const mockProvenanceGraph = await fetchMockProvenanceGraph();
-    setWallet((prev: any) => ({ ...prev, provenanceGraph: mockProvenanceGraph }));
+    setWallet((prev: WalletState) => ({ ...prev, provenanceGraph: mockProvenanceGraph }));
   };
   
   const fetchMockCrossPlatformIdentitiesData = async () => {
     const mockIdentities = await fetchMockCrossPlatformIdentities();
-    setWallet((prev: any) => ({ ...prev, crossPlatformIdentities: mockIdentities }));
+    setWallet((prev: WalletState) => ({ ...prev, crossPlatformIdentities: mockIdentities }));
   };
   
   const fetchMockFanParticipationTokensData = () => {
     const mockTokens = fetchMockFanParticipationTokens();
-    setWallet((prev: any) => ({ ...prev, fanParticipationTokens: mockTokens }));
+    setWallet((prev: WalletState) => ({ ...prev, fanParticipationTokens: mockTokens }));
   };
   
   const fetchMockCreatorFanBondsData = () => {
     const mockBonds = fetchMockCreatorFanBonds();
-    setWallet((prev: any) => ({ ...prev, creatorFanBonds: mockBonds }));
+    setWallet((prev: WalletState) => ({ ...prev, creatorFanBonds: mockBonds }));
   };
   
   const fetchMockAICollaborationsData = async () => {
     const mockCollaborations = await fetchMockAICollaborations();
-    setWallet((prev: any) => ({ ...prev, aiCollaborations: mockCollaborations }));
+    setWallet((prev: WalletState) => ({ ...prev, aiCollaborations: mockCollaborations }));
   };
 
   return {

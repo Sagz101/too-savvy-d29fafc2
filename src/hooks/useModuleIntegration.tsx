@@ -6,7 +6,7 @@ interface ModuleData {
   name: string;
   isActive: boolean;
   lastAccessed?: Date;
-  userData?: any;
+  userData?: Record<string, unknown>;
 }
 
 interface SharedUserData {
@@ -108,7 +108,7 @@ export const useModuleIntegration = () => {
   }, [activeModules, sharedData]);
 
   // Cross-module navigation helper
-  const navigateToModule = useCallback((moduleId: string, moduleName: string, additionalData?: any) => {
+  const navigateToModule = useCallback((moduleId: string, moduleName: string, additionalData?: Record<string, unknown>) => {
     trackModuleAccess(moduleId, moduleName);
     
     // Store navigation context for seamless transitions
@@ -178,10 +178,20 @@ interface ModuleIntegrationContextType {
   isDataSynced: boolean;
   trackModuleAccess: (moduleId: string, moduleName: string) => void;
   updateSharedData: (updates: Partial<SharedUserData>) => void;
-  getModuleData: (moduleId: string) => any;
-  navigateToModule: (moduleId: string, moduleName: string, additionalData?: any) => void;
+  getModuleData: (moduleId: string) => {
+    isActive: boolean;
+    lastAccessed: Date | undefined;
+    userData: Record<string, unknown>;
+    sharedData: SharedUserData;
+  };
+  navigateToModule: (moduleId: string, moduleName: string, additionalData?: Record<string, unknown>) => void;
   getRecentModules: () => ModuleData[];
-  getIntegrationStatus: () => any;
+  getIntegrationStatus: () => {
+    isWalletConnected: boolean;
+    isDataSynced: boolean;
+    activeModulesCount: number;
+    hasProfile: boolean;
+  };
   syncModuleData: () => Promise<boolean>;
 }
 

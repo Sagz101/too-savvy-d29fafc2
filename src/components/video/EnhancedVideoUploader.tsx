@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Upload, FileVideo, CheckCircle, AlertTriangle } from 'lucide-react';
 import { toast } from 'sonner';
+import { getErrorMessage } from '@/lib/errors';
 import { uploadToIPFS, getIPFSUrl } from '@/services/ipfs';
 
 interface VideoMetadata {
@@ -63,11 +64,12 @@ export const EnhancedVideoUploader: React.FC = () => {
       toast.success('Video uploaded to IPFS!', {
         description: `IPFS Hash: ${hash.slice(0, 10)}...`,
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('IPFS upload error:', error);
-      setUploadError(error.message || 'Failed to upload video to IPFS');
+      const message = getErrorMessage(error, 'Failed to upload video to IPFS');
+      setUploadError(message);
       toast.error('Failed to upload video', {
-        description: error.message || 'Please try again.',
+        description: message,
       });
     } finally {
       setIsUploading(false);

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { shareContent } from "@/services/social-sharing";
+import { shareContent, type SocialPlatform } from "@/services/social-sharing";
 import { toast } from "sonner";
 
 interface SocialShareProps {
@@ -20,7 +20,7 @@ export const SocialShare: React.FC<SocialShareProps> = ({ url, title, text }) =>
   ];
 
   const handleShare = async (platformName: string) => {
-    const platform = platformName.toLowerCase() as any;
+    const platform = platformName.toLowerCase() as SocialPlatform;
     const result = await shareContent({ url, title, text }, platform);
     
     if (result) {

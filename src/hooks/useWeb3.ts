@@ -43,8 +43,8 @@ export function useWeb3() {
       const connector = connectors[connectorIndex];
       if (!connector) throw new Error("No connector available");
       connect({ connector });
-    } catch (e: any) {
-      setError(e.message ?? "Connection failed");
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Connection failed");
     }
   }, [connect, connectors]);
 
@@ -76,8 +76,8 @@ export function useWeb3() {
       if (profileErr) throw profileErr;
 
       console.log("Wallet linked:", address, "sig:", signature.slice(0, 20) + "...");
-    } catch (e: any) {
-      setError(e.message ?? "Failed to verify wallet");
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "Failed to verify wallet");
     } finally {
       setIsSavingWallet(false);
     }

@@ -46,9 +46,12 @@ export const MobileOptimization: React.FC = () => {
 
     // Get connection info
     const getConnectionInfo = (): string => {
-      const connection = (navigator as any).connection || 
-                        (navigator as any).mozConnection || 
-                        (navigator as any).webkitConnection;
+      const nav = navigator as Navigator & {
+        connection?: { effectiveType?: string; type?: string };
+        mozConnection?: { effectiveType?: string; type?: string };
+        webkitConnection?: { effectiveType?: string; type?: string };
+      };
+      const connection = nav.connection || nav.mozConnection || nav.webkitConnection;
       
       if (connection) {
         return connection.effectiveType || connection.type || 'unknown';
@@ -60,7 +63,9 @@ export const MobileOptimization: React.FC = () => {
     const getBatteryInfo = async (): Promise<number | undefined> => {
       if ('getBattery' in navigator) {
         try {
-          const battery = await (navigator as any).getBattery();
+          const battery = await (
+            navigator as Navigator & { getBattery: () => Promise<{ level: number }> }
+          ).getBattery();
           return Math.round(battery.level * 100);
         } catch (error) {
           return undefined;
@@ -248,19 +253,24 @@ export const PWAFeatures = {
 
   // Install prompt for PWA
   showInstallPrompt: () => {
-    let deferredPrompt: any;
+    interface BeforeInstallPromptEvent extends Event {
+      prompt: () => void;
+      userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+    }
+    let deferredPrompt: BeforeInstallPromptEvent | null = null;
     
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
-      deferredPrompt = e;
+      deferredPrompt = e as BeforeInstallPromptEvent;
       
       // Show install button
       const installButton = document.getElementById('install-pwa');
       if (installButton) {
         installButton.style.display = 'block';
         installButton.addEventListener('click', () => {
+          if (!deferredPrompt) return;
           deferredPrompt.prompt();
-          deferredPrompt.userChoice.then((choiceResult: any) => {
+          deferredPrompt.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
               console.log('User accepted the install prompt');
             }

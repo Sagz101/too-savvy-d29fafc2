@@ -13,7 +13,7 @@ export function Store() {
   return (
     <DashboardLayout title="Store Builder" subtitle="Sell digital goods, merch & NFT-gated content">
       <PageMeta title="Store Builder" description="Sell digital goods, merch & NFT-gated content on Renegade." />
-      <Tabs tabs={["products","orders","settings"]} active={tab} onChange={t => setTab(t as any)} color="#0066FF" />
+      <Tabs tabs={["products","orders","settings"]} active={tab} onChange={t => setTab(t as typeof tab)} color="#0066FF" />
       {tab === "products" && (
         <EmptyStudio
           icon="◈" color="#0066FF"
@@ -45,7 +45,7 @@ export function StudioThreaditor() {
   return (
     <DashboardLayout title="Threaditor" subtitle="Long-form writing with NFT-backed posts">
       <PageMeta title="Threaditor" description="Long-form writing with NFT-backed posts on Renegade." />
-      <Tabs tabs={["drafts","published","write"]} active={tab} onChange={t => setTab(t as any)} color="#00C896" />
+      <Tabs tabs={["drafts","published","write"]} active={tab} onChange={t => setTab(t as typeof tab)} color="#00C896" />
       {tab === "drafts" && <EmptyStudio icon="✦" color="#00C896" heading="No drafts" body="Start writing your first article. Hit 'Write' tab above to begin." cta="New article" ctaColor="#00C896" onCta={() => setTab("write")} />}
       {tab === "published" && <EmptyStudio icon="✦" color="#00C896" heading="Nothing published yet" body="Publish an article to see it here. You can mint it as an NFT after publishing." />}
       {tab === "write" && (
@@ -87,7 +87,7 @@ export function StudioVideoStudio() {
   return (
     <DashboardLayout title="Video Studio" subtitle="Upload, manage & monetize your video content">
       <PageMeta title="Video Studio" description="Upload, manage & monetize your video content on Renegade." />
-      <Tabs tabs={["videos","upload","analytics"]} active={tab} onChange={t => setTab(t as any)} color="#FF6B35" />
+      <Tabs tabs={["videos","upload","analytics"]} active={tab} onChange={t => setTab(t as typeof tab)} color="#FF6B35" />
       {tab === "videos" && <EmptyStudio icon="▶" color="#FF6B35" heading="No videos yet" body="Upload your first video. You can set it as free, paid, or token-gated." cta="Upload video" ctaColor="#FF6B35" onCta={() => setTab("upload")} />}
       {tab === "upload" && (
         <div style={s.uploadZone}>
@@ -127,7 +127,7 @@ export function Podcast() {
   return (
     <DashboardLayout title="Podcast Studio" subtitle="Record, host & distribute your podcast">
       <PageMeta title="Podcast Studio" description="Record, host & distribute your podcast on Renegade." />
-      <Tabs tabs={["episodes","record","feed"]} active={tab} onChange={t => setTab(t as any)} color="#F59E0B" />
+      <Tabs tabs={["episodes","record","feed"]} active={tab} onChange={t => setTab(t as typeof tab)} color="#F59E0B" />
       {tab === "episodes" && <EmptyStudio icon="◆" color="#F59E0B" heading="No episodes yet" body="Create your first podcast episode. You can release it free or token-gate it for superfans." cta="New episode" ctaColor="#F59E0B" onCta={() => setTab("record")} />}
       {tab === "record" && (
         <div style={s.formBlock}>
@@ -166,7 +166,7 @@ export function StudioNeuraSocial() {
   return (
     <DashboardLayout title="NeuraSocial" subtitle="Cross-platform social hub with analytics">
       <PageMeta title="NeuraSocial" description="Cross-platform social hub with analytics on Renegade." />
-      <Tabs tabs={["compose","scheduled","analytics"]} active={tab} onChange={t => setTab(t as any)} color="#9B5CF6" />
+      <Tabs tabs={["compose","scheduled","analytics"]} active={tab} onChange={t => setTab(t as typeof tab)} color="#9B5CF6" />
       {tab === "compose" && (
         <div style={s.formBlock}>
           <textarea
@@ -200,7 +200,7 @@ export function Hub() {
   return (
     <DashboardLayout title="Innovators Hub" subtitle="DAO governance & creative collaboration">
       <PageMeta title="Innovators Hub" description="DAO governance & creative collaboration on Renegade." />
-      <Tabs tabs={["projects","dao","collaborate"]} active={tab} onChange={t => setTab(t as any)} color="#EC4899" />
+      <Tabs tabs={["projects","dao","collaborate"]} active={tab} onChange={t => setTab(t as typeof tab)} color="#EC4899" />
       {tab === "projects" && <EmptyStudio icon="⬡" color="#EC4899" heading="No projects yet" body="Start a collaborative project, invite co-creators, and set revenue splits via smart contracts." cta="New project" ctaColor="#EC4899" />}
       {tab === "dao" && (
         <div>

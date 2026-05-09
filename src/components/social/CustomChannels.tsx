@@ -221,7 +221,7 @@ export const CustomChannels: React.FC = () => {
                 <select
                   className="w-full p-2 border rounded-md"
                   value={newChannel.type}
-                  onChange={(e) => setNewChannel(prev => ({ ...prev, type: e.target.value as any }))}
+                  onChange={(e) => setNewChannel(prev => ({ ...prev, type: e.target.value as CustomChannel['type'] }))}
                 >
                   <option value="webhook">Webhook</option>
                   <option value="api">REST API</option>

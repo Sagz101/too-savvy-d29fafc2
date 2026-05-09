@@ -205,9 +205,16 @@ export const UXAdoptionFeatures: React.FC<UXAdoptionFeaturesProps> = ({
                   className="w-full bg-gradient-to-r from-neura-purple to-neura-cyan text-white hover:opacity-90"
                   onClick={() => {
                     const currentIndex = sovereigntyLevels.indexOf(sovereigntyLevel);
-                    if (currentIndex < sovereigntyLevels.length - 1 && onUpgradeSovereignty) {
-                      onUpgradeSovereignty(sovereigntyLevels[currentIndex + 1] as any);
-                    }
+                     if (currentIndex < sovereigntyLevels.length - 1 && onUpgradeSovereignty) {
+                       onUpgradeSovereignty(
+                         sovereigntyLevels[currentIndex + 1] as
+                           | 'custodial'
+                           | 'social'
+                           | 'smart-contract'
+                           | 'mpc'
+                           | 'full'
+                       );
+                     }
                   }}
                 >
                   Upgrade Security

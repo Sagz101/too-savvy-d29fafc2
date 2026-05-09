@@ -1,6 +1,6 @@
 
 import { toast } from "sonner";
-import { Contract } from "ethers";
+import { Contract, Signer, Provider } from "ethers";
 
 // Simplified ERC721 ABI (For demo purposes)
 const ERC721_ABI = [
@@ -21,7 +21,7 @@ export interface NFTMetadata {
 // Mock function to mint an NFT
 // In a real implementation, this would connect to an actual smart contract
 export const mintNFT = async (
-  signer: any, 
+  signer: Signer, 
   contractAddress: string, 
   metadata: NFTMetadata
 ): Promise<string | null> => {
@@ -64,10 +64,10 @@ export const mintNFT = async (
 
 // Mock function to get NFTs owned by an address
 export const getNFTsByOwner = async (
-  provider: any,
+  provider: Provider,
   contractAddress: string,
   ownerAddress: string
-): Promise<any[]> => {
+): Promise<Array<{ tokenId: string; name: string; description: string; image: string }>> => {
   // In a real implementation, you would query the blockchain
   // For demo purposes, return mock data
   return [

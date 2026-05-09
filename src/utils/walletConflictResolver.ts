@@ -1,19 +1,5 @@
 
-interface WindowEthereum extends Window {
-  ethereum?: {
-    isMetaMask?: boolean;
-    isCoinbaseWallet?: boolean;
-    isRabby?: boolean;
-    providers?: Array<{
-      isMetaMask?: boolean;
-      isCoinbaseWallet?: boolean;
-      isRabby?: boolean;
-    }>;
-    request: (args: { method: string; params?: any[] }) => Promise<any>;
-  };
-}
-
-declare let window: WindowEthereum;
+// Window.ethereum is augmented globally in src/vite-env.d.ts
 
 export class WalletConflictResolver {
   static detectWallets(): string[] {

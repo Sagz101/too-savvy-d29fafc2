@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
+import type { StoreConfig } from '@/types/commerce';
 import { 
   Zap, 
   DollarSign, 
@@ -14,8 +15,8 @@ import {
 } from 'lucide-react';
 
 interface PaymentSetupProps {
-  storeConfig: any;
-  onUpdate: (updates: any) => void;
+  storeConfig: StoreConfig;
+  onUpdate: (updates: Partial<StoreConfig>) => void;
 }
 
 export const PaymentSetup: React.FC<PaymentSetupProps> = ({ storeConfig, onUpdate }) => {

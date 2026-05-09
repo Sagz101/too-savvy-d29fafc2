@@ -44,12 +44,19 @@ export const StreamScheduler: React.FC = () => {
     }
   ]);
 
-  const [newStream, setNewStream] = useState({
+  const [newStream, setNewStream] = useState<{
+    name: string;
+    description: string;
+    startTime: string;
+    endTime: string;
+    tier: 'standard' | 'vip' | 'backstage';
+    maxViewers: number;
+  }>({
     name: '',
     description: '',
     startTime: '',
     endTime: '',
-    tier: 'standard' as const,
+    tier: 'standard',
     maxViewers: 100
   });
 
@@ -140,7 +147,12 @@ export const StreamScheduler: React.FC = () => {
             </div>
             <div>
               <Label htmlFor="tier">Access Tier</Label>
-              <Select value={newStream.tier} onValueChange={(value: any) => setNewStream({ ...newStream, tier: value })}>
+              <Select
+                value={newStream.tier}
+                onValueChange={(value) =>
+                  setNewStream({ ...newStream, tier: value as 'standard' | 'vip' | 'backstage' })
+                }
+              >
                 <SelectTrigger className="grok-input">
                   <SelectValue />
                 </SelectTrigger>

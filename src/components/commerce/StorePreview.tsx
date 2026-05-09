@@ -11,9 +11,10 @@ import {
   Eye,
   ExternalLink
 } from 'lucide-react';
+import type { StoreConfig } from '@/types/commerce';
 
 interface StorePreviewProps {
-  storeConfig: any;
+  storeConfig: StoreConfig;
 }
 
 export const StorePreview: React.FC<StorePreviewProps> = ({ storeConfig }) => {

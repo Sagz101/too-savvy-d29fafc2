@@ -1,5 +1,5 @@
 
-type SocialPlatform = 'twitter' | 'facebook' | 'linkedin' | 'telegram' | 'whatsapp';
+export type SocialPlatform = 'twitter' | 'facebook' | 'linkedin' | 'telegram' | 'whatsapp';
 
 interface ShareOptions {
   title?: string;

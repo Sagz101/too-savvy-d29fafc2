@@ -33,7 +33,7 @@ export class StreamAccessControl {
     this.contractAddress = contractAddress;
   }
 
-  async initContract(signer: any) {
+  async initContract(signer: import("ethers").Signer) {
     this.contract = new Contract(this.contractAddress, STREAM_PASS_ABI, signer);
     return this.contract;
   }
