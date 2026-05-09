@@ -6,8 +6,10 @@ import { CheckCircle, AlertCircle, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { websiteRoutes, buttonTargets, validateNavigation } from '@/utils/navigationTest';
 
+type ValidationResults = ReturnType<typeof validateNavigation>;
+
 export const NavigationValidator: React.FC = () => {
-  const [validationResults, setValidationResults] = useState<any>(null);
+  const [validationResults, setValidationResults] = useState<ValidationResults | null>(null);
   const [showDetails, setShowDetails] = useState(false);
 
   const runValidation = () => {

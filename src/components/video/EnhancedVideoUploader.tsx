@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Upload, FileVideo, CheckCircle, AlertTriangle } from 'lucide-react';
 import { toast } from 'sonner';
+import { getErrorMessage } from '@/lib/errors';
 import { uploadToIPFS, getIPFSUrl } from '@/services/ipfs';
 
 interface VideoMetadata {

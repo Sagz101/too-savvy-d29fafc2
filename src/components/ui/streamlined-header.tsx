@@ -57,7 +57,7 @@ export const StreamlinedHeader: React.FC = () => {
     setActiveDropdown(activeDropdown === label ? null : label);
   };
 
-  const handleNavigation = (item: any) => {
+  const handleNavigation = (item: { sectionId?: string }) => {
     setActiveDropdown(null);
     setIsMobileMenuOpen(false);
     

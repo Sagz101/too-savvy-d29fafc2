@@ -32,14 +32,18 @@ export const CosmosInspiredNavigation: React.FC = () => {
 
     // Multiple tracking methods for comprehensive analytics
     if (typeof window !== 'undefined') {
+      const w = window as Window & {
+        analytics?: { track: (event: string, data: unknown) => void };
+        gtag?: (event: string, action: string, params: Record<string, unknown>) => void;
+      };
       // Web3 Analytics preparation (Chainlink oracles, etc.)
-      if ((window as any).analytics) {
-        (window as any).analytics.track('NavClick', eventData);
+      if (w.analytics) {
+        w.analytics.track('NavClick', eventData);
       }
-      
+
       // Google Analytics 4 preparation
-      if ((window as any).gtag) {
-        (window as any).gtag('event', 'navigation_click', {
+      if (w.gtag) {
+        w.gtag('event', 'navigation_click', {
           section_id: section || action,
           timestamp: eventData.timestamp
         });
