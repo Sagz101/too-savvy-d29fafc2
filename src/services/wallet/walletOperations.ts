@@ -3,21 +3,26 @@ import { BrowserProvider, Contract, parseUnits, formatUnits } from 'ethers';
 import { toast } from "sonner";
 import { ERC20_ABI, SUPPORTED_CHAINS } from './mockData';
 import type { 
+  Token,
   VaultInfo, 
   GroupWallet, 
   SavingsCircle, 
   BarterListing, 
   AICollaboration,
-  Transaction
+  Transaction,
+  Notification,
+  ImpactProject,
+  ServiceItem
 } from './types';
+import type { WalletState } from './walletState';
 
 export const createWalletOperations = (
-  wallet: any,
-  setWallet: React.Dispatch<React.SetStateAction<any>>,
-  setGroupWallets: React.Dispatch<React.SetStateAction<any>>,
-  setSavingsCircles: React.Dispatch<React.SetStateAction<any>>,
-  setBarterListings: React.Dispatch<React.SetStateAction<any>>,
-  addNotification: (notification: any) => void
+  wallet: WalletState,
+  setWallet: React.Dispatch<React.SetStateAction<WalletState>>,
+  setGroupWallets: React.Dispatch<React.SetStateAction<GroupWallet[]>>,
+  setSavingsCircles: React.Dispatch<React.SetStateAction<SavingsCircle[]>>,
+  setBarterListings: React.Dispatch<React.SetStateAction<BarterListing[]>>,
+  addNotification: (notification: Omit<Notification, 'id' | 'timestamp' | 'read'>) => void
 ) => {
   // Theme toggling functionality
   const toggleTheme = () => {

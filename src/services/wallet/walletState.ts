@@ -31,7 +31,7 @@ interface WalletState {
   chainId: number | null;
   isConnected: boolean;
   provider: BrowserProvider | null;
-  signer: any | null;
+  signer: import('ethers').JsonRpcSigner | null;
   tokens: Token[];
   nativeBalance: string;
   vaults: VaultInfo[];
