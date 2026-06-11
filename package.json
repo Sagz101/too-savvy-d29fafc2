@@ -8,7 +8,9 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "percy:snapshots": "percy exec -- node scripts/percy-snapshots.mjs",
+    "percy:local": "playwright install --with-deps chromium && npm run build && (npm run preview -- --port 4173 &) && wait-on http://localhost:4173 && npm run percy:snapshots"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -92,6 +94,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@percy/cli": "^1.31.14",
+    "@percy/playwright": "^1.1.0",
     "@tailwindcss/typography": "^0.5.15",
     "@testing-library/dom": "^10.4.1",
     "@types/node": "^22.5.5",
@@ -105,11 +109,13 @@
     "globals": "^15.9.0",
     "jsdom": "^29.1.1",
     "lovable-tagger": "^1.1.7",
+    "playwright": "^1.60.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.11",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.8",
+    "wait-on": "^9.0.10"
   }
 }
