@@ -1,0 +1,57 @@
+name: Percy Visual Review
+
+on:
+  pull_request:
+    branches: [main, develop, staging, "release/*"]
+  push:
+    branches: [main, develop, staging]
+
+# Required: add PERCY_TOKEN as a repository secret
+# (Percy project → Project Settings → Project Token).
+env:
+  NODE_VERSION: "20"
+  PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+
+jobs:
+  visual-review:
+    name: Percy snapshots
+    runs-on: ubuntu-latest
+    # Skip on forks where the PERCY_TOKEN secret is not exposed.
+    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Build production bundle
+        run: npm run build
+
+      - name: Start preview server
+        run: |
+          npx vite preview --port 4173 --strictPort &
+          echo $! > .preview.pid
+          npx wait-on http://localhost:4173 --timeout 60000
+
+      - name: Run Percy snapshots
+        env:
+          PERCY_BASE_URL: http://localhost:4173
+          PERCY_BRANCH: ${{ github.head_ref || github.ref_name }}
+          PERCY_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
+          PERCY_PULL_REQUEST: ${{ github.event.pull_request.number }}
+        run: npm run percy:snapshots
+
+      - name: Stop preview server
+        if: always()
+        run: |
+          if [ -f .preview.pid ]; then kill "$(cat .preview.pid)" || true; fi
